@@ -51,6 +51,7 @@
   var WEATHER_PHRASES = [
     ["晴時多雲短暫雷陣雨", "Fair, cloudy with brief thundershowers"],
     ["多雲時陰短暫雨", "Cloudy, occasionally overcast with brief rain"],
+    ["多雲短暫陣雨", "Cloudy with brief showers"],
     ["晴時多雲", "Fair, occasionally cloudy"],
     ["多雲時晴", "Cloudy, occasionally fair"],
     ["晴午後多雲", "Fair, cloudy in the afternoon"],
@@ -62,6 +63,7 @@
     ["雷陣雨", "Thundershowers"],
     ["短暫雨", "Brief rain"],
     ["陣雨", "Showers"],
+    ["短暫", "Brief"],
     ["晴天", "Clear"],
     ["多雲", "Cloudy"],
     ["晴", "Clear"],
@@ -391,12 +393,53 @@
     }
   }
 
+  /* --- Independent wave forecast (Open-Meteo Marine API / NOAA GFS-Wave) ---
+     Timestamps come back as e.g. "2026-09-14T00:00" with NO timezone
+     suffix, already in Asia/Taipei local time (per the request param) —
+     append the +08:00 offset explicitly so it parses correctly regardless
+     of the viewer's own timezone. */
+  function renderOpenWave(data) {
+    try {
+      var h = data.hourly;
+      if (!h || !h.time || !h.time.length) throw new Error("no data returned");
+      var toDate = function (t) { return new Date(t + ":00+08:00"); };
+      var series = h.time.map(function (t, i) { return { x: toDate(t).getTime(), y: Number(h.wave_height[i]) }; });
+      var xMin = series[0].x;
+      var xTicks = [0, 1, 2, 3, 4].map(function (d) {
+        var x = xMin + d * 86400000;
+        return { x: x, label: new Date(x).toLocaleDateString("en-US", { weekday: "short" }) };
+      });
+      var svg = lineChartSVG(series, { width: 640, height: 170, area: true, unit: "m", xTicks: xTicks });
+      var chartEl = document.getElementById("openWaveChart");
+      if (chartEl) chartEl.innerHTML = svg || '<p class="loading">No wave curve available</p>';
+
+      var rows = [];
+      h.time.forEach(function (t, i) {
+        if (toDate(t).getHours() % 6 === 0) {
+          rows.push([
+            fmtTime(toDate(t).toISOString()),
+            h.wave_height[i],
+            h.wave_period[i],
+            h.wave_direction[i] !== undefined ? Math.round(h.wave_direction[i]) + "°" : "",
+            h.swell_wave_height[i],
+            h.swell_wave_period[i],
+          ]);
+        }
+      });
+      renderTable("openWaveTable", ["Time", "Wave Ht (m)", "Period (s)", "Direction", "Swell Ht (m)", "Swell Period (s)"], rows.slice(0, 20));
+    } catch (e) {
+      showError("openWaveChart", "Couldn't parse this data (" + e.message + ")");
+      showError("openWaveTable", "Couldn't parse this data (" + e.message + ")");
+    }
+  }
+
   function loadAll() {
     fetchJSON("data/township.json").then(renderTownship).catch(function (e) { showError("townshipTable", "Couldn't load this data (" + e.message + ")"); });
     fetchJSON("data/coastal.json").then(renderCoastal).catch(function (e) { showError("coastalTable", "Couldn't load this data (" + e.message + ")"); });
     fetchJSON("data/tide.json").then(renderTide).catch(function (e) { showError("tideTable", "Couldn't load this data (" + e.message + ")"); });
     fetchJSON("data/stations-history.json").then(renderStationsHistory).catch(function (e) { showError("stationTable", "Couldn't load this data (" + e.message + ")"); });
     fetchJSON("data/buoy.json").then(renderBuoy).catch(function (e) { showError("buoyContainer", "Couldn't load this data (" + e.message + ")"); });
+    fetchJSON("data/openwave.json").then(renderOpenWave).catch(function (e) { showError("openWaveChart", "Couldn't load this data (" + e.message + ")"); });
 
     fetchJSON("data/meta.json").then(function (meta) {
       var el = document.getElementById("lastUpdated");

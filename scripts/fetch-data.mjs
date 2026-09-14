@@ -18,6 +18,9 @@
  *   O-B0075-001  48hr buoy/tide-station sea-state monitoring   -> data/buoy.json
  *                (O-B0076-001 was tried first but is just a station
  *                directory — no live readings — so this replaces it)
+ *   Open-Meteo Marine API (no key, NOAA GFS-Wave)               -> data/openwave.json
+ *                Independent of CWA and the commercial widgets —
+ *                a fallback wave forecast that isn't tied to any of them.
  *
  * Each dataset is fetched in full and then trimmed down client-side to
  * just the records relevant to Donghe / Chenggong, so a mismatch in a
@@ -276,6 +279,31 @@ async function buildBuoyStation(station) {
   return { StationID: station.id, Label: station.label, Readings: readings };
 }
 
+/**
+ * Independent wave forecast from Open-Meteo's free Marine API (no key
+ * required, backed by NOAA NCEP GFS-Wave) — doesn't depend on CWA or any
+ * of the commercial embeds, so it's a fallback source of real wave data.
+ */
+async function buildOpenWave() {
+  const url = new URL("https://marine-api.open-meteo.com/v1/marine");
+  url.searchParams.set("latitude", "22.975");
+  url.searchParams.set("longitude", "121.315");
+  url.searchParams.set("hourly", [
+    "wave_height", "wave_period", "wave_direction",
+    "swell_wave_height", "swell_wave_period", "swell_wave_direction",
+    "wind_wave_height", "wind_wave_period",
+  ].join(","));
+  url.searchParams.set("timezone", "Asia/Taipei");
+  url.searchParams.set("forecast_days", "5");
+
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`open-meteo marine -> HTTP ${res.status}`);
+  const data = await res.json();
+  const count = (data.hourly && data.hourly.time && data.hourly.time.length) || 0;
+  if (!count) return { data, ok: false, count: 0 };
+  return { data, ok: true, count };
+}
+
 async function buildBuoy() {
   const results = await Promise.all(BUOY_STATIONS.map((s) => buildBuoyStation(s).catch(() => null)));
   const stations = results.filter(Boolean);
@@ -292,6 +320,7 @@ async function run() {
     { file: "tide.json", name: "F-A0021-001 tide forecast", build: buildTide },
     { file: "stations.json", name: "O-A0001-001 station observations", build: buildStations },
     { file: "buoy.json", name: "O-B0075-001 buoy / sea state", build: buildBuoy },
+    { file: "openwave.json", name: "Open-Meteo marine (GFS-Wave)", build: buildOpenWave },
   ];
 
   const status = [];

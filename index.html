@@ -27,7 +27,7 @@
 
     <div class="widget-card">
       <div class="widget-card-head">
-        <h3>Windguru — Donghe (spot 218382)</h3>
+        <h3>Windguru — Donghe wind (spot 218382)</h3>
         <a href="https://www.windguru.cz/218382" target="_blank" rel="noopener">Open ↗</a>
       </div>
       <div class="widget-embed windguru-embed">
@@ -48,28 +48,57 @@
 
     <div class="widget-card">
       <div class="widget-card-head">
+        <h3>Windguru — Donghe waves (GFS-Wave model)</h3>
+        <a href="https://www.windguru.cz/218382" target="_blank" rel="noopener">Open ↗</a>
+      </div>
+      <div class="widget-embed windguru-embed">
+        <script id="wg_fwdg_218382_84_1">
+          (function (window, document) {
+            var loader = function () {
+              var arg = ["s=218382", "m=84", "uid=wg_fwdg_218382_84_1", "wj=ms", "tj=c", "odh=0", "doh=24", "fhours=240", "vt=forecasts", "lng=en", "p=HTSGW,PERPW,DIRPW,SWELL1,SWPER1,SWELL2,SWPER2"];
+              var script = document.createElement("script");
+              var tag = document.getElementsByTagName("script")[0];
+              script.src = "https://www.windguru.cz/js/widget.php?" + (arg.join("&"));
+              tag.parentNode.insertBefore(script, tag);
+            };
+            window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+          })(window, document);
+        </script>
+      </div>
+    </div>
+
+    <div class="widget-card">
+      <div class="widget-card-head">
         <h3>surf-forecast.com — Chengkung</h3>
         <a href="https://www.surf-forecast.com/breaks/Chengkung/forecasts/latest" target="_blank" rel="noopener">Open ↗</a>
       </div>
       <div class="widget-embed linkout-embed">
-        <p>surf-forecast.com doesn't offer an embeddable widget (their site blocks being framed). Tap "Open" above for the full Chengkung forecast. See chat for embedding alternatives being considered.</p>
+        <p>surf-forecast.com doesn't offer any embeddable widget or public API (their sister service Magicseaweed had one, but it was shut down after Surfline's 2023 acquisition) — a free account there doesn't unlock one either, that's a paid data-licensing arrangement. Tap "Open" above for the full Chengkung forecast.</p>
         <a class="linkout-button" href="https://www.surf-forecast.com/breaks/Chengkung/forecasts/latest" target="_blank" rel="noopener">Open on surf-forecast.com ↗</a>
       </div>
     </div>
 
     <div class="widget-card">
       <div class="widget-card-head">
-        <h3>Windy — Donghe forecast table</h3>
-        <a href="https://www.windy.com/22.975/121.315/ecmwfWaves/waves?waves,22.752,121.315,9,p:surfspots" target="_blank" rel="noopener">Open full waves/swell view ↗</a>
+        <h3>Windy — Donghe waves &amp; wind map</h3>
+        <a href="https://www.windy.com/22.975/121.315/ecmwfWaves/waves?waves,22.752,121.315,9,p:surfspots" target="_blank" rel="noopener">Open on windy.com ↗</a>
       </div>
       <div class="widget-embed windy-embed">
         <iframe
-          title="Windy forecast table — Donghe"
-          src="https://embed.windy.com/embed.html?type=forecast&location=coordinates&detail=true&detailLat=22.975&detailLon=121.315&metricTemp=default&metricRain=default&metricWind=default"
+          title="Windy waves &amp; wind map — Donghe"
+          src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=default&zoom=9&overlay=waves&product=ecmwfWaves&level=surface&lat=22.975&lon=121.315&detailLat=22.975&detailLon=121.315&detail=true&marker=true"
           frameborder="0"
           loading="lazy"></iframe>
       </div>
     </div>
+  </section>
+
+  <!-- 1b. Independent open-data wave forecast (not a CWA/commercial embed) -->
+  <section class="panel" id="openwave">
+    <h2>Open Wave Model — Donghe</h2>
+    <p class="source-note">Open-Meteo Marine API (NOAA NCEP GFS-Wave, free, no key) — independent of the widgets above, so it keeps working even if one of those is down</p>
+    <div id="openWaveChart" class="data-block chart-block"><p class="loading">Loading…</p></div>
+    <div id="openWaveTable" class="data-block" style="margin-top:0.6rem;"><p class="loading">Loading…</p></div>
   </section>
 
   <!-- 2. CWA Coastal 3-day wave forecast -->
@@ -143,7 +172,7 @@
 </main>
 
 <footer class="site-footer">
-  <p>Data sources: CWA (Central Weather Administration) Open Data, Windguru, surf-forecast.com, Windy, YouTube. For reference only — assess your own conditions before entering the water.</p>
+  <p>Data sources: CWA (Central Weather Administration) Open Data, Open-Meteo (NOAA GFS-Wave), Windguru, surf-forecast.com, Windy, YouTube. For reference only — assess your own conditions before entering the water.</p>
 </footer>
 
 <script src="js/app.js"></script>
