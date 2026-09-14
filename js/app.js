@@ -88,24 +88,29 @@
     el.innerHTML = html;
   }
 
-  /* --- Township forecast (F-D0047-093) --- */
+  /* --- Township forecast (F-D0047-039) ---
+     Real schema: records.locations[0].location[0].WeatherElement[]
+     = { ElementName (Chinese), Time: [{ StartTime, EndTime, ElementValue: {...} }] } */
   function renderTownship(data) {
     try {
       var loc = data.records.locations[0].location[0];
       var elements = {};
-      loc.weatherElement.forEach(function (we) { elements[we.elementName] = we.time; });
-      var times = (elements.Wx || elements.T || []).slice(0, 8);
-      var rows = times.map(function (t, i) {
-        var start = t.startTime || (t.dataTime);
-        function val(name) {
+      loc.WeatherElement.forEach(function (we) { elements[we.ElementName] = we.Time; });
+      var times = (elements["天氣現象"] || elements["平均溫度"] || []).slice(0, 8);
+      function val(name, field, unit) {
+        return function (i) {
           var arr = elements[name];
-          if (!arr || !arr[i]) return "";
-          var ev = arr[i].elementValue || arr[i].parameterSet || arr[i];
-          if (Array.isArray(ev)) return ev[0].value || ev[0].parameterName || "";
-          if (ev && ev.value !== undefined) return ev.value;
-          return "";
-        }
-        return [fmtTime(start), val("Wx"), val("T") + "°C", val("PoP12") + "%", val("WS") ];
+          if (!arr || !arr[i] || !arr[i].ElementValue) return "";
+          var v = arr[i].ElementValue[field];
+          return v === undefined || v === "" ? "" : v + (unit || "");
+        };
+      }
+      var wx = val("天氣現象", "Weather");
+      var temp = val("平均溫度", "Temperature", "°C");
+      var pop = val("12小時降雨機率", "ProbabilityOfPrecipitation", "%");
+      var wind = val("風速", "WindSpeed", " m/s");
+      var rows = times.map(function (t, i) {
+        return [fmtTime(t.StartTime), wx(i), temp(i), pop(i), wind(i)];
       });
       renderTable("townshipTable", ["時間", "天氣", "氣溫", "降雨機率", "風速"], rows);
     } catch (e) {
@@ -113,25 +118,31 @@
     }
   }
 
-  /* --- Coastal 3-day forecast (F-D0047-095) --- */
+  /* --- Coastal 3-day forecast (F-D0047-095) ---
+     Real schema: records.locations[0].location[0].WeatherElement[]
+     = { ElementName (Chinese), Time: [{ DataTime, ElementValue: {...} }] } */
   function renderCoastal(data) {
     try {
       var loc = data.records.locations[0].location[0];
       var elements = {};
-      loc.weatherElement.forEach(function (we) { elements[we.elementName] = we.time; });
-      var times = (elements.WaveHeight || elements.WH || elements.WindSpeed || []).slice(0, 12);
-      var rows = times.map(function (t, i) {
-        var start = t.startTime || t.dataTime;
-        function val(name) {
+      loc.WeatherElement.forEach(function (we) { elements[we.ElementName] = we.Time; });
+      var times = (elements["浪高"] || elements["風速"] || []).slice(0, 16);
+      function val(name, field) {
+        return function (i) {
           var arr = elements[name];
-          if (!arr || !arr[i]) return "";
-          var ev = arr[i].elementValue;
-          if (Array.isArray(ev)) return ev[0].value || "";
-          return "";
-        }
-        return [fmtTime(start), val("WaveHeight") || val("WH"), val("WavePeriod") || val("WP"), val("WindSpeed") || val("WS"), val("WindDirection") || val("WD")];
+          if (!arr || !arr[i] || !arr[i].ElementValue) return "";
+          var v = arr[i].ElementValue[field];
+          return v === undefined ? "" : v;
+        };
+      }
+      var waveHeight = val("浪高", "WaveHeight");
+      var wavePeriod = val("浪週期", "WavePeriod");
+      var windSpeed = val("風速", "WindSpeed");
+      var windDir = val("風向", "WindDirection");
+      var rows = times.map(function (t, i) {
+        return [fmtTime(t.DataTime), waveHeight(i), wavePeriod(i), windSpeed(i), windDir(i)];
       });
-      renderTable("coastalTable", ["時間", "浪高(m)", "浪週期(s)", "風速", "風向"], rows);
+      renderTable("coastalTable", ["時間", "浪高(m)", "浪週期(s)", "風速(m/s)", "風向"], rows);
     } catch (e) {
       showError("coastalTable", "資料格式解析失敗 (" + e.message + ")");
     }
@@ -169,13 +180,46 @@
     }
   }
 
-  /* --- Buoy / sea state (O-B0076-001) --- */
+  /* --- Buoy / sea state (O-B0075-001) ---
+     Schema not yet confirmed against a real payload, so this flattens each
+     station record to its leaf fields and matches by keyword rather than
+     an exact key name — resilient to whatever casing/nesting CWA uses. */
+  function flattenLeaves(obj, out) {
+    out = out || {};
+    if (!obj || typeof obj !== "object") return out;
+    Object.keys(obj).forEach(function (k) {
+      var v = obj[k];
+      if (v !== null && typeof v === "object" && !Array.isArray(v)) {
+        flattenLeaves(v, out);
+      } else if (!Array.isArray(v)) {
+        out[k] = v;
+      }
+    });
+    return out;
+  }
+
+  function findByKeywords(flat, keywords) {
+    var keys = Object.keys(flat);
+    for (var i = 0; i < keys.length; i++) {
+      var kl = keys[i].toLowerCase();
+      if (keywords.every(function (kw) { return kl.indexOf(kw) >= 0; })) return flat[keys[i]];
+    }
+    return "";
+  }
+
   function renderBuoy(data) {
     try {
-      var stations = data.records.Station || data.records.SeaSurfaceObs || [];
+      var stations = data.records.Station || [];
       var rows = stations.map(function (s) {
-        var we = s.WeatherElement || s.SeaSurfaceObs || {};
-        return [s.StationName || s.StationId, fmtTime(s.ObsTime && s.ObsTime.DateTime), we.WaveHeight, we.WavePeriod, we.SeaTemperature || we.WaterTemperature, we.WindSpeed];
+        var flat = flattenLeaves(s);
+        return [
+          "成功 (46761F)",
+          fmtTime(findByKeywords(flat, ["time"])),
+          findByKeywords(flat, ["wave", "height"]),
+          findByKeywords(flat, ["wave", "period"]),
+          findByKeywords(flat, ["sea", "temp"]) || findByKeywords(flat, ["water", "temp"]),
+          findByKeywords(flat, ["wind", "speed"]),
+        ];
       });
       renderTable("buoyTable", ["測站", "觀測時間", "浪高(m)", "週期(s)", "海溫(°C)", "風速(m/s)"], rows);
     } catch (e) {

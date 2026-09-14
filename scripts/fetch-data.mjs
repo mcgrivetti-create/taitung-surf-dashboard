@@ -11,7 +11,9 @@
  *   F-D0047-095  鄉鎮沿海3天逐3小時預報 (coastal wave)  -> data/coastal.json
  *   F-A0021-001  潮汐預報 (tide forecast)               -> data/tide.json
  *   O-A0001-001  自動氣象站 (station observations)      -> data/stations.json
- *   O-B0076-001  浮標/潮位站海象觀測 (buoy / sea state)  -> data/buoy.json
+ *   O-B0075-001  48小時浮標/潮位站海況監測 (buoy / sea state) -> data/buoy.json
+ *                (O-B0076-001 was tried first but is just a station
+ *                directory — no live readings — so this replaces it)
  *
  * Each dataset is fetched in full and then trimmed down client-side to
  * just the records relevant to Donghe / Chenggong, so a mismatch in a
@@ -40,7 +42,7 @@ if (!API_KEY) {
 const BASE_REST = "https://opendata.cwa.gov.tw/api/v1/rest/datastore";
 const BASE_FILEAPI = "https://opendata.cwa.gov.tw/fileapi/v1/opendataapi";
 
-const TOWNSHIP_STATION_IDS = ["C0S81", "C0SA3", "C0T9I"];
+const TOWNSHIP_STATION_IDS = ["C0S810", "C0SA30", "C0T9I0"];
 const BUOY_STATION_ID = "46761F";
 const TIDE_LOCATION_NAME = "臺東縣東河鄉";
 const TOWNSHIP_LOCATION_NAME = "東河鄉";
@@ -157,7 +159,7 @@ async function buildStations() {
 }
 
 async function buildBuoy() {
-  const raw = await fetchDataset("O-B0076-001");
+  const raw = await fetchDataset("O-B0075-001");
   let matches = findMatches(raw, STATION_ID_KEYS, [BUOY_STATION_ID]);
   if (!matches.length) matches = findMatchesContaining(raw, STATION_NAME_KEYS, "成功");
   if (!matches.length) return { data: raw, ok: false, count: 0 };
@@ -172,7 +174,7 @@ async function run() {
     { file: "coastal.json", name: "F-D0047-095 coastal 3-day forecast", build: buildCoastal },
     { file: "tide.json", name: "F-A0021-001 tide forecast", build: buildTide },
     { file: "stations.json", name: "O-A0001-001 station observations", build: buildStations },
-    { file: "buoy.json", name: "O-B0076-001 buoy / sea state", build: buildBuoy },
+    { file: "buoy.json", name: "O-B0075-001 buoy / sea state", build: buildBuoy },
   ];
 
   const status = [];

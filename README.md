@@ -17,7 +17,7 @@ placeholder, and a live cam embed. No database, no per-spot subpages yet
 2. CWA coastal 3-day / 3-hourly wave forecast for Donghe (`F-D0047-095`)
 3. Other CWA data: township forecast (`F-D0047-039`, 東河鄉), tide
    (`F-A0021-001`, 東河鄉), station observations (`O-A0001-001` —
-   C0S81 / C0SA3 / C0T9I), buoy/sea-state (`O-B0076-001` — station 46761F,
+   C0S810 東河 / C0SA30 都歷 / C0T9I0 豐濱), buoy/sea-state (`O-B0075-001` — station 46761F,
    Chenggong)
 4. Forecast-accuracy tracking — placeholder only, real charts land in Phase 3
 5. Jinzun live cam (YouTube embed)
@@ -61,7 +61,7 @@ node scripts/fetch-data.mjs
 
 This writes `data/*.json` + `data/meta.json`. Useful for checking the CWA
 response shapes match what `js/app.js` expects — the CWA field names for a
-couple of datasets (`F-D0047-095` coastal forecast, `O-B0076-001` buoy) were
+couple of datasets (`F-D0047-095` coastal forecast, `O-B0075-001` buoy) were
 inferred from documentation rather than a live response, so double-check
 `data/coastal.json` and `data/buoy.json` after the first real run. If a
 section renders "資料格式解析失敗", the raw payload is still written to that
