@@ -523,13 +523,15 @@ async function run() {
     console.log(`OK: history/forecast log (+${addedForecast} records)`);
 
     // Buoy actuals (one record per station using its latest reading this run).
+    // CWA uses the literal string "None" for a missing reading — normalize to null.
+    const cleanNone = (v) => (v === "None" ? null : v);
     const buoyStations = ((results["buoy.json"] || {}).data || {}).records || {};
     const buoyRecords = (buoyStations.Stations || []).map((st) => {
       const latest = (st.Readings || [])[st.Readings.length - 1];
       if (!latest) return null;
       return {
         observedAt: latest.DateTime, station: st.StationID, label: st.Label,
-        waveHeight: latest.WaveHeight, wavePeriod: latest.WavePeriod, seaTemperature: latest.SeaTemperature,
+        waveHeight: cleanNone(latest.WaveHeight), wavePeriod: cleanNone(latest.WavePeriod), seaTemperature: cleanNone(latest.SeaTemperature),
       };
     }).filter(Boolean);
     const addedBuoy = await appendMonthlyHistory("buoy", buoyRecords, (r) => `${r.observedAt}|${r.station}`);

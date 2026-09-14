@@ -27,21 +27,36 @@ station wind history is a small self-maintained rolling log, not a DB.
     free Marine API (no key, backed by NOAA NCEP GFS-Wave). Doesn't depend
     on CWA or any of the widgets above, so it's a fallback that keeps
     working if one of those goes down.
-2. CWA coastal 3-day / 3-hourly wave forecast for Donghe (`F-D0047-095`)
+2. CWA coastal 3-day / 3-hourly wave forecast for Donghe (`F-D0047-095`) —
+   wave-height chart (0.2m reference gridlines) + wind-scale (Beaufort)
+   chart, table adds computed wave power (kW/m) and wave direction
 3. Other CWA data:
    - Township forecast (`F-D0047-039`, Donghe)
    - Tide forecast (`F-A0021-001`, Donghe) — interpolated line chart with a
-     day pager (today/tomorrow/day-after), a trimmed table (today +
-     tomorrow only), and a link to CWA's full 30-day tide page
+     day pager (today/tomorrow/day-after) showing exact high/low times, a
+     moon-phase widget (locally computed, no API — icon, waxing/waning
+     arrow, next full/new moon date), and a link to CWA's full 30-day tide
+     page
    - Station observations (`O-A0001-001` — C0S810 Donghe / C0SA30 Duli /
-     C0T9I0 Fengbin), last 8 hours of wind speed/direction/Beaufort scale
+     C0T9I0 Fengbin), one chart card per station: 8-hour wind-scale
+     (Beaufort) history + current speed/direction/scale
    - Buoy / sea state (`O-B0075-001`) — Chenggong (46761F), Taitung
-     (WRA007), Hualien (46699A), Longdong (46694A), each with 24-hour wave
-     height/period charts (station codes looked up from `O-B0076-001`'s
-     full station directory)
+     (WRA007), Hualien (46699A), Longdong (46694A) — each with 24-hour wave
+     height/period charts, computed wave power (kW/m), and an 8-hour
+     readings table (station codes looked up from `O-B0076-001`'s full
+     station directory)
 4. Forecast-accuracy tracking — placeholder; **Phase 2 logging is live**
    (see below), charts land in Phase 3 once enough history accumulates
 5. Jinzun live cam (YouTube embed)
+6. CWA Quantitative Precipitation Forecast — island-wide 12/24/36/48h
+   rainfall accumulation images (not Donghe-specific; CWA doesn't offer a
+   point-forecast QPF API, so these are the same map images from
+   <https://www.cwa.gov.tw/V8/E/W/analysis.html>)
+
+**Wave power** (kW/m, shown in the Coastal, Open Wave Model, and buoy
+sections) is computed client-side from wave height + period using the
+standard deep-water wave energy flux formula (P ≈ 0.49·Hs²·Te) — not
+pulled from any external source.
 
 ## Phase 2: data logger (live)
 
@@ -130,6 +145,13 @@ data/history/{forecast,buoy,tide}/YYYY-MM.json
   best-effort dictionary of common CWA phrases, not official CWA English
   data — an unrecognized phrase falls back to a rough word-by-word swap
   rather than a polished translation.
+- **Windguru wind+wave in one table**: confirmed not possible through
+  their embeddable widget — tested directly (a model that has wind data
+  silently drops wave params and vice versa) and confirmed by Windguru's
+  own widget-distribution docs. The combined "WG" table only exists on
+  their full interactive site. Two separate widgets (wind + waves) is the
+  closest equivalent; the Coastal and Open Wave Model charts on this page
+  are the real substitute.
 
 ## Roadmap (not in this build)
 

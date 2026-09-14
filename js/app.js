@@ -130,14 +130,29 @@
     el.innerHTML = html;
   }
 
-  // Reference wave-height bands, shown as background shading behind wave charts.
-  var WAVE_HEIGHT_BANDS = [
-    { from: 0, to: 0.5, color: "#3fb0e0", opacity: 0.07, label: "calm" },
-    { from: 0.5, to: 1.0, color: "#63d4a3", opacity: 0.09, label: "small" },
-    { from: 1.0, to: 1.5, color: "#e8d24a", opacity: 0.11, label: "fun" },
-    { from: 1.5, to: 2.5, color: "#e0a13f", opacity: 0.13, label: "solid" },
-    { from: 2.5, to: 99, color: "#e0725f", opacity: 0.15, label: "big" },
-  ];
+  // Reference gridlines drawn behind wave-height charts, every 0.2m.
+  var WAVE_GRID_STEP = 0.2;
+
+  // Beaufort wind scale number (0-12) from a wind speed in m/s — same
+  // thresholds as scripts/fetch-data.mjs's beaufort() (kept separate since
+  // one runs in Node, the other in the browser).
+  function beaufortScale(speedMs) {
+    var n = Number(speedMs);
+    if (!isFinite(n)) return "";
+    var thresholds = [0.3, 1.6, 3.4, 5.5, 8.0, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 32.7];
+    for (var i = 0; i < thresholds.length; i++) if (n < thresholds[i]) return i;
+    return 12;
+  }
+
+  // Deep-water wave power / energy flux, kW per metre of wave crest:
+  // P ≈ (ρ·g²/64π) · Hs²·Te ≈ 0.49 · Hs²·Te (Hs in m, Te in s). Peak/
+  // dominant period is used as a stand-in for the true energy period,
+  // the same simplification surf-forecast sites use for this figure.
+  function wavePowerKw(heightM, periodS) {
+    var h = Number(heightM), t = Number(periodS);
+    if (!isFinite(h) || !isFinite(t)) return "";
+    return Math.round(0.49 * h * h * t * 10) / 10;
+  }
 
   /* ---------- Tiny SVG line-chart builder (no external deps) ---------- */
   function lineChartSVG(series, opts) {
@@ -162,13 +177,15 @@
 
     var svg = '<svg viewBox="0 0 ' + w + " " + h + '" width="100%" style="display:block;overflow:visible" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">';
 
-    // background height bands (e.g. calm/small/fun/solid/big wave-size reference)
-    (opts.bands || []).forEach(function (b) {
-      var y0 = sy(Math.min(b.to, yMax)), y1 = sy(Math.max(b.from, yMin));
-      if (y1 <= y0) return;
-      svg += '<rect x="' + pad.l + '" y="' + y0 + '" width="' + (w - pad.l - pad.r) + '" height="' + (y1 - y0) + '" fill="' + b.color + '" opacity="' + (b.opacity !== undefined ? b.opacity : 0.12) + '"></rect>';
-      if (b.label) svg += '<text x="' + (w - pad.r - 3) + '" y="' + (y0 + 11) + '" font-size="9" fill="var(--text-dim)" text-anchor="end">' + b.label + "</text>";
-    });
+    // horizontal reference gridlines at a fixed step (e.g. every 0.2m of wave height)
+    if (opts.gridStep) {
+      var gStart = Math.ceil(yMin / opts.gridStep) * opts.gridStep;
+      for (var gv = gStart; gv <= yMax; gv += opts.gridStep) {
+        var gy = sy(gv);
+        svg += '<line x1="' + pad.l + '" y1="' + gy + '" x2="' + (w - pad.r) + '" y2="' + gy + '" stroke="var(--border)" stroke-width="1" stroke-dasharray="2,3"></line>';
+        svg += '<text x="' + (w - pad.r - 3) + '" y="' + (gy - 2) + '" font-size="9" fill="var(--text-dim)" text-anchor="end">' + (Math.round(gv * 100) / 100) + (opts.unit || "") + "</text>";
+      }
+    }
 
     if (opts.area) svg += '<path d="' + areaD + '" fill="var(--accent)" opacity="0.15" stroke="none"></path>';
     svg += '<path d="' + pathD + '" fill="none" stroke="var(--accent)" stroke-width="2" vector-effect="non-scaling-stroke"></path>';
@@ -260,13 +277,20 @@
       var wavePeriod = val("浪週期", "WavePeriod");
       var windSpeed = val("風速", "WindSpeed");
       var windDirRaw = val("風向", "WindDirection");
+      var waveDirRaw = val("浪向", "WaveDirection");
       var rows = times.map(function (t, i) {
-        var wd = windDirRaw(i);
-        return [fmtTime(t.DataTime), waveHeight(i), wavePeriod(i), windSpeed(i), wd ? translateDirText(wd) : ""];
+        var wd = windDirRaw(i), vd = waveDirRaw(i);
+        return [
+          fmtTime(t.DataTime), waveHeight(i), wavePeriod(i),
+          wavePowerKw(waveHeight(i), wavePeriod(i)),
+          vd ? translateDirText(vd) : "",
+          beaufortScale(windSpeed(i)),
+          wd ? translateDirText(wd) : "",
+        ];
       });
-      renderTable("coastalTable", ["Time", "Wave Ht (m)", "Wave Period (s)", "Wind (m/s)", "Wind Dir"], rows);
+      renderTable("coastalTable", ["Time", "Wave Ht (m)", "Wave Period (s)", "Power (kW/m)", "Wave Dir", "Wind Scale", "Wind Dir"], rows);
 
-      // Chart: wave height (with size-reference bands) + wind speed, stacked
+      // Chart: wave height (with size gridlines) + wind scale, stacked
       var chartEl = document.getElementById("coastalChart");
       if (chartEl && times.length) {
         var xs = times.map(function (t) { return new Date(t.DataTime).getTime(); });
@@ -281,12 +305,12 @@
           };
         });
         var waveSeries = times.map(function (t, i) { return { x: xs[i], y: Number(waveHeight(i)) }; });
-        var windSeries = times.map(function (t, i) { return { x: xs[i], y: Number(windSpeed(i)) }; });
-        var waveSVG = lineChartSVG(waveSeries, { width: 640, height: 190, area: true, unit: "m", xTicks: xTicks, bands: WAVE_HEIGHT_BANDS });
-        var windSVG = lineChartSVG(windSeries, { width: 640, height: 140, unit: " m/s", xTicks: xTicks });
+        var windScaleSeries = times.map(function (t, i) { return { x: xs[i], y: beaufortScale(windSpeed(i)) }; });
+        var waveSVG = lineChartSVG(waveSeries, { width: 640, height: 190, area: true, unit: "m", xTicks: xTicks, gridStep: WAVE_GRID_STEP });
+        var windSVG = lineChartSVG(windScaleSeries, { width: 640, height: 140, unit: "", yMin: 0, xTicks: xTicks });
         chartEl.innerHTML =
           '<div class="chart-label">Wave Height</div>' + (waveSVG || '<p class="loading">No data</p>') +
-          '<div class="chart-label">Wind Speed</div>' + (windSVG || '<p class="loading">No data</p>');
+          '<div class="chart-label">Wind Scale (Beaufort)</div>' + (windSVG || '<p class="loading">No data</p>');
       }
     } catch (e) {
       showError("coastalChart", "Couldn't parse this data (" + e.message + ")");
@@ -371,9 +395,47 @@
 
       if (!tideDaysCache.length) throw new Error("no days in response");
       renderTideDay(0);
+      renderMoonWidget();
     } catch (e) {
       showError("tideChart", "Couldn't parse this data (" + e.message + ")");
     }
+  }
+
+  /* --- Moon phase widget (top-right of the tide chart) ---
+     Computed locally from the date — no API needed. Reference: the synodic
+     month (new moon to new moon) is 29.530588853 days; 2000-01-06 18:14 UTC
+     was a new moon. */
+  var MOON_ICONS = ["🌑", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗", "🌘"];
+  function moonPhaseInfo(date) {
+    var synodic = 29.530588853;
+    var newMoonRef = Date.UTC(2000, 0, 6, 18, 14, 0);
+    var days = (date.getTime() - newMoonRef) / 86400000;
+    var phase = (days % synodic) / synodic;
+    if (phase < 0) phase += 1;
+    var waxing = phase < 0.5;
+    var daysToFull = (((0.5 - phase) % 1 + 1) % 1) * synodic;
+    var daysToNew = (((1 - phase) % 1 + 1) % 1) * synodic;
+    if (daysToNew < 0.5) daysToNew = synodic; // just past new — show the *next* one, not "today"
+    return {
+      phase: phase,
+      waxing: waxing,
+      icon: MOON_ICONS[Math.round(phase * 8) % 8],
+      nextFull: new Date(date.getTime() + daysToFull * 86400000),
+      nextNew: new Date(date.getTime() + daysToNew * 86400000),
+    };
+  }
+
+  function renderMoonWidget() {
+    var el = document.getElementById("moonWidget");
+    if (!el) return;
+    var info = moonPhaseInfo(new Date());
+    var arrow = info.waxing ? "▲" : "▼";
+    var nextLabel = info.waxing
+      ? "Full " + info.nextFull.toLocaleDateString("en-US", { month: "short", day: "numeric" })
+      : "New " + info.nextNew.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+    el.innerHTML =
+      '<div class="moon-icon">' + info.icon + '<span class="moon-arrow">' + arrow + "</span></div>" +
+      '<div class="moon-next">' + nextLabel + "</div>";
   }
 
   /* --- Station observations (O-A0001-001), 8-hour rolling history from stations-history.json ---
@@ -394,18 +456,18 @@
         var name = STATION_NAME_EN[s.name] || s.name || id;
         var readings = s.readings || [];
         var latest = readings[readings.length - 1] || {};
-        var series = readings.map(function (r) { return { x: new Date(r.DateTime).getTime(), y: Number(r.WindSpeed) }; });
+        var series = readings.map(function (r) { return { x: new Date(r.DateTime).getTime(), y: Number(r.WindScale) }; });
         var xMin = series.length ? series[0].x : Date.now();
         var xMax = series.length ? series[series.length - 1].x : Date.now();
         var xTicks = [0, 0.5, 1].map(function (f) {
           var x = xMin + f * (xMax - xMin);
           return { x: x, label: fmtHour(new Date(x).toISOString()) };
         });
-        var svg = lineChartSVG(series, { width: 600, height: 120, area: true, unit: " m/s", xTicks: xTicks });
+        var svg = lineChartSVG(series, { width: 600, height: 120, area: true, unit: "", yMin: 0, xTicks: xTicks });
 
         html += '<div class="buoy-card">';
         html += "<h3>" + name + " <span class=\"en\">(" + id + ")</span></h3>";
-        html += '<div class="buoy-chart-label">Wind Speed — last 8h</div>' + (svg || '<p class="loading">Still collecting data (populates hourly)</p>');
+        html += '<div class="buoy-chart-label">Wind Scale (Beaufort) — last 8h</div>' + (svg || '<p class="loading">Still collecting data (populates hourly)</p>');
         html += '<div class="buoy-stats">';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Wind Speed</span><span class="buoy-stat-value">' + (latest.WindSpeed !== undefined ? latest.WindSpeed : "—") + ' m/s</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Direction</span><span class="buoy-stat-value">' + (latest.WindDirection !== undefined ? latest.WindDirection + "°" : "—") + '</span></div>';
@@ -441,7 +503,7 @@
           var x = xMin + f * (xMax - xMin);
           return { x: x, label: fmtHour(new Date(x).toISOString()) };
         });
-        var heightSVG = lineChartSVG(heightSeries, { width: 600, height: 130, area: true, unit: "m", xTicks: xTicks, bands: WAVE_HEIGHT_BANDS });
+        var heightSVG = lineChartSVG(heightSeries, { width: 600, height: 130, area: true, unit: "m", xTicks: xTicks, gridStep: WAVE_GRID_STEP });
         var periodSVG = lineChartSVG(periodSeries, { width: 600, height: 110, unit: "s", xTicks: xTicks });
 
         // CWA uses the literal string "None" for a missing reading on an
@@ -456,6 +518,7 @@
         html += '<div class="buoy-stats">';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Wave Height</span><span class="buoy-stat-value">' + (nv(latest.WaveHeight) || "—") + ' m</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Period</span><span class="buoy-stat-value">' + (nv(latest.WavePeriod) || "—") + ' s</span></div>';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">Power</span><span class="buoy-stat-value">' + (wavePowerKw(latest.WaveHeight, latest.WavePeriod) || "—") + ' kW/m</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Direction</span><span class="buoy-stat-value">' + (nv(latest.WaveDirectionDescription) || "—") + '</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Sea Temp</span><span class="buoy-stat-value">' + (nv(latest.SeaTemperature) || "—") + ' °C</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">As of</span><span class="buoy-stat-value">' + fmtTime(latest.DateTime) + '</span></div>';
@@ -464,12 +527,12 @@
         var cutoff8h = Date.now() - 8 * 60 * 60 * 1000;
         var recent = readings.filter(function (r) { return new Date(r.DateTime).getTime() >= cutoff8h; }).slice().reverse();
         var recentRows = recent.map(function (r) {
-          return [fmtHour(r.DateTime), nv(r.WaveHeight), nv(r.WavePeriod), nv(r.WaveDirectionDescription), nv(r.SeaTemperature)];
+          return [fmtHour(r.DateTime), nv(r.WaveHeight), nv(r.WavePeriod), wavePowerKw(r.WaveHeight, r.WavePeriod), nv(r.WaveDirectionDescription), nv(r.SeaTemperature)];
         }).map(function (row) {
           return "<tr>" + row.map(function (c) { return "<td>" + (c === undefined || c === null || c === "" ? "—" : c) + "</td>"; }).join("") + "</tr>";
         }).join("");
         html += '<div class="buoy-chart-label">Last 8 hours</div>';
-        html += '<div class="buoy-history-table"><table><thead><tr><th>Time</th><th>Ht(m)</th><th>Per(s)</th><th>Dir</th><th>Temp(°C)</th></tr></thead><tbody>' + recentRows + "</tbody></table></div>";
+        html += '<div class="buoy-history-table"><table><thead><tr><th>Time</th><th>Ht(m)</th><th>Per(s)</th><th>Power(kW/m)</th><th>Dir</th><th>Temp(°C)</th></tr></thead><tbody>' + recentRows + "</tbody></table></div>";
         html += "</div>";
       });
       container.innerHTML = html;
@@ -499,7 +562,7 @@
           sublabel: dt.toLocaleDateString("en-US", { month: "numeric", day: "numeric" }),
         };
       });
-      var svg = lineChartSVG(series, { width: 640, height: 190, area: true, unit: "m", xTicks: xTicks, bands: WAVE_HEIGHT_BANDS });
+      var svg = lineChartSVG(series, { width: 640, height: 190, area: true, unit: "m", xTicks: xTicks, gridStep: WAVE_GRID_STEP });
       var chartEl = document.getElementById("openWaveChart");
       if (chartEl) chartEl.innerHTML = svg || '<p class="loading">No wave curve available</p>';
 
@@ -510,13 +573,14 @@
             fmtTime(toDate(t).toISOString()),
             h.wave_height[i],
             h.wave_period[i],
+            wavePowerKw(h.wave_height[i], h.wave_period[i]),
             h.wave_direction[i] !== undefined ? Math.round(h.wave_direction[i]) + "°" : "",
             h.swell_wave_height[i],
             h.swell_wave_period[i],
           ]);
         }
       });
-      renderTable("openWaveTable", ["Time", "Wave Ht (m)", "Period (s)", "Direction", "Swell Ht (m)", "Swell Period (s)"], rows.slice(0, 20));
+      renderTable("openWaveTable", ["Time", "Wave Ht (m)", "Period (s)", "Power (kW/m)", "Direction", "Swell Ht (m)", "Swell Period (s)"], rows.slice(0, 20));
     } catch (e) {
       showError("openWaveChart", "Couldn't parse this data (" + e.message + ")");
       showError("openWaveTable", "Couldn't parse this data (" + e.message + ")");

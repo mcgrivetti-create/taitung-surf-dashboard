@@ -129,7 +129,10 @@
         <span id="tideDayHeading" class="tide-day-heading">—</span>
         <button id="tideNextBtn" class="tide-pager-btn" aria-label="Next day">›</button>
       </div>
-      <div id="tideChart" class="data-block chart-block"><p class="loading">Loading…</p></div>
+      <div class="tide-chart-wrap">
+        <div id="tideChart" class="data-block chart-block"><p class="loading">Loading…</p></div>
+        <div id="moonWidget" class="moon-widget"></div>
+      </div>
       <p class="cwa-link"><a href="https://www.cwa.gov.tw/V8/C/M/tide.html" target="_blank" rel="noopener">Full 30-day tide forecast on CWA ↗</a> <span class="en">(select the 成功臺東沿海 / Chenggong-Taitung coast region)</span></p>
     </div>
 
@@ -166,6 +169,18 @@
         loading="lazy"
         allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- 6. CWA Quantitative Precipitation Forecast (island-wide, not Donghe-specific) -->
+  <section class="panel" id="qpf">
+    <h2>Quantitative Precipitation Forecast</h2>
+    <p class="source-note">CWA — island-wide model rainfall accumulation, not specific to Donghe. <a href="https://www.cwa.gov.tw/V8/E/W/analysis.html" target="_blank" rel="noopener">Source ↗</a></p>
+    <div class="qpf-grid">
+      <figure><img src="https://www.cwa.gov.tw/Data/fcst_img/QPF_EnFcstPrecip_12_12.png" alt="12-hour QPF" loading="lazy"><figcaption>12h</figcaption></figure>
+      <figure><img src="https://www.cwa.gov.tw/Data/fcst_img/QPF_EnFcstPrecip_12_24.png" alt="24-hour QPF" loading="lazy"><figcaption>24h</figcaption></figure>
+      <figure><img src="https://www.cwa.gov.tw/Data/fcst_img/QPF_EnFcstPrecip_12_36.png" alt="36-hour QPF" loading="lazy"><figcaption>36h</figcaption></figure>
+      <figure><img src="https://www.cwa.gov.tw/Data/fcst_img/QPF_EnFcstPrecip_12_48.png" alt="48-hour QPF" loading="lazy"><figcaption>48h</figcaption></figure>
     </div>
   </section>
 

@@ -305,6 +305,66 @@ main {
 
 .cwa-link a:hover { text-decoration: underline; }
 
+/* Moon phase widget, overlaid top-right of the tide chart */
+.tide-chart-wrap {
+  position: relative;
+}
+
+.moon-widget {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.7rem;
+  text-align: right;
+  pointer-events: none;
+  user-select: none;
+}
+
+.moon-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.moon-arrow {
+  font-size: 0.7rem;
+  margin-left: 0.15rem;
+  color: var(--accent-2);
+}
+
+.moon-next {
+  font-size: 0.62rem;
+  color: var(--text-dim);
+  margin-top: 0.1rem;
+}
+
+/* QPF image grid */
+.qpf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.8rem;
+}
+
+.qpf-grid figure {
+  margin: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.qpf-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.qpf-grid figcaption {
+  padding: 0.35rem 0.5rem;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
 /* Buoy grid */
 .buoy-grid {
   display: grid;
