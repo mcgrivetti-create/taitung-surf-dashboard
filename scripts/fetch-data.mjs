@@ -33,7 +33,12 @@ if (!API_KEY) {
   process.exit(1);
 }
 
-const BASE = "https://opendata.cwa.gov.tw/api/v1/rest/datastore";
+// CWA serves some datasets through the newer per-query REST datastore, and
+// others — typically large bulk/combined datasets — only through the older
+// file-download API. We don't know in advance which one a given dataset
+// needs, so try the modern endpoint first and fall back to the classic one.
+const BASE_REST = "https://opendata.cwa.gov.tw/api/v1/rest/datastore";
+const BASE_FILEAPI = "https://opendata.cwa.gov.tw/fileapi/v1/opendataapi";
 
 const TOWNSHIP_STATION_IDS = ["C0S81", "C0SA3", "C0T9I"];
 const BUOY_STATION_ID = "46761F";
@@ -41,45 +46,79 @@ const TIDE_LOCATION_NAME = "臺東縣東河鄉";
 const TOWNSHIP_LOCATION_NAME = "東河鄉";
 
 async function fetchDataset(id) {
-  const url = new URL(`${BASE}/${id}`);
-  url.searchParams.set("Authorization", API_KEY);
-  url.searchParams.set("format", "JSON");
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error(`${id} -> HTTP ${res.status}`);
+  const attempts = [
+    () => {
+      const url = new URL(`${BASE_REST}/${id}`);
+      url.searchParams.set("Authorization", API_KEY);
+      url.searchParams.set("format", "JSON");
+      return url;
+    },
+    () => {
+      const url = new URL(`${BASE_FILEAPI}/${id}`);
+      url.searchParams.set("Authorization", API_KEY);
+      url.searchParams.set("downloadType", "WEB");
+      url.searchParams.set("format", "JSON");
+      return url;
+    },
+  ];
+
+  let lastErr;
+  for (const build of attempts) {
+    const url = build();
+    let res;
+    try {
+      res = await fetch(url);
+    } catch (err) {
+      lastErr = new Error(`${id} -> ${err.message || err} (${url.origin}${url.pathname})`);
+      continue;
+    }
+    if (res.ok) return res.json();
+    lastErr = new Error(`${id} -> HTTP ${res.status} (${url.origin}${url.pathname})`);
   }
-  return res.json();
+  throw lastErr;
 }
 
-/** Recursively collects every object where obj[key] is in `values`. */
-function findMatches(obj, key, values, results = [], seen = new Set()) {
+/** Case/variant-insensitive key lookup: returns the first key in `obj` matching any of `keys` (case-insensitively). */
+function pickKey(obj, keys) {
+  const lower = keys.map((k) => k.toLowerCase());
+  return Object.keys(obj).find((k) => lower.includes(k.toLowerCase()));
+}
+
+/** Recursively collects every object where any of `keys` has a value in `values`. */
+function findMatches(obj, keys, values, results = [], seen = new Set()) {
   if (!obj || typeof obj !== "object" || seen.has(obj)) return results;
   seen.add(obj);
   if (Array.isArray(obj)) {
-    for (const item of obj) findMatches(item, key, values, results, seen);
+    for (const item of obj) findMatches(item, keys, values, results, seen);
   } else {
-    if (obj[key] !== undefined && values.includes(obj[key])) results.push(obj);
-    for (const v of Object.values(obj)) findMatches(v, key, values, results, seen);
+    const k = pickKey(obj, keys);
+    if (k !== undefined && values.includes(obj[k])) results.push(obj);
+    for (const v of Object.values(obj)) findMatches(v, keys, values, results, seen);
   }
   return results;
 }
 
-/** Recursively collects every object where obj[key] is a string containing `substr`. */
-function findMatchesContaining(obj, key, substr, results = [], seen = new Set()) {
+/** Recursively collects every object where any of `keys` is a string containing `substr`. */
+function findMatchesContaining(obj, keys, substr, results = [], seen = new Set()) {
   if (!obj || typeof obj !== "object" || seen.has(obj)) return results;
   seen.add(obj);
   if (Array.isArray(obj)) {
-    for (const item of obj) findMatchesContaining(item, key, substr, results, seen);
+    for (const item of obj) findMatchesContaining(item, keys, substr, results, seen);
   } else {
-    if (typeof obj[key] === "string" && obj[key].includes(substr)) results.push(obj);
-    for (const v of Object.values(obj)) findMatchesContaining(v, key, substr, results, seen);
+    const k = pickKey(obj, keys);
+    if (k !== undefined && typeof obj[k] === "string" && obj[k].includes(substr)) results.push(obj);
+    for (const v of Object.values(obj)) findMatchesContaining(v, keys, substr, results, seen);
   }
   return results;
 }
+
+const LOCATION_NAME_KEYS = ["locationName", "LocationName"];
+const STATION_ID_KEYS = ["StationId", "StationID", "stationId"];
+const STATION_NAME_KEYS = ["StationName", "StationNameCN", "stationName"];
 
 async function buildTownship() {
   const raw = await fetchDataset("F-D0047-093");
-  const matches = findMatchesContaining(raw, "locationName", TOWNSHIP_LOCATION_NAME);
+  const matches = findMatchesContaining(raw, LOCATION_NAME_KEYS, TOWNSHIP_LOCATION_NAME);
   if (!matches.length) return { data: raw, ok: false, count: 0 };
   return {
     data: { records: { locations: [{ location: matches }] } },
@@ -90,7 +129,7 @@ async function buildTownship() {
 
 async function buildCoastal() {
   const raw = await fetchDataset("F-D0047-095");
-  const matches = findMatchesContaining(raw, "locationName", TOWNSHIP_LOCATION_NAME);
+  const matches = findMatchesContaining(raw, LOCATION_NAME_KEYS, TOWNSHIP_LOCATION_NAME);
   if (!matches.length) return { data: raw, ok: false, count: 0 };
   return {
     data: { records: { locations: [{ location: matches }] } },
@@ -101,7 +140,7 @@ async function buildCoastal() {
 
 async function buildTide() {
   const raw = await fetchDataset("F-A0021-001");
-  const matches = findMatches(raw, "LocationName", [TIDE_LOCATION_NAME]);
+  const matches = findMatches(raw, LOCATION_NAME_KEYS, [TIDE_LOCATION_NAME]);
   if (!matches.length) return { data: raw, ok: false, count: 0 };
   return {
     data: { records: { TideForecasts: matches.map((loc) => ({ Location: loc })) } },
@@ -112,15 +151,15 @@ async function buildTide() {
 
 async function buildStations() {
   const raw = await fetchDataset("O-A0001-001");
-  const matches = findMatches(raw, "StationId", TOWNSHIP_STATION_IDS);
+  const matches = findMatches(raw, STATION_ID_KEYS, TOWNSHIP_STATION_IDS);
   if (!matches.length) return { data: raw, ok: false, count: 0 };
   return { data: { records: { Station: matches } }, ok: true, count: matches.length };
 }
 
 async function buildBuoy() {
   const raw = await fetchDataset("O-B0076-001");
-  let matches = findMatches(raw, "StationId", [BUOY_STATION_ID]);
-  if (!matches.length) matches = findMatchesContaining(raw, "StationName", "成功");
+  let matches = findMatches(raw, STATION_ID_KEYS, [BUOY_STATION_ID]);
+  if (!matches.length) matches = findMatchesContaining(raw, STATION_NAME_KEYS, "成功");
   if (!matches.length) return { data: raw, ok: false, count: 0 };
   return { data: { records: { Station: matches } }, ok: true, count: matches.length };
 }
