@@ -7,7 +7,7 @@
  * how to obtain a key and wire it up as a GitHub Actions secret).
  *
  * Datasets used:
- *   F-D0047-093  鄉鎮天氣預報 (township forecast)      -> data/township.json
+ *   F-D0047-039  鄉鎮天氣預報-臺東縣未來1週天氣預報 (township forecast) -> data/township.json
  *   F-D0047-095  鄉鎮沿海3天逐3小時預報 (coastal wave)  -> data/coastal.json
  *   F-A0021-001  潮汐預報 (tide forecast)               -> data/tide.json
  *   O-A0001-001  自動氣象站 (station observations)      -> data/stations.json
@@ -117,7 +117,7 @@ const STATION_ID_KEYS = ["StationId", "StationID", "stationId"];
 const STATION_NAME_KEYS = ["StationName", "StationNameCN", "stationName"];
 
 async function buildTownship() {
-  const raw = await fetchDataset("F-D0047-093");
+  const raw = await fetchDataset("F-D0047-039");
   const matches = findMatchesContaining(raw, LOCATION_NAME_KEYS, TOWNSHIP_LOCATION_NAME);
   if (!matches.length) return { data: raw, ok: false, count: 0 };
   return {
@@ -168,7 +168,7 @@ async function run() {
   await mkdir(DATA_DIR, { recursive: true });
 
   const jobs = [
-    { file: "township.json", name: "F-D0047-093 township forecast", build: buildTownship },
+    { file: "township.json", name: "F-D0047-039 township forecast", build: buildTownship },
     { file: "coastal.json", name: "F-D0047-095 coastal 3-day forecast", build: buildCoastal },
     { file: "tide.json", name: "F-A0021-001 tide forecast", build: buildTide },
     { file: "stations.json", name: "O-A0001-001 station observations", build: buildStations },

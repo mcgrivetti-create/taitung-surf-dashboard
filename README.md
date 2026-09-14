@@ -15,7 +15,7 @@ placeholder, and a live cam embed. No database, no per-spot subpages yet
    (Chengkung, link-out only — they don't offer an embeddable widget), Windy
    (Donghe waves)
 2. CWA coastal 3-day / 3-hourly wave forecast for Donghe (`F-D0047-095`)
-3. Other CWA data: township forecast (`F-D0047-093`, 東河鄉), tide
+3. Other CWA data: township forecast (`F-D0047-039`, 東河鄉), tide
    (`F-A0021-001`, 東河鄉), station observations (`O-A0001-001` —
    C0S81 / C0SA3 / C0T9I), buoy/sea-state (`O-B0076-001` — station 46761F,
    Chenggong)
