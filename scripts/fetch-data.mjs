@@ -53,15 +53,12 @@ const TOWNSHIP_STATION_IDS = ["C0S810", "C0SA30", "C0T9I0"];
 const TIDE_LOCATION_NAME = "臺東縣東河鄉";
 const TOWNSHIP_LOCATION_NAME = "東河鄉";
 
-// Buoy stations to show. Chenggong is confirmed; add the others' StationIDs
-// here once known (from O-B0076-001's full station directory) — Taitung,
-// Hualien, and Longdong buoys all exist in CWA's network but their exact
-// codes weren't looked up yet.
+// Buoy stations to show, looked up from O-B0076-001's full station directory.
 const BUOY_STATIONS = [
   { id: "46761F", label: "Chenggong" },
-  // { id: "TBD", label: "Taitung" },
-  // { id: "TBD", label: "Hualien" },
-  // { id: "TBD", label: "Longdong" },
+  { id: "WRA007", label: "Taitung" },
+  { id: "46699A", label: "Hualien" },
+  { id: "46694A", label: "Longdong" },
 ];
 
 const STATION_HISTORY_HOURS = 8;

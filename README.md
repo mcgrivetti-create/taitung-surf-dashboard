@@ -13,9 +13,20 @@ station wind history is a small self-maintained rolling log, not a DB.
 
 ## Page layout
 
-1. 7-day forecast widgets — Windguru (spot 218382, Donghe), surf-forecast.com
-   (Chengkung, link-out only — no embeddable widget available), Windy
-   (Donghe forecast table + a link to the full waves/swell/tide view)
+1. 7-day forecast widgets:
+   - Windguru (spot 218382, Donghe) — two widgets: wind (model 3, GFS 13km)
+     and waves (model 84, GFS-Wave 16km — wind-only models don't carry wave
+     params, so this needs a separate widget)
+   - surf-forecast.com (Chengkung) — link-out only; they offer no
+     embeddable widget or public API on any account tier (their sister
+     service Magicseaweed had one, shut down after Surfline's 2023
+     acquisition)
+   - Windy — the interactive waves/wind map (layer picker, click-to-inspect
+     spot forecast, full detail table) via `embed.windy.com/embed.html?type=map`
+1b. **Open Wave Model** — an independent wave forecast from Open-Meteo's
+    free Marine API (no key, backed by NOAA NCEP GFS-Wave). Doesn't depend
+    on CWA or any of the widgets above, so it's a fallback that keeps
+    working if one of those goes down.
 2. CWA coastal 3-day / 3-hourly wave forecast for Donghe (`F-D0047-095`)
 3. Other CWA data:
    - Township forecast (`F-D0047-039`, Donghe)
@@ -24,10 +35,10 @@ station wind history is a small self-maintained rolling log, not a DB.
      tomorrow only), and a link to CWA's full 30-day tide page
    - Station observations (`O-A0001-001` — C0S810 Donghe / C0SA30 Dulih /
      C0T9I0 Fengbin), last 8 hours of wind speed/direction/Beaufort scale
-   - Buoy / sea state (`O-B0075-001` — Chenggong station 46761F is
-     confirmed working; Taitung, Hualien, and Longdong buoys are wired up
-     in the code but still need their station IDs — see `BUOY_STATIONS` in
-     `scripts/fetch-data.mjs`), each with 24-hour wave height/period charts
+   - Buoy / sea state (`O-B0075-001`) — Chenggong (46761F), Taitung
+     (WRA007), Hualien (46699A), Longdong (46694A), each with 24-hour wave
+     height/period charts (station codes looked up from `O-B0076-001`'s
+     full station directory)
 4. Forecast-accuracy tracking — placeholder only, real charts land in Phase 3
 5. Jinzun live cam (YouTube embed)
 
@@ -91,11 +102,6 @@ data/stations-history.json   rolling 8-hour wind history, appended to each run
 
 ## Known gaps to close
 
-- **Buoy stations**: only Chenggong (46761F) is wired up with a real
-  StationID. Taitung/Hualien/Longdong buoys exist in CWA's network (seen on
-  <https://www.cwa.gov.tw/V8/C/M/OBS_Marine.html>) but their exact
-  `O-B0075-001` station codes still need looking up — add them to
-  `BUOY_STATIONS` in `scripts/fetch-data.mjs`.
 - **CWA tide deep-link**: the "Full 30-day tide forecast on CWA" link goes
   to the general tide page, not a Donghe-specific URL — that page is a
   client-side app with no shareable per-township link that was found.
