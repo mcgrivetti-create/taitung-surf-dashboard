@@ -80,7 +80,7 @@
     return out;
   }
   var TIDE_ZH_EN = { "滿潮": "High Tide", "乾潮": "Low Tide" };
-  var STATION_NAME_EN = { "東河": "Donghe", "都歷": "Dulih", "豐濱": "Fengbin" };
+  var STATION_NAME_EN = { "東河": "Donghe", "都歷": "Duli", "豐濱": "Fengbin" };
 
   /* ---------- Generic helpers ---------- */
   function fetchJSON(path) {
@@ -130,6 +130,15 @@
     el.innerHTML = html;
   }
 
+  // Reference wave-height bands, shown as background shading behind wave charts.
+  var WAVE_HEIGHT_BANDS = [
+    { from: 0, to: 0.5, color: "#3fb0e0", opacity: 0.07, label: "calm" },
+    { from: 0.5, to: 1.0, color: "#63d4a3", opacity: 0.09, label: "small" },
+    { from: 1.0, to: 1.5, color: "#e8d24a", opacity: 0.11, label: "fun" },
+    { from: 1.5, to: 2.5, color: "#e0a13f", opacity: 0.13, label: "solid" },
+    { from: 2.5, to: 99, color: "#e0725f", opacity: 0.15, label: "big" },
+  ];
+
   /* ---------- Tiny SVG line-chart builder (no external deps) ---------- */
   function lineChartSVG(series, opts) {
     opts = opts || {};
@@ -152,6 +161,15 @@
     var areaD = pathD + " L" + sx(xMax) + "," + sy(yMin) + " L" + sx(xMin) + "," + sy(yMin) + " Z";
 
     var svg = '<svg viewBox="0 0 ' + w + " " + h + '" width="100%" style="display:block;overflow:visible" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">';
+
+    // background height bands (e.g. calm/small/fun/solid/big wave-size reference)
+    (opts.bands || []).forEach(function (b) {
+      var y0 = sy(Math.min(b.to, yMax)), y1 = sy(Math.max(b.from, yMin));
+      if (y1 <= y0) return;
+      svg += '<rect x="' + pad.l + '" y="' + y0 + '" width="' + (w - pad.l - pad.r) + '" height="' + (y1 - y0) + '" fill="' + b.color + '" opacity="' + (b.opacity !== undefined ? b.opacity : 0.12) + '"></rect>';
+      if (b.label) svg += '<text x="' + (w - pad.r - 3) + '" y="' + (y0 + 11) + '" font-size="9" fill="var(--text-dim)" text-anchor="end">' + b.label + "</text>";
+    });
+
     if (opts.area) svg += '<path d="' + areaD + '" fill="var(--accent)" opacity="0.15" stroke="none"></path>';
     svg += '<path d="' + pathD + '" fill="none" stroke="var(--accent)" stroke-width="2" vector-effect="non-scaling-stroke"></path>';
 
@@ -159,15 +177,21 @@
     svg += '<text x="2" y="' + (sy(yMax) + 4) + '" font-size="10" fill="var(--text-dim)">' + Math.round(yMax * 10) / 10 + (opts.unit || "") + '</text>';
     svg += '<text x="2" y="' + (sy(yMin) + 4) + '" font-size="10" fill="var(--text-dim)">' + Math.round(yMin * 10) / 10 + (opts.unit || "") + '</text>';
 
-    // x-axis tick labels
+    // x-axis tick labels (optionally two lines: label + sublabel, e.g. weekday + date)
     (opts.xTicks || []).forEach(function (t) {
-      svg += '<text x="' + sx(t.x) + '" y="' + (h - 6) + '" font-size="10" fill="var(--text-dim)" text-anchor="middle">' + t.label + "</text>";
+      if (t.sublabel) {
+        svg += '<text x="' + sx(t.x) + '" y="' + (h - 16) + '" font-size="10" fill="var(--text-dim)" text-anchor="middle">' + t.label + "</text>";
+        svg += '<text x="' + sx(t.x) + '" y="' + (h - 5) + '" font-size="9" fill="var(--text-dim)" text-anchor="middle" opacity="0.75">' + t.sublabel + "</text>";
+      } else {
+        svg += '<text x="' + sx(t.x) + '" y="' + (h - 6) + '" font-size="10" fill="var(--text-dim)" text-anchor="middle">' + t.label + "</text>";
+      }
     });
 
-    // marker dots
+    // marker dots (optionally with a label above and a sublabel, e.g. exact time, below)
     (opts.markers || []).forEach(function (m) {
       svg += '<circle cx="' + sx(m.x) + '" cy="' + sy(m.y) + '" r="3" fill="var(--accent-2)"></circle>';
       if (m.label) svg += '<text x="' + sx(m.x) + '" y="' + (sy(m.y) - 8) + '" font-size="10" fill="var(--text-dim)" text-anchor="middle">' + m.label + "</text>";
+      if (m.sublabel) svg += '<text x="' + sx(m.x) + '" y="' + (sy(m.y) + 16) + '" font-size="10" font-weight="600" fill="var(--accent-2)" text-anchor="middle">' + m.sublabel + "</text>";
     });
 
     // "now" vertical line
@@ -241,7 +265,31 @@
         return [fmtTime(t.DataTime), waveHeight(i), wavePeriod(i), windSpeed(i), wd ? translateDirText(wd) : ""];
       });
       renderTable("coastalTable", ["Time", "Wave Ht (m)", "Wave Period (s)", "Wind (m/s)", "Wind Dir"], rows);
+
+      // Chart: wave height (with size-reference bands) + wind speed, stacked
+      var chartEl = document.getElementById("coastalChart");
+      if (chartEl && times.length) {
+        var xs = times.map(function (t) { return new Date(t.DataTime).getTime(); });
+        var xMin = xs[0], xMax = xs[xs.length - 1];
+        var xTicks = [0, 0.25, 0.5, 0.75, 1].map(function (f) {
+          var x = xMin + f * (xMax - xMin);
+          var dt = new Date(x);
+          return {
+            x: x,
+            label: dt.toLocaleDateString("en-US", { weekday: "short" }),
+            sublabel: dt.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false }),
+          };
+        });
+        var waveSeries = times.map(function (t, i) { return { x: xs[i], y: Number(waveHeight(i)) }; });
+        var windSeries = times.map(function (t, i) { return { x: xs[i], y: Number(windSpeed(i)) }; });
+        var waveSVG = lineChartSVG(waveSeries, { width: 640, height: 190, area: true, unit: "m", xTicks: xTicks, bands: WAVE_HEIGHT_BANDS });
+        var windSVG = lineChartSVG(windSeries, { width: 640, height: 140, unit: " m/s", xTicks: xTicks });
+        chartEl.innerHTML =
+          '<div class="chart-label">Wave Height</div>' + (waveSVG || '<p class="loading">No data</p>') +
+          '<div class="chart-label">Wind Speed</div>' + (windSVG || '<p class="loading">No data</p>');
+      }
     } catch (e) {
+      showError("coastalChart", "Couldn't parse this data (" + e.message + ")");
       showError("coastalTable", "Couldn't parse this data (" + e.message + ")");
     }
   }
@@ -283,11 +331,17 @@
     var heights = interpolateTide(allPoints, samples);
     var series = samples.map(function (t, i) { return { x: t, y: heights[i] }; });
 
-    var markers = day.extrema.map(function (p) { return { x: p.t, y: p.h, label: (p.tideEn) + " " + Math.round(p.h) + "cm" }; });
+    var markers = day.extrema.map(function (p) {
+      return {
+        x: p.t, y: p.h,
+        label: p.tideEn + " " + Math.round(p.h) + "cm",
+        sublabel: new Date(p.t).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false }),
+      };
+    });
     var xTicks = [0, 6, 12, 18, 24].map(function (hr) { return { x: dayStart + hr * 3600000, label: (hr === 24 ? "24" : hr) + ":00" }; });
     var now = Date.now();
     var svg = lineChartSVG(series, {
-      width: 640, height: 170, area: true, unit: "cm",
+      width: 640, height: 200, area: true, unit: "cm",
       markers: markers, xTicks: xTicks,
       nowX: (now >= dayStart && now <= dayEnd) ? now : undefined,
     });
@@ -317,36 +371,51 @@
 
       if (!tideDaysCache.length) throw new Error("no days in response");
       renderTideDay(0);
-
-      // Trimmed table: only today + tomorrow
-      var rows = [];
-      tideDaysCache.slice(0, 2).forEach(function (day) {
-        day.extrema.forEach(function (e) {
-          rows.push([day.date, fmtTime(new Date(e.t).toISOString()), e.tideEn, Math.round(e.h)]);
-        });
-      });
-      renderTable("tideTable", ["Date", "Time", "Tide", "Height (cm)"], rows);
     } catch (e) {
       showError("tideChart", "Couldn't parse this data (" + e.message + ")");
-      showError("tideTable", "Couldn't parse this data (" + e.message + ")");
     }
   }
 
-  /* --- Station observations (O-A0001-001), 8-hour rolling history from stations-history.json --- */
+  /* --- Station observations (O-A0001-001), 8-hour rolling history from stations-history.json ---
+     One chart card per station, side by side (same grid pattern as buoy cards).
+     WindDirection is a compass degree (e.g. "44.0"), not Chinese text — no translation needed. */
   function renderStationsHistory(history) {
+    var container = document.getElementById("stationContainer");
+    if (!container) return;
     try {
-      var rows = [];
-      Object.keys(history).sort().forEach(function (id) {
+      var ids = Object.keys(history).sort();
+      if (!ids.length) {
+        container.innerHTML = '<p class="loading">No station data available</p>';
+        return;
+      }
+      var html = "";
+      ids.forEach(function (id) {
         var s = history[id];
         var name = STATION_NAME_EN[s.name] || s.name || id;
-        (s.readings || []).slice().reverse().forEach(function (r) {
-          // WindDirection here is a compass degree (e.g. "44.0"), not Chinese text — no translation needed.
-          rows.push([name, fmtHour(r.DateTime), r.WindSpeed, r.WindDirection, r.WindScale]);
+        var readings = s.readings || [];
+        var latest = readings[readings.length - 1] || {};
+        var series = readings.map(function (r) { return { x: new Date(r.DateTime).getTime(), y: Number(r.WindSpeed) }; });
+        var xMin = series.length ? series[0].x : Date.now();
+        var xMax = series.length ? series[series.length - 1].x : Date.now();
+        var xTicks = [0, 0.5, 1].map(function (f) {
+          var x = xMin + f * (xMax - xMin);
+          return { x: x, label: fmtHour(new Date(x).toISOString()) };
         });
+        var svg = lineChartSVG(series, { width: 600, height: 120, area: true, unit: " m/s", xTicks: xTicks });
+
+        html += '<div class="buoy-card">';
+        html += "<h3>" + name + " <span class=\"en\">(" + id + ")</span></h3>";
+        html += '<div class="buoy-chart-label">Wind Speed — last 8h</div>' + (svg || '<p class="loading">Still collecting data (populates hourly)</p>');
+        html += '<div class="buoy-stats">';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">Wind Speed</span><span class="buoy-stat-value">' + (latest.WindSpeed !== undefined ? latest.WindSpeed : "—") + ' m/s</span></div>';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">Direction</span><span class="buoy-stat-value">' + (latest.WindDirection !== undefined ? latest.WindDirection + "°" : "—") + '</span></div>';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">Scale</span><span class="buoy-stat-value">' + (latest.WindScale !== undefined ? latest.WindScale : "—") + '</span></div>';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">As of</span><span class="buoy-stat-value">' + fmtTime(latest.DateTime) + '</span></div>';
+        html += "</div></div>";
       });
-      renderTable("stationTable", ["Station", "Time", "Wind Speed (m/s)", "Wind Dir (°)", "Scale"], rows);
+      container.innerHTML = html;
     } catch (e) {
-      showError("stationTable", "Couldn't parse this data (" + e.message + ")");
+      showError("stationContainer", "Couldn't parse this data (" + e.message + ")");
     }
   }
 
@@ -372,7 +441,7 @@
           var x = xMin + f * (xMax - xMin);
           return { x: x, label: fmtHour(new Date(x).toISOString()) };
         });
-        var heightSVG = lineChartSVG(heightSeries, { width: 600, height: 110, area: true, unit: "m", xTicks: xTicks });
+        var heightSVG = lineChartSVG(heightSeries, { width: 600, height: 130, area: true, unit: "m", xTicks: xTicks, bands: WAVE_HEIGHT_BANDS });
         var periodSVG = lineChartSVG(periodSeries, { width: 600, height: 110, unit: "s", xTicks: xTicks });
 
         html += '<div class="buoy-card">';
@@ -385,7 +454,18 @@
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Direction</span><span class="buoy-stat-value">' + (latest.WaveDirectionDescription || "—") + '</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Sea Temp</span><span class="buoy-stat-value">' + (latest.SeaTemperature || "—") + ' °C</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">As of</span><span class="buoy-stat-value">' + fmtTime(latest.DateTime) + '</span></div>';
-        html += "</div></div>";
+        html += "</div>";
+
+        var cutoff8h = Date.now() - 8 * 60 * 60 * 1000;
+        var recent = readings.filter(function (r) { return new Date(r.DateTime).getTime() >= cutoff8h; }).slice().reverse();
+        var recentRows = recent.map(function (r) {
+          return [fmtHour(r.DateTime), r.WaveHeight, r.WavePeriod, r.WaveDirectionDescription, r.SeaTemperature];
+        }).map(function (row) {
+          return "<tr>" + row.map(function (c) { return "<td>" + (c === undefined || c === null || c === "" ? "—" : c) + "</td>"; }).join("") + "</tr>";
+        }).join("");
+        html += '<div class="buoy-chart-label">Last 8 hours</div>';
+        html += '<div class="buoy-history-table"><table><thead><tr><th>Time</th><th>Ht(m)</th><th>Per(s)</th><th>Dir</th><th>Temp(°C)</th></tr></thead><tbody>' + recentRows + "</tbody></table></div>";
+        html += "</div>";
       });
       container.innerHTML = html;
     } catch (e) {
@@ -407,9 +487,14 @@
       var xMin = series[0].x;
       var xTicks = [0, 1, 2, 3, 4].map(function (d) {
         var x = xMin + d * 86400000;
-        return { x: x, label: new Date(x).toLocaleDateString("en-US", { weekday: "short" }) };
+        var dt = new Date(x);
+        return {
+          x: x,
+          label: dt.toLocaleDateString("en-US", { weekday: "short" }),
+          sublabel: dt.toLocaleDateString("en-US", { month: "numeric", day: "numeric" }),
+        };
       });
-      var svg = lineChartSVG(series, { width: 640, height: 170, area: true, unit: "m", xTicks: xTicks });
+      var svg = lineChartSVG(series, { width: 640, height: 190, area: true, unit: "m", xTicks: xTicks, bands: WAVE_HEIGHT_BANDS });
       var chartEl = document.getElementById("openWaveChart");
       if (chartEl) chartEl.innerHTML = svg || '<p class="loading">No wave curve available</p>';
 
@@ -436,8 +521,8 @@
   function loadAll() {
     fetchJSON("data/township.json").then(renderTownship).catch(function (e) { showError("townshipTable", "Couldn't load this data (" + e.message + ")"); });
     fetchJSON("data/coastal.json").then(renderCoastal).catch(function (e) { showError("coastalTable", "Couldn't load this data (" + e.message + ")"); });
-    fetchJSON("data/tide.json").then(renderTide).catch(function (e) { showError("tideTable", "Couldn't load this data (" + e.message + ")"); });
-    fetchJSON("data/stations-history.json").then(renderStationsHistory).catch(function (e) { showError("stationTable", "Couldn't load this data (" + e.message + ")"); });
+    fetchJSON("data/tide.json").then(renderTide).catch(function (e) { showError("tideChart", "Couldn't load this data (" + e.message + ")"); });
+    fetchJSON("data/stations-history.json").then(renderStationsHistory).catch(function (e) { showError("stationContainer", "Couldn't load this data (" + e.message + ")"); });
     fetchJSON("data/buoy.json").then(renderBuoy).catch(function (e) { showError("buoyContainer", "Couldn't load this data (" + e.message + ")"); });
     fetchJSON("data/openwave.json").then(renderOpenWave).catch(function (e) { showError("openWaveChart", "Couldn't load this data (" + e.message + ")"); });
 

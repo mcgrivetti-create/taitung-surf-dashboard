@@ -105,7 +105,8 @@
   <section class="panel" id="coastal">
     <h2>Coastal 3-Day Wave Forecast — Donghe</h2>
     <p class="source-note">CWA F-D0047-095</p>
-    <div id="coastalTable" class="data-block">
+    <div id="coastalChart" class="data-block chart-block"><p class="loading">Loading…</p></div>
+    <div id="coastalTable" class="data-block" style="margin-top:0.6rem;">
       <p class="loading">Loading…</p>
     </div>
   </section>
@@ -129,14 +130,13 @@
         <button id="tideNextBtn" class="tide-pager-btn" aria-label="Next day">›</button>
       </div>
       <div id="tideChart" class="data-block chart-block"><p class="loading">Loading…</p></div>
-      <div id="tideTable" class="data-block" style="margin-top:0.6rem;"><p class="loading">Loading…</p></div>
       <p class="cwa-link"><a href="https://www.cwa.gov.tw/V8/C/M/tide.html" target="_blank" rel="noopener">Full 30-day tide forecast on CWA ↗</a> <span class="en">(select the 成功臺東沿海 / Chenggong-Taitung coast region)</span></p>
     </div>
 
     <div class="subpanel">
       <h3>Station Observations — last 8 hours</h3>
-      <p class="source-note">O-A0001-001 — C0S810 Donghe / C0SA30 Dulih / C0T9I0 Fengbin</p>
-      <div id="stationTable" class="data-block"><p class="loading">Loading…</p></div>
+      <p class="source-note">O-A0001-001 — C0S810 Donghe / C0SA30 Duli / C0T9I0 Fengbin</p>
+      <div id="stationContainer" class="buoy-grid"><p class="loading">Loading…</p></div>
     </div>
 
     <div class="subpanel">

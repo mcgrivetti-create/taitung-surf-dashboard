@@ -33,7 +33,7 @@ station wind history is a small self-maintained rolling log, not a DB.
    - Tide forecast (`F-A0021-001`, Donghe) — interpolated line chart with a
      day pager (today/tomorrow/day-after), a trimmed table (today +
      tomorrow only), and a link to CWA's full 30-day tide page
-   - Station observations (`O-A0001-001` — C0S810 Donghe / C0SA30 Dulih /
+   - Station observations (`O-A0001-001` — C0S810 Donghe / C0SA30 Duli /
      C0T9I0 Fengbin), last 8 hours of wind speed/direction/Beaufort scale
    - Buoy / sea state (`O-B0075-001`) — Chenggong (46761F), Taitung
      (WRA007), Hualien (46699A), Longdong (46694A), each with 24-hour wave

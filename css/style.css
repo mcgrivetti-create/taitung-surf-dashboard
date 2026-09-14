@@ -357,6 +357,36 @@ main {
   font-weight: 600;
 }
 
+.chart-label {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin: 0.5rem 0 0.1rem;
+}
+
+.buoy-history-table {
+  margin-top: 0.6rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.buoy-history-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.76rem;
+}
+
+.buoy-history-table th, .buoy-history-table td {
+  text-align: left;
+  padding: 0.25rem 0.4rem;
+  white-space: nowrap;
+  color: var(--text-dim);
+}
+
+.buoy-history-table th {
+  font-weight: 600;
+}
+
 /* Placeholder */
 .placeholder-block {
   background: var(--bg-card);
