@@ -90,7 +90,8 @@
 
   /* --- Township forecast (F-D0047-039) ---
      Real schema: records.locations[0].location[0].WeatherElement[]
-     = { ElementName (Chinese), Time: [{ StartTime, EndTime, ElementValue: {...} }] } */
+     = { ElementName (Chinese), Time: [{ StartTime, EndTime, ElementValue }] }
+     where ElementValue is an ARRAY of one object: [{ Temperature: "28" }]. */
   function renderTownship(data) {
     try {
       var loc = data.records.locations[0].location[0];
@@ -101,7 +102,9 @@
         return function (i) {
           var arr = elements[name];
           if (!arr || !arr[i] || !arr[i].ElementValue) return "";
-          var v = arr[i].ElementValue[field];
+          var ev = arr[i].ElementValue;
+          var obj = Array.isArray(ev) ? ev[0] : ev;
+          var v = obj && obj[field];
           return v === undefined || v === "" ? "" : v + (unit || "");
         };
       }
@@ -131,7 +134,9 @@
         return function (i) {
           var arr = elements[name];
           if (!arr || !arr[i] || !arr[i].ElementValue) return "";
-          var v = arr[i].ElementValue[field];
+          var ev = arr[i].ElementValue;
+          var obj = Array.isArray(ev) ? ev[0] : ev;
+          var v = obj && obj[field];
           return v === undefined ? "" : v;
         };
       }

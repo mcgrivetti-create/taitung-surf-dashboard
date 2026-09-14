@@ -45,6 +45,11 @@ const BASE_FILEAPI = "https://opendata.cwa.gov.tw/fileapi/v1/opendataapi";
 const TOWNSHIP_STATION_IDS = ["C0S810", "C0SA30", "C0T9I0"];
 const BUOY_STATION_ID = "46761F";
 const TIDE_LOCATION_NAME = "臺東縣東河鄉";
+
+/** Today's date as YYYY-MM-DD in Taiwan local time (UTC+8), matching the tide dataset's Date field. */
+function todayISODate() {
+  return new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString().slice(0, 10);
+}
 const TOWNSHIP_LOCATION_NAME = "東河鄉";
 
 async function fetchDataset(id, extraParams) {
@@ -145,6 +150,15 @@ async function buildTide() {
   const raw = await fetchDataset("F-A0021-001");
   const matches = findMatches(raw, LOCATION_NAME_KEYS, [TIDE_LOCATION_NAME]);
   if (!matches.length) return { data: raw, ok: false, count: 0 };
+  // The Daily array isn't returned in chronological order — sort it and
+  // keep only the next few days so the page doesn't need to guess.
+  matches.forEach((loc) => {
+    const daily = loc.TimePeriods && loc.TimePeriods.Daily;
+    if (Array.isArray(daily)) {
+      daily.sort((a, b) => (a.Date < b.Date ? -1 : a.Date > b.Date ? 1 : 0));
+      loc.TimePeriods.Daily = daily.filter((d) => d.Date >= todayISODate()).slice(0, 5);
+    }
+  });
   return {
     data: { records: { TideForecasts: matches.map((loc) => ({ Location: loc })) } },
     ok: true,
