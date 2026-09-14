@@ -444,22 +444,27 @@
         var heightSVG = lineChartSVG(heightSeries, { width: 600, height: 130, area: true, unit: "m", xTicks: xTicks, bands: WAVE_HEIGHT_BANDS });
         var periodSVG = lineChartSVG(periodSeries, { width: 600, height: 110, unit: "s", xTicks: xTicks });
 
+        // CWA uses the literal string "None" for a missing reading on an
+        // otherwise-valid timestamp (not just undefined/blank) — treat it
+        // as blank everywhere it's displayed.
+        var nv = function (v) { return (v === undefined || v === null || v === "" || v === "None") ? "" : v; };
+
         html += '<div class="buoy-card">';
         html += "<h3>" + st.Label + " <span class=\"en\">(" + st.StationID + ")</span></h3>";
         html += '<div class="buoy-chart-label">Wave Height — last 24h</div>' + (heightSVG || '<p class="loading">No data</p>');
         html += '<div class="buoy-chart-label">Wave Period — last 24h</div>' + (periodSVG || '<p class="loading">No data</p>');
         html += '<div class="buoy-stats">';
-        html += '<div class="buoy-stat"><span class="buoy-stat-label">Wave Height</span><span class="buoy-stat-value">' + (latest.WaveHeight || "—") + ' m</span></div>';
-        html += '<div class="buoy-stat"><span class="buoy-stat-label">Period</span><span class="buoy-stat-value">' + (latest.WavePeriod || "—") + ' s</span></div>';
-        html += '<div class="buoy-stat"><span class="buoy-stat-label">Direction</span><span class="buoy-stat-value">' + (latest.WaveDirectionDescription || "—") + '</span></div>';
-        html += '<div class="buoy-stat"><span class="buoy-stat-label">Sea Temp</span><span class="buoy-stat-value">' + (latest.SeaTemperature || "—") + ' °C</span></div>';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">Wave Height</span><span class="buoy-stat-value">' + (nv(latest.WaveHeight) || "—") + ' m</span></div>';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">Period</span><span class="buoy-stat-value">' + (nv(latest.WavePeriod) || "—") + ' s</span></div>';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">Direction</span><span class="buoy-stat-value">' + (nv(latest.WaveDirectionDescription) || "—") + '</span></div>';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">Sea Temp</span><span class="buoy-stat-value">' + (nv(latest.SeaTemperature) || "—") + ' °C</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">As of</span><span class="buoy-stat-value">' + fmtTime(latest.DateTime) + '</span></div>';
         html += "</div>";
 
         var cutoff8h = Date.now() - 8 * 60 * 60 * 1000;
         var recent = readings.filter(function (r) { return new Date(r.DateTime).getTime() >= cutoff8h; }).slice().reverse();
         var recentRows = recent.map(function (r) {
-          return [fmtHour(r.DateTime), r.WaveHeight, r.WavePeriod, r.WaveDirectionDescription, r.SeaTemperature];
+          return [fmtHour(r.DateTime), nv(r.WaveHeight), nv(r.WavePeriod), nv(r.WaveDirectionDescription), nv(r.SeaTemperature)];
         }).map(function (row) {
           return "<tr>" + row.map(function (c) { return "<td>" + (c === undefined || c === null || c === "" ? "—" : c) + "</td>"; }).join("") + "</tr>";
         }).join("");
