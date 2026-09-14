@@ -47,12 +47,13 @@ const BUOY_STATION_ID = "46761F";
 const TIDE_LOCATION_NAME = "臺東縣東河鄉";
 const TOWNSHIP_LOCATION_NAME = "東河鄉";
 
-async function fetchDataset(id) {
+async function fetchDataset(id, extraParams) {
   const attempts = [
     () => {
       const url = new URL(`${BASE_REST}/${id}`);
       url.searchParams.set("Authorization", API_KEY);
       url.searchParams.set("format", "JSON");
+      for (const [k, v] of Object.entries(extraParams || {})) url.searchParams.set(k, v);
       return url;
     },
     () => {
@@ -60,6 +61,7 @@ async function fetchDataset(id) {
       url.searchParams.set("Authorization", API_KEY);
       url.searchParams.set("downloadType", "WEB");
       url.searchParams.set("format", "JSON");
+      for (const [k, v] of Object.entries(extraParams || {})) url.searchParams.set(k, v);
       return url;
     },
   ];
@@ -159,7 +161,9 @@ async function buildStations() {
 }
 
 async function buildBuoy() {
-  const raw = await fetchDataset("O-B0075-001");
+  // This is a time-series/monitoring dataset — an unfiltered request returns
+  // just a bare station index, not readings. Filter server-side by station.
+  const raw = await fetchDataset("O-B0075-001", { StationID: BUOY_STATION_ID });
   let matches = findMatches(raw, STATION_ID_KEYS, [BUOY_STATION_ID]);
   if (!matches.length) matches = findMatchesContaining(raw, STATION_NAME_KEYS, "成功");
   if (!matches.length) return { data: raw, ok: false, count: 0 };
