@@ -17,10 +17,10 @@ station wind history is a small self-maintained rolling log, not a DB.
    - Windguru (spot 218382, Donghe) — two widgets: wind (model 3, GFS 13km)
      and waves (model 84, GFS-Wave 16km — wind-only models don't carry wave
      params, so this needs a separate widget)
-   - surf-forecast.com (Chengkung) — link-out only; they offer no
-     embeddable widget or public API on any account tier (their sister
-     service Magicseaweed had one, shut down after Surfline's 2023
-     acquisition)
+   - surf-forecast.com (Chengkung) — their free widget product
+     (`surf-forecast.com/pages/configure_widget`, separate from the main
+     site's own blocked-from-framing pages), Widget A, metric units.
+     (Earlier claim that no embed existed at all was wrong — corrected.)
    - Windy — the interactive waves/wind map (layer picker, click-to-inspect
      spot forecast, full detail table) via `embed.windy.com/embed.html?type=map`
 1b. **Open Wave Model** — an independent wave forecast from Open-Meteo's
@@ -152,6 +152,13 @@ data/history/{forecast,buoy,tide}/YYYY-MM.json
   their full interactive site. Two separate widgets (wind + waves) is the
   closest equivalent; the Coastal and Open Wave Model charts on this page
   are the real substitute.
+- **Wave energy (kJ) calibration** (`js/app.js` `wavePowerKw`): fit to
+  surf-forecast.com's displayed values for Chengkung (k=15 in E=k·H²·T)
+  from six sample rows on 2026-09-14, not their actual internal formula
+  (unknown, and doesn't derive cleanly from a single height/period pair —
+  likely sums multiple swell components). Same scale and trend, not an
+  exact match hour-to-hour. Now that their widget is embedded directly,
+  the two can be compared side by side on the page.
 
 ## Roadmap (not in this build)
 

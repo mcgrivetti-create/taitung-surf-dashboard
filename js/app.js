@@ -144,14 +144,28 @@
     return 12;
   }
 
-  // Deep-water wave power / energy flux, kW per metre of wave crest:
-  // P ≈ (ρ·g²/64π) · Hs²·Te ≈ 0.49 · Hs²·Te (Hs in m, Te in s). Peak/
-  // dominant period is used as a stand-in for the true energy period,
-  // the same simplification surf-forecast sites use for this figure.
+  // Wave energy index (kJ), calibrated to read on the same scale as
+  // surf-forecast.com's "kJ" figure for Chengkung: E ≈ k·H²·T. Their
+  // displayed number doesn't derive cleanly from a single H/T pair (two
+  // rows with identical height+period showed different kJ, implying they
+  // sum primary+secondary+wind-sea swell), so this is fit empirically —
+  // k=15 was the average of six same-swell rows pulled directly from
+  // their site on 2026-09-14 (individual fits ranged ~12-17). It won't
+  // match exactly hour-to-hour but tracks the same scale and trend.
   function wavePowerKw(heightM, periodS) {
     var h = Number(heightM), t = Number(periodS);
     if (!isFinite(h) || !isFinite(t)) return "";
-    return Math.round(0.49 * h * h * t * 10) / 10;
+    return Math.round(15 * h * h * t);
+  }
+
+  // Rotates an up-arrow to point in the direction a wave/wind is heading
+  // (i.e. compass bearing + 180°, since CWA/Open-Meteo report the
+  // direction it's coming FROM, same convention as Windy's arrows).
+  function dirArrowHtml(deg) {
+    var d = Number(deg);
+    if (!isFinite(d)) return "";
+    var travel = (d + 180) % 360;
+    return ' <span style="display:inline-block;transform:rotate(' + travel + 'deg)">↑</span>';
   }
 
   /* ---------- Tiny SVG line-chart builder (no external deps) ---------- */
@@ -288,7 +302,7 @@
           wd ? translateDirText(wd) : "",
         ];
       });
-      renderTable("coastalTable", ["Time", "Wave Ht (m)", "Wave Period (s)", "Power (kW/m)", "Wave Dir", "Wind Scale", "Wind Dir"], rows);
+      renderTable("coastalTable", ["Time", "Wave Ht (m)", "Wave Period (s)", "Energy (kJ)", "Wave Dir", "Wind Scale", "Wind Dir"], rows);
 
       // Chart: wave height (with size gridlines) + wind scale, stacked
       var chartEl = document.getElementById("coastalChart");
@@ -518,7 +532,7 @@
         html += '<div class="buoy-stats">';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Wave Height</span><span class="buoy-stat-value">' + (nv(latest.WaveHeight) || "—") + ' m</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Period</span><span class="buoy-stat-value">' + (nv(latest.WavePeriod) || "—") + ' s</span></div>';
-        html += '<div class="buoy-stat"><span class="buoy-stat-label">Power</span><span class="buoy-stat-value">' + (wavePowerKw(latest.WaveHeight, latest.WavePeriod) || "—") + ' kW/m</span></div>';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">Energy</span><span class="buoy-stat-value">' + (wavePowerKw(latest.WaveHeight, latest.WavePeriod) || "—") + ' kJ</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Direction</span><span class="buoy-stat-value">' + (nv(latest.WaveDirectionDescription) || "—") + '</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Sea Temp</span><span class="buoy-stat-value">' + (nv(latest.SeaTemperature) || "—") + ' °C</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">As of</span><span class="buoy-stat-value">' + fmtTime(latest.DateTime) + '</span></div>';
@@ -532,7 +546,7 @@
           return "<tr>" + row.map(function (c) { return "<td>" + (c === undefined || c === null || c === "" ? "—" : c) + "</td>"; }).join("") + "</tr>";
         }).join("");
         html += '<div class="buoy-chart-label">Last 8 hours</div>';
-        html += '<div class="buoy-history-table"><table><thead><tr><th>Time</th><th>Ht(m)</th><th>Per(s)</th><th>Power(kW/m)</th><th>Dir</th><th>Temp(°C)</th></tr></thead><tbody>' + recentRows + "</tbody></table></div>";
+        html += '<div class="buoy-history-table"><table><thead><tr><th>Time</th><th>Ht(m)</th><th>Per(s)</th><th>Energy(kJ)</th><th>Dir</th><th>Temp(°C)</th></tr></thead><tbody>' + recentRows + "</tbody></table></div>";
         html += "</div>";
       });
       container.innerHTML = html;
@@ -574,13 +588,13 @@
             h.wave_height[i],
             h.wave_period[i],
             wavePowerKw(h.wave_height[i], h.wave_period[i]),
-            h.wave_direction[i] !== undefined ? Math.round(h.wave_direction[i]) + "°" : "",
+            h.wave_direction[i] !== undefined ? Math.round(h.wave_direction[i]) + "°" + dirArrowHtml(h.wave_direction[i]) : "",
             h.swell_wave_height[i],
             h.swell_wave_period[i],
           ]);
         }
       });
-      renderTable("openWaveTable", ["Time", "Wave Ht (m)", "Period (s)", "Power (kW/m)", "Direction", "Swell Ht (m)", "Swell Period (s)"], rows.slice(0, 20));
+      renderTable("openWaveTable", ["Time", "Wave Ht (m)", "Period (s)", "Energy (kJ)", "Direction", "Swell Ht (m)", "Swell Period (s)"], rows.slice(0, 20));
     } catch (e) {
       showError("openWaveChart", "Couldn't parse this data (" + e.message + ")");
       showError("openWaveTable", "Couldn't parse this data (" + e.message + ")");
