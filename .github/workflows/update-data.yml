@@ -1,0 +1,36 @@
+name: Update CWA Data
+
+on:
+  schedule:
+    - cron: "0 */3 * * *" # every 3 hours (UTC)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch CWA data
+        env:
+          CWA_API_KEY: ${{ secrets.CWA_API_KEY }}
+        run: node scripts/fetch-data.mjs
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No data changes."
+          else
+            git commit -m "chore: update CWA data $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            git push
+          fi
