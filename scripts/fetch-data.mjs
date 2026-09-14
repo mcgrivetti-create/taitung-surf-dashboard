@@ -27,6 +27,16 @@
  * server-side filter parameter can't silently return an empty result.
  * If extraction finds nothing, the raw payload is kept so it can be
  * inspected later, and the failure is recorded in data/meta.json.
+ *
+ * Phase 2 (data logger): each run also appends into monthly log files
+ * under data/history/ — kept forever by design, one small file per month:
+ *   history/forecast/YYYY-MM.json  CWA coastal + Open-Meteo snapshots at
+ *                                   fixed lead times (LEAD_HOURS)
+ *   history/buoy/YYYY-MM.json      actual buoy readings (one per station
+ *                                   per run)
+ *   history/tide/YYYY-MM.json      tide forecast (interpolated at "now")
+ *                                   vs observed (Chenggong gauge C4S02)
+ * This is the ground truth Phase 3's accuracy-comparison charts read from.
  */
 
 import { writeFile, mkdir, readFile } from "node:fs/promises";
@@ -64,6 +74,11 @@ const BUOY_STATIONS = [
 const STATION_HISTORY_HOURS = 8;
 const BUOY_HISTORY_HOURS = 24;
 
+// Phase 2 (data logger): lead times tracked for Phase 3 accuracy comparison.
+const LEAD_HOURS = [6, 24, 72];
+const TIDE_GAUGE_STATION_ID = "C4S02"; // 成功潮位站 (Chenggong tide gauge), from O-B0076-001's directory
+const HISTORY_DIR = path.join(DATA_DIR, "history");
+
 /** Today's date as YYYY-MM-DD in Taiwan local time (UTC+8), matching the tide dataset's Date field. */
 function todayISODate() {
   return new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString().slice(0, 10);
@@ -76,6 +91,69 @@ function beaufort(speedMs) {
   const thresholds = [0.3, 1.6, 3.4, 5.5, 8.0, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 32.7];
   for (let i = 0; i < thresholds.length; i++) if (n < thresholds[i]) return i;
   return 12;
+}
+
+/** YYYY-MM for the current month in Taiwan local time (UTC+8) — monthly log-file naming. */
+function monthKey() {
+  return new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString().slice(0, 7);
+}
+
+/**
+ * Half-cosine interpolation between the two points in `points` (each
+ * {t: epoch-ms, h: number}, any order) that bracket `t`. Clamps to the
+ * nearest endpoint outside the given range. Same method used client-side
+ * for the tide chart curve (js/app.js interpolateTide) — kept separate
+ * since this runs in Node against a different point shape.
+ */
+function cosineInterpolate(points, t) {
+  const sorted = points.slice().sort((a, b) => a.t - b.t);
+  if (!sorted.length) return null;
+  if (t <= sorted[0].t) return sorted[0].h;
+  if (t >= sorted[sorted.length - 1].t) return sorted[sorted.length - 1].h;
+  for (let i = 0; i < sorted.length - 1; i++) {
+    if (t >= sorted[i].t && t <= sorted[i + 1].t) {
+      const frac = (t - sorted[i].t) / (sorted[i + 1].t - sorted[i].t);
+      const mu = (1 - Math.cos(frac * Math.PI)) / 2;
+      return sorted[i].h * (1 - mu) + sorted[i + 1].h * mu;
+    }
+  }
+  return sorted[sorted.length - 1].h;
+}
+
+/**
+ * Appends `newRecords` to this month's log file under data/history/<subdir>/,
+ * deduped by `dedupeKey(record)`, and writes it back. Grows forever by
+ * design (Phase 2 scope) — one small file per month keeps any single
+ * commit's diff and the per-file size manageable.
+ */
+async function appendMonthlyHistory(subdir, newRecords, dedupeKey) {
+  if (!newRecords.length) return 0;
+  const dir = path.join(HISTORY_DIR, subdir);
+  await mkdir(dir, { recursive: true });
+  const filePath = path.join(dir, `${monthKey()}.json`);
+  const existing = await readJSONIfExists(filePath, { records: [] });
+  const seen = new Set(existing.records.map(dedupeKey));
+  let added = 0;
+  for (const r of newRecords) {
+    const key = dedupeKey(r);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    existing.records.push(r);
+    added++;
+  }
+  if (added) await writeFile(filePath, JSON.stringify(existing, null, 2));
+  return added;
+}
+
+/** Nearest series point to `targetMs`, or null if none within `toleranceMs`. */
+function nearestPoint(series, targetMs, toleranceMs) {
+  let best = null, bestDiff = Infinity;
+  for (const p of series) {
+    const pt = new Date(p.targetTime).getTime();
+    const diff = Math.abs(pt - targetMs);
+    if (diff < bestDiff) { best = p; bestDiff = diff; }
+  }
+  return best && bestDiff <= toleranceMs ? best : null;
 }
 
 async function fetchDataset(id, extraParams) {
@@ -169,21 +247,46 @@ async function buildTownship() {
   };
 }
 
+/** Pulls a single element's per-time values out of CWA's WeatherElement array, unwrapping ElementValue (array-or-object). */
+function extractElementSeries(location, elementName, field) {
+  const el = (location.WeatherElement || []).find((w) => w.ElementName === elementName);
+  if (!el) return [];
+  return (el.Time || []).map((t) => {
+    const ev = t.ElementValue;
+    const obj = Array.isArray(ev) ? ev[0] : ev;
+    return { targetTime: t.DataTime || t.StartTime, value: obj && obj[field] };
+  });
+}
+
 async function buildCoastal() {
   const raw = await fetchDataset("F-D0047-095");
   const matches = findMatchesContaining(raw, LOCATION_NAME_KEYS, TOWNSHIP_LOCATION_NAME);
-  if (!matches.length) return { data: raw, ok: false, count: 0 };
+  if (!matches.length) return { data: raw, ok: false, count: 0, series: [] };
+
+  // Flat series for the Phase 2 logger — {targetTime, waveHeight, wavePeriod, windSpeed}.
+  const loc = matches[0];
+  const heights = extractElementSeries(loc, "浪高", "WaveHeight");
+  const periods = extractElementSeries(loc, "浪週期", "WavePeriod");
+  const winds = extractElementSeries(loc, "風速", "WindSpeed");
+  const series = heights.map((h, i) => ({
+    targetTime: h.targetTime,
+    waveHeight: Number(h.value),
+    wavePeriod: Number((periods[i] || {}).value),
+    windSpeed: Number((winds[i] || {}).value),
+  }));
+
   return {
     data: { records: { locations: [{ location: matches }] } },
     ok: true,
     count: matches.length,
+    series,
   };
 }
 
 async function buildTide() {
   const raw = await fetchDataset("F-A0021-001");
   const matches = findMatches(raw, LOCATION_NAME_KEYS, [TIDE_LOCATION_NAME]);
-  if (!matches.length) return { data: raw, ok: false, count: 0 };
+  if (!matches.length) return { data: raw, ok: false, count: 0, points: [] };
   // The Daily array isn't returned in chronological order — sort it and
   // keep only the next few days so the page doesn't need to guess.
   matches.forEach((loc) => {
@@ -193,10 +296,22 @@ async function buildTide() {
       loc.TimePeriods.Daily = daily.filter((d) => d.Date >= todayISODate()).slice(0, 5);
     }
   });
+
+  // Flat {t, h} extrema points for the Phase 2 logger's tide interpolation.
+  const points = [];
+  const daily = matches[0].TimePeriods && matches[0].TimePeriods.Daily;
+  (daily || []).forEach((day) => {
+    (day.Time || []).forEach((t) => {
+      const h = t.TideHeights && (t.TideHeights.AboveTWVD !== undefined ? t.TideHeights.AboveTWVD : t.TideHeights.AboveLocalMSL);
+      points.push({ t: new Date(t.DateTime).getTime(), h: Number(h) });
+    });
+  });
+
   return {
     data: { records: { TideForecasts: matches.map((loc) => ({ Location: loc })) } },
     ok: true,
     count: matches.length,
+    points,
   };
 }
 
@@ -277,6 +392,26 @@ async function buildBuoyStation(station) {
 }
 
 /**
+ * Latest observed tide height at the Chenggong tide gauge (C4S02) — ground
+ * truth for the Phase 3 tide forecast-vs-observed comparison. Same
+ * O-B0075-001 dataset and response shape as the wave buoys, just a
+ * TideHeight field instead of WaveHeight.
+ */
+async function buildTideGaugeActual() {
+  const raw = await fetchDataset("O-B0075-001", { StationID: TIDE_GAUGE_STATION_ID });
+  const records = raw.Records || raw.records || {};
+  const seaSurfaceObs = records.SeaSurfaceObs || records.seaSurfaceObs || {};
+  const locations = seaSurfaceObs.Location || seaSurfaceObs.location || [];
+  const loc = locations.find((l) => l.Station && l.Station.StationID === TIDE_GAUGE_STATION_ID) || locations[0];
+  if (!loc) return null;
+  const times = (loc.StationObsTimes && loc.StationObsTimes.StationObsTime) || [];
+  const valid = times.filter((t) => t.WeatherElements && t.WeatherElements.TideHeight !== "None");
+  const latest = valid.slice().sort((a, b) => new Date(b.DateTime) - new Date(a.DateTime))[0];
+  if (!latest) return null;
+  return { observedAt: latest.DateTime, tideHeightCm: Number(latest.WeatherElements.TideHeight) };
+}
+
+/**
  * Independent wave forecast from Open-Meteo's free Marine API (no key
  * required, backed by NOAA NCEP GFS-Wave) — doesn't depend on CWA or any
  * of the commercial embeds, so it's a fallback source of real wave data.
@@ -296,9 +431,19 @@ async function buildOpenWave() {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`open-meteo marine -> HTTP ${res.status}`);
   const data = await res.json();
-  const count = (data.hourly && data.hourly.time && data.hourly.time.length) || 0;
-  if (!count) return { data, ok: false, count: 0 };
-  return { data, ok: true, count };
+  const h = data.hourly;
+  const count = (h && h.time && h.time.length) || 0;
+  if (!count) return { data, ok: false, count: 0, series: [] };
+
+  // Flat series for the Phase 2 logger. Timestamps have no timezone suffix
+  // (already Asia/Taipei per the request param) — add it explicitly.
+  const series = h.time.map((t, i) => ({
+    targetTime: new Date(t + ":00+08:00").toISOString(),
+    waveHeight: Number(h.wave_height[i]),
+    wavePeriod: Number(h.wave_period[i]),
+  }));
+
+  return { data, ok: true, count, series };
 }
 
 async function buildBuoy() {
@@ -322,11 +467,13 @@ async function run() {
 
   const status = [];
   let stationMatches = [];
+  const results = {}; // job.file -> full build() result, for Phase 2 logging below
 
   for (const job of jobs) {
     try {
       const result = await job.build();
       const { data, ok, count } = result;
+      results[job.file] = result;
       if (job.file === "stations.json") stationMatches = result.matches || [];
       await writeFile(path.join(DATA_DIR, job.file), JSON.stringify(data, null, 2));
       status.push({ name: job.name, ok, count });
@@ -345,6 +492,70 @@ async function run() {
   } catch (err) {
     status.push({ name: "stations-history rolling log", ok: false, error: String(err.message || err) });
     console.error(`FAILED: stations-history rolling log — ${err.message || err}`);
+  }
+
+  // --- Phase 2: append this run's forecast/observation snapshots to the
+  // monthly history logs, for Phase 3's accuracy comparison. ---
+  try {
+    const issuedAt = new Date().toISOString();
+    const now = Date.now();
+    const toleranceMs = 90 * 60 * 1000; // accept a nearest point within 90min of the target lead time
+
+    // Forecast snapshots at each tracked lead time, per source.
+    const forecastRecords = [];
+    const sources = [
+      { name: "cwa_coastal", series: (results["coastal.json"] || {}).series || [] },
+      { name: "open_meteo", series: (results["openwave.json"] || {}).series || [] },
+    ];
+    for (const src of sources) {
+      for (const lead of LEAD_HOURS) {
+        const targetMs = now + lead * 60 * 60 * 1000;
+        const pt = nearestPoint(src.series, targetMs, toleranceMs);
+        if (!pt) continue;
+        forecastRecords.push({
+          issuedAt, targetTime: pt.targetTime, leadHours: lead, source: src.name,
+          waveHeight: pt.waveHeight, wavePeriod: pt.wavePeriod,
+        });
+      }
+    }
+    const addedForecast = await appendMonthlyHistory("forecast", forecastRecords, (r) => `${r.issuedAt}|${r.leadHours}|${r.source}`);
+    status.push({ name: "history/forecast log", ok: true, count: addedForecast });
+    console.log(`OK: history/forecast log (+${addedForecast} records)`);
+
+    // Buoy actuals (one record per station using its latest reading this run).
+    const buoyStations = ((results["buoy.json"] || {}).data || {}).records || {};
+    const buoyRecords = (buoyStations.Stations || []).map((st) => {
+      const latest = (st.Readings || [])[st.Readings.length - 1];
+      if (!latest) return null;
+      return {
+        observedAt: latest.DateTime, station: st.StationID, label: st.Label,
+        waveHeight: latest.WaveHeight, wavePeriod: latest.WavePeriod, seaTemperature: latest.SeaTemperature,
+      };
+    }).filter(Boolean);
+    const addedBuoy = await appendMonthlyHistory("buoy", buoyRecords, (r) => `${r.observedAt}|${r.station}`);
+    status.push({ name: "history/buoy log", ok: true, count: addedBuoy });
+    console.log(`OK: history/buoy log (+${addedBuoy} records)`);
+
+    // Tide: forecast (interpolated at "now" from this run's extrema) vs
+    // observed (Chenggong gauge, closest reading to "now").
+    const tidePoints = (results["tide.json"] || {}).points || [];
+    const forecastCm = tidePoints.length ? cosineInterpolate(tidePoints, now) : null;
+    const gauge = await buildTideGaugeActual().catch(() => null);
+    if (forecastCm !== null || gauge) {
+      const tideRecord = {
+        at: issuedAt,
+        forecastCm: forecastCm !== null ? Math.round(forecastCm * 10) / 10 : null,
+        observedCm: gauge ? gauge.tideHeightCm : null,
+        observedAt: gauge ? gauge.observedAt : null,
+        station: TIDE_GAUGE_STATION_ID,
+      };
+      const addedTide = await appendMonthlyHistory("tide", [tideRecord], (r) => r.at);
+      status.push({ name: "history/tide log", ok: true, count: addedTide });
+      console.log(`OK: history/tide log (+${addedTide} records)`);
+    }
+  } catch (err) {
+    status.push({ name: "history logging", ok: false, error: String(err.message || err) });
+    console.error(`FAILED: history logging — ${err.message || err}`);
   }
 
   const meta = {

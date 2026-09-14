@@ -39,8 +39,27 @@ station wind history is a small self-maintained rolling log, not a DB.
      (WRA007), Hualien (46699A), Longdong (46694A), each with 24-hour wave
      height/period charts (station codes looked up from `O-B0076-001`'s
      full station directory)
-4. Forecast-accuracy tracking — placeholder only, real charts land in Phase 3
+4. Forecast-accuracy tracking — placeholder; **Phase 2 logging is live**
+   (see below), charts land in Phase 3 once enough history accumulates
 5. Jinzun live cam (YouTube embed)
+
+## Phase 2: data logger (live)
+
+Every hourly run appends into monthly log files under `data/history/` —
+kept forever by design, one small file per month:
+
+- `history/forecast/YYYY-MM.json` — CWA coastal (`F-D0047-095`) and
+  Open-Meteo snapshots at fixed lead times (6h/24h/72h ahead), tagged with
+  `issuedAt`/`targetTime`/`leadHours`/`source`
+- `history/buoy/YYYY-MM.json` — actual buoy readings (one record per
+  station per run)
+- `history/tide/YYYY-MM.json` — tide forecast (interpolated at the time of
+  the run) vs. observed, from the Chenggong tide gauge (`C4S02`, looked up
+  from `O-B0076-001`'s station directory)
+
+This is the ground truth Phase 3's accuracy-comparison charts will read
+from — see `scripts/fetch-data.mjs`'s "Phase 2" section (`appendMonthlyHistory`,
+`buildTideGaugeActual`, the lead-time snapshot logic in `run()`).
 
 ## One-time setup
 
@@ -97,6 +116,8 @@ scripts/fetch-data.mjs       pulls CWA Open Data, writes data/*.json
 data/*.json                  latest fetched data (committed by the scheduled Action)
 data/stations-history.json   rolling 8-hour wind history, appended to each run
                               (no DB — just an append-and-trim JSON log)
+data/history/{forecast,buoy,tide}/YYYY-MM.json
+                              Phase 2 logger — kept forever, see "Phase 2" above
 .github/workflows/           update-data.yml — runs the fetch script hourly
 ```
 
@@ -112,8 +133,7 @@ data/stations-history.json   rolling 8-hour wind history, appended to each run
 
 ## Roadmap (not in this build)
 
-- **Phase 2** — proper database/logger for historical observations (the
-  station wind history here is a stopgap, not this)
-- **Phase 3** — forecast-vs-observed accuracy charts (the placeholder above)
+- **Phase 3** — forecast-vs-observed accuracy charts, reading from the
+  Phase 2 logs above (the placeholder in the page)
 - **Phase 5** — per-spot subpages, Jinzun/Chenggong-specific widgets, blended
   forecast, spot scoring
