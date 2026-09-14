@@ -180,48 +180,26 @@
     }
   }
 
-  /* --- Buoy / sea state (O-B0075-001) ---
-     Schema not yet confirmed against a real payload, so this flattens each
-     station record to its leaf fields and matches by keyword rather than
-     an exact key name — resilient to whatever casing/nesting CWA uses. */
-  function flattenLeaves(obj, out) {
-    out = out || {};
-    if (!obj || typeof obj !== "object") return out;
-    Object.keys(obj).forEach(function (k) {
-      var v = obj[k];
-      if (v !== null && typeof v === "object" && !Array.isArray(v)) {
-        flattenLeaves(v, out);
-      } else if (!Array.isArray(v)) {
-        out[k] = v;
-      }
-    });
-    return out;
-  }
-
-  function findByKeywords(flat, keywords) {
-    var keys = Object.keys(flat);
-    for (var i = 0; i < keys.length; i++) {
-      var kl = keys[i].toLowerCase();
-      if (keywords.every(function (kw) { return kl.indexOf(kw) >= 0; })) return flat[keys[i]];
-    }
-    return "";
-  }
-
+  /* --- Buoy / sea state (O-B0075-001, Chenggong station 46761F) ---
+     scripts/fetch-data.mjs picks the latest valid reading and reshapes it
+     to { StationID, ObsTime: {DateTime}, WeatherElement: {WaveHeight,
+     WaveDirectionDescription, WavePeriod, SeaTemperature} }. This buoy
+     doesn't report wind — that's covered by the coastal forecast above. */
   function renderBuoy(data) {
     try {
       var stations = data.records.Station || [];
       var rows = stations.map(function (s) {
-        var flat = flattenLeaves(s);
+        var we = s.WeatherElement || {};
         return [
           "成功 (46761F)",
-          fmtTime(findByKeywords(flat, ["time"])),
-          findByKeywords(flat, ["wave", "height"]),
-          findByKeywords(flat, ["wave", "period"]),
-          findByKeywords(flat, ["sea", "temp"]) || findByKeywords(flat, ["water", "temp"]),
-          findByKeywords(flat, ["wind", "speed"]),
+          fmtTime(s.ObsTime && s.ObsTime.DateTime),
+          we.WaveHeight,
+          we.WavePeriod,
+          we.SeaTemperature,
+          we.WaveDirectionDescription,
         ];
       });
-      renderTable("buoyTable", ["測站", "觀測時間", "浪高(m)", "週期(s)", "海溫(°C)", "風速(m/s)"], rows);
+      renderTable("buoyTable", ["測站", "觀測時間", "浪高(m)", "週期(s)", "海溫(°C)", "浪向"], rows);
     } catch (e) {
       showError("buoyTable", "資料格式解析失敗 (" + e.message + ")");
     }

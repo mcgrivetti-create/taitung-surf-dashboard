@@ -118,7 +118,6 @@ function findMatchesContaining(obj, keys, substr, results = [], seen = new Set()
 
 const LOCATION_NAME_KEYS = ["locationName", "LocationName"];
 const STATION_ID_KEYS = ["StationId", "StationID", "stationId"];
-const STATION_NAME_KEYS = ["StationName", "StationNameCN", "stationName"];
 
 async function buildTownship() {
   const raw = await fetchDataset("F-D0047-039");
@@ -163,11 +162,34 @@ async function buildStations() {
 async function buildBuoy() {
   // This is a time-series/monitoring dataset — an unfiltered request returns
   // just a bare station index, not readings. Filter server-side by station.
+  // Confirmed real shape (rest/datastore, PascalCase throughout):
+  //   Records.SeaSurfaceObs.Location[] = {
+  //     Station: { StationID },
+  //     StationObsTimes: { StationObsTime: [{ DateTime, WeatherElements: {...} }] }
+  //   }
+  // The station-identifying object is nested separately from the readings,
+  // so a generic key/value walk (which returns the *innermost* matching
+  // object) grabs just `{ StationID }` and misses the sibling data — this
+  // needs to walk explicitly instead.
   const raw = await fetchDataset("O-B0075-001", { StationID: BUOY_STATION_ID });
-  let matches = findMatches(raw, STATION_ID_KEYS, [BUOY_STATION_ID]);
-  if (!matches.length) matches = findMatchesContaining(raw, STATION_NAME_KEYS, "成功");
-  if (!matches.length) return { data: raw, ok: false, count: 0 };
-  return { data: { records: { Station: matches } }, ok: true, count: matches.length };
+  const records = raw.Records || raw.records || {};
+  const seaSurfaceObs = records.SeaSurfaceObs || records.seaSurfaceObs || {};
+  const locations = seaSurfaceObs.Location || seaSurfaceObs.location || [];
+  const loc =
+    locations.find((l) => l.Station && l.Station.StationID === BUOY_STATION_ID) || locations[0];
+  if (!loc) return { data: raw, ok: false, count: 0 };
+
+  const times = (loc.StationObsTimes && loc.StationObsTimes.StationObsTime) || [];
+  const valid = times.filter((t) => t.WeatherElements && t.WeatherElements.WaveHeight !== "None");
+  const latest = valid.slice().sort((a, b) => new Date(b.DateTime) - new Date(a.DateTime))[0];
+  if (!latest) return { data: raw, ok: false, count: 0 };
+
+  const station = {
+    StationID: BUOY_STATION_ID,
+    ObsTime: { DateTime: latest.DateTime },
+    WeatherElement: latest.WeatherElements,
+  };
+  return { data: { records: { Station: [station] } }, ok: true, count: 1 };
 }
 
 async function run() {
