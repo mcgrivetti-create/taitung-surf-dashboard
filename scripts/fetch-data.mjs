@@ -7,11 +7,15 @@
  * how to obtain a key and wire it up as a GitHub Actions secret).
  *
  * Datasets used:
- *   F-D0047-039  鄉鎮天氣預報-臺東縣未來1週天氣預報 (township forecast) -> data/township.json
- *   F-D0047-095  鄉鎮沿海3天逐3小時預報 (coastal wave)  -> data/coastal.json
- *   F-A0021-001  潮汐預報 (tide forecast)               -> data/tide.json
- *   O-A0001-001  自動氣象站 (station observations)      -> data/stations.json
- *   O-B0075-001  48小時浮標/潮位站海況監測 (buoy / sea state) -> data/buoy.json
+ *   F-D0047-039  Township forecast (Taitung County, 1 week)   -> data/township.json
+ *   F-D0047-095  Coastal 3-day / 3-hourly forecast             -> data/coastal.json
+ *   F-A0021-001  Tide forecast (next 1 month)                  -> data/tide.json
+ *   O-A0001-001  Automatic weather stations (latest snapshot)  -> data/stations.json,
+ *                accumulated into a rolling 8-hour history at data/stations-history.json
+ *                (this dataset has no history endpoint of its own, so the
+ *                Action's own run history builds it up over time — see
+ *                buildStationsHistory)
+ *   O-B0075-001  48hr buoy/tide-station sea-state monitoring   -> data/buoy.json
  *                (O-B0076-001 was tried first but is just a station
  *                directory — no live readings — so this replaces it)
  *
@@ -22,7 +26,7 @@
  * inspected later, and the failure is recorded in data/meta.json.
  */
 
-import { writeFile, mkdir } from "node:fs/promises";
+import { writeFile, mkdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -43,14 +47,36 @@ const BASE_REST = "https://opendata.cwa.gov.tw/api/v1/rest/datastore";
 const BASE_FILEAPI = "https://opendata.cwa.gov.tw/fileapi/v1/opendataapi";
 
 const TOWNSHIP_STATION_IDS = ["C0S810", "C0SA30", "C0T9I0"];
-const BUOY_STATION_ID = "46761F";
 const TIDE_LOCATION_NAME = "臺東縣東河鄉";
+const TOWNSHIP_LOCATION_NAME = "東河鄉";
+
+// Buoy stations to show. Chenggong is confirmed; add the others' StationIDs
+// here once known (from O-B0076-001's full station directory) — Taitung,
+// Hualien, and Longdong buoys all exist in CWA's network but their exact
+// codes weren't looked up yet.
+const BUOY_STATIONS = [
+  { id: "46761F", label: "Chenggong" },
+  // { id: "TBD", label: "Taitung" },
+  // { id: "TBD", label: "Hualien" },
+  // { id: "TBD", label: "Longdong" },
+];
+
+const STATION_HISTORY_HOURS = 8;
+const BUOY_HISTORY_HOURS = 24;
 
 /** Today's date as YYYY-MM-DD in Taiwan local time (UTC+8), matching the tide dataset's Date field. */
 function todayISODate() {
   return new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString().slice(0, 10);
 }
-const TOWNSHIP_LOCATION_NAME = "東河鄉";
+
+/** Beaufort wind scale number (0-12) from a wind speed in m/s. */
+function beaufort(speedMs) {
+  const n = Number(speedMs);
+  if (!Number.isFinite(n)) return "";
+  const thresholds = [0.3, 1.6, 3.4, 5.5, 8.0, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 32.7];
+  for (let i = 0; i < thresholds.length; i++) if (n < thresholds[i]) return i;
+  return 12;
+}
 
 async function fetchDataset(id, extraParams) {
   const attempts = [
@@ -85,6 +111,14 @@ async function fetchDataset(id, extraParams) {
     lastErr = new Error(`${id} -> HTTP ${res.status} (${url.origin}${url.pathname})`);
   }
   throw lastErr;
+}
+
+async function readJSONIfExists(filePath, fallback) {
+  try {
+    return JSON.parse(await readFile(filePath, "utf8"));
+  } catch (err) {
+    return fallback;
+  }
 }
 
 /** Case/variant-insensitive key lookup: returns the first key in `obj` matching any of `keys` (case-insensitively). */
@@ -169,41 +203,84 @@ async function buildTide() {
 async function buildStations() {
   const raw = await fetchDataset("O-A0001-001");
   const matches = findMatches(raw, STATION_ID_KEYS, TOWNSHIP_STATION_IDS);
-  if (!matches.length) return { data: raw, ok: false, count: 0 };
-  return { data: { records: { Station: matches } }, ok: true, count: matches.length };
+  if (!matches.length) return { data: raw, ok: false, count: 0, matches: [] };
+  return { data: { records: { Station: matches } }, ok: true, count: matches.length, matches };
 }
 
-async function buildBuoy() {
-  // This is a time-series/monitoring dataset — an unfiltered request returns
-  // just a bare station index, not readings. Filter server-side by station.
+/**
+ * O-A0001-001 only ever returns the latest snapshot — there's no CWA
+ * endpoint for station history. So each run appends the just-fetched
+ * reading for each station into a small rolling log file and trims it to
+ * the last STATION_HISTORY_HOURS, giving the page real history over time
+ * without needing a database (matches this project's "no DB yet" scope —
+ * it's just an append-and-trim JSON log, not a query engine).
+ */
+async function buildStationsHistory(stationMatches) {
+  const historyPath = path.join(DATA_DIR, "stations-history.json");
+  const existing = await readJSONIfExists(historyPath, {});
+  const cutoff = Date.now() - STATION_HISTORY_HOURS * 60 * 60 * 1000;
+
+  for (const s of stationMatches) {
+    const id = s.StationId || s.StationID;
+    const name = s.StationName;
+    const we = s.WeatherElement || {};
+    const dateTime = s.ObsTime && s.ObsTime.DateTime;
+    if (!id || !dateTime) continue;
+
+    if (!existing[id]) existing[id] = { name, readings: [] };
+    existing[id].name = name;
+    const readings = existing[id].readings;
+    if (!readings.some((r) => r.DateTime === dateTime)) {
+      readings.push({
+        DateTime: dateTime,
+        WindSpeed: we.WindSpeed,
+        WindDirection: we.WindDirection,
+        WindScale: beaufort(we.WindSpeed),
+      });
+    }
+    existing[id].readings = readings
+      .filter((r) => new Date(r.DateTime).getTime() >= cutoff)
+      .sort((a, b) => new Date(a.DateTime) - new Date(b.DateTime));
+  }
+
+  await writeFile(historyPath, JSON.stringify(existing, null, 2));
+  return existing;
+}
+
+async function buildBuoyStation(station) {
   // Confirmed real shape (rest/datastore, PascalCase throughout):
   //   Records.SeaSurfaceObs.Location[] = {
   //     Station: { StationID },
   //     StationObsTimes: { StationObsTime: [{ DateTime, WeatherElements: {...} }] }
   //   }
-  // The station-identifying object is nested separately from the readings,
-  // so a generic key/value walk (which returns the *innermost* matching
-  // object) grabs just `{ StationID }` and misses the sibling data — this
-  // needs to walk explicitly instead.
-  const raw = await fetchDataset("O-B0075-001", { StationID: BUOY_STATION_ID });
+  // An unfiltered request returns just a bare station index (no readings),
+  // and the station-identifying object is nested separately from the
+  // readings — so this walks the confirmed shape explicitly rather than
+  // using the generic key/value matcher.
+  const raw = await fetchDataset("O-B0075-001", { StationID: station.id });
   const records = raw.Records || raw.records || {};
   const seaSurfaceObs = records.SeaSurfaceObs || records.seaSurfaceObs || {};
   const locations = seaSurfaceObs.Location || seaSurfaceObs.location || [];
-  const loc =
-    locations.find((l) => l.Station && l.Station.StationID === BUOY_STATION_ID) || locations[0];
-  if (!loc) return { data: raw, ok: false, count: 0 };
+  const loc = locations.find((l) => l.Station && l.Station.StationID === station.id) || locations[0];
+  if (!loc) return null;
 
   const times = (loc.StationObsTimes && loc.StationObsTimes.StationObsTime) || [];
-  const valid = times.filter((t) => t.WeatherElements && t.WeatherElements.WaveHeight !== "None");
-  const latest = valid.slice().sort((a, b) => new Date(b.DateTime) - new Date(a.DateTime))[0];
-  if (!latest) return { data: raw, ok: false, count: 0 };
+  const cutoff = Date.now() - BUOY_HISTORY_HOURS * 60 * 60 * 1000;
+  const readings = times
+    .filter((t) => t.WeatherElements && t.WeatherElements.WaveHeight !== "None")
+    .filter((t) => new Date(t.DateTime).getTime() >= cutoff)
+    .sort((a, b) => new Date(a.DateTime) - new Date(b.DateTime))
+    .map((t) => ({ DateTime: t.DateTime, ...t.WeatherElements }));
+  if (!readings.length) return null;
 
-  const station = {
-    StationID: BUOY_STATION_ID,
-    ObsTime: { DateTime: latest.DateTime },
-    WeatherElement: latest.WeatherElements,
-  };
-  return { data: { records: { Station: [station] } }, ok: true, count: 1 };
+  return { StationID: station.id, Label: station.label, Readings: readings };
+}
+
+async function buildBuoy() {
+  const results = await Promise.all(BUOY_STATIONS.map((s) => buildBuoyStation(s).catch(() => null)));
+  const stations = results.filter(Boolean);
+  if (!stations.length) return { data: { records: { Stations: [] } }, ok: false, count: 0 };
+  return { data: { records: { Stations: stations } }, ok: true, count: stations.length };
 }
 
 async function run() {
@@ -218,10 +295,13 @@ async function run() {
   ];
 
   const status = [];
+  let stationMatches = [];
 
   for (const job of jobs) {
     try {
-      const { data, ok, count } = await job.build();
+      const result = await job.build();
+      const { data, ok, count } = result;
+      if (job.file === "stations.json") stationMatches = result.matches || [];
       await writeFile(path.join(DATA_DIR, job.file), JSON.stringify(data, null, 2));
       status.push({ name: job.name, ok, count });
       console.log(`${ok ? "OK" : "WARN (no match, wrote raw payload)"}: ${job.name} (${count} records)`);
@@ -229,6 +309,16 @@ async function run() {
       status.push({ name: job.name, ok: false, error: String(err.message || err) });
       console.error(`FAILED: ${job.name} — ${err.message || err}`);
     }
+  }
+
+  try {
+    const history = await buildStationsHistory(stationMatches);
+    const totalReadings = Object.values(history).reduce((n, s) => n + s.readings.length, 0);
+    status.push({ name: "stations-history rolling log", ok: true, count: totalReadings });
+    console.log(`OK: stations-history rolling log (${totalReadings} total readings across ${Object.keys(history).length} stations)`);
+  } catch (err) {
+    status.push({ name: "stations-history rolling log", ok: false, error: String(err.message || err) });
+    console.error(`FAILED: stations-history rolling log — ${err.message || err}`);
   }
 
   const meta = {

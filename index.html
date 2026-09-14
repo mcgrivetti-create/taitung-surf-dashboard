@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>東海岸衝浪天氣 Taitung Surf Dashboard</title>
+<title>Taitung Surf Dashboard</title>
 <meta name="description" content="Donghe / Jinzun / Chenggong surf &amp; weather dashboard — CWA data, live cam, 7-day forecasts.">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <header class="site-header">
   <div class="header-inner">
-    <h1>🌊 東海岸衝浪天氣</h1>
+    <h1>🌊 Taitung Surf Dashboard</h1>
     <p class="subtitle">Donghe · Jinzun · Chenggong</p>
   </div>
   <div class="header-controls">
@@ -23,93 +23,112 @@
 
   <!-- 1. 7-day widget forecasts -->
   <section class="panel" id="widgets">
-    <h2>7 天預報 <span class="en">7-Day Forecasts</span></h2>
+    <h2>7-Day Forecasts</h2>
 
     <div class="widget-card">
       <div class="widget-card-head">
-        <h3>Windguru <span class="en">— Donghe (spot 218382)</span></h3>
-        <a href="https://www.windguru.cz/218382" target="_blank" rel="noopener">開啟 ↗</a>
+        <h3>Windguru — Donghe (spot 218382)</h3>
+        <a href="https://www.windguru.cz/218382" target="_blank" rel="noopener">Open ↗</a>
       </div>
-      <div id="windguru-embed" class="widget-embed windguru-embed"></div>
+      <div class="widget-embed windguru-embed">
+        <script id="wg_fwdg_218382_3_1">
+          (function (window, document) {
+            var loader = function () {
+              var arg = ["s=218382", "m=3", "uid=wg_fwdg_218382_3_1", "wj=ms", "tj=c", "odh=0", "doh=24", "fhours=240", "vt=forecasts", "lng=en", "p=WINDSPD,GUST,SMER,TMP,CDC,APCP1s,RH"];
+              var script = document.createElement("script");
+              var tag = document.getElementsByTagName("script")[0];
+              script.src = "https://www.windguru.cz/js/widget.php?" + (arg.join("&"));
+              tag.parentNode.insertBefore(script, tag);
+            };
+            window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+          })(window, document);
+        </script>
+      </div>
     </div>
 
     <div class="widget-card">
       <div class="widget-card-head">
-        <h3>surf-forecast.com <span class="en">— Chengkung</span></h3>
-        <a href="https://www.surf-forecast.com/breaks/Chengkung/forecasts/latest" target="_blank" rel="noopener">開啟 ↗</a>
+        <h3>surf-forecast.com — Chengkung</h3>
+        <a href="https://www.surf-forecast.com/breaks/Chengkung/forecasts/latest" target="_blank" rel="noopener">Open ↗</a>
       </div>
       <div class="widget-embed linkout-embed">
-        <p>surf-forecast.com 不提供可嵌入的預報元件，請點右上角「開啟」查看成功 (Chengkung) 完整預報。</p>
-        <a class="linkout-button" href="https://www.surf-forecast.com/breaks/Chengkung/forecasts/latest" target="_blank" rel="noopener">前往 surf-forecast.com ↗</a>
+        <p>surf-forecast.com doesn't offer an embeddable widget (their site blocks being framed). Tap "Open" above for the full Chengkung forecast. See chat for embedding alternatives being considered.</p>
+        <a class="linkout-button" href="https://www.surf-forecast.com/breaks/Chengkung/forecasts/latest" target="_blank" rel="noopener">Open on surf-forecast.com ↗</a>
       </div>
     </div>
 
     <div class="widget-card">
       <div class="widget-card-head">
-        <h3>Windy <span class="en">— 吉田橋 / Donghe waves</span></h3>
-        <a href="https://www.windy.com/22.975/121.315/ecmwfWaves/waves?waves,22.752,121.315,9,p:surfspots" target="_blank" rel="noopener">開啟 ↗</a>
+        <h3>Windy — Donghe forecast table</h3>
+        <a href="https://www.windy.com/22.975/121.315/ecmwfWaves/waves?waves,22.752,121.315,9,p:surfspots" target="_blank" rel="noopener">Open full waves/swell view ↗</a>
       </div>
-      <div class="widget-embed">
+      <div class="widget-embed windy-embed">
         <iframe
-          title="Windy waves forecast — Donghe"
-          src="https://embed.windy.com/embed2.html?lat=22.975&lon=121.315&detailLat=22.975&detailLon=121.315&width=650&height=450&zoom=9&level=surface&overlay=waves&product=ecmwfWaves&menu=&message=true&marker=true&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1"
+          title="Windy forecast table — Donghe"
+          src="https://embed.windy.com/embed.html?type=forecast&location=coordinates&detail=true&detailLat=22.975&detailLon=121.315&metricTemp=default&metricRain=default&metricWind=default"
           frameborder="0"
-          loading="lazy"
-          allowfullscreen></iframe>
+          loading="lazy"></iframe>
       </div>
     </div>
   </section>
 
   <!-- 2. CWA Coastal 3-day wave forecast -->
   <section class="panel" id="coastal">
-    <h2>沿海 3 天逐 3 小時海象預報 <span class="en">Coastal 3-Day Wave Forecast — Donghe</span></h2>
-    <p class="source-note">中央氣象署 F-D0047-095</p>
+    <h2>Coastal 3-Day Wave Forecast — Donghe</h2>
+    <p class="source-note">CWA F-D0047-095</p>
     <div id="coastalTable" class="data-block">
-      <p class="loading">載入中…</p>
+      <p class="loading">Loading…</p>
     </div>
   </section>
 
   <!-- 3. Other CWA numbers -->
   <section class="panel" id="cwa-other">
-    <h2>中央氣象署數據 <span class="en">CWA Data</span></h2>
+    <h2>CWA Data</h2>
 
     <div class="subpanel">
-      <h3>鄉鎮天氣預報 <span class="en">Township Forecast — 東河鄉</span></h3>
+      <h3>Township Forecast — Donghe</h3>
       <p class="source-note">F-D0047-039</p>
-      <div id="townshipTable" class="data-block"><p class="loading">載入中…</p></div>
+      <div id="townshipTable" class="data-block"><p class="loading">Loading…</p></div>
     </div>
 
     <div class="subpanel">
-      <h3>潮汐預報 <span class="en">Tide Forecast — 東河鄉</span></h3>
+      <h3>Tide Forecast — Donghe</h3>
       <p class="source-note">F-A0021-001</p>
-      <div id="tideTable" class="data-block"><p class="loading">載入中…</p></div>
+      <div class="tide-pager">
+        <button id="tidePrevBtn" class="tide-pager-btn" aria-label="Previous day">‹</button>
+        <span id="tideDayHeading" class="tide-day-heading">—</span>
+        <button id="tideNextBtn" class="tide-pager-btn" aria-label="Next day">›</button>
+      </div>
+      <div id="tideChart" class="data-block chart-block"><p class="loading">Loading…</p></div>
+      <div id="tideTable" class="data-block" style="margin-top:0.6rem;"><p class="loading">Loading…</p></div>
+      <p class="cwa-link"><a href="https://www.cwa.gov.tw/V8/C/M/tide.html" target="_blank" rel="noopener">Full 30-day tide forecast on CWA ↗</a> <span class="en">(select the 成功臺東沿海 / Chenggong-Taitung coast region)</span></p>
     </div>
 
     <div class="subpanel">
-      <h3>測站觀測 <span class="en">Station Observations</span></h3>
-      <p class="source-note">O-A0001-001 — C0S810 東河 / C0SA30 都歷 / C0T9I0 豐濱</p>
-      <div id="stationTable" class="data-block"><p class="loading">載入中…</p></div>
+      <h3>Station Observations — last 8 hours</h3>
+      <p class="source-note">O-A0001-001 — C0S810 Donghe / C0SA30 Dulih / C0T9I0 Fengbin</p>
+      <div id="stationTable" class="data-block"><p class="loading">Loading…</p></div>
     </div>
 
     <div class="subpanel">
-      <h3>浮標／海象觀測 <span class="en">Buoy / Sea State — Chenggong (46761F)</span></h3>
+      <h3>Buoy / Sea State — last 24 hours</h3>
       <p class="source-note">O-B0075-001</p>
-      <div id="buoyTable" class="data-block"><p class="loading">載入中…</p></div>
+      <div id="buoyContainer" class="buoy-grid"><p class="loading">Loading…</p></div>
     </div>
   </section>
 
   <!-- 4. Accuracy tracking placeholder -->
   <section class="panel" id="accuracy">
-    <h2>預報準確度追蹤 <span class="en">Forecast Accuracy Tracking</span></h2>
+    <h2>Forecast Accuracy Tracking</h2>
     <div class="placeholder-block">
-      <p>🚧 即將推出 <span class="en">Coming soon</span> — Phase 3</p>
-      <p class="placeholder-sub">未來將比較觀測值與各來源預報值，呈現準確度圖表。</p>
+      <p>🚧 Coming soon — Phase 3</p>
+      <p class="placeholder-sub">This will compare observed conditions against each forecast source and chart accuracy over time.</p>
     </div>
   </section>
 
   <!-- 5. Live cam -->
   <section class="panel" id="livecam">
-    <h2>金樽即時影像 <span class="en">Jinzun Live Cam</span></h2>
+    <h2>Jinzun Live Cam</h2>
     <div class="widget-embed video-embed">
       <iframe
         title="Jinzun live cam"
@@ -124,7 +143,7 @@
 </main>
 
 <footer class="site-footer">
-  <p>資料來源：中央氣象署開放資料平臺、Windguru、surf-forecast.com、Windy、YouTube。僅供參考，出海衝浪請自行評估風險。</p>
+  <p>Data sources: CWA (Central Weather Administration) Open Data, Windguru, surf-forecast.com, Windy, YouTube. For reference only — assess your own conditions before entering the water.</p>
 </footer>
 
 <script src="js/app.js"></script>

@@ -28,27 +28,59 @@
     try { localStorage.setItem("surf-theme", next); } catch (e) { /* ignore */ }
   });
 
-  /* ---------- Windguru widget injection ---------- */
-  (function loadWindguru() {
-    var container = document.getElementById("windguru-embed");
-    if (!container) return;
-    var uid = "wg-fwdg-218382-100-" + Date.now();
-    container.id = uid;
-    window.WGWidgetOverride = window.WGWidgetOverride || {};
-    var script = document.createElement("script");
-    script.src = "https://www.windguru.cz/js/widget.php";
-    script.async = true;
-    document.body.appendChild(script);
-    var checkInterval = setInterval(function () {
-      if (window.GWidget) {
-        clearInterval(checkInterval);
-        window.GWidget(uid, { d: 1, i: 218382, w: "100%", h: 300, uid: uid });
-      }
-    }, 200);
-    setTimeout(function () { clearInterval(checkInterval); }, 8000);
-  })();
+  /* ---------- Translation helpers (CWA data is Chinese; this site is English) ---------- */
+  var DIR_ZH_EN = {
+    "北": "N", "北北東": "NNE", "東北": "NE", "東北東": "ENE", "東": "E", "東南東": "ESE", "東南": "SE", "南南東": "SSE",
+    "南": "S", "南南西": "SSW", "西南": "SW", "西西南": "WSW", "西": "W", "西北西": "WNW", "西北": "NW", "北北西": "NNW"
+  };
+  function translateDirText(s) {
+    if (!s) return s;
+    s = ("" + s).trim();
+    var m = s.match(/^(.+?)風$/);
+    if (m) {
+      var base = m[1].replace(/^偏/, "");
+      return (DIR_ZH_EN[base] || base) + " wind";
+    }
+    var base2 = s.replace(/^偏/, "");
+    return DIR_ZH_EN[base2] || s;
+  }
 
-  /* ---------- CWA data loading ---------- */
+  // Best-effort phrase translation for CWA's free-text weather descriptions —
+  // exact matches first, then a rough substring pass as a fallback so an
+  // unrecognized phrase still comes out mostly-English rather than blank.
+  var WEATHER_PHRASES = [
+    ["晴時多雲短暫雷陣雨", "Fair, cloudy with brief thundershowers"],
+    ["多雲時陰短暫雨", "Cloudy, occasionally overcast with brief rain"],
+    ["晴時多雲", "Fair, occasionally cloudy"],
+    ["多雲時晴", "Cloudy, occasionally fair"],
+    ["晴午後多雲", "Fair, cloudy in the afternoon"],
+    ["多雲時陰", "Cloudy, occasionally overcast"],
+    ["陰時多雲", "Overcast, occasionally cloudy"],
+    ["多雲短暫雨", "Cloudy with brief showers"],
+    ["多雲陣雨", "Cloudy with showers"],
+    ["陰短暫雨", "Overcast with brief rain"],
+    ["雷陣雨", "Thundershowers"],
+    ["短暫雨", "Brief rain"],
+    ["陣雨", "Showers"],
+    ["晴天", "Clear"],
+    ["多雲", "Cloudy"],
+    ["晴", "Clear"],
+    ["陰", "Overcast"],
+    ["雨", "Rain"]
+  ];
+  function translateWeather(s) {
+    if (!s) return s;
+    for (var i = 0; i < WEATHER_PHRASES.length; i++) {
+      if (s === WEATHER_PHRASES[i][0]) return WEATHER_PHRASES[i][1];
+    }
+    var out = s;
+    for (var j = 0; j < WEATHER_PHRASES.length; j++) out = out.split(WEATHER_PHRASES[j][0]).join(WEATHER_PHRASES[j][1]);
+    return out;
+  }
+  var TIDE_ZH_EN = { "滿潮": "High Tide", "乾潮": "Low Tide" };
+  var STATION_NAME_EN = { "東河": "Donghe", "都歷": "Dulih", "豐濱": "Fengbin" };
+
+  /* ---------- Generic helpers ---------- */
   function fetchJSON(path) {
     return fetch(path, { cache: "no-store" }).then(function (r) {
       if (!r.ok) throw new Error("HTTP " + r.status);
@@ -65,7 +97,15 @@
     if (!iso) return "—";
     try {
       var d = new Date(iso);
-      return d.toLocaleString("zh-TW", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" });
+      return d.toLocaleString("en-US", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: false });
+    } catch (e) {
+      return iso;
+    }
+  }
+
+  function fmtHour(iso) {
+    try {
+      return new Date(iso).toLocaleString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false });
     } catch (e) {
       return iso;
     }
@@ -75,7 +115,7 @@
     var el = document.getElementById(elId);
     if (!el) return;
     if (!rows || !rows.length) {
-      el.innerHTML = '<p class="loading">目前無資料</p>';
+      el.innerHTML = '<p class="loading">No data available</p>';
       return;
     }
     var html = "<table><thead><tr>";
@@ -86,6 +126,55 @@
     });
     html += "</tbody></table>";
     el.innerHTML = html;
+  }
+
+  /* ---------- Tiny SVG line-chart builder (no external deps) ---------- */
+  function lineChartSVG(series, opts) {
+    opts = opts || {};
+    var w = opts.width || 600, h = opts.height || 160, pad = { t: 14, r: 14, b: 22, l: 34 };
+    var xs = series.map(function (p) { return p.x; });
+    var ys = series.map(function (p) { return p.y; }).filter(function (v) { return v !== null && v !== undefined && !isNaN(v); });
+    if (!ys.length) return "";
+    var xMin = Math.min.apply(null, xs), xMax = Math.max.apply(null, xs);
+    var yMin = opts.yMin !== undefined ? opts.yMin : Math.min.apply(null, ys);
+    var yMax = opts.yMax !== undefined ? opts.yMax : Math.max.apply(null, ys);
+    if (yMax === yMin) { yMax += 1; yMin -= 1; }
+    var pd = (yMax - yMin) * 0.1;
+    yMin -= pd; yMax += pd;
+    function sx(x) { return pad.l + (xMax === xMin ? 0 : (x - xMin) / (xMax - xMin)) * (w - pad.l - pad.r); }
+    function sy(y) { return h - pad.b - (y - yMin) / (yMax - yMin) * (h - pad.t - pad.b); }
+
+    var linePts = series.filter(function (p) { return p.y !== null && p.y !== undefined && !isNaN(p.y); })
+      .map(function (p) { return sx(p.x) + "," + sy(p.y); });
+    var pathD = "M" + linePts.join(" L");
+    var areaD = pathD + " L" + sx(xMax) + "," + sy(yMin) + " L" + sx(xMin) + "," + sy(yMin) + " Z";
+
+    var svg = '<svg viewBox="0 0 ' + w + " " + h + '" width="100%" style="display:block;overflow:visible" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">';
+    if (opts.area) svg += '<path d="' + areaD + '" fill="var(--accent)" opacity="0.15" stroke="none"></path>';
+    svg += '<path d="' + pathD + '" fill="none" stroke="var(--accent)" stroke-width="2" vector-effect="non-scaling-stroke"></path>';
+
+    // y-axis min/max labels
+    svg += '<text x="2" y="' + (sy(yMax) + 4) + '" font-size="10" fill="var(--text-dim)">' + Math.round(yMax * 10) / 10 + (opts.unit || "") + '</text>';
+    svg += '<text x="2" y="' + (sy(yMin) + 4) + '" font-size="10" fill="var(--text-dim)">' + Math.round(yMin * 10) / 10 + (opts.unit || "") + '</text>';
+
+    // x-axis tick labels
+    (opts.xTicks || []).forEach(function (t) {
+      svg += '<text x="' + sx(t.x) + '" y="' + (h - 6) + '" font-size="10" fill="var(--text-dim)" text-anchor="middle">' + t.label + "</text>";
+    });
+
+    // marker dots
+    (opts.markers || []).forEach(function (m) {
+      svg += '<circle cx="' + sx(m.x) + '" cy="' + sy(m.y) + '" r="3" fill="var(--accent-2)"></circle>';
+      if (m.label) svg += '<text x="' + sx(m.x) + '" y="' + (sy(m.y) - 8) + '" font-size="10" fill="var(--text-dim)" text-anchor="middle">' + m.label + "</text>";
+    });
+
+    // "now" vertical line
+    if (opts.nowX !== undefined && opts.nowX >= xMin && opts.nowX <= xMax) {
+      svg += '<line x1="' + sx(opts.nowX) + '" y1="' + pad.t + '" x2="' + sx(opts.nowX) + '" y2="' + (h - pad.b) + '" stroke="var(--danger)" stroke-width="1" stroke-dasharray="3,3"></line>';
+    }
+
+    svg += "</svg>";
+    return svg;
   }
 
   /* --- Township forecast (F-D0047-039) ---
@@ -108,16 +197,17 @@
           return v === undefined || v === "" ? "" : v + (unit || "");
         };
       }
-      var wx = val("天氣現象", "Weather");
+      var wxRaw = val("天氣現象", "Weather");
       var temp = val("平均溫度", "Temperature", "°C");
       var pop = val("12小時降雨機率", "ProbabilityOfPrecipitation", "%");
       var wind = val("風速", "WindSpeed", " m/s");
       var rows = times.map(function (t, i) {
-        return [fmtTime(t.StartTime), wx(i), temp(i), pop(i), wind(i)];
+        var wx = wxRaw(i);
+        return [fmtTime(t.StartTime), wx ? translateWeather(wx) : "", temp(i), pop(i), wind(i)];
       });
-      renderTable("townshipTable", ["時間", "天氣", "氣溫", "降雨機率", "風速"], rows);
+      renderTable("townshipTable", ["Time", "Weather", "Temp", "Rain %", "Wind"], rows);
     } catch (e) {
-      showError("townshipTable", "資料格式解析失敗 (" + e.message + ")");
+      showError("townshipTable", "Couldn't parse this data (" + e.message + ")");
     }
   }
 
@@ -143,87 +233,183 @@
       var waveHeight = val("浪高", "WaveHeight");
       var wavePeriod = val("浪週期", "WavePeriod");
       var windSpeed = val("風速", "WindSpeed");
-      var windDir = val("風向", "WindDirection");
+      var windDirRaw = val("風向", "WindDirection");
       var rows = times.map(function (t, i) {
-        return [fmtTime(t.DataTime), waveHeight(i), wavePeriod(i), windSpeed(i), windDir(i)];
+        var wd = windDirRaw(i);
+        return [fmtTime(t.DataTime), waveHeight(i), wavePeriod(i), windSpeed(i), wd ? translateDirText(wd) : ""];
       });
-      renderTable("coastalTable", ["時間", "浪高(m)", "浪週期(s)", "風速(m/s)", "風向"], rows);
+      renderTable("coastalTable", ["Time", "Wave Ht (m)", "Wave Period (s)", "Wind (m/s)", "Wind Dir"], rows);
     } catch (e) {
-      showError("coastalTable", "資料格式解析失敗 (" + e.message + ")");
+      showError("coastalTable", "Couldn't parse this data (" + e.message + ")");
     }
   }
 
-  /* --- Tide forecast (F-A0021-001) --- */
+  /* --- Tide forecast (F-A0021-001) — line chart with day pager + trimmed table --- */
+  var tideDayIndex = 0;
+  var tideDaysCache = null; // array of {date, points:[{t:Date,h:number}], extrema:[...]}
+
+  function interpolateTide(points, sampleTimes) {
+    return sampleTimes.map(function (t) {
+      if (t <= points[0].t) return points[0].h;
+      if (t >= points[points.length - 1].t) return points[points.length - 1].h;
+      for (var i = 0; i < points.length - 1; i++) {
+        if (t >= points[i].t && t <= points[i + 1].t) {
+          var frac = (t - points[i].t) / (points[i + 1].t - points[i].t);
+          var mu = (1 - Math.cos(frac * Math.PI)) / 2;
+          return points[i].h * (1 - mu) + points[i + 1].h * mu;
+        }
+      }
+      return points[points.length - 1].h;
+    });
+  }
+
+  function renderTideDay(idx) {
+    var chartEl = document.getElementById("tideChart");
+    var headingEl = document.getElementById("tideDayHeading");
+    var prevBtn = document.getElementById("tidePrevBtn");
+    var nextBtn = document.getElementById("tideNextBtn");
+    if (!tideDaysCache || !tideDaysCache.length) return;
+    idx = Math.max(0, Math.min(idx, tideDaysCache.length - 1));
+    tideDayIndex = idx;
+    var day = tideDaysCache[idx];
+    var allPoints = tideDaysCache.reduce(function (acc, d) { return acc.concat(d.points); }, []).sort(function (a, b) { return a.t - b.t; });
+
+    var dayStart = new Date(day.date + "T00:00:00+08:00").getTime();
+    var dayEnd = dayStart + 24 * 60 * 60 * 1000;
+    var samples = [];
+    for (var t = dayStart; t <= dayEnd; t += 15 * 60 * 1000) samples.push(t);
+    var heights = interpolateTide(allPoints, samples);
+    var series = samples.map(function (t, i) { return { x: t, y: heights[i] }; });
+
+    var markers = day.extrema.map(function (p) { return { x: p.t, y: p.h, label: (p.tideEn) + " " + Math.round(p.h) + "cm" }; });
+    var xTicks = [0, 6, 12, 18, 24].map(function (hr) { return { x: dayStart + hr * 3600000, label: (hr === 24 ? "24" : hr) + ":00" }; });
+    var now = Date.now();
+    var svg = lineChartSVG(series, {
+      width: 640, height: 170, area: true, unit: "cm",
+      markers: markers, xTicks: xTicks,
+      nowX: (now >= dayStart && now <= dayEnd) ? now : undefined,
+    });
+    if (chartEl) chartEl.innerHTML = svg || '<p class="loading">No tide curve available</p>';
+
+    if (headingEl) {
+      var label = idx === 0 ? "Today" : idx === 1 ? "Tomorrow" : new Date(day.date).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+      headingEl.textContent = label + " — " + new Date(day.date).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+    }
+    if (prevBtn) prevBtn.disabled = idx === 0;
+    if (nextBtn) nextBtn.disabled = idx === tideDaysCache.length - 1;
+  }
+
   function renderTide(data) {
     try {
       var tf = (data.records.TideForecasts || data.records.locations)[0];
       var loc = tf.Location || tf;
       var daily = loc.TimePeriods.Daily || loc.TimePeriods;
+
+      tideDaysCache = daily.map(function (day) {
+        var extrema = (day.Time || []).map(function (t) {
+          var h = t.TideHeights && (t.TideHeights.AboveTWVD !== undefined ? t.TideHeights.AboveTWVD : t.TideHeights.AboveLocalMSL);
+          return { t: new Date(t.DateTime).getTime(), h: Number(h), tide: t.Tide, tideEn: TIDE_ZH_EN[t.Tide] || t.Tide };
+        });
+        return { date: day.Date, points: extrema.map(function (e) { return { t: e.t, h: e.h }; }), extrema: extrema };
+      }).slice(0, 3);
+
+      if (!tideDaysCache.length) throw new Error("no days in response");
+      renderTideDay(0);
+
+      // Trimmed table: only today + tomorrow
       var rows = [];
-      daily.slice(0, 3).forEach(function (day) {
-        (day.Time || []).forEach(function (t) {
-          rows.push([day.Date || "", fmtTime(t.DateTime), t.Tide || "", (t.TideHeights && (t.TideHeights.AboveTWVD || t.TideHeights.AboveLocalMSL)) || ""]);
+      tideDaysCache.slice(0, 2).forEach(function (day) {
+        day.extrema.forEach(function (e) {
+          rows.push([day.date, fmtTime(new Date(e.t).toISOString()), e.tideEn, Math.round(e.h)]);
         });
       });
-      renderTable("tideTable", ["日期", "時間", "潮汐", "潮高(cm)"], rows);
+      renderTable("tideTable", ["Date", "Time", "Tide", "Height (cm)"], rows);
     } catch (e) {
-      showError("tideTable", "資料格式解析失敗 (" + e.message + ")");
+      showError("tideChart", "Couldn't parse this data (" + e.message + ")");
+      showError("tideTable", "Couldn't parse this data (" + e.message + ")");
     }
   }
 
-  /* --- Station observations (O-A0001-001) --- */
-  function renderStations(data) {
+  /* --- Station observations (O-A0001-001), 8-hour rolling history from stations-history.json --- */
+  function renderStationsHistory(history) {
     try {
-      var stations = data.records.Station || [];
-      var rows = stations.map(function (s) {
-        var we = s.WeatherElement || {};
-        return [s.StationName || s.StationId, fmtTime(s.ObsTime && s.ObsTime.DateTime), we.AirTemperature, we.WindSpeed, we.WindDirection, we.RelativeHumidity];
+      var rows = [];
+      Object.keys(history).sort().forEach(function (id) {
+        var s = history[id];
+        var name = STATION_NAME_EN[s.name] || s.name || id;
+        (s.readings || []).slice().reverse().forEach(function (r) {
+          // WindDirection here is a compass degree (e.g. "44.0"), not Chinese text — no translation needed.
+          rows.push([name, fmtHour(r.DateTime), r.WindSpeed, r.WindDirection, r.WindScale]);
+        });
       });
-      renderTable("stationTable", ["測站", "觀測時間", "氣溫(°C)", "風速(m/s)", "風向(°)", "濕度(%)"], rows);
+      renderTable("stationTable", ["Station", "Time", "Wind Speed (m/s)", "Wind Dir (°)", "Scale"], rows);
     } catch (e) {
-      showError("stationTable", "資料格式解析失敗 (" + e.message + ")");
+      showError("stationTable", "Couldn't parse this data (" + e.message + ")");
     }
   }
 
-  /* --- Buoy / sea state (O-B0075-001, Chenggong station 46761F) ---
-     scripts/fetch-data.mjs picks the latest valid reading and reshapes it
-     to { StationID, ObsTime: {DateTime}, WeatherElement: {WaveHeight,
-     WaveDirectionDescription, WavePeriod, SeaTemperature} }. This buoy
-     doesn't report wind — that's covered by the coastal forecast above. */
+  /* --- Buoy / sea state (O-B0075-001), multiple stations, last-24h charts --- */
   function renderBuoy(data) {
+    var container = document.getElementById("buoyContainer");
+    if (!container) return;
     try {
-      var stations = data.records.Station || [];
-      var rows = stations.map(function (s) {
-        var we = s.WeatherElement || {};
-        return [
-          "成功 (46761F)",
-          fmtTime(s.ObsTime && s.ObsTime.DateTime),
-          we.WaveHeight,
-          we.WavePeriod,
-          we.SeaTemperature,
-          we.WaveDirectionDescription,
-        ];
+      var stations = (data.records && data.records.Stations) || [];
+      if (!stations.length) {
+        container.innerHTML = '<p class="loading">No buoy data available</p>';
+        return;
+      }
+      var html = "";
+      stations.forEach(function (st) {
+        var readings = st.Readings || [];
+        var latest = readings[readings.length - 1] || {};
+        var heightSeries = readings.map(function (r) { return { x: new Date(r.DateTime).getTime(), y: Number(r.WaveHeight) }; });
+        var periodSeries = readings.map(function (r) { return { x: new Date(r.DateTime).getTime(), y: Number(r.WavePeriod) }; });
+        var xMin = heightSeries.length ? heightSeries[0].x : Date.now();
+        var xMax = heightSeries.length ? heightSeries[heightSeries.length - 1].x : Date.now();
+        var xTicks = [0, 0.25, 0.5, 0.75, 1].map(function (f) {
+          var x = xMin + f * (xMax - xMin);
+          return { x: x, label: fmtHour(new Date(x).toISOString()) };
+        });
+        var heightSVG = lineChartSVG(heightSeries, { width: 600, height: 110, area: true, unit: "m", xTicks: xTicks });
+        var periodSVG = lineChartSVG(periodSeries, { width: 600, height: 110, unit: "s", xTicks: xTicks });
+
+        html += '<div class="buoy-card">';
+        html += "<h3>" + st.Label + " <span class=\"en\">(" + st.StationID + ")</span></h3>";
+        html += '<div class="buoy-chart-label">Wave Height — last 24h</div>' + (heightSVG || '<p class="loading">No data</p>');
+        html += '<div class="buoy-chart-label">Wave Period — last 24h</div>' + (periodSVG || '<p class="loading">No data</p>');
+        html += '<div class="buoy-stats">';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">Wave Height</span><span class="buoy-stat-value">' + (latest.WaveHeight || "—") + ' m</span></div>';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">Period</span><span class="buoy-stat-value">' + (latest.WavePeriod || "—") + ' s</span></div>';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">Direction</span><span class="buoy-stat-value">' + (latest.WaveDirectionDescription || "—") + '</span></div>';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">Sea Temp</span><span class="buoy-stat-value">' + (latest.SeaTemperature || "—") + ' °C</span></div>';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">As of</span><span class="buoy-stat-value">' + fmtTime(latest.DateTime) + '</span></div>';
+        html += "</div></div>";
       });
-      renderTable("buoyTable", ["測站", "觀測時間", "浪高(m)", "週期(s)", "海溫(°C)", "浪向"], rows);
+      container.innerHTML = html;
     } catch (e) {
-      showError("buoyTable", "資料格式解析失敗 (" + e.message + ")");
+      showError("buoyContainer", "Couldn't parse this data (" + e.message + ")");
     }
   }
 
   function loadAll() {
-    fetchJSON("data/township.json").then(renderTownship).catch(function (e) { showError("townshipTable", "無法載入 (" + e.message + ")"); });
-    fetchJSON("data/coastal.json").then(renderCoastal).catch(function (e) { showError("coastalTable", "無法載入 (" + e.message + ")"); });
-    fetchJSON("data/tide.json").then(renderTide).catch(function (e) { showError("tideTable", "無法載入 (" + e.message + ")"); });
-    fetchJSON("data/stations.json").then(renderStations).catch(function (e) { showError("stationTable", "無法載入 (" + e.message + ")"); });
-    fetchJSON("data/buoy.json").then(renderBuoy).catch(function (e) { showError("buoyTable", "無法載入 (" + e.message + ")"); });
+    fetchJSON("data/township.json").then(renderTownship).catch(function (e) { showError("townshipTable", "Couldn't load this data (" + e.message + ")"); });
+    fetchJSON("data/coastal.json").then(renderCoastal).catch(function (e) { showError("coastalTable", "Couldn't load this data (" + e.message + ")"); });
+    fetchJSON("data/tide.json").then(renderTide).catch(function (e) { showError("tideTable", "Couldn't load this data (" + e.message + ")"); });
+    fetchJSON("data/stations-history.json").then(renderStationsHistory).catch(function (e) { showError("stationTable", "Couldn't load this data (" + e.message + ")"); });
+    fetchJSON("data/buoy.json").then(renderBuoy).catch(function (e) { showError("buoyContainer", "Couldn't load this data (" + e.message + ")"); });
 
     fetchJSON("data/meta.json").then(function (meta) {
       var el = document.getElementById("lastUpdated");
       if (el && meta && meta.updatedAt) {
-        el.textContent = "更新於 " + fmtTime(meta.updatedAt);
+        el.textContent = "Updated " + fmtTime(meta.updatedAt);
       }
     }).catch(function () { /* ignore */ });
   }
+
+  document.addEventListener("click", function (ev) {
+    if (ev.target && ev.target.id === "tidePrevBtn") renderTideDay(tideDayIndex - 1);
+    if (ev.target && ev.target.id === "tideNextBtn") renderTideDay(tideDayIndex + 1);
+  });
 
   loadAll();
 })();

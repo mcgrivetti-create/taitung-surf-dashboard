@@ -187,8 +187,9 @@ main {
   display: block;
 }
 
-.windguru-embed iframe { min-height: 300px; }
-#windguru-embed { min-height: 300px; }
+.windguru-embed { min-height: 260px; padding: 0.5rem; }
+
+.widget-embed.windy-embed iframe { height: 200px; }
 
 .widget-embed.video-embed {
   position: relative;
@@ -258,6 +259,103 @@ main {
 
 .loading { color: var(--text-dim); margin: 0; }
 .error-msg { color: var(--danger); margin: 0; }
+
+.chart-block { overflow-x: visible; padding: 0.6rem 0.7rem; }
+
+/* Tide pager */
+.tide-pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.tide-pager-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 999px;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.tide-pager-btn:hover:not(:disabled) { border-color: var(--accent); }
+.tide-pager-btn:disabled { opacity: 0.35; cursor: default; }
+
+.tide-day-heading {
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-width: 9rem;
+  text-align: center;
+}
+
+.cwa-link {
+  margin: 0.6rem 0 0;
+  font-size: 0.8rem;
+}
+
+.cwa-link a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.cwa-link a:hover { text-decoration: underline; }
+
+/* Buoy grid */
+.buoy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.buoy-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem;
+  box-shadow: var(--shadow);
+}
+
+.buoy-card h3 {
+  margin: 0 0 0.6rem;
+  font-size: 0.9rem;
+}
+
+.buoy-chart-label {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin: 0.5rem 0 0.1rem;
+}
+
+.buoy-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 0.7rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border);
+}
+
+.buoy-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 4.5rem;
+}
+
+.buoy-stat-label {
+  font-size: 0.66rem;
+  color: var(--text-dim);
+}
+
+.buoy-stat-value {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
 
 /* Placeholder */
 .placeholder-block {
