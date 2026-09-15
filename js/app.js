@@ -487,7 +487,22 @@
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Direction</span><span class="buoy-stat-value">' + (latest.WindDirection !== undefined ? latest.WindDirection + "°" : "—") + '</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Scale</span><span class="buoy-stat-value">' + (latest.WindScale !== undefined ? latest.WindScale : "—") + '</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">As of</span><span class="buoy-stat-value">' + fmtTime(latest.DateTime) + '</span></div>';
-        html += "</div></div>";
+        html += "</div>";
+
+        // Full 8-hour reading list under the chart (same pattern as the buoy cards).
+        var stationRows = readings.slice().reverse().map(function (r) {
+          return [
+            fmtHour(r.DateTime),
+            r.WindSpeed,
+            r.WindDirection !== undefined ? r.WindDirection + "°" + dirArrowHtml(r.WindDirection) : "",
+            r.WindScale,
+          ];
+        }).map(function (row) {
+          return "<tr>" + row.map(function (c) { return "<td>" + (c === undefined || c === null || c === "" ? "—" : c) + "</td>"; }).join("") + "</tr>";
+        }).join("");
+        html += '<div class="buoy-chart-label">Last 8 hours</div>';
+        html += '<div class="buoy-history-table"><table><thead><tr><th>Time</th><th>Speed(m/s)</th><th>Dir</th><th>Scale</th></tr></thead><tbody>' + stationRows + "</tbody></table></div>";
+        html += "</div>";
       });
       container.innerHTML = html;
     } catch (e) {
