@@ -130,8 +130,23 @@
     el.innerHTML = html;
   }
 
-  // Reference gridlines drawn behind wave-height charts, every 0.2m.
-  var WAVE_GRID_STEP = 0.2;
+  // Fixed axis bands so every wave-height chart reads on the same scale
+  // rather than auto-fitting to its own data: 0–3m with 0.5m gridlines by
+  // default, stepping up to 0–6m then 0–10m only when the swell needs the
+  // room (coarser gridlines there so they stay readable). Anything past
+  // 10m rounds up to the next even metre so a typhoon swell still fits.
+  function waveChartOpts(series, opts) {
+    var max = 0;
+    series.forEach(function (p) { if (isFinite(p.y) && p.y > max) max = p.y; });
+    if (max <= 3) { opts.yMax = 3; opts.gridStep = 0.5; }
+    else if (max <= 6) { opts.yMax = 6; opts.gridStep = 1; }
+    else if (max <= 10) { opts.yMax = 10; opts.gridStep = 1; }
+    else { opts.yMax = Math.ceil(max / 2) * 2; opts.gridStep = 2; }
+    opts.yMin = 0;
+    opts.area = true;
+    opts.unit = "m";
+    return opts;
+  }
 
   // Beaufort wind scale number (0-12) from a wind speed in m/s — same
   // thresholds as scripts/fetch-data.mjs's beaufort() (kept separate since
@@ -179,8 +194,12 @@
     var yMin = opts.yMin !== undefined ? opts.yMin : Math.min.apply(null, ys);
     var yMax = opts.yMax !== undefined ? opts.yMax : Math.max.apply(null, ys);
     if (yMax === yMin) { yMax += 1; yMin -= 1; }
-    var pd = (yMax - yMin) * 0.1;
-    yMin -= pd; yMax += pd;
+    // Only breathe room into an auto-fitted axis — a caller that pins both
+    // ends (e.g. the fixed 0–3m wave scale) means exactly those bounds.
+    if (opts.yMin === undefined || opts.yMax === undefined) {
+      var pd = (yMax - yMin) * 0.1;
+      yMin -= pd; yMax += pd;
+    }
     function sx(x) { return pad.l + (xMax === xMin ? 0 : (x - xMin) / (xMax - xMin)) * (w - pad.l - pad.r); }
     function sy(y) { return h - pad.b - (y - yMin) / (yMax - yMin) * (h - pad.t - pad.b); }
 
@@ -320,7 +339,7 @@
         });
         var waveSeries = times.map(function (t, i) { return { x: xs[i], y: Number(waveHeight(i)) }; });
         var windScaleSeries = times.map(function (t, i) { return { x: xs[i], y: beaufortScale(windSpeed(i)) }; });
-        var waveSVG = lineChartSVG(waveSeries, { width: 640, height: 190, area: true, unit: "m", xTicks: xTicks, gridStep: WAVE_GRID_STEP });
+        var waveSVG = lineChartSVG(waveSeries, waveChartOpts(waveSeries, { width: 640, height: 190, xTicks: xTicks }));
         var windSVG = lineChartSVG(windScaleSeries, { width: 640, height: 140, unit: "", yMin: 0, xTicks: xTicks });
         chartEl.innerHTML =
           '<div class="chart-label">Wave Height</div>' + (waveSVG || '<p class="loading">No data</p>') +
@@ -532,7 +551,7 @@
           var x = xMin + f * (xMax - xMin);
           return { x: x, label: fmtHour(new Date(x).toISOString()) };
         });
-        var heightSVG = lineChartSVG(heightSeries, { width: 600, height: 130, area: true, unit: "m", xTicks: xTicks, gridStep: WAVE_GRID_STEP });
+        var heightSVG = lineChartSVG(heightSeries, waveChartOpts(heightSeries, { width: 600, height: 130, xTicks: xTicks }));
         var periodSVG = lineChartSVG(periodSeries, { width: 600, height: 110, unit: "s", xTicks: xTicks });
 
         // CWA uses the literal string "None" for a missing reading on an
@@ -591,7 +610,7 @@
           sublabel: dt.toLocaleDateString("en-US", { month: "numeric", day: "numeric" }),
         };
       });
-      var svg = lineChartSVG(series, { width: 640, height: 190, area: true, unit: "m", xTicks: xTicks, gridStep: WAVE_GRID_STEP });
+      var svg = lineChartSVG(series, waveChartOpts(series, { width: 640, height: 190, xTicks: xTicks }));
       var chartEl = document.getElementById("openWaveChart");
       if (chartEl) chartEl.innerHTML = svg || '<p class="loading">No wave curve available</p>';
 
