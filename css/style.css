@@ -476,3 +476,20 @@ main {
   font-size: 0.72rem;
   color: var(--text-dim);
 }
+
+/* surf-forecast.com widget: it re-renders with fewer hours as it narrows
+   (dropping whole days) instead of overflowing, so there's nothing for the
+   iframe's own scrollbar to reveal. Pin it to its documented max width and
+   let the wrapper scroll horizontally instead — same feel as the Windguru
+   widget, and all 48 hours stay reachable on a phone. */
+.widget-embed.surf-forecast-embed {
+  overflow-x: auto;
+}
+
+.widget-embed.surf-forecast-embed .wf-width-cont {
+  min-width: 753px;
+}
+
+.widget-embed.surf-forecast-embed iframe {
+  width: 753px;
+}
