@@ -21,15 +21,16 @@ station wind history is a small self-maintained rolling log, not a DB.
      (`surf-forecast.com/pages/configure_widget`, separate from the main
      site's own blocked-from-framing pages), Widget A, metric units.
      (Earlier claim that no embed existed at all was wrong — corrected.)
-   - Windy — the interactive waves/wind map (layer picker, click-to-inspect
-     spot forecast, full detail table) via `embed.windy.com/embed.html?type=map`
+   - Windy — two interactive maps (wave model and wind model) on the same
+     regional view: zoom 5 centred at 24.5N/123E, reaching southern Kyushu
+     to the northern tip of Luzon, each with the Donghe spot-forecast panel
 1b. **Open Wave Model** — an independent wave forecast from Open-Meteo's
     free Marine API (no key, backed by NOAA NCEP GFS-Wave). Doesn't depend
     on CWA or any of the widgets above, so it's a fallback that keeps
     working if one of those goes down.
 2. CWA coastal 3-day / 3-hourly wave forecast for Donghe (`F-D0047-095`) —
-   wave-height chart (0.2m reference gridlines) + wind-scale (Beaufort)
-   chart, table adds computed wave power (kW/m) and wave direction
+   wave-height chart (fixed 0–3m scale, 0.5m gridlines) + wind-scale (Beaufort)
+   chart, table adds computed wave energy (kJ) and wave direction
 3. Other CWA data:
    - Township forecast (`F-D0047-039`, Donghe)
    - Tide forecast (`F-A0021-001`, Donghe) — interpolated line chart with a
@@ -39,10 +40,10 @@ station wind history is a small self-maintained rolling log, not a DB.
      page
    - Station observations (`O-A0001-001` — C0S810 Donghe / C0SA30 Duli /
      C0T9I0 Fengbin), one chart card per station: 8-hour wind-scale
-     (Beaufort) history + current speed/direction/scale
+     (Beaufort) history + current speed/direction/scale, plus an 8-hour readings table
    - Buoy / sea state (`O-B0075-001`) — Chenggong (46761F), Taitung
      (WRA007), Hualien (46699A), Longdong (46694A) — each with 24-hour wave
-     height/period charts, computed wave power (kW/m), and an 8-hour
+     height/period charts, computed wave energy (kJ), and an 8-hour
      readings table (station codes looked up from `O-B0076-001`'s full
      station directory)
 4. Forecast-accuracy tracking — placeholder; **Phase 2 logging is live**
@@ -53,10 +54,12 @@ station wind history is a small self-maintained rolling log, not a DB.
    point-forecast QPF API, so these are the same map images from
    <https://www.cwa.gov.tw/V8/E/W/analysis.html>)
 
-**Wave power** (kW/m, shown in the Coastal, Open Wave Model, and buoy
-sections) is computed client-side from wave height + period using the
-standard deep-water wave energy flux formula (P ≈ 0.49·Hs²·Te) — not
-pulled from any external source.
+**Wave energy** (kJ, shown in the Coastal, Open Wave Model, and buoy
+sections) is computed client-side from wave height + period (E = 15·H²·T),
+calibrated against surf-forecast.com's own kJ figure — see "Known gaps".
+**Wave-height charts** all share a fixed y-axis (0–3m with 0.5m gridlines,
+stepping to 0–6m / 0–10m only when the swell needs it) so they stay
+comparable at a glance.
 
 ## Phase 2: data logger (live)
 
@@ -166,3 +169,11 @@ data/history/{forecast,buoy,tide}/YYYY-MM.json
   Phase 2 logs above (the placeholder in the page)
 - **Phase 5** — per-spot subpages, Jinzun/Chenggong-specific widgets, blended
   forecast, spot scoring
+
+## Deploying a css/js change
+
+GitHub Pages serves static assets with `Cache-Control: max-age=600`, so a
+returning visitor can keep running the old `app.js`/`style.css` for up to
+10 minutes after a push — which looks exactly like "the fix didn't work".
+`index.html` references both with a `?v=` query string; **bump it when you
+change either file** and the new version takes effect immediately.
