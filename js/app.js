@@ -749,12 +749,96 @@
     fetchJSON("data/buoy.json").then(renderBuoy).catch(function (e) { showError("buoyContainer", "Couldn't load this data (" + e.message + ")"); });
     fetchJSON("data/openwave.json").then(renderOpenWave).catch(function (e) { showError("openWaveChart", "Couldn't load this data (" + e.message + ")"); });
 
-    fetchJSON("data/meta.json").then(function (meta) {
-      var el = document.getElementById("lastUpdated");
-      if (el && meta && meta.updatedAt) {
-        el.textContent = "Updated " + fmtTime(meta.updatedAt);
+    fetchJSON("data/meta.json")
+      .then(renderFreshness)
+      .catch(function () { renderFreshness(null); });
+  }
+
+  /* ---------- Data freshness ----------
+     Everything on this page is served from data/*.json, which a scheduled
+     Action refreshes hourly. If that Action breaks, the page keeps rendering
+     the last good numbers and looks completely normal — which is worse than
+     showing nothing, because someone reads two-week-old wave heights and
+     believes them. So the age of the data is stated outright.
+
+     Thresholds are keyed to the hourly refresh: under 2h is a normal gap
+     (one missed run, or a run that found no changes), by 4h something is
+     wrong, and by 12h the numbers can no longer be trusted for a surf call. */
+  var STALE_HOURS = 4;
+  var VERY_STALE_HOURS = 12;
+
+  function humanAge(ms) {
+    var mins = Math.round(ms / 60000);
+    if (mins < 90) return mins + " min";
+    var hours = Math.round(mins / 60);
+    if (hours < 36) return hours + "h";
+    return Math.round(hours / 24) + " days";
+  }
+
+  function renderFreshness(meta) {
+    var el = document.getElementById("lastUpdated");
+    var banner = document.getElementById("staleBanner");
+
+    // meta.json itself didn't load — can't say anything about the data's age,
+    // so say that rather than implying it's current.
+    if (!meta || !meta.updatedAt) {
+      if (el) {
+        el.textContent = "⚠ Update status unknown";
+        el.className = "last-updated is-very-stale";
       }
-    }).catch(function () { /* ignore */ });
+      if (banner) {
+        banner.className = "stale-banner is-error";
+        banner.innerHTML = "<strong>⚠ Can't tell how old this data is</strong>" +
+          "The update log didn't load, so everything below may be out of date. " +
+          '<span class="stale-detail">Check the "Update CWA Data" workflow in the repository\'s Actions tab.</span>';
+        banner.hidden = false;
+      }
+      return;
+    }
+
+    var ageMs = Date.now() - new Date(meta.updatedAt).getTime();
+    var ageHours = ageMs / 3600000;
+    // Hard failures only: a source with ok:false and no error just means the
+    // fetch succeeded but matched nothing, and it already writes its raw
+    // payload for inspection.
+    var failed = (meta.sources || []).filter(function (s) { return s.ok === false && s.error; });
+
+    if (el) {
+      el.textContent = (ageHours >= STALE_HOURS ? "⚠ " : "") +
+        "Updated " + fmtTime(meta.updatedAt) + " (" + humanAge(ageMs) + " ago)";
+      el.className = "last-updated" +
+        (ageHours >= VERY_STALE_HOURS ? " is-very-stale" : ageHours >= STALE_HOURS ? " is-stale" : "");
+    }
+    if (!banner) return;
+
+    if (ageHours >= STALE_HOURS) {
+      var severe = ageHours >= VERY_STALE_HOURS;
+      banner.className = "stale-banner" + (severe ? " is-error" : "");
+      banner.innerHTML = "<strong>⚠ This data is " + humanAge(ageMs) + " old</strong>" +
+        (severe
+          ? "The hourly update has stopped. Don't use anything below to judge conditions."
+          : "The hourly update hasn't run recently. Treat the numbers below with caution.") +
+        ' <span class="stale-detail">Last successful update ' + fmtTime(meta.updatedAt) +
+        ". Check the \"Update CWA Data\" workflow in the repository's Actions tab." +
+        (failed.length ? " Last run also reported " + failed.length + " failed source(s)." : "") +
+        "</span>";
+      banner.hidden = false;
+      return;
+    }
+
+    // Data is current, but part of the last run failed — that section is
+    // stale even though the page as a whole isn't.
+    if (failed.length) {
+      banner.className = "stale-banner";
+      banner.innerHTML = "<strong>⚠ Part of the last update failed</strong>" +
+        "Most of this page is current, but these sources didn't refresh: " +
+        failed.map(function (s) { return s.name; }).join(", ") + "." +
+        ' <span class="stale-detail">Those sections are showing older data.</span>';
+      banner.hidden = false;
+      return;
+    }
+
+    banner.hidden = true;
   }
 
   document.addEventListener("click", function (ev) {

@@ -8,6 +8,7 @@
   --accent: #3fb0e0;
   --accent-2: #63d4a3;
   --danger: #e0725f;
+  --warn: #e3b341;
   --radius: 10px;
   --shadow: 0 2px 10px rgba(0,0,0,0.35);
 }
@@ -22,6 +23,7 @@
   --accent: #0d84b5;
   --accent-2: #148a5f;
   --danger: #b5402d;
+  --warn: #8a6100;
   --shadow: 0 2px 10px rgba(20,30,50,0.08);
 }
 
@@ -496,3 +498,29 @@ main {
 .widget-embed.surf-forecast-embed iframe {
   width: 753px;
 }
+
+/* --- Data freshness ---------------------------------------------------
+   The page renders whatever is in data/*.json, so a broken hourly fetch
+   looks identical to a working one — it just quietly serves old numbers.
+   These two states make that visible: the header timestamp changes colour
+   as the data ages, and a banner appears once it's old enough to actually
+   mislead someone about the surf. */
+.last-updated.is-stale { color: var(--warn); }
+.last-updated.is-very-stale { color: var(--danger); font-weight: 600; }
+
+[hidden] { display: none !important; }
+
+.stale-banner {
+  margin: 0 0 1rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--warn);
+  border-left-width: 4px;
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  color: var(--text);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+.stale-banner.is-error { border-color: var(--danger); }
+.stale-banner strong { display: block; margin-bottom: 0.15rem; }
+.stale-banner .stale-detail { color: var(--text-dim); font-size: 0.8rem; }

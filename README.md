@@ -132,6 +132,40 @@ This is the ground truth Phase 3's accuracy-comparison charts will read
 from — see `scripts/fetch-data.mjs`'s "Phase 2" section (`appendMonthlyHistory`,
 `buildTideGaugeActual`, the lead-time snapshot logic in `run()`).
 
+## Data freshness (why the page tells you its own age)
+
+The page renders whatever is sitting in `data/*.json`. If the hourly Action
+stops working — expired CWA key, a CWA schema change, GitHub disabling the
+cron — the page keeps rendering the last good numbers and **looks completely
+normal**. That's the dangerous failure: you read two-week-old wave heights
+and believe them.
+
+So `renderFreshness()` in `js/app.js` states the age outright, keyed to the
+hourly refresh:
+
+| Age | Header | Banner |
+| --- | --- | --- |
+| < 4h | `Updated 9/16, 10:19 (30 min ago)`, normal colour | none |
+| 4–12h | amber, `⚠` prefix | amber — "hasn't run recently, treat with caution" |
+| > 12h | red, bold | red — "has stopped, don't use this to judge conditions" |
+| `meta.json` won't load | red, "Update status unknown" | red — can't determine age |
+
+A *partial* failure (the run succeeded but a source errored) shows a banner
+naming the failed sources even when the data is otherwise current — those
+sections alone are stale. Sources that report `ok: false` with no `error`
+are ignored here: that means the fetch worked but matched nothing, and it
+already writes its raw payload for inspection.
+
+### Testing the stale states locally
+
+They only appear when data is genuinely old, so to see them you need to
+stub `meta.json`. There's no build step and no Node on the author's machine,
+so serve the folder over HTTP (`file://` breaks relative script loading) —
+any static server works, e.g. PowerShell's `System.Net.HttpListener`. Then
+load a page that defines a `window.fetch` stub returning a fabricated
+`updatedAt` **before** the `<script src="js/app.js">` tag, so the real
+`renderFreshness()` runs against it.
+
 ## One-time setup
 
 ### 1. Get a CWA Open Data API key

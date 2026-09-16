@@ -8,7 +8,7 @@
 <!-- ?v= is a cache-buster: GitHub Pages serves assets with max-age=600, so bump
      this on any css/js change or returning visitors keep the old copy for
      up to 10 minutes. -->
-<link rel="stylesheet" href="css/style.css?v=2026-09-16b">
+<link rel="stylesheet" href="css/style.css?v=2026-09-16c">
 </head>
 <body>
 <header class="site-header">
@@ -23,6 +23,11 @@
 </header>
 
 <main>
+
+  <!-- Shown only when the hourly fetch has stopped working. Without this the
+       page renders old data indistinguishably from fresh data — see
+       renderFreshness() in js/app.js. -->
+  <div id="staleBanner" class="stale-banner" role="status" hidden></div>
 
   <!-- 1. 7-day widget forecasts -->
   <section class="panel" id="widgets">
@@ -217,6 +222,6 @@
   <p>Data sources: CWA (Central Weather Administration) Open Data, Open-Meteo (NOAA GFS-Wave), Windguru, surf-forecast.com, Windy, YouTube. For reference only — assess your own conditions before entering the water.</p>
 </footer>
 
-<script src="js/app.js?v=2026-09-16b"></script>
+<script src="js/app.js?v=2026-09-16c"></script>
 </body>
 </html>
