@@ -113,6 +113,16 @@
     }
   }
 
+  // Every displayed number rounds to at most one decimal — CWA and
+  // Open-Meteo mix 1- and 2-decimal precision, which looked inconsistent
+  // across the tables.
+  function n1(v) {
+    if (v === null || v === undefined || v === "") return v;
+    var x = Number(v);
+    if (!isFinite(x)) return v;
+    return String(Math.round(x * 10) / 10);
+  }
+
   function renderTable(elId, headers, rows) {
     var el = document.getElementById(elId);
     if (!el) return;
@@ -186,7 +196,7 @@
   /* ---------- Tiny SVG line-chart builder (no external deps) ---------- */
   function lineChartSVG(series, opts) {
     opts = opts || {};
-    var w = opts.width || 600, h = opts.height || 160, pad = { t: 14, r: 14, b: 22, l: 34 };
+    var w = opts.width || 600, h = opts.height || 160, pad = { t: 14, r: 14, b: 22, l: opts.padLeft || 34 };
     var xs = series.map(function (p) { return p.x; });
     var ys = series.map(function (p) { return p.y; }).filter(function (v) { return v !== null && v !== undefined && !isNaN(v); });
     if (!ys.length) return "";
@@ -210,22 +220,32 @@
 
     var svg = '<svg viewBox="0 0 ' + w + " " + h + '" width="100%" style="display:block;overflow:visible" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">';
 
-    // horizontal reference gridlines at a fixed step (e.g. every 0.2m of wave height)
+    // Horizontal reference gridlines at a fixed step, labelled down the left
+    // of the y-axis so a value can be read straight off the line.
     if (opts.gridStep) {
-      var gStart = Math.ceil(yMin / opts.gridStep) * opts.gridStep;
-      for (var gv = gStart; gv <= yMax; gv += opts.gridStep) {
+      var gStart = Math.ceil(yMin / opts.gridStep - 1e-9) * opts.gridStep;
+      for (var gv = gStart; gv <= yMax + 1e-9; gv += opts.gridStep) {
         var gy = sy(gv);
         svg += '<line x1="' + pad.l + '" y1="' + gy + '" x2="' + (w - pad.r) + '" y2="' + gy + '" stroke="var(--border)" stroke-width="1" stroke-dasharray="2,3"></line>';
-        svg += '<text x="' + (w - pad.r - 3) + '" y="' + (gy - 2) + '" font-size="9" fill="var(--text-dim)" text-anchor="end">' + (Math.round(gv * 100) / 100) + (opts.unit || "") + "</text>";
+        svg += '<text x="' + (pad.l - 4) + '" y="' + (gy + 3) + '" font-size="9" fill="var(--text-dim)" text-anchor="end">' + n1(gv) + (opts.unit || "") + "</text>";
       }
+    }
+
+    // Vertical gridlines rising from each x tick (tide chart uses these).
+    if (opts.xGridlines) {
+      (opts.xTicks || []).forEach(function (t) {
+        svg += '<line x1="' + sx(t.x) + '" y1="' + pad.t + '" x2="' + sx(t.x) + '" y2="' + (h - pad.b) + '" stroke="var(--border)" stroke-width="1" stroke-dasharray="2,3"></line>';
+      });
     }
 
     if (opts.area) svg += '<path d="' + areaD + '" fill="var(--accent)" opacity="0.15" stroke="none"></path>';
     svg += '<path d="' + pathD + '" fill="none" stroke="var(--accent)" stroke-width="2" vector-effect="non-scaling-stroke"></path>';
 
-    // y-axis min/max labels
-    svg += '<text x="2" y="' + (sy(yMax) + 4) + '" font-size="10" fill="var(--text-dim)">' + Math.round(yMax * 10) / 10 + (opts.unit || "") + '</text>';
-    svg += '<text x="2" y="' + (sy(yMin) + 4) + '" font-size="10" fill="var(--text-dim)">' + Math.round(yMin * 10) / 10 + (opts.unit || "") + '</text>';
+    // Bare min/max labels, only when there are no gridlines already labelling the axis.
+    if (!opts.gridStep) {
+      svg += '<text x="2" y="' + (sy(yMax) + 4) + '" font-size="10" fill="var(--text-dim)">' + n1(yMax) + (opts.unit || "") + '</text>';
+      svg += '<text x="2" y="' + (sy(yMin) + 4) + '" font-size="10" fill="var(--text-dim)">' + n1(yMin) + (opts.unit || "") + '</text>';
+    }
 
     // x-axis tick labels (optionally two lines: label + sublabel, e.g. weekday + date)
     (opts.xTicks || []).forEach(function (t) {
@@ -251,6 +271,68 @@
 
     svg += "</svg>";
     return svg;
+  }
+
+  // Clock-face ticks: the current time first, then every 6-hour boundary
+  // (0600/1200/1800/2400) after it, so the time axis always reads the same
+  // way regardless of when the page is opened. Midnight shows as 2400.
+  function sixHourTicks(xMin, xMax) {
+    var ticks = [];
+    var start = Math.max(xMin, Math.min(Date.now(), xMax));
+    function label(ms) {
+      var d = new Date(ms);
+      var hh = d.getHours(), mm = d.getMinutes();
+      if (hh === 0 && mm === 0) return "2400"; // read as the end of the previous day
+      return (hh < 10 ? "0" : "") + hh + (mm < 10 ? "0" : "") + mm;
+    }
+    ticks.push({ x: start, label: "now", sublabel: label(start) });
+
+    var t = new Date(start);
+    t.setMinutes(0, 0, 0);
+    t.setHours((Math.floor(t.getHours() / 6) + 1) * 6);
+    var prevDay = new Date(start).getDate();
+    while (t.getTime() <= xMax) {
+      var day = t.getDate();
+      ticks.push({
+        x: t.getTime(),
+        label: label(t.getTime()),
+        sublabel: day !== prevDay ? t.toLocaleDateString("en-US", { weekday: "short" }) : "",
+      });
+      prevDay = day;
+      t = new Date(t.getTime() + 6 * 3600 * 1000);
+    }
+    return ticks;
+  }
+
+  // Same 6-hour clock face, but for charts that look BACKWARDS (observation
+  // history). sixHourTicks starts at "now" and walks forward, which on a
+  // past-only range collapses to a single tick at the right edge — here we walk
+  // the boundaries forward from xMin and label the right edge "now" instead.
+  function historySixHourTicks(xMin, xMax) {
+    var ticks = [];
+    function label(ms) {
+      var d = new Date(ms);
+      var hh = d.getHours(), mm = d.getMinutes();
+      if (hh === 0 && mm === 0) return "2400";
+      return (hh < 10 ? "0" : "") + hh + (mm < 10 ? "0" : "") + mm;
+    }
+    var t = new Date(xMin);
+    t.setMinutes(0, 0, 0);
+    t.setHours(Math.ceil(t.getHours() / 6) * 6);
+    var prevDay = new Date(xMin).getDate();
+    // Stop short of the right edge so the boundary tick can't collide with "now".
+    while (t.getTime() <= xMax - 45 * 60 * 1000) {
+      var day = t.getDate();
+      ticks.push({
+        x: t.getTime(),
+        label: label(t.getTime()),
+        sublabel: day !== prevDay ? t.toLocaleDateString("en-US", { weekday: "short" }) : "",
+      });
+      prevDay = day;
+      t = new Date(t.getTime() + 6 * 3600 * 1000);
+    }
+    ticks.push({ x: xMax, label: "now", sublabel: label(xMax) });
+    return ticks;
   }
 
   /* --- Township forecast (F-D0047-039) ---
@@ -314,7 +396,7 @@
       var rows = times.map(function (t, i) {
         var wd = windDirRaw(i), vd = waveDirRaw(i);
         return [
-          fmtTime(t.DataTime), waveHeight(i), wavePeriod(i),
+          fmtTime(t.DataTime), n1(waveHeight(i)), n1(wavePeriod(i)),
           wavePowerKw(waveHeight(i), wavePeriod(i)),
           vd ? translateDirText(vd) : "",
           beaufortScale(windSpeed(i)),
@@ -328,15 +410,7 @@
       if (chartEl && times.length) {
         var xs = times.map(function (t) { return new Date(t.DataTime).getTime(); });
         var xMin = xs[0], xMax = xs[xs.length - 1];
-        var xTicks = [0, 0.25, 0.5, 0.75, 1].map(function (f) {
-          var x = xMin + f * (xMax - xMin);
-          var dt = new Date(x);
-          return {
-            x: x,
-            label: dt.toLocaleDateString("en-US", { weekday: "short" }),
-            sublabel: dt.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false }),
-          };
-        });
+        var xTicks = sixHourTicks(xMin, xMax);
         var waveSeries = times.map(function (t, i) { return { x: xs[i], y: Number(waveHeight(i)) }; });
         var windScaleSeries = times.map(function (t, i) { return { x: xs[i], y: beaufortScale(windSpeed(i)) }; });
         var waveSVG = lineChartSVG(waveSeries, waveChartOpts(waveSeries, { width: 640, height: 190, xTicks: xTicks }));
@@ -395,10 +469,17 @@
         sublabel: new Date(p.t).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false }),
       };
     });
-    var xTicks = [0, 6, 12, 18, 24].map(function (hr) { return { x: dayStart + hr * 3600000, label: (hr === 24 ? "24" : hr) + ":00" }; });
+    // Tide axis is pinned and never rescales, so the curve's shape means the
+    // same thing every day. -100..+150cm (relative to TWVD2001) comfortably
+    // contains Donghe's astronomical range — the largest spring tides in the
+    // CWA data run about -45 to +100cm.
+    var xTicks = [6, 12, 18, 24].map(function (hr) {
+      return { x: dayStart + hr * 3600000, label: (hr === 24 ? "24" : "0" + hr).slice(-2) + "00" };
+    });
     var now = Date.now();
     var svg = lineChartSVG(series, {
       width: 640, height: 200, area: true, unit: "cm",
+      yMin: -100, yMax: 150, gridStep: 50, padLeft: 46, xGridlines: true,
       markers: markers, xTicks: xTicks,
       nowX: (now >= dayStart && now <= dayEnd) ? now : undefined,
     });
@@ -410,6 +491,27 @@
     }
     if (prevBtn) prevBtn.disabled = idx === 0;
     if (nextBtn) nextBtn.disabled = idx === tideDaysCache.length - 1;
+  }
+
+  // Horizontal drag/swipe on the tide chart pages between days, alongside
+  // the ‹ › buttons. Pointer events cover both touch and mouse; the chart
+  // is redrawn on release rather than tracking the finger, which keeps it
+  // cheap and avoids fighting vertical page scrolling.
+  function enableTideSwipe() {
+    var wrap = document.querySelector(".tide-chart-wrap");
+    if (!wrap || wrap.dataset.swipeBound) return;
+    wrap.dataset.swipeBound = "1";
+    var startX = null, startY = null;
+    wrap.addEventListener("pointerdown", function (ev) { startX = ev.clientX; startY = ev.clientY; });
+    wrap.addEventListener("pointerup", function (ev) {
+      if (startX === null) return;
+      var dx = ev.clientX - startX, dy = ev.clientY - startY;
+      startX = startY = null;
+      // Ignore mostly-vertical drags (page scroll) and taps.
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+      renderTideDay(tideDayIndex + (dx < 0 ? 1 : -1));
+    });
+    wrap.addEventListener("pointercancel", function () { startX = startY = null; });
   }
 
   function renderTide(data) {
@@ -428,6 +530,7 @@
 
       if (!tideDaysCache.length) throw new Error("no days in response");
       renderTideDay(0);
+      enableTideSwipe();
       renderMoonWidget();
     } catch (e) {
       showError("tideChart", "Couldn't parse this data (" + e.message + ")");
@@ -471,7 +574,7 @@
       '<div class="moon-next">' + nextLabel + "</div>";
   }
 
-  /* --- Station observations (O-A0001-001), 8-hour rolling history from stations-history.json ---
+  /* --- Station observations (O-A0001-001), 16-hour rolling history from stations-history.json ---
      One chart card per station, side by side (same grid pattern as buoy cards).
      WindDirection is a compass degree (e.g. "44.0"), not Chinese text — no translation needed. */
   function renderStationsHistory(history) {
@@ -492,34 +595,39 @@
         var series = readings.map(function (r) { return { x: new Date(r.DateTime).getTime(), y: Number(r.WindScale) }; });
         var xMin = series.length ? series[0].x : Date.now();
         var xMax = series.length ? series[series.length - 1].x : Date.now();
-        var xTicks = [0, 0.5, 1].map(function (f) {
-          var x = xMin + f * (xMax - xMin);
-          return { x: x, label: fmtHour(new Date(x).toISOString()) };
+        var xTicks = historySixHourTicks(xMin, xMax);
+        // Beaufort tiers, same idea as waveChartOpts: a stable axis so the three
+        // station cards stay comparable, stepping up only when it's really blowing.
+        var bMax = 0;
+        series.forEach(function (p) { if (isFinite(p.y) && p.y > bMax) bMax = p.y; });
+        var svg = lineChartSVG(series, {
+          width: 600, height: 120, area: true, unit: "", padLeft: 26,
+          yMin: 0, yMax: bMax <= 6 ? 6 : 12, gridStep: bMax <= 6 ? 1 : 2,
+          xTicks: xTicks,
         });
-        var svg = lineChartSVG(series, { width: 600, height: 120, area: true, unit: "", yMin: 0, xTicks: xTicks });
 
         html += '<div class="buoy-card">';
         html += "<h3>" + name + " <span class=\"en\">(" + id + ")</span></h3>";
-        html += '<div class="buoy-chart-label">Wind Scale (Beaufort) — last 8h</div>' + (svg || '<p class="loading">Still collecting data (populates hourly)</p>');
+        html += '<div class="buoy-chart-label">Wind Scale (Beaufort) — last 16h</div>' + (svg || '<p class="loading">Still collecting data (populates hourly)</p>');
         html += '<div class="buoy-stats">';
-        html += '<div class="buoy-stat"><span class="buoy-stat-label">Wind Speed</span><span class="buoy-stat-value">' + (latest.WindSpeed !== undefined ? latest.WindSpeed : "—") + ' m/s</span></div>';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">Wind Speed</span><span class="buoy-stat-value">' + (latest.WindSpeed !== undefined ? n1(latest.WindSpeed) : "—") + ' m/s</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Direction</span><span class="buoy-stat-value">' + (latest.WindDirection !== undefined ? latest.WindDirection + "°" : "—") + '</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Scale</span><span class="buoy-stat-value">' + (latest.WindScale !== undefined ? latest.WindScale : "—") + '</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">As of</span><span class="buoy-stat-value">' + fmtTime(latest.DateTime) + '</span></div>';
         html += "</div>";
 
-        // Full 8-hour reading list under the chart (same pattern as the buoy cards).
+        // Full 16-hour reading list under the chart (same pattern as the buoy cards).
         var stationRows = readings.slice().reverse().map(function (r) {
           return [
             fmtHour(r.DateTime),
-            r.WindSpeed,
+            n1(r.WindSpeed),
             r.WindDirection !== undefined ? r.WindDirection + "°" + dirArrowHtml(r.WindDirection) : "",
             r.WindScale,
           ];
         }).map(function (row) {
           return "<tr>" + row.map(function (c) { return "<td>" + (c === undefined || c === null || c === "" ? "—" : c) + "</td>"; }).join("") + "</tr>";
         }).join("");
-        html += '<div class="buoy-chart-label">Last 8 hours</div>';
+        html += '<div class="buoy-chart-label">Last 16 hours</div>';
         html += '<div class="buoy-history-table"><table><thead><tr><th>Time</th><th>Speed(m/s)</th><th>Dir</th><th>Scale</th></tr></thead><tbody>' + stationRows + "</tbody></table></div>";
         html += "</div>";
       });
@@ -547,16 +655,7 @@
         var periodSeries = readings.map(function (r) { return { x: new Date(r.DateTime).getTime(), y: Number(r.WavePeriod) }; });
         var xMin = heightSeries.length ? heightSeries[0].x : Date.now();
         var xMax = heightSeries.length ? heightSeries[heightSeries.length - 1].x : Date.now();
-        var xTicks = [0, 0.25, 0.5, 0.75, 1].map(function (f) {
-          var x = xMin + f * (xMax - xMin);
-          return { x: x, label: fmtHour(new Date(x).toISOString()) };
-        });
-        var heightSVG = lineChartSVG(heightSeries, waveChartOpts(heightSeries, { width: 600, height: 130, xTicks: xTicks }));
-        var periodSVG = lineChartSVG(periodSeries, { width: 600, height: 110, unit: "s", xTicks: xTicks });
-
-        // CWA uses the literal string "None" for a missing reading on an
-        // otherwise-valid timestamp (not just undefined/blank) — treat it
-        // as blank everywhere it's displayed.
+        var xTicks = historySixHourTicks(xMin, xMax);
         var nv = function (v) { return (v === undefined || v === null || v === "" || v === "None") ? "" : v; };
 
         html += '<div class="buoy-card">';
@@ -564,18 +663,18 @@
         html += '<div class="buoy-chart-label">Wave Height — last 24h</div>' + (heightSVG || '<p class="loading">No data</p>');
         html += '<div class="buoy-chart-label">Wave Period — last 24h</div>' + (periodSVG || '<p class="loading">No data</p>');
         html += '<div class="buoy-stats">';
-        html += '<div class="buoy-stat"><span class="buoy-stat-label">Wave Height</span><span class="buoy-stat-value">' + (nv(latest.WaveHeight) || "—") + ' m</span></div>';
-        html += '<div class="buoy-stat"><span class="buoy-stat-label">Period</span><span class="buoy-stat-value">' + (nv(latest.WavePeriod) || "—") + ' s</span></div>';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">Wave Height</span><span class="buoy-stat-value">' + (n1(nv(latest.WaveHeight)) || "—") + ' m</span></div>';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">Period</span><span class="buoy-stat-value">' + (n1(nv(latest.WavePeriod)) || "—") + ' s</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Energy</span><span class="buoy-stat-value">' + (wavePowerKw(latest.WaveHeight, latest.WavePeriod) || "—") + ' kJ</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Direction</span><span class="buoy-stat-value">' + (nv(latest.WaveDirectionDescription) || "—") + '</span></div>';
-        html += '<div class="buoy-stat"><span class="buoy-stat-label">Sea Temp</span><span class="buoy-stat-value">' + (nv(latest.SeaTemperature) || "—") + ' °C</span></div>';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">Sea Temp</span><span class="buoy-stat-value">' + (n1(nv(latest.SeaTemperature)) || "—") + ' °C</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">As of</span><span class="buoy-stat-value">' + fmtTime(latest.DateTime) + '</span></div>';
         html += "</div>";
 
         var cutoff8h = Date.now() - 8 * 60 * 60 * 1000;
         var recent = readings.filter(function (r) { return new Date(r.DateTime).getTime() >= cutoff8h; }).slice().reverse();
         var recentRows = recent.map(function (r) {
-          return [fmtHour(r.DateTime), nv(r.WaveHeight), nv(r.WavePeriod), wavePowerKw(r.WaveHeight, r.WavePeriod), nv(r.WaveDirectionDescription), nv(r.SeaTemperature)];
+          return [fmtHour(r.DateTime), n1(nv(r.WaveHeight)), n1(nv(r.WavePeriod)), wavePowerKw(r.WaveHeight, r.WavePeriod), nv(r.WaveDirectionDescription), n1(nv(r.SeaTemperature))];
         }).map(function (row) {
           return "<tr>" + row.map(function (c) { return "<td>" + (c === undefined || c === null || c === "" ? "—" : c) + "</td>"; }).join("") + "</tr>";
         }).join("");
@@ -619,12 +718,12 @@
         if (toDate(t).getHours() % 6 === 0) {
           rows.push([
             fmtTime(toDate(t).toISOString()),
-            h.wave_height[i],
-            h.wave_period[i],
+            n1(h.wave_height[i]),
+            n1(h.wave_period[i]),
             wavePowerKw(h.wave_height[i], h.wave_period[i]),
             h.wave_direction[i] !== undefined ? Math.round(h.wave_direction[i]) + "°" + dirArrowHtml(h.wave_direction[i]) : "",
-            h.swell_wave_height[i],
-            h.swell_wave_period[i],
+            n1(h.swell_wave_height[i]),
+            n1(h.swell_wave_period[i]),
           ]);
         }
       });

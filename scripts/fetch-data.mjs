@@ -11,7 +11,7 @@
  *   F-D0047-095  Coastal 3-day / 3-hourly forecast             -> data/coastal.json
  *   F-A0021-001  Tide forecast (next 1 month)                  -> data/tide.json
  *   O-A0001-001  Automatic weather stations (latest snapshot)  -> data/stations.json,
- *                accumulated into a rolling 8-hour history at data/stations-history.json
+ *                accumulated into a rolling 16-hour history at data/stations-history.json
  *                (this dataset has no history endpoint of its own, so the
  *                Action's own run history builds it up over time — see
  *                buildStationsHistory)
@@ -71,7 +71,7 @@ const BUOY_STATIONS = [
   { id: "46694A", label: "Longdong" },
 ];
 
-const STATION_HISTORY_HOURS = 8;
+const STATION_HISTORY_HOURS = 16;
 const BUOY_HISTORY_HOURS = 24;
 
 // Phase 2 (data logger): lead times tracked for Phase 3 accuracy comparison.

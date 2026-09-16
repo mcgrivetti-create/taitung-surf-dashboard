@@ -34,13 +34,18 @@ station wind history is a small self-maintained rolling log, not a DB.
 3. Other CWA data:
    - Township forecast (`F-D0047-039`, Donghe)
    - Tide forecast (`F-A0021-001`, Donghe) — interpolated line chart with a
-     day pager (today/tomorrow/day-after) showing exact high/low times, a
+     day pager (‹ › buttons **or a horizontal swipe/drag on the chart**)
+     showing exact high/low times, on a **permanently fixed −100…+150cm axis
+     with 50cm gridlines and vertical 0600/1200/1800/2400 lines**, so the
+     curve's shape means the same thing every day and the chart never
+     rescales (Donghe's biggest spring tides in the CWA data run about
+     −45…+100cm, well inside that), a
      moon-phase widget (locally computed, no API — icon, waxing/waning
      arrow, next full/new moon date), and a link to CWA's full 30-day tide
      page
    - Station observations (`O-A0001-001` — C0S810 Donghe / C0SA30 Duli /
-     C0T9I0 Fengbin), one chart card per station: 8-hour wind-scale
-     (Beaufort) history + current speed/direction/scale, plus an 8-hour readings table
+     C0T9I0 Fengbin), one chart card per station: 16-hour wind-scale
+     (Beaufort) history + current speed/direction/scale, plus a 16-hour readings table
    - Buoy / sea state (`O-B0075-001`) — Chenggong (46761F), Taitung
      (WRA007), Hualien (46699A), Longdong (46694A) — each with 24-hour wave
      height/period charts, computed wave energy (kJ), and an 8-hour
@@ -59,7 +64,18 @@ sections) is computed client-side from wave height + period (E = 15·H²·T),
 calibrated against surf-forecast.com's own kJ figure — see "Known gaps".
 **Wave-height charts** all share a fixed y-axis (0–3m with 0.5m gridlines,
 stepping to 0–6m / 0–10m only when the swell needs it) so they stay
-comparable at a glance.
+comparable at a glance. Wind-scale charts do the same in Beaufort (0–6,
+stepping to 0–12).
+
+**Chart conventions** (`lineChartSVG` in `js/app.js`):
+
+- every horizontal gridline is **labelled with its value to the left of the
+  y-axis**, and every displayed number is rounded to one decimal (`n1()`)
+- forecast charts put their time ticks on the 6-hour clock face starting at
+  **now** — now, then 0600/1200/1800/2400 (`sixHourTicks`); observation-history
+  charts run the same clock face backwards and label the right edge "now"
+  (`historySixHourTicks`). Exception: the 5-day Open Wave Model chart uses
+  daily ticks, since 6-hourly would be 20 labels.
 
 ## Phase 2: data logger (live)
 
@@ -107,7 +123,7 @@ branch `main`, folder `/ (root)`. Save. The site will publish at
 
 **Actions → Update CWA Data → Run workflow** (or just wait — it also runs
 hourly on its own; hourly rather than every-few-hours specifically so the
-8-hour station wind history actually fills in with real data points).
+16-hour station wind history actually fills in with real data points).
 
 ## Running the fetch script locally
 
@@ -132,7 +148,7 @@ js/app.js                    theme toggle, EN translation of CWA's Chinese value
                               data rendering, tide/buoy SVG line charts
 scripts/fetch-data.mjs       pulls CWA Open Data, writes data/*.json
 data/*.json                  latest fetched data (committed by the scheduled Action)
-data/stations-history.json   rolling 8-hour wind history, appended to each run
+data/stations-history.json   rolling 16-hour wind history, appended to each run
                               (no DB — just an append-and-trim JSON log)
 data/history/{forecast,buoy,tide}/YYYY-MM.json
                               Phase 2 logger — kept forever, see "Phase 2" above

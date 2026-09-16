@@ -308,6 +308,9 @@ main {
 /* Moon phase widget, overlaid top-right of the tide chart */
 .tide-chart-wrap {
   position: relative;
+  /* let vertical page scroll through, but keep horizontal drags for day paging */
+  touch-action: pan-y;
+  cursor: grab;
 }
 
 .moon-widget {
