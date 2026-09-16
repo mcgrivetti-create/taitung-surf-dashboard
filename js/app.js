@@ -158,6 +158,19 @@
     return opts;
   }
 
+  // Beaufort's equivalent of waveChartOpts: a stable 0–6 axis with whole-number
+  // gridlines so every wind chart on the page reads on the same scale,
+  // stepping to 0–12 only when it's really blowing.
+  function beaufortChartOpts(series, opts) {
+    var max = 0;
+    series.forEach(function (p) { if (isFinite(p.y) && p.y > max) max = p.y; });
+    opts.yMin = 0;
+    opts.yMax = max <= 6 ? 6 : 12;
+    opts.gridStep = max <= 6 ? 1 : 2;
+    opts.unit = "";
+    return opts;
+  }
+
   // Beaufort wind scale number (0-12) from a wind speed in m/s — same
   // thresholds as scripts/fetch-data.mjs's beaufort() (kept separate since
   // one runs in Node, the other in the browser).
@@ -414,7 +427,7 @@
         var waveSeries = times.map(function (t, i) { return { x: xs[i], y: Number(waveHeight(i)) }; });
         var windScaleSeries = times.map(function (t, i) { return { x: xs[i], y: beaufortScale(windSpeed(i)) }; });
         var waveSVG = lineChartSVG(waveSeries, waveChartOpts(waveSeries, { width: 640, height: 190, xTicks: xTicks }));
-        var windSVG = lineChartSVG(windScaleSeries, { width: 640, height: 140, unit: "", yMin: 0, xTicks: xTicks });
+        var windSVG = lineChartSVG(windScaleSeries, beaufortChartOpts(windScaleSeries, { width: 640, height: 140, padLeft: 26, xTicks: xTicks }));
         chartEl.innerHTML =
           '<div class="chart-label">Wave Height</div>' + (waveSVG || '<p class="loading">No data</p>') +
           '<div class="chart-label">Wind Scale (Beaufort)</div>' + (windSVG || '<p class="loading">No data</p>');
@@ -596,15 +609,9 @@
         var xMin = series.length ? series[0].x : Date.now();
         var xMax = series.length ? series[series.length - 1].x : Date.now();
         var xTicks = historySixHourTicks(xMin, xMax);
-        // Beaufort tiers, same idea as waveChartOpts: a stable axis so the three
-        // station cards stay comparable, stepping up only when it's really blowing.
-        var bMax = 0;
-        series.forEach(function (p) { if (isFinite(p.y) && p.y > bMax) bMax = p.y; });
-        var svg = lineChartSVG(series, {
-          width: 600, height: 120, area: true, unit: "", padLeft: 26,
-          yMin: 0, yMax: bMax <= 6 ? 6 : 12, gridStep: bMax <= 6 ? 1 : 2,
-          xTicks: xTicks,
-        });
+        var svg = lineChartSVG(series, beaufortChartOpts(series, {
+          width: 600, height: 120, area: true, padLeft: 26, xTicks: xTicks,
+        }));
 
         html += '<div class="buoy-card">';
         html += "<h3>" + name + " <span class=\"en\">(" + id + ")</span></h3>";
