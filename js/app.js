@@ -289,8 +289,11 @@
   // Clock-face ticks: the current time first, then every 6-hour boundary
   // (0600/1200/1800/2400) after it, so the time axis always reads the same
   // way regardless of when the page is opened. Midnight shows as 2400.
+  // Past about two days, 6-hourly labels collide at phone width, so the
+  // step doubles to 12-hourly (1200/2400) and the axis stays legible.
   function sixHourTicks(xMin, xMax) {
     var ticks = [];
+    var stepH = (xMax - xMin) / 3600000 > 48 ? 12 : 6;
     var start = Math.max(xMin, Math.min(Date.now(), xMax));
     function label(ms) {
       var d = new Date(ms);
@@ -302,17 +305,24 @@
 
     var t = new Date(start);
     t.setMinutes(0, 0, 0);
-    t.setHours((Math.floor(t.getHours() / 6) + 1) * 6);
+    t.setHours((Math.floor(t.getHours() / stepH) + 1) * stepH);
     var prevDay = new Date(start).getDate();
+    // The first boundary can fall minutes after "now" — at 12-hourly spacing
+    // on a 3-day axis that's a few pixels, and the two labels print on top of
+    // each other. Drop a boundary that crowds "now"; the next one is along
+    // soon enough.
+    var minGapMs = (stepH / 3) * 3600 * 1000;
     while (t.getTime() <= xMax) {
       var day = t.getDate();
-      ticks.push({
-        x: t.getTime(),
-        label: label(t.getTime()),
-        sublabel: day !== prevDay ? t.toLocaleDateString("en-US", { weekday: "short" }) : "",
-      });
+      if (t.getTime() - start >= minGapMs) {
+        ticks.push({
+          x: t.getTime(),
+          label: label(t.getTime()),
+          sublabel: day !== prevDay ? t.toLocaleDateString("en-US", { weekday: "short" }) : "",
+        });
+      }
       prevDay = day;
-      t = new Date(t.getTime() + 6 * 3600 * 1000);
+      t = new Date(t.getTime() + stepH * 3600 * 1000);
     }
     return ticks;
   }
@@ -390,7 +400,14 @@
       var loc = data.records.locations[0].location[0];
       var elements = {};
       loc.WeatherElement.forEach(function (we) { elements[we.ElementName] = we.Time; });
-      var times = (elements["浪高"] || elements["風速"] || []).slice(0, 16);
+      // CWA sends 33 three-hourly points (96h — the "3-day" dataset reliably
+      // carries a fourth). Cap the chart and table at 72h ahead; the leading
+      // point or two sit just behind "now", which gives the curve some
+      // run-up rather than starting it mid-air.
+      var horizon = Date.now() + 72 * 60 * 60 * 1000;
+      var times = (elements["浪高"] || elements["風速"] || []).filter(function (t) {
+        return new Date(t.DataTime).getTime() <= horizon;
+      });
       function val(name, field) {
         return function (i) {
           var arr = elements[name];

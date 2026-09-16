@@ -28,7 +28,10 @@ station wind history is a small self-maintained rolling log, not a DB.
     free Marine API (no key, backed by NOAA NCEP GFS-Wave). Doesn't depend
     on CWA or any of the widgets above, so it's a fallback that keeps
     working if one of those goes down.
-2. CWA coastal 3-day / 3-hourly wave forecast for Donghe (`F-D0047-095`) —
+2. CWA coastal 3-hourly wave forecast for Donghe (`F-D0047-095`), **capped
+   at 72 hours ahead** — CWA sends 96h (33 points; the "3-day" dataset
+   reliably carries a fourth), trimmed by time rather than count so the
+   horizon stays fixed as the day advances —
    wave-height chart (fixed 0–3m scale, 0.5m gridlines) + wind-scale (Beaufort)
    chart, table adds computed wave energy (kJ) and wave direction.
    The same forecast for Chenggong is fetched to
@@ -75,10 +78,13 @@ stepping to 0–12).
 - every horizontal gridline is **labelled with its value to the left of the
   y-axis**, and every displayed number is rounded to one decimal (`n1()`)
 - forecast charts put their time ticks on the 6-hour clock face starting at
-  **now** — now, then 0600/1200/1800/2400 (`sixHourTicks`); observation-history
-  charts run the same clock face backwards and label the right edge "now"
-  (`historySixHourTicks`). Exception: the 5-day Open Wave Model chart uses
-  daily ticks, since 6-hourly would be 20 labels.
+  **now** — now, then 0600/1200/1800/2400 (`sixHourTicks`). Past a 48h span
+  the step doubles to 12-hourly so the labels don't collide at phone width,
+  and a boundary tick landing within a third of a step of "now" is dropped
+  (otherwise the 72h chart printed "now"/"1101" and "1200" seven pixels
+  apart). Observation-history charts run the same clock face backwards and
+  label the right edge "now" (`historySixHourTicks`). Exception: the 5-day
+  Open Wave Model chart uses daily ticks, since 6-hourly would be 20 labels.
 
 ## Phase 2: data logger (live)
 
