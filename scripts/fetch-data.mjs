@@ -659,7 +659,15 @@ async function run() {
 
     // Buoy actuals (one record per station using its latest reading this run).
     // CWA uses the literal string "None" for a missing reading — normalize to null.
-    const cleanNone = (v) => (v === "None" ? null : v);
+    // CWA returns every buoy reading as a string ("2.0") and uses the literal
+    // "None" for a missing one. The forecast and station logs store real
+    // numbers, and Phase 3 subtracts one from the other, so normalize here
+    // rather than making every future consumer remember to coerce.
+    const cleanNone = (v) => {
+      if (v === "None" || v === undefined || v === null || v === "" || v === "-") return null;
+      const n = Number(v);
+      return Number.isFinite(n) ? n : v;
+    };
     const buoyStations = ((results["buoy.json"] || {}).data || {}).records || {};
     // Chenggong (46761F) reports waves + sea temperature but has no
     // anemometer, so its wind fields stay null; the other three carry a
@@ -675,11 +683,14 @@ async function run() {
         waveDirectionDeg: cleanNone(latest.WaveDirection),
         waveDirectionText: cleanNone(latest.WaveDirectionDescription),
         seaTemperature: cleanNone(latest.SeaTemperature),
-        windSpeed: cleanNone(anem.WindSpeed) || null,
-        windScale: cleanNone(anem.WindScale) || null,
-        windDirectionDeg: cleanNone(anem.WindDirection) || null,
-        windDirectionText: cleanNone(anem.WindDirectionDescription) || null,
-        windGust: cleanNone(anem.MaximumWindSpeed) || null,
+        // No `|| null` fallbacks here: cleanNone already returns null for a
+        // missing reading, and `0 || null` would turn a dead-calm 0 m/s into
+        // "no data".
+        windSpeed: cleanNone(anem.WindSpeed),
+        windScale: cleanNone(anem.WindScale),
+        windDirectionDeg: cleanNone(anem.WindDirection),
+        windDirectionText: cleanNone(anem.WindDirectionDescription),
+        windGust: cleanNone(anem.MaximumWindSpeed),
       };
     }).filter(Boolean);
     const addedBuoy = await appendMonthlyHistory("buoy", buoyRecords, (r) => `${r.observedAt}|${r.station}`);
@@ -694,14 +705,20 @@ async function run() {
       const we = s.WeatherElement || {};
       const observedAt = s.ObsTime && s.ObsTime.DateTime;
       if (!id || !observedAt) return null;
-      const gust = (we.GustInfo || {}).PeakGustSpeed;
+      // CWA uses -99 as its missing-value sentinel across this dataset (seen
+      // on gusts, but it can appear on any element), so anything at or below
+      // it is dropped rather than logged as a real reading.
+      const num = (v) => {
+        const n = Number(v);
+        return Number.isFinite(n) && n > -90 ? n : null;
+      };
+      const speed = num(we.WindSpeed);
       return {
         observedAt, station: id, name: s.StationName,
-        windSpeed: Number(we.WindSpeed),
-        windScale: beaufort(we.WindSpeed),
-        windDirectionDeg: we.WindDirection !== undefined ? Number(we.WindDirection) : null,
-        // CWA uses -99 as its missing-value sentinel for gusts.
-        windGust: Number(gust) > -90 ? Number(gust) : null,
+        windSpeed: speed,
+        windScale: speed === null ? null : beaufort(speed),
+        windDirectionDeg: num(we.WindDirection),
+        windGust: num((we.GustInfo || {}).PeakGustSpeed),
         isWindForecastTarget: id === WIND_OBS_STATION_ID,
       };
     }).filter(Boolean);

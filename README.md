@@ -112,6 +112,16 @@ kept forever by design, one small file per month. Lead times tracked:
   the run) vs. observed, from the Chenggong tide gauge (`C4S02`, looked up
   from `O-B0076-001`'s station directory)
 
+Two things to know when reading the logs back:
+
+- **`cwa_coastal` is a legacy source name.** Records written before
+  2026-09-16 use it for what is now `cwa_coastal_donghe`; the old records
+  were left as-is rather than rewritten. Treat the two as the same series.
+- **Numbers are numbers.** CWA returns buoy readings as strings (`"2.0"`)
+  and uses `"None"` for missing ones; `cleanNone()` coerces to a real number
+  or `null` at log time, so every log stores the same types. Buoy records
+  written before 2026-09-16 still hold strings.
+
 **Directions** are logged two ways. CWA gives forecast directions as Chinese
 compass text (`偏北風`, `東北`) while observations give bearings (`28.0`),
 so `dirToDegrees()` converts the text to a 16-point bearing at log time and
