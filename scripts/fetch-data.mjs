@@ -9,6 +9,10 @@
  * Datasets used:
  *   F-D0047-039  Township forecast (Taitung County, 1 week)   -> data/township.json
  *   F-D0047-095  Coastal 3-day / 3-hourly forecast             -> data/coastal.json
+ *                and, logged but NOT shown on the page, the same forecast
+ *                for Chenggong                                 -> data/coastal-chenggong.json
+ *                (the page stays single-spot; Chenggong is collected so
+ *                Phase 3 can chart it against the Chenggong wave buoy)
  *   F-A0021-001  Tide forecast (next 1 month)                  -> data/tide.json
  *   O-A0001-001  Automatic weather stations (latest snapshot)  -> data/stations.json,
  *                accumulated into a rolling 16-hour history at data/stations-history.json
@@ -30,12 +34,22 @@
  *
  * Phase 2 (data logger): each run also appends into monthly log files
  * under data/history/ — kept forever by design, one small file per month:
- *   history/forecast/YYYY-MM.json  CWA coastal + Open-Meteo snapshots at
- *                                   fixed lead times (LEAD_HOURS)
+ *   history/forecast/YYYY-MM.json  forecast snapshots at fixed lead times
+ *                                   (LEAD_HOURS), tagged by `source`:
+ *                                   cwa_coastal_donghe, cwa_coastal_chenggong,
+ *                                   open_meteo, cwa_township_wind
  *   history/buoy/YYYY-MM.json      actual buoy readings (one per station
- *                                   per run)
+ *                                   per run) — waves, wave direction, and
+ *                                   wind where the station has an anemometer
+ *   history/station/YYYY-MM.json   actual land-station wind (one per station
+ *                                   per run) — ground truth for the township
+ *                                   wind forecast, and permanent unlike the
+ *                                   rolling 16h data/stations-history.json
  *   history/tide/YYYY-MM.json      tide forecast (interpolated at "now")
  *                                   vs observed (Chenggong gauge C4S02)
+ *
+ * Forecast directions arrive as Chinese compass text and observed ones as
+ * bearings, so every logged direction carries both (dirToDegrees).
  * This is the ground truth Phase 3's accuracy-comparison charts read from.
  */
 
@@ -63,6 +77,17 @@ const TOWNSHIP_STATION_IDS = ["C0S810", "C0SA30", "C0T9I0"];
 const TIDE_LOCATION_NAME = "臺東縣東河鄉";
 const TOWNSHIP_LOCATION_NAME = "東河鄉";
 
+// Coastal forecast points. The page itself stays single-spot (Donghe) —
+// Chenggong is fetched and logged only, so that Phase 3 can chart it next to
+// the Chenggong wave buoy (46761F) without adding a second panel here.
+const COASTAL_POINTS = [
+  { townName: "東河鄉", file: "coastal.json", source: "cwa_coastal_donghe", displayed: true },
+  { townName: "成功鎮", file: "coastal-chenggong.json", source: "cwa_coastal_chenggong", displayed: false },
+];
+
+// Station whose observed wind is scored against the Donghe township forecast.
+const WIND_OBS_STATION_ID = "C0S810";
+
 // Buoy stations to show, looked up from O-B0076-001's full station directory.
 const BUOY_STATIONS = [
   { id: "46761F", label: "Chenggong" },
@@ -75,7 +100,7 @@ const STATION_HISTORY_HOURS = 16;
 const BUOY_HISTORY_HOURS = 24;
 
 // Phase 2 (data logger): lead times tracked for Phase 3 accuracy comparison.
-const LEAD_HOURS = [6, 24, 72];
+const LEAD_HOURS = [6, 12, 24, 48];
 const TIDE_GAUGE_STATION_ID = "C4S02"; // 成功潮位站 (Chenggong tide gauge), from O-B0076-001's directory
 const HISTORY_DIR = path.join(DATA_DIR, "history");
 
@@ -91,6 +116,22 @@ function beaufort(speedMs) {
   const thresholds = [0.3, 1.6, 3.4, 5.5, 8.0, 10.8, 13.9, 17.2, 20.8, 24.5, 28.5, 32.7];
   for (let i = 0; i < thresholds.length; i++) if (n < thresholds[i]) return i;
   return 12;
+}
+
+// CWA reports forecast directions as Chinese compass text ("偏北風", "東北",
+// "偏東") while the buoys report degrees ("28.0"). Phase 3 needs to subtract
+// one from the other, so forecast directions are converted to a bearing here
+// at log time — the 16-point compass, with 偏 ("towards") and the 風 ("wind")
+// suffix stripped first.
+const DIR_ZH_DEG = {
+  北: 0, 北北東: 22.5, 東北: 45, 東北東: 67.5, 東: 90, 東南東: 112.5, 東南: 135, 南南東: 157.5,
+  南: 180, 南南西: 202.5, 西南: 225, 西西南: 247.5, 西: 270, 西北西: 292.5, 西北: 315, 北北西: 337.5,
+};
+function dirToDegrees(text) {
+  if (!text || typeof text !== "string") return null;
+  const base = text.trim().replace(/風$/, "").replace(/^偏/, "");
+  const deg = DIR_ZH_DEG[base];
+  return deg === undefined ? null : deg;
 }
 
 /** YYYY-MM for the current month in Taiwan local time (UTC+8) — monthly log-file naming. */
@@ -156,7 +197,31 @@ function nearestPoint(series, targetMs, toleranceMs) {
   return best && bestDiff <= toleranceMs ? best : null;
 }
 
-async function fetchDataset(id, extraParams) {
+/**
+ * The entry in `series` whose [startTime, endTime) span covers `targetMs`.
+ * For period forecasts (the township forecast is 12-hourly) "nearest instant"
+ * is the wrong question — a target 5 hours into a 12-hour block belongs to
+ * that block, not to whichever boundary happens to be closer.
+ */
+function periodContaining(series, targetMs) {
+  return series.find((p) => {
+    const s = new Date(p.startTime).getTime();
+    const e = p.endTime ? new Date(p.endTime).getTime() : s + 12 * 60 * 60 * 1000;
+    return targetMs >= s && targetMs < e;
+  }) || null;
+}
+
+// Within a single run the same dataset can be wanted more than once (both
+// coastal points come out of one F-D0047-095 payload), so identical requests
+// share a response rather than hitting CWA twice.
+const datasetCache = new Map();
+function fetchDataset(id, extraParams) {
+  const key = id + "|" + JSON.stringify(extraParams || {});
+  if (!datasetCache.has(key)) datasetCache.set(key, fetchDatasetUncached(id, extraParams));
+  return datasetCache.get(key);
+}
+
+async function fetchDatasetUncached(id, extraParams) {
   const attempts = [
     () => {
       const url = new URL(`${BASE_REST}/${id}`);
@@ -239,11 +304,32 @@ const STATION_ID_KEYS = ["StationId", "StationID", "stationId"];
 async function buildTownship() {
   const raw = await fetchDataset("F-D0047-039");
   const matches = findMatchesContaining(raw, LOCATION_NAME_KEYS, TOWNSHIP_LOCATION_NAME);
-  if (!matches.length) return { data: raw, ok: false, count: 0 };
+  if (!matches.length) return { data: raw, ok: false, count: 0, windSeries: [] };
+
+  // Wind series for the Phase 2 logger — this forecast is the counterpart to
+  // the Donghe land station's observed wind (C0S810). Unlike the coastal
+  // forecast's 3-hourly instants these are 12-hour periods, so each entry
+  // carries its own span and is matched by "which period contains the target
+  // time" rather than by nearest instant.
+  const loc = matches[0];
+  const speeds = extractElementSeries(loc, "風速", "WindSpeed");
+  const dirs = extractElementSeries(loc, "風向", "WindDirection");
+  const scales = extractElementSeries(loc, "風速", "BeaufortScale");
+  const windSeries = speeds.map((s, i) => ({
+    startTime: s.startTime,
+    endTime: s.endTime,
+    targetTime: s.startTime,
+    windSpeed: Number(s.value),
+    windScale: Number((scales[i] || {}).value),
+    windDirectionText: (dirs[i] || {}).value,
+    windDirectionDeg: dirToDegrees((dirs[i] || {}).value),
+  }));
+
   return {
     data: { records: { locations: [{ location: matches }] } },
     ok: true,
     count: matches.length,
+    windSeries,
   };
 }
 
@@ -254,25 +340,39 @@ function extractElementSeries(location, elementName, field) {
   return (el.Time || []).map((t) => {
     const ev = t.ElementValue;
     const obj = Array.isArray(ev) ? ev[0] : ev;
-    return { targetTime: t.DataTime || t.StartTime, value: obj && obj[field] };
+    return {
+      targetTime: t.DataTime || t.StartTime,
+      startTime: t.StartTime || t.DataTime,
+      endTime: t.EndTime,
+      value: obj && obj[field],
+    };
   });
 }
 
-async function buildCoastal() {
+async function buildCoastal(point) {
   const raw = await fetchDataset("F-D0047-095");
-  const matches = findMatchesContaining(raw, LOCATION_NAME_KEYS, TOWNSHIP_LOCATION_NAME);
+  const matches = findMatchesContaining(raw, LOCATION_NAME_KEYS, point.townName);
   if (!matches.length) return { data: raw, ok: false, count: 0, series: [] };
 
-  // Flat series for the Phase 2 logger — {targetTime, waveHeight, wavePeriod, windSpeed}.
+  // Flat series for the Phase 2 logger. Wave and wind direction come through
+  // as Chinese compass text, so each is logged both ways (text + bearing).
   const loc = matches[0];
   const heights = extractElementSeries(loc, "浪高", "WaveHeight");
   const periods = extractElementSeries(loc, "浪週期", "WavePeriod");
+  const waveDirs = extractElementSeries(loc, "浪向", "WaveDirection");
   const winds = extractElementSeries(loc, "風速", "WindSpeed");
+  const windScales = extractElementSeries(loc, "風速", "BeaufortScale");
+  const windDirs = extractElementSeries(loc, "風向", "WindDirection");
   const series = heights.map((h, i) => ({
     targetTime: h.targetTime,
     waveHeight: Number(h.value),
     wavePeriod: Number((periods[i] || {}).value),
+    waveDirectionText: (waveDirs[i] || {}).value,
+    waveDirectionDeg: dirToDegrees((waveDirs[i] || {}).value),
     windSpeed: Number((winds[i] || {}).value),
+    windScale: Number((windScales[i] || {}).value),
+    windDirectionText: (windDirs[i] || {}).value,
+    windDirectionDeg: dirToDegrees((windDirs[i] || {}).value),
   }));
 
   return {
@@ -437,10 +537,15 @@ async function buildOpenWave() {
 
   // Flat series for the Phase 2 logger. Timestamps have no timezone suffix
   // (already Asia/Taipei per the request param) — add it explicitly.
+  // Direction is already a bearing here, so no dirToDegrees() needed.
   const series = h.time.map((t, i) => ({
     targetTime: new Date(t + ":00+08:00").toISOString(),
     waveHeight: Number(h.wave_height[i]),
     wavePeriod: Number(h.wave_period[i]),
+    waveDirectionDeg: Number(h.wave_direction[i]),
+    swellHeight: Number(h.swell_wave_height[i]),
+    swellPeriod: Number(h.swell_wave_period[i]),
+    swellDirectionDeg: Number(h.swell_wave_direction[i]),
   }));
 
   return { data, ok: true, count, series };
@@ -458,7 +563,11 @@ async function run() {
 
   const jobs = [
     { file: "township.json", name: "F-D0047-039 township forecast", build: buildTownship },
-    { file: "coastal.json", name: "F-D0047-095 coastal 3-day forecast", build: buildCoastal },
+    ...COASTAL_POINTS.map((p) => ({
+      file: p.file,
+      name: `F-D0047-095 coastal 3-day forecast (${p.townName}${p.displayed ? "" : ", logged only"})`,
+      build: () => buildCoastal(p),
+    })),
     { file: "tide.json", name: "F-A0021-001 tide forecast", build: buildTide },
     { file: "stations.json", name: "O-A0001-001 station observations", build: buildStations },
     { file: "buoy.json", name: "O-B0075-001 buoy / sea state", build: buildBuoy },
@@ -501,13 +610,15 @@ async function run() {
     const now = Date.now();
     const toleranceMs = 90 * 60 * 1000; // accept a nearest point within 90min of the target lead time
 
-    // Forecast snapshots at each tracked lead time, per source.
+    // Forecast snapshots at each tracked lead time, per source. Wave sources
+    // are 3-hourly/hourly instants matched to the nearest point; the township
+    // wind forecast is 12-hour periods, matched by containment instead.
     const forecastRecords = [];
-    const sources = [
-      { name: "cwa_coastal", series: (results["coastal.json"] || {}).series || [] },
+    const waveSources = [
+      ...COASTAL_POINTS.map((p) => ({ name: p.source, series: (results[p.file] || {}).series || [] })),
       { name: "open_meteo", series: (results["openwave.json"] || {}).series || [] },
     ];
-    for (const src of sources) {
+    for (const src of waveSources) {
       for (const lead of LEAD_HOURS) {
         const targetMs = now + lead * 60 * 60 * 1000;
         const pt = nearestPoint(src.series, targetMs, toleranceMs);
@@ -515,8 +626,32 @@ async function run() {
         forecastRecords.push({
           issuedAt, targetTime: pt.targetTime, leadHours: lead, source: src.name,
           waveHeight: pt.waveHeight, wavePeriod: pt.wavePeriod,
+          waveDirectionDeg: pt.waveDirectionDeg !== undefined ? pt.waveDirectionDeg : null,
+          waveDirectionText: pt.waveDirectionText || null,
+          windSpeed: pt.windSpeed !== undefined ? pt.windSpeed : null,
+          windScale: pt.windScale !== undefined ? pt.windScale : null,
+          windDirectionDeg: pt.windDirectionDeg !== undefined ? pt.windDirectionDeg : null,
+          windDirectionText: pt.windDirectionText || null,
+          swellHeight: pt.swellHeight !== undefined ? pt.swellHeight : null,
+          swellPeriod: pt.swellPeriod !== undefined ? pt.swellPeriod : null,
+          swellDirectionDeg: pt.swellDirectionDeg !== undefined ? pt.swellDirectionDeg : null,
         });
       }
+    }
+
+    // Township wind forecast for Donghe — scored in Phase 3 against station
+    // C0S810's observed wind (logged below). Direction matters more than
+    // speed here, hence both text and bearing.
+    const townshipWind = (results["township.json"] || {}).windSeries || [];
+    for (const lead of LEAD_HOURS) {
+      const period = periodContaining(townshipWind, now + lead * 60 * 60 * 1000);
+      if (!period) continue;
+      forecastRecords.push({
+        issuedAt, targetTime: period.startTime, endTime: period.endTime,
+        leadHours: lead, source: "cwa_township_wind",
+        windSpeed: period.windSpeed, windScale: period.windScale,
+        windDirectionDeg: period.windDirectionDeg, windDirectionText: period.windDirectionText,
+      });
     }
     const addedForecast = await appendMonthlyHistory("forecast", forecastRecords, (r) => `${r.issuedAt}|${r.leadHours}|${r.source}`);
     status.push({ name: "history/forecast log", ok: true, count: addedForecast });
@@ -526,17 +661,53 @@ async function run() {
     // CWA uses the literal string "None" for a missing reading — normalize to null.
     const cleanNone = (v) => (v === "None" ? null : v);
     const buoyStations = ((results["buoy.json"] || {}).data || {}).records || {};
+    // Chenggong (46761F) reports waves + sea temperature but has no
+    // anemometer, so its wind fields stay null; the other three carry a
+    // PrimaryAnemometer block.
     const buoyRecords = (buoyStations.Stations || []).map((st) => {
       const latest = (st.Readings || [])[st.Readings.length - 1];
       if (!latest) return null;
+      const anem = latest.PrimaryAnemometer || {};
       return {
         observedAt: latest.DateTime, station: st.StationID, label: st.Label,
-        waveHeight: cleanNone(latest.WaveHeight), wavePeriod: cleanNone(latest.WavePeriod), seaTemperature: cleanNone(latest.SeaTemperature),
+        waveHeight: cleanNone(latest.WaveHeight),
+        wavePeriod: cleanNone(latest.WavePeriod),
+        waveDirectionDeg: cleanNone(latest.WaveDirection),
+        waveDirectionText: cleanNone(latest.WaveDirectionDescription),
+        seaTemperature: cleanNone(latest.SeaTemperature),
+        windSpeed: cleanNone(anem.WindSpeed) || null,
+        windScale: cleanNone(anem.WindScale) || null,
+        windDirectionDeg: cleanNone(anem.WindDirection) || null,
+        windDirectionText: cleanNone(anem.WindDirectionDescription) || null,
+        windGust: cleanNone(anem.MaximumWindSpeed) || null,
       };
     }).filter(Boolean);
     const addedBuoy = await appendMonthlyHistory("buoy", buoyRecords, (r) => `${r.observedAt}|${r.station}`);
     status.push({ name: "history/buoy log", ok: true, count: addedBuoy });
     console.log(`OK: history/buoy log (+${addedBuoy} records)`);
+
+    // Land-station observed wind — the ground truth for the township wind
+    // forecast above. data/stations-history.json only keeps a rolling 16h, so
+    // this permanent log is what Phase 3 actually scores against.
+    const stationRecords = stationMatches.map((s) => {
+      const id = s.StationId || s.StationID;
+      const we = s.WeatherElement || {};
+      const observedAt = s.ObsTime && s.ObsTime.DateTime;
+      if (!id || !observedAt) return null;
+      const gust = (we.GustInfo || {}).PeakGustSpeed;
+      return {
+        observedAt, station: id, name: s.StationName,
+        windSpeed: Number(we.WindSpeed),
+        windScale: beaufort(we.WindSpeed),
+        windDirectionDeg: we.WindDirection !== undefined ? Number(we.WindDirection) : null,
+        // CWA uses -99 as its missing-value sentinel for gusts.
+        windGust: Number(gust) > -90 ? Number(gust) : null,
+        isWindForecastTarget: id === WIND_OBS_STATION_ID,
+      };
+    }).filter(Boolean);
+    const addedStation = await appendMonthlyHistory("station", stationRecords, (r) => `${r.observedAt}|${r.station}`);
+    status.push({ name: "history/station log", ok: true, count: addedStation });
+    console.log(`OK: history/station log (+${addedStation} records)`);
 
     // Tide: forecast (interpolated at "now" from this run's extrema) vs
     // observed (Chenggong gauge, closest reading to "now").

@@ -30,7 +30,10 @@ station wind history is a small self-maintained rolling log, not a DB.
     working if one of those goes down.
 2. CWA coastal 3-day / 3-hourly wave forecast for Donghe (`F-D0047-095`) —
    wave-height chart (fixed 0–3m scale, 0.5m gridlines) + wind-scale (Beaufort)
-   chart, table adds computed wave energy (kJ) and wave direction
+   chart, table adds computed wave energy (kJ) and wave direction.
+   The same forecast for Chenggong is fetched to
+   `data/coastal-chenggong.json` and logged, but deliberately **not**
+   displayed — the page is single-spot by choice.
 3. Other CWA data:
    - Township forecast (`F-D0047-039`, Donghe)
    - Tide forecast (`F-A0021-001`, Donghe) — interpolated line chart with a
@@ -80,16 +83,40 @@ stepping to 0–12).
 ## Phase 2: data logger (live)
 
 Every hourly run appends into monthly log files under `data/history/` —
-kept forever by design, one small file per month:
+kept forever by design, one small file per month. Lead times tracked:
+**6h / 12h / 24h / 48h** (`LEAD_HOURS`).
 
-- `history/forecast/YYYY-MM.json` — CWA coastal (`F-D0047-095`) and
-  Open-Meteo snapshots at fixed lead times (6h/24h/72h ahead), tagged with
-  `issuedAt`/`targetTime`/`leadHours`/`source`
+- `history/forecast/YYYY-MM.json` — forecast snapshots at each lead time,
+  tagged `issuedAt`/`targetTime`/`leadHours`/`source`. Four sources:
+  - `cwa_coastal_donghe` — `F-D0047-095`, wave height/period/direction +
+    wind speed/Beaufort/direction
+  - `cwa_coastal_chenggong` — the same dataset for 成功鎮沿海. **Collected
+    and logged but deliberately not shown on the page** — the page stays
+    single-spot. It's here so a future chart can run observed-up-to-now +
+    forecast-into-the-future against the Chenggong buoy.
+  - `open_meteo` — wave and swell height/period/direction
+  - `cwa_township_wind` — `F-D0047-039` wind for Donghe. This forecast is
+    12-hour *periods*, not instants, so a lead time is matched by which
+    period contains it (`periodContaining`), not by nearest point.
 - `history/buoy/YYYY-MM.json` — actual buoy readings (one record per
-  station per run)
+  station per run): wave height/period/direction, sea temperature, plus
+  wind speed/scale/direction/gust where the station has an anemometer
+  (Chenggong 46761F has none — it reports waves, wave direction, period
+  and sea temperature only, so its wind fields log as null)
+- `history/station/YYYY-MM.json` — actual land-station wind (one record per
+  station per run), the ground truth for `cwa_township_wind`. Donghe
+  `C0S810` is flagged `isWindForecastTarget`. Separate from
+  `data/stations-history.json`, which is trimmed to a rolling 16h for the
+  chart — this one is permanent.
 - `history/tide/YYYY-MM.json` — tide forecast (interpolated at the time of
   the run) vs. observed, from the Chenggong tide gauge (`C4S02`, looked up
   from `O-B0076-001`'s station directory)
+
+**Directions** are logged two ways. CWA gives forecast directions as Chinese
+compass text (`偏北風`, `東北`) while observations give bearings (`28.0`),
+so `dirToDegrees()` converts the text to a 16-point bearing at log time and
+both `*DirectionText` and `*DirectionDeg` are stored — Phase 3 can subtract
+the bearings to get an angular error, and the text stays for display.
 
 This is the ground truth Phase 3's accuracy-comparison charts will read
 from — see `scripts/fetch-data.mjs`'s "Phase 2" section (`appendMonthlyHistory`,
@@ -150,7 +177,7 @@ scripts/fetch-data.mjs       pulls CWA Open Data, writes data/*.json
 data/*.json                  latest fetched data (committed by the scheduled Action)
 data/stations-history.json   rolling 16-hour wind history, appended to each run
                               (no DB — just an append-and-trim JSON log)
-data/history/{forecast,buoy,tide}/YYYY-MM.json
+data/history/{forecast,buoy,station,tide}/YYYY-MM.json
                               Phase 2 logger — kept forever, see "Phase 2" above
 .github/workflows/           update-data.yml — runs the fetch script hourly
 ```

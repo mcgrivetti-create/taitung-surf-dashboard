@@ -2,7 +2,7 @@ name: Update CWA Data
 
 on:
   schedule:
-    - cron: "5 * * * *" # hourly (UTC) — needed to build up the 8-hour station wind history
+    - cron: "5 * * * *" # hourly (UTC) — needed to build up the 16-hour station wind history
   workflow_dispatch: {}
 
 permissions:
