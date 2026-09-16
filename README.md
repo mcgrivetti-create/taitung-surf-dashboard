@@ -132,6 +132,29 @@ This is the ground truth Phase 3's accuracy-comparison charts will read
 from — see `scripts/fetch-data.mjs`'s "Phase 2" section (`appendMonthlyHistory`,
 `buildTideGaugeActual`, the lead-time snapshot logic in `run()`).
 
+### Two tiers, deliberately — don't merge them
+
+Each hourly run writes to **both** of these, and they serve different jobs:
+
+| | Current files (`data/*.json`) | History logs (`data/history/`) |
+| --- | --- | --- |
+| Shape | overwritten each run | appended each run, kept forever |
+| Span | last 24h observed + forecast ahead | months |
+| Size | tens of KB | megabytes and growing |
+| Read by | the live page, on every load | accuracy charts, on demand |
+
+**The live Phase 3 chart — observed up to now, forecast extending forward —
+must read the current files, not the history logs.** `data/buoy.json`
+already holds the last 24h of observations, which is exactly the observed
+side of that chart. Pointing it at the monthly logs instead would make the
+page download several MB to draw one day. Decided 2026-09-16; keep the
+accuracy charts' bulk loading only when that section is opened.
+
+Phase 3 is **live, not a periodic batch**: the chart redraws from the latest
+files on every page load. The practical ceiling is hourly — CWA's buoys
+report once an hour and the forecast models regenerate every 6–12 hours, so
+there is nothing more frequent to show.
+
 ## Data freshness (why the page tells you its own age)
 
 The page renders whatever is sitting in `data/*.json`. If the hourly Action
