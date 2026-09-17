@@ -294,8 +294,29 @@ data/history/{forecast,buoy,station,tide}/YYYY-MM.json
 
 ## Deploying a css/js change
 
-GitHub Pages serves static assets with `Cache-Control: max-age=600`, so a
-returning visitor can keep running the old `app.js`/`style.css` for up to
-10 minutes after a push — which looks exactly like "the fix didn't work".
-`index.html` references both with a `?v=` query string; **bump it when you
-change either file** and the new version takes effect immediately.
+GitHub Pages serves everything with `Cache-Control: max-age=600` — and that
+includes `index.html` itself. This matters more than it sounds: a `?v=`
+cache-buster on the assets only helps if the browser re-fetches
+`index.html`. When it doesn't (a tab left open, bfcache, mobile heuristics),
+the stale HTML keeps requesting the stale `?v=`, and the visitor runs old
+code indefinitely — seeing bugs that were fixed days ago. This bit us
+repeatedly before it was diagnosed, most visibly when a fixed buoy section
+kept showing `heightSVG is not defined` hours after the fix was live.
+
+Pages doesn't allow custom headers, so the fix is in three parts. **Bump all
+three together on any css/js change:**
+
+1. `?v=` on both `<link>` and `<script>` in `index.html`
+2. `ASSET_VERSION` at the top of `js/app.js`
+3. `"assets"` in `version.json`
+
+`version.json` is fetched with `cache: "no-store"`, so it is always current
+even when `index.html` is not. `selfHealStaleAssets()` compares it against
+the version compiled into the running `app.js`; if they differ, this page
+*is* the stale copy, so it reloads once with a `_v=` query that forces a
+fresh `index.html`. A `sessionStorage` guard caps it at one reload per
+session — so if you forget to bump one of the three, the cost is a single
+wasted reload, never a loop. `index.html` also carries `no-cache`
+`http-equiv` meta tags as a first line of defence.
+
+To force a refresh by hand: Ctrl+Shift+R (Cmd+Shift+R on macOS).

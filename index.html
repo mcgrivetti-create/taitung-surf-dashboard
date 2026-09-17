@@ -5,10 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Taitung Surf Dashboard</title>
 <meta name="description" content="Donghe / Jinzun / Chenggong surf &amp; weather dashboard — CWA data, live cam, 7-day forecasts.">
-<!-- ?v= is a cache-buster: GitHub Pages serves assets with max-age=600, so bump
-     this on any css/js change or returning visitors keep the old copy for
-     up to 10 minutes. -->
-<link rel="stylesheet" href="css/style.css?v=2026-09-17a">
+<!-- Pages serves THIS FILE with max-age=600 too, so a stale index.html would
+     keep asking for a stale ?v= and the bump would never reach the visitor.
+     These ask browsers to revalidate the document; js/app.js's
+     selfHealStaleAssets() is the belt to this pair of braces. -->
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<!-- ?v= is a cache-buster for the assets themselves. Bump it, ASSET_VERSION
+     in js/app.js, and version.json together on any css/js change. -->
+<link rel="stylesheet" href="css/style.css?v=2026-09-17b">
 </head>
 <body>
 <header class="site-header">
@@ -222,6 +227,6 @@
   <p>Data sources: CWA (Central Weather Administration) Open Data, Open-Meteo (NOAA GFS-Wave), Windguru, surf-forecast.com, Windy, YouTube. For reference only — assess your own conditions before entering the water.</p>
 </footer>
 
-<script src="js/app.js?v=2026-09-17a"></script>
+<script src="js/app.js?v=2026-09-17b"></script>
 </body>
 </html>

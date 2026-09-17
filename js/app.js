@@ -1,6 +1,37 @@
 (function () {
   "use strict";
 
+  /* ---------- Stale-asset self-heal ----------
+     GitHub Pages serves index.html itself with Cache-Control: max-age=600,
+     and browsers routinely hold it much longer (bfcache, a tab left open,
+     mobile heuristics). The ?v= cache-buster on css/js only helps if the
+     browser re-fetches index.html — when it doesn't, the visitor keeps
+     running old code indefinitely and sees bugs that were fixed days ago.
+
+     version.json is fetched with cache:"no-store", so it is always current
+     even when index.html is not. If the version baked into this file doesn't
+     match it, this page IS the stale copy: reload once with a cache-busting
+     query to pull a fresh index.html. The sessionStorage guard means a
+     mismatch can never cause more than one reload per session, so a
+     forgotten version bump degrades to one wasted reload, not a loop. */
+  var ASSET_VERSION = "2026-09-17b";
+  var RELOAD_GUARD = "surf-asset-reload";
+
+  (function selfHealStaleAssets() {
+    var alreadyTried = false;
+    try { alreadyTried = sessionStorage.getItem(RELOAD_GUARD) === ASSET_VERSION; } catch (e) { alreadyTried = true; }
+    if (alreadyTried) return;
+    fetch("version.json", { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (v) {
+        if (!v || !v.assets || v.assets === ASSET_VERSION) return;
+        try { sessionStorage.setItem(RELOAD_GUARD, ASSET_VERSION); } catch (e) { return; }
+        var u = location.href.split("#")[0];
+        location.replace(u + (u.indexOf("?") === -1 ? "?" : "&") + "_v=" + encodeURIComponent(v.assets));
+      })
+      .catch(function () { /* offline or blocked — keep showing what we have */ });
+  })();
+
   /* ---------- Theme toggle (default dark) ---------- */
   var root = document.documentElement;
   var toggleBtn = document.getElementById("themeToggle");
