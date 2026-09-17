@@ -158,17 +158,37 @@
     return opts;
   }
 
-  // Beaufort's equivalent of waveChartOpts: a stable 0–6 axis with whole-number
-  // gridlines so every wind chart on the page reads on the same scale,
-  // stepping to 0–12 only when it's really blowing.
-  function beaufortChartOpts(series, opts) {
+  // Wave period, same fixed-axis idea: 0–10s with 2s gridlines covers almost
+  // every east-coast swell, stepping to 0–20s for a long-period groundswell.
+  function periodChartOpts(series, opts) {
     var max = 0;
     series.forEach(function (p) { if (isFinite(p.y) && p.y > max) max = p.y; });
     opts.yMin = 0;
-    opts.yMax = max <= 6 ? 6 : 12;
-    opts.gridStep = max <= 6 ? 1 : 2;
+    opts.yMax = max <= 10 ? 10 : 20;
+    opts.gridStep = max <= 10 ? 2 : 5;
+    opts.unit = "s";
+    return opts;
+  }
+
+  // Wind scale axis is pinned at Beaufort 1–10 and never rescales, so the
+  // height of the line means the same thing on every chart and every day.
+  // Readings outside that range are clamped by clampScale() rather than
+  // being allowed to stretch the axis — a force 11 draws at the 10 line.
+  function beaufortChartOpts(opts) {
+    opts.yMin = 1;
+    opts.yMax = 10;
+    opts.gridStep = 1;
     opts.unit = "";
     return opts;
+  }
+
+  // Holds a Beaufort reading inside the fixed 1–10 axis. Note this means a
+  // dead-calm 0 draws on the floor at 1; the tables and the "Scale" stat
+  // still show the true number.
+  function clampScale(v) {
+    var n = Number(v);
+    if (!isFinite(n)) return null;
+    return Math.min(10, Math.max(1, n));
   }
 
   // Beaufort wind scale number (0-12) from a wind speed in m/s — same
@@ -442,9 +462,9 @@
         var xMin = xs[0], xMax = xs[xs.length - 1];
         var xTicks = sixHourTicks(xMin, xMax);
         var waveSeries = times.map(function (t, i) { return { x: xs[i], y: Number(waveHeight(i)) }; });
-        var windScaleSeries = times.map(function (t, i) { return { x: xs[i], y: beaufortScale(windSpeed(i)) }; });
+        var windScaleSeries = times.map(function (t, i) { return { x: xs[i], y: clampScale(beaufortScale(windSpeed(i))) }; });
         var waveSVG = lineChartSVG(waveSeries, waveChartOpts(waveSeries, { width: 640, height: 190, xTicks: xTicks }));
-        var windSVG = lineChartSVG(windScaleSeries, beaufortChartOpts(windScaleSeries, { width: 640, height: 140, padLeft: 26, xTicks: xTicks }));
+        var windSVG = lineChartSVG(windScaleSeries, beaufortChartOpts({ width: 640, height: 175, padLeft: 26, xTicks: xTicks }));
         chartEl.innerHTML =
           '<div class="chart-label">Wave Height</div>' + (waveSVG || '<p class="loading">No data</p>') +
           '<div class="chart-label">Wind Scale (Beaufort)</div>' + (windSVG || '<p class="loading">No data</p>');
@@ -622,12 +642,12 @@
         var name = STATION_NAME_EN[s.name] || s.name || id;
         var readings = s.readings || [];
         var latest = readings[readings.length - 1] || {};
-        var series = readings.map(function (r) { return { x: new Date(r.DateTime).getTime(), y: Number(r.WindScale) }; });
+        var series = readings.map(function (r) { return { x: new Date(r.DateTime).getTime(), y: clampScale(r.WindScale) }; });
         var xMin = series.length ? series[0].x : Date.now();
         var xMax = series.length ? series[series.length - 1].x : Date.now();
         var xTicks = historySixHourTicks(xMin, xMax);
-        var svg = lineChartSVG(series, beaufortChartOpts(series, {
-          width: 600, height: 120, area: true, padLeft: 26, xTicks: xTicks,
+        var svg = lineChartSVG(series, beaufortChartOpts({
+          width: 600, height: 175, area: true, padLeft: 26, xTicks: xTicks,
         }));
 
         html += '<div class="buoy-card">';
@@ -680,6 +700,8 @@
         var xMin = heightSeries.length ? heightSeries[0].x : Date.now();
         var xMax = heightSeries.length ? heightSeries[heightSeries.length - 1].x : Date.now();
         var xTicks = historySixHourTicks(xMin, xMax);
+        var heightSVG = lineChartSVG(heightSeries, waveChartOpts(heightSeries, { width: 600, height: 130, xTicks: xTicks }));
+        var periodSVG = lineChartSVG(periodSeries, periodChartOpts(periodSeries, { width: 600, height: 110, xTicks: xTicks }));
         var nv = function (v) { return (v === undefined || v === null || v === "" || v === "None") ? "" : v; };
 
         html += '<div class="buoy-card">';

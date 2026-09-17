@@ -70,8 +70,14 @@ sections) is computed client-side from wave height + period (E = 15·H²·T),
 calibrated against surf-forecast.com's own kJ figure — see "Known gaps".
 **Wave-height charts** all share a fixed y-axis (0–3m with 0.5m gridlines,
 stepping to 0–6m / 0–10m only when the swell needs it) so they stay
-comparable at a glance. Wind-scale charts do the same in Beaufort (0–6,
-stepping to 0–12).
+comparable at a glance. **Wind-scale charts are pinned at Beaufort 1–10 and
+never rescale at all** — `clampScale()` holds readings inside that range
+rather than letting them stretch the axis, so a force 11 draws on the 10
+line. Two consequences worth knowing: a dead-calm Beaufort 0 draws on the
+floor at 1, and in light winds (1–2, which is most days here) the line sits
+low and flat. The tables and the "Scale" stat always show the true number.
+Wave-period charts use 0–10s with 2s gridlines, stepping to 0–20s for a
+long-period groundswell.
 
 **Chart conventions** (`lineChartSVG` in `js/app.js`):
 
