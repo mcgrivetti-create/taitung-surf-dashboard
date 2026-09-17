@@ -13,7 +13,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <!-- ?v= is a cache-buster for the assets themselves. Bump it, ASSET_VERSION
      in js/app.js, and version.json together on any css/js change. -->
-<link rel="stylesheet" href="css/style.css?v=2026-09-17b">
+<link rel="stylesheet" href="css/style.css?v=2026-09-17c">
 </head>
 <body>
 <header class="site-header">
@@ -168,6 +168,8 @@
       </div>
       <div class="tide-chart-wrap">
         <div id="tideChart" class="data-block chart-block"><p class="loading">Loading…</p></div>
+        <!-- Interpolated tide across the dawn surf window — see renderTideDay(). -->
+        <div id="tideWindow" class="tide-window"></div>
         <div id="moonWidget" class="moon-widget"></div>
       </div>
       <p class="cwa-link"><a href="https://www.cwa.gov.tw/V8/C/M/tide.html" target="_blank" rel="noopener">Full 30-day tide forecast on CWA ↗</a> <span class="en">(select the 成功臺東沿海 / Chenggong-Taitung coast region)</span></p>
@@ -227,6 +229,6 @@
   <p>Data sources: CWA (Central Weather Administration) Open Data, Open-Meteo (NOAA GFS-Wave), Windguru, surf-forecast.com, Windy, YouTube. For reference only — assess your own conditions before entering the water.</p>
 </footer>
 
-<script src="js/app.js?v=2026-09-17b"></script>
+<script src="js/app.js?v=2026-09-17c"></script>
 </body>
 </html>

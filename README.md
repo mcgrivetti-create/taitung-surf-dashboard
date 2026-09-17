@@ -46,6 +46,8 @@ station wind history is a small self-maintained rolling log, not a DB.
      curve's shape means the same thing every day and the chart never
      rescales (Donghe's biggest spring tides in the CWA data run about
      −45…+100cm, well inside that), a
+     **dawn surf-window line** under the time axis giving the interpolated
+     height at 06:00 and 08:00 with a rising/falling read, a
      moon-phase widget (locally computed, no API — icon, waxing/waning
      arrow, next full/new moon date), and a link to CWA's full 30-day tide
      page
@@ -320,3 +322,13 @@ wasted reload, never a loop. `index.html` also carries `no-cache`
 `http-equiv` meta tags as a first line of defence.
 
 To force a refresh by hand: Ctrl+Shift+R (Cmd+Shift+R on macOS).
+
+## Direction display
+
+Observations arrive as bearings (`"37.0"`), forecasts as Chinese compass
+text (`偏北風`). Both are rendered as **16-point compass letters plus a
+rotated arrow** — `degToCompass()` for bearings, `translateDirText()` for
+the Chinese. Degrees are no longer shown anywhere: the extra precision
+isn't readable at a glance, and "NNE" is the form you think in. The arrow
+points the way the wind/swell is *travelling* (bearing + 180°), matching
+Windy's convention.

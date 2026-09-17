@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-09-17b";
+  var ASSET_VERSION = "2026-09-17c";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -245,6 +245,18 @@
     var h = Number(heightM), t = Number(periodS);
     if (!isFinite(h) || !isFinite(t)) return "";
     return Math.round(15 * h * h * t);
+  }
+
+  // Bearing -> 16-point compass. Observations arrive as degrees ("37.0"),
+  // which is more precision than anyone reads off a page — "NNE" is the
+  // form you actually think in, and it matches how the CWA forecasts and
+  // buoy descriptions already label direction elsewhere on the page.
+  var COMPASS_16 = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
+                    "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
+  function degToCompass(deg) {
+    var d = Number(deg);
+    if (!isFinite(d)) return "";
+    return COMPASS_16[Math.round(((d % 360) + 360) % 360 / 22.5) % 16];
   }
 
   // Rotates an up-arrow to point in the direction a wave/wind is heading
@@ -566,6 +578,20 @@
     });
     if (chartEl) chartEl.innerHTML = svg || '<p class="loading">No tide curve available</p>';
 
+    // Dawn surf window. The chart shows the shape of the day; this states the
+    // two numbers you actually plan around, interpolated off the same curve
+    // rather than read off the nearest high/low.
+    var windowEl = document.getElementById("tideWindow");
+    if (windowEl) {
+      var wt = interpolateTide(allPoints, [dayStart + 6 * 3600000, dayStart + 8 * 3600000]);
+      var h6 = Math.round(wt[0]), h8 = Math.round(wt[1]);
+      var trend = h8 > h6 ? "rising" : h8 < h6 ? "falling" : "slack";
+      windowEl.innerHTML =
+        '<span class="tide-window-label">Surf window</span> ' +
+        "06:00 " + h6 + "cm → 08:00 " + h8 + "cm " +
+        '<span class="tide-window-trend">(' + trend + ")</span>";
+    }
+
     if (headingEl) {
       var label = idx === 0 ? "Today" : idx === 1 ? "Tomorrow" : new Date(day.date).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
       headingEl.textContent = label + " — " + new Date(day.date).toLocaleDateString("en-US", { month: "short", day: "numeric" });
@@ -686,7 +712,7 @@
         html += '<div class="buoy-chart-label">Wind Scale (Beaufort) — last 16h</div>' + (svg || '<p class="loading">Still collecting data (populates hourly)</p>');
         html += '<div class="buoy-stats">';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Wind Speed</span><span class="buoy-stat-value">' + (latest.WindSpeed !== undefined ? n1(latest.WindSpeed) : "—") + ' m/s</span></div>';
-        html += '<div class="buoy-stat"><span class="buoy-stat-label">Direction</span><span class="buoy-stat-value">' + (latest.WindDirection !== undefined ? latest.WindDirection + "°" : "—") + '</span></div>';
+        html += '<div class="buoy-stat"><span class="buoy-stat-label">Direction</span><span class="buoy-stat-value">' + (latest.WindDirection !== undefined ? degToCompass(latest.WindDirection) + dirArrowHtml(latest.WindDirection) : "—") + '</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Scale</span><span class="buoy-stat-value">' + (latest.WindScale !== undefined ? latest.WindScale : "—") + '</span></div>';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">As of</span><span class="buoy-stat-value">' + fmtTime(latest.DateTime) + '</span></div>';
         html += "</div>";
@@ -696,7 +722,7 @@
           return [
             fmtHour(r.DateTime),
             n1(r.WindSpeed),
-            r.WindDirection !== undefined ? r.WindDirection + "°" + dirArrowHtml(r.WindDirection) : "",
+            r.WindDirection !== undefined ? degToCompass(r.WindDirection) + dirArrowHtml(r.WindDirection) : "",
             r.WindScale,
           ];
         }).map(function (row) {
@@ -798,7 +824,7 @@
             n1(h.wave_height[i]),
             n1(h.wave_period[i]),
             wavePowerKw(h.wave_height[i], h.wave_period[i]),
-            h.wave_direction[i] !== undefined ? Math.round(h.wave_direction[i]) + "°" + dirArrowHtml(h.wave_direction[i]) : "",
+            h.wave_direction[i] !== undefined ? degToCompass(h.wave_direction[i]) + dirArrowHtml(h.wave_direction[i]) : "",
             n1(h.swell_wave_height[i]),
             n1(h.swell_wave_period[i]),
           ]);
