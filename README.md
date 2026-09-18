@@ -451,3 +451,46 @@ JTWC, the raw warning text and CWA's typhoon page.
   as current.
 - A standing italic line states this is not an official warning source and
   links CWA and JTWC as the authorities.
+
+### Typhoon detail — the deterministic layer
+
+Everything below is **parsed, not generated**. JTWC's warning text is rigidly
+structured, so position, movement, intensity, pressure, seas and the forecast
+points at every tau are read straight out of it — no language model is
+involved anywhere in this feature.
+
+Per cycle, `enrichSystem` pulls:
+
+- **`…web.txt` (warning)** — current position and 6-hour movement, max wind
+  and gusts, minimum central pressure, **maximum significant wave height**
+  (directly surf-relevant), forecast lat/lon/intensity at +12…+120h, the
+  geographic reference ("175 NM EAST OF IWO TO"), any
+  DOWNGRADED/UPGRADED note, and the explicit list of next warning times.
+- **`…prog.txt` (prognostic reasoning)** — JTWC's own
+  **`SIGNIFICANT FORECAST CHANGES`** field, quoted verbatim rather than
+  paraphrased; forecast confidence for track and intensity; the forecaster's
+  environment assessment (VWS, SST, outflow); and the steering mechanism.
+
+Derived locally:
+
+- **Distance and bearing from Donghe**, plus the **closest approach** across
+  the whole forecast track and when it occurs — e.g. Dujuan at 2,363km
+  closing to 1,852km at +36h before receding to 4,636km. A storm that only
+  ever gets further away is labelled as tracking away rather than being
+  given a misleading "closest" figure.
+- **Cycle-over-cycle deltas** against the previous archived warning:
+  intensity, pressure, seas, closest-approach, and track shift. Track shifts
+  compare forecast positions **sharing a valid time**, so a shifting tau
+  can't masquerade as the storm moving.
+
+**`data/history/typhoon/YYYY-MM.json` archives every cycle.** JTWC
+overwrites its product files in place and keeps no history, so a cycle not
+captured is gone permanently — this logs from day one, and it's what makes
+the diff possible at all.
+
+**Two honesty mechanisms.** The prognostic reasoning routinely lags the
+warning by a cycle (and can still say "Typhoon" after a downgrade), so both
+warning numbers are recorded and the page tags the forecaster note with the
+warning it came from. And the invest block carries JTWC's basin-wide
+advisory satellite image — there's no per-invest graphic — so a disturbance
+can be eyeballed for organisation rather than judged from a letter code.

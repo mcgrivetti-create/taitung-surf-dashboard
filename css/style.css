@@ -607,3 +607,16 @@ main {
   color: var(--text);
 }
 .typhoon-disclaimer { margin: 0.8rem 0 0; font-size: 0.74rem; color: var(--text-dim); }
+.typhoon-facts { margin: 0 0 0.3rem; font-size: 0.86rem; }
+.typhoon-spot { margin: 0 0 0.5rem; font-size: 0.82rem; color: var(--text); }
+.typhoon-changes { margin: 0 0 0.35rem; font-size: 0.8rem; color: var(--text); }
+.typhoon-label {
+  display: inline-block;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  margin-right: 0.25rem;
+}
+.typhoon-lag { color: var(--text-dim); }
+.typhoon-conf { margin: 0 0 0.5rem; font-size: 0.76rem; color: var(--text-dim); }

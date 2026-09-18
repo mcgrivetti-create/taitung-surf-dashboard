@@ -856,6 +856,174 @@ async function resolveCwaTrackImage(name, nowMs) {
   return null;
 }
 
+/* --- Warning-text parsing (the "free layer") ---------------------------
+ * JTWC's warning is rigidly structured — position, movement, intensity and
+ * forecast points at every tau are all machine-readable, so none of it
+ * needs a language model. The prognostic reasoning is mostly prose, but it
+ * carries several structured fields including JTWC's own
+ * SIGNIFICANT FORECAST CHANGES, which is the "what changed since last
+ * time" summary written by the forecaster. Quoting that verbatim beats
+ * generating one.
+ *
+ * Note the two products are NOT in lockstep: the reasoning usually lags the
+ * warning by a cycle (and can still say "Typhoon" after a downgrade), so
+ * both warning numbers are recorded and the page can say so.
+ */
+const SPOT_LAT = 22.975, SPOT_LON = 121.315; // Donghe
+const NM_PER_RAD = 3440.065;
+
+function toRad(d) { return (d * Math.PI) / 180; }
+
+/** Great-circle distance in nautical miles. */
+function distanceNm(lat1, lon1, lat2, lon2) {
+  const dLat = toRad(lat2 - lat1), dLon = toRad(lon2 - lon1);
+  const a = Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+  return 2 * Math.asin(Math.min(1, Math.sqrt(a))) * NM_PER_RAD;
+}
+
+/** Initial great-circle bearing in degrees. */
+function bearingDeg(lat1, lon1, lat2, lon2) {
+  const dLon = toRad(lon2 - lon1);
+  const y = Math.sin(dLon) * Math.cos(toRad(lat2));
+  const x = Math.cos(toRad(lat1)) * Math.sin(toRad(lat2)) -
+    Math.sin(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.cos(dLon);
+  return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+}
+
+function signedLatLon(v, hemi) {
+  const n = parseFloat(v);
+  return (hemi === "S" || hemi === "W") ? -n : n;
+}
+
+function parseWarningText(t) {
+  const o = { forecasts: [] };
+  o.warningNumber = (t.match(/WARNING NR\s*(\d+)/) || [])[1] || null;
+  const dg = t.match(/\b(DOWNGRADED|UPGRADED)\s+(?:FROM|TO)\s+([A-Z][A-Z\s]*?\d{2}[A-Z])/);
+  if (dg) o.intensityChangeNote = dg[0].trim();
+  const wp = t.match(/WARNING POSITION:\s*\n\s*(\d{6}Z)\s*---\s*NEAR\s*([\d.]+)([NS])\s+([\d.]+)([EW])/);
+  if (wp) { o.positionZ = wp[1]; o.lat = signedLatLon(wp[2], wp[3]); o.lon = signedLatLon(wp[4], wp[5]); }
+  const mv = t.match(/MOVEMENT PAST SIX HOURS\s*-\s*(\d+)\s*DEGREES AT\s*(\d+)\s*KTS/);
+  if (mv) { o.movingToward = +mv[1]; o.movingKt = +mv[2]; }
+  const cw = t.match(/PRESENT WIND DISTRIBUTION:[\s\S]*?MAX SUSTAINED WINDS\s*-\s*(\d+)\s*KT,\s*GUSTS\s*(\d+)\s*KT/);
+  if (cw) { o.maxWindKt = +cw[1]; o.gustKt = +cw[2]; }
+  const fc = /(\d+)\s*HRS,\s*VALID AT:\s*\n\s*(\d{6}Z)\s*---\s*([\d.]+)([NS])\s+([\d.]+)([EW])\s*\n\s*MAX SUSTAINED WINDS\s*-\s*(\d+)\s*KT,\s*GUSTS\s*(\d+)\s*KT/g;
+  let m;
+  while ((m = fc.exec(t))) {
+    o.forecasts.push({
+      tau: +m[1], validZ: m[2],
+      lat: signedLatLon(m[3], m[4]), lon: signedLatLon(m[5], m[6]),
+      maxWindKt: +m[7], gustKt: +m[8],
+    });
+  }
+  const pr = t.match(/MINIMUM CENTRAL PRESSURE AT \d{6}Z IS\s*(\d+)\s*MB/); if (pr) o.pressureMb = +pr[1];
+  const sw = t.match(/MAXIMUM\s+SIGNIFICANT WAVE HEIGHT AT \d{6}Z IS\s*(\d+)\s*FEET/); if (sw) o.seasFt = +sw[1];
+  const nx = t.match(/NEXT WARNINGS? AT\s*([\s\S]*?)\.\s*\/\//);
+  if (nx) o.nextWarnings = nx[1].replace(/\s+/g, " ").split(/,\s*|\s+AND\s+/).map((s) => s.trim()).filter(Boolean);
+  const geo = t.match(/LOCATED APPROXIMATELY\s*([\s\S]*?),\s*HAS TRACKED/);
+  if (geo) o.geoReference = geo[1].replace(/\s+/g, " ").trim();
+  return o;
+}
+
+function parseProgReasoning(t) {
+  const clean = (s) => String(s || "").replace(/\s+/g, " ").trim();
+  const o = {};
+  o.warningNumber = (t.match(/WARNING NR\s*(\d+)/) || [])[1] || null;
+  o.significantForecastChanges =
+    clean((t.match(/SIGNIFICANT FORECAST CHANGES:\s*([\s\S]*?)(?=\n\s*\n|FORECAST DISCUSSION:)/i) || [])[1]) || null;
+  const sw = t.match(/SIGNIFICANT WAVE HEIGHT:\s*(\d+)\s*FEET/i); if (sw) o.seasFt = +sw[1];
+  const env = t.match(/FORECASTER ASSESSMENT OF CURRENT ENVIRONMENT:\s*([A-Z ]+)/i); if (env) o.environment = clean(env[1]);
+  const vws = t.match(/VWS:\s*([^\n]+)/i); if (vws) o.vws = clean(vws[1]);
+  const sst = t.match(/SST:\s*([^\n]+)/i); if (sst) o.sst = clean(sst[1]);
+  const out = t.match(/OUTFLOW:\s*([^\n]+)/i); if (out) o.outflow = clean(out[1]);
+  const steer = t.match(/CURRENT STEERING MECHANISM:\s*([\s\S]*?)(?=\n\s*\n)/i); if (steer) o.steering = clean(steer[1]);
+  const fcB = t.match(/FORECAST CONFIDENCE:\s*([\s\S]*?)(?=\/\/|$)/i);
+  if (fcB) {
+    const b = fcB[1];
+    o.confidence = {
+      track0072: (b.match(/TRACK 00-72 HR:\s*(\w+)/i) || [])[1] || null,
+      track72120: (b.match(/TRACK 72-120 HR:\s*(\w+)/i) || [])[1] || null,
+      intensity0072: (b.match(/INTENSITY 00-72 HR:\s*(\w+)/i) || [])[1] || null,
+      intensity72120: (b.match(/INTENSITY 72-120 HR:\s*(\w+)/i) || [])[1] || null,
+    };
+  }
+  return o;
+}
+
+/** Distance/bearing from Donghe now, and the closest the forecast track comes. */
+function spotGeometry(w) {
+  const g = {};
+  if (typeof w.lat === "number" && typeof w.lon === "number") {
+    g.distanceNm = Math.round(distanceNm(SPOT_LAT, SPOT_LON, w.lat, w.lon));
+    g.bearingDeg = Math.round(bearingDeg(SPOT_LAT, SPOT_LON, w.lat, w.lon));
+  }
+  let best = null;
+  for (const f of w.forecasts || []) {
+    const d = Math.round(distanceNm(SPOT_LAT, SPOT_LON, f.lat, f.lon));
+    if (!best || d < best.distanceNm) best = { distanceNm: d, tau: f.tau, validZ: f.validZ, maxWindKt: f.maxWindKt };
+  }
+  if (best && g.distanceNm !== undefined && best.distanceNm >= g.distanceNm) {
+    // Never closer than it is now — say so rather than implying an approach.
+    best.recedingOnly = true;
+  }
+  if (best) g.closestApproach = best;
+  return g;
+}
+
+/** What changed since the previous archived cycle for this storm. */
+function diffCycles(cur, prev) {
+  if (!prev) return null;
+  const d = { previousWarningNumber: prev.warningNumber, previousIssuedAt: prev.issuedAt };
+  if (typeof cur.maxWindKt === "number" && typeof prev.maxWindKt === "number") d.maxWindKtDelta = cur.maxWindKt - prev.maxWindKt;
+  if (typeof cur.pressureMb === "number" && typeof prev.pressureMb === "number") d.pressureMbDelta = cur.pressureMb - prev.pressureMb;
+  if (typeof cur.seasFt === "number" && typeof prev.seasFt === "number") d.seasFtDelta = cur.seasFt - prev.seasFt;
+  const curCa = cur.spot && cur.spot.closestApproach, prevCa = prev.spot && prev.spot.closestApproach;
+  if (curCa && prevCa) d.closestApproachNmDelta = curCa.distanceNm - prevCa.distanceNm;
+  // Track shift: compare forecast positions that share a valid time, so a
+  // shifting tau doesn't masquerade as the storm moving.
+  const prevByZ = {};
+  (prev.forecasts || []).forEach((f) => { prevByZ[f.validZ] = f; });
+  const shifts = [];
+  for (const f of cur.forecasts || []) {
+    const p = prevByZ[f.validZ];
+    if (!p) continue;
+    shifts.push({
+      validZ: f.validZ, tau: f.tau,
+      shiftNm: Math.round(distanceNm(p.lat, p.lon, f.lat, f.lon)),
+      shiftToward: Math.round(bearingDeg(p.lat, p.lon, f.lat, f.lon)),
+      maxWindKtDelta: f.maxWindKt - p.maxWindKt,
+    });
+  }
+  if (shifts.length) {
+    d.trackShifts = shifts;
+    d.maxTrackShiftNm = Math.max(...shifts.map((s) => s.shiftNm));
+  }
+  return d;
+}
+
+async function enrichSystem(s, nowMs) {
+  if (!s.warningText) return;
+  try {
+    const res = await fetch(s.warningText);
+    if (res.ok) Object.assign(s, parseWarningText(await res.text()));
+  } catch (err) { console.error(`WARN: warning text for ${s.id} (${err.message})`); }
+
+  const progUrl = s.warningText.replace(/web\.txt$/, "prog.txt");
+  try {
+    const res = await fetch(progUrl);
+    if (res.ok) {
+      const prog = parseProgReasoning(await res.text());
+      s.reasoning = prog;
+      s.reasoningUrl = progUrl;
+      // The reasoning routinely lags the warning by a cycle; flagged so the
+      // page never presents a stale assessment as current.
+      s.reasoningLagsWarning = !!(prog.warningNumber && s.warningNumber && prog.warningNumber !== s.warningNumber);
+    }
+  } catch (err) { console.error(`WARN: prog reasoning for ${s.id} (${err.message})`); }
+
+  s.spot = spotGeometry(s);
+}
+
 async function buildTyphoon() {
   const nowMs = Date.now();
   const [rssRes, abpwRes] = await Promise.all([fetch(JTWC_RSS), fetch(JTWC_ABPW)]);
@@ -870,17 +1038,53 @@ async function buildTyphoon() {
 
   for (const s of parsed.systems) {
     s.cwaTrackImage = await resolveCwaTrackImage(s.name, nowMs).catch(() => null);
+    await enrichSystem(s, nowMs);
   }
+
+  // Archive every cycle. JTWC overwrites these files in place and keeps no
+  // history, so a cycle not captured here is gone for good — which is why
+  // this logs from day one rather than waiting for a reason to need it.
+  // It's also what makes the cycle-over-cycle diff possible at all.
+  let archive = { records: [] };
+  const archivePath = path.join(HISTORY_DIR, "typhoon", `${monthKey()}.json`);
+  try {
+    archive = await readJSONIfExists(archivePath, { records: [] });
+  } catch (err) { /* start fresh */ }
+
+  for (const s of parsed.systems) {
+    const prior = archive.records
+      .filter((r) => r.id === s.id && r.warningNumber !== s.warningNumber)
+      .sort((a, b) => String(a.warningNumber).localeCompare(String(b.warningNumber)));
+    s.changes = diffCycles(s, prior[prior.length - 1] || null);
+  }
+
+  const newRecords = parsed.systems.map((s) => ({
+    id: s.id, name: s.name, designation: s.designation,
+    warningNumber: s.warningNumber, issuedAt: s.issuedAt, positionZ: s.positionZ,
+    lat: s.lat, lon: s.lon, maxWindKt: s.maxWindKt, gustKt: s.gustKt,
+    pressureMb: s.pressureMb, seasFt: s.seasFt,
+    movingToward: s.movingToward, movingKt: s.movingKt,
+    forecasts: s.forecasts, spot: s.spot,
+    reasoningWarningNumber: s.reasoning ? s.reasoning.warningNumber : null,
+    significantForecastChanges: s.reasoning ? s.reasoning.significantForecastChanges : null,
+    confidence: s.reasoning ? s.reasoning.confidence : null,
+  }));
+  const addedTyphoon = await appendMonthlyHistory("typhoon", newRecords, (r) => `${r.id}|${r.warningNumber}`);
 
   return {
     data: {
       fetchedAt: new Date(nowMs).toISOString(),
       systems: parsed.systems,
       invests,
+      // The basin-wide advisory satellite image — there's no per-invest
+      // graphic, so this is how you eyeball whether a disturbance is worth
+      // watching. Only carried when there's actually an invest.
+      investSatellite: invests.length ? "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg" : null,
       advisory: parsed.advisory,
     },
     ok: true,
     count: parsed.systems.length + invests.length,
+    archived: addedTyphoon,
   };
 }
 

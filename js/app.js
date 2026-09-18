@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-09-18b";
+  var ASSET_VERSION = "2026-09-18c";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -948,6 +948,62 @@
       if (s.issuedZ) meta.push("issued " + escapeHtml(s.issuedZ));
       if (meta.length) html += '<p class="typhoon-meta">' + meta.join(" · ") + "</p>";
 
+      // Hard numbers, straight from the warning text — no interpretation.
+      var facts = [];
+      if (s.maxWindKt) facts.push("<strong>" + s.maxWindKt + " kt</strong> max" + (s.gustKt ? ", gusts " + s.gustKt + " kt" : ""));
+      if (s.pressureMb) facts.push(s.pressureMb + " mb");
+      if (s.seasFt) facts.push("seas <strong>" + s.seasFt + " ft</strong>");
+      if (s.movingKt !== undefined && s.movingToward !== undefined) {
+        facts.push("moving " + degToCompass(s.movingToward) + " at " + s.movingKt + " kt");
+      }
+      if (facts.length) html += '<p class="typhoon-facts">' + facts.join(" · ") + "</p>";
+
+      if (s.spot && s.spot.distanceNm) {
+        var spot = "<strong>" + Math.round(s.spot.distanceNm * 1.852) + " km</strong> from Donghe, bearing " +
+          degToCompass(s.spot.bearingDeg);
+        var ca = s.spot.closestApproach;
+        if (ca) {
+          spot += ca.recedingOnly
+            ? " · tracking away over the forecast period"
+            : " · closest <strong>" + Math.round(ca.distanceNm * 1.852) + " km</strong> at +" + ca.tau + "h";
+        }
+        html += '<p class="typhoon-spot">' + spot + "</p>";
+      }
+
+      // JTWC's own change summary, quoted rather than paraphrased.
+      var r = s.reasoning || {};
+      if (r.significantForecastChanges) {
+        html += '<p class="typhoon-changes"><span class="typhoon-label">Forecaster note</span> “' +
+          escapeHtml(r.significantForecastChanges) + "”" +
+          (s.reasoningLagsWarning && r.warningNumber
+            ? ' <span class="typhoon-lag">(from warning #' + escapeHtml(r.warningNumber) + ")</span>"
+            : "") + "</p>";
+      }
+
+      // Measured deltas against the previous archived cycle.
+      var c = s.changes;
+      if (c) {
+        var deltas = [];
+        if (c.maxWindKtDelta) deltas.push((c.maxWindKtDelta > 0 ? "+" : "") + c.maxWindKtDelta + " kt");
+        if (c.pressureMbDelta) deltas.push((c.pressureMbDelta > 0 ? "+" : "") + c.pressureMbDelta + " mb");
+        if (c.seasFtDelta) deltas.push("seas " + (c.seasFtDelta > 0 ? "+" : "") + c.seasFtDelta + " ft");
+        if (c.maxTrackShiftNm) deltas.push("track shifted up to " + Math.round(c.maxTrackShiftNm * 1.852) + " km");
+        if (c.closestApproachNmDelta) {
+          deltas.push("closest approach " + (c.closestApproachNmDelta > 0 ? "+" : "") +
+            Math.round(c.closestApproachNmDelta * 1.852) + " km");
+        }
+        html += '<p class="typhoon-changes"><span class="typhoon-label">Since warning #' +
+          escapeHtml(c.previousWarningNumber) + "</span> " +
+          (deltas.length ? deltas.join(" · ") : "no measurable change") + "</p>";
+      }
+
+      if (r.confidence) {
+        var conf = [];
+        if (r.confidence.track0072) conf.push("track " + r.confidence.track0072.toLowerCase());
+        if (r.confidence.intensity0072) conf.push("intensity " + r.confidence.intensity0072.toLowerCase());
+        if (conf.length) html += '<p class="typhoon-conf">JTWC confidence (0–72h): ' + conf.join(", ") + "</p>";
+      }
+
       html += '<div class="typhoon-images">';
       if (s.graphic) {
         // The gif URL is stable per storm and rewritten in place every cycle,
@@ -978,6 +1034,16 @@
         invests.map(function (i) {
           return "Invest " + escapeHtml(i.id) + (i.potential ? " — " + escapeHtml(i.potential) + " development potential" : "");
         }).join(" · ") + "</p>";
+      // No per-invest graphic exists, so the basin-wide advisory satellite
+      // image is what lets you judge whether a disturbance is organising.
+      if (data.investSatellite) {
+        html += '<div class="typhoon-images"><figure>' +
+          '<a href="' + escapeHtml(data.investSatellite) + '" target="_blank" rel="noopener">' +
+          '<img src="' + escapeHtml(data.investSatellite) +
+          (data.advisory && data.advisory.issuedAt ? "?t=" + encodeURIComponent(data.advisory.issuedAt) : "") +
+          '" alt="JTWC Western Pacific advisory satellite image" loading="lazy"></a>' +
+          "<figcaption>JTWC advisory satellite image (W Pacific)</figcaption></figure></div>";
+      }
       if (data.advisory && data.advisory.url) {
         html += '<p class="typhoon-links"><a href="' + escapeHtml(data.advisory.url) +
           '" target="_blank" rel="noopener">Significant Tropical Weather Advisory ↗</a></p>';
