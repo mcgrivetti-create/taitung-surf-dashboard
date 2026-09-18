@@ -950,6 +950,50 @@ function parseProgReasoning(t) {
   return o;
 }
 
+/** Smallest angle between two bearings, 0-180. */
+function angleDiff(a, b) {
+  const d = Math.abs(a - b) % 360;
+  return d > 180 ? 360 - d : d;
+}
+
+/**
+ * Where the track turns, derived from the forecast points rather than
+ * scraped from JTWC's prose. Each leg's heading is the bearing between
+ * consecutive forecast positions; a leg whose heading has swung far enough
+ * from the last reference counts as a turn, and becomes the new reference,
+ * so a long recurve reads as a sequence of turns instead of one blur.
+ *
+ * 35 degrees is deliberately coarse: wobble between 6-hourly points
+ * shouldn't register, only a genuine change of direction.
+ */
+const TURN_THRESHOLD_DEG = 35;
+
+function motionOutlook(w) {
+  if (!w.forecasts || !w.forecasts.length || typeof w.lat !== "number") return null;
+  const pts = [{ tau: 0, lat: w.lat, lon: w.lon }, ...w.forecasts];
+  const legs = [];
+  for (let i = 0; i < pts.length - 1; i++) {
+    legs.push({
+      fromTau: pts[i].tau,
+      toTau: pts[i + 1].tau,
+      heading: Math.round(bearingDeg(pts[i].lat, pts[i].lon, pts[i + 1].lat, pts[i + 1].lon)),
+    });
+  }
+  if (!legs.length) return null;
+
+  // Reference from JTWC's stated past-6h movement when we have it, else the
+  // first forecast leg — otherwise a storm already mid-turn reads as straight.
+  let ref = typeof w.movingToward === "number" ? w.movingToward : legs[0].heading;
+  const turns = [];
+  for (const l of legs) {
+    if (angleDiff(l.heading, ref) >= TURN_THRESHOLD_DEG) {
+      turns.push({ fromTau: l.fromTau, toTau: l.toTau, headingDeg: l.heading, deltaDeg: Math.round(angleDiff(l.heading, ref)) });
+      ref = l.heading;
+    }
+  }
+  return { currentHeadingDeg: ref === undefined ? null : (typeof w.movingToward === "number" ? w.movingToward : legs[0].heading), legs, turns };
+}
+
 /** Distance/bearing from Donghe now, and the closest the forecast track comes. */
 function spotGeometry(w) {
   const g = {};
@@ -1022,6 +1066,7 @@ async function enrichSystem(s, nowMs) {
   } catch (err) { console.error(`WARN: prog reasoning for ${s.id} (${err.message})`); }
 
   s.spot = spotGeometry(s);
+  s.motion = motionOutlook(s);
 }
 
 async function buildTyphoon() {
@@ -1065,6 +1110,7 @@ async function buildTyphoon() {
     pressureMb: s.pressureMb, seasFt: s.seasFt,
     movingToward: s.movingToward, movingKt: s.movingKt,
     forecasts: s.forecasts, spot: s.spot,
+    motion: s.motion,
     reasoningWarningNumber: s.reasoning ? s.reasoning.warningNumber : null,
     significantForecastChanges: s.reasoning ? s.reasoning.significantForecastChanges : null,
     confidence: s.reasoning ? s.reasoning.confidence : null,

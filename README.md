@@ -494,3 +494,18 @@ warning numbers are recorded and the page tags the forecaster note with the
 warning it came from. And the invest block carries JTWC's basin-wide
 advisory satellite image — there's no per-invest graphic — so a disturbance
 can be eyeballed for organisation rather than judged from a letter code.
+
+### Track turns
+
+`motionOutlook` derives where the storm changes direction from the forecast
+points already parsed — nothing is scraped from JTWC's prose. Each leg's
+heading is the bearing between consecutive forecast positions; a leg whose
+heading has swung ≥35° from the running reference counts as a turn and
+becomes the new reference, so a long recurve reads as a sequence rather
+than one blur. 35° is deliberately coarse so 6-hourly wobble doesn't
+register.
+
+The reference starts from JTWC's stated past-6h movement where available,
+not the first forecast leg — otherwise a storm already mid-turn reads as
+travelling straight. Rendered as `Turning NW 24–36h · NNE 48–60h · NE
+72–96h`, capped at three turns; a storm that never turns says so instead.

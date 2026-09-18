@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-09-18c";
+  var ASSET_VERSION = "2026-09-18d";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -968,6 +968,20 @@
             : " · closest <strong>" + Math.round(ca.distanceNm * 1.852) + " km</strong> at +" + ca.tau + "h";
         }
         html += '<p class="typhoon-spot">' + spot + "</p>";
+      }
+
+      // Where the track turns, read off the forecast points. Capped at three
+      // so a long recurve stays a sentence rather than a list.
+      if (s.motion && s.motion.turns && s.motion.turns.length) {
+        var turnBits = s.motion.turns.slice(0, 3).map(function (t) {
+          var window = t.fromTau === 0 ? "within " + t.toTau + "h" : t.fromTau + "–" + t.toTau + "h";
+          return "<strong>" + degToCompass(t.headingDeg) + "</strong> " + window;
+        });
+        html += '<p class="typhoon-motion"><span class="typhoon-label">Turning</span> ' +
+          turnBits.join(" · ") + "</p>";
+      } else if (s.motion && s.motion.legs && s.motion.legs.length) {
+        html += '<p class="typhoon-motion"><span class="typhoon-label">Track</span> holding <strong>' +
+          degToCompass(s.motion.legs[0].heading) + "</strong> through the forecast period</p>";
       }
 
       // JTWC's own change summary, quoted rather than paraphrased.
