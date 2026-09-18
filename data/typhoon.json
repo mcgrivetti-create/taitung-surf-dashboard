@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-18T20:18:24.761Z",
+  "fetchedAt": "2026-09-18T21:18:10.213Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -86,14 +86,14 @@
       ],
       "geoReference": "548 NM SOUTH OF YOKOSUKA, JAPAN",
       "reasoning": {
-        "warningNumber": "013",
+        "warningNumber": "014",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 26,
+        "seasFt": 28,
         "environment": "FAVORABLE",
-        "vws": "10-15 KTS",
+        "vws": "5-10 KTS",
         "sst": "28-29 CELSIUS",
-        "outflow": "STRONG POLEWARD",
-        "steering": "THE SOUTHWESTERN PERIPHERY OF A SUBTROPICAL RIDGE (STR) CENTERED FAR TO THE NORTHEAST",
+        "outflow": "STRONG RADIAL",
+        "steering": "WESTERN EXTENSION OF A SUBTROPICAL RIDGE CENTERED TO THE NORTHEAST",
         "confidence": {
           "track0072": "HIGH",
           "track72120": "HIGH",
@@ -102,7 +102,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2426prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1075,
         "bearingDeg": 76,
@@ -169,7 +169,7 @@
       },
       "swell": {
         "targetTime": "2026-09-20T03:00:00.000Z",
-        "hoursAhead": 31,
+        "hoursAhead": 30,
         "periodS": 10.4,
         "heightM": 1.04,
         "dirDeg": 87,
