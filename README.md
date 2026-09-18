@@ -292,7 +292,30 @@ data/history/{forecast,buoy,station,tide}/YYYY-MM.json
 ## Roadmap (not in this build)
 
 - **Phase 3** — forecast-vs-observed accuracy charts, reading from the
-  Phase 2 logs above (the placeholder in the page)
+  Phase 2 logs above (the placeholder in the page). Live, not a periodic
+  batch — see "Two tiers, deliberately" for which files it may read.
+- **Copernicus Marine / Mercator wave model — agreed 2026-09-18, to be
+  built after Phase 3.** Product `GLOBAL_ANALYSISFORECAST_WAV_001_027`
+  (Global Ocean Waves Analysis and Forecast): MFWAM run by Météo-France,
+  forced by ECMWF winds, 1/12° (~9km), 3-hourly, 10-day horizon.
+
+  Why it's worth the dependency: it carries **partitioned swell** — wind
+  wave, primary swell and secondary swell as separate fields — which is the
+  one thing no current source gives us, and the difference between reading
+  "1.5m" and reading "1.5m of 13s groundswell under 0.5m of windslop". It's
+  also ECMWF-forced, so genuinely independent of NOAA GFS-Wave (which backs
+  both Windguru and our Open Wave Model) rather than a correlated fourth
+  copy. Building it after Phase 3 means it can be scored against the buoys
+  from day one.
+
+  Integration cost, eyes open: Copernicus serves NetCDF through the
+  `copernicusmarine` Python toolbox, not JSON over HTTP, so the workflow
+  gains a Python step beside the Node one — the project's first real
+  dependency, plus credentials (two repo secrets) that can expire and a
+  library that can break on a version bump. Subset one grid point at
+  Donghe and write a small JSON in the same shape as `openwave.json`;
+  everything downstream already takes that shape. The licence requires
+  visible attribution on the page.
 - **Phase 5** — per-spot subpages, Jinzun/Chenggong-specific widgets, blended
   forecast, spot scoring
 
