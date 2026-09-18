@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-18T03:18:37.670Z",
+  "fetchedAt": "2026-09-18T04:19:04.867Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -122,6 +122,86 @@
           "validZ": "191200Z",
           "maxWindKt": 65
         }
+      },
+      "motion": {
+        "currentHeadingDeg": 280,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 285
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 304
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 321
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 353
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 15
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 36
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 51
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 56
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "headingDeg": 321,
+            "deltaDeg": 41
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 15,
+            "deltaDeg": 54
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "headingDeg": 51,
+            "deltaDeg": 36
+          }
+        ]
+      },
+      "swell": {
+        "targetTime": "2026-09-20T03:00:00.000Z",
+        "hoursAhead": 47,
+        "periodS": 10.35,
+        "heightM": 0.94,
+        "dirDeg": 86,
+        "baselineS": 7.45,
+        "peak": {
+          "targetTime": "2026-09-21T00:00:00.000Z",
+          "heightM": 1.84,
+          "periodS": 8.45,
+          "dirDeg": 74
+        },
+        "bearingOffsetDeg": 6
       },
       "changes": null
     }
