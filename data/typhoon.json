@@ -1,20 +1,133 @@
 {
-  "fetchedAt": "2026-09-18T02:18:41.084Z",
+  "fetchedAt": "2026-09-18T03:18:37.670Z",
   "systems": [
     {
       "designation": "Tropical Storm",
       "id": "24W",
       "name": "Dujuan",
       "headline": "Tropical Storm 24W (Dujuan)",
-      "warningNumber": "11",
+      "warningNumber": "011",
       "issuedZ": "18/0300Z",
       "issuedAt": "2026-09-18T03:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2426.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2426web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202609180000-96_DUJUAN_enus.png"
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202609180000-96_DUJUAN_enus.png",
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "181200Z",
+          "lat": 25.7,
+          "lon": 141.9,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 24,
+          "validZ": "190000Z",
+          "lat": 26.7,
+          "lon": 140.2,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 36,
+          "validZ": "191200Z",
+          "lat": 28.1,
+          "lon": 138.9,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 48,
+          "validZ": "200000Z",
+          "lat": 30.1,
+          "lon": 138.6,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 60,
+          "validZ": "201200Z",
+          "lat": 32.3,
+          "lon": 139.3,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 72,
+          "validZ": "210000Z",
+          "lat": 34.7,
+          "lon": 141.4,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 96,
+          "validZ": "220000Z",
+          "lat": 40.5,
+          "lon": 151.4,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 120,
+          "validZ": "230000Z",
+          "lat": 45.9,
+          "lon": 164.6,
+          "maxWindKt": 45,
+          "gustKt": 55
+        }
+      ],
+      "intensityChangeNote": "DOWNGRADED FROM TYPHOON 24W",
+      "positionZ": "180000Z",
+      "lat": 25.1,
+      "lon": 144.5,
+      "movingToward": 280,
+      "movingKt": 15,
+      "maxWindKt": 60,
+      "gustKt": 75,
+      "pressureMb": 981,
+      "seasFt": 24,
+      "nextWarnings": [
+        "180900Z",
+        "181500Z",
+        "182100Z",
+        "190300Z"
+      ],
+      "geoReference": "175 NM EAST OF IWO TO",
+      "reasoning": {
+        "warningNumber": "011",
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "seasFt": 24,
+        "environment": "FAVORABLE",
+        "vws": "10-15 KTS",
+        "sst": "28-29 CELSIUS",
+        "outflow": "MODERATE POLEWARD",
+        "steering": "SOUTHWESTERN FLANK OF A SUBTROPICAL RIDGE (STR) WELL EAST OF HONSHU",
+        "confidence": {
+          "track0072": "HIGH",
+          "track72120": "MEDIUM",
+          "intensity0072": "MEDIUM",
+          "intensity72120": "MEDIUM"
+        }
+      },
+      "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2426prog.txt",
+      "reasoningLagsWarning": false,
+      "spot": {
+        "distanceNm": 1276,
+        "bearingDeg": 80,
+        "closestApproach": {
+          "distanceNm": 1000,
+          "tau": 36,
+          "validZ": "191200Z",
+          "maxWindKt": 65
+        }
+      },
+      "changes": null
     }
   ],
   "invests": [],
+  "investSatellite": null,
   "advisory": {
     "issuedZ": "18/0200Z",
     "issuedAt": "2026-09-18T02:00:00.000Z",

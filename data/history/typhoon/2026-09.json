@@ -1,0 +1,104 @@
+{
+  "records": [
+    {
+      "id": "24W",
+      "name": "Dujuan",
+      "designation": "Tropical Storm",
+      "warningNumber": "011",
+      "issuedAt": "2026-09-18T03:00:00.000Z",
+      "positionZ": "180000Z",
+      "lat": 25.1,
+      "lon": 144.5,
+      "maxWindKt": 60,
+      "gustKt": 75,
+      "pressureMb": 981,
+      "seasFt": 24,
+      "movingToward": 280,
+      "movingKt": 15,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "181200Z",
+          "lat": 25.7,
+          "lon": 141.9,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 24,
+          "validZ": "190000Z",
+          "lat": 26.7,
+          "lon": 140.2,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 36,
+          "validZ": "191200Z",
+          "lat": 28.1,
+          "lon": 138.9,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 48,
+          "validZ": "200000Z",
+          "lat": 30.1,
+          "lon": 138.6,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 60,
+          "validZ": "201200Z",
+          "lat": 32.3,
+          "lon": 139.3,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 72,
+          "validZ": "210000Z",
+          "lat": 34.7,
+          "lon": 141.4,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 96,
+          "validZ": "220000Z",
+          "lat": 40.5,
+          "lon": 151.4,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 120,
+          "validZ": "230000Z",
+          "lat": 45.9,
+          "lon": 164.6,
+          "maxWindKt": 45,
+          "gustKt": 55
+        }
+      ],
+      "spot": {
+        "distanceNm": 1276,
+        "bearingDeg": 80,
+        "closestApproach": {
+          "distanceNm": 1000,
+          "tau": 36,
+          "validZ": "191200Z",
+          "maxWindKt": 65
+        }
+      },
+      "reasoningWarningNumber": "011",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
+    }
+  ]
+}
