@@ -13,7 +13,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <!-- ?v= is a cache-buster for the assets themselves. Bump it, ASSET_VERSION
      in js/app.js, and version.json together on any css/js change. -->
-<link rel="stylesheet" href="css/style.css?v=2026-09-18a">
+<link rel="stylesheet" href="css/style.css?v=2026-09-18b">
 </head>
 <body>
 <header class="site-header">
@@ -182,7 +182,9 @@
            County. Most days carry no phenomenon or solar term, so those
            lines simply don't render — see renderAstronomy() in js/app.js. -->
       <div id="astronomy" class="astronomy"></div>
-      <p class="source-note astro-source">Sun, moon and astronomical calendar: CWA, Taitung County — <a href="https://www.cwa.gov.tw/V8/C/K/astronomy_day.html" target="_blank" rel="noopener">每日天文現象 ↗</a></p>
+      <!-- Only shown on days that actually have a solar term or an
+           astronomical phenomenon — see renderAstronomy(). -->
+      <p id="astroSource" class="source-note astro-source" hidden>Astronomical calendar: CWA, Taitung County — <a href="https://www.cwa.gov.tw/V8/E/K/astronomy_day.html" target="_blank" rel="noopener">Daily Astronomical Phenomena ↗</a></p>
     </div>
 
     <div class="subpanel">
@@ -239,6 +241,6 @@
   <p>Data sources: CWA (Central Weather Administration) Open Data, Open-Meteo (NOAA GFS-Wave), Windguru, surf-forecast.com, Windy, YouTube. For reference only — assess your own conditions before entering the water.</p>
 </footer>
 
-<script src="js/app.js?v=2026-09-18a"></script>
+<script src="js/app.js?v=2026-09-18b"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-09-18a";
+  var ASSET_VERSION = "2026-09-18b";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -950,11 +950,18 @@
      omitted rather than rendered as a dash. */
   function renderAstronomy(data) {
     var el = document.getElementById("astronomy");
+    var srcEl = document.getElementById("astroSource");
     if (!el) return;
+    function showSource(on) { if (srcEl) srcEl.hidden = !on; }
     try {
       var todayKey = new Date(Date.now() + 8 * 3600000).toISOString().slice(0, 10);
       var d = data && data.days && data.days[todayKey];
-      if (!d) { el.innerHTML = ""; return; }
+      if (!d) { el.innerHTML = ""; showSource(false); return; }
+
+      // The attribution line is for the calendar, so it only earns its space
+      // on days that have calendar content — most days have neither a solar
+      // term nor a phenomenon.
+      showSource(!!(d.solarTerm || (d.phenomena && d.phenomena.length)));
 
       var html = '<div class="astro-row">';
       if (d.sunrise) html += '<span class="astro-item">🌅 Sunrise <strong>' + d.sunrise + "</strong></span>";
@@ -978,6 +985,7 @@
       el.innerHTML = html;
     } catch (e) {
       el.innerHTML = "";
+      showSource(false);
     }
   }
 
