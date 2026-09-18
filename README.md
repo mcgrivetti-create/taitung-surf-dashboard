@@ -509,3 +509,32 @@ The reference starts from JTWC's stated past-6h movement where available,
 not the first forecast leg — otherwise a storm already mid-turn reads as
 travelling straight. Rendered as `Turning NW 24–36h · NNE 48–60h · NE
 72–96h`, capped at three turns; a storm that never turns says so instead.
+
+### Swell arrival
+
+Two independent answers to "when does this storm's swell land", shown
+together because the way they disagree is itself informative.
+
+1. **The wave model's own arrival** — the first point in the Open-Meteo
+   swell series where the period steps clearly above its current baseline
+   (`detectSwellArrival`: ≥2s over the median of the first 6h, and ≥10s so
+   windsea doesn't qualify). This is a full spectral model's answer,
+   including refraction and island shadowing, and it's the number to trust.
+   The period used is **whatever the model actually shows at the jump** —
+   never a hardcoded figure.
+2. **A great-circle estimate** from deep-water group velocity,
+   `Cg = gT/4π ≈ 1.52·T` knots, over the storm's current distance.
+
+**They routinely differ, and that's physics rather than a bug.** For Dujuan
+the model says +47h while the great-circle sum says ~81h. Swell disperses:
+the first energy to arrive is longer-period and therefore faster than the
+period the model reports once the train is established. So the great-circle
+figure is effectively an upper bound on arrival time, and is labelled
+"rough" rather than presented as a forecast.
+
+**Attribution matters with more than one storm.** The swell is credited to a
+system only when the swell bearing is within 45° of that storm's bearing
+from Donghe, and to the closest match if several qualify. For Dujuan the
+offset is 6°, so it's unambiguous — but a swell arriving from a direction no
+active storm explains is correctly left unattributed rather than pinned on
+whichever storm happens to be listed first.

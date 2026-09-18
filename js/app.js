@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-09-18d";
+  var ASSET_VERSION = "2026-09-18e";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -982,6 +982,29 @@
       } else if (s.motion && s.motion.legs && s.motion.legs.length) {
         html += '<p class="typhoon-motion"><span class="typhoon-label">Track</span> holding <strong>' +
           degToCompass(s.motion.legs[0].heading) + "</strong> through the forecast period</p>";
+      }
+
+      // Swell arrival. The model's own timing leads because it accounts for
+      // refraction and island shadowing; the great-circle figure follows as a
+      // rough cross-check, and the two disagreeing is expected (dispersion
+      // means the first energy to arrive runs faster than the reported
+      // period). Only shown when the swell bearing actually matches this
+      // storm — see the attribution in buildTyphoon.
+      if (s.swell) {
+        var sw = s.swell;
+        var when = "";
+        try {
+          var dt = new Date(sw.targetTime);
+          when = dt.toLocaleDateString("en-US", { weekday: "short" }) + " " +
+            dt.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false });
+        } catch (e) { /* fall back to hours only */ }
+        var bits = "<strong>" + n1(sw.periodS) + "s</strong> from " + degToCompass(sw.dirDeg) +
+          " in ~" + sw.hoursAhead + "h" + (when ? " (" + when + ")" : "");
+        if (sw.peakHeightM) bits += ", building to <strong>" + n1(sw.peakHeightM) + "m</strong>";
+        if (sw.greatCircleHours) {
+          bits += ' <span class="typhoon-rough">· great-circle est. ~' + sw.greatCircleHours + "h (rough)</span>";
+        }
+        html += '<p class="typhoon-swell"><span class="typhoon-label">Swell</span> ' + bits + "</p>";
       }
 
       // JTWC's own change summary, quoted rather than paraphrased.

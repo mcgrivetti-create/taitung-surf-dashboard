@@ -1069,7 +1069,63 @@ async function enrichSystem(s, nowMs) {
   s.motion = motionOutlook(s);
 }
 
-async function buildTyphoon() {
+/* --- Swell arrival ------------------------------------------------------
+ * Two independent answers to "when does this storm's swell land", shown
+ * together because they disagree in an informative way.
+ *
+ * 1. The wave model's own arrival: the first point in the Open-Meteo swell
+ *    series where the period steps clearly above its current baseline. That
+ *    is a full spectral model's answer, including refraction and island
+ *    shadowing, and it is the number to trust.
+ *
+ * 2. A great-circle estimate from deep-water group velocity,
+ *    Cg = gT/4π ≈ 1.52·T knots, over the storm's current distance.
+ *
+ * These routinely differ — for Dujuan the model says +47h while the
+ * great-circle sum says ~81h — and the reason is real physics, not a bug:
+ * swell disperses, so the first energy to arrive is longer-period and
+ * faster than the period the model reports once the train is established.
+ * The estimate is therefore an upper bound on arrival time, and is labelled
+ * as rough rather than dressed up as a forecast.
+ */
+const SWELL_JUMP_MIN_S = 10;   // below this it's windsea, not groundswell
+const SWELL_JUMP_DELTA_S = 2;  // rise over baseline that counts as a new train
+const SWELL_DIR_TOLERANCE = 45; // how close the swell bearing must be to blame a storm
+
+/** knots, deep-water group velocity for a given period */
+function groupVelocityKt(periodS) { return 1.5174 * periodS; }
+
+function detectSwellArrival(series, nowMs) {
+  if (!series || series.length < 8) return null;
+  const periods = series.map((p) => p.swellPeriod).filter((v) => isFinite(v));
+  if (periods.length < 8) return null;
+  const firstSix = periods.slice(0, 6).slice().sort((a, b) => a - b);
+  const baseline = firstSix[Math.floor(firstSix.length / 2)];
+
+  for (let i = 0; i < series.length; i++) {
+    const p = series[i];
+    if (!isFinite(p.swellPeriod)) continue;
+    if (p.swellPeriod >= baseline + SWELL_JUMP_DELTA_S && p.swellPeriod >= SWELL_JUMP_MIN_S) {
+      // Peak of the train that follows, so the panel can say how big it gets.
+      let peakH = 0;
+      for (let j = i; j < Math.min(series.length, i + 48); j++) {
+        if (isFinite(series[j].swellHeight) && series[j].swellHeight > peakH) peakH = series[j].swellHeight;
+      }
+      return {
+        targetTime: p.targetTime,
+        hoursAhead: Math.round((new Date(p.targetTime).getTime() - nowMs) / 3600000),
+        periodS: p.swellPeriod,
+        heightM: p.swellHeight,
+        peakHeightM: peakH || null,
+        dirDeg: p.swellDirectionDeg,
+        baselineS: baseline,
+      };
+    }
+  }
+  return null;
+}
+
+async function buildTyphoon(results) {
   const nowMs = Date.now();
   const [rssRes, abpwRes] = await Promise.all([fetch(JTWC_RSS), fetch(JTWC_ABPW)]);
   if (!rssRes.ok) throw new Error(`JTWC rss -> HTTP ${rssRes.status}`);
@@ -1084,6 +1140,28 @@ async function buildTyphoon() {
   for (const s of parsed.systems) {
     s.cwaTrackImage = await resolveCwaTrackImage(s.name, nowMs).catch(() => null);
     await enrichSystem(s, nowMs);
+  }
+
+  // Blame the incoming swell on a storm only when the bearings agree. With
+  // several systems active, the swell is attributed to the one it actually
+  // lines up with rather than to all of them.
+  const arrival = detectSwellArrival(((results || {})["openwave.json"] || {}).series, nowMs);
+  if (arrival && isFinite(arrival.dirDeg)) {
+    let best = null;
+    for (const s of parsed.systems) {
+      if (!s.spot || !isFinite(s.spot.bearingDeg)) continue;
+      const off = angleDiff(arrival.dirDeg, s.spot.bearingDeg);
+      if (off <= SWELL_DIR_TOLERANCE && (!best || off < best.off)) best = { s, off };
+    }
+    if (best) {
+      const gcHours = best.s.spot.distanceNm
+        ? Math.round(best.s.spot.distanceNm / groupVelocityKt(arrival.periodS))
+        : null;
+      best.s.swell = Object.assign({}, arrival, {
+        bearingOffsetDeg: Math.round(best.off),
+        greatCircleHours: gcHours,
+      });
+    }
   }
 
   // Archive every cycle. JTWC overwrites these files in place and keeps no
@@ -1111,6 +1189,7 @@ async function buildTyphoon() {
     movingToward: s.movingToward, movingKt: s.movingKt,
     forecasts: s.forecasts, spot: s.spot,
     motion: s.motion,
+    swell: s.swell || null,
     reasoningWarningNumber: s.reasoning ? s.reasoning.warningNumber : null,
     significantForecastChanges: s.reasoning ? s.reasoning.significantForecastChanges : null,
     confidence: s.reasoning ? s.reasoning.confidence : null,
@@ -1156,7 +1235,7 @@ async function run() {
     { file: "buoy.json", name: "O-B0075-001 buoy / sea state", build: buildBuoy },
     { file: "openwave.json", name: "Open-Meteo marine (GFS-Wave)", build: buildOpenWave },
     { file: "astronomy.json", name: "CWA astronomy (sun/moon/calendar)", build: buildAstronomy },
-    { file: "typhoon.json", name: "JTWC typhoon news (W Pacific)", build: buildTyphoon },
+    { file: "typhoon.json", name: "JTWC typhoon news (W Pacific)", build: () => buildTyphoon(results) },
   ];
 
   const status = [];
