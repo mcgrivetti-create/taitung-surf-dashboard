@@ -99,6 +99,181 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "24W",
+      "name": "Dujuan",
+      "designation": "Tropical Storm",
+      "warningNumber": "012",
+      "issuedAt": "2026-09-18T09:00:00.000Z",
+      "positionZ": "180600Z",
+      "lat": 25.9,
+      "lon": 142.9,
+      "maxWindKt": 60,
+      "gustKt": 75,
+      "pressureMb": 980,
+      "seasFt": 26,
+      "movingToward": 300,
+      "movingKt": 14,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "181800Z",
+          "lat": 26.5,
+          "lon": 140.8,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 24,
+          "validZ": "190600Z",
+          "lat": 27.6,
+          "lon": 139.2,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 36,
+          "validZ": "191800Z",
+          "lat": 29.1,
+          "lon": 138.3,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 48,
+          "validZ": "200600Z",
+          "lat": 30.7,
+          "lon": 138.3,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 60,
+          "validZ": "201800Z",
+          "lat": 33.2,
+          "lon": 139.6,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 72,
+          "validZ": "210600Z",
+          "lat": 35.6,
+          "lon": 142.4,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 96,
+          "validZ": "220600Z",
+          "lat": 41.5,
+          "lon": 152.3,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 120,
+          "validZ": "230600Z",
+          "lat": 46.8,
+          "lon": 167.2,
+          "maxWindKt": 45,
+          "gustKt": 55
+        }
+      ],
+      "spot": {
+        "distanceNm": 1191,
+        "bearingDeg": 77,
+        "closestApproach": {
+          "distanceNm": 986,
+          "tau": 36,
+          "validZ": "191800Z",
+          "maxWindKt": 65
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 300,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 288
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 308
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 332
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 0
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 23
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 43
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 50
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 59
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "headingDeg": 0,
+            "deltaDeg": 60
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "headingDeg": 43,
+            "deltaDeg": 43
+          }
+        ]
+      },
+      "swell": {
+        "targetTime": "2026-09-20T03:00:00.000Z",
+        "hoursAhead": 43,
+        "periodS": 10.35,
+        "heightM": 0.94,
+        "dirDeg": 86,
+        "baselineS": 7.45,
+        "peak": {
+          "targetTime": "2026-09-21T00:00:00.000Z",
+          "heightM": 1.84,
+          "periodS": 8.45,
+          "dirDeg": 74
+        },
+        "bearingOffsetDeg": 9
+      },
+      "reasoningWarningNumber": "012",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "HIGH",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }

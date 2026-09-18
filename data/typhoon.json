@@ -1,112 +1,105 @@
 {
-  "fetchedAt": "2026-09-18T07:19:11.921Z",
+  "fetchedAt": "2026-09-18T08:20:07.753Z",
   "systems": [
     {
       "designation": "Tropical Storm",
       "id": "24W",
       "name": "Dujuan",
       "headline": "Tropical Storm 24W (Dujuan)",
-      "warningNumber": "011",
-      "issuedZ": "18/0300Z",
-      "issuedAt": "2026-09-18T03:00:00.000Z",
+      "warningNumber": "012",
+      "issuedZ": "18/0900Z",
+      "issuedAt": "2026-09-18T09:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2426.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2426web.txt",
       "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202609180600-96_DUJUAN_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "181200Z",
-          "lat": 25.7,
-          "lon": 141.9,
+          "validZ": "181800Z",
+          "lat": 26.5,
+          "lon": 140.8,
           "maxWindKt": 60,
           "gustKt": 75
         },
         {
           "tau": 24,
-          "validZ": "190000Z",
-          "lat": 26.7,
-          "lon": 140.2,
-          "maxWindKt": 60,
-          "gustKt": 75
+          "validZ": "190600Z",
+          "lat": 27.6,
+          "lon": 139.2,
+          "maxWindKt": 65,
+          "gustKt": 80
         },
         {
           "tau": 36,
-          "validZ": "191200Z",
-          "lat": 28.1,
-          "lon": 138.9,
+          "validZ": "191800Z",
+          "lat": 29.1,
+          "lon": 138.3,
           "maxWindKt": 65,
           "gustKt": 80
         },
         {
           "tau": 48,
-          "validZ": "200000Z",
-          "lat": 30.1,
-          "lon": 138.6,
+          "validZ": "200600Z",
+          "lat": 30.7,
+          "lon": 138.3,
           "maxWindKt": 65,
           "gustKt": 80
         },
         {
           "tau": 60,
-          "validZ": "201200Z",
-          "lat": 32.3,
-          "lon": 139.3,
-          "maxWindKt": 65,
-          "gustKt": 80
+          "validZ": "201800Z",
+          "lat": 33.2,
+          "lon": 139.6,
+          "maxWindKt": 60,
+          "gustKt": 75
         },
         {
           "tau": 72,
-          "validZ": "210000Z",
-          "lat": 34.7,
-          "lon": 141.4,
+          "validZ": "210600Z",
+          "lat": 35.6,
+          "lon": 142.4,
           "maxWindKt": 60,
           "gustKt": 75
         },
         {
           "tau": 96,
-          "validZ": "220000Z",
-          "lat": 40.5,
-          "lon": 151.4,
+          "validZ": "220600Z",
+          "lat": 41.5,
+          "lon": 152.3,
           "maxWindKt": 55,
           "gustKt": 70
         },
         {
           "tau": 120,
-          "validZ": "230000Z",
-          "lat": 45.9,
-          "lon": 164.6,
+          "validZ": "230600Z",
+          "lat": 46.8,
+          "lon": 167.2,
           "maxWindKt": 45,
           "gustKt": 55
         }
       ],
-      "intensityChangeNote": "DOWNGRADED FROM TYPHOON 24W",
-      "positionZ": "180000Z",
-      "lat": 25.1,
-      "lon": 144.5,
-      "movingToward": 280,
-      "movingKt": 15,
+      "positionZ": "180600Z",
+      "lat": 25.9,
+      "lon": 142.9,
+      "movingToward": 300,
+      "movingKt": 14,
       "maxWindKt": 60,
       "gustKt": 75,
-      "pressureMb": 981,
-      "seasFt": 24,
-      "nextWarnings": [
-        "180900Z",
-        "181500Z",
-        "182100Z",
-        "190300Z"
-      ],
-      "geoReference": "175 NM EAST OF IWO TO",
+      "pressureMb": 980,
+      "seasFt": 26,
+      "geoReference": "109 NM NORTHEAST OF IWO TO",
       "reasoning": {
-        "warningNumber": "011",
+        "warningNumber": "012",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 24,
+        "seasFt": 26,
         "environment": "FAVORABLE",
         "vws": "10-15 KTS",
         "sst": "28-29 CELSIUS",
-        "outflow": "MODERATE POLEWARD",
-        "steering": "SOUTHWESTERN FLANK OF A SUBTROPICAL RIDGE (STR) WELL EAST OF HONSHU",
+        "outflow": "STRONG POLEWARD",
+        "steering": "THE SOUTHWESTERN PERIPHERY OF A SUBTROPICAL RIDGE (STR) CENTERED FAR TO THE NORTHEAST",
         "confidence": {
           "track0072": "HIGH",
-          "track72120": "MEDIUM",
+          "track72120": "HIGH",
           "intensity0072": "MEDIUM",
           "intensity72120": "MEDIUM"
         }
@@ -114,83 +107,77 @@
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2426prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 1276,
-        "bearingDeg": 80,
+        "distanceNm": 1191,
+        "bearingDeg": 77,
         "closestApproach": {
-          "distanceNm": 1000,
+          "distanceNm": 986,
           "tau": 36,
-          "validZ": "191200Z",
+          "validZ": "191800Z",
           "maxWindKt": 65
         }
       },
       "motion": {
-        "currentHeadingDeg": 280,
+        "currentHeadingDeg": 300,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 285
+            "heading": 288
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 304
+            "heading": 308
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 321
+            "heading": 332
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 353
+            "heading": 0
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 15
+            "heading": 23
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 36
+            "heading": 43
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 51
+            "heading": 50
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 56
+            "heading": 59
           }
         ],
         "turns": [
           {
-            "fromTau": 24,
-            "toTau": 36,
-            "headingDeg": 321,
-            "deltaDeg": 41
+            "fromTau": 36,
+            "toTau": 48,
+            "headingDeg": 0,
+            "deltaDeg": 60
           },
           {
-            "fromTau": 48,
-            "toTau": 60,
-            "headingDeg": 15,
-            "deltaDeg": 54
-          },
-          {
-            "fromTau": 72,
-            "toTau": 96,
-            "headingDeg": 51,
-            "deltaDeg": 36
+            "fromTau": 60,
+            "toTau": 72,
+            "headingDeg": 43,
+            "deltaDeg": 43
           }
         ]
       },
       "swell": {
         "targetTime": "2026-09-20T03:00:00.000Z",
-        "hoursAhead": 44,
+        "hoursAhead": 43,
         "periodS": 10.35,
         "heightM": 0.94,
         "dirDeg": 86,
@@ -201,9 +188,16 @@
           "periodS": 8.45,
           "dirDeg": 74
         },
-        "bearingOffsetDeg": 6
+        "bearingOffsetDeg": 9
       },
-      "changes": null
+      "changes": {
+        "previousWarningNumber": "011",
+        "previousIssuedAt": "2026-09-18T03:00:00.000Z",
+        "maxWindKtDelta": 0,
+        "pressureMbDelta": -1,
+        "seasFtDelta": 2,
+        "closestApproachNmDelta": -14
+      }
     }
   ],
   "invests": [],
