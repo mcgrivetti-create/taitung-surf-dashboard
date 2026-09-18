@@ -512,29 +512,35 @@ travelling straight. Rendered as `Turning NW 24–36h · NNE 48–60h · NE
 
 ### Swell arrival
 
-Two independent answers to "when does this storm's swell land", shown
-together because the way they disagree is itself informative.
+A plain reading of the Open-Meteo swell series, rendered as a sentence:
 
-1. **The wave model's own arrival** — the first point in the Open-Meteo
-   swell series where the period steps clearly above its current baseline
-   (`detectSwellArrival`: ≥2s over the median of the first 6h, and ≥10s so
-   windsea doesn't qualify). This is a full spectral model's answer,
-   including refraction and island shadowing, and it's the number to trust.
-   The period used is **whatever the model actually shows at the jump** —
-   never a hardcoded figure.
-2. **A great-circle estimate** from deep-water group velocity,
-   `Cg = gT/4π ≈ 1.52·T` knots, over the storm's current distance.
+> Swell expected to arrive Sun, Sep 20, 11:00 (0.9m, 10.4s from E) and grow
+> to 1.8m, 8.5s by Mon, Sep 21, 08:00
 
-**They routinely differ, and that's physics rather than a bug.** For Dujuan
-the model says +47h while the great-circle sum says ~81h. Swell disperses:
-the first energy to arrive is longer-period and therefore faster than the
-period the model reports once the train is established. So the great-circle
-figure is effectively an upper bound on arrival time, and is labelled
-"rough" rather than presented as a forecast.
+`detectSwellArrival` takes **arrival** as the first point where the swell
+period steps clearly above its current baseline (>=2s over the median of the
+first 6h, and >=10s so windsea doesn t qualify), and **peak** as the largest
+swell height after that. The period used is always whatever the model
+actually shows — never a hardcoded figure.
+
+Each height is quoted with **its own** period. They differ (10.4s at arrival
+vs 8.5s at the peak) because the long-period forerunner lands first and the
+sea shortens as the swell builds; quoting the arrival period against the
+peak height would overstate what the peak looks like.
+
+An earlier version also showed a great-circle estimate from deep-water group
+velocity. It was dropped: it disagreed with the model by ~34h for Dujuan
+(dispersion again — the first energy travels faster than the period
+eventually reported), and a second, worse number beside a spectral model s
+answer was more confusing than useful.
 
 **Attribution matters with more than one storm.** The swell is credited to a
-system only when the swell bearing is within 45° of that storm's bearing
-from Donghe, and to the closest match if several qualify. For Dujuan the
-offset is 6°, so it's unambiguous — but a swell arriving from a direction no
-active storm explains is correctly left unattributed rather than pinned on
-whichever storm happens to be listed first.
+system only when the swell bearing is within 45 degrees of that storm s
+bearing from Donghe, and to the closest match if several qualify. For Dujuan
+the offset is 6 degrees. A swell arriving from a direction no active storm
+explains is left unattributed rather than pinned on whichever storm happens
+to be listed first.
+
+**Times are pinned to Asia/Taipei**, not device-local, so JTWC s Zulu
+timestamps and the swell times read as Donghe times even when the page is
+opened from elsewhere.

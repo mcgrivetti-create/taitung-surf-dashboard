@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-09-18e";
+  var ASSET_VERSION = "2026-09-18f";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -945,7 +945,8 @@
       html += "<h3>" + escapeHtml(s.headline) + "</h3>";
       var meta = [];
       if (s.warningNumber) meta.push("Warning #" + escapeHtml(s.warningNumber));
-      if (s.issuedZ) meta.push("issued " + escapeHtml(s.issuedZ));
+      if (s.issuedAt) meta.push("issued " + escapeHtml(fmtDonghe(s.issuedAt)));
+      else if (s.issuedZ) meta.push("issued " + escapeHtml(s.issuedZ));
       if (meta.length) html += '<p class="typhoon-meta">' + meta.join(" · ") + "</p>";
 
       // Hard numbers, straight from the warning text — no interpretation.
@@ -992,19 +993,14 @@
       // storm — see the attribution in buildTyphoon.
       if (s.swell) {
         var sw = s.swell;
-        var when = "";
-        try {
-          var dt = new Date(sw.targetTime);
-          when = dt.toLocaleDateString("en-US", { weekday: "short" }) + " " +
-            dt.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false });
-        } catch (e) { /* fall back to hours only */ }
-        var bits = "<strong>" + n1(sw.periodS) + "s</strong> from " + degToCompass(sw.dirDeg) +
-          " in ~" + sw.hoursAhead + "h" + (when ? " (" + when + ")" : "");
-        if (sw.peakHeightM) bits += ", building to <strong>" + n1(sw.peakHeightM) + "m</strong>";
-        if (sw.greatCircleHours) {
-          bits += ' <span class="typhoon-rough">· great-circle est. ~' + sw.greatCircleHours + "h (rough)</span>";
+        var txt = "Swell expected to arrive <strong>" + fmtDonghe(sw.targetTime) + "</strong> (" +
+          n1(sw.heightM) + "m, " + n1(sw.periodS) + "s from " + degToCompass(sw.dirDeg) + ")";
+        if (sw.peak && sw.peak.targetTime !== sw.targetTime) {
+          txt += " and grow to <strong>" + n1(sw.peak.heightM) + "m, " + n1(sw.peak.periodS) + "s</strong> by " +
+            fmtDonghe(sw.peak.targetTime);
         }
-        html += '<p class="typhoon-swell"><span class="typhoon-label">Swell</span> ' + bits + "</p>";
+        // No "Swell" label here — the sentence already starts with the word.
+        html += '<p class="typhoon-swell">🌊 ' + txt + "</p>";
       }
 
       // JTWC's own change summary, quoted rather than paraphrased.
@@ -1102,6 +1098,20 @@
      announced. Until two changes have been seen there's no cadence to
      infer and only the last update is shown. */
   var updateLog = null;
+
+  // JTWC works in Zulu; this page is read standing on a beach in Taiwan.
+  // Pinned to Asia/Taipei rather than device-local so the times stay Donghe
+  // times even when the page is opened from somewhere else.
+  var DONGHE_TZ = "Asia/Taipei";
+  function fmtDonghe(iso) {
+    if (!iso) return "—";
+    try {
+      return new Date(iso).toLocaleString("en-US", {
+        timeZone: DONGHE_TZ, weekday: "short", month: "short", day: "numeric",
+        hour: "2-digit", minute: "2-digit", hour12: false,
+      });
+    } catch (e) { return iso; }
+  }
 
   function fmtClock(iso) {
     try {

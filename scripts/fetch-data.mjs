@@ -1070,30 +1070,27 @@ async function enrichSystem(s, nowMs) {
 }
 
 /* --- Swell arrival ------------------------------------------------------
- * Two independent answers to "when does this storm's swell land", shown
- * together because they disagree in an informative way.
+ * A plain reading of the Open-Meteo swell series: when the train arrives and
+ * what it looks like then, plus when it peaks and what it looks like at the
+ * peak. Arrival is the first point where the swell period steps clearly
+ * above its current baseline; the peak is the largest swell height after
+ * that.
  *
- * 1. The wave model's own arrival: the first point in the Open-Meteo swell
- *    series where the period steps clearly above its current baseline. That
- *    is a full spectral model's answer, including refraction and island
- *    shadowing, and it is the number to trust.
+ * Arrival period and peak period differ — the long-period forerunner lands
+ * first and the sea shortens as the swell builds — so each height is quoted
+ * with its own period rather than one period standing for both.
  *
- * 2. A great-circle estimate from deep-water group velocity,
- *    Cg = gT/4π ≈ 1.52·T knots, over the storm's current distance.
- *
- * These routinely differ — for Dujuan the model says +47h while the
- * great-circle sum says ~81h — and the reason is real physics, not a bug:
- * swell disperses, so the first energy to arrive is longer-period and
- * faster than the period the model reports once the train is established.
- * The estimate is therefore an upper bound on arrival time, and is labelled
- * as rough rather than dressed up as a forecast.
+ * An earlier version also carried a great-circle estimate from deep-water
+ * group velocity. It was dropped: it disagreed with the model by ~34h for
+ * Dujuan (dispersion means the first energy travels faster than the period
+ * eventually reported), and a second, worse number next to a spectral
+ * model's answer was more confusing than useful.
  */
 const SWELL_JUMP_MIN_S = 10;   // below this it's windsea, not groundswell
 const SWELL_JUMP_DELTA_S = 2;  // rise over baseline that counts as a new train
 const SWELL_DIR_TOLERANCE = 45; // how close the swell bearing must be to blame a storm
 
 /** knots, deep-water group velocity for a given period */
-function groupVelocityKt(periodS) { return 1.5174 * periodS; }
 
 function detectSwellArrival(series, nowMs) {
   if (!series || series.length < 8) return null;
@@ -1106,19 +1103,27 @@ function detectSwellArrival(series, nowMs) {
     const p = series[i];
     if (!isFinite(p.swellPeriod)) continue;
     if (p.swellPeriod >= baseline + SWELL_JUMP_DELTA_S && p.swellPeriod >= SWELL_JUMP_MIN_S) {
-      // Peak of the train that follows, so the panel can say how big it gets.
-      let peakH = 0;
-      for (let j = i; j < Math.min(series.length, i + 48); j++) {
-        if (isFinite(series[j].swellHeight) && series[j].swellHeight > peakH) peakH = series[j].swellHeight;
+      // Peak of the train that follows — reported with the period that comes
+      // WITH the peak, not the arrival period. They differ (the long-period
+      // forerunner arrives first and the sea shortens as it builds), and
+      // quoting the arrival period against the peak height would overstate
+      // what the peak actually looks like.
+      let peak = null;
+      for (let j = i; j < series.length; j++) {
+        const q = series[j];
+        if (!isFinite(q.swellHeight)) continue;
+        if (!peak || q.swellHeight > peak.heightM) {
+          peak = { targetTime: q.targetTime, heightM: q.swellHeight, periodS: q.swellPeriod, dirDeg: q.swellDirectionDeg };
+        }
       }
       return {
         targetTime: p.targetTime,
         hoursAhead: Math.round((new Date(p.targetTime).getTime() - nowMs) / 3600000),
         periodS: p.swellPeriod,
         heightM: p.swellHeight,
-        peakHeightM: peakH || null,
         dirDeg: p.swellDirectionDeg,
         baselineS: baseline,
+        peak,
       };
     }
   }
@@ -1154,13 +1159,7 @@ async function buildTyphoon(results) {
       if (off <= SWELL_DIR_TOLERANCE && (!best || off < best.off)) best = { s, off };
     }
     if (best) {
-      const gcHours = best.s.spot.distanceNm
-        ? Math.round(best.s.spot.distanceNm / groupVelocityKt(arrival.periodS))
-        : null;
-      best.s.swell = Object.assign({}, arrival, {
-        bearingOffsetDeg: Math.round(best.off),
-        greatCircleHours: gcHours,
-      });
+      best.s.swell = Object.assign({}, arrival, { bearingOffsetDeg: Math.round(best.off) });
     }
   }
 
