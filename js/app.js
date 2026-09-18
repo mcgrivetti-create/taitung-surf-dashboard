@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-09-18f";
+  var ASSET_VERSION = "2026-09-18g";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -1063,10 +1063,23 @@
     });
 
     if (invests.length) {
-      html += '<div class="typhoon-card typhoon-invests"><h3>Areas being watched</h3><p class="typhoon-meta">' +
-        invests.map(function (i) {
-          return "Invest " + escapeHtml(i.id) + (i.potential ? " — " + escapeHtml(i.potential) + " development potential" : "");
-        }).join(" · ") + "</p>";
+      html += '<div class="typhoon-card typhoon-invests"><h3>Areas being watched</h3>';
+      invests.forEach(function (iv) {
+        var line = "<strong>Invest " + escapeHtml(iv.id || "—") + "</strong>";
+        if (iv.potential) line += " — " + escapeHtml(iv.potential) + " development potential";
+        var det = [];
+        if (iv.distanceNm) {
+          det.push(Math.round(iv.distanceNm * 1.852) + " km " + degToCompass(iv.bearingDeg) + " of Donghe");
+        }
+        // Left in JTWC's own casing — lowercasing turns "468 NM SOUTH OF
+        // GUAM" into "468 nm south of guam", mangling the unit and the
+        // place name. It already renders small and dim.
+        if (iv.geoReference) det.push(escapeHtml(iv.geoReference));
+        if (iv.windKtLow && iv.windKtHigh) det.push(iv.windKtLow + "–" + iv.windKtHigh + " kt");
+        if (iv.pressureMb) det.push(iv.pressureMb + " mb");
+        html += '<p class="typhoon-invest-line">' + line +
+          (det.length ? '<br><span class="typhoon-rough">' + det.join(" · ") + "</span>" : "") + "</p>";
+      });
       // No per-invest graphic exists, so the basin-wide advisory satellite
       // image is what lets you judge whether a disturbance is organising.
       if (data.investSatellite) {

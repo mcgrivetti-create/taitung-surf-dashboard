@@ -826,15 +826,45 @@ function parseJtwcRss(xml, nowMs) {
  * links the full advisory so nothing depends on the parse being complete.
  */
 function parseInvests(txt) {
+  // Section 1 only — "WESTERN NORTH PACIFIC AREA (180 TO MALAY PENINSULA)",
+  // which includes the South China Sea. Section 2 is the South Pacific and
+  // has an identically-named subsection, so scoping first is essential.
   const sec1 = (txt.match(/1\.\s*WESTERN NORTH PACIFIC AREA[\s\S]*?(?=\n\s*2\.\s|$)/i) || [])[0] || "";
   const dist = (sec1.match(/B\.\s*TROPICAL DISTURBANCE SUMMARY:?([\s\S]*?)(?=\n\s*C\.\s|$)/i) || [])[1] || "";
-  if (!dist || /^\s*NONE/i.test(dist)) return [];
-  const ids = [...new Set([...dist.matchAll(/\b(9\d[WSP])\b/gi)].map((m) => m[1].toUpperCase()))];
-  return ids.map((id) => {
-    const after = dist.split(new RegExp("INVEST\\s*" + id, "i"))[1] || dist;
-    const pot = (after.match(/THE POTENTIAL FOR.*?(?:IS|REMAINS)\s+(LOW|MEDIUM|HIGH)/is) || [])[1] || null;
-    return { id, potential: pot ? pot.toUpperCase() : null };
-  });
+  if (!dist || /^\s*NONE/i.test(dist.trim())) return [];
+
+  const out = [];
+  for (const m of dist.matchAll(/\((\d+)\)\s([\s\S]*?)(?=\n\s*\(\d+\)|$)/g)) {
+    // The bulletin hard-wraps at ~70 columns, splitting values mid-token —
+    // "NEAR 5.7N \n146.1E" is one coordinate pair. Normalise whitespace
+    // before matching anything or every field breaks at a line end.
+    const p = m[2].replace(/\s+/g, " ").trim();
+    if (!p || /NO OTHER SUSPECT AREAS/i.test(p)) continue;
+
+    const id = (p.match(/INVEST\s+(\d{2}[WSEPC])/i) || [])[1] || null;
+    const pos = p.match(/NEAR\s+([\d.]+)\s*([NS])\s+([\d.]+)\s*([EW])/i);
+    const geo = p.match(/APPROXIMATELY\s+(\d+)\s*NM\s+([A-Z\- ]+?)\s+OF\s+([A-Z\- .']+?)[.,]/i);
+    const wind = p.match(/MAXIMUM SUSTAINED SURFACE WINDS ARE ESTIMATED AT\s+(\d+)\s*TO\s*(\d+)\s*KNOTS/i);
+    const pres = p.match(/MINIMUM SEA LEVEL PRESSURE IS (?:ESTIMATED TO BE\s+)?NEAR\s+(\d+)\s*MB/i);
+    const pot = p.match(/POTENTIAL FOR THE DEVELOPMENT OF A SIGNIFICANT TROPICAL CYCLONE WITHIN THE NEXT\s+\d+\s+HOURS IS\s+(LOW|MEDIUM|HIGH)/i);
+
+    const rec = {
+      id,
+      potential: pot ? pot[1].toUpperCase() : null,
+      geoReference: geo ? `${geo[1]} NM ${geo[2].trim()} OF ${geo[3].trim()}` : null,
+      windKtLow: wind ? +wind[1] : null,
+      windKtHigh: wind ? +wind[2] : null,
+      pressureMb: pres ? +pres[1] : null,
+    };
+    if (pos) {
+      rec.lat = signedLatLon(pos[1], pos[2]);
+      rec.lon = signedLatLon(pos[3], pos[4]);
+      rec.distanceNm = Math.round(distanceNm(SPOT_LAT, SPOT_LON, rec.lat, rec.lon));
+      rec.bearingDeg = Math.round(bearingDeg(SPOT_LAT, SPOT_LON, rec.lat, rec.lon));
+    }
+    out.push(rec);
+  }
+  return out;
 }
 
 /** Most recent existing CWA 96h track image for a named storm, or null. */
@@ -1193,7 +1223,29 @@ async function buildTyphoon(results) {
     significantForecastChanges: s.reasoning ? s.reasoning.significantForecastChanges : null,
     confidence: s.reasoning ? s.reasoning.confidence : null,
   }));
-  const addedTyphoon = await appendMonthlyHistory("typhoon", newRecords, (r) => `${r.id}|${r.warningNumber}`);
+  // Invests go into the same monthly file as the storms, tagged by kind, so
+  // a system's whole life is visible in one place — 90W appearing as a
+  // disturbance, then the same area becoming 24W once JTWC starts warning.
+  // The IDs differ, so the lineage is read rather than joined automatically;
+  // having both series side by side is what makes that possible at all.
+  // Dedupe is by advisory issue time, since invests carry no warning number.
+  const investIssuedAt = (parsed.advisory && parsed.advisory.issuedAt) || new Date(nowMs).toISOString();
+  const investRecords = invests.map((iv) => ({
+    kind: "invest",
+    id: iv.id, issuedAt: investIssuedAt,
+    lat: iv.lat, lon: iv.lon,
+    potential: iv.potential, geoReference: iv.geoReference,
+    windKtLow: iv.windKtLow, windKtHigh: iv.windKtHigh, pressureMb: iv.pressureMb,
+    spot: (iv.distanceNm !== undefined)
+      ? { distanceNm: iv.distanceNm, bearingDeg: iv.bearingDeg }
+      : null,
+  }));
+
+  const addedTyphoon = await appendMonthlyHistory(
+    "typhoon",
+    [...newRecords.map((r) => Object.assign({ kind: "warning" }, r)), ...investRecords],
+    (r) => (r.kind === "invest" ? `invest|${r.id}|${r.issuedAt}` : `${r.id}|${r.warningNumber}`)
+  );
 
   return {
     data: {

@@ -544,3 +544,32 @@ to be listed first.
 **Times are pinned to Asia/Taipei**, not device-local, so JTWC s Zulu
 timestamps and the swell times read as Donghe times even when the page is
 opened from elsewhere.
+
+### Invest tracking
+
+Invests — disturbances JTWC is watching but not yet warning on — come from
+ABPW10 section 1 (`TROPICAL DISTURBANCE SUMMARY`), scoped to section 1
+because section 2 is the South Pacific and carries an identically-named
+subsection.
+
+Parsed per invest: designator, position, distance and bearing from Donghe,
+JTWC's geographic reference, estimated wind range, minimum pressure, and
+the stated 24-hour development potential (LOW / MEDIUM / HIGH). The
+basin-wide advisory satellite image is shown alongside, since JTWC publishes
+no per-invest graphic.
+
+**The bulletin hard-wraps at ~70 columns, splitting values mid-token** —
+`NEAR 5.7N \n146.1E` is one coordinate pair. Whitespace is normalised per
+paragraph before any field is matched; without that every regex breaks at a
+line end. The parser was written and tested against a real bulletin
+containing a live invest (ABPW10 of 2023-05-17, Invest 97W), not against
+the empty `NONE` state, since a parser validated only against "nothing here"
+is a parser that has never been tested.
+
+**Invests are archived into the same monthly file as the warnings**, tagged
+`kind: "invest"` versus `kind: "warning"`, deduped by advisory issue time
+since they carry no warning number. That's what records the pre-development
+phase: 90W appearing as a disturbance, then the same area becoming 24W once
+warnings begin. The designators differ, so lineage is read rather than
+joined automatically — but having both series in one place is what makes
+reading it possible at all.
