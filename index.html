@@ -13,7 +13,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <!-- ?v= is a cache-buster for the assets themselves. Bump it, ASSET_VERSION
      in js/app.js, and version.json together on any css/js change. -->
-<link rel="stylesheet" href="css/style.css?v=2026-09-17c">
+<link rel="stylesheet" href="css/style.css?v=2026-09-18a">
 </head>
 <body>
 <header class="site-header">
@@ -136,6 +136,7 @@
     <p class="source-note">Open-Meteo Marine API (NOAA NCEP GFS-Wave, free, no key) — independent of the widgets above, so it keeps working even if one of those is down</p>
     <div id="openWaveChart" class="data-block chart-block"><p class="loading">Loading…</p></div>
     <div id="openWaveTable" class="data-block" style="margin-top:0.6rem;"><p class="loading">Loading…</p></div>
+    <p id="openWaveUpdated" class="update-line"></p>
   </section>
 
   <!-- 2. CWA Coastal 3-day wave forecast -->
@@ -146,6 +147,7 @@
     <div id="coastalTable" class="data-block" style="margin-top:0.6rem;">
       <p class="loading">Loading…</p>
     </div>
+    <p id="coastalUpdated" class="update-line"></p>
   </section>
 
   <!-- 3. Other CWA numbers -->
@@ -156,6 +158,7 @@
       <h3>Township Forecast — Donghe</h3>
       <p class="source-note">F-D0047-039</p>
       <div id="townshipTable" class="data-block"><p class="loading">Loading…</p></div>
+      <p id="townshipUpdated" class="update-line"></p>
     </div>
 
     <div class="subpanel">
@@ -173,6 +176,13 @@
         <div id="moonWidget" class="moon-widget"></div>
       </div>
       <p class="cwa-link"><a href="https://www.cwa.gov.tw/V8/C/M/tide.html" target="_blank" rel="noopener">Full 30-day tide forecast on CWA ↗</a> <span class="en">(select the 成功臺東沿海 / Chenggong-Taitung coast region)</span></p>
+      <p id="tideUpdated" class="update-line"></p>
+
+      <!-- Sun/moon times and CWA's daily astronomical calendar for Taitung
+           County. Most days carry no phenomenon or solar term, so those
+           lines simply don't render — see renderAstronomy() in js/app.js. -->
+      <div id="astronomy" class="astronomy"></div>
+      <p class="source-note astro-source">Sun, moon and astronomical calendar: CWA, Taitung County — <a href="https://www.cwa.gov.tw/V8/C/K/astronomy_day.html" target="_blank" rel="noopener">每日天文現象 ↗</a></p>
     </div>
 
     <div class="subpanel">
@@ -229,6 +239,6 @@
   <p>Data sources: CWA (Central Weather Administration) Open Data, Open-Meteo (NOAA GFS-Wave), Windguru, surf-forecast.com, Windy, YouTube. For reference only — assess your own conditions before entering the water.</p>
 </footer>
 
-<script src="js/app.js?v=2026-09-17c"></script>
+<script src="js/app.js?v=2026-09-18a"></script>
 </body>
 </html>

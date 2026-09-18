@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-09-17c";
+  var ASSET_VERSION = "2026-09-18a";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -110,6 +110,32 @@
     for (var j = 0; j < WEATHER_PHRASES.length; j++) out = out.split(WEATHER_PHRASES[j][0]).join(WEATHER_PHRASES[j][1]);
     return out;
   }
+  // The 24 solar terms — a closed set, so unlike the weather phrases this is
+  // an exact lookup rather than best-effort.
+  var SOLAR_TERMS_EN = {
+    "立春": "Start of Spring", "雨水": "Rain Water", "驚蟄": "Awakening of Insects",
+    "春分": "Spring Equinox", "清明": "Clear and Bright", "穀雨": "Grain Rain",
+    "立夏": "Start of Summer", "小滿": "Grain Full", "芒種": "Grain in Ear",
+    "夏至": "Summer Solstice", "小暑": "Minor Heat", "大暑": "Major Heat",
+    "立秋": "Start of Autumn", "處暑": "End of Heat", "白露": "White Dew",
+    "秋分": "Autumn Equinox", "寒露": "Cold Dew", "霜降": "Frost's Descent",
+    "立冬": "Start of Winter", "小雪": "Minor Snow", "大雪": "Major Snow",
+    "冬至": "Winter Solstice", "小寒": "Minor Cold", "大寒": "Major Cold"
+  };
+  function translateSolarTerm(s) {
+    if (!s) return s;
+    return SOLAR_TERMS_EN[s.trim()] || s;
+  }
+
+  // "農曆8月8日" -> "Lunar 8/8" (8th day of the 8th lunar month). Leap months
+  // are prefixed 閏 in CWA's data; keep that marker rather than dropping it.
+  function translateLunarDate(s) {
+    if (!s) return s;
+    var m = ("" + s).match(/^農曆(閏?)(\d+)月(\d+)日$/);
+    if (!m) return s;
+    return "Lunar " + m[2] + "/" + m[3] + (m[1] ? " (leap)" : "");
+  }
+
   var TIDE_ZH_EN = { "滿潮": "High Tide", "乾潮": "Low Tide" };
   var STATION_NAME_EN = { "東河": "Donghe", "都歷": "Duli", "豐濱": "Fengbin" };
 
@@ -131,6 +157,20 @@
     try {
       var d = new Date(iso);
       return d.toLocaleString("en-US", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: false });
+    } catch (e) {
+      return iso;
+    }
+  }
+
+  // "9/18, Fri, 00:00" — the weekday matters on a 72h forecast table, where
+  // a bare date makes you count which day you're looking at.
+  function fmtTimeDow(iso) {
+    if (!iso) return "—";
+    try {
+      var d = new Date(iso);
+      return d.toLocaleDateString("en-US", { month: "numeric", day: "numeric" }) + ", " +
+        d.toLocaleDateString("en-US", { weekday: "short" }) + ", " +
+        d.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false });
     } catch (e) {
       return iso;
     }
@@ -489,7 +529,7 @@
       var rows = times.map(function (t, i) {
         var wd = windDirRaw(i), vd = waveDirRaw(i);
         return [
-          fmtTime(t.DataTime), n1(waveHeight(i)), n1(wavePeriod(i)),
+          fmtTimeDow(t.DataTime), n1(waveHeight(i)), n1(wavePeriod(i)),
           wavePowerKw(waveHeight(i), wavePeriod(i)),
           vd ? translateDirText(vd) : "",
           beaufortScale(windSpeed(i)),
@@ -845,9 +885,100 @@
     fetchJSON("data/buoy.json").then(renderBuoy).catch(function (e) { showError("buoyContainer", "Couldn't load this data (" + e.message + ")"); });
     fetchJSON("data/openwave.json").then(renderOpenWave).catch(function (e) { showError("openWaveChart", "Couldn't load this data (" + e.message + ")"); });
 
+    fetchJSON("data/astronomy.json").then(renderAstronomy).catch(function () { /* section stays empty */ });
+
+    fetchJSON("data/update-log.json").then(function (log) {
+      updateLog = log;
+      renderAllUpdateLines();
+    }).catch(function () { /* no update lines until the log exists */ });
+
     fetchJSON("data/meta.json")
       .then(renderFreshness)
       .catch(function () { renderFreshness(null); });
+  }
+
+  /* ---------- Per-forecast update lines ----------
+     "Last update / Next update" under each forecast, so you can tell which
+     model run you're reading. Neither CWA nor Open-Meteo publishes an issue
+     time in what we store, so scripts/fetch-data.mjs hashes each dataset
+     every run and records when the content actually changed — that moment
+     IS the new run landing. The next time is the median observed gap added
+     to the last change, and is marked "~" because it's inferred, not
+     announced. Until two changes have been seen there's no cadence to
+     infer and only the last update is shown. */
+  var updateLog = null;
+
+  function fmtClock(iso) {
+    try {
+      return new Date(iso).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false });
+    } catch (e) { return "—"; }
+  }
+
+  function renderUpdateLine(elId, sourceKey) {
+    var el = document.getElementById(elId);
+    if (!el) return;
+    var s = updateLog && updateLog.sources && updateLog.sources[sourceKey];
+    if (!s || !s.lastChangedAt) { el.textContent = ""; return; }
+
+    var last = new Date(s.lastChangedAt);
+    var txt = "Last update: " + fmtClock(s.lastChangedAt);
+    // Say the day too if the last change wasn't today — "Last update: 18:00"
+    // is misleading when it means yesterday evening.
+    if (last.toDateString() !== new Date().toDateString()) {
+      txt += " (" + last.toLocaleDateString("en-US", { weekday: "short" }) + ")";
+    }
+    if (s.intervalMinutes) {
+      var next = new Date(last.getTime() + s.intervalMinutes * 60000);
+      // A prediction already in the past means the update is running late;
+      // saying "due now" is honest, a stale past time is not.
+      txt += " · Next update: " + (next.getTime() < Date.now() ? "due now" : "~" + fmtClock(next.toISOString()));
+    }
+    el.textContent = txt;
+  }
+
+  function renderAllUpdateLines() {
+    renderUpdateLine("openWaveUpdated", "openwave");
+    renderUpdateLine("coastalUpdated", "coastal");
+    renderUpdateLine("townshipUpdated", "township");
+    renderUpdateLine("tideUpdated", "tide");
+  }
+
+  /* ---------- Sunrise / sunset / astronomical calendar ----------
+     From CWA's own per-year astronomy files (see buildAstronomy in
+     scripts/fetch-data.mjs). The calendar genuinely has gaps — most days
+     carry no phenomenon and no solar term — so anything missing is simply
+     omitted rather than rendered as a dash. */
+  function renderAstronomy(data) {
+    var el = document.getElementById("astronomy");
+    if (!el) return;
+    try {
+      var todayKey = new Date(Date.now() + 8 * 3600000).toISOString().slice(0, 10);
+      var d = data && data.days && data.days[todayKey];
+      if (!d) { el.innerHTML = ""; return; }
+
+      var html = '<div class="astro-row">';
+      if (d.sunrise) html += '<span class="astro-item">🌅 Sunrise <strong>' + d.sunrise + "</strong></span>";
+      if (d.sunset) html += '<span class="astro-item">🌇 Sunset <strong>' + d.sunset + "</strong></span>";
+      if (d.civilTwilightBegin) html += '<span class="astro-item astro-dim">First light ' + d.civilTwilightBegin + "</span>";
+      if (d.civilTwilightEnd) html += '<span class="astro-item astro-dim">Last light ' + d.civilTwilightEnd + "</span>";
+      html += "</div>";
+
+      var extras = [];
+      if (d.moonrise || d.moonset) {
+        extras.push("Moon " + (d.moonrise || "—") + " – " + (d.moonset || "—"));
+      }
+      if (d.solarTerm) extras.push("Solar term: " + translateSolarTerm(d.solarTerm));
+      if (d.lunarDate) extras.push(translateLunarDate(d.lunarDate));
+      if (d.phenomena && d.phenomena.length) extras.push(d.phenomena.join(" · "));
+      if (extras.length) {
+        html += '<div class="astro-row astro-cal">' + extras.map(function (x) {
+          return '<span class="astro-item">' + x + "</span>";
+        }).join("") + "</div>";
+      }
+      el.innerHTML = html;
+    } catch (e) {
+      el.innerHTML = "";
+    }
   }
 
   /* ---------- Data freshness ----------

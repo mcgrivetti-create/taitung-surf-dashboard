@@ -541,3 +541,28 @@ main {
   margin-right: 0.15rem;
 }
 .tide-window-trend { color: var(--text-dim); }
+
+/* "Last update / Next update" under each forecast — which model run you're reading. */
+.update-line {
+  margin: 0.35rem 0 0;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+.update-line:empty { display: none; }
+
+/* Sunrise/sunset + CWA's daily astronomical calendar. */
+.astronomy { margin: 0.5rem 0 0.2rem; }
+.astro-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  font-size: 0.82rem;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.astro-row + .astro-row { margin-top: 0.3rem; }
+.astro-cal { font-size: 0.76rem; color: var(--text-dim); }
+.astro-item strong { font-weight: 600; }
+.astro-dim { color: var(--text-dim); }
+.astro-source { margin-top: 0.3rem; }

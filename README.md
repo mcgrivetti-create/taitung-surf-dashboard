@@ -39,6 +39,8 @@ station wind history is a small self-maintained rolling log, not a DB.
    displayed — the page is single-spot by choice.
 3. Other CWA data:
    - Township forecast (`F-D0047-039`, Donghe)
+   - **Sunrise/sunset, moonrise/moonset and CWA's daily astronomical
+     calendar** for Taitung County, under the tide chart — see below
    - Tide forecast (`F-A0021-001`, Donghe) — interpolated line chart with a
      day pager (‹ › buttons **or a horizontal swipe/drag on the chart**)
      showing exact high/low times, on a **permanently fixed −100…+150cm axis
@@ -332,3 +334,50 @@ the Chinese. Degrees are no longer shown anywhere: the extra precision
 isn't readable at a glance, and "NNE" is the form you think in. The arrow
 points the way the wind/swell is *travelling* (bearing + 180°), matching
 Windy's convention.
+
+## Sun, moon and astronomical calendar
+
+Under the tide chart, from CWA's own per-year astronomy files
+(`buildAstronomy` in `scripts/fetch-data.mjs`) → `data/astronomy.json`:
+
+- `https://www.cwa.gov.tw/Data/js/astronomy/astronomy_TaitungCounty_<year>.js`
+  — sunrise/sunset + azimuths, solar noon, civil/nautical/astronomical
+  twilight, moonrise/moonset
+- `https://www.cwa.gov.tw/Data/js/astronomy/astronomy_day_<year>.js`
+  — lunar date, solar term, and the daily astronomical phenomena, with
+  CWA's **own English** in `st.E` so nothing needs translating
+
+**Why not the Open Data API:** its astronomy topic carries only two
+datasets — `A-B0062-001` (sunrise/sunset) and `A-B0063-001` (moonrise/
+moonset). There is no calendar-of-phenomena dataset at all, and neither
+carries twilight times. The files above are what the 每日天文現象 page
+itself reads, need no API key, and cover everything in one fetch.
+
+**Tradeoff:** they're undocumented internal files and could move or change
+shape without notice. Every step fails soft — a bad fetch or parse leaves
+the previous `astronomy.json` in place, and the page omits the section
+rather than erroring. They're parsed (quote-normalised then `JSON.parse`),
+never `eval`'d.
+
+They cover a whole year and change once a year, so `buildAstronomy`
+refetches only when the stored 14-day window no longer covers today,
+rather than pulling ~140KB an hour for data that hasn't moved. Solar terms
+and lunar dates are translated client-side (`SOLAR_TERMS_EN`,
+`translateLunarDate`); most days have no solar term and no phenomenon, and
+those lines simply don't render.
+
+## "Last update / Next update" per forecast
+
+Neither CWA's saved payloads nor Open-Meteo tell us when a model run was
+issued. What is observable is when the *content* changes: `buildUpdateLog`
+hashes each dataset every run and records the moment the hash differs —
+that is the new run landing. `data/update-log.json` keeps the last few
+change times per source, and the median gap between them gives the
+cadence, so nothing about CWA's or NOAA's schedule is hardcoded and it
+self-corrects if they change it.
+
+The page prints `Last update: HH:MM · Next update: ~HH:MM` under each
+forecast. The next time is marked `~` because it's inferred; a prediction
+that has already passed shows "due now" rather than a stale time, and a
+last-change on an earlier day carries its weekday. Until two changes have
+been observed there's no cadence yet and only the last update shows.

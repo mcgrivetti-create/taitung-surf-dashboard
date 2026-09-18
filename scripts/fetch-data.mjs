@@ -186,6 +186,80 @@ async function appendMonthlyHistory(subdir, newRecords, dedupeKey) {
   return added;
 }
 
+/**
+ * Update tracking. The page wants to say "Last update / Next update" per
+ * forecast, but neither CWA's saved payloads nor Open-Meteo tell us when the
+ * model run was issued. What we can observe exactly is when the *content*
+ * changes: hash each dataset every run, and the first run whose hash differs
+ * is the moment that source published something new.
+ *
+ * From the observed change times we get the source's real cadence for free —
+ * no need to hardcode a schedule we'd only be guessing at, and it self-
+ * corrects if CWA changes theirs. The predicted next update is explicitly an
+ * estimate and the page labels it with "~".
+ */
+const UPDATE_LOG_KEEP = 8; // recent change timestamps kept per source, for the median gap
+
+function hashPayload(value) {
+  // Stable stringify: key order from JSON.stringify is insertion order, which
+  // is stable for these payloads since they're rebuilt the same way each run.
+  const s = JSON.stringify(value);
+  let h1 = 0x811c9dc5, h2 = 0x01000193;
+  for (let i = 0; i < s.length; i++) {
+    const c = s.charCodeAt(i);
+    h1 = Math.imul(h1 ^ c, 0x01000193) >>> 0;
+    h2 = Math.imul(h2 + c, 0x85ebca6b) >>> 0;
+  }
+  return h1.toString(16).padStart(8, "0") + h2.toString(16).padStart(8, "0");
+}
+
+/** Median of the gaps between consecutive change times, in minutes. */
+function medianIntervalMinutes(times) {
+  if (!times || times.length < 2) return null;
+  const ms = times.map((t) => new Date(t).getTime()).sort((a, b) => a - b);
+  const gaps = [];
+  for (let i = 1; i < ms.length; i++) gaps.push((ms[i] - ms[i - 1]) / 60000);
+  gaps.sort((a, b) => a - b);
+  const mid = Math.floor(gaps.length / 2);
+  const med = gaps.length % 2 ? gaps[mid] : (gaps[mid - 1] + gaps[mid]) / 2;
+  return Math.round(med);
+}
+
+/**
+ * Compares each source's payload against last run's hash and maintains
+ * data/update-log.json: when it last changed, the recent change history, and
+ * the inferred cadence. Returns the object the page reads.
+ */
+async function buildUpdateLog(sources, nowISO) {
+  const logPath = path.join(DATA_DIR, "update-log.json");
+  const log = await readJSONIfExists(logPath, { sources: {} });
+  if (!log.sources) log.sources = {};
+
+  for (const [key, payload] of Object.entries(sources)) {
+    if (payload === undefined || payload === null) continue;
+    const hash = hashPayload(payload);
+    const prev = log.sources[key] || {};
+    const changed = prev.hash !== hash;
+    const changeTimes = (prev.changeTimes || []).slice();
+    if (changed) {
+      changeTimes.push(nowISO);
+      while (changeTimes.length > UPDATE_LOG_KEEP) changeTimes.shift();
+    }
+    log.sources[key] = {
+      hash,
+      // On the very first run there is no previous hash, so "changed" is
+      // trivially true — that's fine, it just seeds the series.
+      lastChangedAt: changed ? nowISO : (prev.lastChangedAt || nowISO),
+      lastCheckedAt: nowISO,
+      changeTimes,
+      intervalMinutes: medianIntervalMinutes(changeTimes),
+    };
+  }
+
+  await writeFile(logPath, JSON.stringify(log, null, 2));
+  return log;
+}
+
 /** Nearest series point to `targetMs`, or null if none within `toleranceMs`. */
 function nearestPoint(series, targetMs, toleranceMs) {
   let best = null, bestDiff = Infinity;
@@ -551,6 +625,113 @@ async function buildOpenWave() {
   return { data, ok: true, count, series };
 }
 
+/**
+ * Sunrise/sunset/twilight/moon times plus the daily astronomical calendar,
+ * from the static per-year data files behind CWA's 每日天文現象 page
+ * (cwa.gov.tw/V8/C/K/astronomy_day.html). These are not Open Data API
+ * datasets — the API's astronomy topic only carries sunrise/sunset
+ * (A-B0062-001) and moonrise/moonset (A-B0063-001), with no calendar of
+ * phenomena at all — but they are public static files, need no API key, and
+ * carry an official English translation of each phenomenon (`st.E`), so no
+ * translation guesswork is needed.
+ *
+ * Tradeoff worth knowing: being undocumented internal files, they could be
+ * moved or reshaped without notice. Everything here fails soft — a bad fetch
+ * or parse leaves the previous data in place and the page simply omits the
+ * section.
+ *
+ * The files cover a whole calendar year and change once a year, so this
+ * refetches only when the stored window no longer covers today rather than
+ * pulling ~140KB from CWA every hour for data that hasn't moved.
+ */
+const ASTRO_COUNTY = "TaitungCounty";
+const ASTRO_WINDOW_DAYS = 14;
+
+function parseAstroYearFile(text, varName) {
+  // These files are `var X={...};` with single-quoted keys — valid JSON once
+  // the assignment is stripped and the quotes normalised. Parsed rather than
+  // eval'd: it's third-party text and must never be executed.
+  const start = text.indexOf("{");
+  const end = text.lastIndexOf("}");
+  if (start === -1 || end === -1) throw new Error(`${varName}: no object literal found`);
+  const body = text.slice(start, end + 1).replace(/'/g, '"');
+  return JSON.parse(body);
+}
+
+async function fetchAstroYear(year) {
+  const base = "https://www.cwa.gov.tw/Data/js/astronomy";
+  const [timesRes, dayRes] = await Promise.all([
+    fetch(`${base}/astronomy_${ASTRO_COUNTY}_${year}.js`),
+    fetch(`${base}/astronomy_day_${year}.js`),
+  ]);
+  if (!timesRes.ok || !dayRes.ok) {
+    throw new Error(`astronomy ${year} -> HTTP ${timesRes.status}/${dayRes.status}`);
+  }
+  return {
+    times: parseAstroYearFile(await timesRes.text(), "sun_moon_twi_data"),
+    day: parseAstroYearFile(await dayRes.text(), "astronomy_day"),
+  };
+}
+
+/** CWA writes "-" for "no data" / "nothing today"; normalise that to null. */
+function astroVal(v) {
+  return v === undefined || v === null || v === "-" || v === "" ? null : v;
+}
+
+async function buildAstronomy() {
+  const outPath = path.join(DATA_DIR, "astronomy.json");
+  const existing = await readJSONIfExists(outPath, null);
+  const today = todayISODate();
+  if (existing && existing.days && existing.days[today]) {
+    // Still covered — don't hit CWA for a file that changes once a year.
+    return { data: existing, ok: true, count: Object.keys(existing.days).length, skipped: true };
+  }
+
+  // Taipei midnight is 16:00 UTC the previous day, so shift by +8h before
+  // slicing an ISO string or every date comes out one day early.
+  const startMs = new Date(today + "T00:00:00+08:00").getTime();
+  const wanted = [];
+  for (let i = 0; i < ASTRO_WINDOW_DAYS; i++) {
+    wanted.push(new Date(startMs + i * 86400000 + 8 * 3600000).toISOString().slice(0, 10));
+  }
+
+  // The window can straddle New Year; next year's file may not be published
+  // yet, so a miss there is tolerated rather than fatal.
+  const years = [...new Set(wanted.map((d) => d.slice(0, 4)))];
+  const loaded = {};
+  for (const y of years) {
+    try {
+      loaded[y] = await fetchAstroYear(y);
+    } catch (err) {
+      if (y === years[0]) throw err;
+      console.error(`WARN: astronomy ${y} unavailable (${err.message}) — window truncated`);
+    }
+  }
+
+  const days = {};
+  for (const date of wanted) {
+    const y = date.slice(0, 4);
+    const src = loaded[y];
+    if (!src) continue;
+    const t = src.times[date] || {};
+    const d = src.day[date] || {};
+    days[date] = {
+      sunrise: astroVal(t.sr), sunriseAzimuth: astroVal(t.srAz),
+      solarNoon: astroVal(t.sT), sunset: astroVal(t.ss), sunsetAzimuth: astroVal(t.ssAz),
+      civilTwilightBegin: astroVal(t.lCr), civilTwilightEnd: astroVal(t.lCs),
+      moonrise: astroVal(t.mr), moonset: astroVal(t.ms),
+      lunarDate: astroVal(d.l),
+      solarTerm: astroVal(d.se),
+      // st.E is CWA's own English; multiple events are joined with a
+      // full-width semicolon, split here so the page can list them.
+      phenomena: astroVal(d.st && d.st.E) ? String(d.st.E).split(/[；;]/).map((s) => s.trim()).filter(Boolean) : [],
+      phenomenaZh: astroVal(d.st && d.st.C) ? String(d.st.C).split(/[；;]/).map((s) => s.trim()).filter(Boolean) : [],
+    };
+  }
+  if (!Object.keys(days).length) throw new Error("no dates extracted");
+  return { data: { county: ASTRO_COUNTY, days }, ok: true, count: Object.keys(days).length };
+}
+
 async function buildBuoy() {
   const results = await Promise.all(BUOY_STATIONS.map((s) => buildBuoyStation(s).catch(() => null)));
   const stations = results.filter(Boolean);
@@ -572,6 +753,7 @@ async function run() {
     { file: "stations.json", name: "O-A0001-001 station observations", build: buildStations },
     { file: "buoy.json", name: "O-B0075-001 buoy / sea state", build: buildBuoy },
     { file: "openwave.json", name: "Open-Meteo marine (GFS-Wave)", build: buildOpenWave },
+    { file: "astronomy.json", name: "CWA astronomy (sun/moon/calendar)", build: buildAstronomy },
   ];
 
   const status = [];
@@ -746,6 +928,29 @@ async function run() {
   } catch (err) {
     status.push({ name: "history logging", ok: false, error: String(err.message || err) });
     console.error(`FAILED: history logging — ${err.message || err}`);
+  }
+
+  // Update tracking — hash each displayed dataset so the page can show when
+  // that source last actually published something new, and roughly when the
+  // next one is due. Keyed to the element IDs the page renders into.
+  try {
+    const payloadOf = (file) => ((results[file] || {}).data);
+    const updateLog = await buildUpdateLog({
+      coastal: payloadOf("coastal.json"),
+      openwave: payloadOf("openwave.json"),
+      township: payloadOf("township.json"),
+      tide: payloadOf("tide.json"),
+      stations: payloadOf("stations.json"),
+      buoy: payloadOf("buoy.json"),
+    }, new Date().toISOString());
+    const changedNow = Object.entries(updateLog.sources)
+      .filter(([, s]) => s.lastChangedAt === s.lastCheckedAt)
+      .map(([k]) => k);
+    status.push({ name: "update log", ok: true, count: changedNow.length });
+    console.log(`OK: update log (${changedNow.length} source(s) changed: ${changedNow.join(", ") || "none"})`);
+  } catch (err) {
+    status.push({ name: "update log", ok: false, error: String(err.message || err) });
+    console.error(`FAILED: update log — ${err.message || err}`);
   }
 
   const meta = {
