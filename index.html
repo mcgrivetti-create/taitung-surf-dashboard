@@ -34,6 +34,17 @@
        renderFreshness() in js/app.js. -->
   <div id="staleBanner" class="stale-banner" role="status" hidden></div>
 
+  <!-- Typhoon News — only rendered when JTWC has an active Western Pacific
+       system or invest. Hidden entirely otherwise. See renderTyphoon(). -->
+  <section class="panel typhoon-panel" id="typhoon" hidden>
+    <h2>🌀 Typhoon News</h2>
+    <div id="typhoonBody"></div>
+    <p class="typhoon-disclaimer"><em>Not an official warning source — always check
+      <a href="https://www.metoc.navy.mil/jtwc/jtwc.html" target="_blank" rel="noopener">JTWC</a> and
+      <a href="https://www.cwa.gov.tw/V8/E/P/Typhoon/TY_NEWS.html" target="_blank" rel="noopener">CWA</a>
+      directly before making any decision.</em></p>
+  </section>
+
   <!-- 1. 7-day widget forecasts -->
   <section class="panel" id="widgets">
     <h2>7-Day Forecasts</h2>

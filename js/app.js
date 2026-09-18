@@ -885,6 +885,8 @@
     fetchJSON("data/buoy.json").then(renderBuoy).catch(function (e) { showError("buoyContainer", "Couldn't load this data (" + e.message + ")"); });
     fetchJSON("data/openwave.json").then(renderOpenWave).catch(function (e) { showError("openWaveChart", "Couldn't load this data (" + e.message + ")"); });
 
+    fetchJSON("data/typhoon.json").then(renderTyphoon).catch(function () { /* no feed, panel stays hidden */ });
+
     fetchJSON("data/astronomy.json").then(renderAstronomy).catch(function () { /* section stays empty */ });
 
     fetchJSON("data/update-log.json").then(function (log) {
@@ -895,6 +897,96 @@
     fetchJSON("data/meta.json")
       .then(renderFreshness)
       .catch(function () { renderFreshness(null); });
+  }
+
+  /* ---------- Typhoon News ----------
+     Shown only when JTWC has an active Western Pacific system or invest;
+     the whole panel is hidden otherwise, so a quiet season costs nothing.
+
+     Severe-weather information carries a real hazard the rest of this page
+     doesn't: if our hourly fetch breaks we could keep showing a storm that
+     has dissipated, or a warning that has been superseded. JTWC warns every
+     6 hours, so anything older than 12h means two missed cycles — that gets
+     an explicit stale notice rather than being presented as current. */
+  var TYPHOON_STALE_HOURS = 12;
+
+  function escapeHtml(s) {
+    return String(s === undefined || s === null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+
+  function renderTyphoon(data) {
+    var panel = document.getElementById("typhoon");
+    var body = document.getElementById("typhoonBody");
+    if (!panel || !body) return;
+
+    var systems = (data && data.systems) || [];
+    var invests = (data && data.invests) || [];
+    if (!systems.length && !invests.length) { panel.hidden = true; return; }
+
+    // Staleness is judged on the newest JTWC issuance, not on our fetch time:
+    // a successful fetch of a feed nobody has updated is still stale news.
+    var newest = 0;
+    systems.forEach(function (s) {
+      var t = s.issuedAt ? new Date(s.issuedAt).getTime() : 0;
+      if (t > newest) newest = t;
+    });
+    var ageH = newest ? (Date.now() - newest) / 3600000 : null;
+
+    var html = "";
+    if (ageH !== null && ageH >= TYPHOON_STALE_HOURS) {
+      html += '<p class="typhoon-stale">⚠ Last JTWC warning was ' + Math.round(ageH) +
+        "h ago. JTWC issues every 6h, so this may be out of date — check the links below.</p>";
+    }
+
+    systems.forEach(function (s) {
+      html += '<div class="typhoon-card">';
+      html += "<h3>" + escapeHtml(s.headline) + "</h3>";
+      var meta = [];
+      if (s.warningNumber) meta.push("Warning #" + escapeHtml(s.warningNumber));
+      if (s.issuedZ) meta.push("issued " + escapeHtml(s.issuedZ));
+      if (meta.length) html += '<p class="typhoon-meta">' + meta.join(" · ") + "</p>";
+
+      html += '<div class="typhoon-images">';
+      if (s.graphic) {
+        // The gif URL is stable per storm and rewritten in place every cycle,
+        // so the issue time is appended to defeat the browser cache.
+        var bust = s.issuedAt ? "?t=" + encodeURIComponent(s.issuedAt) : "";
+        html += '<figure><a href="' + escapeHtml(s.graphic) + '" target="_blank" rel="noopener">' +
+          '<img src="' + escapeHtml(s.graphic) + bust + '" alt="JTWC warning graphic for ' +
+          escapeHtml(s.headline) + '" loading="lazy"></a>' +
+          "<figcaption>JTWC TC Warning Graphic</figcaption></figure>";
+      }
+      if (s.cwaTrackImage) {
+        html += '<figure><a href="' + escapeHtml(s.cwaTrackImage) + '" target="_blank" rel="noopener">' +
+          '<img src="' + escapeHtml(s.cwaTrackImage) + '" alt="CWA 96-hour track forecast for ' +
+          escapeHtml(s.name) + '" loading="lazy"></a>' +
+          "<figcaption>CWA 96h track forecast</figcaption></figure>";
+      }
+      html += "</div>";
+
+      var links = ['<a href="https://www.metoc.navy.mil/jtwc/jtwc.html" target="_blank" rel="noopener">JTWC ↗</a>'];
+      if (s.warningText) links.push('<a href="' + escapeHtml(s.warningText) + '" target="_blank" rel="noopener">Warning text ↗</a>');
+      links.push('<a href="https://www.cwa.gov.tw/V8/E/P/Typhoon/TY_NEWS.html" target="_blank" rel="noopener">CWA typhoon news ↗</a>');
+      html += '<p class="typhoon-links">' + links.join(" · ") + "</p>";
+      html += "</div>";
+    });
+
+    if (invests.length) {
+      html += '<div class="typhoon-card typhoon-invests"><h3>Areas being watched</h3><p class="typhoon-meta">' +
+        invests.map(function (i) {
+          return "Invest " + escapeHtml(i.id) + (i.potential ? " — " + escapeHtml(i.potential) + " development potential" : "");
+        }).join(" · ") + "</p>";
+      if (data.advisory && data.advisory.url) {
+        html += '<p class="typhoon-links"><a href="' + escapeHtml(data.advisory.url) +
+          '" target="_blank" rel="noopener">Significant Tropical Weather Advisory ↗</a></p>';
+      }
+      html += "</div>";
+    }
+
+    body.innerHTML = html;
+    panel.hidden = false;
   }
 
   /* ---------- Per-forecast update lines ----------

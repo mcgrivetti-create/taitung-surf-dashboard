@@ -566,3 +566,44 @@ main {
 .astro-item strong { font-weight: 600; }
 .astro-dim { color: var(--text-dim); }
 .astro-source { margin-top: 0.3rem; }
+
+/* --- Typhoon News -----------------------------------------------------
+   Hidden entirely when nothing is active. Accent border so it reads as an
+   alert without the alarm of the stale-data banner's red. */
+.typhoon-panel { border-left: 4px solid var(--accent-2); }
+.typhoon-card + .typhoon-card { margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid var(--border); }
+.typhoon-card h3 { margin: 0 0 0.2rem; font-size: 1rem; }
+.typhoon-meta { margin: 0 0 0.5rem; font-size: 0.78rem; color: var(--text-dim); }
+.typhoon-links { margin: 0.5rem 0 0; font-size: 0.78rem; }
+.typhoon-links a { margin-right: 0.2rem; }
+
+.typhoon-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.7rem;
+}
+.typhoon-images figure { margin: 0; }
+.typhoon-images img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #fff; /* both sources are light-background maps */
+}
+.typhoon-images figcaption {
+  margin-top: 0.25rem;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+
+.typhoon-stale {
+  margin: 0 0 0.7rem;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--warn);
+  border-left-width: 4px;
+  border-radius: var(--radius);
+  font-size: 0.8rem;
+  color: var(--text);
+}
+.typhoon-disclaimer { margin: 0.8rem 0 0; font-size: 0.74rem; color: var(--text-dim); }

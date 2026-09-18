@@ -732,6 +732,158 @@ async function buildAstronomy() {
   return { data: { county: ASTRO_COUNTY, days }, ok: true, count: Object.keys(days).length };
 }
 
+/* ---------------------------------------------------------------------
+ * Typhoon News
+ *
+ * Detection comes from JTWC's RSS feed rather than the CWA homepage: it is
+ * machine-readable, lists every active system, and already formats the
+ * headline exactly as we want to show it ("Tropical Storm 24W (Dujuan)"),
+ * so no designation has to be derived from wind speed. JTWC's storm number
+ * is its own sequence and does NOT reliably equal CWA's 編號, so taking the
+ * graphic URL straight from the feed avoids guessing at it.
+ *
+ * Scope is every Western Pacific system — the feed's NW Pacific item also
+ * covers the Bay of Bengal and Arabian Sea, so anything whose product file
+ * isn't `wp…` is dropped. Distant storms are kept deliberately: a typhoon
+ * heading for Japan is exactly what sends groundswell to this coast.
+ *
+ * The CWA track map is a best-effort extra — its filename embeds the
+ * synoptic issue time, so the most recent few are probed and the first one
+ * that exists wins. A system CWA isn't tracking (or hasn't drawn yet)
+ * simply has no track image.
+ * ------------------------------------------------------------------- */
+const JTWC_RSS = "https://www.metoc.navy.mil/jtwc/rss/jtwc.rss";
+const JTWC_ABPW = "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt";
+const CWA_TRACK_BASE = "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS";
+
+/** "18/0300Z" -> absolute ISO. The day-of-month is all JTWC gives, so the
+ *  month is inferred from now, stepping back one if that lands in the future. */
+function zuluToISO(dz, nowMs) {
+  const m = String(dz || "").match(/^(\d{2})\/(\d{2})(\d{2})Z$/);
+  if (!m) return null;
+  const now = new Date(nowMs);
+  let d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), +m[1], +m[2], +m[3]));
+  if (d.getTime() - nowMs > 2 * 86400000) {
+    d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 1, +m[1], +m[2], +m[3]));
+  }
+  return d.toISOString();
+}
+
+function decodeEntities(s) {
+  return String(s).replace(/&amp;/g, "&").replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+}
+
+function parseJtwcRss(xml, nowMs) {
+  const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map((m) => m[1]);
+  const out = { systems: [], advisory: null };
+  for (const it of items) {
+    const title = (it.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || "";
+    const cdata = (it.match(/<description><!\[CDATA\[([\s\S]*?)\]\]><\/description>/) || [])[1] || "";
+
+    if (/Northwest Pacific/i.test(title)) {
+      const blocks = cdata.split(/<p>/i).filter((b) => /Warning\s*#/i.test(b));
+      for (const b of blocks) {
+        const head = (b.match(/<b>\s*([\s\S]*?)\s*<\/b>/) || [])[1] || "";
+        const hm = head.replace(/\s+/g, " ")
+          .match(/^(.*?)\s+(\d{2}[A-Z])\s+\(([^)]*)\)\s+Warning\s*#\s*(\d+)/i);
+        const gif = b.match(/href='([^']*products\/([a-z]{2})\d{4}\.gif)'/i);
+        if (!hm || !gif) continue;
+        if (gif[2].toLowerCase() !== "wp") continue; // Indian Ocean systems aren't ours
+        const issuedZ = (b.match(/Issued at\s*(\d{2}\/\d{4}Z)/i) || [])[1] || null;
+        out.systems.push({
+          designation: hm[1].trim(),
+          id: hm[2],
+          name: hm[3],
+          headline: hm[1].trim() + " " + hm[2] + " (" + hm[3] + ")",
+          warningNumber: hm[4],
+          issuedZ,
+          issuedAt: zuluToISO(issuedZ, nowMs),
+          graphic: decodeEntities(gif[1]),
+          warningText: decodeEntities((b.match(/href='([^']*web\.txt)'/i) || [])[1] || ""),
+        });
+      }
+    }
+
+    if (/Significant Tropical Weather Advisories/i.test(title)) {
+      const z = (cdata.match(/abpwweb\.txt[\s\S]*?(?:Re)?issued at\s*(\d{2}\/\d{4}Z)/i) || [])[1] || null;
+      out.advisory = {
+        issuedZ: z,
+        issuedAt: zuluToISO(z, nowMs),
+        url: JTWC_ABPW,
+        reissued: /abpwweb\.txt[\s\S]{0,200}?Reissued/i.test(cdata),
+      };
+    }
+  }
+  return out;
+}
+
+/**
+ * Invests from ABPW10 section 1 (Western North Pacific, 180 to the Malay
+ * Peninsula — which includes the South China Sea). Free-text military
+ * bulletin, so this is best-effort by design: it pulls the invest
+ * designators and the stated development potential, and the page always
+ * links the full advisory so nothing depends on the parse being complete.
+ */
+function parseInvests(txt) {
+  const sec1 = (txt.match(/1\.\s*WESTERN NORTH PACIFIC AREA[\s\S]*?(?=\n\s*2\.\s|$)/i) || [])[0] || "";
+  const dist = (sec1.match(/B\.\s*TROPICAL DISTURBANCE SUMMARY:?([\s\S]*?)(?=\n\s*C\.\s|$)/i) || [])[1] || "";
+  if (!dist || /^\s*NONE/i.test(dist)) return [];
+  const ids = [...new Set([...dist.matchAll(/\b(9\d[WSP])\b/gi)].map((m) => m[1].toUpperCase()))];
+  return ids.map((id) => {
+    const after = dist.split(new RegExp("INVEST\\s*" + id, "i"))[1] || dist;
+    const pot = (after.match(/THE POTENTIAL FOR.*?(?:IS|REMAINS)\s+(LOW|MEDIUM|HIGH)/is) || [])[1] || null;
+    return { id, potential: pot ? pot.toUpperCase() : null };
+  });
+}
+
+/** Most recent existing CWA 96h track image for a named storm, or null. */
+async function resolveCwaTrackImage(name, nowMs) {
+  if (!name) return null;
+  const upper = String(name).toUpperCase().replace(/[^A-Z0-9-]/g, "");
+  if (!upper) return null;
+  const sixH = 6 * 3600000;
+  let slot = Math.floor(nowMs / sixH) * sixH;
+  for (let i = 0; i < 5; i++, slot -= sixH) {
+    const d = new Date(slot);
+    const ts = d.toISOString().slice(0, 16).replace(/[-:T]/g, "");
+    const url = `${CWA_TRACK_BASE}/PTA_${ts}-96_${upper}_enus.png`;
+    try {
+      const res = await fetch(url, { method: "HEAD" });
+      if (res.ok) return url;
+    } catch (err) { /* try the next slot back */ }
+  }
+  return null;
+}
+
+async function buildTyphoon() {
+  const nowMs = Date.now();
+  const [rssRes, abpwRes] = await Promise.all([fetch(JTWC_RSS), fetch(JTWC_ABPW)]);
+  if (!rssRes.ok) throw new Error(`JTWC rss -> HTTP ${rssRes.status}`);
+  const parsed = parseJtwcRss(await rssRes.text(), nowMs);
+
+  let invests = [];
+  if (abpwRes.ok) {
+    try { invests = parseInvests(await abpwRes.text()); }
+    catch (err) { console.error(`WARN: invest parse failed (${err.message})`); }
+  }
+
+  for (const s of parsed.systems) {
+    s.cwaTrackImage = await resolveCwaTrackImage(s.name, nowMs).catch(() => null);
+  }
+
+  return {
+    data: {
+      fetchedAt: new Date(nowMs).toISOString(),
+      systems: parsed.systems,
+      invests,
+      advisory: parsed.advisory,
+    },
+    ok: true,
+    count: parsed.systems.length + invests.length,
+  };
+}
+
 async function buildBuoy() {
   const results = await Promise.all(BUOY_STATIONS.map((s) => buildBuoyStation(s).catch(() => null)));
   const stations = results.filter(Boolean);
@@ -754,6 +906,7 @@ async function run() {
     { file: "buoy.json", name: "O-B0075-001 buoy / sea state", build: buildBuoy },
     { file: "openwave.json", name: "Open-Meteo marine (GFS-Wave)", build: buildOpenWave },
     { file: "astronomy.json", name: "CWA astronomy (sun/moon/calendar)", build: buildAstronomy },
+    { file: "typhoon.json", name: "JTWC typhoon news (W Pacific)", build: buildTyphoon },
   ];
 
   const status = [];

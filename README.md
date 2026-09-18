@@ -404,3 +404,50 @@ forecast. The next time is marked `~` because it's inferred; a prediction
 that has already passed shows "due now" rather than a stale time, and a
 last-change on an earlier day carries its weekday. Until two changes have
 been observed there's no cadence yet and only the last update shows.
+
+## Typhoon News
+
+A panel at the top of the page, rendered **only** when JTWC has an active
+Western Pacific system or invest — hidden entirely otherwise, so a quiet
+season costs nothing. `buildTyphoon` in `scripts/fetch-data.mjs` →
+`data/typhoon.json`.
+
+**Detection is JTWC's RSS feed, not the CWA homepage.** The feed is
+machine-readable, lists every active system, and already formats the
+headline exactly as we display it — `Tropical Storm 24W (Dujuan)` — so no
+designation has to be derived from wind speed and no storm number has to be
+guessed. That last point matters: **JTWC's number is its own sequence and
+does not reliably equal CWA's 編號** (they happen to both be 24 for Dujuan),
+so the warning-graphic URL is taken straight from the feed rather than
+constructed.
+
+Per system the panel shows the headline, warning number and issue time, the
+**JTWC TC Warning Graphic**, the **CWA 96h track forecast**, and links to
+JTWC, the raw warning text and CWA's typhoon page.
+
+- **Scope:** every Western Pacific system, including the South China Sea and
+  storms far from Taiwan — a typhoon heading for Japan is exactly what sends
+  groundswell to this coast. The feed's NW Pacific item also covers the Bay
+  of Bengal and Arabian Sea, so anything whose product file isn't `wp…` is
+  dropped.
+- **Invests** come from ABPW10 section 1 (`TROPICAL DISTURBANCE SUMMARY`).
+  That's a free-text military bulletin, so the parse is best-effort by
+  design — it pulls the designators and stated development potential, and
+  the full advisory is always linked so nothing depends on it being
+  complete.
+- **CWA track image** is a best-effort extra: its filename embeds the
+  synoptic issue time (`PTA_<YYYYMMDDHHMM>-96_<NAME>_enus.png`), so the last
+  five 6-hour slots are probed and the first that exists wins. CWA issues
+  ~1.5–2h after synoptic time, which is why probing backwards is necessary.
+  A system CWA isn't tracking simply has no track image.
+- **Images are hotlinked**, verified loading cross-origin from both sources.
+  The JTWC gif URL is stable per storm and rewritten in place each cycle, so
+  the issue time is appended as a cache-buster. The CWA filename already
+  carries its timestamp.
+- **Staleness:** judged on the newest JTWC *issuance*, not on our fetch time
+  — a successful fetch of a feed nobody has updated is still stale news.
+  JTWC warns every 6h, so past 12h (`TYPHOON_STALE_HOURS`, two missed
+  cycles) the panel carries an explicit notice instead of presenting itself
+  as current.
+- A standing italic line states this is not an official warning source and
+  links CWA and JTWC as the authorities.
