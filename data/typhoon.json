@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-19T20:17:41.310Z",
+  "fetchedAt": "2026-09-19T21:16:45.827Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -76,23 +76,23 @@
         "202100Z"
       ],
       "reasoning": {
-        "warningNumber": "017",
+        "warningNumber": "018",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 30,
+        "seasFt": 28,
         "environment": "MARGINALLY FAVORABLE",
         "vws": "10-15 KTS",
         "sst": "28-29 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTHEAST",
+        "steering": "THE WESTERN PERIPHERY OF A SUBTROPICAL RIDGE (STR) CENTERED TO THE EAST OF HONSHU",
         "confidence": {
           "track0072": "HIGH",
-          "track72120": "HIGH",
+          "track72120": null,
           "intensity0072": "MEDIUM",
-          "intensity72120": "MEDIUM"
+          "intensity72120": null
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2426prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 945,
         "bearingDeg": 66,
@@ -155,7 +155,7 @@
       },
       "swell": {
         "targetTime": "2026-09-20T00:00:00.000Z",
-        "hoursAhead": 4,
+        "hoursAhead": 3,
         "periodS": 11.55,
         "heightM": 0.96,
         "dirDeg": 85,
