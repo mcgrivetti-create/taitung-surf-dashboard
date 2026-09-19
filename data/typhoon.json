@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-19T02:17:55.697Z",
+  "fetchedAt": "2026-09-19T03:18:08.041Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -85,23 +85,23 @@
       ],
       "geoReference": "121 NM NORTHWEST OF IWO TO",
       "reasoning": {
-        "warningNumber": "014",
+        "warningNumber": "015",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 28,
-        "environment": "FAVORABLE",
-        "vws": "5-10 KTS",
+        "environment": "MARGINALLY FAVORABLE",
+        "vws": "10-15 KTS",
         "sst": "28-29 CELSIUS",
-        "outflow": "STRONG RADIAL",
-        "steering": "WESTERN EXTENSION OF A SUBTROPICAL RIDGE CENTERED TO THE NORTHEAST",
+        "outflow": "STRONG POLEWARD",
+        "steering": "THE SOUTHWESTERN PERIPHERY OF A SUBTROPICAL RIDGE (STR) POSITIONED EAST OF HONSHU",
         "confidence": {
           "track0072": "HIGH",
-          "track72120": "HIGH",
+          "track72120": "MEDIUM",
           "intensity0072": "MEDIUM",
           "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2426prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1021,
         "bearingDeg": 75,
@@ -174,7 +174,7 @@
       },
       "swell": {
         "targetTime": "2026-09-20T00:00:00.000Z",
-        "hoursAhead": 22,
+        "hoursAhead": 21,
         "periodS": 11.35,
         "heightM": 0.92,
         "dirDeg": 88,
