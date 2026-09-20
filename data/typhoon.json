@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-20T20:17:10.281Z",
+  "fetchedAt": "2026-09-20T21:17:03.483Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -71,23 +71,23 @@
       ],
       "geoReference": "256 NM SOUTH-SOUTHWEST OF YOKOSUKA, JAPAN",
       "reasoning": {
-        "warningNumber": "021",
+        "warningNumber": null,
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 28,
         "environment": "MARGINALLY FAVORABLE",
-        "vws": "10-15 KTS",
+        "vws": "15-20 KTS",
         "sst": "28-29 CELSIUS",
-        "outflow": "STRONG POLEWARD",
-        "steering": "SUBTROPICAL RIDGE (STR) CENTERED TO THE EAST",
+        "outflow": "STRONG POLEWARD AND EQUATORWARD",
+        "steering": "THE WESTERN PERIPHERY OF A SUBTROPICAL RIDGE (STR) CENTERED EAST-SOUTHEAST OF JAPAN",
         "confidence": {
           "track0072": "HIGH",
           "track72120": null,
-          "intensity0072": "MEDIUM",
+          "intensity0072": "HIGH",
           "intensity72120": null
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2426prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1016,
         "bearingDeg": 57,
