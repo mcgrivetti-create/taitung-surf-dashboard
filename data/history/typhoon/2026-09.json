@@ -1533,6 +1533,136 @@
         "intensity0072": "MEDIUM",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "24W",
+      "name": "Dujuan",
+      "designation": "Tropical Storm",
+      "warningNumber": "021",
+      "issuedAt": "2026-09-20T15:00:00.000Z",
+      "positionZ": "201200Z",
+      "lat": 30.4,
+      "lon": 137.6,
+      "maxWindKt": 60,
+      "gustKt": 75,
+      "seasFt": 28,
+      "movingToward": 10,
+      "movingKt": 6,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "210000Z",
+          "lat": 32.4,
+          "lon": 138.6,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 24,
+          "validZ": "211200Z",
+          "lat": 34.7,
+          "lon": 141.4,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 36,
+          "validZ": "220000Z",
+          "lat": 37.3,
+          "lon": 146.4,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 48,
+          "validZ": "221200Z",
+          "lat": 39.5,
+          "lon": 152.9,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 60,
+          "validZ": "230000Z",
+          "lat": 41,
+          "lon": 159.8,
+          "maxWindKt": 50,
+          "gustKt": 65
+        }
+      ],
+      "spot": {
+        "distanceNm": 979,
+        "bearingDeg": 59,
+        "closestApproach": {
+          "distanceNm": 1077,
+          "tau": 12,
+          "validZ": "210000Z",
+          "maxWindKt": 60,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 10,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 23
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 45
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 56
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 65
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 72
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "headingDeg": 45,
+            "deltaDeg": 35
+          }
+        ]
+      },
+      "swell": {
+        "targetTime": "2026-09-19T23:00:00.000Z",
+        "hoursAhead": -15,
+        "periodS": 10.75,
+        "heightM": 0.92,
+        "dirDeg": 82,
+        "baselineS": 6.8,
+        "peak": {
+          "targetTime": "2026-09-20T21:00:00.000Z",
+          "heightM": 1.96,
+          "periodS": 8.75,
+          "dirDeg": 75
+        },
+        "bearingOffsetDeg": 23
+      },
+      "reasoningWarningNumber": "020",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "MEDIUM",
+        "intensity72120": null
+      }
     }
   ]
 }
