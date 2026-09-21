@@ -1,68 +1,53 @@
 {
-  "fetchedAt": "2026-09-21T07:20:36.509Z",
+  "fetchedAt": "2026-09-21T08:21:05.343Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "24W",
       "name": "Dujuan",
       "headline": "Typhoon 24W (Dujuan)",
-      "warningNumber": "023",
-      "issuedZ": "21/0300Z",
-      "issuedAt": "2026-09-21T03:00:00.000Z",
+      "warningNumber": "024",
+      "issuedZ": "21/0900Z",
+      "issuedAt": "2026-09-21T09:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2426.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2426web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "211200Z",
-          "lat": 34.8,
-          "lon": 141.7,
-          "maxWindKt": 70,
-          "gustKt": 85
-        },
-        {
-          "tau": 24,
-          "validZ": "220000Z",
-          "lat": 37.2,
-          "lon": 146.8,
+          "validZ": "211800Z",
+          "lat": 36.2,
+          "lon": 143.9,
           "maxWindKt": 75,
           "gustKt": 90
         },
         {
-          "tau": 36,
-          "validZ": "221200Z",
-          "lat": 39.1,
-          "lon": 153,
-          "maxWindKt": 60,
-          "gustKt": 75
+          "tau": 24,
+          "validZ": "220600Z",
+          "lat": 38.4,
+          "lon": 149.6,
+          "maxWindKt": 70,
+          "gustKt": 85
         },
         {
-          "tau": 48,
-          "validZ": "230000Z",
-          "lat": 40.6,
-          "lon": 160.2,
-          "maxWindKt": 45,
-          "gustKt": 55
+          "tau": 36,
+          "validZ": "221800Z",
+          "lat": 39.9,
+          "lon": 156.1,
+          "maxWindKt": 55,
+          "gustKt": 70
         }
       ],
-      "intensityChangeNote": "UPGRADED FROM TROPICAL STORM 24W",
-      "positionZ": "210000Z",
-      "lat": 32.4,
-      "lon": 138.7,
-      "movingToward": 30,
-      "movingKt": 13,
-      "maxWindKt": 65,
-      "gustKt": 80,
-      "pressureMb": 974,
-      "seasFt": 30,
-      "nextWarnings": [
-        "210900Z",
-        "211500Z",
-        "212100Z",
-        "220300Z"
-      ],
-      "geoReference": "181 NM SOUTH-SOUTHWEST OF YOKOSUKA, JAPAN",
+      "positionZ": "210600Z",
+      "lat": 33.7,
+      "lon": 139.8,
+      "movingToward": 40,
+      "movingKt": 16,
+      "maxWindKt": 70,
+      "gustKt": 85,
+      "pressureMb": 971,
+      "seasFt": 32,
+      "geoReference": "96 NM SOUTH OF YOKOSUKA, JAPAN",
       "reasoning": {
         "warningNumber": "023",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
@@ -80,58 +65,46 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2426prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 1081,
-        "bearingDeg": 55,
+        "distanceNm": 1167,
+        "bearingDeg": 52,
         "closestApproach": {
-          "distanceNm": 1281,
+          "distanceNm": 1416,
           "tau": 12,
-          "validZ": "211200Z",
-          "maxWindKt": 70,
+          "validZ": "211800Z",
+          "maxWindKt": 75,
           "recedingOnly": true
         }
       },
       "motion": {
-        "currentHeadingDeg": 30,
+        "currentHeadingDeg": 40,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 45
+            "heading": 52
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 58
+            "heading": 62
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 67
-          },
-          {
-            "fromTau": 36,
-            "toTau": 48,
-            "heading": 73
+            "heading": 71
           }
         ],
-        "turns": [
-          {
-            "fromTau": 24,
-            "toTau": 36,
-            "headingDeg": 67,
-            "deltaDeg": 37
-          }
-        ]
+        "turns": []
       },
       "changes": {
-        "previousWarningNumber": "022",
-        "previousIssuedAt": "2026-09-20T21:00:00.000Z",
+        "previousWarningNumber": "023",
+        "previousIssuedAt": "2026-09-21T03:00:00.000Z",
         "maxWindKtDelta": 5,
-        "pressureMbDelta": -2,
+        "pressureMbDelta": -3,
         "seasFtDelta": 2,
-        "closestApproachNmDelta": 115
+        "closestApproachNmDelta": 135
       }
     }
   ],

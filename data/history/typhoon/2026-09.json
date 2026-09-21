@@ -1916,6 +1916,90 @@
         "distanceNm": 1490,
         "bearingDeg": 114
       }
+    },
+    {
+      "kind": "warning",
+      "id": "24W",
+      "name": "Dujuan",
+      "designation": "Typhoon",
+      "warningNumber": "024",
+      "issuedAt": "2026-09-21T09:00:00.000Z",
+      "positionZ": "210600Z",
+      "lat": 33.7,
+      "lon": 139.8,
+      "maxWindKt": 70,
+      "gustKt": 85,
+      "pressureMb": 971,
+      "seasFt": 32,
+      "movingToward": 40,
+      "movingKt": 16,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "211800Z",
+          "lat": 36.2,
+          "lon": 143.9,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 24,
+          "validZ": "220600Z",
+          "lat": 38.4,
+          "lon": 149.6,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 36,
+          "validZ": "221800Z",
+          "lat": 39.9,
+          "lon": 156.1,
+          "maxWindKt": 55,
+          "gustKt": 70
+        }
+      ],
+      "spot": {
+        "distanceNm": 1167,
+        "bearingDeg": 52,
+        "closestApproach": {
+          "distanceNm": 1416,
+          "tau": 12,
+          "validZ": "211800Z",
+          "maxWindKt": 75,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 40,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 52
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 62
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 71
+          }
+        ],
+        "turns": []
+      },
+      "swell": null,
+      "reasoningWarningNumber": "023",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "MEDIUM",
+        "intensity72120": null
+      }
     }
   ]
 }
