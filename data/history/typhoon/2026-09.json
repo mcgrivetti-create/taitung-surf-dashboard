@@ -2084,6 +2084,77 @@
         "intensity0072": "HIGH",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "24W",
+      "name": "Dujuan",
+      "designation": "Typhoon",
+      "warningNumber": "026",
+      "issuedAt": "2026-09-21T21:00:00.000Z",
+      "positionZ": "211800Z",
+      "lat": 36.9,
+      "lon": 144.1,
+      "maxWindKt": 70,
+      "gustKt": 85,
+      "pressureMb": 970,
+      "seasFt": 34,
+      "movingToward": 45,
+      "movingKt": 27,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "220600Z",
+          "lat": 39.2,
+          "lon": 150,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 24,
+          "validZ": "221800Z",
+          "lat": 41.1,
+          "lon": 157.1,
+          "maxWindKt": 50,
+          "gustKt": 65
+        }
+      ],
+      "spot": {
+        "distanceNm": 1444,
+        "bearingDeg": 49,
+        "closestApproach": {
+          "distanceNm": 1755,
+          "tau": 12,
+          "validZ": "220600Z",
+          "maxWindKt": 65,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 45,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 62
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 68
+          }
+        ],
+        "turns": []
+      },
+      "swell": null,
+      "reasoningWarningNumber": "025",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
     }
   ]
 }
