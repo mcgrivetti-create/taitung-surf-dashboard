@@ -2000,6 +2000,90 @@
         "intensity0072": "MEDIUM",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "24W",
+      "name": "Dujuan",
+      "designation": "Typhoon",
+      "warningNumber": "025",
+      "issuedAt": "2026-09-21T15:00:00.000Z",
+      "positionZ": "211200Z",
+      "lat": 34.9,
+      "lon": 141.8,
+      "maxWindKt": 70,
+      "gustKt": 85,
+      "pressureMb": 971,
+      "seasFt": 34,
+      "movingToward": 55,
+      "movingKt": 20,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "220000Z",
+          "lat": 37.5,
+          "lon": 147,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 24,
+          "validZ": "221200Z",
+          "lat": 39.4,
+          "lon": 153.3,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 36,
+          "validZ": "230000Z",
+          "lat": 41,
+          "lon": 160.8,
+          "maxWindKt": 45,
+          "gustKt": 55
+        }
+      ],
+      "spot": {
+        "distanceNm": 1289,
+        "bearingDeg": 52,
+        "closestApproach": {
+          "distanceNm": 1584,
+          "tau": 12,
+          "validZ": "220000Z",
+          "maxWindKt": 70,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 55,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 57
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 67
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 72
+          }
+        ],
+        "turns": []
+      },
+      "swell": null,
+      "reasoningWarningNumber": "025",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
     }
   ]
 }

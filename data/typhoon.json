@@ -1,62 +1,62 @@
 {
-  "fetchedAt": "2026-09-21T13:18:46.932Z",
+  "fetchedAt": "2026-09-21T14:19:26.473Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "24W",
       "name": "Dujuan",
       "headline": "Typhoon 24W (Dujuan)",
-      "warningNumber": "024",
-      "issuedZ": "21/0900Z",
-      "issuedAt": "2026-09-21T09:00:00.000Z",
+      "warningNumber": "025",
+      "issuedZ": "21/1500Z",
+      "issuedAt": "2026-09-21T15:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2426.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2426web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "211800Z",
-          "lat": 36.2,
-          "lon": 143.9,
-          "maxWindKt": 75,
-          "gustKt": 90
-        },
-        {
-          "tau": 24,
-          "validZ": "220600Z",
-          "lat": 38.4,
-          "lon": 149.6,
+          "validZ": "220000Z",
+          "lat": 37.5,
+          "lon": 147,
           "maxWindKt": 70,
           "gustKt": 85
         },
         {
+          "tau": 24,
+          "validZ": "221200Z",
+          "lat": 39.4,
+          "lon": 153.3,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
           "tau": 36,
-          "validZ": "221800Z",
-          "lat": 39.9,
-          "lon": 156.1,
-          "maxWindKt": 55,
-          "gustKt": 70
+          "validZ": "230000Z",
+          "lat": 41,
+          "lon": 160.8,
+          "maxWindKt": 45,
+          "gustKt": 55
         }
       ],
-      "positionZ": "210600Z",
-      "lat": 33.7,
-      "lon": 139.8,
-      "movingToward": 40,
-      "movingKt": 16,
+      "positionZ": "211200Z",
+      "lat": 34.9,
+      "lon": 141.8,
+      "movingToward": 55,
+      "movingKt": 20,
       "maxWindKt": 70,
       "gustKt": 85,
       "pressureMb": 971,
-      "seasFt": 32,
-      "geoReference": "96 NM SOUTH OF YOKOSUKA, JAPAN",
+      "seasFt": 34,
+      "geoReference": "106 NM EAST- SOUTHEAST OF YOKOSUKA, JAPAN",
       "reasoning": {
-        "warningNumber": "024",
+        "warningNumber": "025",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 32,
-        "environment": "MARGINALLY FAVORABLE",
-        "vws": "15-20 KTS",
-        "sst": "27-28 CELSIUS",
+        "seasFt": 34,
+        "environment": "MARGINAL",
+        "vws": "20-25 KTS",
+        "sst": "28-29 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "SUBTROPICAL RIDGE (STR) CENTERED TO THE EAST",
+        "steering": "SUBTROPICAL RIDGE (STR) CENTERED TO THE EAST-SOUTHEAST",
         "confidence": {
           "track0072": "HIGH",
           "track72120": null,
@@ -67,44 +67,44 @@
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2426prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 1167,
+        "distanceNm": 1289,
         "bearingDeg": 52,
         "closestApproach": {
-          "distanceNm": 1416,
+          "distanceNm": 1584,
           "tau": 12,
-          "validZ": "211800Z",
-          "maxWindKt": 75,
+          "validZ": "220000Z",
+          "maxWindKt": 70,
           "recedingOnly": true
         }
       },
       "motion": {
-        "currentHeadingDeg": 40,
+        "currentHeadingDeg": 55,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 52
+            "heading": 57
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 62
+            "heading": 67
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 71
+            "heading": 72
           }
         ],
         "turns": []
       },
       "changes": {
-        "previousWarningNumber": "023",
-        "previousIssuedAt": "2026-09-21T03:00:00.000Z",
-        "maxWindKtDelta": 5,
-        "pressureMbDelta": -3,
+        "previousWarningNumber": "024",
+        "previousIssuedAt": "2026-09-21T09:00:00.000Z",
+        "maxWindKtDelta": 0,
+        "pressureMbDelta": 0,
         "seasFtDelta": 2,
-        "closestApproachNmDelta": 135
+        "closestApproachNmDelta": 168
       }
     }
   ],
