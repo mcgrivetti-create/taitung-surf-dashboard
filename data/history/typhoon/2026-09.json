@@ -1796,6 +1796,110 @@
         "distanceNm": 1490,
         "bearingDeg": 114
       }
+    },
+    {
+      "kind": "warning",
+      "id": "24W",
+      "name": "Dujuan",
+      "designation": "Typhoon",
+      "warningNumber": "023",
+      "issuedAt": "2026-09-21T03:00:00.000Z",
+      "positionZ": "210000Z",
+      "lat": 32.4,
+      "lon": 138.7,
+      "maxWindKt": 65,
+      "gustKt": 80,
+      "pressureMb": 974,
+      "seasFt": 30,
+      "movingToward": 30,
+      "movingKt": 13,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "211200Z",
+          "lat": 34.8,
+          "lon": 141.7,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 24,
+          "validZ": "220000Z",
+          "lat": 37.2,
+          "lon": 146.8,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 36,
+          "validZ": "221200Z",
+          "lat": 39.1,
+          "lon": 153,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 48,
+          "validZ": "230000Z",
+          "lat": 40.6,
+          "lon": 160.2,
+          "maxWindKt": 45,
+          "gustKt": 55
+        }
+      ],
+      "spot": {
+        "distanceNm": 1081,
+        "bearingDeg": 55,
+        "closestApproach": {
+          "distanceNm": 1281,
+          "tau": 12,
+          "validZ": "211200Z",
+          "maxWindKt": 70,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 30,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 45
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 58
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 67
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 73
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "headingDeg": 67,
+            "deltaDeg": 37
+          }
+        ]
+      },
+      "swell": null,
+      "reasoningWarningNumber": null,
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
     }
   ]
 }
