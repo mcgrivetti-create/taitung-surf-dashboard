@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-20T23:16:51.625Z",
+  "fetchedAt": "2026-09-21T00:25:57.215Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -11,7 +11,7 @@
       "issuedAt": "2026-09-20T21:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2426.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2426web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202609191800-96_DUJUAN_enus.png",
+      "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
@@ -146,12 +146,25 @@
       }
     }
   ],
-  "invests": [],
-  "investSatellite": null,
+  "invests": [
+    {
+      "id": "91W",
+      "potential": "LOW",
+      "geoReference": "128 NM SOUTH OF ANDERSEN AFB",
+      "windKtLow": 13,
+      "windKtHigh": 18,
+      "pressureMb": 1008,
+      "lat": 11.3,
+      "lon": 144.3,
+      "distanceNm": 1490,
+      "bearingDeg": 114
+    }
+  ],
+  "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "20/0600Z",
-    "issuedAt": "2026-09-20T06:00:00.000Z",
+    "issuedZ": "21/0000Z",
+    "issuedAt": "2026-09-21T00:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": false
+    "reissued": true
   }
 }
