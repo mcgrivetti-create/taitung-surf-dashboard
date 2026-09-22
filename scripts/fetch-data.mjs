@@ -776,7 +776,7 @@ function decodeEntities(s) {
 
 function parseJtwcRss(xml, nowMs) {
   const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map((m) => m[1]);
-  const out = { systems: [], advisory: null };
+  const out = { systems: [], alerts: [], advisory: null };
   for (const it of items) {
     const title = (it.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || "";
     const cdata = (it.match(/<description><!\[CDATA\[([\s\S]*?)\]\]><\/description>/) || [])[1] || "";
@@ -801,6 +801,26 @@ function parseJtwcRss(xml, nowMs) {
           issuedAt: zuluToISO(issuedZ, nowMs),
           graphic: decodeEntities(gif[1]),
           warningText: decodeEntities((b.match(/href='([^']*web\.txt)'/i) || [])[1] || ""),
+        });
+      }
+    }
+
+    if (/Northwest Pacific/i.test(title)) {
+      // TCFA blocks sit in the same item but carry no warning number, so the
+      // loop above skips them. Same wp-only basin filter applies.
+      const alertBlocks = cdata.split(/<p>/i).filter((b) => /Tropical Cyclone Formation Alert/i.test(b));
+      for (const b of alertBlocks) {
+        const txtUrl = (b.match(/href='([^']*wp\d{4}web\.txt)'/i) || [])[1];
+        if (!txtUrl) continue;
+        out.alerts.push({
+          alertId: (b.replace(/\s+/g, " ").match(/Tropical Cyclone Formation Alert\s+(\w+)/i) || [])[1] || null,
+          issuedZ: (b.match(/Issued at\s*(\d{2}\/\d{4}Z)/i) || [])[1] || null,
+          issuedAt: zuluToISO((b.match(/Issued at\s*(\d{2}\/\d{4}Z)/i) || [])[1], nowMs),
+          textUrl: decodeEntities(txtUrl),
+          graphic: decodeEntities((b.match(/href='([^']*wp\d{4}\.gif)'/i) || [])[1] || ""),
+          // Unlike a bare disturbance, an alerted invest DOES get its own
+          // satellite image — better than the basin-wide advisory picture.
+          satellite: decodeEntities((b.match(/href='([^']*\d{2}[WSEPC]_\d{6}sair\.jpg)'/i) || [])[1] || ""),
         });
       }
     }
@@ -842,11 +862,19 @@ function parseInvests(txt) {
     if (!p || /NO OTHER SUSPECT AREAS/i.test(p)) continue;
 
     const id = (p.match(/INVEST\s+(\d{2}[WSEPC])/i) || [])[1] || null;
-    const pos = p.match(/NEAR\s+([\d.]+)\s*([NS])\s+([\d.]+)\s*([EW])/i);
+    // Two observed phrasings, and picking the wrong one puts the system
+    // hundreds of miles off: a first sighting reads "HAS PERSISTED NEAR x",
+    // while a follow-up reads "PREVIOUSLY LOCATED NEAR x IS NOW LOCATED
+    // NEAR y". Matching the first NEAR in the second case returns the OLD
+    // position — so the current-position phrasing is tried first.
+    const pos = p.match(/IS NOW LOCATED NEAR\s+([\d.]+)\s*([NS])\s+([\d.]+)\s*([EW])/i) ||
+      p.match(/NEAR\s+([\d.]+)\s*([NS])\s+([\d.]+)\s*([EW])/i);
     const geo = p.match(/APPROXIMATELY\s+(\d+)\s*NM\s+([A-Z\- ]+?)\s+OF\s+([A-Z\- .']+?)[.,]/i);
     const wind = p.match(/MAXIMUM SUSTAINED SURFACE WINDS ARE ESTIMATED AT\s+(\d+)\s*TO\s*(\d+)\s*KNOTS/i);
     const pres = p.match(/MINIMUM SEA LEVEL PRESSURE IS (?:ESTIMATED TO BE\s+)?NEAR\s+(\d+)\s*MB/i);
-    const pot = p.match(/POTENTIAL FOR THE DEVELOPMENT OF A SIGNIFICANT TROPICAL CYCLONE WITHIN THE NEXT\s+\d+\s+HOURS IS\s+(LOW|MEDIUM|HIGH)/i);
+    // "IS HIGH" on a first mention, "REMAINS HIGH" once it's been assessed
+    // before — the second form silently yielded null until live data showed it.
+    const pot = p.match(/POTENTIAL FOR THE DEVELOPMENT OF A SIGNIFICANT TROPICAL CYCLONE WITHIN THE NEXT\s+\d+\s+HOURS\s+(?:IS|REMAINS)\s+(LOW|MEDIUM|HIGH)/i);
 
     const rec = {
       id,
@@ -865,6 +893,51 @@ function parseInvests(txt) {
     out.push(rec);
   }
   return out;
+}
+
+/**
+ * Tropical Cyclone Formation Alert — the step between "an area we're
+ * watching" and a numbered warning. JTWC issues one when formation looks
+ * likely within 12-24h, and it carries more than the disturbance summary
+ * does: a corridor where formation is expected, the circulation centre,
+ * movement, and a hard deadline by which the alert is upgraded, reissued
+ * or cancelled.
+ *
+ * These appear in the same RSS item as the warnings but in their own block,
+ * headed "Tropical Cyclone Formation Alert WTPN21" with no warning number —
+ * which is why the warning parser skipped them entirely.
+ */
+function parseTcfaText(t) {
+  const n = t.replace(/\s+/g, " ");
+  const o = {};
+  o.investId = (n.match(/FORMATION ALERT \(INVEST\s+(\d{2}[WSEPC])\)/i) || [])[1] || null;
+  const area = n.match(/POSSIBLE WITHIN\s+(\d+)\s*NM EITHER SIDE OF A LINE FROM\s+([\d.]+)([NS])\s+([\d.]+)([EW])\s+TO\s+([\d.]+)([NS])\s+([\d.]+)([EW])\s+WITHIN THE NEXT\s+(\d+)\s+TO\s+(\d+)\s+HOURS/i);
+  if (area) {
+    o.corridorNm = +area[1];
+    o.lineFrom = { lat: signedLatLon(area[2], area[3]), lon: signedLatLon(area[4], area[5]) };
+    o.lineTo = { lat: signedLatLon(area[6], area[7]), lon: signedLatLon(area[8], area[9]) };
+    o.windowLowH = +area[10];
+    o.windowHighH = +area[11];
+  }
+  const c = n.match(/CIRCULATION CENTER IS LOCATED NEAR\s+([\d.]+)([NS])\s+([\d.]+)([EW])/i);
+  if (c) {
+    o.lat = signedLatLon(c[1], c[2]);
+    o.lon = signedLatLon(c[3], c[4]);
+    o.distanceNm = Math.round(distanceNm(SPOT_LAT, SPOT_LON, o.lat, o.lon));
+    o.bearingDeg = Math.round(bearingDeg(SPOT_LAT, SPOT_LON, o.lat, o.lon));
+  }
+  const mv = n.match(/THE SYSTEM IS MOVING\s+([A-Z\- ]+?)\s+AT\s+(\d+)\s*KNOTS/i);
+  if (mv) { o.movingText = mv[1].trim(); o.movingKt = +mv[2]; }
+  const w = n.match(/WINDS IN THE AREA ARE ESTIMATED TO BE\s+(\d+)\s*TO\s*(\d+)\s*KNOTS/i);
+  if (w) { o.areaWindKtLow = +w[1]; o.areaWindKtHigh = +w[2]; }
+  const mw = n.match(/MAXIMUM SUSTAINED SURFACE WINDS ARE ESTIMATED AT\s+(\d+)\s*TO\s*(\d+)\s*KNOTS/i);
+  if (mw) { o.maxWindKtLow = +mw[1]; o.maxWindKtHigh = +mw[2]; }
+  const pr = n.match(/MINIMUM SEA LEVEL PRESSURE IS (?:ESTIMATED TO BE\s+)?NEAR\s+(\d+)\s*MB/i);
+  if (pr) o.pressureMb = +pr[1];
+  const pot = n.match(/POTENTIAL FOR THE DEVELOPMENT OF A SIGNIFICANT TROPICAL CYCLONE WITHIN THE NEXT\s+\d+\s+HOURS\s+(?:IS|REMAINS)\s+(LOW|MEDIUM|HIGH)/i);
+  if (pot) o.potential = pot[1].toUpperCase();
+  o.decisionByZ = (n.match(/REISSUED,?\s*UPGRADED TO WARNING OR CANCELLED BY\s+(\d{6}Z)/i) || [])[1] || null;
+  return o;
 }
 
 /** Most recent existing CWA 96h track image for a named storm, or null. */
@@ -1166,6 +1239,14 @@ async function buildTyphoon(results) {
   if (!rssRes.ok) throw new Error(`JTWC rss -> HTTP ${rssRes.status}`);
   const parsed = parseJtwcRss(await rssRes.text(), nowMs);
 
+  // Fetch each alert's text for the detail the RSS block doesn't carry.
+  for (const a of parsed.alerts) {
+    try {
+      const res = await fetch(a.textUrl);
+      if (res.ok) Object.assign(a, parseTcfaText(await res.text()));
+    } catch (err) { console.error(`WARN: TCFA text ${a.alertId} (${err.message})`); }
+  }
+
   let invests = [];
   if (abpwRes.ok) {
     try { invests = parseInvests(await abpwRes.text()); }
@@ -1230,6 +1311,16 @@ async function buildTyphoon(results) {
   // having both series side by side is what makes that possible at all.
   // Dedupe is by advisory issue time, since invests carry no warning number.
   const investIssuedAt = (parsed.advisory && parsed.advisory.issuedAt) || new Date(nowMs).toISOString();
+  const alertRecords = parsed.alerts.map((a) => ({
+    kind: "tcfa",
+    id: a.investId || a.alertId, alertId: a.alertId, issuedAt: a.issuedAt,
+    lat: a.lat, lon: a.lon, potential: a.potential,
+    maxWindKtLow: a.maxWindKtLow, maxWindKtHigh: a.maxWindKtHigh, pressureMb: a.pressureMb,
+    movingText: a.movingText, movingKt: a.movingKt,
+    windowLowH: a.windowLowH, windowHighH: a.windowHighH, decisionByZ: a.decisionByZ,
+    spot: (a.distanceNm !== undefined) ? { distanceNm: a.distanceNm, bearingDeg: a.bearingDeg } : null,
+  }));
+
   const investRecords = invests.map((iv) => ({
     kind: "invest",
     id: iv.id, issuedAt: investIssuedAt,
@@ -1243,14 +1334,23 @@ async function buildTyphoon(results) {
 
   const addedTyphoon = await appendMonthlyHistory(
     "typhoon",
-    [...newRecords.map((r) => Object.assign({ kind: "warning" }, r)), ...investRecords],
-    (r) => (r.kind === "invest" ? `invest|${r.id}|${r.issuedAt}` : `${r.id}|${r.warningNumber}`)
+    [
+      ...newRecords.map((r) => Object.assign({ kind: "warning" }, r)),
+      ...alertRecords,
+      ...investRecords,
+    ],
+    (r) => {
+      if (r.kind === "invest") return `invest|${r.id}|${r.issuedAt}`;
+      if (r.kind === "tcfa") return `tcfa|${r.id}|${r.issuedAt}`;
+      return `${r.id}|${r.warningNumber}`;
+    }
   );
 
   return {
     data: {
       fetchedAt: new Date(nowMs).toISOString(),
       systems: parsed.systems,
+      alerts: parsed.alerts,
       invests,
       // The basin-wide advisory satellite image — there's no per-invest
       // graphic, so this is how you eyeball whether a disturbance is worth
@@ -1259,7 +1359,7 @@ async function buildTyphoon(results) {
       advisory: parsed.advisory,
     },
     ok: true,
-    count: parsed.systems.length + invests.length,
+    count: parsed.systems.length + invests.length + parsed.alerts.length,
     archived: addedTyphoon,
   };
 }

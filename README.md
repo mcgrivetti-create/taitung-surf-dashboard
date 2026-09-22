@@ -573,3 +573,44 @@ phase: 90W appearing as a disturbance, then the same area becoming 24W once
 warnings begin. The designators differ, so lineage is read rather than
 joined automatically — but having both series in one place is what makes
 reading it possible at all.
+
+### Formation alerts (TCFA)
+
+Between "an area we're watching" and a numbered warning, JTWC issues a
+**Tropical Cyclone Formation Alert** when formation looks likely within
+12–24h. These appear in the same RSS item as the warnings but in their own
+block — headed `Tropical Cyclone Formation Alert WTPN21`, with **no warning
+number**, which is exactly why the warning parser skipped them.
+
+`parseTcfaText` reads the alert product (`wp<nn><yy>web.txt`) for: the
+invest designator, the corridor where formation is expected (a line plus a
+±NM width), the formation window, the circulation centre with distance and
+bearing from Donghe, movement, estimated winds, pressure, development
+potential, and the **deadline by which the alert is upgraded, reissued or
+cancelled** — which is the most actionable field, since it tells you when
+the next decision lands.
+
+Correcting an earlier note in this file: an alerted invest **does** get its
+own graphics — a TCFA graphic (`wp<nn><yy>.gif`) and a per-system IR image
+(`91W_220400sair.jpg`). The basin-wide advisory picture is only the fallback
+for a disturbance with no alert.
+
+Alerts archive alongside warnings and invests as `kind: "tcfa"`, deduped by
+issue time, completing the lineage: disturbance → formation alert →
+numbered warning.
+
+### Two parser bugs live data found
+
+Both were in the invest parser, written against a single 2023 bulletin and
+shipped before any real invest existed to test it:
+
+1. **Wrong position.** A first sighting reads `HAS PERSISTED NEAR x`, but a
+   follow-up reads `PREVIOUSLY LOCATED NEAR x IS NOW LOCATED NEAR y`. The
+   regex matched the first `NEAR` and so reported the **old** position —
+   91W was placed 1490nm out on a bearing of 114° when it was actually at
+   12.5N 141.9E. `IS NOW LOCATED NEAR` is now tried first.
+2. **Potential always null.** The sample said `... HOURS IS LOW`; live text
+   said `... HOURS REMAINS HIGH`. Now matches `IS|REMAINS`.
+
+Neither would have surfaced without a live invest. Worth remembering for
+the paths still untested against real data — multi-storm layout among them.

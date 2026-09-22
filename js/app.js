@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-09-18g";
+  var ASSET_VERSION = "2026-09-22a";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -1062,6 +1062,47 @@
       html += "</div>";
     });
 
+    // Formation alerts — between "watching an area" and a numbered warning.
+    // Listed before invests because an alert means JTWC thinks something is
+    // about to happen, and it carries a hard decision deadline.
+    (data.alerts || []).forEach(function (a) {
+      html += '<div class="typhoon-card typhoon-alert"><h3>⚠ Formation Alert — Invest ' +
+        escapeHtml(a.investId || a.alertId || "") + "</h3>";
+
+      var lead = [];
+      if (a.windowLowH && a.windowHighH) {
+        lead.push("Formation possible in <strong>" + a.windowLowH + "–" + a.windowHighH + "h</strong>");
+      }
+      if (a.potential) lead.push("development potential <strong>" + escapeHtml(a.potential) + "</strong>");
+      if (lead.length) html += "<p>" + lead.join(", ") + ".</p>";
+
+      var det = [];
+      if (a.distanceNm) det.push(Math.round(a.distanceNm * 1.852) + " km " + degToCompass(a.bearingDeg) + " of Donghe");
+      if (a.movingText && a.movingKt) det.push("moving " + escapeHtml(a.movingText.toLowerCase()) + " at " + a.movingKt + " kt");
+      if (a.maxWindKtLow && a.maxWindKtHigh) det.push(a.maxWindKtLow + "–" + a.maxWindKtHigh + " kt");
+      if (a.pressureMb) det.push(a.pressureMb + " mb");
+      if (det.length) html += '<p class="typhoon-meta">' + det.join(" · ") + "</p>";
+
+      if (a.decisionByZ) {
+        html += '<p class="typhoon-meta">Alert is upgraded to a warning, reissued or cancelled by <strong>' +
+          escapeHtml(fmtDonghe(zuluToLocalISO(a.decisionByZ))) + "</strong>.</p>";
+      }
+
+      var img = a.graphic || a.satellite;
+      if (img) {
+        html += '<div class="typhoon-images"><figure>' +
+          '<a href="' + escapeHtml(img) + '" target="_blank" rel="noopener">' +
+          '<img src="' + escapeHtml(img) + (a.issuedAt ? "?t=" + encodeURIComponent(a.issuedAt) : "") +
+          '" alt="JTWC formation alert graphic" loading="lazy"></a>' +
+          "<figcaption>JTWC TCFA graphic</figcaption></figure></div>";
+      }
+      if (a.textUrl) {
+        html += '<p class="typhoon-links"><a href="' + escapeHtml(a.textUrl) +
+          '" target="_blank" rel="noopener">Formation alert text ↗</a></p>';
+      }
+      html += "</div>";
+    });
+
     if (invests.length) {
       html += '<div class="typhoon-card typhoon-invests"><h3>Areas being watched</h3>';
       invests.forEach(function (iv) {
@@ -1124,6 +1165,21 @@
         hour: "2-digit", minute: "2-digit", hour12: false,
       });
     } catch (e) { return iso; }
+  }
+
+  // "230400Z" -> ISO. JTWC gives only day-of-month, so the month comes from
+  // now, stepping forward if that would put a deadline in the past (these
+  // are always imminent) — the mirror of the backwards guess used for
+  // issue times, which are always recent.
+  function zuluToLocalISO(dz) {
+    var m = String(dz || "").match(/^(\d{2})(\d{2})(\d{2})Z$/);
+    if (!m) return null;
+    var now = new Date();
+    var d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), +m[1], +m[2], +m[3]));
+    if (d.getTime() < Date.now() - 2 * 86400000) {
+      d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, +m[1], +m[2], +m[3]));
+    }
+    return d.toISOString();
   }
 
   function fmtClock(iso) {
