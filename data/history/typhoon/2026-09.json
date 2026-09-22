@@ -2258,6 +2258,43 @@
         "distanceNm": 1490,
         "bearingDeg": 114
       }
+    },
+    {
+      "kind": "tcfa",
+      "id": "91W",
+      "alertId": "WTPN21",
+      "issuedAt": "2026-09-22T04:00:00.000Z",
+      "lat": 12.5,
+      "lon": 141.9,
+      "potential": "HIGH",
+      "maxWindKtLow": 28,
+      "maxWindKtHigh": 33,
+      "pressureMb": 998,
+      "movingText": "WEST-NORTHWESTWARD",
+      "movingKt": 6,
+      "windowLowH": 12,
+      "windowHighH": 24,
+      "decisionByZ": "230400Z",
+      "spot": {
+        "distanceNm": 1332,
+        "bearingDeg": 115
+      }
+    },
+    {
+      "kind": "invest",
+      "id": "91W",
+      "issuedAt": "2026-09-22T06:00:00.000Z",
+      "lat": 12.5,
+      "lon": 141.9,
+      "potential": "HIGH",
+      "geoReference": "173 NM WEST-SOUTHWEST OF GUAM",
+      "windKtLow": 18,
+      "windKtHigh": 23,
+      "pressureMb": 1006,
+      "spot": {
+        "distanceNm": 1332,
+        "bearingDeg": 115
+      }
     }
   ]
 }
