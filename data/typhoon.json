@@ -1,50 +1,50 @@
 {
-  "fetchedAt": "2026-09-22T01:16:38.584Z",
+  "fetchedAt": "2026-09-22T02:18:51.910Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "24W",
       "name": "Dujuan",
       "headline": "Typhoon 24W (Dujuan)",
-      "warningNumber": "026",
-      "issuedZ": "21/2100Z",
-      "issuedAt": "2026-09-21T21:00:00.000Z",
+      "warningNumber": "027",
+      "issuedZ": "22/0300Z",
+      "issuedAt": "2026-09-22T03:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2426.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2426web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "220600Z",
-          "lat": 39.2,
-          "lon": 150,
-          "maxWindKt": 65,
-          "gustKt": 80
+          "validZ": "221200Z",
+          "lat": 40.1,
+          "lon": 154.1,
+          "maxWindKt": 55,
+          "gustKt": 70
         },
         {
           "tau": 24,
-          "validZ": "221800Z",
-          "lat": 41.1,
-          "lon": 157.1,
-          "maxWindKt": 50,
-          "gustKt": 65
+          "validZ": "230000Z",
+          "lat": 41.9,
+          "lon": 161.7,
+          "maxWindKt": 45,
+          "gustKt": 55
         }
       ],
-      "positionZ": "211800Z",
-      "lat": 36.9,
-      "lon": 144.1,
-      "movingToward": 45,
-      "movingKt": 27,
-      "maxWindKt": 70,
-      "gustKt": 85,
-      "pressureMb": 970,
-      "seasFt": 34,
+      "positionZ": "220000Z",
+      "lat": 38.1,
+      "lon": 147.4,
+      "movingToward": 60,
+      "movingKt": 29,
+      "maxWindKt": 65,
+      "gustKt": 80,
+      "pressureMb": 972,
+      "seasFt": 33,
       "nextWarnings": [
-        "220300Z",
         "220900Z",
-        "221500Z"
+        "221500Z",
+        "222100Z"
       ],
-      "geoReference": "234 NM EAST- NORTHEAST OF YOKOSUKA, JAPAN",
+      "geoReference": "319 NM EAST- SOUTHEAST OF MISAWA, JAPAN",
       "reasoning": {
         "warningNumber": "026",
         "significantForecastChanges": "EXTRATROPICAL TRANSITION (ETT) ASSESSED TO HAVE BEGUN. ETT EXPECTED TO COMPLETE SOONER THAN PREVIOUSLY FORECAST.",
@@ -62,41 +62,41 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2426prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 1444,
-        "bearingDeg": 49,
+        "distanceNm": 1617,
+        "bearingDeg": 50,
         "closestApproach": {
-          "distanceNm": 1755,
+          "distanceNm": 1951,
           "tau": 12,
-          "validZ": "220600Z",
-          "maxWindKt": 65,
+          "validZ": "221200Z",
+          "maxWindKt": 55,
           "recedingOnly": true
         }
       },
       "motion": {
-        "currentHeadingDeg": 45,
+        "currentHeadingDeg": 60,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 62
+            "heading": 67
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 68
+            "heading": 70
           }
         ],
         "turns": []
       },
       "changes": {
-        "previousWarningNumber": "025",
-        "previousIssuedAt": "2026-09-21T15:00:00.000Z",
-        "maxWindKtDelta": 0,
-        "pressureMbDelta": -1,
-        "seasFtDelta": 0,
-        "closestApproachNmDelta": 171
+        "previousWarningNumber": "026",
+        "previousIssuedAt": "2026-09-21T21:00:00.000Z",
+        "maxWindKtDelta": -5,
+        "pressureMbDelta": 2,
+        "seasFtDelta": -1,
+        "closestApproachNmDelta": 196
       }
     }
   ],
