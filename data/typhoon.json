@@ -1,79 +1,6 @@
 {
-  "fetchedAt": "2026-09-23T05:17:49.826Z",
-  "systems": [
-    {
-      "designation": "Tropical Storm",
-      "id": "24W",
-      "name": "Dujuan",
-      "headline": "Tropical Storm 24W (Dujuan)",
-      "warningNumber": "028",
-      "issuedZ": "22/0900Z",
-      "issuedAt": "2026-09-22T09:00:00.000Z",
-      "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2426.gif",
-      "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2426web.txt",
-      "cwaTrackImage": null,
-      "forecasts": [
-        {
-          "tau": 12,
-          "validZ": "221800Z",
-          "lat": 40.9,
-          "lon": 157.5,
-          "maxWindKt": 50,
-          "gustKt": 65
-        },
-        {
-          "tau": 24,
-          "validZ": "230600Z",
-          "lat": 42.9,
-          "lon": 166.4,
-          "maxWindKt": 40,
-          "gustKt": 50
-        }
-      ],
-      "intensityChangeNote": "DOWNGRADED FROM TYPHOON 24W",
-      "positionZ": "220600Z",
-      "lat": 39,
-      "lon": 150.2,
-      "movingToward": 70,
-      "movingKt": 24,
-      "maxWindKt": 60,
-      "gustKt": 75,
-      "geoReference": "424 NM EAST OF MISAWA, JAPAN",
-      "spot": {
-        "distanceNm": 1759,
-        "bearingDeg": 50,
-        "closestApproach": {
-          "distanceNm": 2113,
-          "tau": 12,
-          "validZ": "221800Z",
-          "maxWindKt": 50,
-          "recedingOnly": true
-        }
-      },
-      "motion": {
-        "currentHeadingDeg": 70,
-        "legs": [
-          {
-            "fromTau": 0,
-            "toTau": 12,
-            "heading": 69
-          },
-          {
-            "fromTau": 12,
-            "toTau": 24,
-            "heading": 70
-          }
-        ],
-        "turns": []
-      },
-      "changes": {
-        "previousWarningNumber": "027",
-        "previousIssuedAt": "2026-09-22T03:00:00.000Z",
-        "maxWindKtDelta": -5,
-        "closestApproachNmDelta": 162
-      }
-    }
-  ],
+  "fetchedAt": "2026-09-23T06:24:45.949Z",
+  "systems": [],
   "alerts": [
     {
       "alertId": "WTPN21",
@@ -113,21 +40,21 @@
     {
       "id": "91W",
       "potential": "HIGH",
-      "geoReference": "173 NM WEST-SOUTHWEST OF GUAM",
+      "geoReference": "349 NM WEST-NORTHWEST OF GUAM",
       "windKtLow": 18,
       "windKtHigh": 23,
-      "pressureMb": 1006,
-      "lat": 12.5,
-      "lon": 141.9,
-      "distanceNm": 1332,
-      "bearingDeg": 115
+      "pressureMb": 1005,
+      "lat": 15.1,
+      "lon": 139,
+      "distanceNm": 1108,
+      "bearingDeg": 112
     }
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "22/0900Z",
-    "issuedAt": "2026-09-22T09:00:00.000Z",
+    "issuedZ": "23/0600Z",
+    "issuedAt": "2026-09-23T06:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": true
+    "reissued": false
   }
 }
