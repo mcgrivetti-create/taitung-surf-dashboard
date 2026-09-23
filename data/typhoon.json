@@ -1,49 +1,179 @@
 {
-  "fetchedAt": "2026-09-23T08:19:56.787Z",
-  "systems": [],
-  "alerts": [
+  "fetchedAt": "2026-09-23T09:18:57.840Z",
+  "systems": [
     {
-      "alertId": "WTPN21",
-      "issuedZ": "23/0400Z",
-      "issuedAt": "2026-09-23T04:00:00.000Z",
-      "textUrl": "https://www.metoc.navy.mil/jtwc/products/wp9126web.txt",
-      "graphic": "https://www.metoc.navy.mil/jtwc/products/wp9126.gif",
-      "satellite": "https://www.metoc.navy.mil/jtwc/products/91W_220400sair.jpg",
-      "investId": "91W",
-      "corridorNm": 160,
-      "lineFrom": {
-        "lat": 15,
-        "lon": 139.3
+      "designation": "Tropical Depression",
+      "id": "25W",
+      "name": "Twentyfive",
+      "headline": "Tropical Depression 25W (Twentyfive)",
+      "warningNumber": "001",
+      "issuedZ": "23/0900Z",
+      "issuedAt": "2026-09-23T09:00:00.000Z",
+      "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2526.gif",
+      "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2526web.txt",
+      "cwaTrackImage": null,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "231800Z",
+          "lat": 16.9,
+          "lon": 136.2,
+          "maxWindKt": 30,
+          "gustKt": 40
+        },
+        {
+          "tau": 24,
+          "validZ": "240600Z",
+          "lat": 17.7,
+          "lon": 133.9,
+          "maxWindKt": 35,
+          "gustKt": 45
+        },
+        {
+          "tau": 36,
+          "validZ": "241800Z",
+          "lat": 18.7,
+          "lon": 131.5,
+          "maxWindKt": 40,
+          "gustKt": 50
+        },
+        {
+          "tau": 48,
+          "validZ": "250600Z",
+          "lat": 19.8,
+          "lon": 129.4,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 60,
+          "validZ": "251800Z",
+          "lat": 20.7,
+          "lon": 127.8,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 72,
+          "validZ": "260600Z",
+          "lat": 21.7,
+          "lon": 126.8,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 96,
+          "validZ": "270600Z",
+          "lat": 22.6,
+          "lon": 126.5,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 120,
+          "validZ": "280600Z",
+          "lat": 23.5,
+          "lon": 126.7,
+          "maxWindKt": 105,
+          "gustKt": 130
+        }
+      ],
+      "positionZ": "230600Z",
+      "lat": 16,
+      "lon": 138.4,
+      "movingToward": 325,
+      "movingKt": 11,
+      "maxWindKt": 25,
+      "gustKt": 35,
+      "seasFt": 12,
+      "nextWarnings": [
+        "231500Z",
+        "232100Z",
+        "240300Z",
+        "240900Z. 2. THIS CANCELS",
+        "SUPERSEDES REF A (WTPN21 PGTW 230400)"
+      ],
+      "spot": {
+        "distanceNm": 1053,
+        "bearingDeg": 110,
+        "closestApproach": {
+          "distanceNm": 288,
+          "tau": 96,
+          "validZ": "270600Z",
+          "maxWindKt": 90
+        }
       },
-      "lineTo": {
-        "lat": 17,
-        "lon": 134.8
+      "motion": {
+        "currentHeadingDeg": 325,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 293
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 290
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 294
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 299
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 301
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 317
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 343
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 12
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "headingDeg": 290,
+            "deltaDeg": 35
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "headingDeg": 343,
+            "deltaDeg": 53
+          }
+        ]
       },
-      "windowLowH": 12,
-      "windowHighH": 24,
-      "lat": 15.1,
-      "lon": 139,
-      "distanceNm": 1108,
-      "bearingDeg": 112,
-      "movingText": "NORTHWESTWARD",
-      "movingKt": 13,
-      "areaWindKtLow": 18,
-      "areaWindKtHigh": 23,
-      "maxWindKtLow": 18,
-      "maxWindKtHigh": 23,
-      "pressureMb": 1005,
-      "potential": "HIGH",
-      "decisionByZ": "240400Z"
+      "changes": null
     }
   ],
+  "alerts": [],
   "invests": [
     {
       "id": "91W",
-      "potential": "HIGH",
-      "geoReference": "349 NM WEST-NORTHWEST OF GUAM",
-      "windKtLow": 18,
-      "windKtHigh": 23,
-      "pressureMb": 1005,
+      "potential": null,
+      "geoReference": null,
+      "windKtLow": null,
+      "windKtHigh": null,
+      "pressureMb": null,
       "lat": 15.1,
       "lon": 139,
       "distanceNm": 1108,
@@ -52,9 +182,9 @@
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "23/0600Z",
-    "issuedAt": "2026-09-23T06:00:00.000Z",
+    "issuedZ": "23/0900Z",
+    "issuedAt": "2026-09-23T09:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": false
+    "reissued": true
   }
 }

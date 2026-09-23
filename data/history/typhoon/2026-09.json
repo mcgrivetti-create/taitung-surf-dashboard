@@ -2412,6 +2412,177 @@
         "distanceNm": 1108,
         "bearingDeg": 112
       }
+    },
+    {
+      "kind": "warning",
+      "id": "25W",
+      "name": "Twentyfive",
+      "designation": "Tropical Depression",
+      "warningNumber": "001",
+      "issuedAt": "2026-09-23T09:00:00.000Z",
+      "positionZ": "230600Z",
+      "lat": 16,
+      "lon": 138.4,
+      "maxWindKt": 25,
+      "gustKt": 35,
+      "seasFt": 12,
+      "movingToward": 325,
+      "movingKt": 11,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "231800Z",
+          "lat": 16.9,
+          "lon": 136.2,
+          "maxWindKt": 30,
+          "gustKt": 40
+        },
+        {
+          "tau": 24,
+          "validZ": "240600Z",
+          "lat": 17.7,
+          "lon": 133.9,
+          "maxWindKt": 35,
+          "gustKt": 45
+        },
+        {
+          "tau": 36,
+          "validZ": "241800Z",
+          "lat": 18.7,
+          "lon": 131.5,
+          "maxWindKt": 40,
+          "gustKt": 50
+        },
+        {
+          "tau": 48,
+          "validZ": "250600Z",
+          "lat": 19.8,
+          "lon": 129.4,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 60,
+          "validZ": "251800Z",
+          "lat": 20.7,
+          "lon": 127.8,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 72,
+          "validZ": "260600Z",
+          "lat": 21.7,
+          "lon": 126.8,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 96,
+          "validZ": "270600Z",
+          "lat": 22.6,
+          "lon": 126.5,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 120,
+          "validZ": "280600Z",
+          "lat": 23.5,
+          "lon": 126.7,
+          "maxWindKt": 105,
+          "gustKt": 130
+        }
+      ],
+      "spot": {
+        "distanceNm": 1053,
+        "bearingDeg": 110,
+        "closestApproach": {
+          "distanceNm": 288,
+          "tau": 96,
+          "validZ": "270600Z",
+          "maxWindKt": 90
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 325,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 293
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 290
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 294
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 299
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 301
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 317
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 343
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 12
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "headingDeg": 290,
+            "deltaDeg": 35
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "headingDeg": 343,
+            "deltaDeg": 53
+          }
+        ]
+      },
+      "swell": null,
+      "reasoningWarningNumber": null,
+      "significantForecastChanges": null,
+      "confidence": null
+    },
+    {
+      "kind": "invest",
+      "id": "91W",
+      "issuedAt": "2026-09-23T09:00:00.000Z",
+      "lat": 15.1,
+      "lon": 139,
+      "potential": null,
+      "geoReference": null,
+      "windKtLow": null,
+      "windKtHigh": null,
+      "pressureMb": null,
+      "spot": {
+        "distanceNm": 1108,
+        "bearingDeg": 112
+      }
     }
   ]
 }
