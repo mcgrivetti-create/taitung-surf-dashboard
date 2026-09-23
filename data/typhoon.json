@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-23T02:18:54.456Z",
+  "fetchedAt": "2026-09-23T03:19:19.541Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -77,36 +77,36 @@
   "alerts": [
     {
       "alertId": "WTPN21",
-      "issuedZ": "22/0400Z",
-      "issuedAt": "2026-09-22T04:00:00.000Z",
+      "issuedZ": "23/0400Z",
+      "issuedAt": "2026-09-23T04:00:00.000Z",
       "textUrl": "https://www.metoc.navy.mil/jtwc/products/wp9126web.txt",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp9126.gif",
       "satellite": "https://www.metoc.navy.mil/jtwc/products/91W_220400sair.jpg",
       "investId": "91W",
-      "corridorNm": 120,
+      "corridorNm": 160,
       "lineFrom": {
-        "lat": 12.4,
-        "lon": 142.1
+        "lat": 15,
+        "lon": 139.3
       },
       "lineTo": {
-        "lat": 13.9,
-        "lon": 140.1
+        "lat": 17,
+        "lon": 134.8
       },
       "windowLowH": 12,
       "windowHighH": 24,
-      "lat": 12.5,
-      "lon": 141.9,
-      "distanceNm": 1332,
-      "bearingDeg": 115,
-      "movingText": "WEST-NORTHWESTWARD",
-      "movingKt": 6,
+      "lat": 15.1,
+      "lon": 139,
+      "distanceNm": 1108,
+      "bearingDeg": 112,
+      "movingText": "NORTHWESTWARD",
+      "movingKt": 13,
       "areaWindKtLow": 18,
       "areaWindKtHigh": 23,
-      "maxWindKtLow": 28,
-      "maxWindKtHigh": 33,
-      "pressureMb": 998,
+      "maxWindKtLow": 18,
+      "maxWindKtHigh": 23,
+      "pressureMb": 1005,
       "potential": "HIGH",
-      "decisionByZ": "230400Z"
+      "decisionByZ": "240400Z"
     }
   ],
   "invests": [
