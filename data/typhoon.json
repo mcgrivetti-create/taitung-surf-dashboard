@@ -1,97 +1,97 @@
 {
-  "fetchedAt": "2026-09-23T19:17:52.487Z",
+  "fetchedAt": "2026-09-23T20:19:55.132Z",
   "systems": [
     {
-      "designation": "Tropical Depression",
+      "designation": "Tropical Storm",
       "id": "25W",
       "name": "Surigae",
-      "headline": "Tropical Depression 25W (Surigae)",
-      "warningNumber": "002",
-      "issuedZ": "23/1500Z",
-      "issuedAt": "2026-09-23T15:00:00.000Z",
+      "headline": "Tropical Storm 25W (Surigae)",
+      "warningNumber": "003",
+      "issuedZ": "23/2100Z",
+      "issuedAt": "2026-09-23T21:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2526.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2526web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202609231200-96_SURIGAE_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202609231800-96_SURIGAE_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "240000Z",
-          "lat": 17.3,
-          "lon": 135.4,
-          "maxWindKt": 35,
-          "gustKt": 45
-        },
-        {
-          "tau": 24,
-          "validZ": "241200Z",
-          "lat": 18.2,
-          "lon": 133.1,
+          "validZ": "240600Z",
+          "lat": 18,
+          "lon": 133.9,
           "maxWindKt": 40,
           "gustKt": 50
         },
         {
-          "tau": 36,
-          "validZ": "250000Z",
-          "lat": 19.3,
-          "lon": 130.9,
+          "tau": 24,
+          "validZ": "241800Z",
+          "lat": 18.6,
+          "lon": 131.8,
           "maxWindKt": 45,
           "gustKt": 55
         },
         {
+          "tau": 36,
+          "validZ": "250600Z",
+          "lat": 19.4,
+          "lon": 130,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
           "tau": 48,
-          "validZ": "251200Z",
-          "lat": 20.1,
-          "lon": 129.3,
-          "maxWindKt": 50,
-          "gustKt": 65
+          "validZ": "251800Z",
+          "lat": 20.3,
+          "lon": 128.3,
+          "maxWindKt": 60,
+          "gustKt": 75
         },
         {
           "tau": 60,
-          "validZ": "260000Z",
-          "lat": 21,
-          "lon": 128,
-          "maxWindKt": 65,
-          "gustKt": 80
+          "validZ": "260600Z",
+          "lat": 21.2,
+          "lon": 127.7,
+          "maxWindKt": 75,
+          "gustKt": 90
         },
         {
           "tau": 72,
-          "validZ": "261200Z",
-          "lat": 21.8,
-          "lon": 127.3,
-          "maxWindKt": 85,
-          "gustKt": 105
+          "validZ": "261800Z",
+          "lat": 22,
+          "lon": 127.2,
+          "maxWindKt": 95,
+          "gustKt": 115
         },
         {
           "tau": 96,
-          "validZ": "271200Z",
-          "lat": 22.6,
-          "lon": 127.1,
+          "validZ": "271800Z",
+          "lat": 23.2,
+          "lon": 126.9,
           "maxWindKt": 105,
           "gustKt": 130
         },
         {
           "tau": 120,
-          "validZ": "281200Z",
-          "lat": 23.7,
-          "lon": 127.4,
-          "maxWindKt": 110,
-          "gustKt": 135
+          "validZ": "281800Z",
+          "lat": 24.1,
+          "lon": 127.1,
+          "maxWindKt": 105,
+          "gustKt": 130
         }
       ],
-      "positionZ": "231200Z",
-      "lat": 16.5,
-      "lon": 137.6,
-      "movingToward": 305,
-      "movingKt": 9,
-      "maxWindKt": 30,
-      "gustKt": 40,
+      "intensityChangeNote": "UPGRADED FROM TROPICAL DEPRESSION 25W",
+      "positionZ": "231800Z",
+      "lat": 17.2,
+      "lon": 136.2,
+      "movingToward": 295,
+      "movingKt": 14,
+      "maxWindKt": 35,
+      "gustKt": 45,
       "pressureMb": 1005,
-      "seasFt": 12,
       "nextWarnings": [
-        "232100Z",
         "240300Z",
         "240900Z",
-        "241500Z"
+        "241500Z",
+        "242100Z"
       ],
       "reasoning": {
         "warningNumber": "002",
@@ -110,49 +110,49 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2526prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 998,
+        "distanceNm": 907,
         "bearingDeg": 110,
         "closestApproach": {
-          "distanceNm": 321,
+          "distanceNm": 309,
           "tau": 96,
-          "validZ": "271200Z",
+          "validZ": "271800Z",
           "maxWindKt": 105
         }
       },
       "motion": {
-        "currentHeadingDeg": 305,
+        "currentHeadingDeg": 295,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 291
+            "heading": 290
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 293
+            "heading": 287
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 298
+            "heading": 295
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 298
+            "heading": 300
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 307
+            "heading": 328
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 321
+            "heading": 330
           },
           {
             "fromTau": 72,
@@ -162,24 +162,30 @@
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 14
+            "heading": 11
           }
         ],
         "turns": [
           {
-            "fromTau": 72,
-            "toTau": 96,
-            "headingDeg": 347,
-            "deltaDeg": 42
+            "fromTau": 60,
+            "toTau": 72,
+            "headingDeg": 330,
+            "deltaDeg": 35
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "headingDeg": 11,
+            "deltaDeg": 41
           }
         ]
       },
       "changes": {
-        "previousWarningNumber": "001",
-        "previousIssuedAt": "2026-09-23T09:00:00.000Z",
+        "previousWarningNumber": "002",
+        "previousIssuedAt": "2026-09-23T15:00:00.000Z",
         "maxWindKtDelta": 5,
-        "seasFtDelta": 0,
-        "closestApproachNmDelta": 33
+        "pressureMbDelta": 0,
+        "closestApproachNmDelta": -12
       }
     }
   ],
