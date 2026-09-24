@@ -3387,6 +3387,165 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "25W",
+      "name": "Surigae",
+      "designation": "Tropical Storm",
+      "warningNumber": "007",
+      "issuedAt": "2026-09-24T21:00:00.000Z",
+      "positionZ": "241800Z",
+      "lat": 19.3,
+      "lon": 131.7,
+      "maxWindKt": 35,
+      "gustKt": 45,
+      "movingToward": 315,
+      "movingKt": 10,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "250600Z",
+          "lat": 20.3,
+          "lon": 129.7,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 24,
+          "validZ": "251800Z",
+          "lat": 21.3,
+          "lon": 128.2,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 36,
+          "validZ": "260600Z",
+          "lat": 22.5,
+          "lon": 127.5,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 48,
+          "validZ": "261800Z",
+          "lat": 23.5,
+          "lon": 127.5,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 60,
+          "validZ": "270600Z",
+          "lat": 24.5,
+          "lon": 128.1,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 72,
+          "validZ": "271800Z",
+          "lat": 25.4,
+          "lon": 128.9,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 96,
+          "validZ": "281800Z",
+          "lat": 26.7,
+          "lon": 130.9,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 120,
+          "validZ": "291800Z",
+          "lat": 28.2,
+          "lon": 133.5,
+          "maxWindKt": 60,
+          "gustKt": 75
+        }
+      ],
+      "spot": {
+        "distanceNm": 622,
+        "bearingDeg": 109,
+        "closestApproach": {
+          "distanceNm": 343,
+          "tau": 48,
+          "validZ": "261800Z",
+          "maxWindKt": 85
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 315,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 298
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 306
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 332
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 0
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 29
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 39
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 54
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 56
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "headingDeg": 0,
+            "deltaDeg": 45
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "headingDeg": 39,
+            "deltaDeg": 39
+          }
+        ]
+      },
+      "swell": null,
+      "reasoningWarningNumber": "006",
+      "significantForecastChanges": "25W HAS BEEN RELOCATED APPROXIMATELY 55NM SOUTHEAST FROM ITS EXPECTED 1200Z POSITION BASED ON RECEIPT OF HIGH-RESOLUTION MICROWAVE AND SCATTEROMETER DATA. THE FORECAST TRACK HAS ALSO SHIFTED EASTWARD AFTER TAU 60, INCREASING THE CPA TO OKINAWA TO 90NM.",
+      "confidence": {
+        "track0072": "LOW",
+        "track72120": "LOW",
+        "intensity0072": "LOW",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
