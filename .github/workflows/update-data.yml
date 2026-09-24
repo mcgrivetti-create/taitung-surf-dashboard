@@ -12,11 +12,17 @@ jobs:
   update-data:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      # v5 runs natively on the runner's current Node. On v4 these were being
+      # force-migrated onto Node 24 with a deprecation warning, which is the
+      # kind of notice that turns into a hard failure without further warning.
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      # This is the Node that runs fetch-data.mjs, separate from the runtime
+      # the actions above use. 24 is the current LTS; 20 went end-of-life in
+      # April 2026, so it was already past support.
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Fetch CWA data
         env:
