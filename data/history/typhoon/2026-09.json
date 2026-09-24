@@ -2898,6 +2898,167 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "25W",
+      "name": "Surigae",
+      "designation": "Tropical Storm",
+      "warningNumber": "004",
+      "issuedAt": "2026-09-24T03:00:00.000Z",
+      "positionZ": "240000Z",
+      "lat": 18.2,
+      "lon": 134.3,
+      "maxWindKt": 35,
+      "gustKt": 45,
+      "pressureMb": 1004,
+      "seasFt": 16,
+      "movingToward": 295,
+      "movingKt": 14,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "241200Z",
+          "lat": 19,
+          "lon": 131.9,
+          "maxWindKt": 40,
+          "gustKt": 50
+        },
+        {
+          "tau": 24,
+          "validZ": "250000Z",
+          "lat": 19.9,
+          "lon": 129.9,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 36,
+          "validZ": "251200Z",
+          "lat": 20.8,
+          "lon": 128.2,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 48,
+          "validZ": "260000Z",
+          "lat": 21.9,
+          "lon": 127,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 60,
+          "validZ": "261200Z",
+          "lat": 22.9,
+          "lon": 126.5,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 72,
+          "validZ": "270000Z",
+          "lat": 23.9,
+          "lon": 126.4,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 96,
+          "validZ": "280000Z",
+          "lat": 25.5,
+          "lon": 127.4,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 120,
+          "validZ": "290000Z",
+          "lat": 27.4,
+          "lon": 129.4,
+          "maxWindKt": 55,
+          "gustKt": 70
+        }
+      ],
+      "spot": {
+        "distanceNm": 784,
+        "bearingDeg": 109,
+        "closestApproach": {
+          "distanceNm": 286,
+          "tau": 72,
+          "validZ": "270000Z",
+          "maxWindKt": 95
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 295,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 290
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 296
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 300
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 315
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 335
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 355
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 29
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 43
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 335,
+            "deltaDeg": 40
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "headingDeg": 29,
+            "deltaDeg": 54
+          }
+        ]
+      },
+      "swell": null,
+      "reasoningWarningNumber": "004",
+      "significantForecastChanges": "THE FORECAST RECURVATURE HAS BEEN ADJUSTED TO OCCUR MUCH MORE QUICKLY, WITH THE CPA FOR THE SOUTHERN RYUKYU ISLANDS, INCLUDING OKINAWA, NOW TAKING PLACE BETWEEN TAU 96 AND TAU 120.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "LOW",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
