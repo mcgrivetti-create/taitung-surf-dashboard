@@ -1,107 +1,102 @@
 {
-  "fetchedAt": "2026-09-25T14:20:31.230Z",
+  "fetchedAt": "2026-09-25T15:20:18.479Z",
   "systems": [
     {
       "designation": "Tropical Storm",
       "id": "25W",
       "name": "Surigae",
       "headline": "Tropical Storm 25W (Surigae)",
-      "warningNumber": "009",
-      "issuedZ": "25/0900Z",
-      "issuedAt": "2026-09-25T09:00:00.000Z",
+      "warningNumber": "010",
+      "issuedZ": "25/1500Z",
+      "issuedAt": "2026-09-25T15:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2526.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2526web.txt",
       "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202609251200-96_SURIGAE_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "251800Z",
-          "lat": 21.8,
-          "lon": 128,
-          "maxWindKt": 50,
-          "gustKt": 65
+          "validZ": "260000Z",
+          "lat": 22.5,
+          "lon": 127.2,
+          "maxWindKt": 60,
+          "gustKt": 75
         },
         {
           "tau": 24,
-          "validZ": "260600Z",
-          "lat": 22.8,
-          "lon": 127.5,
-          "maxWindKt": 65,
-          "gustKt": 80
+          "validZ": "261200Z",
+          "lat": 23.6,
+          "lon": 127,
+          "maxWindKt": 70,
+          "gustKt": 85
         },
         {
           "tau": 36,
-          "validZ": "261800Z",
-          "lat": 23.9,
-          "lon": 127.4,
+          "validZ": "270000Z",
+          "lat": 24.7,
+          "lon": 127.5,
           "maxWindKt": 85,
           "gustKt": 105
         },
         {
           "tau": 48,
-          "validZ": "270600Z",
-          "lat": 24.9,
-          "lon": 128.1,
+          "validZ": "271200Z",
+          "lat": 25.8,
+          "lon": 128.6,
           "maxWindKt": 85,
           "gustKt": 105
         },
         {
           "tau": 60,
-          "validZ": "271800Z",
-          "lat": 26,
-          "lon": 129.4,
-          "maxWindKt": 85,
-          "gustKt": 105
+          "validZ": "280000Z",
+          "lat": 26.9,
+          "lon": 130,
+          "maxWindKt": 80,
+          "gustKt": 100
         },
         {
           "tau": 72,
-          "validZ": "280600Z",
-          "lat": 27.2,
-          "lon": 131,
-          "maxWindKt": 75,
-          "gustKt": 90
+          "validZ": "281200Z",
+          "lat": 28.1,
+          "lon": 131.9,
+          "maxWindKt": 80,
+          "gustKt": 100
         },
         {
           "tau": 96,
-          "validZ": "290600Z",
-          "lat": 29.2,
-          "lon": 134.2,
-          "maxWindKt": 60,
-          "gustKt": 75
+          "validZ": "291200Z",
+          "lat": 30.4,
+          "lon": 136.1,
+          "maxWindKt": 70,
+          "gustKt": 85
         },
         {
           "tau": 120,
-          "validZ": "300600Z",
-          "lat": 31.7,
-          "lon": 138.1,
-          "maxWindKt": 50,
-          "gustKt": 65
+          "validZ": "301200Z",
+          "lat": 33,
+          "lon": 140,
+          "maxWindKt": 55,
+          "gustKt": 70
         }
       ],
-      "positionZ": "250600Z",
-      "lat": 20.7,
-      "lon": 129.3,
-      "movingToward": 300,
-      "movingKt": 13,
-      "maxWindKt": 45,
-      "gustKt": 55,
-      "seasFt": 18,
-      "nextWarnings": [
-        "251500Z",
-        "252100Z",
-        "260300Z",
-        "260900Z"
-      ],
-      "geoReference": "358 NM SOUTH-SOUTHEAST OF KADENA AB",
+      "positionZ": "251200Z",
+      "lat": 21.4,
+      "lon": 128.2,
+      "movingToward": 305,
+      "movingKt": 12,
+      "maxWindKt": 50,
+      "gustKt": 65,
+      "pressureMb": 998,
+      "seasFt": 20,
+      "geoReference": "307 NM SOUTH OF KADENA AB",
       "reasoning": {
-        "warningNumber": "009",
+        "warningNumber": "010",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 18,
+        "seasFt": 20,
         "environment": "FAVORABLE",
         "vws": "10-15 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "MODERATE POLEWARD",
-        "steering": "SOUTHWESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTHEAST.",
+        "steering": "SOUTHWESTERN FLANK OF AN EXPANSIVE DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTHEAST.",
         "confidence": {
           "track0072": "MEDIUM",
           "track72120": "LOW",
@@ -112,79 +107,80 @@
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2526prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 465,
-        "bearingDeg": 106,
+        "distanceNm": 394,
+        "bearingDeg": 103,
         "closestApproach": {
-          "distanceNm": 340,
-          "tau": 36,
-          "validZ": "261800Z",
-          "maxWindKt": 85
+          "distanceNm": 316,
+          "tau": 24,
+          "validZ": "261200Z",
+          "maxWindKt": 70
         }
       },
       "motion": {
-        "currentHeadingDeg": 300,
+        "currentHeadingDeg": 305,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 312
+            "heading": 320
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 335
+            "heading": 351
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 355
+            "heading": 22
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 32
+            "heading": 42
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 47
+            "heading": 48
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 50
+            "heading": 54
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 54
+            "heading": 57
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 52
+            "heading": 51
           }
         ],
         "turns": [
           {
             "fromTau": 12,
             "toTau": 24,
-            "headingDeg": 335,
-            "deltaDeg": 35
+            "headingDeg": 351,
+            "deltaDeg": 46
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "headingDeg": 32,
-            "deltaDeg": 57
+            "headingDeg": 42,
+            "deltaDeg": 51
           }
         ]
       },
       "changes": {
-        "previousWarningNumber": "008",
-        "previousIssuedAt": "2026-09-25T03:00:00.000Z",
+        "previousWarningNumber": "009",
+        "previousIssuedAt": "2026-09-25T09:00:00.000Z",
         "maxWindKtDelta": 5,
-        "closestApproachNmDelta": -2
+        "seasFtDelta": 2,
+        "closestApproachNmDelta": -24
       }
     }
   ],
