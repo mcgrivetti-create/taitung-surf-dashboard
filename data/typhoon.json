@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-25T20:17:47.560Z",
+  "fetchedAt": "2026-09-25T21:18:32.729Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -11,7 +11,7 @@
       "issuedAt": "2026-09-25T21:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2526.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2526web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202609251200-96_SURIGAE_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202609251800-96_SURIGAE_enus.png",
       "forecasts": [
         {
           "tau": 12,
@@ -95,23 +95,23 @@
       ],
       "geoReference": "276 NM SOUTH OF KADENA AB",
       "reasoning": {
-        "warningNumber": "010",
+        "warningNumber": "011",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 20,
-        "environment": "FAVORABLE",
-        "vws": "10-15 KTS",
+        "seasFt": 22,
+        "environment": "HIGHLY FAVORABLE",
+        "vws": "5-10 KTS",
         "sst": "29-30 CELSIUS",
-        "outflow": "MODERATE POLEWARD",
-        "steering": "SOUTHWESTERN FLANK OF AN EXPANSIVE DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTHEAST.",
+        "outflow": "STRONG RADIAL",
+        "steering": "SUBTROPICAL RIDGE CENTERED TO THE NORTHEAST",
         "confidence": {
           "track0072": "MEDIUM",
           "track72120": "LOW",
-          "intensity0072": "MEDIUM",
+          "intensity0072": "LOW",
           "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2526prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 366,
         "bearingDeg": 99,
