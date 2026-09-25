@@ -4026,6 +4026,167 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "25W",
+      "name": "Surigae",
+      "designation": "Tropical Storm",
+      "warningNumber": "011",
+      "issuedAt": "2026-09-25T21:00:00.000Z",
+      "positionZ": "251800Z",
+      "lat": 21.9,
+      "lon": 127.8,
+      "maxWindKt": 55,
+      "gustKt": 70,
+      "pressureMb": 994,
+      "seasFt": 22,
+      "movingToward": 330,
+      "movingKt": 7,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "260600Z",
+          "lat": 23,
+          "lon": 127.2,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 24,
+          "validZ": "261800Z",
+          "lat": 24.1,
+          "lon": 127.4,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 36,
+          "validZ": "270600Z",
+          "lat": 25.2,
+          "lon": 128.2,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 48,
+          "validZ": "271800Z",
+          "lat": 26.2,
+          "lon": 129.4,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 60,
+          "validZ": "280600Z",
+          "lat": 27.3,
+          "lon": 131.1,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 72,
+          "validZ": "281800Z",
+          "lat": 28.4,
+          "lon": 133,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 96,
+          "validZ": "291800Z",
+          "lat": 30.7,
+          "lon": 137.1,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 120,
+          "validZ": "301800Z",
+          "lat": 33.4,
+          "lon": 141.9,
+          "maxWindKt": 55,
+          "gustKt": 70
+        }
+      ],
+      "spot": {
+        "distanceNm": 366,
+        "bearingDeg": 99,
+        "closestApproach": {
+          "distanceNm": 325,
+          "tau": 12,
+          "validZ": "260600Z",
+          "maxWindKt": 65
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 330,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 333
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 9
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 33
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 47
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 54
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 56
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 56
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 55
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "headingDeg": 9,
+            "deltaDeg": 39
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "headingDeg": 47,
+            "deltaDeg": 38
+          }
+        ]
+      },
+      "swell": null,
+      "reasoningWarningNumber": "010",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "LOW",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
