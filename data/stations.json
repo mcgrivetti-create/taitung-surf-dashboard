@@ -2,74 +2,10 @@
   "records": {
     "Station": [
       {
-        "StationName": "豐濱",
-        "StationId": "C0T9I0",
-        "ObsTime": {
-          "DateTime": "2026-09-26T16:00:00+08:00"
-        },
-        "GeoInfo": {
-          "Coordinates": [
-            {
-              "CoordinateName": "TWD67",
-              "CoordinateFormat": "decimal degrees",
-              "StationLatitude": "23.585708",
-              "StationLongitude": "121.506678"
-            },
-            {
-              "CoordinateName": "WGS84",
-              "CoordinateFormat": "decimal degrees",
-              "StationLatitude": "23.583897",
-              "StationLongitude": "121.514806"
-            }
-          ],
-          "StationAltitude": "152.0",
-          "CountyName": "花蓮縣",
-          "TownName": "豐濱鄉",
-          "CountyCode": "10015",
-          "TownCode": "10015080"
-        },
-        "WeatherElement": {
-          "Weather": "晴",
-          "Now": {
-            "Precipitation": "0.0"
-          },
-          "WindDirection": "83.0",
-          "WindSpeed": "2.2",
-          "AirTemperature": "32.6",
-          "RelativeHumidity": "65",
-          "AirPressure": "991.7",
-          "GustInfo": {
-            "PeakGustSpeed": "-99",
-            "Occurred_at": {
-              "WindDirection": "-99",
-              "DateTime": "-99"
-            }
-          },
-          "DailyExtreme": {
-            "DailyHigh": {
-              "TemperatureInfo": {
-                "AirTemperature": "33.0",
-                "Occurred_at": {
-                  "DateTime": "2026-09-26T15:20:00+08:00"
-                }
-              }
-            },
-            "DailyLow": {
-              "TemperatureInfo": {
-                "AirTemperature": "23.1",
-                "Occurred_at": {
-                  "DateTime": "2026-09-26T02:50:00+08:00"
-                }
-              }
-            }
-          }
-        }
-      },
-      {
         "StationName": "東河",
         "StationId": "C0S810",
         "ObsTime": {
-          "DateTime": "2026-09-26T16:00:00+08:00"
+          "DateTime": "2026-09-26T17:00:00+08:00"
         },
         "GeoInfo": {
           "Coordinates": [
@@ -93,15 +29,15 @@
           "TownCode": "10014070"
         },
         "WeatherElement": {
-          "Weather": "晴",
+          "Weather": "-99",
           "Now": {
             "Precipitation": "0.0"
           },
-          "WindDirection": "166.0",
-          "WindSpeed": "0.6",
-          "AirTemperature": "30.9",
-          "RelativeHumidity": "71",
-          "AirPressure": "1003.0",
+          "WindDirection": "0.0",
+          "WindSpeed": "0.1",
+          "AirTemperature": "27.2",
+          "RelativeHumidity": "86",
+          "AirPressure": "1003.7",
           "GustInfo": {
             "PeakGustSpeed": "-99",
             "Occurred_at": {
@@ -133,7 +69,7 @@
         "StationName": "都歷",
         "StationId": "C0SA30",
         "ObsTime": {
-          "DateTime": "2026-09-26T16:00:00+08:00"
+          "DateTime": "2026-09-26T17:00:00+08:00"
         },
         "GeoInfo": {
           "Coordinates": [
@@ -163,9 +99,9 @@
           },
           "WindDirection": "0.0",
           "WindSpeed": "0.0",
-          "AirTemperature": "29.4",
-          "RelativeHumidity": "74",
-          "AirPressure": "999.2",
+          "AirTemperature": "27.8",
+          "RelativeHumidity": "82",
+          "AirPressure": "1000.0",
           "GustInfo": {
             "PeakGustSpeed": "-99",
             "Occurred_at": {
@@ -187,6 +123,70 @@
                 "AirTemperature": "25.1",
                 "Occurred_at": {
                   "DateTime": "2026-09-26T04:20:00+08:00"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "StationName": "豐濱",
+        "StationId": "C0T9I0",
+        "ObsTime": {
+          "DateTime": "2026-09-26T17:00:00+08:00"
+        },
+        "GeoInfo": {
+          "Coordinates": [
+            {
+              "CoordinateName": "TWD67",
+              "CoordinateFormat": "decimal degrees",
+              "StationLatitude": "23.585708",
+              "StationLongitude": "121.506678"
+            },
+            {
+              "CoordinateName": "WGS84",
+              "CoordinateFormat": "decimal degrees",
+              "StationLatitude": "23.583897",
+              "StationLongitude": "121.514806"
+            }
+          ],
+          "StationAltitude": "152.0",
+          "CountyName": "花蓮縣",
+          "TownName": "豐濱鄉",
+          "CountyCode": "10015",
+          "TownCode": "10015080"
+        },
+        "WeatherElement": {
+          "Weather": "晴",
+          "Now": {
+            "Precipitation": "0.0"
+          },
+          "WindDirection": "0.0",
+          "WindSpeed": "0.1",
+          "AirTemperature": "31.7",
+          "RelativeHumidity": "69",
+          "AirPressure": "992.5",
+          "GustInfo": {
+            "PeakGustSpeed": "5.4",
+            "Occurred_at": {
+              "WindDirection": "82.0",
+              "DateTime": "2026-09-26T16:10:00+08:00"
+            }
+          },
+          "DailyExtreme": {
+            "DailyHigh": {
+              "TemperatureInfo": {
+                "AirTemperature": "33.0",
+                "Occurred_at": {
+                  "DateTime": "2026-09-26T15:20:00+08:00"
+                }
+              }
+            },
+            "DailyLow": {
+              "TemperatureInfo": {
+                "AirTemperature": "23.1",
+                "Occurred_at": {
+                  "DateTime": "2026-09-26T02:50:00+08:00"
                 }
               }
             }

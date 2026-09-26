@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-26T08:19:47.250Z",
+  "fetchedAt": "2026-09-26T09:17:54.942Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -89,23 +89,23 @@
       "seasFt": 25,
       "geoReference": "223 NM SOUTH-SOUTHWEST OF KADENA AB",
       "reasoning": {
-        "warningNumber": "012",
+        "warningNumber": "013",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 22,
+        "seasFt": 25,
         "environment": "FAVORABLE",
-        "vws": "5-10 KTS",
+        "vws": "0-5 KTS",
         "sst": "29-30 CELSIUS",
-        "outflow": "STRONG RADIAL",
-        "steering": "WESTERN FLANK OF A SUBTROPICAL RIDGE (STR) CENTERED SOUTH OF HONSHU",
+        "outflow": "STRONG DUAL-CHANNEL",
+        "steering": "SYSTEM IS APPROACHING THE AXIS OF THE SUBTROPICAL RIDGE (STR) CENTERED TO THE EAST.",
         "confidence": {
           "track0072": "MEDIUM",
           "track72120": "LOW",
           "intensity0072": "MEDIUM",
-          "intensity72120": "LOW"
+          "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2526prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 303,
         "bearingDeg": 90,
