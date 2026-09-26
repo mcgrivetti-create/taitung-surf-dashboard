@@ -1,35 +1,35 @@
 {
-  "updatedAt": "2026-09-26T16:18:43.278Z",
+  "updatedAt": "2026-09-26T17:17:02.084Z",
   "sources": [
     {
       "name": "F-D0047-039 township forecast",
-      "ok": false,
-      "error": "F-D0047-039 -> HTTP 500 (https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/F-D0047-039)"
+      "ok": true,
+      "count": 1
     },
     {
       "name": "F-D0047-095 coastal 3-day forecast (東河鄉)",
-      "ok": false,
-      "error": "F-D0047-095 -> HTTP 500 (https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/F-D0047-095)"
+      "ok": true,
+      "count": 1
     },
     {
       "name": "F-D0047-095 coastal 3-day forecast (成功鎮, logged only)",
-      "ok": false,
-      "error": "F-D0047-095 -> HTTP 500 (https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/F-D0047-095)"
+      "ok": true,
+      "count": 1
     },
     {
       "name": "F-A0021-001 tide forecast",
-      "ok": false,
-      "error": "F-A0021-001 -> HTTP 500 (https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/F-A0021-001)"
+      "ok": true,
+      "count": 1
     },
     {
       "name": "O-A0001-001 station observations",
-      "ok": false,
-      "error": "O-A0001-001 -> HTTP 500 (https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/O-A0001-001)"
+      "ok": true,
+      "count": 3
     },
     {
       "name": "O-B0075-001 buoy / sea state",
-      "ok": false,
-      "count": 0
+      "ok": true,
+      "count": 4
     },
     {
       "name": "Open-Meteo marine (GFS-Wave)",
@@ -49,27 +49,32 @@
     {
       "name": "stations-history rolling log",
       "ok": true,
-      "count": 48
+      "count": 45
     },
     {
       "name": "history/forecast log",
       "ok": true,
-      "count": 4
+      "count": 16
     },
     {
       "name": "history/buoy log",
       "ok": true,
-      "count": 0
+      "count": 4
     },
     {
       "name": "history/station log",
       "ok": true,
-      "count": 0
+      "count": 3
+    },
+    {
+      "name": "history/tide log",
+      "ok": true,
+      "count": 1
     },
     {
       "name": "update log",
       "ok": true,
-      "count": 5
+      "count": 4
     }
   ]
 }
