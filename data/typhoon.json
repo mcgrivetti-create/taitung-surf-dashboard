@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-27T16:18:54.389Z",
+  "fetchedAt": "2026-09-27T17:18:04.840Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -160,7 +160,41 @@
       }
     }
   ],
-  "alerts": [],
+  "alerts": [
+    {
+      "alertId": "WTIO21",
+      "issuedZ": "27/1730Z",
+      "issuedAt": "2026-09-27T17:30:00.000Z",
+      "textUrl": "https://www.metoc.navy.mil/jtwc/products/wp9226web.txt",
+      "graphic": "https://www.metoc.navy.mil/jtwc/products/wp9226.gif",
+      "satellite": "",
+      "investId": "92W",
+      "corridorNm": 140,
+      "lineFrom": {
+        "lat": 14.3,
+        "lon": 98.1
+      },
+      "lineTo": {
+        "lat": 17.2,
+        "lon": 96.6
+      },
+      "windowLowH": 12,
+      "windowHighH": 24,
+      "lat": 14.4,
+      "lon": 98,
+      "distanceNm": 1420,
+      "bearingDeg": 253,
+      "movingText": "WEST-SOUTHWESTWARD",
+      "movingKt": 3,
+      "areaWindKtLow": 23,
+      "areaWindKtHigh": 28,
+      "maxWindKtLow": 23,
+      "maxWindKtHigh": 28,
+      "pressureMb": 1001,
+      "potential": "HIGH",
+      "decisionByZ": "281730Z"
+    }
+  ],
   "invests": [],
   "investSatellite": null,
   "advisory": {
