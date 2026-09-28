@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-28T13:21:30.509Z",
+  "fetchedAt": "2026-09-28T14:23:33.630Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -79,23 +79,23 @@
       ],
       "geoReference": "586 NM SOUTHWEST OF YOKOSUKA, JAPAN",
       "reasoning": {
-        "warningNumber": "021",
+        "warningNumber": "022",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 40,
-        "environment": "MARGINALLY FAVORABLE",
-        "vws": "20-25 KTS",
-        "sst": "27-28 CELSIUS",
+        "seasFt": 38,
+        "environment": "MARGINAL",
+        "vws": "25-30 KTS",
+        "sst": "28-29 CELSIUS",
         "outflow": "MODERATE EQUATORWARD",
-        "steering": "THE WESTERN PERIPHERY OF THE DEEP-LAYER SUBTROPICAL RIDGE (STR) POSITIONED TO THE SOUTHEAST.",
+        "steering": "THE WESTERN PERIPHERY OF THE DEEP-LAYER SUBTROPICAL RIDGE (STR) POSITIONED TO THE EAST.",
         "confidence": {
           "track0072": "MEDIUM",
-          "track72120": "LOW",
+          "track72120": null,
           "intensity0072": "MEDIUM",
-          "intensity72120": "MEDIUM"
+          "intensity72120": null
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2526prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 680,
         "bearingDeg": 64,
@@ -188,12 +188,25 @@
       "decisionByZ": "281730Z"
     }
   ],
-  "invests": [],
-  "investSatellite": null,
+  "invests": [
+    {
+      "id": "93W",
+      "potential": "LOW",
+      "geoReference": "673 NM EAST OF GUAM",
+      "windKtLow": 15,
+      "windKtHigh": 20,
+      "pressureMb": 1008,
+      "lat": 15.2,
+      "lon": 156.1,
+      "distanceNm": 2023,
+      "bearingDeg": 97
+    }
+  ],
+  "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "28/0600Z",
-    "issuedAt": "2026-09-28T06:00:00.000Z",
+    "issuedZ": "28/1400Z",
+    "issuedAt": "2026-09-28T14:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": false
+    "reissued": true
   }
 }
