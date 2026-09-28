@@ -1,85 +1,83 @@
 {
-  "fetchedAt": "2026-09-28T12:25:59.590Z",
+  "fetchedAt": "2026-09-28T13:21:30.509Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "25W",
       "name": "Surigae",
       "headline": "Typhoon 25W (Surigae)",
-      "warningNumber": "021",
-      "issuedZ": "28/0900Z",
-      "issuedAt": "2026-09-28T09:00:00.000Z",
+      "warningNumber": "022",
+      "issuedZ": "28/1500Z",
+      "issuedAt": "2026-09-28T15:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2526.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2526web.txt",
       "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202609280600-96_SURIGAE_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "281800Z",
-          "lat": 28.5,
-          "lon": 133.2,
-          "maxWindKt": 80,
-          "gustKt": 100
-        },
-        {
-          "tau": 24,
-          "validZ": "290600Z",
-          "lat": 29.5,
-          "lon": 135,
+          "validZ": "290000Z",
+          "lat": 28.4,
+          "lon": 134.4,
           "maxWindKt": 70,
           "gustKt": 85
         },
         {
-          "tau": 36,
-          "validZ": "291800Z",
-          "lat": 30.5,
-          "lon": 137,
+          "tau": 24,
+          "validZ": "291200Z",
+          "lat": 29.4,
+          "lon": 136.4,
           "maxWindKt": 60,
           "gustKt": 75
         },
         {
-          "tau": 48,
-          "validZ": "300600Z",
-          "lat": 31.9,
-          "lon": 138.9,
+          "tau": 36,
+          "validZ": "300000Z",
+          "lat": 30.5,
+          "lon": 138.2,
           "maxWindKt": 55,
           "gustKt": 70
         },
         {
+          "tau": 48,
+          "validZ": "301200Z",
+          "lat": 31.9,
+          "lon": 140.1,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
           "tau": 60,
-          "validZ": "301800Z",
-          "lat": 33.3,
-          "lon": 140.9,
+          "validZ": "010000Z",
+          "lat": 33.7,
+          "lon": 142.2,
           "maxWindKt": 50,
           "gustKt": 65
         },
         {
           "tau": 72,
-          "validZ": "010600Z",
-          "lat": 35.8,
-          "lon": 144.3,
+          "validZ": "011200Z",
+          "lat": 36.5,
+          "lon": 146.3,
           "maxWindKt": 50,
           "gustKt": 65
-        },
-        {
-          "tau": 96,
-          "validZ": "020600Z",
-          "lat": 43.2,
-          "lon": 155.8,
-          "maxWindKt": 45,
-          "gustKt": 55
         }
       ],
-      "positionZ": "280600Z",
+      "positionZ": "281200Z",
       "lat": 27.5,
-      "lon": 131.6,
-      "movingToward": 35,
-      "movingKt": 11,
-      "maxWindKt": 100,
-      "gustKt": 125,
-      "pressureMb": 954,
-      "seasFt": 40,
-      "geoReference": "212 NM EAST-NORTHEAST OF KADENA AB",
+      "lon": 132.8,
+      "movingToward": 65,
+      "movingKt": 12,
+      "maxWindKt": 90,
+      "gustKt": 110,
+      "pressureMb": 962,
+      "seasFt": 38,
+      "nextWarnings": [
+        "282100Z",
+        "290300Z",
+        "290900Z",
+        "291500Z"
+      ],
+      "geoReference": "586 NM SOUTHWEST OF YOKOSUKA, JAPAN",
       "reasoning": {
         "warningNumber": "021",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
@@ -97,35 +95,35 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2526prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 621,
-        "bearingDeg": 62,
+        "distanceNm": 680,
+        "bearingDeg": 64,
         "closestApproach": {
-          "distanceNm": 723,
+          "distanceNm": 779,
           "tau": 12,
-          "validZ": "281800Z",
-          "maxWindKt": 80,
+          "validZ": "290000Z",
+          "maxWindKt": 70,
           "recedingOnly": true
         }
       },
       "motion": {
-        "currentHeadingDeg": 35,
+        "currentHeadingDeg": 65,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 54
+            "heading": 57
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 57
+            "heading": 60
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 60
+            "heading": 54
           },
           {
             "fromTau": 36,
@@ -135,28 +133,23 @@
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 50
+            "heading": 44
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 47
-          },
-          {
-            "fromTau": 72,
-            "toTau": 96,
-            "heading": 47
+            "heading": 49
           }
         ],
         "turns": []
       },
       "changes": {
-        "previousWarningNumber": "020",
-        "previousIssuedAt": "2026-09-28T03:00:00.000Z",
-        "maxWindKtDelta": -20,
-        "pressureMbDelta": 16,
-        "seasFtDelta": -3,
-        "closestApproachNmDelta": 53
+        "previousWarningNumber": "021",
+        "previousIssuedAt": "2026-09-28T09:00:00.000Z",
+        "maxWindKtDelta": -10,
+        "pressureMbDelta": 8,
+        "seasFtDelta": -2,
+        "closestApproachNmDelta": 56
       }
     }
   ],
