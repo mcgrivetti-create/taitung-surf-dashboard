@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-28T02:19:22.711Z",
+  "fetchedAt": "2026-09-28T03:20:48.790Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -88,23 +88,23 @@
       ],
       "geoReference": "166 NM EAST OF KADENA AB",
       "reasoning": {
-        "warningNumber": "019",
+        "warningNumber": "020",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 45,
-        "environment": "HIGHLY FAVORABLE",
+        "seasFt": 43,
+        "environment": "FAVORABLE",
         "vws": "10-15 KTS",
         "sst": "29-30 CELSIUS",
-        "outflow": "STRONG DUAL-CHANNEL",
+        "outflow": "STRONG POLEWARD AND EQUATORWARD",
         "steering": "DEEP-LAYER SUBTROPICAL RIDGE (STR) POSITIONED TO THE SOUTHEAST.",
         "confidence": {
           "track0072": "MEDIUM",
-          "track72120": "MEDIUM",
+          "track72120": "LOW",
           "intensity0072": "MEDIUM",
           "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2526prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 566,
         "bearingDeg": 65,
