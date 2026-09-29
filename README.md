@@ -124,6 +124,17 @@ kept forever by design, one small file per month. Lead times tracked:
     single-spot. It's here so a future chart can run observed-up-to-now +
     forecast-into-the-future against the Chenggong buoy.
   - `open_meteo` — wave and swell height/period/direction
+  - `ecmwf` — **ECMWF, the model behind Windy's default layers** (added
+    2026-09-29). Windy's own numbers can't be recorded — its embed is a
+    cross-origin iframe, its point API is paid, and Windguru has no public
+    API — so this logs the same models from Open-Meteo instead: ECMWF WAM
+    waves (height, mean period, **peak period**, direction) and ECMWF IFS
+    wind (speed/Beaufort/direction/gusts). 0.25° grids, so coarser than
+    Windy's ~9km; the nearest wave cell is 23.0N 121.5E, ~20km offshore.
+    WAM here has no swell partitions, but its peak period (Tp) is the same
+    measure a spectral surf buoy reports — our GFS-Wave feed doesn't carry
+    it. Written to `data/ecmwf.json` (10-day series, logged only, not shown
+    on the page) and into the forecast log at the usual lead times.
   - `cwa_township_wind` — `F-D0047-039` wind for Donghe. This forecast is
     12-hour *periods*, not instants, so a lead time is matched by which
     period contains it (`periodContaining`), not by nearest point.

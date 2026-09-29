@@ -25,6 +25,9 @@
  *   Open-Meteo Marine API (no key, NOAA GFS-Wave)               -> data/openwave.json
  *                Independent of CWA and the commercial widgets —
  *                a fallback wave forecast that isn't tied to any of them.
+ *   Open-Meteo ECMWF WAM waves + IFS wind (no key)              -> data/ecmwf.json
+ *                The models behind Windy's default layers — logged only,
+ *                as the recordable stand-in for Windy (see buildEcmwf).
  *
  * Each dataset is fetched in full and then trimmed down client-side to
  * just the records relevant to Donghe / Chenggong, so a mismatch in a
@@ -37,7 +40,7 @@
  *   history/forecast/YYYY-MM.json  forecast snapshots at fixed lead times
  *                                   (LEAD_HOURS), tagged by `source`:
  *                                   cwa_coastal_donghe, cwa_coastal_chenggong,
- *                                   open_meteo, cwa_township_wind
+ *                                   open_meteo, ecmwf, cwa_township_wind
  *   history/buoy/YYYY-MM.json      actual buoy readings (one per station
  *                                   per run) — waves, wave direction, and
  *                                   wind where the station has an anemometer
@@ -623,6 +626,67 @@ async function buildOpenWave() {
   }));
 
   return { data, ok: true, count, series };
+}
+
+/**
+ * ECMWF — the model family behind Windy's default wave and wind layers
+ * (ECMWF WAM and ECMWF IFS). Windy's own numbers can't be recorded: its
+ * embed is a cross-origin iframe and its point API is paid. Open-Meteo
+ * serves the same models free, so logging them keeps a record of roughly
+ * what Windy was showing, scoreable against the buoys in Phase 3.
+ *
+ * Coarser than Windy's ~9km: these are the 0.25-degree grids, and the
+ * nearest wave cell to Donghe is 23.0N 121.5E, ~20km offshore. Unlike
+ * GFS-Wave, WAM here carries no swell partitions — only total sea — but it
+ * does give PEAK period (Tp), the same measure a surf buoy like Harvest
+ * reports, which our GFS-Wave feed doesn't.
+ *
+ * Logged, not displayed — the page still shows Windy itself.
+ */
+async function buildEcmwf() {
+  const common = { latitude: "22.975", longitude: "121.315", timezone: "Asia/Taipei", forecast_days: "10" };
+  const waveUrl = new URL("https://marine-api.open-meteo.com/v1/marine");
+  const windUrl = new URL("https://api.open-meteo.com/v1/forecast");
+  for (const [k, v] of Object.entries(common)) { waveUrl.searchParams.set(k, v); windUrl.searchParams.set(k, v); }
+  waveUrl.searchParams.set("models", "ecmwf_wam025");
+  waveUrl.searchParams.set("hourly", "wave_height,wave_period,wave_peak_period,wave_direction");
+  windUrl.searchParams.set("models", "ecmwf_ifs025");
+  windUrl.searchParams.set("hourly", "wind_speed_10m,wind_direction_10m,wind_gusts_10m");
+  windUrl.searchParams.set("wind_speed_unit", "ms");
+
+  const [waveRes, windRes] = await Promise.all([fetch(waveUrl), fetch(windUrl)]);
+  if (!waveRes.ok) throw new Error(`open-meteo ecmwf_wam025 -> HTTP ${waveRes.status}`);
+  if (!windRes.ok) throw new Error(`open-meteo ecmwf_ifs025 -> HTTP ${windRes.status}`);
+  const wave = (await waveRes.json()).hourly || {};
+  const wind = (await windRes.json()).hourly || {};
+
+  // Joined on the timestamp, not the index, so the two can't drift apart
+  // if one response is shorter than the other.
+  const windAt = {};
+  (wind.time || []).forEach((t, i) => { windAt[t] = i; });
+  const num = (v) => (v === null || v === undefined || !isFinite(v)) ? null : Number(v);
+  const series = (wave.time || []).map((t, i) => {
+    const j = windAt[t];
+    const speed = j === undefined ? null : num(wind.wind_speed_10m[j]);
+    return {
+      targetTime: new Date(t + ":00+08:00").toISOString(),
+      waveHeight: num(wave.wave_height[i]),
+      wavePeriod: num(wave.wave_period[i]),
+      wavePeakPeriod: num(wave.wave_peak_period[i]),
+      waveDirectionDeg: num(wave.wave_direction[i]),
+      windSpeed: speed,
+      windScale: speed === null ? null : beaufort(speed),
+      windDirectionDeg: j === undefined ? null : num(wind.wind_direction_10m[j]),
+      windGust: j === undefined ? null : num(wind.wind_gusts_10m[j]),
+    };
+  }).filter((p) => p.waveHeight !== null || p.windSpeed !== null);
+
+  return {
+    data: { models: { wave: "ecmwf_wam025", wind: "ecmwf_ifs025" }, series },
+    ok: series.length > 0,
+    count: series.length,
+    series,
+  };
 }
 
 /**
@@ -1526,6 +1590,7 @@ async function run() {
     { file: "stations.json", name: "O-A0001-001 station observations", build: buildStations },
     { file: "buoy.json", name: "O-B0075-001 buoy / sea state", build: buildBuoy },
     { file: "openwave.json", name: "Open-Meteo marine (GFS-Wave)", build: buildOpenWave },
+    { file: "ecmwf.json", name: "Open-Meteo ECMWF WAM + IFS (logged only)", build: buildEcmwf },
     { file: "astronomy.json", name: "CWA astronomy (sun/moon/calendar)", build: buildAstronomy },
     { file: "typhoon.json", name: "JTWC typhoon news (W Pacific)", build: () => buildTyphoon(results) },
   ];
@@ -1573,6 +1638,7 @@ async function run() {
     const waveSources = [
       ...COASTAL_POINTS.map((p) => ({ name: p.source, series: (results[p.file] || {}).series || [] })),
       { name: "open_meteo", series: (results["openwave.json"] || {}).series || [] },
+      { name: "ecmwf", series: (results["ecmwf.json"] || {}).series || [] },
     ];
     for (const src of waveSources) {
       for (const lead of LEAD_HOURS) {
@@ -1591,6 +1657,9 @@ async function run() {
           swellHeight: pt.swellHeight !== undefined ? pt.swellHeight : null,
           swellPeriod: pt.swellPeriod !== undefined ? pt.swellPeriod : null,
           swellDirectionDeg: pt.swellDirectionDeg !== undefined ? pt.swellDirectionDeg : null,
+          // ECMWF only, so far: peak period and gusts.
+          ...(pt.wavePeakPeriod !== undefined ? { wavePeakPeriod: pt.wavePeakPeriod } : {}),
+          ...(pt.windGust !== undefined ? { windGust: pt.windGust } : {}),
         });
       }
     }
@@ -1712,6 +1781,7 @@ async function run() {
     const updateLog = await buildUpdateLog({
       coastal: payloadOf("coastal.json"),
       openwave: payloadOf("openwave.json"),
+      ecmwf: payloadOf("ecmwf.json"),
       township: payloadOf("township.json"),
       tide: payloadOf("tide.json"),
       stations: payloadOf("stations.json"),
