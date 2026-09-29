@@ -1,77 +1,70 @@
 {
-  "fetchedAt": "2026-09-29T01:18:55.758Z",
+  "fetchedAt": "2026-09-29T02:17:50.745Z",
   "systems": [
     {
-      "designation": "Typhoon",
+      "designation": "Tropical Storm",
       "id": "25W",
       "name": "Surigae",
-      "headline": "Typhoon 25W (Surigae)",
-      "warningNumber": "023",
-      "issuedZ": "28/2100Z",
-      "issuedAt": "2026-09-28T21:00:00.000Z",
+      "headline": "Tropical Storm 25W (Surigae)",
+      "warningNumber": "024",
+      "issuedZ": "29/0300Z",
+      "issuedAt": "2026-09-29T03:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2526.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2526web.txt",
       "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202609280600-96_SURIGAE_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "290600Z",
-          "lat": 29.1,
-          "lon": 135,
-          "maxWindKt": 55,
-          "gustKt": 70
-        },
-        {
-          "tau": 24,
-          "validZ": "291800Z",
-          "lat": 30.1,
-          "lon": 136.9,
-          "maxWindKt": 50,
-          "gustKt": 65
-        },
-        {
-          "tau": 36,
-          "validZ": "300600Z",
-          "lat": 31.4,
-          "lon": 138.7,
+          "validZ": "291200Z",
+          "lat": 29.6,
+          "lon": 135.8,
           "maxWindKt": 45,
           "gustKt": 55
         },
         {
+          "tau": 24,
+          "validZ": "300000Z",
+          "lat": 30.7,
+          "lon": 137.6,
+          "maxWindKt": 40,
+          "gustKt": 50
+        },
+        {
+          "tau": 36,
+          "validZ": "301200Z",
+          "lat": 32.3,
+          "lon": 139.5,
+          "maxWindKt": 40,
+          "gustKt": 50
+        },
+        {
           "tau": 48,
-          "validZ": "301800Z",
-          "lat": 33.1,
-          "lon": 140.7,
+          "validZ": "010000Z",
+          "lat": 34.1,
+          "lon": 141.8,
           "maxWindKt": 40,
           "gustKt": 50
         },
         {
           "tau": 60,
-          "validZ": "010600Z",
-          "lat": 35.3,
-          "lon": 143.5,
-          "maxWindKt": 40,
-          "gustKt": 50
-        },
-        {
-          "tau": 72,
-          "validZ": "011800Z",
-          "lat": 38.7,
-          "lon": 148.6,
+          "validZ": "011200Z",
+          "lat": 36.9,
+          "lon": 145.7,
           "maxWindKt": 45,
           "gustKt": 55
         }
       ],
-      "positionZ": "281800Z",
-      "lat": 28.1,
-      "lon": 133.2,
+      "intensityChangeNote": "DOWNGRADED FROM TYPHOON 25W",
+      "positionZ": "290000Z",
+      "lat": 28.6,
+      "lon": 133.9,
       "movingToward": 50,
-      "movingKt": 9,
-      "maxWindKt": 70,
-      "gustKt": 85,
-      "pressureMb": 976,
-      "seasFt": 22,
-      "geoReference": "303 NM EAST-NORTHEAST OF KADENA AB",
+      "movingKt": 8,
+      "maxWindKt": 55,
+      "gustKt": 70,
+      "pressureMb": 988,
+      "seasFt": 24,
+      "geoReference": "346 NM SOUTHEAST OF SASEBO, JAPAN",
       "reasoning": {
         "warningNumber": "023",
         "significantForecastChanges": "THE FORECAST TRACK HAS SHIFTED SLIGHTLY POLEWARD AND CLOSER TO HONSHU, AND THE FORECAST INTENSITY HAS BEEN LOWERED THROUGH TAU 72.",
@@ -89,15 +82,15 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2526prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 713,
-        "bearingDeg": 62,
+        "distanceNm": 759,
+        "bearingDeg": 61,
         "closestApproach": {
-          "distanceNm": 824,
+          "distanceNm": 874,
           "tau": 12,
-          "validZ": "290600Z",
-          "maxWindKt": 55,
+          "validZ": "291200Z",
+          "maxWindKt": 45,
           "recedingOnly": true
         }
       },
@@ -107,61 +100,51 @@
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 57
+            "heading": 58
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 58
+            "heading": 54
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 49
+            "heading": 45
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 44
+            "heading": 46
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 46
-          },
-          {
-            "fromTau": 60,
-            "toTau": 72,
-            "heading": 49
+            "heading": 47
           }
         ],
         "turns": []
       },
+      "swell": {
+        "windowEnd": "2026-10-03T15:00:00.000Z",
+        "status": "none"
+      },
+      "summary": {
+        "text": "Typhoon 25W has shed 60 kt of intensity in the past 24 hours on an extremely rapid weakening trend. TY 25W will maintain a northeast motion along the northwestern periphery of a large subtropical ridge centered near 33N 160E. TY 25W will continue to rapidly weaken through +12h under strong VWS.",
+        "warningNumber": "023",
+        "generatedAt": "2026-09-29T02:17:50.745Z"
+      },
       "changes": {
-        "previousWarningNumber": "022",
-        "previousIssuedAt": "2026-09-28T15:00:00.000Z",
-        "maxWindKtDelta": -20,
-        "pressureMbDelta": 14,
-        "seasFtDelta": -16,
-        "closestApproachNmDelta": 45
+        "previousWarningNumber": "023",
+        "previousIssuedAt": "2026-09-28T21:00:00.000Z",
+        "maxWindKtDelta": -15,
+        "pressureMbDelta": 12,
+        "seasFtDelta": 2,
+        "closestApproachNmDelta": 50
       }
     }
   ],
-  "alerts": [
-    {
-      "alertId": "WTIO21",
-      "issuedZ": "28/1730Z",
-      "issuedAt": "2026-09-28T17:30:00.000Z",
-      "textUrl": "https://www.metoc.navy.mil/jtwc/products/wp9226web.txt",
-      "graphic": "",
-      "satellite": "https://www.metoc.navy.mil/jtwc/products/92W_281730sair.jpg",
-      "investId": "92W",
-      "maxWindKtLow": 25,
-      "maxWindKtHigh": 30,
-      "pressureMb": 1003,
-      "decisionByZ": null
-    }
-  ],
+  "alerts": [],
   "invests": [
     {
       "id": "93W",

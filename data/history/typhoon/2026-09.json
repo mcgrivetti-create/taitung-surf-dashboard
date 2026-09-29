@@ -5966,6 +5966,124 @@
         "distanceNm": 1990,
         "bearingDeg": 97
       }
+    },
+    {
+      "kind": "warning",
+      "id": "25W",
+      "name": "Surigae",
+      "designation": "Tropical Storm",
+      "warningNumber": "024",
+      "issuedAt": "2026-09-29T03:00:00.000Z",
+      "positionZ": "290000Z",
+      "lat": 28.6,
+      "lon": 133.9,
+      "maxWindKt": 55,
+      "gustKt": 70,
+      "pressureMb": 988,
+      "seasFt": 24,
+      "movingToward": 50,
+      "movingKt": 8,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "291200Z",
+          "lat": 29.6,
+          "lon": 135.8,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 24,
+          "validZ": "300000Z",
+          "lat": 30.7,
+          "lon": 137.6,
+          "maxWindKt": 40,
+          "gustKt": 50
+        },
+        {
+          "tau": 36,
+          "validZ": "301200Z",
+          "lat": 32.3,
+          "lon": 139.5,
+          "maxWindKt": 40,
+          "gustKt": 50
+        },
+        {
+          "tau": 48,
+          "validZ": "010000Z",
+          "lat": 34.1,
+          "lon": 141.8,
+          "maxWindKt": 40,
+          "gustKt": 50
+        },
+        {
+          "tau": 60,
+          "validZ": "011200Z",
+          "lat": 36.9,
+          "lon": 145.7,
+          "maxWindKt": 45,
+          "gustKt": 55
+        }
+      ],
+      "spot": {
+        "distanceNm": 759,
+        "bearingDeg": 61,
+        "closestApproach": {
+          "distanceNm": 874,
+          "tau": 12,
+          "validZ": "291200Z",
+          "maxWindKt": 45,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 50,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 58
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 54
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 45
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 46
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 47
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-03T15:00:00.000Z",
+        "status": "none"
+      },
+      "summary": {
+        "text": "Typhoon 25W has shed 60 kt of intensity in the past 24 hours on an extremely rapid weakening trend. TY 25W will maintain a northeast motion along the northwestern periphery of a large subtropical ridge centered near 33N 160E. TY 25W will continue to rapidly weaken through +12h under strong VWS.",
+        "warningNumber": "023",
+        "generatedAt": "2026-09-29T02:17:50.745Z"
+      },
+      "reasoningWarningNumber": "023",
+      "significantForecastChanges": "THE FORECAST TRACK HAS SHIFTED SLIGHTLY POLEWARD AND CLOSER TO HONSHU, AND THE FORECAST INTENSITY HAS BEEN LOWERED THROUGH TAU 72.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": null,
+        "intensity0072": "MEDIUM",
+        "intensity72120": null
+      }
     }
   ]
 }
