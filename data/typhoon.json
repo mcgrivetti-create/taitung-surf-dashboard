@@ -1,61 +1,67 @@
 {
-  "fetchedAt": "2026-09-29T19:21:06.911Z",
+  "fetchedAt": "2026-09-29T20:21:00.667Z",
   "systems": [
     {
       "designation": "Tropical Storm",
       "id": "25W",
       "name": "Surigae",
       "headline": "Tropical Storm 25W (Surigae)",
-      "warningNumber": "026",
-      "issuedZ": "29/1500Z",
-      "issuedAt": "2026-09-29T15:00:00.000Z",
+      "warningNumber": "027",
+      "issuedZ": "29/2100Z",
+      "issuedAt": "2026-09-29T21:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2526.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2526web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "300000Z",
-          "lat": 30.5,
-          "lon": 138.3,
-          "maxWindKt": 40,
-          "gustKt": 50
+          "validZ": "300600Z",
+          "lat": 31,
+          "lon": 138.4,
+          "maxWindKt": 35,
+          "gustKt": 45
         },
         {
           "tau": 24,
-          "validZ": "301200Z",
-          "lat": 32.1,
+          "validZ": "301800Z",
+          "lat": 32.7,
           "lon": 140.3,
-          "maxWindKt": 40,
-          "gustKt": 50
+          "maxWindKt": 35,
+          "gustKt": 45
         },
         {
           "tau": 36,
-          "validZ": "010000Z",
-          "lat": 34.1,
-          "lon": 142.9,
-          "maxWindKt": 40,
-          "gustKt": 50
+          "validZ": "010600Z",
+          "lat": 35.1,
+          "lon": 143.7,
+          "maxWindKt": 35,
+          "gustKt": 45
         },
         {
           "tau": 48,
-          "validZ": "011200Z",
-          "lat": 36.8,
-          "lon": 147.3,
-          "maxWindKt": 45,
-          "gustKt": 55
+          "validZ": "011800Z",
+          "lat": 38.1,
+          "lon": 149.2,
+          "maxWindKt": 40,
+          "gustKt": 50
         }
       ],
-      "positionZ": "291200Z",
-      "lat": 29.2,
-      "lon": 136.3,
-      "movingToward": 80,
-      "movingKt": 12,
-      "maxWindKt": 45,
-      "gustKt": 55,
-      "pressureMb": 994,
-      "seasFt": 20,
-      "geoReference": "405 NM SOUTH-SOUTHWEST OF YOKOSUKA, JAPAN",
+      "positionZ": "291800Z",
+      "lat": 29.6,
+      "lon": 136.7,
+      "movingToward": 70,
+      "movingKt": 8,
+      "maxWindKt": 40,
+      "gustKt": 50,
+      "pressureMb": 997,
+      "seasFt": 18,
+      "nextWarnings": [
+        "300300Z",
+        "300900Z",
+        "301500Z",
+        "302100Z"
+      ],
+      "geoReference": "374 NM SOUTH-SOUTHWEST OF YOKOSUKA, JAPAN",
       "reasoning": {
         "warningNumber": "026",
         "significantForecastChanges": "THE FORECAST HAS BEEN TRUNCATED TO 48 HOURS.",
@@ -73,40 +79,40 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2526prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 889,
-        "bearingDeg": 62,
+        "distanceNm": 918,
+        "bearingDeg": 61,
         "closestApproach": {
-          "distanceNm": 1015,
+          "distanceNm": 1032,
           "tau": 12,
-          "validZ": "300000Z",
-          "maxWindKt": 40,
+          "validZ": "300600Z",
+          "maxWindKt": 35,
           "recedingOnly": true
         }
       },
       "motion": {
-        "currentHeadingDeg": 80,
+        "currentHeadingDeg": 70,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 53
+            "heading": 46
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 46
+            "heading": 43
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 47
+            "heading": 49
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 52
+            "heading": 54
           }
         ],
         "turns": []
@@ -120,7 +126,7 @@
           "periodS": 4.95,
           "dirDeg": 72
         },
-        "hoursAhead": 85,
+        "hoursAhead": 84,
         "bearingOffsetDeg": 1,
         "peak": {
           "targetTime": "2026-10-04T00:00:00.000Z",
@@ -135,11 +141,12 @@
         "generatedAt": "2026-09-29T14:21:25.966Z"
       },
       "changes": {
-        "previousWarningNumber": "025",
-        "previousIssuedAt": "2026-09-29T09:00:00.000Z",
+        "previousWarningNumber": "026",
+        "previousIssuedAt": "2026-09-29T15:00:00.000Z",
         "maxWindKtDelta": -5,
+        "pressureMbDelta": 3,
         "seasFtDelta": -2,
-        "closestApproachNmDelta": 79
+        "closestApproachNmDelta": 17
       }
     }
   ],

@@ -6359,6 +6359,125 @@
         "distanceNm": 1829,
         "bearingDeg": 98
       }
+    },
+    {
+      "kind": "warning",
+      "id": "25W",
+      "name": "Surigae",
+      "designation": "Tropical Storm",
+      "warningNumber": "027",
+      "issuedAt": "2026-09-29T21:00:00.000Z",
+      "positionZ": "291800Z",
+      "lat": 29.6,
+      "lon": 136.7,
+      "maxWindKt": 40,
+      "gustKt": 50,
+      "pressureMb": 997,
+      "seasFt": 18,
+      "movingToward": 70,
+      "movingKt": 8,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "300600Z",
+          "lat": 31,
+          "lon": 138.4,
+          "maxWindKt": 35,
+          "gustKt": 45
+        },
+        {
+          "tau": 24,
+          "validZ": "301800Z",
+          "lat": 32.7,
+          "lon": 140.3,
+          "maxWindKt": 35,
+          "gustKt": 45
+        },
+        {
+          "tau": 36,
+          "validZ": "010600Z",
+          "lat": 35.1,
+          "lon": 143.7,
+          "maxWindKt": 35,
+          "gustKt": 45
+        },
+        {
+          "tau": 48,
+          "validZ": "011800Z",
+          "lat": 38.1,
+          "lon": 149.2,
+          "maxWindKt": 40,
+          "gustKt": 50
+        }
+      ],
+      "spot": {
+        "distanceNm": 918,
+        "bearingDeg": 61,
+        "closestApproach": {
+          "distanceNm": 1032,
+          "tau": 12,
+          "validZ": "300600Z",
+          "maxWindKt": 35,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 70,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 46
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 43
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 49
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 54
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-04T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-03T08:00:00.000Z",
+          "heightM": 0.48,
+          "periodS": 4.95,
+          "dirDeg": 72
+        },
+        "hoursAhead": 84,
+        "bearingOffsetDeg": 1,
+        "peak": {
+          "targetTime": "2026-10-04T00:00:00.000Z",
+          "heightM": 0.7,
+          "periodS": 5.35,
+          "dirDeg": 71
+        }
+      },
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts a fully exposed low-level circulation center (LLCC) displaced west of flaring deep convection anchored along low-level convergent asymptotes in the eastern semicircle. Tropical storm (TS) 25W will continue to track northeastward along the northwestern side of the STR to the east, riding poleward just ahead of the stationary frontal boundary just offshore of Honshu, through +48h.",
+        "warningNumber": "025",
+        "generatedAt": "2026-09-29T14:21:25.966Z"
+      },
+      "reasoningWarningNumber": "026",
+      "significantForecastChanges": "THE FORECAST HAS BEEN TRUNCATED TO 48 HOURS.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
     }
   ]
 }
