@@ -22,8 +22,19 @@ station wind history is a small self-maintained rolling log, not a DB.
      site's own blocked-from-framing pages), Widget A, metric units.
      (Earlier claim that no embed existed at all was wrong — corrected.)
    - Windy — two interactive maps (wave model and wind model) on the same
-     regional view: zoom 5 centred at 24.5N/123E, reaching southern Kyushu
-     to the northern tip of Luzon, each with the Donghe spot-forecast panel
+     regional view, each with the Donghe spot-forecast panel. Tuned for a
+     phone: zoom 4 requested at 28N/131E, which on a ~340px-wide frame shows
+     Luzon and Taiwan up to Korea and Japan, with the typhoon lanes east of
+     Okinawa in frame. (Windy renders the view noticeably west and south of
+     the requested centre because the forecast table covers the bottom of
+     the map, hence the offset centre.) The frames are 700px tall — a
+     same-specificity 450px rule later in `style.css` used to override that
+     silently, leaving a thin strip of map on a phone.
+1a. **Tide forecast, sun/moon and astronomical calendar** — its own panel
+    directly under the Windy maps (moved up from the CWA Data panel
+    2026-09-29). The day pager drives everything in it: tide curve, surf
+    window, moon-phase widget, sunrise/sunset/twilight, moonrise/moonset,
+    lunar date and the day's astronomical events.
 1b. **Open Wave Model** — an independent wave forecast from Open-Meteo's
     free Marine API (no key, backed by NOAA NCEP GFS-Wave). Doesn't depend
     on CWA or any of the widgets above, so it's a fallback that keeps
@@ -39,8 +50,10 @@ station wind history is a small self-maintained rolling log, not a DB.
    displayed — the page is single-spot by choice.
 3. Other CWA data:
    - Township forecast (`F-D0047-039`, Donghe)
+   - (Tide + astronomy used to live here — now panel 1a above. Its details:)
    - **Sunrise/sunset, moonrise/moonset and CWA's daily astronomical
-     calendar** for Taitung County, under the tide chart — see below
+     calendar** for Taitung County, under the tide chart, for whichever
+     day the pager is on — see below
    - Tide forecast (`F-A0021-001`, Donghe) — interpolated line chart with a
      day pager (‹ › buttons **or a horizontal swipe/drag on the chart**)
      showing exact high/low times, on a **permanently fixed −100…+150cm axis
@@ -510,36 +523,81 @@ not the first forecast leg — otherwise a storm already mid-turn reads as
 travelling straight. Rendered as `Turning NW 24–36h · NNE 48–60h · NE
 72–96h`, capped at three turns; a storm that never turns says so instead.
 
-### Swell arrival
+### Swell arrival (per storm, every storm)
 
-A plain reading of the Open-Meteo swell series, rendered as a sentence:
+`detectStormSwell` reads the Open-Meteo swell series once **per active
+storm** and every storm gets a verdict, rendered as one of:
 
-> Swell expected to arrive Sun, Sep 20, 11:00 (0.9m, 10.4s from E) and grow
-> to 1.8m, 8.5s by Mon, Sep 21, 08:00
+> Swell expected to arrive Sat, Sep 26, 04:00 (0.7m, 7.9s from E), peaking
+> at 1.2m, 7.7s from ESE around Sat, Sep 26, 20:00
 
-`detectSwellArrival` takes **arrival** as the first point where the swell
-period steps clearly above its current baseline (>=2s over the median of the
-first 6h, and >=10s so windsea doesn t qualify), and **peak** as the largest
-swell height after that. The period used is always whatever the model
-actually shows — never a hardcoded figure.
+> Swell arriving now (…) · Swell in the water since … — 1.3m, 7.6s now,
+> peaking at … · Swell arrived … and is now easing — 1.2m, 7.2s now
 
-Each height is quoted with **its own** period. They differ (10.4s at arrival
-vs 8.5s at the peak) because the long-period forerunner lands first and the
-sea shortens as the swell builds; quoting the arrival period against the
-peak height would overstate what the peak looks like.
+> No meaningful swell from Surigae expected at Donghe through Sun, Oct 4
+> (Open-Meteo GFS-Wave, 5-day window)
+
+How it works:
+
+1. **Direction.** A point is storm swell only if its bearing is within 45° of
+   the storm's bearing from Donghe — checked against the storm's positions
+   over the last 72h (from the archive), now, and forecast to +72h, since
+   what reaches Donghe was generated wherever the storm was a day or two ago.
+2. **Peak first.** The biggest aligned swell height in the window is the
+   peak. Walking back from it to the trough it built from gives the start
+   of the build (small upticks of model noise don't end the walk; a real
+   earlier hump does). Arrival is the first hour off that trough.
+3. **It has to be a real build**: >=0.3m and >=30% above the trough, **or**
+   the period stepping into groundswell range (>=10s and >=2s up) on the
+   way. A peak under 0.4m is "no meaningful swell".
+4. **Arrived stays arrived.** Once the swell is in, its trough is gone from
+   the series, so the arrival is remembered from the previous run's
+   `typhoon.json` and the status becomes "in the water" / "easing".
+
+Each height is quoted with **its own** period — the long-period forerunner
+lands first and the sea shortens as it builds, so the arrival period would
+overstate the peak.
+
+**Why Surigae was missed (fixed 2026-09-29).** The first version only
+recognised a swell by a *period* jump to >=10s. Surigae passed ~300nm away;
+its short fetch made shorter-period swell, and it came in on *height*: the
+Chenggong buoy went from 0.5m/5s to 1.0–1.4m/7–8s from the E on the
+afternoon of Sep 26, and the model had forecast exactly that — at ~8s, so
+the rule never fired. The 10s rule only suited distant storms. A first
+rewrite scanned forward for the first height rise instead, and was fooled a
+day early by a 6-hour model blip on Dujuan's Sep 18 run; anchoring on the
+peak fixed that. Backtested on archived runs: Dujuan called arrival Sun Sep
+20 ~10:00 and peak ~2m Mon morning (buoy: build from Sun morning, peak Mon
+06:00); Surigae called arrival Sat Sep 26 04:00, peak Sat night (buoy: rise
+from Sat midday, peak early Sun).
 
 An earlier version also showed a great-circle estimate from deep-water group
 velocity. It was dropped: it disagreed with the model by ~34h for Dujuan
-(dispersion again — the first energy travels faster than the period
-eventually reported), and a second, worse number beside a spectral model s
-answer was more confusing than useful.
+(dispersion — the first energy travels faster than the period eventually
+reported), and a second, worse number beside a spectral model's answer was
+more confusing than useful.
 
-**Attribution matters with more than one storm.** The swell is credited to a
-system only when the swell bearing is within 45 degrees of that storm s
-bearing from Donghe, and to the closest match if several qualify. For Dujuan
-the offset is 6 degrees. A swell arriving from a direction no active storm
-explains is left unattributed rather than pinned on whichever storm happens
-to be listed first.
+Two storms on similar bearings will both claim the same swell; the model
+can't separate them, and the page doesn't pretend to.
+
+### Forecaster summary (twice daily)
+
+A 2–3 sentence digest of JTWC's prognostic reasoning, **extracted, not
+written** — no language model. `summarizeReasoning` takes the opening
+sentence of the satellite analysis (what the storm is doing now), the
+opening sentence of the forecast discussion (where it's going and why), and
+the first later forecast sentence about intensity (intensify / weaken /
+peak / dissipate / extratropical / landfall). JTWC writes those as topic
+sentences, so they carry the gist.
+
+The all-caps teletype is recased for reading: JTWC abbreviations (VWS, SST,
+STR, LLCC…) and a list of regional place names (`PLACE_NAMES`) stay
+capitalised, `KTS` becomes `kt`, `TAU 48` becomes `+48h`. A place name
+missing from the list comes out lower case — extend the list if one shows up.
+
+JTWC reissues the reasoning every 6h, but the summary is refreshed only
+every 12h (`SUMMARY_EVERY_HOURS`), carried over from the previous run in
+between, and tagged with the warning number it came from.
 
 **Times are pinned to Asia/Taipei**, not device-local, so JTWC s Zulu
 timestamps and the swell times read as Donghe times even when the page is
@@ -598,6 +656,14 @@ for a disturbance with no alert.
 Alerts archive alongside warnings and invests as `kind: "tcfa"`, deduped by
 issue time, completing the lineage: disturbance → formation alert →
 numbered warning.
+
+**Basin filter — the filename isn't enough.** On 2026-09-27 an alert for
+92W showed on the page from 14.4N 98E, in the Andaman Sea. The system had kept its
+`wp`-numbered product files after drifting west, but JTWC reissued the
+alert under the Indian Ocean header `WTIO21`. Alerts are now kept only if
+the WMO header is `WTPN…` **and** the position is east of 100E
+(`WPAC_WEST_LON`); warned systems get the same longitude check. The page
+applies the same filter, so files written before the fix are covered too.
 
 ### Two parser bugs live data found
 

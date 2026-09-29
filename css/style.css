@@ -191,8 +191,6 @@ main {
 
 .windguru-embed { min-height: 260px; padding: 0.5rem; }
 
-.widget-embed.windy-embed iframe { height: 700px; }
-
 .widget-embed.video-embed {
   position: relative;
   padding-top: 56.25%;
@@ -209,6 +207,11 @@ main {
 .widget-embed:not(.video-embed) iframe {
   height: 450px;
 }
+
+/* Must come after the 450px rule above, which has the same specificity and
+   was silently overriding it. Windy's spot-forecast table takes ~230px of
+   the frame, so at 450px the map was a thin strip on a phone. */
+.widget-embed.windy-embed iframe { height: 700px; }
 
 .linkout-embed {
   padding: 1rem 0.9rem 1.2rem;
@@ -622,6 +625,16 @@ main {
 .typhoon-conf { margin: 0 0 0.5rem; font-size: 0.76rem; color: var(--text-dim); }
 .typhoon-motion { margin: 0 0 0.35rem; font-size: 0.82rem; color: var(--text); }
 .typhoon-swell { margin: 0 0 0.35rem; font-size: 0.82rem; color: var(--text); }
+.typhoon-summary {
+  margin: 0.2rem 0 0.5rem;
+  padding: 0.45rem 0.6rem;
+  border-left: 3px solid var(--accent);
+  background: var(--bg-card);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--text);
+}
+.typhoon-summary .typhoon-label { display: block; margin-bottom: 0.15rem; }
 .typhoon-rough { color: var(--text-dim); }
 .typhoon-invest-line { margin: 0 0 0.45rem; font-size: 0.82rem; line-height: 1.45; }
 .typhoon-alert { border-left: 3px solid var(--warn); padding-left: 0.7rem; }

@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-09-22a";
+  var ASSET_VERSION = "2026-09-29a";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -638,6 +638,12 @@
     }
     if (prevBtn) prevBtn.disabled = idx === 0;
     if (nextBtn) nextBtn.disabled = idx === tideDaysCache.length - 1;
+
+    // Sun/moon times, the astronomical calendar and the moon phase all
+    // follow the day being viewed, not just the tide curve.
+    astroDayKey = day.date;
+    renderAstronomyDay();
+    renderMoonWidget(idx === 0 ? new Date() : new Date(day.date + "T12:00:00+08:00"));
   }
 
   // Horizontal drag/swipe on the tide chart pages between days, alongside
@@ -678,7 +684,6 @@
       if (!tideDaysCache.length) throw new Error("no days in response");
       renderTideDay(0);
       enableTideSwipe();
-      renderMoonWidget();
     } catch (e) {
       showError("tideChart", "Couldn't parse this data (" + e.message + ")");
     }
@@ -708,10 +713,10 @@
     };
   }
 
-  function renderMoonWidget() {
+  function renderMoonWidget(date) {
     var el = document.getElementById("moonWidget");
     if (!el) return;
-    var info = moonPhaseInfo(new Date());
+    var info = moonPhaseInfo(date || new Date());
     var arrow = info.waxing ? "▲" : "▼";
     var nextLabel = info.waxing
       ? "Full " + info.nextFull.toLocaleDateString("en-US", { month: "short", day: "numeric" })
@@ -916,6 +921,40 @@
       .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
   }
 
+  function swellDesc(p) {
+    return n1(p.heightM) + "m, " + n1(p.periodS) + "s from " + degToCompass(p.dirDeg);
+  }
+
+  function swellSentence(s) {
+    var sw = s.swell;
+    if (!sw) return "";
+    // Pre-2026-09-29 files carried a bare arrival with no status.
+    if (!sw.status && sw.targetTime) sw = { status: "incoming", arrival: sw, peak: sw.peak };
+    var peakTxt = sw.peak && (!sw.arrival || sw.peak.targetTime !== sw.arrival.targetTime)
+      ? ", peaking at <strong>" + swellDesc(sw.peak) + "</strong> around " + fmtDonghe(sw.peak.targetTime) : "";
+    if (sw.status === "incoming") {
+      return "Swell expected to arrive <strong>" + fmtDonghe(sw.arrival.targetTime) + "</strong> (" +
+        swellDesc(sw.arrival) + ")" + peakTxt;
+    }
+    if (sw.status === "arriving") {
+      return "Swell <strong>arriving now</strong> (" + swellDesc(sw.arrival) + ")" + peakTxt;
+    }
+    if (sw.status === "in-water") {
+      if (sw.easing) {
+        return "Swell arrived " + fmtDonghe(sw.arrival.targetTime) + " and is now <strong>easing</strong> — " +
+          swellDesc(sw.now) + " now";
+      }
+      return "Swell in the water since " + fmtDonghe(sw.arrival.targetTime) + " — " + swellDesc(sw.now) +
+        " now" + peakTxt;
+    }
+    var until = sw.windowEnd ? " through " + fmtDonghe(sw.windowEnd).replace(/,\s*\d{2}:\d{2}$/, "") : "";
+    // Donghe faces east; a storm to the west or southwest is behind the island.
+    var b = s.spot && s.spot.bearingDeg;
+    var why = (typeof b === "number" && b >= 190 && b <= 340) ? " — the storm is west of Taiwan, so the island blocks it" : "";
+    return "No meaningful swell from " + escapeHtml(s.name || s.id) + " expected at Donghe" + until + why +
+      ' <span class="typhoon-lag">(Open-Meteo GFS-Wave, 5-day window)</span>';
+  }
+
   function renderTyphoon(data) {
     var panel = document.getElementById("typhoon");
     var body = document.getElementById("typhoonBody");
@@ -985,22 +1024,18 @@
           degToCompass(s.motion.legs[0].heading) + "</strong> through the forecast period</p>";
       }
 
-      // Swell arrival. The model's own timing leads because it accounts for
-      // refraction and island shadowing; the great-circle figure follows as a
-      // rough cross-check, and the two disagreeing is expected (dispersion
-      // means the first energy to arrive runs faster than the reported
-      // period). Only shown when the swell bearing actually matches this
-      // storm — see the attribution in buildTyphoon.
-      if (s.swell) {
-        var sw = s.swell;
-        var txt = "Swell expected to arrive <strong>" + fmtDonghe(sw.targetTime) + "</strong> (" +
-          n1(sw.heightM) + "m, " + n1(sw.periodS) + "s from " + degToCompass(sw.dirDeg) + ")";
-        if (sw.peak && sw.peak.targetTime !== sw.targetTime) {
-          txt += " and grow to <strong>" + n1(sw.peak.heightM) + "m, " + n1(sw.peak.periodS) + "s</strong> by " +
-            fmtDonghe(sw.peak.targetTime);
-        }
-        // No "Swell" label here — the sentence already starts with the word.
-        html += '<p class="typhoon-swell">🌊 ' + txt + "</p>";
+      // Swell verdict — every storm gets one, including an explicit "none".
+      // See detectStormSwell in scripts/fetch-data.mjs.
+      var swellTxt = swellSentence(s);
+      if (swellTxt) html += '<p class="typhoon-swell">🌊 ' + swellTxt + "</p>";
+
+      // Twice-daily digest of JTWC's prognostic reasoning, extracted from
+      // its own topic sentences (not written by a model).
+      if (s.summary && s.summary.text) {
+        html += '<div class="typhoon-summary"><span class="typhoon-label">Forecaster summary</span> ' +
+          escapeHtml(s.summary.text) +
+          ' <span class="typhoon-lag">(JTWC warning #' + escapeHtml(s.summary.warningNumber) +
+          ", updated " + escapeHtml(fmtDonghe(s.summary.generatedAt)) + ")</span></div>";
       }
 
       // JTWC's own change summary, quoted rather than paraphrased.
@@ -1065,7 +1100,11 @@
     // Formation alerts — between "watching an area" and a numbered warning.
     // Listed before invests because an alert means JTWC thinks something is
     // about to happen, and it carries a hard decision deadline.
-    (data.alerts || []).forEach(function (a) {
+    // Western Pacific only (WTPN header, east of 100E) — the fetch script
+    // filters these too; this also hides alerts in files written before it did.
+    (data.alerts || []).filter(function (a) {
+      return !(a.alertId && !/^WTPN/i.test(a.alertId)) && !(typeof a.lon === "number" && a.lon < 100);
+    }).forEach(function (a) {
       html += '<div class="typhoon-card typhoon-alert"><h3>⚠ Formation Alert — Invest ' +
         escapeHtml(a.investId || a.alertId || "") + "</h3>";
 
@@ -1222,14 +1261,24 @@
      scripts/fetch-data.mjs). The calendar genuinely has gaps — most days
      carry no phenomenon and no solar term — so anything missing is simply
      omitted rather than rendered as a dash. */
+  // Both the astronomy file and the tide pager can arrive first, so each
+  // stores its half and the render runs off whatever is there.
+  var astroData = null;
+  var astroDayKey = null; // YYYY-MM-DD of the tide day being viewed
+
   function renderAstronomy(data) {
+    astroData = data;
+    renderAstronomyDay();
+  }
+
+  function renderAstronomyDay() {
     var el = document.getElementById("astronomy");
     var srcEl = document.getElementById("astroSource");
     if (!el) return;
     function showSource(on) { if (srcEl) srcEl.hidden = !on; }
     try {
-      var todayKey = new Date(Date.now() + 8 * 3600000).toISOString().slice(0, 10);
-      var d = data && data.days && data.days[todayKey];
+      var dayKey = astroDayKey || new Date(Date.now() + 8 * 3600000).toISOString().slice(0, 10);
+      var d = astroData && astroData.days && astroData.days[dayKey];
       if (!d) { el.innerHTML = ""; showSource(false); return; }
 
       // The attribution line is for the calendar, so it only earns its space

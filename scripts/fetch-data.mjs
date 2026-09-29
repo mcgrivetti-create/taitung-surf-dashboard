@@ -812,8 +812,14 @@ function parseJtwcRss(xml, nowMs) {
       for (const b of alertBlocks) {
         const txtUrl = (b.match(/href='([^']*wp\d{4}web\.txt)'/i) || [])[1];
         if (!txtUrl) continue;
+        const alertId = (b.replace(/\s+/g, " ").match(/Tropical Cyclone Formation Alert\s+(\w+)/i) || [])[1] || null;
+        // The filename alone isn't enough: 92W kept its wp-numbered files
+        // after drifting into the Andaman Sea, but JTWC reissued the alert
+        // under the Indian Ocean header WTIO21. The WMO header says which
+        // basin the alert is for; WTPN is the Western Pacific.
+        if (alertId && !/^WTPN/i.test(alertId)) continue;
         out.alerts.push({
-          alertId: (b.replace(/\s+/g, " ").match(/Tropical Cyclone Formation Alert\s+(\w+)/i) || [])[1] || null,
+          alertId,
           issuedZ: (b.match(/Issued at\s*(\d{2}\/\d{4}Z)/i) || [])[1] || null,
           issuedAt: zuluToISO((b.match(/Issued at\s*(\d{2}\/\d{4}Z)/i) || [])[1], nowMs),
           textUrl: decodeEntities(txtUrl),
@@ -1159,7 +1165,9 @@ async function enrichSystem(s, nowMs) {
   try {
     const res = await fetch(progUrl);
     if (res.ok) {
-      const prog = parseProgReasoning(await res.text());
+      const progText = await res.text();
+      const prog = parseProgReasoning(progText);
+      prog.summaryCandidate = summarizeReasoning(progText);
       s.reasoning = prog;
       s.reasoningUrl = progUrl;
       // The reasoning routinely lags the warning by a cycle; flagged so the
@@ -1172,65 +1180,182 @@ async function enrichSystem(s, nowMs) {
   s.motion = motionOutlook(s);
 }
 
-/* --- Swell arrival ------------------------------------------------------
- * A plain reading of the Open-Meteo swell series: when the train arrives and
- * what it looks like then, plus when it peaks and what it looks like at the
- * peak. Arrival is the first point where the swell period steps clearly
- * above its current baseline; the peak is the largest swell height after
- * that.
+/* --- Swell arrival, per storm -------------------------------------------
+ * A plain reading of the Open-Meteo swell series for each active storm:
+ * when its swell arrives, what it looks like then, and when and how big it
+ * peaks. Every storm gets a verdict, including an explicit "no meaningful
+ * swell" rather than silence.
  *
- * Arrival period and peak period differ — the long-period forerunner lands
- * first and the sea shortens as the swell builds — so each height is quoted
- * with its own period rather than one period standing for both.
+ * The biggest storm-aligned swell in the window is the peak; the arrival is
+ * where that build starts, found by walking back from the peak to its
+ * trough. It counts only if the height climbs clearly off that trough OR
+ * the period steps up into groundswell range on the way. The first
+ * version keyed on period alone (>=10s) and so missed
+ * Surigae entirely: it passed ~300nm away and its swell came in on height —
+ * 0.5m to 1.3m at Chenggong on Sep 26 — at only ~8s in both the model and
+ * the buoy. A close storm's short fetch makes shorter-period swell; the
+ * 10s rule only suited distant storms.
  *
- * An earlier version also carried a great-circle estimate from deep-water
- * group velocity. It was dropped: it disagreed with the model by ~34h for
- * Dujuan (dispersion means the first energy travels faster than the period
- * eventually reported), and a second, worse number next to a spectral
- * model's answer was more confusing than useful.
+ * Arrival is dated from where the build begins, not where it crosses the
+ * threshold, since that's when the first of it shows at the beach. The peak
+ * is the largest height in the aligned run that follows, quoted with its
+ * own period (the forerunner lands long-period; the sea shortens as it
+ * builds, so the arrival period would overstate the peak).
+ *
+ * Direction matching uses the storm's recent, current and forecast (to
+ * 72h) positions, since the swell reaching Donghe was generated wherever
+ * the storm was a day or two ago, not where it is now.
+ *
+ * The state carries between runs: once a swell has arrived its baseline is
+ * gone from the series, so "arrived" is remembered from the previous run's
+ * typhoon.json rather than re-detected.
  */
-const SWELL_JUMP_MIN_S = 10;   // below this it's windsea, not groundswell
-const SWELL_JUMP_DELTA_S = 2;  // rise over baseline that counts as a new train
-const SWELL_DIR_TOLERANCE = 45; // how close the swell bearing must be to blame a storm
+const SWELL_DIR_TOLERANCE = 45;  // how close the swell bearing must be to blame a storm
+const SWELL_RISE_M = 0.3;        // height gain over the lowest point so far that counts as a new train
+const SWELL_RISE_FRAC = 0.3;     // ...and at least this fraction, so 0.3m on a 3m sea doesn't count
+const SWELL_BUILD_START_M = 0.1; // arrival is dated from the first step of the build
+const SWELL_LONG_PERIOD_S = 10;  // a period jump into groundswell range also counts...
+const SWELL_PERIOD_RISE_S = 2;   // ...if it's at least this far above the lowest period so far
+const SWELL_MEANINGFUL_M = 0.4;  // a storm swell peaking below this isn't worth announcing
+const WPAC_WEST_LON = 100;       // west of here is the Bay of Bengal / Andaman Sea
 
-/** knots, deep-water group velocity for a given period */
+function stormBearings(s, history) {
+  const pts = [];
+  for (const r of history || []) if (typeof r.lat === "number") pts.push(r);
+  if (typeof s.lat === "number") pts.push(s);
+  for (const f of s.forecasts || []) if (f.tau <= 72) pts.push(f);
+  return pts.map((p) => bearingDeg(SPOT_LAT, SPOT_LON, p.lat, p.lon));
+}
 
-function detectSwellArrival(series, nowMs) {
-  if (!series || series.length < 8) return null;
-  const periods = series.map((p) => p.swellPeriod).filter((v) => isFinite(v));
-  if (periods.length < 8) return null;
-  const firstSix = periods.slice(0, 6).slice().sort((a, b) => a - b);
-  const baseline = firstSix[Math.floor(firstSix.length / 2)];
+function swellPoint(p) {
+  return { targetTime: p.targetTime, heightM: p.swellHeight, periodS: p.swellPeriod, dirDeg: p.swellDirectionDeg };
+}
 
-  for (let i = 0; i < series.length; i++) {
-    const p = series[i];
-    if (!isFinite(p.swellPeriod)) continue;
-    if (p.swellPeriod >= baseline + SWELL_JUMP_DELTA_S && p.swellPeriod >= SWELL_JUMP_MIN_S) {
-      // Peak of the train that follows — reported with the period that comes
-      // WITH the peak, not the arrival period. They differ (the long-period
-      // forerunner arrives first and the sea shortens as it builds), and
-      // quoting the arrival period against the peak height would overstate
-      // what the peak actually looks like.
-      let peak = null;
-      for (let j = i; j < series.length; j++) {
-        const q = series[j];
-        if (!isFinite(q.swellHeight)) continue;
-        if (!peak || q.swellHeight > peak.heightM) {
-          peak = { targetTime: q.targetTime, heightM: q.swellHeight, periodS: q.swellPeriod, dirDeg: q.swellDirectionDeg };
-        }
-      }
-      return {
-        targetTime: p.targetTime,
-        hoursAhead: Math.round((new Date(p.targetTime).getTime() - nowMs) / 3600000),
-        periodS: p.swellPeriod,
-        heightM: p.swellHeight,
-        dirDeg: p.swellDirectionDeg,
-        baselineS: baseline,
-        peak,
-      };
+function detectStormSwell(series, bearings, nowMs, prevSwell) {
+  if (!series || !bearings.length) return null;
+  const pts = series.filter((p) => isFinite(p.swellHeight) &&
+    new Date(p.targetTime).getTime() >= nowMs - 3600000);
+  if (pts.length < 8) return null;
+  const windowEnd = pts[pts.length - 1].targetTime;
+  const offset = (p) => isFinite(p.swellDirectionDeg)
+    ? Math.min(...bearings.map((b) => angleDiff(p.swellDirectionDeg, b))) : 999;
+  const aligned = (p) => offset(p) <= SWELL_DIR_TOLERANCE;
+
+  // Largest height in the aligned run starting at `from`, allowing a couple
+  // of hours' directional wobble before calling the run over.
+  function peakFrom(from) {
+    let peak = null, gap = 0;
+    for (let j = from; j < pts.length; j++) {
+      if (!aligned(pts[j])) { if (++gap > 3) break; continue; }
+      gap = 0;
+      if (!peak || pts[j].swellHeight > peak.heightM) peak = swellPoint(pts[j]);
+    }
+    return peak;
+  }
+
+  // Anchor on the biggest storm-aligned swell in the window, then walk back
+  // to the trough it built from. Scanning forward for the first rise
+  // instead was fooled by short model bumps — Dujuan's run of Sep 18 had a
+  // 6-hour 0.3m blip on the 19th that it called the arrival, a day early.
+  let peakI = -1;
+  for (let i = 0; i < pts.length; i++) {
+    if (aligned(pts[i]) && (peakI < 0 || pts[i].swellHeight > pts[peakI].swellHeight)) peakI = i;
+  }
+  let arrivalI = -1;
+  if (peakI > 0) {
+    let lo = peakI;
+    // Small upticks (model noise) don't end the walk back; a real
+    // earlier hump does.
+    for (let j = peakI - 1; j >= 0; j--) {
+      if (pts[j].swellHeight > pts[lo].swellHeight + 0.05) break;
+      if (pts[j].swellHeight <= pts[lo].swellHeight) lo = j;
+    }
+    const loH = pts[lo].swellHeight, loP = pts[lo].swellPeriod;
+    const peakH = pts[peakI].swellHeight;
+    const periodJump = (q) => q.swellPeriod >= SWELL_LONG_PERIOD_S && q.swellPeriod - loP >= SWELL_PERIOD_RISE_S;
+    const built = peakH - loH >= SWELL_RISE_M && peakH >= loH * (1 + SWELL_RISE_FRAC);
+    if (built || pts.slice(lo, peakI + 1).some(periodJump)) {
+      let a = lo + 1;
+      while (a < peakI && pts[a].swellHeight < loH + SWELL_BUILD_START_M && !periodJump(pts[a])) a++;
+      arrivalI = a;
     }
   }
-  return null;
+
+  const base = { windowEnd };
+  const prevArrivedAt = prevSwell && prevSwell.arrival && prevSwell.arrival.targetTime;
+  const alreadyIn = prevArrivedAt && new Date(prevArrivedAt).getTime() <= nowMs && aligned(pts[0]);
+
+  if (alreadyIn) {
+    // Arrived on an earlier run and still lined up — keep the arrival that
+    // was seen then and follow the peak from here.
+    const peak = peakFrom(0);
+    if (peak && peak.heightM >= SWELL_MEANINGFUL_M) {
+      return Object.assign(base, {
+        status: "in-water", arrival: prevSwell.arrival, now: swellPoint(pts[0]), peak,
+        easing: peak.targetTime === pts[0].targetTime,
+      });
+    }
+  }
+  if (arrivalI >= 0) {
+    const peak = swellPoint(pts[peakI]);
+    if (peak && peak.heightM >= SWELL_MEANINGFUL_M) {
+      const arrival = swellPoint(pts[arrivalI]);
+      return Object.assign(base, {
+        status: new Date(arrival.targetTime).getTime() <= nowMs + 3600000 ? "arriving" : "incoming",
+        arrival, hoursAhead: Math.round((new Date(arrival.targetTime).getTime() - nowMs) / 3600000),
+        bearingOffsetDeg: Math.round(offset(pts[arrivalI])), peak,
+      });
+    }
+  }
+  return Object.assign(base, { status: "none" });
+}
+
+/* --- Forecaster summary -------------------------------------------------
+ * A 2-3 sentence digest of JTWC's prognostic reasoning, EXTRACTED rather
+ * than written: the opening line of the satellite analysis (what the storm
+ * is doing now), the opening line of the forecast discussion (where it's
+ * going and why), and the first later line about intensity. JTWC writes
+ * those openings as topic sentences, so they carry the gist.
+ *
+ * The all-caps teletype text is recased for reading — JTWC's own
+ * abbreviations and a list of regional place names are kept capitalised,
+ * and "TAU 48" becomes "+48h". Anything the list misses comes out lower
+ * case; that's the known cost of recasing without a language model.
+ *
+ * Refreshed at most every SUMMARY_EVERY_HOURS (twice a day) even though the
+ * reasoning is reissued every 6h — the digest is a daily-read overview, not
+ * a feed of every revision.
+ */
+const SUMMARY_EVERY_HOURS = 12;
+const SUMMARY_MAX_SENTENCE = 260;
+const KEEP_UPPER = new Set(("TY STY TS TD STS VWS SST SSTS LLCC LLC STR JTWC TUTT ETT NM AB " +
+  "ECMWF GFS CONW AI OHC EIR MSI JMA CWA NE NW SE SW NNE ENE ESE SSE SSW WSW WNW NNW").split(" "));
+const PLACE_NAMES = ["Taiwan", "Luzon Strait", "Luzon", "Bashi Channel", "Philippine Sea", "Philippines",
+  "Okinawa", "Kadena", "Japan", "Honshu", "Kyushu", "Shikoku", "Hokkaido", "Sea of Japan",
+  "East China Sea", "South China Sea", "Yellow Sea", "China", "Hong Kong", "Hainan", "Vietnam",
+  "Korean Peninsula", "Korea", "Guam", "Saipan", "Iwo To", "Yap", "Palau", "Manila", "Shanghai",
+  "Minamidaito", "Ogasawara", "Chichi Jima", "Marcus Island", "Wake Island", "Kwajalein", "Pohnpei",
+  "Chuuk", "Tokyo", "Busan", "Ryukyu", "Amami", "Andersen", "Celsius", "Dvorak", "Google DeepMind"];
+
+function recase(s) {
+  let out = s.replace(/\bTAU\s+(\d+)/g, "+$1h").replace(/\bKTS\b/g, "kt").toLowerCase();
+  out = out.replace(/\b[a-z0-9]+\b/g, (w) => (KEEP_UPPER.has(w.toUpperCase()) || /\d/.test(w)) && !/^\+?\d+h$/.test(w) ? w.toUpperCase() : w);
+  for (const name of PLACE_NAMES) out = out.replace(new RegExp("\\b" + name + "\\b", "gi"), name);
+  return out.replace(/(^|[.!?]\s+)([a-z])/g, (m, pre, c) => pre + c.toUpperCase());
+}
+
+function summarizeReasoning(t) {
+  const section = (re) => ((t.match(re) || [])[1] || "").replace(/\s+/g, " ").trim();
+  const sentences = (s) => s.split(/(?<=\.)\s+(?=[A-Z])/).map((x) => x.trim()).filter(Boolean);
+  const sat = sentences(section(/SATELLITE ANALYSIS[^:]*:\s*([\s\S]*?)(?=\n\s*\n)/i));
+  const fc = sentences(section(/FORECAST DISCUSSION:\s*([\s\S]*?)(?=\n\s*\n|MODEL DISCUSSION:)/i));
+  const picks = [];
+  if (sat[0]) picks.push(sat[0]);
+  if (fc[0]) picks.push(fc[0]);
+  const inten = fc.slice(1).find((x) => /INTENSIF|WEAKEN|PEAK|DISSIPAT|EXTRATROPICAL|LANDFALL/i.test(x));
+  if (inten) picks.push(inten);
+  const kept = picks.filter((x) => x.length <= SUMMARY_MAX_SENTENCE);
+  return kept.length ? kept.map(recase).join(" ") : null;
 }
 
 async function buildTyphoon(results) {
@@ -1246,6 +1371,13 @@ async function buildTyphoon(results) {
       if (res.ok) Object.assign(a, parseTcfaText(await res.text()));
     } catch (err) { console.error(`WARN: TCFA text ${a.alertId} (${err.message})`); }
   }
+  // Second basin check, on position: anything west of WPAC_WEST_LON is in
+  // the Bay of Bengal / Andaman Sea whatever its product is called.
+  parsed.alerts = parsed.alerts.filter((a) => !(typeof a.lon === "number" && a.lon < WPAC_WEST_LON));
+
+  const prevData = await readJSONIfExists(path.join(DATA_DIR, "typhoon.json"), {});
+  const prevById = {};
+  for (const p of prevData.systems || []) prevById[p.id] = p;
 
   let invests = [];
   if (abpwRes.ok) {
@@ -1257,22 +1389,7 @@ async function buildTyphoon(results) {
     s.cwaTrackImage = await resolveCwaTrackImage(s.name, nowMs).catch(() => null);
     await enrichSystem(s, nowMs);
   }
-
-  // Blame the incoming swell on a storm only when the bearings agree. With
-  // several systems active, the swell is attributed to the one it actually
-  // lines up with rather than to all of them.
-  const arrival = detectSwellArrival(((results || {})["openwave.json"] || {}).series, nowMs);
-  if (arrival && isFinite(arrival.dirDeg)) {
-    let best = null;
-    for (const s of parsed.systems) {
-      if (!s.spot || !isFinite(s.spot.bearingDeg)) continue;
-      const off = angleDiff(arrival.dirDeg, s.spot.bearingDeg);
-      if (off <= SWELL_DIR_TOLERANCE && (!best || off < best.off)) best = { s, off };
-    }
-    if (best) {
-      best.s.swell = Object.assign({}, arrival, { bearingOffsetDeg: Math.round(best.off) });
-    }
-  }
+  parsed.systems = parsed.systems.filter((s) => !(typeof s.lon === "number" && s.lon < WPAC_WEST_LON));
 
   // Archive every cycle. JTWC overwrites these files in place and keeps no
   // history, so a cycle not captured here is gone for good — which is why
@@ -1283,6 +1400,29 @@ async function buildTyphoon(results) {
   try {
     archive = await readJSONIfExists(archivePath, { records: [] });
   } catch (err) { /* start fresh */ }
+
+  // Every storm gets its own swell verdict — see detectStormSwell.
+  const swellSeries = ((results || {})["openwave.json"] || {}).series;
+  for (const s of parsed.systems) {
+    const recent = archive.records.filter((r) => r.kind === "warning" && r.id === s.id &&
+      r.issuedAt && nowMs - new Date(r.issuedAt).getTime() <= 72 * 3600000);
+    const prev = prevById[s.id];
+    s.swell = detectStormSwell(swellSeries, stormBearings(s, recent), nowMs, prev && prev.swell);
+  }
+
+  // Forecaster summary, refreshed twice a day — kept from the previous run
+  // until 12h have passed and a newer reasoning is available.
+  for (const s of parsed.systems) {
+    const prev = (prevById[s.id] || {}).summary;
+    const cand = s.reasoning && s.reasoning.summaryCandidate;
+    const due = !prev || nowMs - new Date(prev.generatedAt).getTime() >= (SUMMARY_EVERY_HOURS - 0.5) * 3600000;
+    if (cand && due && (!prev || prev.warningNumber !== s.reasoning.warningNumber)) {
+      s.summary = { text: cand, warningNumber: s.reasoning.warningNumber, generatedAt: new Date(nowMs).toISOString() };
+    } else if (prev) {
+      s.summary = prev;
+    }
+    if (s.reasoning) delete s.reasoning.summaryCandidate;
+  }
 
   for (const s of parsed.systems) {
     const prior = archive.records
@@ -1300,6 +1440,7 @@ async function buildTyphoon(results) {
     forecasts: s.forecasts, spot: s.spot,
     motion: s.motion,
     swell: s.swell || null,
+    summary: s.summary || null,
     reasoningWarningNumber: s.reasoning ? s.reasoning.warningNumber : null,
     significantForecastChanges: s.reasoning ? s.reasoning.significantForecastChanges : null,
     confidence: s.reasoning ? s.reasoning.confidence : null,
