@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-29T16:23:10.785Z",
+  "fetchedAt": "2026-09-29T17:18:57.663Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -120,7 +120,7 @@
           "periodS": 4.95,
           "dirDeg": 72
         },
-        "hoursAhead": 88,
+        "hoursAhead": 87,
         "bearingOffsetDeg": 1,
         "peak": {
           "targetTime": "2026-10-04T00:00:00.000Z",
@@ -143,26 +143,60 @@
       }
     }
   ],
-  "alerts": [],
+  "alerts": [
+    {
+      "alertId": "WTPN21",
+      "issuedZ": "29/1700Z",
+      "issuedAt": "2026-09-29T17:00:00.000Z",
+      "textUrl": "https://www.metoc.navy.mil/jtwc/products/wp9326web.txt",
+      "graphic": "https://www.metoc.navy.mil/jtwc/products/wp9326.gif",
+      "satellite": "https://www.metoc.navy.mil/jtwc/products/93W_291700sair.jpg",
+      "investId": "93W",
+      "corridorNm": 120,
+      "lineFrom": {
+        "lat": 15.9,
+        "lon": 153.1
+      },
+      "lineTo": {
+        "lat": 16,
+        "lon": 147.9
+      },
+      "windowLowH": 12,
+      "windowHighH": 24,
+      "lat": 15.9,
+      "lon": 152.8,
+      "distanceNm": 1829,
+      "bearingDeg": 98,
+      "movingText": "WEST-NORTHWESTWARD",
+      "movingKt": 14,
+      "areaWindKtLow": 18,
+      "areaWindKtHigh": 23,
+      "maxWindKtLow": 18,
+      "maxWindKtHigh": 23,
+      "pressureMb": 1007,
+      "potential": "HIGH",
+      "decisionByZ": "301700Z"
+    }
+  ],
   "invests": [
     {
       "id": "93W",
-      "potential": "MEDIUM",
-      "geoReference": "607 NM EAST-NORTHEAST OF GUAM",
+      "potential": null,
+      "geoReference": "494 NM EAST-NORTHEAST OF GUAM",
       "windKtLow": 18,
       "windKtHigh": 23,
-      "pressureMb": 1008,
-      "lat": 15.4,
-      "lon": 155,
-      "distanceNm": 1959,
-      "bearingDeg": 97
+      "pressureMb": 1007,
+      "lat": 15.9,
+      "lon": 152.8,
+      "distanceNm": 1829,
+      "bearingDeg": 98
     }
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "29/0600Z",
-    "issuedAt": "2026-09-29T06:00:00.000Z",
+    "issuedZ": "29/1700Z",
+    "issuedAt": "2026-09-29T17:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": false
+    "reissued": true
   }
 }
