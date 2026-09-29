@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-29T15:22:58.126Z",
+  "fetchedAt": "2026-09-29T16:23:10.785Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -112,8 +112,22 @@
         "turns": []
       },
       "swell": {
-        "windowEnd": "2026-10-03T15:00:00.000Z",
-        "status": "none"
+        "windowEnd": "2026-10-04T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-03T08:00:00.000Z",
+          "heightM": 0.48,
+          "periodS": 4.95,
+          "dirDeg": 72
+        },
+        "hoursAhead": 88,
+        "bearingOffsetDeg": 1,
+        "peak": {
+          "targetTime": "2026-10-04T00:00:00.000Z",
+          "heightM": 0.7,
+          "periodS": 5.35,
+          "dirDeg": 71
+        }
       },
       "summary": {
         "text": "Animated multispectral satellite imagery (MSI) depicts a fully exposed low-level circulation center (LLCC) displaced west of flaring deep convection anchored along low-level convergent asymptotes in the eastern semicircle. Tropical storm (TS) 25W will continue to track northeastward along the northwestern side of the STR to the east, riding poleward just ahead of the stationary frontal boundary just offshore of Honshu, through +48h.",
