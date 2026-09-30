@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-30T02:19:13.501Z",
+  "fetchedAt": "2026-09-30T03:20:55.966Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -112,8 +112,8 @@
           "periodS": 6.75,
           "dirDeg": 85
         },
-        "hoursAhead": 43,
-        "bearingOffsetDeg": 12,
+        "hoursAhead": 42,
+        "bearingOffsetDeg": 17,
         "peak": {
           "targetTime": "2026-10-04T06:00:00.000Z",
           "heightM": 0.88,
@@ -226,6 +226,24 @@
         "010300Z. REFER TO TROPICAL STORM 25W (SURIGAE) WARNINGS (WTPN31 PGTW) FOR SIX-HOURLY UPDATES. 2. THIS CANCELS",
         "SUPERCEDES REF A (WTPN21 PGTW 291700)"
       ],
+      "reasoning": {
+        "warningNumber": "001",
+        "significantForecastChanges": "THIS INITIAL PROGNOSTIC REASONING MESSAGE ESTABLISHES THE FORECAST PHILOSOPHY.",
+        "seasFt": 12,
+        "environment": "FAVORABLE",
+        "vws": "10-15 KTS",
+        "sst": "29-30 CELSIUS",
+        "outflow": "MODERATE RADIAL",
+        "steering": "SOUTHERN FLANK OF A LOWER-LEVEL SUBTROPICAL RIDGE (STR) TO THE NORTHEAST",
+        "confidence": {
+          "track0072": "LOW",
+          "track72120": "LOW",
+          "intensity0072": "MEDIUM",
+          "intensity72120": "MEDIUM"
+        }
+      },
+      "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2626prog.txt",
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1785,
         "bearingDeg": 99,
@@ -304,7 +322,7 @@
           "periodS": 6.75,
           "dirDeg": 85
         },
-        "hoursAhead": 43,
+        "hoursAhead": 42,
         "bearingOffsetDeg": 13,
         "peak": {
           "targetTime": "2026-10-04T06:00:00.000Z",
@@ -312,6 +330,11 @@
           "periodS": 6,
           "dirDeg": 76
         }
+      },
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts tropical depression (TD) 26W with an elongated low-level circulation center (LLCC) and persistent, deep convection wrapping along the western and southern periphery. TD 26W will track west-northwestward along the southern periphery of the STR through +48h. This evolution will result in a marked weakening of the primary steering influence.",
+        "warningNumber": "001",
+        "generatedAt": "2026-09-30T03:20:55.966Z"
       },
       "changes": null
     }
@@ -321,20 +344,20 @@
     {
       "id": "93W",
       "potential": null,
-      "geoReference": "494 NM EAST-NORTHEAST OF GUAM",
-      "windKtLow": 18,
-      "windKtHigh": 23,
-      "pressureMb": 1007,
-      "lat": 15.9,
-      "lon": 152.8,
-      "distanceNm": 1829,
-      "bearingDeg": 98
+      "geoReference": null,
+      "windKtLow": null,
+      "windKtHigh": null,
+      "pressureMb": null,
+      "lat": 15.4,
+      "lon": 155,
+      "distanceNm": 1959,
+      "bearingDeg": 97
     }
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "29/1700Z",
-    "issuedAt": "2026-09-29T17:00:00.000Z",
+    "issuedZ": "30/0300Z",
+    "issuedAt": "2026-09-30T03:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
     "reissued": true
   }
