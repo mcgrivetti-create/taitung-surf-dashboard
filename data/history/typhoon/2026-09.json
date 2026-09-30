@@ -6478,6 +6478,284 @@
         "intensity0072": "HIGH",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "25W",
+      "name": "Surigae",
+      "designation": "Tropical Storm",
+      "warningNumber": "028",
+      "issuedAt": "2026-09-30T03:00:00.000Z",
+      "positionZ": "300000Z",
+      "lat": 30.2,
+      "lon": 137.3,
+      "maxWindKt": 35,
+      "gustKt": 45,
+      "seasFt": 16,
+      "movingToward": 45,
+      "movingKt": 7,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "301200Z",
+          "lat": 31.7,
+          "lon": 139,
+          "maxWindKt": 35,
+          "gustKt": 45
+        },
+        {
+          "tau": 24,
+          "validZ": "010000Z",
+          "lat": 33.5,
+          "lon": 141.1,
+          "maxWindKt": 35,
+          "gustKt": 45
+        },
+        {
+          "tau": 36,
+          "validZ": "011200Z",
+          "lat": 36.1,
+          "lon": 145.4,
+          "maxWindKt": 40,
+          "gustKt": 50
+        }
+      ],
+      "spot": {
+        "distanceNm": 960,
+        "bearingDeg": 60,
+        "closestApproach": {
+          "distanceNm": 1077,
+          "tau": 12,
+          "validZ": "301200Z",
+          "maxWindKt": 35,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 45,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 44
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 44
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 52
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-04T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-01T21:00:00.000Z",
+          "heightM": 0.5,
+          "periodS": 6.75,
+          "dirDeg": 85
+        },
+        "hoursAhead": 43,
+        "bearingOffsetDeg": 12,
+        "peak": {
+          "targetTime": "2026-10-04T06:00:00.000Z",
+          "heightM": 0.88,
+          "periodS": 6,
+          "dirDeg": 76
+        }
+      },
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts a well-defined swirl of low- to mid-level clouds and convection confined to the southeast quadrant. TS 25W has made the anticipated turn from the east-northeast to the northeast with a forward speed of 7-8 kt, steered along the northwestern periphery of a low- to mid-level STR centered near 33N 165E. However, a lower-end scenario in which TS 25W weakens into a tropical depression during this period remains possible.",
+        "warningNumber": "028",
+        "generatedAt": "2026-09-30T02:19:13.501Z"
+      },
+      "reasoningWarningNumber": "028",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
+    },
+    {
+      "kind": "warning",
+      "id": "26W",
+      "name": "Twentysix",
+      "designation": "Tropical Depression",
+      "warningNumber": "001",
+      "issuedAt": "2026-09-30T03:00:00.000Z",
+      "positionZ": "300000Z",
+      "lat": 15.6,
+      "lon": 151.9,
+      "maxWindKt": 25,
+      "gustKt": 35,
+      "seasFt": 12,
+      "movingToward": 270,
+      "movingKt": 7,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "301200Z",
+          "lat": 16,
+          "lon": 150.5,
+          "maxWindKt": 30,
+          "gustKt": 40
+        },
+        {
+          "tau": 24,
+          "validZ": "010000Z",
+          "lat": 16.4,
+          "lon": 148.7,
+          "maxWindKt": 35,
+          "gustKt": 45
+        },
+        {
+          "tau": 36,
+          "validZ": "011200Z",
+          "lat": 16.7,
+          "lon": 146.8,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 48,
+          "validZ": "020000Z",
+          "lat": 16.9,
+          "lon": 145.2,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 60,
+          "validZ": "021200Z",
+          "lat": 17.2,
+          "lon": 144.8,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 72,
+          "validZ": "030000Z",
+          "lat": 18.1,
+          "lon": 144.9,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 96,
+          "validZ": "040000Z",
+          "lat": 20.6,
+          "lon": 145.7,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 120,
+          "validZ": "050000Z",
+          "lat": 23.7,
+          "lon": 145.6,
+          "maxWindKt": 110,
+          "gustKt": 135
+        }
+      ],
+      "spot": {
+        "distanceNm": 1785,
+        "bearingDeg": 99,
+        "closestApproach": {
+          "distanceNm": 1338,
+          "tau": 120,
+          "validZ": "050000Z",
+          "maxWindKt": 110
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 270,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 287
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 283
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 280
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 278
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 308
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 6
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 17
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 358
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 308,
+            "deltaDeg": 38
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "headingDeg": 6,
+            "deltaDeg": 58
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-04T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-01T21:00:00.000Z",
+          "heightM": 0.5,
+          "periodS": 6.75,
+          "dirDeg": 85
+        },
+        "hoursAhead": 43,
+        "bearingOffsetDeg": 13,
+        "peak": {
+          "targetTime": "2026-10-04T06:00:00.000Z",
+          "heightM": 0.88,
+          "periodS": 6,
+          "dirDeg": 76
+        }
+      },
+      "summary": null,
+      "reasoningWarningNumber": null,
+      "significantForecastChanges": null,
+      "confidence": null
     }
   ]
 }
