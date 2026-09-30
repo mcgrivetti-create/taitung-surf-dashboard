@@ -1,17 +1,19 @@
 {
-  "fetchedAt": "2026-09-30T16:23:35.313Z",
-  "systems": [
+  "records": [
     {
-      "designation": "Tropical Depression",
+      "kind": "warning",
       "id": "25W",
       "name": "Surigae",
-      "headline": "Tropical Depression 25W (Surigae)",
+      "designation": "Tropical Depression",
       "warningNumber": "030",
-      "issuedZ": "30/1500Z",
       "issuedAt": "2026-09-30T15:00:00.000Z",
-      "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2526.gif",
-      "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2526web.txt",
-      "cwaTrackImage": null,
+      "positionZ": "301200Z",
+      "lat": 31.8,
+      "lon": 138.8,
+      "maxWindKt": 30,
+      "gustKt": 40,
+      "movingToward": 35,
+      "movingKt": 7,
       "forecasts": [
         {
           "tau": 12,
@@ -30,33 +32,6 @@
           "gustKt": 40
         }
       ],
-      "intensityChangeNote": "DOWNGRADED FROM TROPICAL STORM 25W",
-      "positionZ": "301200Z",
-      "lat": 31.8,
-      "lon": 138.8,
-      "movingToward": 35,
-      "movingKt": 7,
-      "maxWindKt": 30,
-      "gustKt": 40,
-      "geoReference": "215 NM SOUTH-SOUTHWEST OF YOKOSUKA, JAPAN",
-      "reasoning": {
-        "warningNumber": "029",
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 16,
-        "environment": "HIGHLY UNFAVORABLE",
-        "vws": "25-30 KTS",
-        "sst": "28-29 CELSIUS",
-        "outflow": "MODERATE EASTWARD",
-        "steering": "LOW TO MID-LEVEL FLOW ASSOCIATED WITH A DEEP-LAYER SUBTROPICAL RIDGE (STR) TO THE SOUTHEAST",
-        "confidence": {
-          "track0072": "HIGH",
-          "track72120": null,
-          "intensity0072": "HIGH",
-          "intensity72120": null
-        }
-      },
-      "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2526prog.txt",
-      "reasoningLagsWarning": true,
       "spot": {
         "distanceNm": 1070,
         "bearingDeg": 57,
@@ -107,19 +82,31 @@
         "warningNumber": "029",
         "generatedAt": "2026-09-30T14:23:41.438Z"
       },
-      "changes": null
+      "reasoningWarningNumber": "029",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
     },
     {
-      "designation": "Tropical Storm",
+      "kind": "warning",
       "id": "26W",
       "name": "Twentysix",
-      "headline": "Tropical Storm 26W (Twentysix)",
+      "designation": "Tropical Storm",
       "warningNumber": "003",
-      "issuedZ": "30/1500Z",
       "issuedAt": "2026-09-30T15:00:00.000Z",
-      "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2626.gif",
-      "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2626web.txt",
-      "cwaTrackImage": null,
+      "positionZ": "301200Z",
+      "lat": 16,
+      "lon": 151,
+      "maxWindKt": 35,
+      "gustKt": 45,
+      "pressureMb": 1002,
+      "seasFt": 15,
+      "movingToward": 285,
+      "movingKt": 4,
       "forecasts": [
         {
           "tau": 12,
@@ -186,35 +173,6 @@
           "gustKt": 135
         }
       ],
-      "intensityChangeNote": "UPGRADED FROM TROPICAL DEPRESSION 26W",
-      "positionZ": "301200Z",
-      "lat": 16,
-      "lon": 151,
-      "movingToward": 285,
-      "movingKt": 4,
-      "maxWindKt": 35,
-      "gustKt": 45,
-      "pressureMb": 1002,
-      "seasFt": 15,
-      "geoReference": "304 NM EAST OF SAIPAN",
-      "reasoning": {
-        "warningNumber": null,
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 15,
-        "environment": "FAVORABLE",
-        "vws": "15-20 KTS",
-        "sst": "29-30 CELSIUS",
-        "outflow": "MODERATE RADIAL",
-        "steering": "THE SOUTHWESTERN PERIPHERY OF A SUBTROPICAL RIDGE CENTERED FAR TO THE NORTHEAST",
-        "confidence": {
-          "track0072": "LOW",
-          "track72120": "LOW",
-          "intensity0072": "MEDIUM",
-          "intensity72120": "MEDIUM"
-        }
-      },
-      "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2626prog.txt",
-      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1728,
         "bearingDeg": 99,
@@ -307,16 +265,14 @@
         "warningNumber": null,
         "generatedAt": "2026-09-30T15:23:43.438Z"
       },
-      "changes": null
+      "reasoningWarningNumber": null,
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "LOW",
+        "track72120": "LOW",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
-  ],
-  "alerts": [],
-  "invests": [],
-  "investSatellite": null,
-  "advisory": {
-    "issuedZ": "30/1500Z",
-    "issuedAt": "2026-09-30T15:00:00.000Z",
-    "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": true
-  }
+  ]
 }
