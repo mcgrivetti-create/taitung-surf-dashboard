@@ -273,6 +273,183 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "26W",
+      "name": "Choi-wan",
+      "designation": "Tropical Storm",
+      "warningNumber": "004",
+      "issuedAt": "2026-09-30T21:00:00.000Z",
+      "positionZ": "301800Z",
+      "lat": 16.2,
+      "lon": 150,
+      "maxWindKt": 35,
+      "gustKt": 45,
+      "pressureMb": 1000,
+      "seasFt": 15,
+      "movingToward": 285,
+      "movingKt": 8,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "010600Z",
+          "lat": 16.5,
+          "lon": 148,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 24,
+          "validZ": "011800Z",
+          "lat": 16.8,
+          "lon": 146.5,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 36,
+          "validZ": "020600Z",
+          "lat": 17.3,
+          "lon": 145.8,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 48,
+          "validZ": "021800Z",
+          "lat": 18.2,
+          "lon": 145.8,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 60,
+          "validZ": "030600Z",
+          "lat": 19.4,
+          "lon": 146.3,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 72,
+          "validZ": "031800Z",
+          "lat": 20.9,
+          "lon": 146.8,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 96,
+          "validZ": "041800Z",
+          "lat": 24.1,
+          "lon": 146.6,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 120,
+          "validZ": "051800Z",
+          "lat": 28.5,
+          "lon": 146.3,
+          "maxWindKt": 90,
+          "gustKt": 110
+        }
+      ],
+      "spot": {
+        "distanceNm": 1670,
+        "bearingDeg": 99,
+        "closestApproach": {
+          "distanceNm": 1389,
+          "tau": 120,
+          "validZ": "051800Z",
+          "maxWindKt": 90
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 285,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 279
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 282
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 307
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 0
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 21
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 17
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 357
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 357
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "headingDeg": 0,
+            "deltaDeg": 75
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-05T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-03T18:00:00.000Z",
+          "heightM": 0.66,
+          "periodS": 5.3,
+          "dirDeg": 63
+        },
+        "hoursAhead": 70,
+        "bearingOffsetDeg": 27,
+        "peak": {
+          "targetTime": "2026-10-04T06:00:00.000Z",
+          "heightM": 0.86,
+          "periodS": 6,
+          "dirDeg": 77
+        }
+      },
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts tropical storm (TS) 26W as a broad, but consolidating, system with two recently formed plumes of deep convection in the southwestern quadrant. TS 26W is forecast to continue tracking westward while it remains on the southwestern periphery of the steering ridge.",
+        "warningNumber": null,
+        "generatedAt": "2026-09-30T15:23:43.438Z"
+      },
+      "reasoningWarningNumber": null,
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "LOW",
+        "track72120": "LOW",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
