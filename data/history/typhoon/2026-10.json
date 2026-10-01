@@ -993,6 +993,169 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "26W",
+      "name": "Choi-wan",
+      "designation": "Tropical Storm",
+      "warningNumber": "008",
+      "issuedAt": "2026-10-01T21:00:00.000Z",
+      "positionZ": "011800Z",
+      "lat": 16.9,
+      "lon": 145.1,
+      "maxWindKt": 50,
+      "gustKt": 65,
+      "pressureMb": 994,
+      "seasFt": 23,
+      "movingToward": 285,
+      "movingKt": 8,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "020600Z",
+          "lat": 17.3,
+          "lon": 144.5,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 24,
+          "validZ": "021800Z",
+          "lat": 18.2,
+          "lon": 144.5,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 36,
+          "validZ": "030600Z",
+          "lat": 19.4,
+          "lon": 145,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 48,
+          "validZ": "031800Z",
+          "lat": 20.7,
+          "lon": 145.5,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 60,
+          "validZ": "040600Z",
+          "lat": 22.2,
+          "lon": 145.9,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 72,
+          "validZ": "041800Z",
+          "lat": 23.7,
+          "lon": 145.7,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 96,
+          "validZ": "051800Z",
+          "lat": 27.8,
+          "lon": 145,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 120,
+          "validZ": "061800Z",
+          "lat": 33.9,
+          "lon": 147.4,
+          "maxWindKt": 80,
+          "gustKt": 100
+        }
+      ],
+      "spot": {
+        "distanceNm": 1389,
+        "bearingDeg": 101,
+        "closestApproach": {
+          "distanceNm": 1315,
+          "tau": 96,
+          "validZ": "051800Z",
+          "maxWindKt": 90
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 285,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 305
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 0
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 21
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 20
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 14
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 353
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 351
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 18
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "headingDeg": 0,
+            "deltaDeg": 75
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-06T15:00:00.000Z",
+        "status": "none"
+      },
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts tropical storm (TS) 26W beginning to tuck under the central deep convection and reducing the vertical tilt. TS 26W (choi-wan) is forecast to continue tracking west-northwestward for the next 12 hours while it remains on the southwestern periphery of the steering STR. Regarding intensity, 26W is forecast to steadily intensify through +72h.",
+        "warningNumber": "007",
+        "generatedAt": "2026-10-01T15:22:25.948Z"
+      },
+      "reasoningWarningNumber": "007",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
