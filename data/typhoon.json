@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-01T14:23:19.700Z",
+  "fetchedAt": "2026-10-01T15:22:25.948Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -95,23 +95,23 @@
       ],
       "geoReference": "91 NM NORTH OF TINIAN",
       "reasoning": {
-        "warningNumber": "006",
+        "warningNumber": "007",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 20,
-        "environment": "MARGINALLY FAVORABLE",
+        "seasFt": 23,
+        "environment": "FAVORABLE",
         "vws": "20-25 KTS",
         "sst": "30-31 CELSIUS",
         "outflow": "MODERATE EQUATORWARD",
         "steering": "THE SOUTHWESTERN PERIPHERY OF A SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTHEAST.",
         "confidence": {
-          "track0072": "MEDIUM",
+          "track0072": "HIGH",
           "track72120": "MEDIUM",
           "intensity0072": "MEDIUM",
           "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2626prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1435,
         "bearingDeg": 101,
@@ -190,7 +190,7 @@
           "periodS": 5,
           "dirDeg": 57
         },
-        "hoursAhead": 57,
+        "hoursAhead": 56,
         "bearingOffsetDeg": 29,
         "peak": {
           "targetTime": "2026-10-05T09:00:00.000Z",
@@ -200,9 +200,9 @@
         }
       },
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts persistent, deep convection concentrated along the western periphery of an elongated low-level circulation center (LLCC). Recent scatterometer data indicate that TS 26W has accelerated west-northwestward, with an average forward speed of 14 kt during the past 12 hours. Toward +24h, a progressive shortwave trough racing downstream of northern Honshu and Hokkaido will erode the STR, resulting in a marked weakening of the primary steering influence and causing TS 26W to become nearly stationary.",
-        "warningNumber": "005",
-        "generatedAt": "2026-10-01T03:21:26.978Z"
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts tropical storm (TS) 26W beginning to tuck under the central deep convection and reducing the vertical tilt. TS 26W (choi-wan) is forecast to continue tracking west-northwestward for the next 12 hours while it remains on the southwestern periphery of the steering STR. Regarding intensity, 26W is forecast to steadily intensify through +72h.",
+        "warningNumber": "007",
+        "generatedAt": "2026-10-01T15:22:25.948Z"
       },
       "changes": {
         "previousWarningNumber": "006",
