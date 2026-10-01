@@ -1,96 +1,6 @@
 {
-  "fetchedAt": "2026-10-01T11:20:41.527Z",
+  "fetchedAt": "2026-10-01T12:27:22.946Z",
   "systems": [
-    {
-      "designation": "Tropical Depression",
-      "id": "25W",
-      "name": "Surigae",
-      "headline": "Tropical Depression 25W (Surigae)",
-      "warningNumber": "030",
-      "issuedZ": "30/1500Z",
-      "issuedAt": "2026-09-30T15:00:00.000Z",
-      "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2526.gif",
-      "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2526web.txt",
-      "cwaTrackImage": null,
-      "forecasts": [
-        {
-          "tau": 12,
-          "validZ": "010000Z",
-          "lat": 33.7,
-          "lon": 141.1,
-          "maxWindKt": 30,
-          "gustKt": 40
-        },
-        {
-          "tau": 24,
-          "validZ": "011200Z",
-          "lat": 36.5,
-          "lon": 145.2,
-          "maxWindKt": 30,
-          "gustKt": 40
-        }
-      ],
-      "intensityChangeNote": "DOWNGRADED FROM TROPICAL STORM 25W",
-      "positionZ": "301200Z",
-      "lat": 31.8,
-      "lon": 138.8,
-      "movingToward": 35,
-      "movingKt": 7,
-      "maxWindKt": 30,
-      "gustKt": 40,
-      "geoReference": "215 NM SOUTH-SOUTHWEST OF YOKOSUKA, JAPAN",
-      "spot": {
-        "distanceNm": 1070,
-        "bearingDeg": 57,
-        "closestApproach": {
-          "distanceNm": 1224,
-          "tau": 12,
-          "validZ": "010000Z",
-          "maxWindKt": 30,
-          "recedingOnly": true
-        }
-      },
-      "motion": {
-        "currentHeadingDeg": 35,
-        "legs": [
-          {
-            "fromTau": 0,
-            "toTau": 12,
-            "heading": 45
-          },
-          {
-            "fromTau": 12,
-            "toTau": 24,
-            "heading": 49
-          }
-        ],
-        "turns": []
-      },
-      "swell": {
-        "windowEnd": "2026-10-05T15:00:00.000Z",
-        "status": "incoming",
-        "arrival": {
-          "targetTime": "2026-10-05T01:00:00.000Z",
-          "heightM": 0.86,
-          "periodS": 9.25,
-          "dirDeg": 93
-        },
-        "hoursAhead": 86,
-        "bearingOffsetDeg": 36,
-        "peak": {
-          "targetTime": "2026-10-05T09:00:00.000Z",
-          "heightM": 1.16,
-          "periodS": 7.6,
-          "dirDeg": 91
-        }
-      },
-      "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts a fully exposed low-level circulation, with the only remaining associated patch of deep convection sheared to the eastern periphery. TS 25W will accelerate northeastward and complete extratropical transition during the forecast period.",
-        "warningNumber": "029",
-        "generatedAt": "2026-09-30T14:23:41.438Z"
-      },
-      "changes": null
-    },
     {
       "designation": "Tropical Storm",
       "id": "26W",
@@ -263,18 +173,18 @@
         "windowEnd": "2026-10-05T15:00:00.000Z",
         "status": "incoming",
         "arrival": {
-          "targetTime": "2026-10-05T01:00:00.000Z",
-          "heightM": 0.86,
-          "periodS": 9.25,
-          "dirDeg": 93
+          "targetTime": "2026-10-03T23:00:00.000Z",
+          "heightM": 0.64,
+          "periodS": 5,
+          "dirDeg": 57
         },
-        "hoursAhead": 86,
-        "bearingOffsetDeg": 0,
+        "hoursAhead": 59,
+        "bearingOffsetDeg": 29,
         "peak": {
           "targetTime": "2026-10-05T09:00:00.000Z",
-          "heightM": 1.16,
-          "periodS": 7.6,
-          "dirDeg": 91
+          "heightM": 1.24,
+          "periodS": 8.2,
+          "dirDeg": 92
         }
       },
       "summary": {
@@ -296,9 +206,9 @@
   "invests": [],
   "investSatellite": null,
   "advisory": {
-    "issuedZ": "01/0600Z",
-    "issuedAt": "2026-10-01T06:00:00.000Z",
+    "issuedZ": "01/1230Z",
+    "issuedAt": "2026-10-01T12:30:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": false
+    "reissued": true
   }
 }
