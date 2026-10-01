@@ -633,6 +633,183 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "26W",
+      "name": "Choi-wan",
+      "designation": "Tropical Storm",
+      "warningNumber": "006",
+      "issuedAt": "2026-10-01T09:00:00.000Z",
+      "positionZ": "010600Z",
+      "lat": 16.9,
+      "lon": 146.8,
+      "maxWindKt": 40,
+      "gustKt": 50,
+      "pressureMb": 997,
+      "seasFt": 20,
+      "movingToward": 280,
+      "movingKt": 11,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "011800Z",
+          "lat": 17.1,
+          "lon": 145.4,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 24,
+          "validZ": "020600Z",
+          "lat": 17.6,
+          "lon": 144.7,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 36,
+          "validZ": "021800Z",
+          "lat": 18.6,
+          "lon": 144.7,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 48,
+          "validZ": "030600Z",
+          "lat": 19.9,
+          "lon": 145.2,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 60,
+          "validZ": "031800Z",
+          "lat": 21.1,
+          "lon": 145.8,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 72,
+          "validZ": "040600Z",
+          "lat": 22.6,
+          "lon": 146.1,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 96,
+          "validZ": "050600Z",
+          "lat": 26.2,
+          "lon": 145.3,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 120,
+          "validZ": "060600Z",
+          "lat": 31.8,
+          "lon": 145.9,
+          "maxWindKt": 85,
+          "gustKt": 105
+        }
+      ],
+      "spot": {
+        "distanceNm": 1482,
+        "bearingDeg": 100,
+        "closestApproach": {
+          "distanceNm": 1322,
+          "tau": 96,
+          "validZ": "050600Z",
+          "maxWindKt": 100
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 280,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 279
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 307
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 0
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 20
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 25
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 10
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 349
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 5
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "headingDeg": 0,
+            "deltaDeg": 80
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-05T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-05T01:00:00.000Z",
+          "heightM": 0.86,
+          "periodS": 9.25,
+          "dirDeg": 93
+        },
+        "hoursAhead": 90,
+        "bearingOffsetDeg": 0,
+        "peak": {
+          "targetTime": "2026-10-05T09:00:00.000Z",
+          "heightM": 1.16,
+          "periodS": 7.6,
+          "dirDeg": 91
+        }
+      },
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts persistent, deep convection concentrated along the western periphery of an elongated low-level circulation center (LLCC). Recent scatterometer data indicate that TS 26W has accelerated west-northwestward, with an average forward speed of 14 kt during the past 12 hours. Toward +24h, a progressive shortwave trough racing downstream of northern Honshu and Hokkaido will erode the STR, resulting in a marked weakening of the primary steering influence and causing TS 26W to become nearly stationary.",
+        "warningNumber": "005",
+        "generatedAt": "2026-10-01T03:21:26.978Z"
+      },
+      "reasoningWarningNumber": "005",
+      "significantForecastChanges": "THE TIMING OF THE CPA TO SAIPAN HAS SHIFTED EARLIER BY SIX HOURS.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
