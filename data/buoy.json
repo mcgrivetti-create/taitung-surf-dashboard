@@ -6,14 +6,6 @@
         "Label": "Chenggong",
         "Readings": [
           {
-            "DateTime": "2026-09-30T17:00:00+08:00",
-            "WaveHeight": "0.3",
-            "WaveDirection": "92.0",
-            "WaveDirectionDescription": "E",
-            "WavePeriod": "6.0",
-            "SeaTemperature": "30.0"
-          },
-          {
             "DateTime": "2026-09-30T18:00:00+08:00",
             "WaveHeight": "0.3",
             "WaveDirection": "102.0",
@@ -124,6 +116,14 @@
             "WaveDirectionDescription": "ENE",
             "WavePeriod": "6.1",
             "SeaTemperature": "29.7"
+          },
+          {
+            "DateTime": "2026-10-01T16:00:00+08:00",
+            "WaveHeight": "0.4",
+            "WaveDirection": "67.0",
+            "WaveDirectionDescription": "ENE",
+            "WavePeriod": "5.9",
+            "SeaTemperature": "29.2"
           }
         ]
       },
@@ -131,37 +131,6 @@
         "StationID": "WRA007",
         "Label": "Taitung",
         "Readings": [
-          {
-            "DateTime": "2026-09-30T17:00:00+08:00",
-            "TideHeight": "None",
-            "TideLevel": "-",
-            "WaveHeight": "0.3",
-            "WaveDirection": "78.0",
-            "WaveDirectionDescription": "ENE",
-            "WavePeriod": "5.7",
-            "SeaTemperature": "None",
-            "Temperature": "None",
-            "StationPressure": "1011.5",
-            "PrimaryAnemometer": {
-              "WindSpeed": "None",
-              "WindScale": "None",
-              "WindDirection": "None",
-              "WindDirectionDescription": "None",
-              "MaximumWindSpeed": "None",
-              "MaximumWindScale": "None"
-            },
-            "SeaCurrents": {
-              "Layer": [
-                {
-                  "LayerNumber": "1",
-                  "CurrentDirection": "334",
-                  "CurrentDirectionDescription": "NNW",
-                  "CurrentSpeed": "0.01",
-                  "CurrentSpeedInKnots": "0.02"
-                }
-              ]
-            }
-          },
           {
             "DateTime": "2026-09-30T18:00:00+08:00",
             "TideHeight": "None",
@@ -812,6 +781,37 @@
                 }
               ]
             }
+          },
+          {
+            "DateTime": "2026-10-01T16:00:00+08:00",
+            "TideHeight": "None",
+            "TideLevel": "-",
+            "WaveHeight": "0.3",
+            "WaveDirection": "78.0",
+            "WaveDirectionDescription": "ENE",
+            "WavePeriod": "5.0",
+            "SeaTemperature": "None",
+            "Temperature": "None",
+            "StationPressure": "1011.9",
+            "PrimaryAnemometer": {
+              "WindSpeed": "2.7",
+              "WindScale": "2",
+              "WindDirection": "88.0",
+              "WindDirectionDescription": "E",
+              "MaximumWindSpeed": "3.5",
+              "MaximumWindScale": "3"
+            },
+            "SeaCurrents": {
+              "Layer": [
+                {
+                  "LayerNumber": "1",
+                  "CurrentDirection": "233",
+                  "CurrentDirectionDescription": "SW",
+                  "CurrentSpeed": "0.49",
+                  "CurrentSpeedInKnots": "0.95"
+                }
+              ]
+            }
           }
         ]
       },
@@ -819,37 +819,6 @@
         "StationID": "46699A",
         "Label": "Hualien",
         "Readings": [
-          {
-            "DateTime": "2026-09-30T17:00:00+08:00",
-            "TideHeight": "None",
-            "TideLevel": "-",
-            "WaveHeight": "0.2",
-            "WaveDirection": "56.0",
-            "WaveDirectionDescription": "NE",
-            "WavePeriod": "5.6",
-            "SeaTemperature": "29.3",
-            "Temperature": "28.4",
-            "StationPressure": "1012.1",
-            "PrimaryAnemometer": {
-              "WindSpeed": "1.6",
-              "WindScale": "2",
-              "WindDirection": "134.0",
-              "WindDirectionDescription": "SE",
-              "MaximumWindSpeed": "2.3",
-              "MaximumWindScale": "2"
-            },
-            "SeaCurrents": {
-              "Layer": [
-                {
-                  "LayerNumber": "1",
-                  "CurrentDirection": "138",
-                  "CurrentDirectionDescription": "SE",
-                  "CurrentSpeed": "0.05",
-                  "CurrentSpeedInKnots": "0.10"
-                }
-              ]
-            }
-          },
           {
             "DateTime": "2026-09-30T18:00:00+08:00",
             "TideHeight": "None",
@@ -1524,10 +1493,41 @@
               "Layer": [
                 {
                   "LayerNumber": "1",
-                  "CurrentDirection": "124",
-                  "CurrentDirectionDescription": "SE",
-                  "CurrentSpeed": "0.24",
-                  "CurrentSpeedInKnots": "0.47"
+                  "CurrentDirection": "119",
+                  "CurrentDirectionDescription": "ESE",
+                  "CurrentSpeed": "0.25",
+                  "CurrentSpeedInKnots": "0.49"
+                }
+              ]
+            }
+          },
+          {
+            "DateTime": "2026-10-01T16:00:00+08:00",
+            "TideHeight": "None",
+            "TideLevel": "-",
+            "WaveHeight": "0.2",
+            "WaveDirection": "56.0",
+            "WaveDirectionDescription": "NE",
+            "WavePeriod": "5.3",
+            "SeaTemperature": "29.8",
+            "Temperature": "29.2",
+            "StationPressure": "1012.9",
+            "PrimaryAnemometer": {
+              "WindSpeed": "2.0",
+              "WindScale": "2",
+              "WindDirection": "97.0",
+              "WindDirectionDescription": "E",
+              "MaximumWindSpeed": "2.6",
+              "MaximumWindScale": "2"
+            },
+            "SeaCurrents": {
+              "Layer": [
+                {
+                  "LayerNumber": "1",
+                  "CurrentDirection": "183",
+                  "CurrentDirectionDescription": "S",
+                  "CurrentSpeed": "0.18",
+                  "CurrentSpeedInKnots": "0.35"
                 }
               ]
             }
@@ -1538,37 +1538,6 @@
         "StationID": "46694A",
         "Label": "Longdong",
         "Readings": [
-          {
-            "DateTime": "2026-09-30T17:00:00+08:00",
-            "TideHeight": "None",
-            "TideLevel": "-",
-            "WaveHeight": "0.3",
-            "WaveDirection": "67.0",
-            "WaveDirectionDescription": "ENE",
-            "WavePeriod": "6.1",
-            "SeaTemperature": "26.7",
-            "Temperature": "27.8",
-            "StationPressure": "1011.1",
-            "PrimaryAnemometer": {
-              "WindSpeed": "3.6",
-              "WindScale": "3",
-              "WindDirection": "144.0",
-              "WindDirectionDescription": "SE",
-              "MaximumWindSpeed": "4.6",
-              "MaximumWindScale": "3"
-            },
-            "SeaCurrents": {
-              "Layer": [
-                {
-                  "LayerNumber": "1",
-                  "CurrentDirection": "30",
-                  "CurrentDirectionDescription": "NNE",
-                  "CurrentSpeed": "0.54",
-                  "CurrentSpeedInKnots": "1.05"
-                }
-              ]
-            }
-          },
           {
             "DateTime": "2026-09-30T18:00:00+08:00",
             "TideHeight": "None",
@@ -2181,10 +2150,41 @@
               "Layer": [
                 {
                   "LayerNumber": "1",
-                  "CurrentDirection": "287",
-                  "CurrentDirectionDescription": "WNW",
+                  "CurrentDirection": "343",
+                  "CurrentDirectionDescription": "NNW",
                   "CurrentSpeed": "0.04",
                   "CurrentSpeedInKnots": "0.08"
+                }
+              ]
+            }
+          },
+          {
+            "DateTime": "2026-10-01T16:00:00+08:00",
+            "TideHeight": "None",
+            "TideLevel": "-",
+            "WaveHeight": "0.3",
+            "WaveDirection": "101.0",
+            "WaveDirectionDescription": "E",
+            "WavePeriod": "6.0",
+            "SeaTemperature": "26.7",
+            "Temperature": "27.9",
+            "StationPressure": "1012.3",
+            "PrimaryAnemometer": {
+              "WindSpeed": "3.4",
+              "WindScale": "3",
+              "WindDirection": "347.0",
+              "WindDirectionDescription": "NNW",
+              "MaximumWindSpeed": "5.7",
+              "MaximumWindScale": "4"
+            },
+            "SeaCurrents": {
+              "Layer": [
+                {
+                  "LayerNumber": "1",
+                  "CurrentDirection": "29",
+                  "CurrentDirectionDescription": "NNE",
+                  "CurrentSpeed": "0.17",
+                  "CurrentSpeedInKnots": "0.33"
                 }
               ]
             }

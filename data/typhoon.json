@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-01T08:23:37.658Z",
+  "fetchedAt": "2026-10-01T09:22:25.354Z",
   "systems": [
     {
       "designation": "Tropical Depression",
@@ -39,24 +39,6 @@
       "maxWindKt": 30,
       "gustKt": 40,
       "geoReference": "215 NM SOUTH-SOUTHWEST OF YOKOSUKA, JAPAN",
-      "reasoning": {
-        "warningNumber": "029",
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 16,
-        "environment": "HIGHLY UNFAVORABLE",
-        "vws": "25-30 KTS",
-        "sst": "28-29 CELSIUS",
-        "outflow": "MODERATE EASTWARD",
-        "steering": "LOW TO MID-LEVEL FLOW ASSOCIATED WITH A DEEP-LAYER SUBTROPICAL RIDGE (STR) TO THE SOUTHEAST",
-        "confidence": {
-          "track0072": "HIGH",
-          "track72120": null,
-          "intensity0072": "HIGH",
-          "intensity72120": null
-        }
-      },
-      "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2526prog.txt",
-      "reasoningLagsWarning": true,
       "spot": {
         "distanceNm": 1070,
         "bearingDeg": 57,
@@ -93,7 +75,7 @@
           "periodS": 9.25,
           "dirDeg": 93
         },
-        "hoursAhead": 89,
+        "hoursAhead": 88,
         "bearingOffsetDeg": 36,
         "peak": {
           "targetTime": "2026-10-05T09:00:00.000Z",
@@ -197,14 +179,14 @@
       "seasFt": 20,
       "geoReference": "133 NM NORTH-NORTHEAST OF TINIAN",
       "reasoning": {
-        "warningNumber": "005",
-        "significantForecastChanges": "THE TIMING OF THE CPA TO SAIPAN HAS SHIFTED EARLIER BY SIX HOURS.",
+        "warningNumber": "006",
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 20,
-        "environment": "FAVORABLE",
-        "vws": "15-20 KTS",
+        "environment": "MARGINALLY FAVORABLE",
+        "vws": "20-25 KTS",
         "sst": "30-31 CELSIUS",
         "outflow": "MODERATE EQUATORWARD",
-        "steering": "SOUTHERN PERIPHERY OF A LOW- TO MID-LEVEL SUBTROPICAL RIDGE CENTERED FAR TO THE NORTHEAST",
+        "steering": "THE SOUTHWESTERN PERIPHERY OF A SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTHEAST.",
         "confidence": {
           "track0072": "MEDIUM",
           "track72120": "MEDIUM",
@@ -213,7 +195,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2626prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1482,
         "bearingDeg": 100,
@@ -286,7 +268,7 @@
           "periodS": 9.25,
           "dirDeg": 93
         },
-        "hoursAhead": 89,
+        "hoursAhead": 88,
         "bearingOffsetDeg": 0,
         "peak": {
           "targetTime": "2026-10-05T09:00:00.000Z",
