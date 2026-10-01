@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-01T02:19:51.213Z",
+  "fetchedAt": "2026-10-01T03:21:26.978Z",
   "systems": [
     {
       "designation": "Tropical Depression",
@@ -93,7 +93,7 @@
           "periodS": 9.25,
           "dirDeg": 93
         },
-        "hoursAhead": 95,
+        "hoursAhead": 94,
         "bearingOffsetDeg": 36,
         "peak": {
           "targetTime": "2026-10-05T09:00:00.000Z",
@@ -203,13 +203,13 @@
       ],
       "geoReference": "250 NM NORTHEAST OF ANDERSEN AFB",
       "reasoning": {
-        "warningNumber": "004",
-        "significantForecastChanges": "THE FORECAST WIND RADII HAVE BEEN SIGNIFICANTLY EXPANDED BEYOND TAU 48.",
-        "seasFt": 15,
+        "warningNumber": "005",
+        "significantForecastChanges": "THE TIMING OF THE CPA TO SAIPAN HAS SHIFTED EARLIER BY SIX HOURS.",
+        "seasFt": 20,
         "environment": "FAVORABLE",
         "vws": "15-20 KTS",
         "sst": "30-31 CELSIUS",
-        "outflow": "MODERATE RADIAL",
+        "outflow": "MODERATE EQUATORWARD",
         "steering": "SOUTHERN PERIPHERY OF A LOW- TO MID-LEVEL SUBTROPICAL RIDGE CENTERED FAR TO THE NORTHEAST",
         "confidence": {
           "track0072": "MEDIUM",
@@ -219,7 +219,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2626prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1545,
         "bearingDeg": 99,
@@ -298,7 +298,7 @@
           "periodS": 9.25,
           "dirDeg": 93
         },
-        "hoursAhead": 95,
+        "hoursAhead": 94,
         "bearingOffsetDeg": 1,
         "peak": {
           "targetTime": "2026-10-05T09:00:00.000Z",
@@ -308,9 +308,9 @@
         }
       },
       "summary": {
-        "text": "Animated enhanced infrared (EIR) satellite imagery depicts tropical storm (TS) 26W as a broad, but consolidating, system with two recently formed plumes of deep convection in the southwestern quadrant. TS 26W is forecast to continue tracking westward while it remains on the southwestern periphery of the steering ridge.",
-        "warningNumber": null,
-        "generatedAt": "2026-09-30T15:23:43.438Z"
+        "text": "Animated multispectral satellite imagery (MSI) depicts persistent, deep convection concentrated along the western periphery of an elongated low-level circulation center (LLCC). Recent scatterometer data indicate that TS 26W has accelerated west-northwestward, with an average forward speed of 14 kt during the past 12 hours. Toward +24h, a progressive shortwave trough racing downstream of northern Honshu and Hokkaido will erode the STR, resulting in a marked weakening of the primary steering influence and causing TS 26W to become nearly stationary.",
+        "warningNumber": "005",
+        "generatedAt": "2026-10-01T03:21:26.978Z"
       },
       "changes": {
         "previousWarningNumber": "004",
