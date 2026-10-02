@@ -1339,6 +1339,182 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "26W",
+      "name": "Choi-wan",
+      "designation": "Tropical Storm",
+      "warningNumber": "010",
+      "issuedAt": "2026-10-02T09:00:00.000Z",
+      "positionZ": "020600Z",
+      "lat": 16.9,
+      "lon": 144.6,
+      "maxWindKt": 60,
+      "gustKt": 75,
+      "seasFt": 25,
+      "movingToward": 300,
+      "movingKt": 2,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "021800Z",
+          "lat": 17.8,
+          "lon": 144.9,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 24,
+          "validZ": "030600Z",
+          "lat": 19.1,
+          "lon": 145.6,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 36,
+          "validZ": "031800Z",
+          "lat": 20.6,
+          "lon": 146.2,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 48,
+          "validZ": "040600Z",
+          "lat": 22.1,
+          "lon": 146.6,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 60,
+          "validZ": "041800Z",
+          "lat": 23.7,
+          "lon": 146.4,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 72,
+          "validZ": "050600Z",
+          "lat": 25.6,
+          "lon": 145.9,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 96,
+          "validZ": "060600Z",
+          "lat": 30.4,
+          "lon": 146.2,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 120,
+          "validZ": "070600Z",
+          "lat": 40,
+          "lon": 153.9,
+          "maxWindKt": 80,
+          "gustKt": 100
+        }
+      ],
+      "spot": {
+        "distanceNm": 1362,
+        "bearingDeg": 101,
+        "closestApproach": {
+          "distanceNm": 1353,
+          "tau": 72,
+          "validZ": "050600Z",
+          "maxWindKt": 100
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 300,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 18
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 27
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 21
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 14
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 353
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 347
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 3
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 31
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "headingDeg": 18,
+            "deltaDeg": 78
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-06T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-05T19:00:00.000Z",
+          "heightM": 1.24,
+          "periodS": 7.5,
+          "dirDeg": 77
+        },
+        "hoursAhead": 83,
+        "bearingOffsetDeg": 1,
+        "peak": {
+          "targetTime": "2026-10-06T09:00:00.000Z",
+          "heightM": 2.1,
+          "periodS": 7.5,
+          "dirDeg": 72
+        }
+      },
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts tropical storm (TS) 26W (choi-wan) improving in structure with a more symmetrical and partially obscured low level circulation center (LLCC). TS 26W has slowed in track speed and begun a poleward turn as it enters an area of weaker steering influence as a shortwave trough to the north propagates eastward, weakening the western extension of the subtropical ridge (STR) centered to the northeast. Regarding intensity, 26W is forecast to continue intensifying out to a peak of 105 kt between taus 48 and 60, with a period of rapid intensification (ri) explicitly forecast from +12h to 36 as 26W gains a poleward outflow channel and VWS continues to abate.",
+        "warningNumber": "009",
+        "generatedAt": "2026-10-02T03:20:35.172Z"
+      },
+      "reasoningWarningNumber": "009",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "LOW",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
