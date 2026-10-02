@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-02T14:22:49.243Z",
+  "fetchedAt": "2026-10-02T15:22:29.819Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -90,23 +90,23 @@
       "seasFt": 28,
       "geoReference": "165 NM NORTH-NORTHWEST OF SAIPAN",
       "reasoning": {
-        "warningNumber": "010",
+        "warningNumber": "011",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 25,
-        "environment": "FAVORABLE",
-        "vws": "15-20 KTS",
+        "seasFt": 28,
+        "environment": "HIGHLY FAVORABLE",
+        "vws": "5-10 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "STRONG EQUATORWARD",
         "steering": "THE SOUTHWESTERN PERIPHERY OF A SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTHWEST",
         "confidence": {
-          "track0072": "MEDIUM",
+          "track0072": "HIGH",
           "track72120": "LOW",
           "intensity0072": "MEDIUM",
-          "intensity72120": "MEDIUM"
+          "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2626prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1347,
         "bearingDeg": 99,
@@ -179,7 +179,7 @@
           "periodS": 5.4,
           "dirDeg": 74
         },
-        "hoursAhead": 75,
+        "hoursAhead": 74,
         "bearingOffsetDeg": 1,
         "peak": {
           "targetTime": "2026-10-06T12:00:00.000Z",
@@ -189,9 +189,9 @@
         }
       },
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts tropical storm (TS) 26W (choi-wan) improving in structure with a more symmetrical and partially obscured low level circulation center (LLCC). TS 26W has slowed in track speed and begun a poleward turn as it enters an area of weaker steering influence as a shortwave trough to the north propagates eastward, weakening the western extension of the subtropical ridge (STR) centered to the northeast. Regarding intensity, 26W is forecast to continue intensifying out to a peak of 105 kt between taus 48 and 60, with a period of rapid intensification (ri) explicitly forecast from +12h to 36 as 26W gains a poleward outflow channel and VWS continues to abate.",
-        "warningNumber": "009",
-        "generatedAt": "2026-10-02T03:20:35.172Z"
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts typhoon (TY) 26W as a quickly developing system with robust deep convection and an improving poleward outflow channel. TY 26W (choi-wan) is currently tracking poleward as the STR to its northeast is eroded by a passing shortwave trough to the north. In response to the hostile environment, 26W is forecast to begin extratropical transition at +96h and complete transition no later than +120h.",
+        "warningNumber": "011",
+        "generatedAt": "2026-10-02T15:22:29.819Z"
       },
       "changes": {
         "previousWarningNumber": "010",
