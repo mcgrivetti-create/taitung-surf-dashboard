@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-02T06:25:31.035Z",
+  "updatedAt": "2026-10-02T07:22:01.426Z",
   "sources": [
     {
       "name": "F-D0047-039 township forecast",
@@ -32,12 +32,22 @@
       "count": 4
     },
     {
-      "name": "Open-Meteo marine (GFS-Wave)",
+      "name": "O-B0076-001 buoy + tide gauge positions",
+      "ok": true,
+      "count": 5
+    },
+    {
+      "name": "Open-Meteo marine (Météo-France MFWAM)",
       "ok": true,
       "count": 120
     },
     {
       "name": "Open-Meteo ECMWF WAM + IFS (logged only)",
+      "ok": true,
+      "count": 240
+    },
+    {
+      "name": "Open-Meteo GFS wind (logged only)",
       "ok": true,
       "count": 240
     },
@@ -59,12 +69,12 @@
     {
       "name": "history/forecast log",
       "ok": true,
-      "count": 20
+      "count": 30
     },
     {
       "name": "history/buoy log",
       "ok": true,
-      "count": 3
+      "count": 4
     },
     {
       "name": "history/station log",
@@ -74,7 +84,7 @@
     {
       "name": "history/tide log",
       "ok": true,
-      "count": 1
+      "count": 39
     },
     {
       "name": "update log",
