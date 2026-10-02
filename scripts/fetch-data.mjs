@@ -48,15 +48,15 @@
  *                                   per run) — ground truth for the township
  *                                   wind forecast, and permanent unlike the
  *                                   rolling 16h data/stations-history.json
- *   history/tide/YYYY-MM.json      tide forecast (interpolated at "now")
- *                                   vs observed (Chenggong gauge C4S02)
+ *   history/tide/YYYY-MM.json      every Chenggong gauge reading (cm) vs the
+ *                                   tide prediction at that reading's own time
  *
  * Forecast directions arrive as Chinese compass text and observed ones as
  * bearings, so every logged direction carries both (dirToDegrees).
  * This is the ground truth Phase 3's accuracy-comparison charts read from.
  */
 
-import { writeFile, mkdir, readFile } from "node:fs/promises";
+import { writeFile, mkdir, readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -103,7 +103,10 @@ const STATION_HISTORY_HOURS = 16;
 const BUOY_HISTORY_HOURS = 24;
 
 // Phase 2 (data logger): lead times tracked for Phase 3 accuracy comparison.
-const LEAD_HOURS = [6, 12, 24, 48];
+// 72h added 2026-10-02 — the horizon the page's coastal chart shows, so it's
+// the "3 days out" call worth scoring. CWA coastal stops at 72h; the
+// Open-Meteo sources run well past it.
+const LEAD_HOURS = [6, 12, 24, 48, 72];
 const TIDE_GAUGE_STATION_ID = "C4S02"; // 成功潮位站 (Chenggong tide gauge), from O-B0076-001's directory
 const HISTORY_DIR = path.join(DATA_DIR, "history");
 
@@ -574,18 +577,102 @@ async function buildBuoyStation(station) {
  * O-B0075-001 dataset and response shape as the wave buoys, just a
  * TideHeight field instead of WaveHeight.
  */
-async function buildTideGaugeActual() {
+/**
+ * Every tide-gauge reading O-B0075-001 currently returns (~48h), not just
+ * the latest — logging them all backfills any hour a run missed.
+ *
+ * TideHeight is in METRES. Until 2026-10-02 it was logged as-is under
+ * `observedCm`, beside a forecast in centimetres (see migrateTideLog).
+ */
+async function buildTideGaugeReadings() {
   const raw = await fetchDataset("O-B0075-001", { StationID: TIDE_GAUGE_STATION_ID });
   const records = raw.Records || raw.records || {};
   const seaSurfaceObs = records.SeaSurfaceObs || records.seaSurfaceObs || {};
   const locations = seaSurfaceObs.Location || seaSurfaceObs.location || [];
   const loc = locations.find((l) => l.Station && l.Station.StationID === TIDE_GAUGE_STATION_ID) || locations[0];
-  if (!loc) return null;
+  if (!loc) return [];
   const times = (loc.StationObsTimes && loc.StationObsTimes.StationObsTime) || [];
-  const valid = times.filter((t) => t.WeatherElements && t.WeatherElements.TideHeight !== "None");
-  const latest = valid.slice().sort((a, b) => new Date(b.DateTime) - new Date(a.DateTime))[0];
-  if (!latest) return null;
-  return { observedAt: latest.DateTime, tideHeightCm: Number(latest.WeatherElements.TideHeight) };
+  return times
+    .filter((t) => t.WeatherElements && t.WeatherElements.TideHeight !== "None" &&
+      isFinite(Number(t.WeatherElements.TideHeight)))
+    .map((t) => ({ observedAt: t.DateTime, observedCm: Math.round(Number(t.WeatherElements.TideHeight) * 1000) / 10 }))
+    .sort((a, b) => new Date(a.observedAt) - new Date(b.observedAt));
+}
+
+/* --- Tide predictions for the logger ------------------------------------
+ * The forecast has to be read at the gauge reading's OWN time. Until
+ * 2026-10-02 it was interpolated at the moment the script ran, up to ~1.5h
+ * after the reading it was paired with — at mid-tide that's 30cm+ of
+ * apparent error that was really just a clock offset. Aligned and in the
+ * right units, forecast vs gauge correlates at 0.99 (was 0.69).
+ *
+ * Reading at the gauge's time means needing yesterday's turning points
+ * (CWA's tide product starts from today), so they're kept in a small
+ * rolling file rather than only this run's response.
+ */
+const TIDE_EXTREMA_FILE = path.join(DATA_DIR, "tide-extrema.json");
+const TIDE_EXTREMA_KEEP_DAYS = 3;
+
+/** Merge this run's turning points into the rolling store; returns ALL points known (ms, sorted). */
+async function updateTideExtrema(newPoints) {
+  const store = await readJSONIfExists(TIDE_EXTREMA_FILE, { points: [] });
+  const byT = {};
+  for (const p of store.points || []) byT[new Date(p.t).getTime()] = p.h;
+  for (const p of newPoints || []) if (isFinite(p.h)) byT[p.t] = p.h; // latest issue wins
+  const all = Object.keys(byT).map(Number).sort((a, b) => a - b).map((t) => ({ t, h: byT[t] }));
+  const cutoff = Date.now() - TIDE_EXTREMA_KEEP_DAYS * 86400000;
+  await writeFile(TIDE_EXTREMA_FILE, JSON.stringify({
+    note: "Rolling tide turning points (TWVD2001, cm) for the Phase 2 tide logger — see updateTideExtrema.",
+    points: all.filter((p) => p.t >= cutoff).map((p) => ({ t: new Date(p.t).toISOString(), h: p.h })),
+  }, null, 2));
+  return all;
+}
+
+/** One tide log record: gauge vs prediction at the gauge's own timestamp. */
+function tideRecord(observedAt, observedCm, points, station) {
+  const t = new Date(observedAt).getTime();
+  // Outside the known turning points cosineInterpolate would clamp to the
+  // end value — a made-up number, so leave the forecast empty instead.
+  const covered = points.length && t >= points[0].t && t <= points[points.length - 1].t;
+  return {
+    v: 2, observedAt, station, observedCm,
+    forecastCm: covered ? Math.round(cosineInterpolate(points, t) * 10) / 10 : null,
+  };
+}
+
+/**
+ * One-time repair of tide records written before 2026-10-02 (no `v`):
+ * metres -> cm, forecast re-read at the gauge's timestamp, and duplicates
+ * (consecutive runs that saw the same latest reading) collapsed. Records
+ * with no gauge reading are dropped — a forecast alone verifies nothing.
+ * Files already fully on v2 are left untouched, so this is a no-op after
+ * the first run.
+ */
+async function migrateTideLog(points) {
+  const dir = path.join(HISTORY_DIR, "tide");
+  let files = [];
+  try { files = (await readdir(dir)).filter((f) => f.endsWith(".json")); } catch (err) { return 0; }
+  let migrated = 0;
+  for (const f of files) {
+    const fp = path.join(dir, f);
+    const log = await readJSONIfExists(fp, null);
+    if (!log || !Array.isArray(log.records) || log.records.every((r) => r.v === 2)) continue;
+    const seen = new Set();
+    const out = [];
+    for (const r of log.records) {
+      if (!r.observedAt || r.observedCm === null || r.observedCm === undefined) continue;
+      const key = `${r.observedAt}|${r.station}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      if (r.v === 2) { out.push(r); continue; }
+      out.push(tideRecord(r.observedAt, Math.round(r.observedCm * 1000) / 10, points, r.station || TIDE_GAUGE_STATION_ID));
+      migrated++;
+    }
+    out.sort((a, b) => new Date(a.observedAt) - new Date(b.observedAt));
+    log.records = out;
+    await writeFile(fp, JSON.stringify(log, null, 2));
+  }
+  return migrated;
 }
 
 /**
@@ -623,6 +710,8 @@ async function buildOpenWave() {
     swellHeight: Number(h.swell_wave_height[i]),
     swellPeriod: Number(h.swell_wave_period[i]),
     swellDirectionDeg: Number(h.swell_wave_direction[i]),
+    windWaveHeight: Number(h.wind_wave_height[i]),
+    windWavePeriod: Number(h.wind_wave_period[i]),
   }));
 
   return { data, ok: true, count, series };
@@ -643,43 +732,52 @@ async function buildOpenWave() {
  *
  * Logged, not displayed — the page still shows Windy itself.
  */
+const OM_POINT = { latitude: "22.975", longitude: "121.315", timezone: "Asia/Taipei", forecast_days: "10" };
+const omNum = (v) => (v === null || v === undefined || !isFinite(v)) ? null : Number(v);
+
+/** Hourly 10m wind for one Open-Meteo model, keyed by its local timestamp. */
+async function fetchModelWind(model) {
+  const url = new URL("https://api.open-meteo.com/v1/forecast");
+  for (const [k, v] of Object.entries(OM_POINT)) url.searchParams.set(k, v);
+  url.searchParams.set("models", model);
+  url.searchParams.set("hourly", "wind_speed_10m,wind_direction_10m,wind_gusts_10m");
+  url.searchParams.set("wind_speed_unit", "ms");
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`open-meteo ${model} -> HTTP ${res.status}`);
+  const h = (await res.json()).hourly || {};
+  const byTime = {};
+  (h.time || []).forEach((t, i) => {
+    const speed = omNum(h.wind_speed_10m[i]);
+    byTime[t] = {
+      windSpeed: speed,
+      windScale: speed === null ? null : beaufort(speed),
+      windDirectionDeg: omNum(h.wind_direction_10m[i]),
+      windGust: omNum(h.wind_gusts_10m[i]),
+    };
+  });
+  return byTime;
+}
+
 async function buildEcmwf() {
-  const common = { latitude: "22.975", longitude: "121.315", timezone: "Asia/Taipei", forecast_days: "10" };
   const waveUrl = new URL("https://marine-api.open-meteo.com/v1/marine");
-  const windUrl = new URL("https://api.open-meteo.com/v1/forecast");
-  for (const [k, v] of Object.entries(common)) { waveUrl.searchParams.set(k, v); windUrl.searchParams.set(k, v); }
+  for (const [k, v] of Object.entries(OM_POINT)) waveUrl.searchParams.set(k, v);
   waveUrl.searchParams.set("models", "ecmwf_wam025");
   waveUrl.searchParams.set("hourly", "wave_height,wave_period,wave_peak_period,wave_direction");
-  windUrl.searchParams.set("models", "ecmwf_ifs025");
-  windUrl.searchParams.set("hourly", "wind_speed_10m,wind_direction_10m,wind_gusts_10m");
-  windUrl.searchParams.set("wind_speed_unit", "ms");
 
-  const [waveRes, windRes] = await Promise.all([fetch(waveUrl), fetch(windUrl)]);
+  const [waveRes, windAt] = await Promise.all([fetch(waveUrl), fetchModelWind("ecmwf_ifs025")]);
   if (!waveRes.ok) throw new Error(`open-meteo ecmwf_wam025 -> HTTP ${waveRes.status}`);
-  if (!windRes.ok) throw new Error(`open-meteo ecmwf_ifs025 -> HTTP ${windRes.status}`);
   const wave = (await waveRes.json()).hourly || {};
-  const wind = (await windRes.json()).hourly || {};
 
   // Joined on the timestamp, not the index, so the two can't drift apart
   // if one response is shorter than the other.
-  const windAt = {};
-  (wind.time || []).forEach((t, i) => { windAt[t] = i; });
-  const num = (v) => (v === null || v === undefined || !isFinite(v)) ? null : Number(v);
-  const series = (wave.time || []).map((t, i) => {
-    const j = windAt[t];
-    const speed = j === undefined ? null : num(wind.wind_speed_10m[j]);
-    return {
-      targetTime: new Date(t + ":00+08:00").toISOString(),
-      waveHeight: num(wave.wave_height[i]),
-      wavePeriod: num(wave.wave_period[i]),
-      wavePeakPeriod: num(wave.wave_peak_period[i]),
-      waveDirectionDeg: num(wave.wave_direction[i]),
-      windSpeed: speed,
-      windScale: speed === null ? null : beaufort(speed),
-      windDirectionDeg: j === undefined ? null : num(wind.wind_direction_10m[j]),
-      windGust: j === undefined ? null : num(wind.wind_gusts_10m[j]),
-    };
-  }).filter((p) => p.waveHeight !== null || p.windSpeed !== null);
+  const noWind = { windSpeed: null, windScale: null, windDirectionDeg: null, windGust: null };
+  const series = (wave.time || []).map((t, i) => Object.assign({
+    targetTime: new Date(t + ":00+08:00").toISOString(),
+    waveHeight: omNum(wave.wave_height[i]),
+    wavePeriod: omNum(wave.wave_period[i]),
+    wavePeakPeriod: omNum(wave.wave_peak_period[i]),
+    waveDirectionDeg: omNum(wave.wave_direction[i]),
+  }, windAt[t] || noWind)).filter((p) => p.waveHeight !== null || p.windSpeed !== null);
 
   return {
     data: { models: { wave: "ecmwf_wam025", wind: "ecmwf_ifs025" }, series },
@@ -687,6 +785,19 @@ async function buildEcmwf() {
     count: series.length,
     series,
   };
+}
+
+/**
+ * GFS wind — the model behind the page's Windguru wind widget (GFS 13km),
+ * logged as its recordable stand-in the way buildEcmwf stands in for Windy.
+ * Wind only: GFS-Wave is already logged as `open_meteo`. Logged, not shown.
+ */
+async function buildGfsWind() {
+  const windAt = await fetchModelWind("gfs_seamless");
+  const series = Object.keys(windAt).sort().map((t) => Object.assign(
+    { targetTime: new Date(t + ":00+08:00").toISOString() }, windAt[t]))
+    .filter((p) => p.windSpeed !== null);
+  return { data: { model: "gfs_seamless", series }, ok: series.length > 0, count: series.length, series };
 }
 
 /**
@@ -1591,6 +1702,7 @@ async function run() {
     { file: "buoy.json", name: "O-B0075-001 buoy / sea state", build: buildBuoy },
     { file: "openwave.json", name: "Open-Meteo marine (GFS-Wave)", build: buildOpenWave },
     { file: "ecmwf.json", name: "Open-Meteo ECMWF WAM + IFS (logged only)", build: buildEcmwf },
+    { file: "gfs-wind.json", name: "Open-Meteo GFS wind (logged only)", build: buildGfsWind },
     { file: "astronomy.json", name: "CWA astronomy (sun/moon/calendar)", build: buildAstronomy },
     { file: "typhoon.json", name: "JTWC typhoon news (W Pacific)", build: () => buildTyphoon(results) },
   ];
@@ -1639,6 +1751,7 @@ async function run() {
       ...COASTAL_POINTS.map((p) => ({ name: p.source, series: (results[p.file] || {}).series || [] })),
       { name: "open_meteo", series: (results["openwave.json"] || {}).series || [] },
       { name: "ecmwf", series: (results["ecmwf.json"] || {}).series || [] },
+      { name: "gfs_wind", series: (results["gfs-wind.json"] || {}).series || [] },
     ];
     for (const src of waveSources) {
       for (const lead of LEAD_HOURS) {
@@ -1657,9 +1770,12 @@ async function run() {
           swellHeight: pt.swellHeight !== undefined ? pt.swellHeight : null,
           swellPeriod: pt.swellPeriod !== undefined ? pt.swellPeriod : null,
           swellDirectionDeg: pt.swellDirectionDeg !== undefined ? pt.swellDirectionDeg : null,
-          // ECMWF only, so far: peak period and gusts.
+          // Only some sources carry these: peak period (ECMWF), gusts
+          // (ECMWF, GFS), and the wind-sea partition (Open-Meteo GFS-Wave).
           ...(pt.wavePeakPeriod !== undefined ? { wavePeakPeriod: pt.wavePeakPeriod } : {}),
           ...(pt.windGust !== undefined ? { windGust: pt.windGust } : {}),
+          ...(pt.windWaveHeight !== undefined ? { windWaveHeight: pt.windWaveHeight } : {}),
+          ...(pt.windWavePeriod !== undefined ? { windWavePeriod: pt.windWavePeriod } : {}),
         });
       }
     }
@@ -1751,23 +1867,22 @@ async function run() {
     status.push({ name: "history/station log", ok: true, count: addedStation });
     console.log(`OK: history/station log (+${addedStation} records)`);
 
-    // Tide: forecast (interpolated at "now" from this run's extrema) vs
-    // observed (Chenggong gauge, closest reading to "now").
-    const tidePoints = (results["tide.json"] || {}).points || [];
-    const forecastCm = tidePoints.length ? cosineInterpolate(tidePoints, now) : null;
-    const gauge = await buildTideGaugeActual().catch(() => null);
-    if (forecastCm !== null || gauge) {
-      const tideRecord = {
-        at: issuedAt,
-        forecastCm: forecastCm !== null ? Math.round(forecastCm * 10) / 10 : null,
-        observedCm: gauge ? gauge.tideHeightCm : null,
-        observedAt: gauge ? gauge.observedAt : null,
-        station: TIDE_GAUGE_STATION_ID,
-      };
-      const addedTide = await appendMonthlyHistory("tide", [tideRecord], (r) => r.at);
-      status.push({ name: "history/tide log", ok: true, count: addedTide });
-      console.log(`OK: history/tide log (+${addedTide} records)`);
-    }
+    // Tide: every gauge reading CWA returns, each against the prediction at
+    // that reading's own time — see updateTideExtrema / tideRecord.
+    const tidePoints = await updateTideExtrema((results["tide.json"] || {}).points || []);
+    const migratedTide = await migrateTideLog(tidePoints);
+    if (migratedTide) console.log(`OK: migrated ${migratedTide} old tide records (m->cm, time-aligned)`);
+    // Only this month's readings: appendMonthlyHistory dedupes within the
+    // current month's file, so a reading from the last hours of the
+    // previous month would otherwise be logged twice across the boundary.
+    const taipeiMonth = (iso) => new Date(new Date(iso).getTime() + 8 * 3600000).toISOString().slice(0, 7);
+    const readings = (await buildTideGaugeReadings().catch(() => []))
+      .filter((r) => taipeiMonth(r.observedAt) === monthKey());
+    const addedTide = await appendMonthlyHistory("tide",
+      readings.map((r) => tideRecord(r.observedAt, r.observedCm, tidePoints, TIDE_GAUGE_STATION_ID)),
+      (r) => `${r.observedAt}|${r.station}`);
+    status.push({ name: "history/tide log", ok: true, count: addedTide });
+    console.log(`OK: history/tide log (+${addedTide} records)`);
   } catch (err) {
     status.push({ name: "history logging", ok: false, error: String(err.message || err) });
     console.error(`FAILED: history logging — ${err.message || err}`);

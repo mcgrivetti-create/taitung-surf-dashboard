@@ -113,17 +113,21 @@ long-period groundswell.
 
 Every hourly run appends into monthly log files under `data/history/` —
 kept forever by design, one small file per month. Lead times tracked:
-**6h / 12h / 24h / 48h** (`LEAD_HOURS`).
+**6h / 12h / 24h / 48h / 72h** (`LEAD_HOURS`; 72h added 2026-10-02 — it's
+the horizon the coastal chart shows; `open_meteo` also has some 72h records
+from its first two days).
 
 - `history/forecast/YYYY-MM.json` — forecast snapshots at each lead time,
-  tagged `issuedAt`/`targetTime`/`leadHours`/`source`. Four sources:
+  tagged `issuedAt`/`targetTime`/`leadHours`/`source`. Sources:
   - `cwa_coastal_donghe` — `F-D0047-095`, wave height/period/direction +
     wind speed/Beaufort/direction
   - `cwa_coastal_chenggong` — the same dataset for 成功鎮沿海. **Collected
     and logged but deliberately not shown on the page** — the page stays
     single-spot. It's here so a future chart can run observed-up-to-now +
     forecast-into-the-future against the Chenggong buoy.
-  - `open_meteo` — wave and swell height/period/direction
+  - `open_meteo` — NOAA GFS-Wave: total wave, **swell** and (from
+    2026-10-02) **wind-sea** height/period/direction. The only source with
+    the sea split into swell and wind-sea.
   - `ecmwf` — **ECMWF, the model behind Windy's default layers** (added
     2026-09-29). Windy's own numbers can't be recorded — its embed is a
     cross-origin iframe, its point API is paid, and Windguru has no public
@@ -135,6 +139,10 @@ kept forever by design, one small file per month. Lead times tracked:
     measure a spectral surf buoy reports — our GFS-Wave feed doesn't carry
     it. Written to `data/ecmwf.json` (10-day series, logged only, not shown
     on the page) and into the forecast log at the usual lead times.
+  - `gfs_wind` — **GFS wind, the model behind the Windguru wind widget**
+    (added 2026-10-02), from Open-Meteo `gfs_seamless`: speed/Beaufort/
+    direction/gusts. Written to `data/gfs-wind.json`, logged only — the
+    Windguru counterpart to `ecmwf` standing in for Windy.
   - `cwa_township_wind` — `F-D0047-039` wind for Donghe. This forecast is
     12-hour *periods*, not instants, so a lead time is matched by which
     period contains it (`periodContaining`), not by nearest point.
@@ -148,15 +156,48 @@ kept forever by design, one small file per month. Lead times tracked:
   `C0S810` is flagged `isWindForecastTarget`. Separate from
   `data/stations-history.json`, which is trimmed to a rolling 16h for the
   chart — this one is permanent.
-- `history/tide/YYYY-MM.json` — tide forecast (interpolated at the time of
-  the run) vs. observed, from the Chenggong tide gauge (`C4S02`, looked up
-  from `O-B0076-001`'s station directory)
+- `history/tide/YYYY-MM.json` — **every** Chenggong tide-gauge reading
+  (`C4S02`, looked up from `O-B0076-001`'s station directory) as
+  `{v: 2, observedAt, station, observedCm, forecastCm}`, where `forecastCm`
+  is the CWA prediction cosine-interpolated **at the reading's own time**.
+  Each run logs all ~48h of readings CWA returns, so a missed run is
+  backfilled by the next. Yesterday's turning points come from
+  `data/tide-extrema.json`, a rolling 3-day store (CWA's tide product starts
+  at today, and an early-morning reading needs the previous evening's
+  turning point). A reading outside the known turning points gets
+  `forecastCm: null` rather than a clamped guess.
+
+  **Fixed 2026-10-02 — two bugs in every record before then.** The gauge
+  reports in **metres**, and it was stored as-is under `observedCm` beside
+  a forecast in centimetres. And the forecast was read at the moment the
+  script ran, up to ~1.5h after the reading it was paired with — 30cm+ of
+  apparent error at mid-tide that was really a clock offset. Together they
+  dragged forecast-vs-observed correlation down to 0.69. `migrateTideLog`
+  rewrote the old records once (metres → cm, forecast re-read at the gauge
+  time from turning points recovered out of git history, duplicates
+  collapsed): **0.989** afterwards. What remains is a steady **~+11cm
+  offset** (gauge above prediction) — consistent with Taiwan's autumn
+  seasonal sea-level high, possibly plus a small datum difference. It's
+  real signal, so it's logged as-is, not corrected away.
 
 Two things to know when reading the logs back:
 
 - **`cwa_coastal` is a legacy source name.** Records written before
   2026-09-16 use it for what is now `cwa_coastal_donghe`; the old records
   were left as-is rather than rewritten. Treat the two as the same series.
+- **Observed swell doesn't exist here.** CWA's buoys report one total sea
+  state — height, a *mean* period and a direction — with no swell /
+  wind-sea split, and the dataset carries nothing more. So forecast swell
+  can only be checked indirectly; total wave height, period and direction
+  are what verify directly.
+- **Wind ground truth needs care.** Donghe `C0S810` is a land station.
+  Against it, CWA's coastal wind forecast reads 2–2.5 m/s high on average,
+  the township forecast ~3 m/s high, ECMWF ~0.5 m/s *low*. Land stations
+  sit in the lee of terrain and buildings, so Phase 3 should score marine
+  wind forecasts against a buoy anemometer (Taitung `WRA007`, Hualien
+  `46699A`) as well as the land station — otherwise it mostly measures the
+  shelter, not the forecast. The three Donghe-area land stations report
+  gusts as -99 (not measured), which logs as null.
 - **Numbers are numbers.** CWA returns buoy readings as strings (`"2.0"`)
   and uses `"None"` for missing ones; `cleanNone()` coerces to a real number
   or `null` at log time, so every log stores the same types. Buoy records
@@ -170,7 +211,8 @@ the bearings to get an angular error, and the text stays for display.
 
 This is the ground truth Phase 3's accuracy-comparison charts will read
 from — see `scripts/fetch-data.mjs`'s "Phase 2" section (`appendMonthlyHistory`,
-`buildTideGaugeActual`, the lead-time snapshot logic in `run()`).
+`buildTideGaugeReadings`, `migrateTideLog`, the lead-time snapshot logic in
+`run()`).
 
 ### Two tiers, deliberately — don't merge them
 
