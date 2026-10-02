@@ -40,7 +40,8 @@
  *   history/forecast/YYYY-MM.json  forecast snapshots at fixed lead times
  *                                   (LEAD_HOURS), tagged by `source`:
  *                                   cwa_coastal_donghe, cwa_coastal_chenggong,
- *                                   open_meteo, ecmwf, cwa_township_wind
+ *                                   open_meteo, ecmwf, gfs_wind, gfs_wave,
+ *                                   cwa_township_wind
  *   history/buoy/YYYY-MM.json      actual buoy readings (one per station
  *                                   per run) — waves, wave direction, and
  *                                   wind where the station has an anemometer
@@ -776,6 +777,41 @@ async function buildEcmwf() {
     count: series.length,
     series,
   };
+}
+
+/**
+ * NOAA GFS-Wave 16km — the model behind the page's Windguru waves widget
+ * (Windguru model 84), logged as its recordable stand-in. Total sea, swell
+ * and wind-sea partitions; no peak period on this model. Logged, not shown.
+ *
+ * Grid point 23.0N 121.333E, ~3km NNE of Donghe and right at the coast —
+ * much closer inshore than MFWAM (~6km out) or ECMWF WAM (~19km out), so
+ * expect it to read lower in a coastal cell; that's geography, not error.
+ */
+async function buildGfsWave() {
+  const url = new URL("https://marine-api.open-meteo.com/v1/marine");
+  for (const [k, v] of Object.entries(OM_POINT)) url.searchParams.set(k, v);
+  url.searchParams.set("models", "ncep_gfswave016");
+  url.searchParams.set("hourly", [
+    "wave_height", "wave_period", "wave_direction",
+    "swell_wave_height", "swell_wave_period", "swell_wave_direction",
+    "wind_wave_height", "wind_wave_period",
+  ].join(","));
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`open-meteo ncep_gfswave016 -> HTTP ${res.status}`);
+  const h = (await res.json()).hourly || {};
+  const series = (h.time || []).map((t, i) => ({
+    targetTime: new Date(t + ":00+08:00").toISOString(),
+    waveHeight: omNum(h.wave_height[i]),
+    wavePeriod: omNum(h.wave_period[i]),
+    waveDirectionDeg: omNum(h.wave_direction[i]),
+    swellHeight: omNum(h.swell_wave_height[i]),
+    swellPeriod: omNum(h.swell_wave_period[i]),
+    swellDirectionDeg: omNum(h.swell_wave_direction[i]),
+    windWaveHeight: omNum(h.wind_wave_height[i]),
+    windWavePeriod: omNum(h.wind_wave_period[i]),
+  })).filter((p) => p.waveHeight !== null);
+  return { data: { model: "ncep_gfswave016", series }, ok: series.length > 0, count: series.length, series };
 }
 
 /**
@@ -1714,6 +1750,7 @@ async function run() {
     { file: "openwave.json", name: "Open-Meteo marine (Météo-France MFWAM)", build: buildOpenWave },
     { file: "ecmwf.json", name: "Open-Meteo ECMWF WAM + IFS (logged only)", build: buildEcmwf },
     { file: "gfs-wind.json", name: "Open-Meteo GFS wind (logged only)", build: buildGfsWind },
+    { file: "gfs-wave.json", name: "Open-Meteo GFS-Wave 16km (logged only)", build: buildGfsWave },
     { file: "astronomy.json", name: "CWA astronomy (sun/moon/calendar)", build: buildAstronomy },
     { file: "typhoon.json", name: "JTWC typhoon news (W Pacific)", build: () => buildTyphoon(results) },
   ];
@@ -1763,6 +1800,7 @@ async function run() {
       { name: "open_meteo", series: (results["openwave.json"] || {}).series || [] },
       { name: "ecmwf", series: (results["ecmwf.json"] || {}).series || [] },
       { name: "gfs_wind", series: (results["gfs-wind.json"] || {}).series || [] },
+      { name: "gfs_wave", series: (results["gfs-wave.json"] || {}).series || [] },
     ];
     for (const src of waveSources) {
       for (const lead of LEAD_HOURS) {
@@ -1782,7 +1820,7 @@ async function run() {
           swellPeriod: pt.swellPeriod !== undefined ? pt.swellPeriod : null,
           swellDirectionDeg: pt.swellDirectionDeg !== undefined ? pt.swellDirectionDeg : null,
           // Only some sources carry these: peak period (ECMWF), gusts
-          // (ECMWF, GFS), and the wind-sea partition (Open-Meteo MFWAM).
+          // (ECMWF, GFS), and the wind-sea partition (MFWAM, GFS-Wave).
           ...(pt.wavePeakPeriod !== undefined ? { wavePeakPeriod: pt.wavePeakPeriod } : {}),
           ...(pt.windGust !== undefined ? { windGust: pt.windGust } : {}),
           ...(pt.windWaveHeight !== undefined ? { windWaveHeight: pt.windWaveHeight } : {}),

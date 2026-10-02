@@ -149,6 +149,21 @@ from its first two days).
     (added 2026-10-02), from Open-Meteo `gfs_seamless`: speed/Beaufort/
     direction/gusts. Written to `data/gfs-wind.json`, logged only — the
     Windguru counterpart to `ecmwf` standing in for Windy.
+  - `gfs_wave` — **NOAA GFS-Wave 16km, the model behind the Windguru waves
+    widget** (added 2026-10-02), Open-Meteo `ncep_gfswave016`: total sea,
+    swell and wind-sea height/period/direction (no peak period). Grid point
+    23.0N 121.333E, ~3km NNE of Donghe right at the coast — far closer
+    inshore than MFWAM (~6km out) or ECMWF WAM (~19km out), so it reads
+    lower; that's geography, not error. `data/gfs-wave.json`, logged only.
+
+  Where everything sits relative to Donghe (22.975N 121.315E), for reading
+  the comparisons — model grid points above; observations from
+  `data/marine-stations.json` (`O-B0076-001`, saved each run):
+  Chenggong tide gauge `C4S02` 15km NNE · Chenggong buoy `46761F` 21km NE
+  (off Sanxiantai, ~28m depth) · Taitung buoy `WRA007` 33km SW · Hualien
+  `46699A` 122km N · Longdong `46694A` 244km N. Land stations: Donghe
+  `C0S810` ~1km inland at 65m, Duli `C0SA30` 5km N at 92m, Fengbin
+  `C0T9I0` 70km N at 152m.
   - `cwa_township_wind` — `F-D0047-039` wind for Donghe. This forecast is
     12-hour *periods*, not instants, so a lead time is matched by which
     period contains it (`periodContaining`), not by nearest point.
