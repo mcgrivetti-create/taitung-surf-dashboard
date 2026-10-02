@@ -36,7 +36,9 @@ station wind history is a small self-maintained rolling log, not a DB.
     window, moon-phase widget, sunrise/sunset/twilight, moonrise/moonset,
     lunar date and the day's astronomical events.
 1b. **Open Wave Model** — an independent wave forecast from Open-Meteo's
-    free Marine API (no key, backed by NOAA NCEP GFS-Wave). Doesn't depend
+    free Marine API (no key) — **Météo-France MFWAM** at ~9km, grid point
+    22.958N 121.375E, ~6km offshore of Donghe (until 2026-10-02 this was
+    wrongly documented as NOAA GFS-Wave; see `buildOpenWave`). Doesn't depend
     on CWA or any of the widgets above, so it's a fallback that keeps
     working if one of those goes down.
 2. CWA coastal 3-hourly wave forecast for Donghe (`F-D0047-095`), **capped
@@ -125,9 +127,13 @@ from its first two days).
     and logged but deliberately not shown on the page** — the page stays
     single-spot. It's here so a future chart can run observed-up-to-now +
     forecast-into-the-future against the Chenggong buoy.
-  - `open_meteo` — NOAA GFS-Wave: total wave, **swell** and (from
-    2026-10-02) **wind-sea** height/period/direction. The only source with
-    the sea split into swell and wind-sea.
+  - `open_meteo` — **Météo-France MFWAM** (not GFS-Wave, as this file said
+    until 2026-10-02: with no model named, Open-Meteo's best_match picked
+    MFWAM here, from the same grid point on every run since 2026-09-14 —
+    so the series is consistent, just mislabelled; now pinned with
+    `models=meteofrance_wave`). Total wave, **swell** and (from 2026-10-02)
+    **wind-sea** height/period/direction. The only source with the sea split
+    into swell and wind-sea.
   - `ecmwf` — **ECMWF, the model behind Windy's default layers** (added
     2026-09-29). Windy's own numbers can't be recorded — its embed is a
     cross-origin iframe, its point API is paid, and Windguru has no public
@@ -136,8 +142,8 @@ from its first two days).
     wind (speed/Beaufort/direction/gusts). 0.25° grids, so coarser than
     Windy's ~9km; the nearest wave cell is 23.0N 121.5E, ~20km offshore.
     WAM here has no swell partitions, but its peak period (Tp) is the same
-    measure a spectral surf buoy reports — our GFS-Wave feed doesn't carry
-    it. Written to `data/ecmwf.json` (10-day series, logged only, not shown
+    measure a spectral surf buoy reports — Open-Meteo's MFWAM feed doesn't
+    carry it. Written to `data/ecmwf.json` (10-day series, logged only, not shown
     on the page) and into the forecast log at the usual lead times.
   - `gfs_wind` — **GFS wind, the model behind the Windguru wind widget**
     (added 2026-10-02), from Open-Meteo `gfs_seamless`: speed/Beaufort/
@@ -156,29 +162,31 @@ from its first two days).
   `C0S810` is flagged `isWindForecastTarget`. Separate from
   `data/stations-history.json`, which is trimmed to a rolling 16h for the
   chart — this one is permanent.
-- `history/tide/YYYY-MM.json` — **every** Chenggong tide-gauge reading
-  (`C4S02`, looked up from `O-B0076-001`'s station directory) as
-  `{v: 2, observedAt, station, observedCm, forecastCm}`, where `forecastCm`
-  is the CWA prediction cosine-interpolated **at the reading's own time**.
-  Each run logs all ~48h of readings CWA returns, so a missed run is
-  backfilled by the next. Yesterday's turning points come from
-  `data/tide-extrema.json`, a rolling 3-day store (CWA's tide product starts
-  at today, and an early-morning reading needs the previous evening's
-  turning point). A reading outside the known turning points gets
-  `forecastCm: null` rather than a clamped guess.
+- `history/tide/YYYY-MM.json` — **restarted 2026-10-02.** Every Chenggong
+  tide-gauge reading (`C4S02`, looked up from `O-B0076-001`'s station
+  directory) against CWA's tide prediction **for Chenggong township**
+  (`臺東縣成功鎮`, where the gauge is) — forecast and observation for the
+  same water. Records are
+  `{v: 2, observedAt, station, observedCm, forecastCm, forecastLocation}`,
+  with `forecastCm` cosine-interpolated **at the reading's own time**. Each
+  run logs all ~48h of readings CWA returns, so a missed run is backfilled
+  by the next. Yesterday's turning points come from
+  `data/tide-extrema.json`, a rolling 3-day store tagged with its location
+  (CWA's tide product starts at today, and an early-morning reading needs
+  the previous evening's turning point); a reading outside the known
+  turning points gets `forecastCm: null` rather than a clamped guess — so
+  the first day of the restarted log has some nulls before the store fills.
+  The page's tide chart still shows Donghe.
 
-  **Fixed 2026-10-02 — two bugs in every record before then.** The gauge
-  reports in **metres**, and it was stored as-is under `observedCm` beside
-  a forecast in centimetres. And the forecast was read at the moment the
-  script ran, up to ~1.5h after the reading it was paired with — 30cm+ of
-  apparent error at mid-tide that was really a clock offset. Together they
-  dragged forecast-vs-observed correlation down to 0.69. `migrateTideLog`
-  rewrote the old records once (metres → cm, forecast re-read at the gauge
-  time from turning points recovered out of git history, duplicates
-  collapsed): **0.989** afterwards. What remains is a steady **~+11cm
-  offset** (gauge above prediction) — consistent with Taiwan's autumn
-  seasonal sea-level high, possibly plus a small datum difference. It's
-  real signal, so it's logged as-is, not corrected away.
+  **`history/tide-legacy/` — the old log, kept but not for use.**
+  2026-09-14 → 2026-10-02, with three faults: (1) the forecast was
+  **Donghe's** against the **Chenggong** gauge; (2) the gauge is in
+  **metres** but was stored under `observedCm` (the forecast is in cm);
+  (3) the forecast was read at the moment the script ran, up to ~1.5h
+  after the reading it was paired with. Left exactly as written. Fixing (2)
+  and (3) on it gave 0.989 correlation with a steady ~+11cm gauge-above-
+  prediction offset — worth re-checking on the clean log, where the
+  location mismatch is gone too.
 
 Two things to know when reading the logs back:
 
@@ -361,7 +369,11 @@ data/history/{forecast,buoy,station,tide}/YYYY-MM.json
   Phase 2 logs above (the placeholder in the page). Live, not a periodic
   batch — see "Two tiers, deliberately" for which files it may read.
 - **Copernicus Marine / Mercator wave model — agreed 2026-09-18, to be
-  built after Phase 3.** Product `GLOBAL_ANALYSISFORECAST_WAV_001_027`
+  built after Phase 3. Largely superseded (2026-10-02):** the Open Wave
+  Model turned out to be this same MFWAM model already, via Open-Meteo,
+  with swell partitions — see `buildOpenWave`. What direct Copernicus would
+  still add is the *secondary* swell partition. Original note, for the
+  record: product `GLOBAL_ANALYSISFORECAST_WAV_001_027`
   (Global Ocean Waves Analysis and Forecast): MFWAM run by Météo-France,
   forced by ECMWF winds, 1/12° (~9km), 3-hourly, 10-day horizon.
 
@@ -588,7 +600,7 @@ storm** and every storm gets a verdict, rendered as one of:
 > peaking at … · Swell arrived … and is now easing — 1.2m, 7.2s now
 
 > No meaningful swell from Surigae expected at Donghe through Sun, Oct 4
-> (Open-Meteo GFS-Wave, 5-day window)
+> (Open-Meteo MFWAM, 5-day window)
 
 How it works:
 
