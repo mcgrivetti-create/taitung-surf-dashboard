@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-02T02:19:17.086Z",
+  "fetchedAt": "2026-10-02T03:20:35.172Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -95,23 +95,23 @@
       ],
       "geoReference": "68 NM WEST-NORTHWEST OF ANATAHAN",
       "reasoning": {
-        "warningNumber": "008",
+        "warningNumber": "009",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 23,
+        "seasFt": 25,
         "environment": "FAVORABLE",
         "vws": "15-20 KTS",
-        "sst": "30-31 CELSIUS",
-        "outflow": "MODERATE EQUATORWARD",
-        "steering": "WESTWARD EXTENSION OF SUBTROPICAL RIDGE CENTERED TO THE NORTHEAST",
+        "sst": "29-30 CELSIUS",
+        "outflow": "STRONG EQUATORWARD",
+        "steering": "THE WESTERN EXTENSION OF A SUBTROPICAL RIDGE CENTERED TO THE NORTHEAST",
         "confidence": {
-          "track0072": "HIGH",
-          "track72120": "MEDIUM",
+          "track0072": "MEDIUM",
+          "track72120": "LOW",
           "intensity0072": "MEDIUM",
           "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2626prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1366,
         "bearingDeg": 101,
@@ -190,7 +190,7 @@
           "periodS": 7.5,
           "dirDeg": 77
         },
-        "hoursAhead": 89,
+        "hoursAhead": 88,
         "bearingOffsetDeg": 4,
         "peak": {
           "targetTime": "2026-10-06T09:00:00.000Z",
@@ -200,9 +200,9 @@
         }
       },
       "summary": {
-        "text": "Animated enhanced infrared (EIR) satellite imagery depicts tropical storm (TS) 26W beginning to tuck under the central deep convection and reducing the vertical tilt. TS 26W (choi-wan) is forecast to continue tracking west-northwestward for the next 12 hours while it remains on the southwestern periphery of the steering STR. Regarding intensity, 26W is forecast to steadily intensify through +72h.",
-        "warningNumber": "007",
-        "generatedAt": "2026-10-01T15:22:25.948Z"
+        "text": "Animated multispectral satellite imagery (MSI) depicts tropical storm (TS) 26W (choi-wan) improving in structure with a more symmetrical and partially obscured low level circulation center (LLCC). TS 26W has slowed in track speed and begun a poleward turn as it enters an area of weaker steering influence as a shortwave trough to the north propagates eastward, weakening the western extension of the subtropical ridge (STR) centered to the northeast. Regarding intensity, 26W is forecast to continue intensifying out to a peak of 105 kt between taus 48 and 60, with a period of rapid intensification (ri) explicitly forecast from +12h to 36 as 26W gains a poleward outflow channel and VWS continues to abate.",
+        "warningNumber": "009",
+        "generatedAt": "2026-10-02T03:20:35.172Z"
       },
       "changes": {
         "previousWarningNumber": "008",
