@@ -1,94 +1,93 @@
 {
-  "fetchedAt": "2026-10-02T19:20:19.358Z",
+  "fetchedAt": "2026-10-02T20:19:08.074Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "26W",
       "name": "Choi-wan",
       "headline": "Typhoon 26W (Choi-wan)",
-      "warningNumber": "011",
-      "issuedZ": "02/1500Z",
-      "issuedAt": "2026-10-02T15:00:00.000Z",
+      "warningNumber": "012",
+      "issuedZ": "02/2100Z",
+      "issuedAt": "2026-10-02T21:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2626.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2626web.txt",
       "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610021800-96_CHOI-WAN_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "030000Z",
-          "lat": 18.9,
-          "lon": 145.2,
-          "maxWindKt": 85,
-          "gustKt": 105
+          "validZ": "030600Z",
+          "lat": 19.5,
+          "lon": 145.4,
+          "maxWindKt": 90,
+          "gustKt": 110
         },
         {
           "tau": 24,
-          "validZ": "031200Z",
-          "lat": 20.4,
+          "validZ": "031800Z",
+          "lat": 21.1,
           "lon": 146,
           "maxWindKt": 100,
           "gustKt": 125
         },
         {
           "tau": 36,
-          "validZ": "040000Z",
-          "lat": 21.9,
-          "lon": 146.4,
-          "maxWindKt": 105,
-          "gustKt": 130
+          "validZ": "040600Z",
+          "lat": 22.6,
+          "lon": 146.3,
+          "maxWindKt": 110,
+          "gustKt": 135
         },
         {
           "tau": 48,
-          "validZ": "041200Z",
-          "lat": 23.7,
-          "lon": 146.4,
+          "validZ": "041800Z",
+          "lat": 24.3,
+          "lon": 145.9,
           "maxWindKt": 110,
           "gustKt": 135
         },
         {
           "tau": 60,
-          "validZ": "050000Z",
-          "lat": 25.5,
-          "lon": 146,
+          "validZ": "050600Z",
+          "lat": 26.3,
+          "lon": 145.4,
           "maxWindKt": 105,
           "gustKt": 130
         },
         {
           "tau": 72,
-          "validZ": "051200Z",
-          "lat": 27.6,
-          "lon": 145.5,
-          "maxWindKt": 100,
-          "gustKt": 125
+          "validZ": "051800Z",
+          "lat": 28.7,
+          "lon": 144.9,
+          "maxWindKt": 95,
+          "gustKt": 115
         },
         {
           "tau": 96,
-          "validZ": "061200Z",
-          "lat": 33.6,
-          "lon": 147.6,
-          "maxWindKt": 85,
-          "gustKt": 105
+          "validZ": "061800Z",
+          "lat": 36.5,
+          "lon": 149.4,
+          "maxWindKt": 80,
+          "gustKt": 100
         },
         {
           "tau": 120,
-          "validZ": "071200Z",
-          "lat": 43.6,
-          "lon": 158.2,
-          "maxWindKt": 70,
-          "gustKt": 85
+          "validZ": "071800Z",
+          "lat": 47.7,
+          "lon": 163.7,
+          "maxWindKt": 65,
+          "gustKt": 80
         }
       ],
-      "intensityChangeNote": "UPGRADED FROM TROPICAL STORM 26W",
-      "positionZ": "021200Z",
-      "lat": 17.7,
-      "lon": 144.6,
-      "movingToward": 360,
-      "movingKt": 8,
-      "maxWindKt": 70,
-      "gustKt": 85,
-      "pressureMb": 981,
-      "seasFt": 28,
-      "geoReference": "165 NM NORTH-NORTHWEST OF SAIPAN",
+      "positionZ": "021800Z",
+      "lat": 18.1,
+      "lon": 144.7,
+      "movingToward": 10,
+      "movingKt": 5,
+      "maxWindKt": 75,
+      "gustKt": 90,
+      "pressureMb": 978,
+      "seasFt": 29,
+      "geoReference": "185 NM NORTH-NORTHWEST OF SAIPAN",
       "reasoning": {
         "warningNumber": "011",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
@@ -106,19 +105,19 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2626prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 1347,
-        "bearingDeg": 99,
+        "distanceNm": 1345,
+        "bearingDeg": 98,
         "closestApproach": {
-          "distanceNm": 1340,
+          "distanceNm": 1317,
           "tau": 72,
-          "validZ": "051200Z",
-          "maxWindKt": 100
+          "validZ": "051800Z",
+          "maxWindKt": 95
         }
       },
       "motion": {
-        "currentHeadingDeg": 360,
+        "currentHeadingDeg": 10,
         "legs": [
           {
             "fromTau": 0,
@@ -128,47 +127,40 @@
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 27
+            "heading": 19
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 14
+            "heading": 10
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 0
+            "heading": 348
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 349
+            "heading": 347
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 348
+            "heading": 350
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 16
+            "heading": 25
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 36
+            "heading": 39
           }
         ],
-        "turns": [
-          {
-            "fromTau": 96,
-            "toTau": 120,
-            "headingDeg": 36,
-            "deltaDeg": 36
-          }
-        ]
+        "turns": []
       },
       "swell": {
         "windowEnd": "2026-10-07T15:00:00.000Z",
@@ -179,8 +171,8 @@
           "periodS": 5.4,
           "dirDeg": 74
         },
-        "hoursAhead": 70,
-        "bearingOffsetDeg": 1,
+        "hoursAhead": 69,
+        "bearingOffsetDeg": 2,
         "peak": {
           "targetTime": "2026-10-06T12:00:00.000Z",
           "heightM": 2.06,
@@ -194,11 +186,12 @@
         "generatedAt": "2026-10-02T15:22:29.819Z"
       },
       "changes": {
-        "previousWarningNumber": "010",
-        "previousIssuedAt": "2026-10-02T09:00:00.000Z",
-        "maxWindKtDelta": 10,
-        "seasFtDelta": 3,
-        "closestApproachNmDelta": -13
+        "previousWarningNumber": "011",
+        "previousIssuedAt": "2026-10-02T15:00:00.000Z",
+        "maxWindKtDelta": 5,
+        "pressureMbDelta": -3,
+        "seasFtDelta": 1,
+        "closestApproachNmDelta": -23
       }
     }
   ],
