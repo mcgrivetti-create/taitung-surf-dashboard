@@ -2228,6 +2228,161 @@
         "distanceNm": 2792,
         "bearingDeg": 101
       }
+    },
+    {
+      "kind": "warning",
+      "id": "26W",
+      "name": "Choi-wan",
+      "designation": "Typhoon",
+      "warningNumber": "015",
+      "issuedAt": "2026-10-03T15:00:00.000Z",
+      "positionZ": "031200Z",
+      "lat": 20.3,
+      "lon": 146.2,
+      "maxWindKt": 90,
+      "gustKt": 110,
+      "movingToward": 15,
+      "movingKt": 9,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "040000Z",
+          "lat": 21.9,
+          "lon": 146.7,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 24,
+          "validZ": "041200Z",
+          "lat": 23.5,
+          "lon": 146.8,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 36,
+          "validZ": "050000Z",
+          "lat": 25.4,
+          "lon": 146.4,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 48,
+          "validZ": "051200Z",
+          "lat": 27.7,
+          "lon": 145.9,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 60,
+          "validZ": "060000Z",
+          "lat": 30.4,
+          "lon": 146.2,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 72,
+          "validZ": "061200Z",
+          "lat": 34.7,
+          "lon": 148.6,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 96,
+          "validZ": "071200Z",
+          "lat": 47,
+          "lon": 160.7,
+          "maxWindKt": 60,
+          "gustKt": 75
+        }
+      ],
+      "spot": {
+        "distanceNm": 1396,
+        "bearingDeg": 92,
+        "closestApproach": {
+          "distanceNm": 1361,
+          "tau": 48,
+          "validZ": "051200Z",
+          "maxWindKt": 100
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 15,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 16
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 3
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 349
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 349
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 5
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 25
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 33
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-08T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-06T10:00:00.000Z",
+          "heightM": 1.78,
+          "periodS": 8.55,
+          "dirDeg": 74
+        },
+        "hoursAhead": 63,
+        "bearingOffsetDeg": 1,
+        "peak": {
+          "targetTime": "2026-10-06T15:00:00.000Z",
+          "heightM": 2.22,
+          "periodS": 7.75,
+          "dirDeg": 71
+        }
+      },
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts typhoon 26W (choi-wan) with a compact inner-core and an intermittent eye that has been cycling over the past 6 hours. TY 26W is forecast to track generally northward through +60h as it traverses the western periphery of the STR to the northeast. Extratropical transition is expected to be complete no later than +96h, once the system becomes embedded underneath the jet south of the kamchatka peninsula.",
+        "warningNumber": "015",
+        "generatedAt": "2026-10-03T18:32:49.344Z"
+      },
+      "reasoningWarningNumber": "015",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "LOW",
+        "intensity0072": "LOW",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
