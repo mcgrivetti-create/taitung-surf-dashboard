@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-03T10:18:31.742Z",
+  "fetchedAt": "2026-10-03T13:27:14.691Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -11,7 +11,7 @@
       "issuedAt": "2026-10-03T09:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2626.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2626web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610030600-96_CHOI-WAN_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610031200-96_CHOI-WAN_enus.png",
       "forecasts": [
         {
           "tau": 12,
@@ -166,18 +166,18 @@
         "windowEnd": "2026-10-07T15:00:00.000Z",
         "status": "incoming",
         "arrival": {
-          "targetTime": "2026-10-06T07:00:00.000Z",
+          "targetTime": "2026-10-06T10:00:00.000Z",
           "heightM": 1.78,
-          "periodS": 8.15,
-          "dirDeg": 77
+          "periodS": 8.55,
+          "dirDeg": 74
         },
         "hoursAhead": 69,
-        "bearingOffsetDeg": 0,
+        "bearingOffsetDeg": 3,
         "peak": {
-          "targetTime": "2026-10-06T12:00:00.000Z",
+          "targetTime": "2026-10-06T15:00:00.000Z",
           "heightM": 2.22,
-          "periodS": 7.65,
-          "dirDeg": 70
+          "periodS": 7.75,
+          "dirDeg": 71
         }
       },
       "summary": {
@@ -199,21 +199,21 @@
   "invests": [
     {
       "id": "94W",
-      "potential": "LOW",
-      "geoReference": "39 NM SOUTH-SOUTHEAST OF KWAJALEIN",
-      "windKtLow": 12,
-      "windKtHigh": 18,
+      "potential": null,
+      "geoReference": "47 NM SOUTHWEST OF KWAJALEIN",
+      "windKtLow": 18,
+      "windKtHigh": 23,
       "pressureMb": 1008,
-      "lat": 8.1,
-      "lon": 167.9,
-      "distanceNm": 2825,
+      "lat": 8.3,
+      "lon": 167.4,
+      "distanceNm": 2792,
       "bearingDeg": 101
     }
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "03/0700Z",
-    "issuedAt": "2026-10-03T07:00:00.000Z",
+    "issuedZ": "03/1300Z",
+    "issuedAt": "2026-10-03T13:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
     "reissued": true
   }
