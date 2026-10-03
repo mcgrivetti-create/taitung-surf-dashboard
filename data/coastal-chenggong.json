@@ -19,24 +19,6 @@
                 "ElementName": "風速",
                 "Time": [
                   {
-                    "DataTime": "2026-10-03T12:00:00+08:00",
-                    "ElementValue": {
-                      "WindSpeedKts": "17",
-                      "WindSpeed": "8.7",
-                      "BeaufortScale": "5",
-                      "WindSpeedKph": "31.5"
-                    }
-                  },
-                  {
-                    "DataTime": "2026-10-03T15:00:00+08:00",
-                    "ElementValue": {
-                      "WindSpeedKts": "14",
-                      "WindSpeed": "7.2",
-                      "BeaufortScale": "4",
-                      "WindSpeedKph": "25.9"
-                    }
-                  },
-                  {
                     "DataTime": "2026-10-03T18:00:00+08:00",
                     "ElementValue": {
                       "WindSpeedKts": "15",
@@ -314,24 +296,30 @@
                       "BeaufortScale": "5",
                       "WindSpeedKph": "31.5"
                     }
+                  },
+                  {
+                    "DataTime": "2026-10-07T15:00:00+08:00",
+                    "ElementValue": {
+                      "WindSpeedKts": "19",
+                      "WindSpeed": "9.8",
+                      "BeaufortScale": "5",
+                      "WindSpeedKph": "35.2"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-07T18:00:00+08:00",
+                    "ElementValue": {
+                      "WindSpeedKts": "18",
+                      "WindSpeed": "9.3",
+                      "BeaufortScale": "5",
+                      "WindSpeedKph": "33.3"
+                    }
                   }
                 ]
               },
               {
                 "ElementName": "風向",
                 "Time": [
-                  {
-                    "DataTime": "2026-10-03T12:00:00+08:00",
-                    "ElementValue": {
-                      "WindDirection": "東北風"
-                    }
-                  },
-                  {
-                    "DataTime": "2026-10-03T15:00:00+08:00",
-                    "ElementValue": {
-                      "WindDirection": "東北風"
-                    }
-                  },
                   {
                     "DataTime": "2026-10-03T18:00:00+08:00",
                     "ElementValue": {
@@ -517,24 +505,24 @@
                     "ElementValue": {
                       "WindDirection": "偏北風"
                     }
+                  },
+                  {
+                    "DataTime": "2026-10-07T15:00:00+08:00",
+                    "ElementValue": {
+                      "WindDirection": "東北風"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-07T18:00:00+08:00",
+                    "ElementValue": {
+                      "WindDirection": "偏北風"
+                    }
                   }
                 ]
               },
               {
                 "ElementName": "雲量",
                 "Time": [
-                  {
-                    "DataTime": "2026-10-03T12:00:00+08:00",
-                    "ElementValue": {
-                      "SkyCover": "26.0"
-                    }
-                  },
-                  {
-                    "DataTime": "2026-10-03T15:00:00+08:00",
-                    "ElementValue": {
-                      "SkyCover": "24.0"
-                    }
-                  },
                   {
                     "DataTime": "2026-10-03T18:00:00+08:00",
                     "ElementValue": {
@@ -720,26 +708,24 @@
                     "ElementValue": {
                       "SkyCover": "75.0"
                     }
+                  },
+                  {
+                    "DataTime": "2026-10-07T15:00:00+08:00",
+                    "ElementValue": {
+                      "SkyCover": "100.0"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-07T18:00:00+08:00",
+                    "ElementValue": {
+                      "SkyCover": "100.0"
+                    }
                   }
                 ]
               },
               {
                 "ElementName": "天氣現象",
                 "Time": [
-                  {
-                    "DataTime": "2026-10-03T12:00:00+08:00",
-                    "ElementValue": {
-                      "Weather": "晴天",
-                      "WeatherCode": "01"
-                    }
-                  },
-                  {
-                    "DataTime": "2026-10-03T15:00:00+08:00",
-                    "ElementValue": {
-                      "Weather": "短暫陣雨",
-                      "WeatherCode": "08"
-                    }
-                  },
                   {
                     "DataTime": "2026-10-03T18:00:00+08:00",
                     "ElementValue": {
@@ -806,8 +792,8 @@
                   {
                     "DataTime": "2026-10-04T21:00:00+08:00",
                     "ElementValue": {
-                      "Weather": "短暫陣雨",
-                      "WeatherCode": "08"
+                      "Weather": "多雲",
+                      "WeatherCode": "04"
                     }
                   },
                   {
@@ -820,15 +806,15 @@
                   {
                     "DataTime": "2026-10-05T03:00:00+08:00",
                     "ElementValue": {
-                      "Weather": "多雲",
-                      "WeatherCode": "04"
+                      "Weather": "短暫陣雨",
+                      "WeatherCode": "08"
                     }
                   },
                   {
                     "DataTime": "2026-10-05T06:00:00+08:00",
                     "ElementValue": {
-                      "Weather": "晴天",
-                      "WeatherCode": "01"
+                      "Weather": "短暫陣雨",
+                      "WeatherCode": "08"
                     }
                   },
                   {
@@ -848,8 +834,8 @@
                   {
                     "DataTime": "2026-10-05T15:00:00+08:00",
                     "ElementValue": {
-                      "Weather": "短暫陣雨",
-                      "WeatherCode": "08"
+                      "Weather": "晴天",
+                      "WeatherCode": "01"
                     }
                   },
                   {
@@ -883,15 +869,15 @@
                   {
                     "DataTime": "2026-10-06T06:00:00+08:00",
                     "ElementValue": {
-                      "Weather": "多雲",
-                      "WeatherCode": "04"
+                      "Weather": "短暫陣雨",
+                      "WeatherCode": "08"
                     }
                   },
                   {
                     "DataTime": "2026-10-06T09:00:00+08:00",
                     "ElementValue": {
-                      "Weather": "短暫陣雨",
-                      "WeatherCode": "08"
+                      "Weather": "多雲",
+                      "WeatherCode": "04"
                     }
                   },
                   {
@@ -925,15 +911,15 @@
                   {
                     "DataTime": "2026-10-07T00:00:00+08:00",
                     "ElementValue": {
-                      "Weather": "陰天",
-                      "WeatherCode": "07"
+                      "Weather": "短暫陣雨",
+                      "WeatherCode": "08"
                     }
                   },
                   {
                     "DataTime": "2026-10-07T03:00:00+08:00",
                     "ElementValue": {
-                      "Weather": "陰天",
-                      "WeatherCode": "07"
+                      "Weather": "短暫陣雨",
+                      "WeatherCode": "08"
                     }
                   },
                   {
@@ -955,6 +941,20 @@
                     "ElementValue": {
                       "Weather": "多雲",
                       "WeatherCode": "04"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-07T15:00:00+08:00",
+                    "ElementValue": {
+                      "Weather": "陰天",
+                      "WeatherCode": "07"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-07T18:00:00+08:00",
+                    "ElementValue": {
+                      "Weather": "陰天",
+                      "WeatherCode": "07"
                     }
                   }
                 ]
@@ -963,27 +963,15 @@
                 "ElementName": "浪高",
                 "Time": [
                   {
-                    "DataTime": "2026-10-03T12:00:00+08:00",
-                    "ElementValue": {
-                      "WaveHeight": "1.2"
-                    }
-                  },
-                  {
-                    "DataTime": "2026-10-03T15:00:00+08:00",
+                    "DataTime": "2026-10-03T18:00:00+08:00",
                     "ElementValue": {
                       "WaveHeight": "1.0"
                     }
                   },
                   {
-                    "DataTime": "2026-10-03T18:00:00+08:00",
-                    "ElementValue": {
-                      "WaveHeight": "0.9"
-                    }
-                  },
-                  {
                     "DataTime": "2026-10-03T21:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "0.9"
+                      "WaveHeight": "1.0"
                     }
                   },
                   {
@@ -1007,7 +995,7 @@
                   {
                     "DataTime": "2026-10-04T09:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "0.7"
+                      "WaveHeight": "0.8"
                     }
                   },
                   {
@@ -1031,19 +1019,19 @@
                   {
                     "DataTime": "2026-10-04T21:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "0.7"
+                      "WaveHeight": "0.6"
                     }
                   },
                   {
                     "DataTime": "2026-10-05T00:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "0.7"
+                      "WaveHeight": "0.6"
                     }
                   },
                   {
                     "DataTime": "2026-10-05T03:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "0.7"
+                      "WaveHeight": "0.6"
                     }
                   },
                   {
@@ -1061,101 +1049,113 @@
                   {
                     "DataTime": "2026-10-05T12:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "0.8"
+                      "WaveHeight": "0.9"
                     }
                   },
                   {
                     "DataTime": "2026-10-05T15:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "1.0"
+                      "WaveHeight": "1.1"
                     }
                   },
                   {
                     "DataTime": "2026-10-05T18:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "1.1"
+                      "WaveHeight": "1.3"
                     }
                   },
                   {
                     "DataTime": "2026-10-05T21:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "1.2"
+                      "WaveHeight": "1.5"
                     }
                   },
                   {
                     "DataTime": "2026-10-06T00:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "1.4"
+                      "WaveHeight": "1.8"
                     }
                   },
                   {
                     "DataTime": "2026-10-06T03:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "1.9"
+                      "WaveHeight": "2.0"
                     }
                   },
                   {
                     "DataTime": "2026-10-06T06:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "2.3"
+                      "WaveHeight": "2.2"
                     }
                   },
                   {
                     "DataTime": "2026-10-06T09:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "2.4"
+                      "WaveHeight": "2.3"
                     }
                   },
                   {
                     "DataTime": "2026-10-06T12:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "2.5"
+                      "WaveHeight": "2.3"
                     }
                   },
                   {
                     "DataTime": "2026-10-06T15:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "2.5"
+                      "WaveHeight": "2.3"
                     }
                   },
                   {
                     "DataTime": "2026-10-06T18:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "2.4"
+                      "WaveHeight": "2.2"
                     }
                   },
                   {
                     "DataTime": "2026-10-06T21:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "2.4"
+                      "WaveHeight": "2.1"
                     }
                   },
                   {
                     "DataTime": "2026-10-07T00:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "2.3"
+                      "WaveHeight": "2.0"
                     }
                   },
                   {
                     "DataTime": "2026-10-07T03:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "2.2"
+                      "WaveHeight": "2.0"
                     }
                   },
                   {
                     "DataTime": "2026-10-07T06:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "2.1"
+                      "WaveHeight": "1.9"
                     }
                   },
                   {
                     "DataTime": "2026-10-07T09:00:00+08:00",
                     "ElementValue": {
-                      "WaveHeight": "2.2"
+                      "WaveHeight": "2.0"
                     }
                   },
                   {
                     "DataTime": "2026-10-07T12:00:00+08:00",
+                    "ElementValue": {
+                      "WaveHeight": "2.1"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-07T15:00:00+08:00",
+                    "ElementValue": {
+                      "WaveHeight": "2.3"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-07T18:00:00+08:00",
                     "ElementValue": {
                       "WaveHeight": "2.3"
                     }
@@ -1166,18 +1166,6 @@
                 "ElementName": "浪向",
                 "Time": [
                   {
-                    "DataTime": "2026-10-03T12:00:00+08:00",
-                    "ElementValue": {
-                      "WaveDirection": "東北"
-                    }
-                  },
-                  {
-                    "DataTime": "2026-10-03T15:00:00+08:00",
-                    "ElementValue": {
-                      "WaveDirection": "東北"
-                    }
-                  },
-                  {
                     "DataTime": "2026-10-03T18:00:00+08:00",
                     "ElementValue": {
                       "WaveDirection": "東北"
@@ -1264,7 +1252,7 @@
                   {
                     "DataTime": "2026-10-05T12:00:00+08:00",
                     "ElementValue": {
-                      "WaveDirection": "偏東"
+                      "WaveDirection": "東北"
                     }
                   },
                   {
@@ -1354,13 +1342,25 @@
                   {
                     "DataTime": "2026-10-07T09:00:00+08:00",
                     "ElementValue": {
-                      "WaveDirection": "東北"
+                      "WaveDirection": "偏東"
                     }
                   },
                   {
                     "DataTime": "2026-10-07T12:00:00+08:00",
                     "ElementValue": {
-                      "WaveDirection": "東北"
+                      "WaveDirection": "偏東"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-07T15:00:00+08:00",
+                    "ElementValue": {
+                      "WaveDirection": "偏東"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-07T18:00:00+08:00",
+                    "ElementValue": {
+                      "WaveDirection": "偏東"
                     }
                   }
                 ]
@@ -1369,63 +1369,51 @@
                 "ElementName": "浪週期",
                 "Time": [
                   {
-                    "DataTime": "2026-10-03T12:00:00+08:00",
-                    "ElementValue": {
-                      "WavePeriod": "4.9"
-                    }
-                  },
-                  {
-                    "DataTime": "2026-10-03T15:00:00+08:00",
-                    "ElementValue": {
-                      "WavePeriod": "5.1"
-                    }
-                  },
-                  {
                     "DataTime": "2026-10-03T18:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "5.4"
+                      "WavePeriod": "5.2"
                     }
                   },
                   {
                     "DataTime": "2026-10-03T21:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "5.7"
+                      "WavePeriod": "5.3"
                     }
                   },
                   {
                     "DataTime": "2026-10-04T00:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "5.8"
+                      "WavePeriod": "5.4"
                     }
                   },
                   {
                     "DataTime": "2026-10-04T03:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "5.6"
+                      "WavePeriod": "5.4"
                     }
                   },
                   {
                     "DataTime": "2026-10-04T06:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "5.6"
+                      "WavePeriod": "5.5"
                     }
                   },
                   {
                     "DataTime": "2026-10-04T09:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "5.7"
+                      "WavePeriod": "5.5"
                     }
                   },
                   {
                     "DataTime": "2026-10-04T12:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "5.8"
+                      "WavePeriod": "5.6"
                     }
                   },
                   {
                     "DataTime": "2026-10-04T15:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "5.9"
+                      "WavePeriod": "5.8"
                     }
                   },
                   {
@@ -1437,55 +1425,55 @@
                   {
                     "DataTime": "2026-10-04T21:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "5.9"
+                      "WavePeriod": "6.1"
                     }
                   },
                   {
                     "DataTime": "2026-10-05T00:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "6.0"
+                      "WavePeriod": "6.3"
                     }
                   },
                   {
                     "DataTime": "2026-10-05T03:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "6.1"
+                      "WavePeriod": "6.5"
                     }
                   },
                   {
                     "DataTime": "2026-10-05T06:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "6.4"
+                      "WavePeriod": "6.6"
                     }
                   },
                   {
                     "DataTime": "2026-10-05T09:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "6.8"
+                      "WavePeriod": "6.9"
                     }
                   },
                   {
                     "DataTime": "2026-10-05T12:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "6.8"
+                      "WavePeriod": "6.2"
                     }
                   },
                   {
                     "DataTime": "2026-10-05T15:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "6.3"
+                      "WavePeriod": "5.9"
                     }
                   },
                   {
                     "DataTime": "2026-10-05T18:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "6.6"
+                      "WavePeriod": "5.9"
                     }
                   },
                   {
                     "DataTime": "2026-10-05T21:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "6.7"
+                      "WavePeriod": "6.3"
                     }
                   },
                   {
@@ -1497,19 +1485,19 @@
                   {
                     "DataTime": "2026-10-06T03:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "6.3"
+                      "WavePeriod": "6.7"
                     }
                   },
                   {
                     "DataTime": "2026-10-06T06:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "6.5"
+                      "WavePeriod": "6.7"
                     }
                   },
                   {
                     "DataTime": "2026-10-06T09:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "6.6"
+                      "WavePeriod": "6.8"
                     }
                   },
                   {
@@ -1521,7 +1509,7 @@
                   {
                     "DataTime": "2026-10-06T15:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "6.9"
+                      "WavePeriod": "6.8"
                     }
                   },
                   {
@@ -1533,7 +1521,7 @@
                   {
                     "DataTime": "2026-10-06T21:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "7.3"
+                      "WavePeriod": "7.4"
                     }
                   },
                   {
@@ -1545,25 +1533,37 @@
                   {
                     "DataTime": "2026-10-07T03:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "8.2"
+                      "WavePeriod": "8.1"
                     }
                   },
                   {
                     "DataTime": "2026-10-07T06:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "8.6"
+                      "WavePeriod": "8.7"
                     }
                   },
                   {
                     "DataTime": "2026-10-07T09:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "9.0"
+                      "WavePeriod": "9.3"
                     }
                   },
                   {
                     "DataTime": "2026-10-07T12:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "9.3"
+                      "WavePeriod": "9.7"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-07T15:00:00+08:00",
+                    "ElementValue": {
+                      "WavePeriod": "9.7"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-07T18:00:00+08:00",
+                    "ElementValue": {
+                      "WavePeriod": "10.1"
                     }
                   }
                 ]
@@ -1571,22 +1571,6 @@
               {
                 "ElementName": "流速",
                 "Time": [
-                  {
-                    "DataTime": "2026-10-03T12:00:00+08:00",
-                    "ElementValue": {
-                      "OceanCurrentSpeedKts": "1",
-                      "OceanCurrentSpeed": "0.3",
-                      "OceanCurrentSpeedKph": "0.9"
-                    }
-                  },
-                  {
-                    "DataTime": "2026-10-03T15:00:00+08:00",
-                    "ElementValue": {
-                      "OceanCurrentSpeedKts": "1",
-                      "OceanCurrentSpeed": "0.3",
-                      "OceanCurrentSpeedKph": "1.0"
-                    }
-                  },
                   {
                     "DataTime": "2026-10-03T18:00:00+08:00",
                     "ElementValue": {
@@ -1834,24 +1818,28 @@
                       "OceanCurrentSpeed": "-",
                       "OceanCurrentSpeedKph": "-"
                     }
+                  },
+                  {
+                    "DataTime": "2026-10-07T15:00:00+08:00",
+                    "ElementValue": {
+                      "OceanCurrentSpeedKts": "-",
+                      "OceanCurrentSpeed": "-",
+                      "OceanCurrentSpeedKph": "-"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-07T18:00:00+08:00",
+                    "ElementValue": {
+                      "OceanCurrentSpeedKts": "-",
+                      "OceanCurrentSpeed": "-",
+                      "OceanCurrentSpeedKph": "-"
+                    }
                   }
                 ]
               },
               {
                 "ElementName": "流向",
                 "Time": [
-                  {
-                    "DataTime": "2026-10-03T12:00:00+08:00",
-                    "ElementValue": {
-                      "OceanCurrentDirection": "西南"
-                    }
-                  },
-                  {
-                    "DataTime": "2026-10-03T15:00:00+08:00",
-                    "ElementValue": {
-                      "OceanCurrentDirection": "西南"
-                    }
-                  },
                   {
                     "DataTime": "2026-10-03T18:00:00+08:00",
                     "ElementValue": {
@@ -2034,6 +2022,18 @@
                   },
                   {
                     "DataTime": "2026-10-07T12:00:00+08:00",
+                    "ElementValue": {
+                      "OceanCurrentDirection": "-"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-07T15:00:00+08:00",
+                    "ElementValue": {
+                      "OceanCurrentDirection": "-"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-07T18:00:00+08:00",
                     "ElementValue": {
                       "OceanCurrentDirection": "-"
                     }
