@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-10-03T04:23:19.968Z",
+  "updatedAt": "2026-10-03T05:25:38.444Z",
   "sources": [
     {
       "name": "F-D0047-039 township forecast",
-      "ok": false,
-      "error": "F-D0047-039 -> fetch failed (https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/F-D0047-039)"
+      "ok": true,
+      "count": 1
     },
     {
       "name": "F-D0047-095 coastal 3-day forecast (東河鄉)",
-      "ok": false,
-      "error": "F-D0047-095 -> fetch failed (https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/F-D0047-095)"
+      "ok": true,
+      "count": 1
     },
     {
       "name": "F-D0047-095 coastal 3-day forecast (成功鎮, logged only)",
-      "ok": false,
-      "error": "F-D0047-095 -> fetch failed (https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/F-D0047-095)"
+      "ok": true,
+      "count": 1
     },
     {
       "name": "F-A0021-001 tide forecast",
-      "ok": false,
-      "error": "F-A0021-001 -> fetch failed (https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/F-A0021-001)"
+      "ok": true,
+      "count": 1
     },
     {
       "name": "O-A0001-001 station observations",
-      "ok": false,
-      "error": "O-A0001-001 -> fetch failed (https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/O-A0001-001)"
+      "ok": true,
+      "count": 3
     },
     {
       "name": "O-B0075-001 buoy / sea state",
-      "ok": false,
-      "count": 0
+      "ok": true,
+      "count": 4
     },
     {
       "name": "O-B0076-001 buoy + tide gauge positions",
-      "ok": false,
-      "error": "O-B0076-001 -> fetch failed (https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/O-B0076-001)"
+      "ok": true,
+      "count": 5
     },
     {
       "name": "Open-Meteo marine (Météo-France MFWAM)",
@@ -69,32 +69,32 @@
     {
       "name": "stations-history rolling log",
       "ok": true,
-      "count": 48
+      "count": 45
     },
     {
       "name": "history/forecast log",
       "ok": true,
-      "count": 20
+      "count": 35
     },
     {
       "name": "history/buoy log",
       "ok": true,
-      "count": 0
+      "count": 4
     },
     {
       "name": "history/station log",
       "ok": true,
-      "count": 0
+      "count": 3
     },
     {
       "name": "history/tide log",
       "ok": true,
-      "count": 0
+      "count": 2
     },
     {
       "name": "update log",
       "ok": true,
-      "count": 3
+      "count": 5
     }
   ]
 }
