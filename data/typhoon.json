@@ -1,159 +1,147 @@
 {
-  "fetchedAt": "2026-10-04T05:12:46.407Z",
+  "fetchedAt": "2026-10-04T11:34:43.395Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "26W",
       "name": "Choi-wan",
       "headline": "Typhoon 26W (Choi-wan)",
-      "warningNumber": "017",
-      "issuedZ": "04/0300Z",
-      "issuedAt": "2026-10-04T03:00:00.000Z",
+      "warningNumber": "018",
+      "issuedZ": "04/0900Z",
+      "issuedAt": "2026-10-04T09:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2626.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2626web.txt",
       "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610031800-96_CHOI-WAN_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "041200Z",
-          "lat": 23.7,
-          "lon": 147.1,
-          "maxWindKt": 120,
-          "gustKt": 145
+          "validZ": "041800Z",
+          "lat": 24.5,
+          "lon": 146.8,
+          "maxWindKt": 130,
+          "gustKt": 160
         },
         {
           "tau": 24,
-          "validZ": "050000Z",
-          "lat": 25.5,
-          "lon": 146.7,
+          "validZ": "050600Z",
+          "lat": 26.3,
+          "lon": 146.2,
           "maxWindKt": 120,
           "gustKt": 145
         },
         {
           "tau": 36,
-          "validZ": "051200Z",
-          "lat": 27.4,
-          "lon": 146.1,
-          "maxWindKt": 115,
-          "gustKt": 140
+          "validZ": "051800Z",
+          "lat": 28.6,
+          "lon": 145.9,
+          "maxWindKt": 110,
+          "gustKt": 135
         },
         {
           "tau": 48,
-          "validZ": "060000Z",
-          "lat": 30.2,
-          "lon": 146.2,
-          "maxWindKt": 105,
-          "gustKt": 130
+          "validZ": "060600Z",
+          "lat": 31.9,
+          "lon": 146.8,
+          "maxWindKt": 100,
+          "gustKt": 125
         },
         {
           "tau": 60,
-          "validZ": "061200Z",
-          "lat": 34.2,
-          "lon": 148.2,
-          "maxWindKt": 95,
-          "gustKt": 115
+          "validZ": "061800Z",
+          "lat": 36.9,
+          "lon": 150.4,
+          "maxWindKt": 90,
+          "gustKt": 110
         },
         {
           "tau": 72,
-          "validZ": "070000Z",
-          "lat": 39.8,
-          "lon": 153.3,
-          "maxWindKt": 80,
-          "gustKt": 100
-        },
-        {
-          "tau": 96,
-          "validZ": "080000Z",
-          "lat": 53.3,
-          "lon": 169.4,
-          "maxWindKt": 60,
-          "gustKt": 75
+          "validZ": "070600Z",
+          "lat": 43.1,
+          "lon": 157.1,
+          "maxWindKt": 75,
+          "gustKt": 90
         }
       ],
-      "positionZ": "040000Z",
-      "lat": 22.1,
-      "lon": 147.1,
-      "movingToward": 15,
-      "movingKt": 14,
-      "maxWindKt": 110,
-      "gustKt": 135,
-      "pressureMb": 942,
-      "seasFt": 38,
-      "nextWarnings": [
-        "040900Z",
-        "041500Z",
-        "042100Z",
-        "050300Z"
-      ],
-      "geoReference": "358 NM EAST-SOUTHEAST OF IWO TO",
+      "positionZ": "040600Z",
+      "lat": 22.9,
+      "lon": 147,
+      "movingToward": 355,
+      "movingKt": 8,
+      "maxWindKt": 125,
+      "gustKt": 150,
+      "pressureMb": 924,
+      "seasFt": 42,
+      "geoReference": "333 NM EAST-SOUTHEAST OF IWO TO",
       "reasoning": {
-        "warningNumber": "017",
+        "warningNumber": "018",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 38,
+        "seasFt": 42,
         "environment": "HIGHLY FAVORABLE",
         "vws": "5-10 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "STRONG DUAL-CHANNEL",
-        "steering": "NORTHERN FLANK OF A NEAR EQUATORIAL RIDGE (NER) TO THE SOUTH AND THE SOUTHWESTERN EXTENSION OF A SUBTROPICAL RIDGE (STR) POSITIONED TO THE NORTHEAST",
+        "steering": "THE WESTERN PERIPHERY OS A SUBTROPICAL RIDGE (STR) POSITIONED TO THE EAST",
         "confidence": {
           "track0072": "HIGH",
-          "track72120": "MEDIUM",
+          "track72120": null,
           "intensity0072": "MEDIUM",
-          "intensity72120": "MEDIUM"
+          "intensity72120": null
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2626prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 1429,
-        "bearingDeg": 87,
+        "distanceNm": 1418,
+        "bearingDeg": 85,
         "closestApproach": {
-          "distanceNm": 1370,
+          "distanceNm": 1369,
           "tau": 36,
-          "validZ": "051200Z",
-          "maxWindKt": 115
+          "validZ": "051800Z",
+          "maxWindKt": 110
         }
       },
       "motion": {
-        "currentHeadingDeg": 15,
+        "currentHeadingDeg": 355,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 0
+            "heading": 354
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 349
+            "heading": 343
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 344
+            "heading": 353
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 2
+            "heading": 13
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 22
+            "heading": 30
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 35
-          },
-          {
-            "fromTau": 72,
-            "toTau": 96,
-            "heading": 34
+            "heading": 38
           }
         ],
-        "turns": []
+        "turns": [
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 30,
+            "deltaDeg": 35
+          }
+        ]
       },
       "swell": {
         "windowEnd": "2026-10-08T15:00:00.000Z",
@@ -164,8 +152,8 @@
           "periodS": 6.5,
           "dirDeg": 81
         },
-        "hoursAhead": 33,
-        "bearingOffsetDeg": 2,
+        "hoursAhead": 26,
+        "bearingOffsetDeg": 0,
         "peak": {
           "targetTime": "2026-10-06T18:00:00.000Z",
           "heightM": 2.14,
@@ -174,75 +162,72 @@
         }
       },
       "summary": {
-        "text": "Animated enhanced infrared (EIR) satellite imagery depicts typhoon 26W (choi-wan) with a compact inner-core and an intermittent eye that has been cycling over the past 6 hours. TY 26W is forecast to track generally northward through +60h as it traverses the western periphery of the STR to the northeast. Extratropical transition is expected to be complete no later than +96h, once the system becomes embedded underneath the jet south of the kamchatka peninsula.",
-        "warningNumber": "015",
-        "generatedAt": "2026-10-03T18:32:49.344Z"
+        "text": "TY 26W is forecast to track generally northward along the western periphery of the STR to the east through +48h. Extratropical transition (ETT) is forecast to begin at +60h and complete near +72h, once 26W becomes embedded underneath the jet south of the kamchatka peninsula.",
+        "warningNumber": "018",
+        "generatedAt": "2026-10-04T11:34:43.395Z"
       },
       "changes": {
-        "previousWarningNumber": "015",
-        "previousIssuedAt": "2026-10-03T15:00:00.000Z",
-        "maxWindKtDelta": 20,
-        "closestApproachNmDelta": 9,
-        "trackShifts": [
-          {
-            "validZ": "041200Z",
-            "tau": 12,
-            "shiftNm": 20,
-            "shiftToward": 54,
-            "maxWindKtDelta": 10
-          },
-          {
-            "validZ": "050000Z",
-            "tau": 24,
-            "shiftNm": 17,
-            "shiftToward": 70,
-            "maxWindKtDelta": 15
-          },
-          {
-            "validZ": "051200Z",
-            "tau": 36,
-            "shiftNm": 21,
-            "shiftToward": 149,
-            "maxWindKtDelta": 15
-          },
-          {
-            "validZ": "060000Z",
-            "tau": 48,
-            "shiftNm": 12,
-            "shiftToward": 180,
-            "maxWindKtDelta": 10
-          },
-          {
-            "validZ": "061200Z",
-            "tau": 60,
-            "shiftNm": 36,
-            "shiftToward": 214,
-            "maxWindKtDelta": 10
-          }
-        ],
-        "maxTrackShiftNm": 36
+        "previousWarningNumber": "017",
+        "previousIssuedAt": "2026-10-04T03:00:00.000Z",
+        "maxWindKtDelta": 15,
+        "pressureMbDelta": -18,
+        "seasFtDelta": 4,
+        "closestApproachNmDelta": -1
       }
     }
   ],
-  "alerts": [],
+  "alerts": [
+    {
+      "alertId": "WTPN21",
+      "issuedZ": "04/0900Z",
+      "issuedAt": "2026-10-04T09:00:00.000Z",
+      "textUrl": "https://www.metoc.navy.mil/jtwc/products/wp9426web.txt",
+      "graphic": "https://www.metoc.navy.mil/jtwc/products/wp9426.gif",
+      "satellite": "https://www.metoc.navy.mil/jtwc/products/94W_040900sair.jpg",
+      "investId": "94W",
+      "corridorNm": 120,
+      "lineFrom": {
+        "lat": 9.3,
+        "lon": 167.3
+      },
+      "lineTo": {
+        "lat": 12.1,
+        "lon": 166.7
+      },
+      "windowLowH": 12,
+      "windowHighH": 24,
+      "lat": 9.3,
+      "lon": 167.1,
+      "distanceNm": 2752,
+      "bearingDeg": 100,
+      "movingText": "NORTHWESTWARD",
+      "movingKt": 4,
+      "areaWindKtLow": 18,
+      "areaWindKtHigh": 23,
+      "maxWindKtLow": 18,
+      "maxWindKtHigh": 23,
+      "pressureMb": 1004,
+      "decisionByZ": "050900Z"
+    }
+  ],
   "invests": [
     {
       "id": "94W",
       "potential": null,
-      "geoReference": "47 NM SOUTHWEST OF KWAJALEIN",
+      "geoReference": "51 NM NORTHWEST OF KWAJALEIN",
       "windKtLow": 18,
       "windKtHigh": 23,
-      "pressureMb": 1008,
-      "lat": 8.3,
-      "lon": 167.4,
-      "distanceNm": 2792,
-      "bearingDeg": 101
+      "pressureMb": 1004,
+      "lat": 9.3,
+      "lon": 167.1,
+      "distanceNm": 2752,
+      "bearingDeg": 100
     }
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "03/1300Z",
-    "issuedAt": "2026-10-03T13:00:00.000Z",
+    "issuedZ": "04/0900Z",
+    "issuedAt": "2026-10-04T09:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
     "reissued": true
   }

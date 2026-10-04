@@ -2540,6 +2540,193 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "26W",
+      "name": "Choi-wan",
+      "designation": "Typhoon",
+      "warningNumber": "018",
+      "issuedAt": "2026-10-04T09:00:00.000Z",
+      "positionZ": "040600Z",
+      "lat": 22.9,
+      "lon": 147,
+      "maxWindKt": 125,
+      "gustKt": 150,
+      "pressureMb": 924,
+      "seasFt": 42,
+      "movingToward": 355,
+      "movingKt": 8,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "041800Z",
+          "lat": 24.5,
+          "lon": 146.8,
+          "maxWindKt": 130,
+          "gustKt": 160
+        },
+        {
+          "tau": 24,
+          "validZ": "050600Z",
+          "lat": 26.3,
+          "lon": 146.2,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 36,
+          "validZ": "051800Z",
+          "lat": 28.6,
+          "lon": 145.9,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 48,
+          "validZ": "060600Z",
+          "lat": 31.9,
+          "lon": 146.8,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 60,
+          "validZ": "061800Z",
+          "lat": 36.9,
+          "lon": 150.4,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 72,
+          "validZ": "070600Z",
+          "lat": 43.1,
+          "lon": 157.1,
+          "maxWindKt": 75,
+          "gustKt": 90
+        }
+      ],
+      "spot": {
+        "distanceNm": 1418,
+        "bearingDeg": 85,
+        "closestApproach": {
+          "distanceNm": 1369,
+          "tau": 36,
+          "validZ": "051800Z",
+          "maxWindKt": 110
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 355,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 354
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 343
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 353
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 13
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 30
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 38
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 30,
+            "deltaDeg": 35
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-08T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-05T14:00:00.000Z",
+          "heightM": 1.1,
+          "periodS": 6.5,
+          "dirDeg": 81
+        },
+        "hoursAhead": 26,
+        "bearingOffsetDeg": 0,
+        "peak": {
+          "targetTime": "2026-10-06T18:00:00.000Z",
+          "heightM": 2.14,
+          "periodS": 7.5,
+          "dirDeg": 74
+        }
+      },
+      "summary": {
+        "text": "TY 26W is forecast to track generally northward along the western periphery of the STR to the east through +48h. Extratropical transition (ETT) is forecast to begin at +60h and complete near +72h, once 26W becomes embedded underneath the jet south of the kamchatka peninsula.",
+        "warningNumber": "018",
+        "generatedAt": "2026-10-04T11:34:43.395Z"
+      },
+      "reasoningWarningNumber": "018",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "MEDIUM",
+        "intensity72120": null
+      }
+    },
+    {
+      "kind": "tcfa",
+      "id": "94W",
+      "alertId": "WTPN21",
+      "issuedAt": "2026-10-04T09:00:00.000Z",
+      "lat": 9.3,
+      "lon": 167.1,
+      "maxWindKtLow": 18,
+      "maxWindKtHigh": 23,
+      "pressureMb": 1004,
+      "movingText": "NORTHWESTWARD",
+      "movingKt": 4,
+      "windowLowH": 12,
+      "windowHighH": 24,
+      "decisionByZ": "050900Z",
+      "spot": {
+        "distanceNm": 2752,
+        "bearingDeg": 100
+      }
+    },
+    {
+      "kind": "invest",
+      "id": "94W",
+      "issuedAt": "2026-10-04T09:00:00.000Z",
+      "lat": 9.3,
+      "lon": 167.1,
+      "potential": null,
+      "geoReference": "51 NM NORTHWEST OF KWAJALEIN",
+      "windKtLow": 18,
+      "windKtHigh": 23,
+      "pressureMb": 1004,
+      "spot": {
+        "distanceNm": 2752,
+        "bearingDeg": 100
+      }
     }
   ]
 }
