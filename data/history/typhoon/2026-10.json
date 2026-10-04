@@ -2383,6 +2383,163 @@
         "intensity0072": "LOW",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "26W",
+      "name": "Choi-wan",
+      "designation": "Typhoon",
+      "warningNumber": "017",
+      "issuedAt": "2026-10-04T03:00:00.000Z",
+      "positionZ": "040000Z",
+      "lat": 22.1,
+      "lon": 147.1,
+      "maxWindKt": 110,
+      "gustKt": 135,
+      "pressureMb": 942,
+      "seasFt": 38,
+      "movingToward": 15,
+      "movingKt": 14,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "041200Z",
+          "lat": 23.7,
+          "lon": 147.1,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 24,
+          "validZ": "050000Z",
+          "lat": 25.5,
+          "lon": 146.7,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 36,
+          "validZ": "051200Z",
+          "lat": 27.4,
+          "lon": 146.1,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 48,
+          "validZ": "060000Z",
+          "lat": 30.2,
+          "lon": 146.2,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 60,
+          "validZ": "061200Z",
+          "lat": 34.2,
+          "lon": 148.2,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 72,
+          "validZ": "070000Z",
+          "lat": 39.8,
+          "lon": 153.3,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 96,
+          "validZ": "080000Z",
+          "lat": 53.3,
+          "lon": 169.4,
+          "maxWindKt": 60,
+          "gustKt": 75
+        }
+      ],
+      "spot": {
+        "distanceNm": 1429,
+        "bearingDeg": 87,
+        "closestApproach": {
+          "distanceNm": 1370,
+          "tau": 36,
+          "validZ": "051200Z",
+          "maxWindKt": 115
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 15,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 0
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 349
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 344
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 2
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 22
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 35
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 34
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-08T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-05T14:00:00.000Z",
+          "heightM": 1.1,
+          "periodS": 6.5,
+          "dirDeg": 81
+        },
+        "hoursAhead": 35,
+        "bearingOffsetDeg": 2,
+        "peak": {
+          "targetTime": "2026-10-06T18:00:00.000Z",
+          "heightM": 2.14,
+          "periodS": 7.5,
+          "dirDeg": 74
+        }
+      },
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts typhoon 26W (choi-wan) with a compact inner-core and an intermittent eye that has been cycling over the past 6 hours. TY 26W is forecast to track generally northward through +60h as it traverses the western periphery of the STR to the northeast. Extratropical transition is expected to be complete no later than +96h, once the system becomes embedded underneath the jet south of the kamchatka peninsula.",
+        "warningNumber": "015",
+        "generatedAt": "2026-10-03T18:32:49.344Z"
+      },
+      "reasoningWarningNumber": "016",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }

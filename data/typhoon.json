@@ -1,115 +1,117 @@
 {
-  "fetchedAt": "2026-10-03T18:32:49.344Z",
+  "fetchedAt": "2026-10-04T02:33:17.928Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "26W",
       "name": "Choi-wan",
       "headline": "Typhoon 26W (Choi-wan)",
-      "warningNumber": "015",
-      "issuedZ": "03/1500Z",
-      "issuedAt": "2026-10-03T15:00:00.000Z",
+      "warningNumber": "017",
+      "issuedZ": "04/0300Z",
+      "issuedAt": "2026-10-04T03:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2626.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2626web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610031200-96_CHOI-WAN_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610031800-96_CHOI-WAN_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "040000Z",
-          "lat": 21.9,
-          "lon": 146.7,
-          "maxWindKt": 100,
-          "gustKt": 125
+          "validZ": "041200Z",
+          "lat": 23.7,
+          "lon": 147.1,
+          "maxWindKt": 120,
+          "gustKt": 145
         },
         {
           "tau": 24,
-          "validZ": "041200Z",
-          "lat": 23.5,
-          "lon": 146.8,
-          "maxWindKt": 110,
-          "gustKt": 135
+          "validZ": "050000Z",
+          "lat": 25.5,
+          "lon": 146.7,
+          "maxWindKt": 120,
+          "gustKt": 145
         },
         {
           "tau": 36,
-          "validZ": "050000Z",
-          "lat": 25.4,
-          "lon": 146.4,
+          "validZ": "051200Z",
+          "lat": 27.4,
+          "lon": 146.1,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 48,
+          "validZ": "060000Z",
+          "lat": 30.2,
+          "lon": 146.2,
           "maxWindKt": 105,
           "gustKt": 130
         },
         {
-          "tau": 48,
-          "validZ": "051200Z",
-          "lat": 27.7,
-          "lon": 145.9,
-          "maxWindKt": 100,
-          "gustKt": 125
-        },
-        {
           "tau": 60,
-          "validZ": "060000Z",
-          "lat": 30.4,
-          "lon": 146.2,
+          "validZ": "061200Z",
+          "lat": 34.2,
+          "lon": 148.2,
           "maxWindKt": 95,
           "gustKt": 115
         },
         {
           "tau": 72,
-          "validZ": "061200Z",
-          "lat": 34.7,
-          "lon": 148.6,
-          "maxWindKt": 85,
-          "gustKt": 105
+          "validZ": "070000Z",
+          "lat": 39.8,
+          "lon": 153.3,
+          "maxWindKt": 80,
+          "gustKt": 100
         },
         {
           "tau": 96,
-          "validZ": "071200Z",
-          "lat": 47,
-          "lon": 160.7,
+          "validZ": "080000Z",
+          "lat": 53.3,
+          "lon": 169.4,
           "maxWindKt": 60,
           "gustKt": 75
         }
       ],
-      "positionZ": "031200Z",
-      "lat": 20.3,
-      "lon": 146.2,
+      "positionZ": "040000Z",
+      "lat": 22.1,
+      "lon": 147.1,
       "movingToward": 15,
-      "movingKt": 9,
-      "maxWindKt": 90,
-      "gustKt": 110,
+      "movingKt": 14,
+      "maxWindKt": 110,
+      "gustKt": 135,
+      "pressureMb": 942,
+      "seasFt": 38,
       "nextWarnings": [
-        "032100Z",
-        "040300Z",
         "040900Z",
-        "041500Z"
+        "041500Z",
+        "042100Z",
+        "050300Z"
       ],
-      "geoReference": "307 NM NORTH OF SAIPAN",
+      "geoReference": "358 NM EAST-SOUTHEAST OF IWO TO",
       "reasoning": {
-        "warningNumber": "015",
+        "warningNumber": "016",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 36,
-        "environment": "FAVORABLE",
+        "environment": "HIGHLY FAVORABLE",
         "vws": "5-10 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "STRONG DUAL-CHANNEL",
-        "steering": "THE WESTERN EXTENSION OF A SUBTROPICAL RIDGE (STR) POSITIONED TO THE NORTHEAST",
+        "steering": "NORTHERN FLANK OF A NEAR EQUATORIAL RIDGE (NER) TO THE SOUTH AND THE SOUTHWESTERN EXTENSION OF A SUBTROPICAL RIDGE (STR) POSITIONED TO THE NORTHEAST",
         "confidence": {
-          "track0072": "MEDIUM",
-          "track72120": "LOW",
-          "intensity0072": "LOW",
-          "intensity72120": "LOW"
+          "track0072": "HIGH",
+          "track72120": "MEDIUM",
+          "intensity0072": "MEDIUM",
+          "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2626prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 1396,
-        "bearingDeg": 92,
+        "distanceNm": 1429,
+        "bearingDeg": 87,
         "closestApproach": {
-          "distanceNm": 1361,
-          "tau": 48,
+          "distanceNm": 1370,
+          "tau": 36,
           "validZ": "051200Z",
-          "maxWindKt": 100
+          "maxWindKt": 115
         }
       },
       "motion": {
@@ -118,37 +120,37 @@
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 16
+            "heading": 0
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 3
+            "heading": 349
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 349
+            "heading": 344
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 349
+            "heading": 2
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 5
+            "heading": 22
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 25
+            "heading": 35
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 33
+            "heading": 34
           }
         ],
         "turns": []
@@ -157,18 +159,18 @@
         "windowEnd": "2026-10-08T15:00:00.000Z",
         "status": "incoming",
         "arrival": {
-          "targetTime": "2026-10-06T10:00:00.000Z",
-          "heightM": 1.78,
-          "periodS": 8.55,
-          "dirDeg": 74
+          "targetTime": "2026-10-05T14:00:00.000Z",
+          "heightM": 1.1,
+          "periodS": 6.5,
+          "dirDeg": 81
         },
-        "hoursAhead": 63,
-        "bearingOffsetDeg": 1,
+        "hoursAhead": 35,
+        "bearingOffsetDeg": 2,
         "peak": {
-          "targetTime": "2026-10-06T15:00:00.000Z",
-          "heightM": 2.22,
-          "periodS": 7.75,
-          "dirDeg": 71
+          "targetTime": "2026-10-06T18:00:00.000Z",
+          "heightM": 2.14,
+          "periodS": 7.5,
+          "dirDeg": 74
         }
       },
       "summary": {
@@ -177,10 +179,48 @@
         "generatedAt": "2026-10-03T18:32:49.344Z"
       },
       "changes": {
-        "previousWarningNumber": "014",
-        "previousIssuedAt": "2026-10-03T09:00:00.000Z",
-        "maxWindKtDelta": 10,
-        "closestApproachNmDelta": -4
+        "previousWarningNumber": "015",
+        "previousIssuedAt": "2026-10-03T15:00:00.000Z",
+        "maxWindKtDelta": 20,
+        "closestApproachNmDelta": 9,
+        "trackShifts": [
+          {
+            "validZ": "041200Z",
+            "tau": 12,
+            "shiftNm": 20,
+            "shiftToward": 54,
+            "maxWindKtDelta": 10
+          },
+          {
+            "validZ": "050000Z",
+            "tau": 24,
+            "shiftNm": 17,
+            "shiftToward": 70,
+            "maxWindKtDelta": 15
+          },
+          {
+            "validZ": "051200Z",
+            "tau": 36,
+            "shiftNm": 21,
+            "shiftToward": 149,
+            "maxWindKtDelta": 15
+          },
+          {
+            "validZ": "060000Z",
+            "tau": 48,
+            "shiftNm": 12,
+            "shiftToward": 180,
+            "maxWindKtDelta": 10
+          },
+          {
+            "validZ": "061200Z",
+            "tau": 60,
+            "shiftNm": 36,
+            "shiftToward": 214,
+            "maxWindKtDelta": 10
+          }
+        ],
+        "maxTrackShiftNm": 36
       }
     }
   ],
