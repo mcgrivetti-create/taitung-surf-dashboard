@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-05T05:25:52.340Z",
+  "fetchedAt": "2026-10-05T06:30:22.356Z",
   "systems": [
     {
       "designation": "Super Typhoon",
@@ -164,7 +164,7 @@
           "periodS": 8.75,
           "dirDeg": 71
         },
-        "hoursAhead": 26,
+        "hoursAhead": 24,
         "bearingOffsetDeg": 3,
         "peak": {
           "targetTime": "2026-10-06T15:00:00.000Z",
@@ -380,7 +380,7 @@
           "periodS": 8.75,
           "dirDeg": 71
         },
-        "hoursAhead": 26,
+        "hoursAhead": 24,
         "bearingOffsetDeg": 19,
         "peak": {
           "targetTime": "2026-10-06T15:00:00.000Z",
@@ -398,25 +398,12 @@
     }
   ],
   "alerts": [],
-  "invests": [
-    {
-      "id": "94W",
-      "potential": null,
-      "geoReference": null,
-      "windKtLow": null,
-      "windKtHigh": null,
-      "pressureMb": null,
-      "lat": 9.3,
-      "lon": 167.1,
-      "distanceNm": 2752,
-      "bearingDeg": 100
-    }
-  ],
-  "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
+  "invests": [],
+  "investSatellite": null,
   "advisory": {
-    "issuedZ": "05/0300Z",
-    "issuedAt": "2026-10-05T03:00:00.000Z",
+    "issuedZ": "05/0600Z",
+    "issuedAt": "2026-10-05T06:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": true
+    "reissued": false
   }
 }
