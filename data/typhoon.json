@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-05T02:20:22.226Z",
+  "fetchedAt": "2026-10-05T03:22:14.133Z",
   "systems": [
     {
       "designation": "Super Typhoon",
@@ -79,9 +79,9 @@
       ],
       "geoReference": "284 NM EAST OF IWO TO",
       "reasoning": {
-        "warningNumber": "020",
+        "warningNumber": "021",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 47,
+        "seasFt": 46,
         "environment": "FAVORABLE",
         "vws": "5-10 KTS",
         "sst": "28-29 CELSIUS",
@@ -95,7 +95,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2626prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1385,
         "bearingDeg": 79,
@@ -164,7 +164,7 @@
           "periodS": 8.75,
           "dirDeg": 71
         },
-        "hoursAhead": 29,
+        "hoursAhead": 28,
         "bearingOffsetDeg": 3,
         "peak": {
           "targetTime": "2026-10-06T15:00:00.000Z",
@@ -284,6 +284,24 @@
         "SUPERSEDES REF A (WTPN21 PGTW 040900)"
       ],
       "geoReference": "109 NM NORTH OF KWAJALEIN",
+      "reasoning": {
+        "warningNumber": "001",
+        "significantForecastChanges": "THIS INITIAL PROGNOSTIC REASONING MESSAGE ESTABLISHES THE FORECAST PHILOSOPHY.",
+        "seasFt": 10,
+        "environment": "MARGINALLY FAVORABLE",
+        "vws": "10-15 KTS",
+        "sst": "29-30 CELSIUS",
+        "outflow": "WEAK RADIAL",
+        "steering": "THE NORTHWESTERN FLANK OF A NEAR EQUATORIAL RIDGE (NER) CENTERED TO THE SOUTHEAST",
+        "confidence": {
+          "track0072": "HIGH",
+          "track72120": "MEDIUM",
+          "intensity0072": "HIGH",
+          "intensity72120": "MEDIUM"
+        }
+      },
+      "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2726prog.txt",
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2774,
         "bearingDeg": 98,
@@ -362,7 +380,7 @@
           "periodS": 8.75,
           "dirDeg": 71
         },
-        "hoursAhead": 29,
+        "hoursAhead": 28,
         "bearingOffsetDeg": 19,
         "peak": {
           "targetTime": "2026-10-06T15:00:00.000Z",
@@ -370,6 +388,11 @@
           "periodS": 7.6,
           "dirDeg": 71
         }
+      },
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts a mostly exposed low-level circulation center (LLCC) and persistent convection limited to the northwest quadrant under the pressure of apparent southerly vertical wind shear (VWS). Tropical depression (TD) 27W (koguma) has consolidated over the past 6 hours north of kwajaelain and has tracked slowly in a primarily northward direction over the past 24 hours. In terms of intensity, the system is expected to consolidate slowly in a marginally favorable environment with only modest intensification through +60h.",
+        "warningNumber": "001",
+        "generatedAt": "2026-10-05T03:22:14.133Z"
       },
       "changes": null
     }
@@ -379,10 +402,10 @@
     {
       "id": "94W",
       "potential": null,
-      "geoReference": "51 NM NORTHWEST OF KWAJALEIN",
-      "windKtLow": 18,
-      "windKtHigh": 23,
-      "pressureMb": 1004,
+      "geoReference": null,
+      "windKtLow": null,
+      "windKtHigh": null,
+      "pressureMb": null,
       "lat": 9.3,
       "lon": 167.1,
       "distanceNm": 2752,
@@ -391,8 +414,8 @@
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "04/0900Z",
-    "issuedAt": "2026-10-04T09:00:00.000Z",
+    "issuedZ": "05/0300Z",
+    "issuedAt": "2026-10-05T03:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
     "reissued": true
   }
