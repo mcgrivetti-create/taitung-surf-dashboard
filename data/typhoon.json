@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-05T08:23:38.983Z",
+  "fetchedAt": "2026-10-05T09:24:27.101Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -71,10 +71,10 @@
       ],
       "geoReference": "285 NM EAST-NORTHEAST OF IWO TO",
       "reasoning": {
-        "warningNumber": "021",
+        "warningNumber": "022",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 46,
-        "environment": "FAVORABLE",
+        "seasFt": 45,
+        "environment": "MARGINALLY FAVORABLE",
         "vws": "5-10 KTS",
         "sst": "28-29 CELSIUS",
         "outflow": "STRONG POLEWARD",
@@ -82,12 +82,12 @@
         "confidence": {
           "track0072": "HIGH",
           "track72120": null,
-          "intensity0072": "MEDIUM",
+          "intensity0072": "HIGH",
           "intensity72120": null
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2626prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1376,
         "bearingDeg": 77,
@@ -145,7 +145,7 @@
           "periodS": 8.75,
           "dirDeg": 71
         },
-        "hoursAhead": 23,
+        "hoursAhead": 22,
         "bearingOffsetDeg": 0,
         "peak": {
           "targetTime": "2026-10-06T15:00:00.000Z",
@@ -257,23 +257,23 @@
       "seasFt": 12,
       "geoReference": "139 NM NORTH OF KWAJALEIN",
       "reasoning": {
-        "warningNumber": "001",
-        "significantForecastChanges": "THIS INITIAL PROGNOSTIC REASONING MESSAGE ESTABLISHES THE FORECAST PHILOSOPHY.",
-        "seasFt": 10,
+        "warningNumber": null,
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "seasFt": 12,
         "environment": "MARGINALLY FAVORABLE",
-        "vws": "10-15 KTS",
+        "vws": "15-20 KTS",
         "sst": "29-30 CELSIUS",
-        "outflow": "WEAK RADIAL",
+        "outflow": "MODERATE POLEWARD",
         "steering": "THE NORTHWESTERN FLANK OF A NEAR EQUATORIAL RIDGE (NER) CENTERED TO THE SOUTHEAST",
         "confidence": {
           "track0072": "HIGH",
           "track72120": "MEDIUM",
-          "intensity0072": "HIGH",
+          "intensity0072": "MEDIUM",
           "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2726prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2763,
         "bearingDeg": 97,
@@ -346,7 +346,7 @@
           "periodS": 8.75,
           "dirDeg": 71
         },
-        "hoursAhead": 23,
+        "hoursAhead": 22,
         "bearingOffsetDeg": 20,
         "peak": {
           "targetTime": "2026-10-06T15:00:00.000Z",
