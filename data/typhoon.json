@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-05T14:25:42.372Z",
+  "fetchedAt": "2026-10-05T15:23:13.463Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -63,10 +63,10 @@
       ],
       "geoReference": "290 NM EAST-NORTHEAST OF IWO TO",
       "reasoning": {
-        "warningNumber": "022",
+        "warningNumber": "023",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 45,
-        "environment": "MARGINALLY FAVORABLE",
+        "seasFt": 44,
+        "environment": "MARGINAL",
         "vws": "5-10 KTS",
         "sst": "28-29 CELSIUS",
         "outflow": "STRONG POLEWARD",
@@ -79,7 +79,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2626prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1359,
         "bearingDeg": 74,
@@ -230,9 +230,9 @@
       "seasFt": 14,
       "geoReference": "168 NM NORTH OF KWAJALEIN",
       "reasoning": {
-        "warningNumber": null,
+        "warningNumber": "003",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 12,
+        "seasFt": 14,
         "environment": "MARGINALLY FAVORABLE",
         "vws": "15-20 KTS",
         "sst": "29-30 CELSIUS",
@@ -241,8 +241,8 @@
         "confidence": {
           "track0072": "HIGH",
           "track72120": "MEDIUM",
-          "intensity0072": "MEDIUM",
-          "intensity72120": "MEDIUM"
+          "intensity0072": "LOW",
+          "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2726prog.txt",
@@ -315,9 +315,9 @@
         "status": "none"
       },
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts a mostly exposed low-level circulation center (LLCC) and persistent convection limited to the northwest quadrant under the pressure of apparent southerly vertical wind shear (VWS). Tropical depression (TD) 27W (koguma) has consolidated over the past 6 hours north of kwajaelain and has tracked slowly in a primarily northward direction over the past 24 hours. In terms of intensity, the system is expected to consolidate slowly in a marginally favorable environment with only modest intensification through +60h.",
-        "warningNumber": "001",
-        "generatedAt": "2026-10-05T03:22:14.133Z"
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts tropical storm 27W (koguma) with a mostly obscured low-level circulation center (LLCC) that has tucked underneath building convection over the center. TS 27W is forecast to track generally northward under the influence of the ner to the southeast through +12h. Regarding intensity, 27W is forecast to gradually intensify through +60h to 70 kt as the environment remains marginally favorable.",
+        "warningNumber": "003",
+        "generatedAt": "2026-10-05T15:23:13.463Z"
       },
       "changes": {
         "previousWarningNumber": "002",
