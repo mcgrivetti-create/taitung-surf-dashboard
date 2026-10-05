@@ -3958,6 +3958,268 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "26W",
+      "name": "Choi-wan",
+      "designation": "Typhoon",
+      "warningNumber": "024",
+      "issuedAt": "2026-10-05T21:00:00.000Z",
+      "positionZ": "051800Z",
+      "lat": 28.4,
+      "lon": 145.5,
+      "maxWindKt": 105,
+      "gustKt": 130,
+      "pressureMb": 937,
+      "seasFt": 43,
+      "movingToward": 340,
+      "movingKt": 11,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "060600Z",
+          "lat": 31.6,
+          "lon": 146.9,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 24,
+          "validZ": "061800Z",
+          "lat": 36.7,
+          "lon": 150.6,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 36,
+          "validZ": "070600Z",
+          "lat": 42.9,
+          "lon": 157.2,
+          "maxWindKt": 75,
+          "gustKt": 90
+        }
+      ],
+      "spot": {
+        "distanceNm": 1346,
+        "bearingDeg": 71,
+        "closestApproach": {
+          "distanceNm": 1456,
+          "tau": 12,
+          "validZ": "060600Z",
+          "maxWindKt": 95,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 340,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 20
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 30
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 37
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "headingDeg": 20,
+            "deltaDeg": 40
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-10T15:00:00.000Z",
+        "status": "none"
+      },
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon 26W (choi-wan) with a degrading appearance indicated by warming cloud tops, a thinning central dense overcast, and a cooling eye. TY 26W is forecast to continue tracking generally northward, along the western periphery of the STR to the east through +24h. Extratropical transition is forecast to begin at +48h and complete no later than +60h as the system becomes embedded underneath the jet south of the kamchatka peninsula.",
+        "warningNumber": "022",
+        "generatedAt": "2026-10-05T11:21:32.939Z"
+      },
+      "reasoningWarningNumber": "023",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Tropical Storm",
+      "warningNumber": "004",
+      "issuedAt": "2026-10-05T21:00:00.000Z",
+      "positionZ": "051800Z",
+      "lat": 12.2,
+      "lon": 167.6,
+      "maxWindKt": 40,
+      "gustKt": 50,
+      "pressureMb": 997,
+      "seasFt": 16,
+      "movingToward": 330,
+      "movingKt": 8,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "060600Z",
+          "lat": 13.4,
+          "lon": 166.7,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 24,
+          "validZ": "061800Z",
+          "lat": 14.7,
+          "lon": 165.5,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 36,
+          "validZ": "070600Z",
+          "lat": 15.8,
+          "lon": 164,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 48,
+          "validZ": "071800Z",
+          "lat": 16.8,
+          "lon": 162.1,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 60,
+          "validZ": "080600Z",
+          "lat": 17.9,
+          "lon": 159.6,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 72,
+          "validZ": "081800Z",
+          "lat": 19.1,
+          "lon": 156.7,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 96,
+          "validZ": "091800Z",
+          "lat": 21.4,
+          "lon": 151.8,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 120,
+          "validZ": "101800Z",
+          "lat": 24.6,
+          "lon": 148.3,
+          "maxWindKt": 110,
+          "gustKt": 135
+        }
+      ],
+      "spot": {
+        "distanceNm": 2715,
+        "bearingDeg": 96,
+        "closestApproach": {
+          "distanceNm": 1483,
+          "tau": 120,
+          "validZ": "101800Z",
+          "maxWindKt": 110
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 330,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 324
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 318
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 307
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 299
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 295
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 294
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 297
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 315
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 295,
+            "deltaDeg": 35
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-10T15:00:00.000Z",
+        "status": "none"
+      },
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts tropical storm 27W (koguma) with a mostly obscured low-level circulation center (LLCC) that has tucked underneath building convection over the center. TS 27W is forecast to track generally northward under the influence of the ner to the southeast through +12h. Regarding intensity, 27W is forecast to gradually intensify through +60h to 70 kt as the environment remains marginally favorable.",
+        "warningNumber": "003",
+        "generatedAt": "2026-10-05T15:23:13.463Z"
+      },
+      "reasoningWarningNumber": "004",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
