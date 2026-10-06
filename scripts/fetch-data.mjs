@@ -87,9 +87,9 @@ const TOWNSHIP_LOCATION_NAME = "東河鄉";
 const COASTAL_POINTS = [
   { townName: "東河鄉", file: "coastal.json", source: "cwa_coastal_donghe", displayed: true },
   { townName: "成功鎮", file: "coastal-chenggong.json", source: "cwa_coastal_chenggong", displayed: false },
-  // Taitung City's coastal waters — where the Taitung buoy (WRA007) sits,
-  // so CWA's forecast can be scored against it like for like. Added 2026-10-06.
-  { townName: "臺東市", file: "coastal-taitung.json", source: "cwa_coastal_taitung", displayed: false },
+  // No Taitung City (臺東市) point, by choice (2026-10-06): CWA's forecast is
+  // scored as the Donghe forecast it is, not swapped for the township
+  // nearest the Taitung buoy.
 ];
 
 // Station whose observed wind is scored against the Donghe township forecast.

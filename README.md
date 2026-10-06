@@ -155,8 +155,9 @@ from its first two days).
     23.0N 121.333E, ~3km NNE of Donghe right at the coast — far closer
     inshore than MFWAM (~6km out) or ECMWF WAM (~19km out), so it reads
     lower; that's geography, not error. `data/gfs-wave.json`, logged only.
-  - `cwa_coastal_taitung` — `F-D0047-095` for 臺東市 coastal waters, where
-    the Taitung buoy sits (added 2026-10-06, logged only).
+  - CWA's coastal forecast stays at **Donghe** (and Chenggong) by choice —
+    a Taitung City (臺東市) point for the Taitung buoy was added and removed
+    on 2026-10-06 before it logged anything.
 
   **At the buoys' own positions (added 2026-10-06).** Every model above is
   aimed at Donghe, and scoring a Donghe forecast against a buoy 20–33km
