@@ -42,8 +42,8 @@
  *                                   cwa_coastal_donghe, cwa_coastal_chenggong,
  *                                   open_meteo, ecmwf, gfs_wind, gfs_wave,
  *                                   cwa_township_wind
- *   history/buoy/YYYY-MM.json      actual buoy readings (one per station
- *                                   per run) — waves, wave direction, and
+ *   history/buoy/YYYY-MM.json      actual buoy readings (every reading in
+ *                                   CWA's ~48h window, deduped) — waves, wave direction, and
  *                                   wind where the station has an anemometer
  *   history/station/YYYY-MM.json   actual land-station wind (one per station
  *                                   per run) — ground truth for the township
@@ -579,14 +579,16 @@ async function buildBuoyStation(station) {
 
   const times = (loc.StationObsTimes && loc.StationObsTimes.StationObsTime) || [];
   const cutoff = Date.now() - BUOY_HISTORY_HOURS * 60 * 60 * 1000;
-  const readings = times
+  // Everything CWA returns (~48h) — for the history log, so a run GitHub
+  // skipped is recovered by the next one. The page only gets the last 24h.
+  const all = times
     .filter((t) => t.WeatherElements && t.WeatherElements.WaveHeight !== "None")
-    .filter((t) => new Date(t.DateTime).getTime() >= cutoff)
     .sort((a, b) => new Date(a.DateTime) - new Date(b.DateTime))
     .map((t) => ({ DateTime: t.DateTime, ...t.WeatherElements }));
-  if (!readings.length) return null;
+  const readings = all.filter((t) => new Date(t.DateTime).getTime() >= cutoff);
+  if (!all.length) return null;
 
-  return { StationID: station.id, Label: station.label, Readings: readings };
+  return { StationID: station.id, Label: station.label, Readings: readings, allReadings: all };
 }
 
 /**
@@ -1728,9 +1730,12 @@ async function buildMarineStations() {
 
 async function buildBuoy() {
   const results = await Promise.all(BUOY_STATIONS.map((s) => buildBuoyStation(s).catch(() => null)));
-  const stations = results.filter(Boolean);
-  if (!stations.length) return { data: { records: { Stations: [] } }, ok: false, count: 0 };
-  return { data: { records: { Stations: stations } }, ok: true, count: stations.length };
+  const found = results.filter(Boolean);
+  // allReadings is for the logger only — kept out of buoy.json.
+  const logStations = found.map((s) => ({ StationID: s.StationID, Label: s.Label, Readings: s.allReadings }));
+  const stations = found.map(({ allReadings, ...s }) => s).filter((s) => s.Readings.length);
+  if (!stations.length) return { data: { records: { Stations: [] } }, ok: false, count: 0, logStations };
+  return { data: { records: { Stations: stations } }, ok: true, count: stations.length, logStations };
 }
 
 async function run() {
@@ -1858,13 +1863,18 @@ async function run() {
       const n = Number(v);
       return Number.isFinite(n) ? n : v;
     };
-    const buoyStations = ((results["buoy.json"] || {}).data || {}).records || {};
+    // Every reading CWA returns (~48h), not just the latest: GitHub's
+    // scheduler silently skipped runs for 3-8h at a time on 2026-10-03..05,
+    // and logging only the latest lost those hours for good. Deduped on
+    // time+station, so overlap between runs costs nothing. Only this
+    // month's readings, since dedupe is per monthly file.
     // Chenggong (46761F) reports waves + sea temperature but has no
     // anemometer, so its wind fields stay null; the other three carry a
     // PrimaryAnemometer block.
-    const buoyRecords = (buoyStations.Stations || []).map((st) => {
-      const latest = (st.Readings || [])[st.Readings.length - 1];
-      if (!latest) return null;
+    const thisMonth = (iso) => new Date(new Date(iso).getTime() + 8 * 3600000).toISOString().slice(0, 7) === monthKey();
+    const buoyRecords = ((results["buoy.json"] || {}).logStations || []).flatMap((st) =>
+      (st.Readings || []).filter((r) => thisMonth(r.DateTime)).map((r) => ({ st, latest: r })))
+    .map(({ st, latest }) => {
       const anem = latest.PrimaryAnemometer || {};
       return {
         observedAt: latest.DateTime, station: st.StationID, label: st.Label,

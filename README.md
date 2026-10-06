@@ -167,7 +167,7 @@ from its first two days).
   - `cwa_township_wind` — `F-D0047-039` wind for Donghe. This forecast is
     12-hour *periods*, not instants, so a lead time is matched by which
     period contains it (`periodContaining`), not by nearest point.
-- `history/buoy/YYYY-MM.json` — actual buoy readings (one record per
+- `history/buoy/YYYY-MM.json` — actual buoy readings (every reading in CWA's ~48h window, deduped — from 2026-10-06; before that one per
   station per run): wave height/period/direction, sea temperature, plus
   wind speed/scale/direction/gust where the station has an anemometer
   (Chenggong 46761F has none — it reports waves, wave direction, period
@@ -283,6 +283,30 @@ naming the failed sources even when the data is otherwise current — those
 sections alone are stale. Sources that report `ok: false` with no `error`
 are ignored here: that means the fetch worked but matched nothing, and it
 already writes its raw payload for inspection.
+
+### Missed runs (GitHub's scheduler, CWA outages)
+
+GitHub's cron is best-effort. On 2026-10-03..05 it silently skipped the
+hourly run for 3–8 hours at a stretch (no failure, no email), and twice
+cancelled a run because no runner was free ("job was not acquired by
+Runner of type hosted"); separately, CWA's API was down for the 04:20Z run
+on 10-03, which fails the run on purpose. Three defences:
+
+- **A backup cron at :35** beside the :05 one. Each scheduled run first
+  checks `data/meta.json`: if the data is under 40 min old *and* the last
+  run had no failed sources, it exits in seconds without committing. So
+  normally there's one real run an hour, a skipped slot is picked up 30 min
+  later, and a CWA outage gets retried. (While some source keeps failing,
+  both slots run — two forecast snapshots an hour for that stretch.)
+- **Backfill from CWA's own windows**: the buoy log and the tide log take
+  every reading CWA returns (~48h), deduped, so any gap under ~48h fills
+  itself on the next successful run.
+- **What can't be backfilled**: land-station wind (`O-A0001-001` is a
+  current snapshot with no history) and forecast lead-time snapshots (a
+  forecast not captured when issued is gone). Those keep the gaps.
+
+The cancelled/failed-run emails come from GitHub, not from this repo; a
+"not acquired by Runner" one needs no action.
 
 ### Testing the stale states locally
 

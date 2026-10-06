@@ -3,6 +3,11 @@ name: Update CWA Data
 on:
   schedule:
     - cron: "5 * * * *" # hourly (UTC) — needed to build up the 16-hour station wind history
+    # Backup slot. GitHub's scheduler is best-effort and silently skipped
+    # the :05 run for 3-8h at a stretch on 2026-10-03..05. This slot only
+    # does anything when the last successful run is stale — see "Skip if
+    # data is fresh" — so on a normal hour it exits in seconds, no commit.
+    - cron: "35 * * * *"
   workflow_dispatch: {}
 
 permissions:
@@ -17,20 +22,43 @@ jobs:
       # kind of notice that turns into a hard failure without further warning.
       - uses: actions/checkout@v5
 
+      # Scheduled runs skip themselves if the data was refreshed under 40 min
+      # ago, so the two cron slots add up to one real run an hour: whichever
+      # slot fires first after the data goes stale does the work. A last run
+      # with failed sources (e.g. CWA's API down, as on 2026-10-03) never
+      # counts as fresh, so the backup slot retries it. A manual run
+      # (workflow_dispatch) always goes ahead.
+      - name: Skip if data is fresh
+        id: fresh
+        run: |
+          skip=false
+          if [ "${{ github.event_name }}" = "schedule" ] && [ -f data/meta.json ]; then
+            updated=$(jq -r '.updatedAt // empty' data/meta.json)
+            failed=$(jq '[.sources[]? | select(.ok == false and .error != null)] | length' data/meta.json)
+            if [ -n "$updated" ]; then
+              age=$(( ( $(date -u +%s) - $(date -u -d "$updated" +%s) ) / 60 ))
+              echo "Data last refreshed ${age} min ago; ${failed} source(s) failed then."
+              if [ "$age" -lt 40 ] && [ "$failed" = "0" ]; then skip=true; fi
+            fi
+          fi
+          echo "skip=${skip}" >> "$GITHUB_OUTPUT"
+
       # This is the Node that runs fetch-data.mjs, separate from the runtime
       # the actions above use. 24 is the current LTS; 20 went end-of-life in
       # April 2026, so it was already past support.
       - uses: actions/setup-node@v5
+        if: steps.fresh.outputs.skip != 'true'
         with:
           node-version: 24
 
       - name: Fetch CWA data
+        if: steps.fresh.outputs.skip != 'true'
         env:
           CWA_API_KEY: ${{ secrets.CWA_API_KEY }}
         run: node scripts/fetch-data.mjs
 
       - name: Commit and push if changed
-        if: always()
+        if: always() && steps.fresh.outputs.skip != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
