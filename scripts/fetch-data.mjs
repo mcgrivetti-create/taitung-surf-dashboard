@@ -1838,6 +1838,293 @@ async function buildBuoy() {
   return { data: { records: { Stations: stations } }, ok: true, count: stations.length, logStations };
 }
 
+/* --- Phase 3 current-tier files ----------------------------------------
+ * The live Phase 3 pages must not load the monthly logs (megabytes; see
+ * "Two tiers" in the README). So each run derives two small files from
+ * the logs it just wrote:
+ *
+ *   data/phase3-live.json   last 72h, ready to draw: buoy and Donghe-station
+ *                           observations, the tide gauge with sea-level
+ *                           pressure, and what each source forecast for
+ *                           those hours 6h ahead ("as forecast" — real
+ *                           skill, not a hindcast). The future side of the
+ *                           charts comes from the existing forecast files.
+ *   data/phase3-stats.json  7-day and 30-day scores: every source x lead x
+ *                           buoy (at the buoy position, and the Donghe point
+ *                           as a reference), a "no change" baseline, wind
+ *                           speed and offshore/onshore direction, tide
+ *                           offset with and without the pressure effect,
+ *                           and typhoon swell peaks predicted vs observed.
+ *                           The 7-day biases are what the page uses for its
+ *                           corrected forecast.
+ *
+ * Everything here is arithmetic on logged numbers; nothing is fetched.
+ */
+const P3_WINDOW_H = 72;
+const P3_PAST_LEAD = 6;            // the "as forecast" line left of now
+const P3_WINDOWS = { "7d": 7, "30d": 30 };
+const P3_BUOYS = ["WRA007", "46761F"];
+const P3_PRESSURE_STATION = "C0SA30"; // Duli — the pressure station nearest the Chenggong tide gauge
+const P3_PRESSURE_REF_HPA = 1013.25;
+const P3_IB_CM_PER_HPA = 1.0;      // inverse barometer: ~1 cm of sea level per hPa
+// Donghe's beach faces roughly ESE, so onshore wind comes from ~105° and
+// offshore from ~285°. Within 60° of either counts; light wind is its own call.
+const DONGHE_ONSHORE_DEG = 105, DONGHE_OFFSHORE_DEG = 285, LIGHT_WIND_MS = 2;
+
+function previousMonthKey() {
+  const d = new Date(Date.now() + 8 * 3600000);
+  d.setUTCDate(1); d.setUTCMonth(d.getUTCMonth() - 1);
+  return d.toISOString().slice(0, 7);
+}
+async function readRecentLog(subdir) {
+  const out = [];
+  for (const m of [previousMonthKey(), monthKey()]) {
+    const f = await readJSONIfExists(path.join(HISTORY_DIR, subdir, `${m}.json`), { records: [] });
+    out.push(...(f.records || []));
+  }
+  return out;
+}
+const hourMs = (iso) => Math.round(new Date(iso).getTime() / 3600000) * 3600000;
+const r2 = (v) => (v === null || v === undefined || !isFinite(v)) ? null : Math.round(v * 100) / 100;
+function numOrNull(v) { const n = Number(v); return v === null || v === undefined || v === "" || !Number.isFinite(n) ? null : n; }
+function summarize(diffs) {
+  if (!diffs.length) return { n: 0 };
+  const bias = diffs.reduce((a, b) => a + b, 0) / diffs.length;
+  return { n: diffs.length, bias: r2(bias), mae: r2(diffs.reduce((a, b) => a + Math.abs(b), 0) / diffs.length) };
+}
+function windCall(speed, dir) {
+  if (speed === null) return null;
+  if (speed < LIGHT_WIND_MS) return "light";
+  if (dir === null) return null;
+  if (angleDiff(dir, DONGHE_OFFSHORE_DEG) <= 60) return "offshore";
+  if (angleDiff(dir, DONGHE_ONSHORE_DEG) <= 60) return "onshore";
+  return "cross-shore";
+}
+
+async function buildPhase3Files() {
+  const now = Date.now();
+  const [fc, buoy, station, tide, typhoon] = await Promise.all(
+    ["forecast", "buoy", "station", "tide", "typhoon"].map(readRecentLog));
+
+  // Observations keyed by station|hour.
+  const obs = {};
+  for (const r of buoy) {
+    const h = numOrNull(r.waveHeight);
+    if (h === null) continue;
+    obs[`${r.station}|${hourMs(r.observedAt)}`] = {
+      h, p: numOrNull(r.wavePeriod), d: numOrNull(r.waveDirectionDeg),
+      ws: numOrNull(r.windSpeed), wd: numOrNull(r.windDirectionDeg),
+    };
+  }
+  const stn = {};
+  for (const r of station) stn[`${r.station}|${hourMs(r.observedAt)}`] = r;
+
+  // ---- live file ----
+  const from = now - P3_WINDOW_H * 3600000;
+  const live = { updatedAt: new Date(now).toISOString(), windowHours: P3_WINDOW_H, pastLeadHours: P3_PAST_LEAD, buoys: {}, donghe: { windObs: [], asForecast: {} }, tide: [] };
+  for (const b of P3_BUOYS) {
+    live.buoys[b] = { obs: [], asForecast: {} };
+    for (const [k, o] of Object.entries(obs)) {
+      const [st, t] = k.split("|");
+      if (st === b && +t >= from) live.buoys[b].obs.push([+t, o.h, o.p, o.d, o.ws, o.wd]);
+    }
+    live.buoys[b].obs.sort((a, c) => a[0] - c[0]);
+  }
+  for (const r of station) {
+    const t = hourMs(r.observedAt);
+    if (r.station === WIND_OBS_STATION_ID && t >= from) live.donghe.windObs.push([t, r.windSpeed, r.windDirectionDeg, r.windGust ?? null]);
+  }
+  live.donghe.windObs.sort((a, c) => a[0] - c[0]);
+  const seenLive = new Set();
+  for (const r of fc) {
+    if (r.leadHours !== P3_PAST_LEAD) continue;
+    const t = hourMs(r.targetTime);
+    if (t < from || t > now) continue;
+    const key = `${r.site || "donghe"}|${r.source}|${t}`;
+    if (seenLive.has(key)) continue;
+    seenLive.add(key);
+    const target = r.site ? (live.buoys[r.site] || null) : live.donghe;
+    if (!target) continue;
+    (target.asForecast[r.source] = target.asForecast[r.source] || []).push([
+      t, numOrNull(r.waveHeight), numOrNull(r.wavePeriod), numOrNull(r.waveDirectionDeg),
+      numOrNull(r.windSpeed), numOrNull(r.windDirectionDeg),
+    ]);
+  }
+  for (const holder of [live.donghe, ...Object.values(live.buoys)]) {
+    for (const s of Object.values(holder.asForecast)) s.sort((a, c) => a[0] - c[0]);
+  }
+  const slpAt = (t) => {
+    const r = stn[`${P3_PRESSURE_STATION}|${t}`];
+    return r && typeof r.seaLevelPressureHpa === "number" ? r.seaLevelPressureHpa : null;
+  };
+  const tideRows = tide.filter((r) => r.v === 2 && typeof r.observedCm === "number")
+    .map((r) => { const t = hourMs(r.observedAt); return [t, r.observedCm, r.forecastCm ?? null, slpAt(t)]; })
+    .sort((a, c) => a[0] - c[0]);
+  live.tide = tideRows.filter((r) => r[0] >= from);
+
+  // ---- stats file ----
+  const stats = { updatedAt: live.updatedAt, note: "bias = forecast minus observed (tide: gauge minus prediction). n = matched hours.", windows: {} };
+  for (const [wName, days] of Object.entries(P3_WINDOWS)) {
+    const since = now - days * 86400000;
+    const W = { waves: [], persistence: [], windSpeed: [], windDirection: [], tide: null };
+
+    // Waves: Donghe-point records vs both buoys; buoy-position records vs their own buoy.
+    const groups = {};
+    const add = (key, d) => { (groups[key] = groups[key] || []).push(d); };
+    const seen = new Set();
+    for (const r of fc) {
+      const t = hourMs(r.targetTime);
+      if (t < since || t > now || r.waveHeight === undefined || r.waveHeight === null) continue;
+      const dedupe = `${r.site || ""}|${r.source}|${r.leadHours}|${t}`;
+      if (seen.has(dedupe)) continue;
+      seen.add(dedupe);
+      for (const b of (r.site ? [r.site] : P3_BUOYS)) {
+        const o = obs[`${b}|${t}`];
+        if (!o) continue;
+        const point = r.site ? "buoy" : "donghe";
+        add(`${b}|${point}|${r.source}|${r.leadHours}|height`, numOrNull(r.waveHeight) - o.h);
+        if (numOrNull(r.wavePeriod) !== null && o.p !== null) add(`${b}|${point}|${r.source}|${r.leadHours}|period`, numOrNull(r.wavePeriod) - o.p);
+      }
+    }
+    for (const [k, diffs] of Object.entries(groups)) {
+      const [buoyId, point, source, lead, field] = k.split("|");
+      W.waves.push({ buoy: buoyId, point, source, lead: +lead, field, ...summarize(diffs) });
+    }
+
+    // "No change" baseline: the reading `lead` hours earlier as the forecast.
+    for (const b of P3_BUOYS) {
+      for (const lead of LEAD_HOURS) {
+        const dh = [], dp = [];
+        for (const [k, o] of Object.entries(obs)) {
+          const [st, t] = k.split("|");
+          if (st !== b || +t < since) continue;
+          const prev = obs[`${b}|${+t - lead * 3600000}`];
+          if (!prev) continue;
+          dh.push(prev.h - o.h);
+          if (prev.p !== null && o.p !== null) dp.push(prev.p - o.p);
+        }
+        W.persistence.push({ buoy: b, lead, field: "height", ...summarize(dh) });
+        W.persistence.push({ buoy: b, lead, field: "period", ...summarize(dp) });
+      }
+    }
+
+    // Wind: speed vs the Donghe station (Donghe-point sources) and vs the
+    // Taitung buoy anemometer (buoy-position sources); direction as the
+    // offshore / onshore / cross-shore / light call at Donghe.
+    const ws = {}, wdir = {};
+    const seenW = new Set();
+    for (const r of fc) {
+      const t = hourMs(r.targetTime);
+      const fsp = numOrNull(r.windSpeed);
+      if (t < since || t > now || fsp === null) continue;
+      const dedupe = `${r.site || ""}|${r.source}|${r.leadHours}|${t}`;
+      if (seenW.has(dedupe)) continue;
+      seenW.add(dedupe);
+      if (!r.site) {
+        const o = stn[`${WIND_OBS_STATION_ID}|${t}`];
+        if (!o || o.windSpeed === null || o.windSpeed === undefined) continue;
+        const k = `${WIND_OBS_STATION_ID}|donghe|${r.source}|${r.leadHours}`;
+        (ws[k] = ws[k] || []).push(fsp - o.windSpeed);
+        const fCall = windCall(fsp, numOrNull(r.windDirectionDeg)), oCall = windCall(o.windSpeed, numOrNull(o.windDirectionDeg));
+        if (fCall && oCall) {
+          const dk = `${r.source}|${r.leadHours}`;
+          (wdir[dk] = wdir[dk] || []).push(fCall === oCall);
+        }
+      } else if (r.site === "WRA007") {
+        const o = obs[`WRA007|${t}`];
+        if (!o || o.ws === null) continue;
+        const k = `WRA007|buoy|${r.source}|${r.leadHours}`;
+        (ws[k] = ws[k] || []).push(fsp - o.ws);
+      }
+    }
+    for (const [k, diffs] of Object.entries(ws)) {
+      const [truth, point, source, lead] = k.split("|");
+      W.windSpeed.push({ truth, point, source, lead: +lead, ...summarize(diffs) });
+    }
+    for (const [k, hits] of Object.entries(wdir)) {
+      const [source, lead] = k.split("|");
+      const agree = hits.filter(Boolean).length;
+      W.windDirection.push({ truth: WIND_OBS_STATION_ID, source, lead: +lead, n: hits.length, agree, pct: Math.round((agree / hits.length) * 100) });
+    }
+
+    // Tide: offset (gauge minus prediction), offset with the steady part
+    // removed, and how much of it pressure explains (inverse barometer).
+    const tr = tideRows.filter((r) => r[0] >= since && r[2] !== null);
+    if (tr.length) {
+      const res = tr.map((r) => r[1] - r[2]);
+      const bias = res.reduce((a, b) => a + b, 0) / res.length;
+      const T = { n: tr.length, bias: r2(bias), mae: r2(res.reduce((a, b) => a + Math.abs(b), 0) / res.length),
+        maeShape: r2(res.reduce((a, b) => a + Math.abs(b - bias), 0) / res.length), daily: [] };
+      const withP = tr.filter((r) => r[3] !== null);
+      if (withP.length >= 24) {
+        const adj = withP.map((r) => (r[1] - r[2]) + (r[3] - P3_PRESSURE_REF_HPA) * P3_IB_CM_PER_HPA);
+        const x = withP.map((r) => r[3] - P3_PRESSURE_REF_HPA), y = withP.map((r) => r[1] - r[2]);
+        const mx = x.reduce((a, b) => a + b, 0) / x.length, my = y.reduce((a, b) => a + b, 0) / y.length;
+        const sxx = x.reduce((a, b) => a + (b - mx) ** 2, 0), sxy = x.reduce((a, b, i) => a + (b - mx) * (y[i] - my), 0);
+        T.pressure = {
+          n: withP.length, station: P3_PRESSURE_STATION,
+          meanAnomalyHpa: r2(mx),
+          biasRaw: r2(my),
+          biasPressureAdjusted: r2(adj.reduce((a, b) => a + b, 0) / adj.length),
+          // Expected ~ -1 cm/hPa if pressure is driving it.
+          slopeCmPerHpa: sxx > 0 ? r2(sxy / sxx) : null,
+        };
+      }
+      const byDay = {};
+      for (const r of tr) { const dk = new Date(r[0] + 8 * 3600000).toISOString().slice(0, 10); (byDay[dk] = byDay[dk] || []).push(r[1] - r[2]); }
+      // [date (Taiwan), hours, offset, typical miss]
+      T.daily = Object.keys(byDay).sort().map((dk) => { const s = summarize(byDay[dk]); return [dk, s.n, s.bias, s.mae]; });
+      W.tide = T;
+    }
+    stats.windows[wName] = W;
+  }
+
+  // Typhoon swell peaks: the first and the last prediction made before the
+  // predicted peak, against the biggest Chenggong-buoy reading within 36h of
+  // it. Buoy height is total sea and the prediction is swell, so this is a
+  // rough check of timing and size, not a like-for-like score.
+  const events = {};
+  for (const r of typhoon) {
+    if (r.kind !== "warning" || !r.swell) continue;
+    const sw = r.swell;
+    const peak = sw.peak || null;
+    if (!peak || !peak.targetTime) continue;
+    (events[r.id] = events[r.id] || { id: r.id, name: r.name, preds: [] }).preds.push({ issuedAt: r.issuedAt, peakAt: peak.targetTime, heightM: peak.heightM, periodS: peak.periodS });
+  }
+  stats.typhoonSwell = Object.values(events).map((e) => {
+    e.preds.sort((a, c) => new Date(a.issuedAt) - new Date(c.issuedAt));
+    const first = e.preds[0];
+    const before = e.preds.filter((p) => new Date(p.issuedAt) < new Date(p.peakAt));
+    const last = before[before.length - 1] || first;
+    const center = hourMs(last.peakAt);
+    let obsPeak = null;
+    for (let t = center - 36 * 3600000; t <= center + 36 * 3600000; t += 3600000) {
+      const o = obs[`46761F|${t}`];
+      if (o && (!obsPeak || o.h > obsPeak.h)) obsPeak = { t, h: o.h, p: o.p };
+    }
+    return {
+      id: e.id, name: e.name, predictions: e.preds.length,
+      firstPrediction: first, lastPrediction: last,
+      observedPeak: obsPeak ? { buoy: "46761F", at: new Date(obsPeak.t).toISOString(), heightM: obsPeak.h, periodS: obsPeak.p } : null,
+      peakTimingErrorH: obsPeak ? Math.round((center - obsPeak.t) / 3600000) : null,
+    };
+  });
+  // With storms close together the buoy can't tell their swells apart, so
+  // an event whose predicted peak falls within 72h of another storm's (the
+  // 36h search window either side, plus the other storm's own build) is
+  // flagged rather than scored as if it were clean.
+  for (const ev of stats.typhoonSwell) {
+    const t = new Date(ev.lastPrediction.peakAt).getTime();
+    ev.overlapsWith = stats.typhoonSwell.filter((o) => o !== ev &&
+      Math.abs(new Date(o.lastPrediction.peakAt).getTime() - t) <= 72 * 3600000).map((o) => o.name || o.id);
+  }
+
+  await writeFile(path.join(DATA_DIR, "phase3-live.json"), JSON.stringify(live));
+  await writeFile(path.join(DATA_DIR, "phase3-stats.json"), JSON.stringify(stats));
+  const count = Object.values(live.buoys).reduce((a, b) => a + Object.keys(b.asForecast).length + 1, 0) + Object.keys(live.donghe.asForecast).length;
+  return { count };
+}
+
 async function run() {
   await mkdir(DATA_DIR, { recursive: true });
 
@@ -2019,12 +2306,25 @@ async function run() {
         return Number.isFinite(n) && n > -90 ? n : null;
       };
       const speed = num(we.WindSpeed);
+      // Air pressure is logged ONLY to explain tide discrepancies (gauge vs
+      // prediction): roughly 1 cm of sea level per hPa below normal. CWA
+      // reports station pressure, at the station's own height (Donghe sits at
+      // 65 m, ~8 hPa below sea level), so it's also reduced to sea level with
+      // the standard barometric formula — that's the value that compares.
+      const pStation = num(we.AirPressure);
+      const alt = num((s.GeoInfo || {}).StationAltitude);
+      const tC = num(we.AirTemperature);
+      const pSea = pStation !== null && alt !== null
+        ? Math.round(pStation * Math.pow(1 - (0.0065 * alt) / ((tC !== null ? tC : 25) + 0.0065 * alt + 273.15), -5.257) * 10) / 10
+        : null;
       return {
         observedAt, station: id, name: s.StationName,
         windSpeed: speed,
         windScale: speed === null ? null : beaufort(speed),
         windDirectionDeg: num(we.WindDirection),
         windGust: num((we.GustInfo || {}).PeakGustSpeed),
+        airPressureHpa: pStation,
+        seaLevelPressureHpa: pSea,
         isWindForecastTarget: id === WIND_OBS_STATION_ID,
       };
     }).filter(Boolean);
@@ -2050,6 +2350,16 @@ async function run() {
   } catch (err) {
     status.push({ name: "history logging", ok: false, error: String(err.message || err) });
     console.error(`FAILED: history logging — ${err.message || err}`);
+  }
+
+  // Phase 3 current-tier files, derived from the logs just written.
+  try {
+    const p3 = await buildPhase3Files();
+    status.push({ name: "phase 3 files", ok: true, count: p3.count });
+    console.log(`OK: phase 3 files (${p3.count} series)`);
+  } catch (err) {
+    status.push({ name: "phase 3 files", ok: false, error: String(err.message || err) });
+    console.error(`FAILED: phase 3 files — ${err.message || err}`);
   }
 
   // Update tracking — hash each displayed dataset so the page can show when

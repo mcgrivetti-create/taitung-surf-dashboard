@@ -237,8 +237,15 @@ Two things to know when reading the logs back:
   sit in the lee of terrain and buildings, so Phase 3 should score marine
   wind forecasts against a buoy anemometer (Taitung `WRA007`, Hualien
   `46699A`) as well as the land station — otherwise it mostly measures the
-  shelter, not the forecast. The three Donghe-area land stations report
-  gusts as -99 (not measured), which logs as null.
+  shelter, not the forecast. The land stations report a gust only when
+  there was one that hour; otherwise CWA sends -99, which logs as null.
+  (An earlier version of this file said they never measure gusts — wrong.)
+- **Air pressure is for the tide only.** Station records carry
+  `airPressureHpa` (at the station's height) and `seaLevelPressureHpa`
+  (reduced to sea level with the barometric formula; Donghe sits at 65 m,
+  Duli at 92 m, Fengbin at 152 m). It's logged for one job: explaining why
+  the gauge and the tide prediction disagree — roughly 1 cm of sea level
+  per hPa below normal (the inverse barometer effect). Added 2026-10-06.
 - **Numbers are numbers.** CWA returns buoy readings as strings (`"2.0"`)
   and uses `"None"` for missing ones; `cleanNone()` coerces to a real number
   or `null` at log time, so every log stores the same types. Buoy records
@@ -254,6 +261,30 @@ This is the ground truth Phase 3's accuracy-comparison charts will read
 from — see `scripts/fetch-data.mjs`'s "Phase 2" section (`appendMonthlyHistory`,
 `buildTideGaugeReadings`, `migrateTideLog`, the lead-time snapshot logic in
 `run()`).
+
+### Phase 3 files (built every run, not yet shown on the page)
+
+`buildPhase3Files` derives two small current-tier files from the logs at
+the end of each run, so the Phase 3 pages never load the monthly logs:
+
+- `data/phase3-live.json` (~15 KB) — the last 72h ready to draw: both
+  buoys, Donghe station wind, the tide gauge with sea-level pressure (Duli
+  `C0SA30`, the pressure station nearest the gauge), and each source's
+  forecast for those hours **as made 6h ahead** — real skill, not a
+  hindcast. The future side comes from the existing forecast files.
+- `data/phase3-stats.json` (~40 KB) — 7-day and 30-day scores:
+  - waves: every source x lead x buoy, at the buoy position
+    (`point: "buoy"`) and the Donghe point (`point: "donghe"`, reference);
+  - a "no change" baseline (`persistence`) per buoy and lead;
+  - wind speed vs the Donghe station and the Taitung buoy, and wind
+    direction as the offshore / onshore / cross-shore / light call at
+    Donghe (beach faces ~ESE: onshore from ~105°, offshore from ~285°);
+  - tide offset, offset with the steady part removed, daily offsets, and
+    the offset with the pressure effect removed;
+  - typhoon swell peaks: first and last prediction vs the biggest
+    Chenggong-buoy reading within 36h, with `overlapsWith` naming any other
+    storm within 72h (the buoy can't tell their swells apart).
+  The 7-day biases are what the planned "corrected forecast" uses.
 
 ### Two tiers, deliberately — don't merge them
 
