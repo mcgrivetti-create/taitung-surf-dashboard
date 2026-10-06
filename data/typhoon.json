@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-06T14:22:30.249Z",
+  "fetchedAt": "2026-10-06T15:21:15.595Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -202,23 +202,23 @@
       ],
       "geoReference": "321 NM SOUTH OF WAKE ISLAND",
       "reasoning": {
-        "warningNumber": "006",
-        "significantForecastChanges": "THE JTWC FORECAST TRACK HAS SHIFTED SOUTHWARD BY NEAR 45 NM AT TAU 120.",
-        "seasFt": 16,
+        "warningNumber": "007",
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "seasFt": 17,
         "environment": "MARGINALLY FAVORABLE",
         "vws": "15-20 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "MODERATE WESTWARD",
-        "steering": "SOUTHERN EXTENSION OF A MID-LEVEL SUBTROPICAL RIDGE BUILDING WESTWARD",
+        "steering": "SOUTHERN EXTENSION OF A MID-LEVEL SUBTROPICAL RIDGE (STR) BUILDING WESTWARD",
         "confidence": {
-          "track0072": "MEDIUM",
+          "track0072": "HIGH",
           "track72120": "MEDIUM",
           "intensity0072": "MEDIUM",
           "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2726prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2580,
         "bearingDeg": 94,
@@ -280,9 +280,9 @@
         "status": "none"
       },
       "summary": {
-        "text": "TS 27W has turned toward the north-northwest and become more organized over the past six hours. TS 27W will continue its turn toward a generally west-northwestward trajectory over the next 24 hours as an extension of subtropical ridging to the northeast builds on the poleward side of the system. The current forecast anticipates slow but steady intensification in the near-term, supported by moderate poleward outflow and constrained by low to moderate easterly vertical wind shear, which is expected to peak around +36h.",
-        "warningNumber": "004",
-        "generatedAt": "2026-10-06T03:20:13.988Z"
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a small central cold cover (ccc) completely obscuring the low-level circulation center (LLCC). TS 27W will continue on a northwestward trajectory through +12h, steered by the southern extension of the STR. Despite traversing very warm SST and high OHC, the system will intensify slowly through +36h as moderate VWS persists.",
+        "warningNumber": "007",
+        "generatedAt": "2026-10-06T15:21:15.595Z"
       },
       "changes": {
         "previousWarningNumber": "006",
