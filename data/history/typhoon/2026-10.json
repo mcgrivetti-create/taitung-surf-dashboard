@@ -4220,6 +4220,254 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "26W",
+      "name": "Choi-wan",
+      "designation": "Typhoon",
+      "warningNumber": "025",
+      "issuedAt": "2026-10-06T03:00:00.000Z",
+      "positionZ": "060000Z",
+      "lat": 29.8,
+      "lon": 145.8,
+      "maxWindKt": 95,
+      "gustKt": 115,
+      "pressureMb": 945,
+      "seasFt": 42,
+      "movingToward": 10,
+      "movingKt": 14,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "061200Z",
+          "lat": 33.7,
+          "lon": 148,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 24,
+          "validZ": "070000Z",
+          "lat": 39.4,
+          "lon": 153.3,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 36,
+          "validZ": "071200Z",
+          "lat": 46,
+          "lon": 161.8,
+          "maxWindKt": 65,
+          "gustKt": 80
+        }
+      ],
+      "spot": {
+        "distanceNm": 1376,
+        "bearingDeg": 67,
+        "closestApproach": {
+          "distanceNm": 1544,
+          "tau": 12,
+          "validZ": "061200Z",
+          "maxWindKt": 90,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 10,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 25
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 35
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 41
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-10T15:00:00.000Z",
+        "status": "none"
+      },
+      "summary": {
+        "text": "TY 26W has weakened slightly while moving poleward over the past six hours. TY 26W will turn north-northeastward, accelerate into the midlatitude westerly flow pattern, and merge with an approaching trough during the 36-hour forecast period. Slow weakening is anticipated over the next 12 hours as favorable poleward outflow aloft and passage over warm water are offset by slowly increasing southwesterly vertical wind shear.",
+        "warningNumber": "024",
+        "generatedAt": "2026-10-05T23:17:52.446Z"
+      },
+      "reasoningWarningNumber": "024",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Tropical Storm",
+      "warningNumber": "005",
+      "issuedAt": "2026-10-06T03:00:00.000Z",
+      "positionZ": "060000Z",
+      "lat": 12.9,
+      "lon": 167,
+      "maxWindKt": 45,
+      "gustKt": 55,
+      "pressureMb": 995,
+      "seasFt": 16,
+      "movingToward": 320,
+      "movingKt": 9,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "061200Z",
+          "lat": 14,
+          "lon": 166,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 24,
+          "validZ": "070000Z",
+          "lat": 15.1,
+          "lon": 164.7,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 36,
+          "validZ": "071200Z",
+          "lat": 16.2,
+          "lon": 163.1,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 48,
+          "validZ": "080000Z",
+          "lat": 17.2,
+          "lon": 161,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 60,
+          "validZ": "081200Z",
+          "lat": 18.1,
+          "lon": 158.6,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 72,
+          "validZ": "090000Z",
+          "lat": 19.1,
+          "lon": 156,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 96,
+          "validZ": "100000Z",
+          "lat": 21.5,
+          "lon": 151.2,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 120,
+          "validZ": "110000Z",
+          "lat": 24.7,
+          "lon": 147.5,
+          "maxWindKt": 110,
+          "gustKt": 135
+        }
+      ],
+      "spot": {
+        "distanceNm": 2668,
+        "bearingDeg": 95,
+        "closestApproach": {
+          "distanceNm": 1440,
+          "tau": 120,
+          "validZ": "110000Z",
+          "maxWindKt": 110
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 320,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 319
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 311
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 306
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 297
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 292
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 292
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 299
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 314
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-10T15:00:00.000Z",
+        "status": "none"
+      },
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts tropical storm 27W (koguma) with a mostly obscured low-level circulation center (LLCC) that has tucked underneath building convection over the center. TS 27W is forecast to track generally northward under the influence of the ner to the southeast through +12h. Regarding intensity, 27W is forecast to gradually intensify through +60h to 70 kt as the environment remains marginally favorable.",
+        "warningNumber": "003",
+        "generatedAt": "2026-10-05T15:23:13.463Z"
+      },
+      "reasoningWarningNumber": "004",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
