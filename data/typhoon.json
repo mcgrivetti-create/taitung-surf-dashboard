@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-06T02:19:50.278Z",
+  "fetchedAt": "2026-10-06T03:20:13.988Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -51,16 +51,16 @@
         "060900Z",
         "061500Z",
         "062100Z",
-        "070300Z. REFER TO HURRICANE 15E (NOLO) WARNINGS (WTPN31 PGTW) FOR SIX-HOURLY UPDATES. REFER TO TROPICAL STORM 27W (KOGUMA) WARNINGS (WTPN33 PGTW) FOR SIX-HOURLY UPDATES"
+        "070300Z. REFER TO TYPOON 15E (NOLO) WARNINGS (WTPN31 PGTW) FOR SIX-HOURLY UPDATES. REFER TO TROPICAL STORM 27W (KOGUMA) WARNINGS (WTPN33 PGTW) FOR SIX-HOURLY UPDATES"
       ],
       "geoReference": "384 NM NORTHEAST OF IWO TO",
       "reasoning": {
-        "warningNumber": "024",
+        "warningNumber": "025",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 43,
-        "environment": "FAVORABLE",
-        "vws": "0-5 KTS",
-        "sst": "28-29 CELSIUS",
+        "seasFt": 42,
+        "environment": "MARGINAL",
+        "vws": "10-15 KTS",
+        "sst": "27-28 CELSIUS",
         "outflow": "STRONG POLEWARD",
         "steering": "SUBTROPICAL RIDGE (STR) TO THE EAST",
         "confidence": {
@@ -71,7 +71,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2626prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1376,
         "bearingDeg": 67,
@@ -288,9 +288,9 @@
         "status": "none"
       },
       "summary": {
-        "text": "Animated enhanced infrared (EIR) satellite imagery depicts tropical storm 27W (koguma) with a mostly obscured low-level circulation center (LLCC) that has tucked underneath building convection over the center. TS 27W is forecast to track generally northward under the influence of the ner to the southeast through +12h. Regarding intensity, 27W is forecast to gradually intensify through +60h to 70 kt as the environment remains marginally favorable.",
-        "warningNumber": "003",
-        "generatedAt": "2026-10-05T15:23:13.463Z"
+        "text": "TS 27W has turned toward the north-northwest and become more organized over the past six hours. TS 27W will continue its turn toward a generally west-northwestward trajectory over the next 24 hours as an extension of subtropical ridging to the northeast builds on the poleward side of the system. The current forecast anticipates slow but steady intensification in the near-term, supported by moderate poleward outflow and constrained by low to moderate easterly vertical wind shear, which is expected to peak around +36h.",
+        "warningNumber": "004",
+        "generatedAt": "2026-10-06T03:20:13.988Z"
       },
       "changes": {
         "previousWarningNumber": "004",
