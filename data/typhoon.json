@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-06T21:19:19.601Z",
+  "fetchedAt": "2026-10-06T22:19:45.772Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -197,23 +197,23 @@
       ],
       "geoReference": "301 NM SOUTH-SOUTHWEST OF WAKE ISLAND",
       "reasoning": {
-        "warningNumber": "007",
+        "warningNumber": "008",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 17,
-        "environment": "MARGINALLY FAVORABLE",
-        "vws": "15-20 KTS",
-        "sst": "29-30 CELSIUS",
+        "seasFt": 20,
+        "environment": "FAVORABLE",
+        "vws": "10-15 KTS",
+        "sst": "30-31 CELSIUS",
         "outflow": "MODERATE WESTWARD",
-        "steering": "SOUTHERN EXTENSION OF A MID-LEVEL SUBTROPICAL RIDGE (STR) BUILDING WESTWARD",
+        "steering": "COMPLEX STEERING PATTERN GOVERNED BY A DISTANT SUBTROPICAL RIDGE (STR) TO THE NORTH, DYNAMICAL INTERACTION WITH TY 15E TO THE NORTH-NORTHWEST, AND A SECONDARY NEAR-EQUATORIAL RIDGE (NER) CENTERED NEAR 10N 175E.",
         "confidence": {
-          "track0072": "HIGH",
-          "track72120": "MEDIUM",
+          "track0072": "MEDIUM",
+          "track72120": "LOW",
           "intensity0072": "MEDIUM",
           "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2726prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2495,
         "bearingDeg": 94,
