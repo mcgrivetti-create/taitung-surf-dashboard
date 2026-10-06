@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-06T08:22:43.930Z",
+  "fetchedAt": "2026-10-06T09:22:21.262Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -55,14 +55,14 @@
       ],
       "geoReference": "402 NM EAST-SOUTHEAST OF YOKOSUKA, JAPAN",
       "reasoning": {
-        "warningNumber": "025",
+        "warningNumber": "026",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 42,
         "environment": "MARGINAL",
-        "vws": "10-15 KTS",
-        "sst": "27-28 CELSIUS",
+        "vws": "15-20 KTS",
+        "sst": "26-27 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "SUBTROPICAL RIDGE (STR) TO THE EAST",
+        "steering": "NORTHWESTERN PERIPHERY OF A SUBTROPICAL RIDGE CENTERED NEAR 34N 163E",
         "confidence": {
           "track0072": "HIGH",
           "track72120": null,
@@ -71,7 +71,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2626prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1431,
         "bearingDeg": 63,
@@ -132,7 +132,7 @@
       "issuedAt": "2026-10-06T09:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2726.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2726web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610060600-96_KOGUMA_enus.png",
+      "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
@@ -216,23 +216,23 @@
       ],
       "geoReference": "354 NM SOUTH OF WAKE ISLAND",
       "reasoning": {
-        "warningNumber": "005",
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "warningNumber": "006",
+        "significantForecastChanges": "THE JTWC FORECAST TRACK HAS SHIFTED SOUTHWARD BY NEAR 45 NM AT TAU 120.",
         "seasFt": 16,
         "environment": "MARGINALLY FAVORABLE",
-        "vws": "10-15 KTS",
+        "vws": "15-20 KTS",
         "sst": "29-30 CELSIUS",
-        "outflow": "MODERATE POLEWARD",
-        "steering": "BUILDING SUBTROPICAL RIDGE (STR) EXTENSION TO THE NORTHEAST",
+        "outflow": "MODERATE WESTWARD",
+        "steering": "SOUTHERN EXTENSION OF A MID-LEVEL SUBTROPICAL RIDGE BUILDING WESTWARD",
         "confidence": {
           "track0072": "MEDIUM",
           "track72120": "MEDIUM",
           "intensity0072": "MEDIUM",
-          "intensity72120": "LOW"
+          "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2726prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2625,
         "bearingDeg": 95,
