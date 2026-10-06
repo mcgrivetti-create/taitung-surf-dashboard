@@ -4716,6 +4716,241 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "26W",
+      "name": "Choi-wan",
+      "designation": "Typhoon",
+      "warningNumber": "027",
+      "issuedAt": "2026-10-06T15:00:00.000Z",
+      "positionZ": "061200Z",
+      "lat": 33.7,
+      "lon": 147.6,
+      "maxWindKt": 80,
+      "gustKt": 100,
+      "pressureMb": 960,
+      "seasFt": 42,
+      "movingToward": 25,
+      "movingKt": 23,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "070000Z",
+          "lat": 39.3,
+          "lon": 152.8,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 24,
+          "validZ": "071200Z",
+          "lat": 46,
+          "lon": 161.5,
+          "maxWindKt": 65,
+          "gustKt": 80
+        }
+      ],
+      "spot": {
+        "distanceNm": 1525,
+        "bearingDeg": 59,
+        "closestApproach": {
+          "distanceNm": 1877,
+          "tau": 12,
+          "validZ": "070000Z",
+          "maxWindKt": 70,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 25,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 35
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 41
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-10T15:00:00.000Z",
+        "status": "none"
+      },
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts the large cloud field associated with typhoon (TY) 26W. TY 26W will accelerate northeastward along the northwestern periphery of the STR as it becomes increasingly embedded within the mid-latitude, deep-layer westerlies. The system will undergo rapid extratropical transition as it interacts with a mid-level trough extending from kamchatka to Honshu, becoming fully extratropical no later than +36h.",
+        "warningNumber": "026",
+        "generatedAt": "2026-10-06T11:20:13.962Z"
+      },
+      "reasoningWarningNumber": "027",
+      "significantForecastChanges": "THE FORECAST HAS BEEN TRUNCATED FROM 36 HOURS TO 24 HOURS.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Tropical Storm",
+      "warningNumber": "007",
+      "issuedAt": "2026-10-06T15:00:00.000Z",
+      "positionZ": "061200Z",
+      "lat": 14,
+      "lon": 165.8,
+      "maxWindKt": 45,
+      "gustKt": 55,
+      "pressureMb": 995,
+      "seasFt": 17,
+      "movingToward": 315,
+      "movingKt": 8,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "070000Z",
+          "lat": 15,
+          "lon": 164.5,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 24,
+          "validZ": "071200Z",
+          "lat": 16,
+          "lon": 163,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 36,
+          "validZ": "080000Z",
+          "lat": 16.8,
+          "lon": 161.2,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 48,
+          "validZ": "081200Z",
+          "lat": 17.6,
+          "lon": 158.8,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 60,
+          "validZ": "090000Z",
+          "lat": 18.5,
+          "lon": 156.1,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 72,
+          "validZ": "091200Z",
+          "lat": 19.6,
+          "lon": 153.6,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 96,
+          "validZ": "101200Z",
+          "lat": 22.1,
+          "lon": 149.4,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 120,
+          "validZ": "111200Z",
+          "lat": 24.7,
+          "lon": 146.5,
+          "maxWindKt": 105,
+          "gustKt": 130
+        }
+      ],
+      "spot": {
+        "distanceNm": 2580,
+        "bearingDeg": 94,
+        "closestApproach": {
+          "distanceNm": 1385,
+          "tau": 120,
+          "validZ": "111200Z",
+          "maxWindKt": 105
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 315,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 309
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 305
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 295
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 290
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 290
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 295
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 303
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 315
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-10T15:00:00.000Z",
+        "status": "none"
+      },
+      "summary": {
+        "text": "TS 27W has turned toward the north-northwest and become more organized over the past six hours. TS 27W will continue its turn toward a generally west-northwestward trajectory over the next 24 hours as an extension of subtropical ridging to the northeast builds on the poleward side of the system. The current forecast anticipates slow but steady intensification in the near-term, supported by moderate poleward outflow and constrained by low to moderate easterly vertical wind shear, which is expected to peak around +36h.",
+        "warningNumber": "004",
+        "generatedAt": "2026-10-06T03:20:13.988Z"
+      },
+      "reasoningWarningNumber": "006",
+      "significantForecastChanges": "THE JTWC FORECAST TRACK HAS SHIFTED SOUTHWARD BY NEAR 45 NM AT TAU 120.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
