@@ -87,6 +87,9 @@ const TOWNSHIP_LOCATION_NAME = "東河鄉";
 const COASTAL_POINTS = [
   { townName: "東河鄉", file: "coastal.json", source: "cwa_coastal_donghe", displayed: true },
   { townName: "成功鎮", file: "coastal-chenggong.json", source: "cwa_coastal_chenggong", displayed: false },
+  // Taitung City's coastal waters — where the Taitung buoy (WRA007) sits,
+  // so CWA's forecast can be scored against it like for like. Added 2026-10-06.
+  { townName: "臺東市", file: "coastal-taitung.json", source: "cwa_coastal_taitung", displayed: false },
 ];
 
 // Station whose observed wind is scored against the Donghe township forecast.
@@ -436,7 +439,14 @@ function extractElementSeries(location, elementName, field) {
 async function buildCoastal(point) {
   const raw = await fetchDataset("F-D0047-095");
   const matches = findMatchesContaining(raw, LOCATION_NAME_KEYS, point.townName);
-  if (!matches.length) return { data: raw, ok: false, count: 0, series: [] };
+  if (!matches.length) {
+    // The raw payload is kept for inspection only for the displayed point;
+    // for a logged-only one it would be a multi-MB file committed hourly.
+    return {
+      data: point.displayed ? raw : { error: `no ${point.townName} location in F-D0047-095` },
+      ok: false, count: 0, series: [],
+    };
+  }
 
   // Flat series for the Phase 2 logger. Wave and wind direction come through
   // as Chinese compass text, so each is logged both ways (text + bearing).
@@ -730,9 +740,9 @@ const OM_POINT = { latitude: "22.975", longitude: "121.315", timezone: "Asia/Tai
 const omNum = (v) => (v === null || v === undefined || !isFinite(v)) ? null : Number(v);
 
 /** Hourly 10m wind for one Open-Meteo model, keyed by its local timestamp. */
-async function fetchModelWind(model) {
+async function fetchModelWind(model, point = OM_POINT) {
   const url = new URL("https://api.open-meteo.com/v1/forecast");
-  for (const [k, v] of Object.entries(OM_POINT)) url.searchParams.set(k, v);
+  for (const [k, v] of Object.entries(point)) url.searchParams.set(k, v);
   url.searchParams.set("models", model);
   url.searchParams.set("hourly", "wind_speed_10m,wind_direction_10m,wind_gusts_10m");
   url.searchParams.set("wind_speed_unit", "ms");
@@ -779,6 +789,96 @@ async function buildEcmwf() {
     count: series.length,
     series,
   };
+}
+
+/* --- Model forecasts at the buoys' own positions ------------------------
+ * Every model above is asked for Donghe. Scoring those against a buoy
+ * 20-33km away mixes forecast error with geography — the Phase 3 mock-up
+ * had every model reading 0.2-0.5m high against the Taitung buoy, much of
+ * it plausibly just place. So each model is ALSO asked for each buoy's own
+ * position, and those snapshots are logged under the same source names
+ * with a `site` field (records without `site` are Donghe). Added
+ * 2026-10-06; there is no way to recover these for earlier dates.
+ *
+ * Positions are from O-B0076-001 (see data/marine-stations.json). Wind is
+ * only fetched where the buoy has an anemometer to score it against —
+ * Chenggong (46761F) has none.
+ */
+const BUOY_FORECAST_SITES = [
+  { id: "WRA007", label: "Taitung", latitude: "22.7222", longitude: "121.1400", wind: true },
+  { id: "46761F", label: "Chenggong", latitude: "23.1325", longitude: "121.4201", wind: false },
+];
+const BUOY_SITE_WAVE_MODELS = [
+  { source: "open_meteo", model: "meteofrance_wave", partitions: true },
+  { source: "ecmwf", model: "ecmwf_wam025", peak: true, windModel: "ecmwf_ifs025" },
+  { source: "gfs_wave", model: "ncep_gfswave016", partitions: true },
+];
+const BUOY_SITE_KEEP_HOURS = 120; // the current-tier file holds 5 days; the log keeps the lead-time snapshots
+
+async function fetchWaveModelAt(spec, site) {
+  const url = new URL("https://marine-api.open-meteo.com/v1/marine");
+  for (const k of ["latitude", "longitude"]) url.searchParams.set(k, site[k]);
+  url.searchParams.set("timezone", "Asia/Taipei");
+  url.searchParams.set("forecast_days", "10");
+  url.searchParams.set("models", spec.model);
+  const vars = ["wave_height", "wave_period", "wave_direction"];
+  if (spec.partitions) vars.push("swell_wave_height", "swell_wave_period", "swell_wave_direction", "wind_wave_height", "wind_wave_period");
+  if (spec.peak) vars.push("wave_peak_period");
+  url.searchParams.set("hourly", vars.join(","));
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`open-meteo ${spec.model} @${site.id} -> HTTP ${res.status}`);
+  const body = await res.json();
+  const h = body.hourly || {};
+  const windAt = spec.windModel && site.wind
+    ? await fetchModelWind(spec.windModel, { latitude: site.latitude, longitude: site.longitude, timezone: "Asia/Taipei", forecast_days: "10" })
+    : null;
+  const series = (h.time || []).map((t, i) => {
+    const p = {
+      targetTime: new Date(t + ":00+08:00").toISOString(),
+      waveHeight: omNum(h.wave_height[i]),
+      wavePeriod: omNum(h.wave_period[i]),
+      waveDirectionDeg: omNum(h.wave_direction[i]),
+    };
+    if (spec.partitions) Object.assign(p, {
+      swellHeight: omNum(h.swell_wave_height[i]), swellPeriod: omNum(h.swell_wave_period[i]),
+      swellDirectionDeg: omNum(h.swell_wave_direction[i]),
+      windWaveHeight: omNum(h.wind_wave_height[i]), windWavePeriod: omNum(h.wind_wave_period[i]),
+    });
+    if (spec.peak) p.wavePeakPeriod = omNum(h.wave_peak_period[i]);
+    if (windAt && windAt[t]) Object.assign(p, windAt[t]);
+    return p;
+  }).filter((p) => p.waveHeight !== null);
+  return { series, grid: [body.latitude, body.longitude] };
+}
+
+async function buildBuoySiteForecasts() {
+  const sites = {};
+  const logSeries = [];
+  const errors = [];
+  for (const site of BUOY_FORECAST_SITES) {
+    const out = { label: site.label, latitude: +site.latitude, longitude: +site.longitude, models: {} };
+    const jobs = BUOY_SITE_WAVE_MODELS.map((spec) => ({ spec, run: () => fetchWaveModelAt(spec, site) }));
+    if (site.wind) {
+      jobs.push({ spec: { source: "gfs_wind", model: "gfs_seamless" }, run: async () => {
+        const windAt = await fetchModelWind("gfs_seamless", { latitude: site.latitude, longitude: site.longitude, timezone: "Asia/Taipei", forecast_days: "10" });
+        return { series: Object.keys(windAt).sort().map((t) => Object.assign({ targetTime: new Date(t + ":00+08:00").toISOString() }, windAt[t])).filter((p) => p.windSpeed !== null), grid: null };
+      } });
+    }
+    // One model failing shouldn't cost the others.
+    for (const job of jobs) {
+      try {
+        const { series, grid } = await job.run();
+        logSeries.push({ name: job.spec.source, site: site.id, series });
+        const cutoff = Date.now() + BUOY_SITE_KEEP_HOURS * 3600000;
+        out.models[job.spec.source] = { model: job.spec.model, grid, series: series.filter((p) => new Date(p.targetTime).getTime() <= cutoff) };
+      } catch (err) {
+        errors.push(String(err.message || err));
+      }
+    }
+    sites[site.id] = out;
+  }
+  if (errors.length) console.error(`WARN: buoy-site forecasts: ${errors.join("; ")}`);
+  return { data: { sites, errors }, ok: errors.length === 0, count: logSeries.length, logSeries };
 }
 
 /**
@@ -1756,6 +1856,8 @@ async function run() {
     { file: "ecmwf.json", name: "Open-Meteo ECMWF WAM + IFS (logged only)", build: buildEcmwf },
     { file: "gfs-wind.json", name: "Open-Meteo GFS wind (logged only)", build: buildGfsWind },
     { file: "gfs-wave.json", name: "Open-Meteo GFS-Wave 16km (logged only)", build: buildGfsWave },
+    // Compact JSON: 2 buoys x 4 models x 5 days is the biggest current-tier file.
+    { file: "buoy-site-forecasts.json", name: "Open-Meteo models at the buoy positions (logged only)", build: buildBuoySiteForecasts, compact: true },
     { file: "astronomy.json", name: "CWA astronomy (sun/moon/calendar)", build: buildAstronomy },
     { file: "typhoon.json", name: "JTWC typhoon news (W Pacific)", build: () => buildTyphoon(results) },
   ];
@@ -1770,7 +1872,7 @@ async function run() {
       const { data, ok, count } = result;
       results[job.file] = result;
       if (job.file === "stations.json") stationMatches = result.matches || [];
-      await writeFile(path.join(DATA_DIR, job.file), JSON.stringify(data, null, 2));
+      await writeFile(path.join(DATA_DIR, job.file), job.compact ? JSON.stringify(data) : JSON.stringify(data, null, 2));
       status.push({ name: job.name, ok, count });
       console.log(`${ok ? "OK" : "WARN (no match, wrote raw payload)"}: ${job.name} (${count} records)`);
     } catch (err) {
@@ -1806,6 +1908,8 @@ async function run() {
       { name: "ecmwf", series: (results["ecmwf.json"] || {}).series || [] },
       { name: "gfs_wind", series: (results["gfs-wind.json"] || {}).series || [] },
       { name: "gfs_wave", series: (results["gfs-wave.json"] || {}).series || [] },
+      // Same models at each buoy's own position, tagged with `site`.
+      ...((results["buoy-site-forecasts.json"] || {}).logSeries || []),
     ];
     for (const src of waveSources) {
       for (const lead of LEAD_HOURS) {
@@ -1814,6 +1918,7 @@ async function run() {
         if (!pt) continue;
         forecastRecords.push({
           issuedAt, targetTime: pt.targetTime, leadHours: lead, source: src.name,
+          ...(src.site ? { site: src.site } : {}),
           waveHeight: pt.waveHeight, wavePeriod: pt.wavePeriod,
           waveDirectionDeg: pt.waveDirectionDeg !== undefined ? pt.waveDirectionDeg : null,
           waveDirectionText: pt.waveDirectionText || null,
@@ -1848,7 +1953,8 @@ async function run() {
         windDirectionDeg: period.windDirectionDeg, windDirectionText: period.windDirectionText,
       });
     }
-    const addedForecast = await appendMonthlyHistory("forecast", forecastRecords, (r) => `${r.issuedAt}|${r.leadHours}|${r.source}`);
+    const addedForecast = await appendMonthlyHistory("forecast", forecastRecords,
+      (r) => `${r.issuedAt}|${r.leadHours}|${r.source}` + (r.site ? `|${r.site}` : ""));
     status.push({ name: "history/forecast log", ok: true, count: addedForecast });
     console.log(`OK: history/forecast log (+${addedForecast} records)`);
 

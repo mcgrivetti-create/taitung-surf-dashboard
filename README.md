@@ -155,6 +155,23 @@ from its first two days).
     23.0N 121.333E, ~3km NNE of Donghe right at the coast — far closer
     inshore than MFWAM (~6km out) or ECMWF WAM (~19km out), so it reads
     lower; that's geography, not error. `data/gfs-wave.json`, logged only.
+  - `cwa_coastal_taitung` — `F-D0047-095` for 臺東市 coastal waters, where
+    the Taitung buoy sits (added 2026-10-06, logged only).
+
+  **At the buoys' own positions (added 2026-10-06).** Every model above is
+  aimed at Donghe, and scoring a Donghe forecast against a buoy 20–33km
+  away mixes forecast error with geography (the Phase 3 mock-up had every
+  model reading 0.2–0.5m high against the Taitung buoy). So
+  `buildBuoySiteForecasts` also asks each model for each buoy's position,
+  logged under the **same source names with a `site` field**: records
+  without `site` are Donghe; `site: "WRA007"` is the Taitung buoy,
+  `site: "46761F"` the Chenggong buoy. Taitung gets `open_meteo` (MFWAM),
+  `ecmwf` (waves + wind), `gfs_wave` and `gfs_wind`; Chenggong gets the
+  three wave models only, as it has no anemometer. The next 5 days are kept
+  in `data/buoy-site-forecasts.json` (compact JSON, with each model's actual
+  grid point). There is no way to recover these for dates before
+  2026-10-06; Phase 3 should score buoy-vs-forecast on `site` records from
+  then on and treat the Donghe-point comparison as a rougher reference.
 
   Where everything sits relative to Donghe (22.975N 121.315E), for reading
   the comparisons — model grid points above; observations from
