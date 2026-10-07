@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-07c";
+  var ASSET_VERSION = "2026-10-07d";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {

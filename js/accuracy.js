@@ -16,7 +16,7 @@
 (function () {
   "use strict";
 
-  var ASSET_VERSION = "2026-10-07c";
+  var ASSET_VERSION = "2026-10-07d";
   var RELOAD_GUARD = "surf-asset-reload";
   (function selfHealStaleAssets() {
     var tried = false;
@@ -250,21 +250,51 @@
   }
 
   /* =================== WAVES =================== */
+  // CWA only forecasts Donghe's coastal waters (there's no buoy-position
+  // version, by choice), so on the buoy charts it's drawn as Donghe's
+  // forecast, labelled "CWA (Donghe)".
+  var CWA = "cwa_coastal_donghe";
+  function cwaCoastalSeries() {
+    // [{t, h, p, d, s, wd}] from data/coastal.json (F-D0047-095, 3-hourly, 72h).
+    try {
+      var loc = D.coastal.records.locations[0].location[0], els = {};
+      (loc.WeatherElement || []).forEach(function (w) { els[w.ElementName] = w.Time || []; });
+      function val(name, field) { var m = {}; (els[name] || []).forEach(function (t) { var v = t.ElementValue; v = Array.isArray(v) ? v[0] : v; m[t.DataTime] = v ? v[field] : null; }); return m; }
+      var hgt = val("浪高", "WaveHeight"), per = val("浪週期", "WavePeriod"), wdir = val("浪向", "WaveDirection"), spd = val("風速", "WindSpeed"), wnd = val("風向", "WindDirection");
+      var times = Object.keys(hgt).length ? Object.keys(hgt) : Object.keys(spd);
+      return times.map(function (k) {
+        var n = function (x) { return x === null || x === undefined || x === "" || isNaN(Number(x)) ? null : Number(x); };
+        return { t: Date.parse(k), h: n(hgt[k]), p: n(per[k]), d: zhDeg(wdir[k]), s: n(spd[k]), wd: zhDeg(wnd[k]) };
+      }).sort(function (a, b) { return a.t - b.t; });
+    } catch (e) { return []; }
+  }
+  // Past "as forecast" rows for a source on a buoy chart: the buoy-position
+  // forecast for the models, the Donghe one for CWA.
+  function pastRows(buoy, id) {
+    if (id === CWA) return (D.live.donghe.asForecast || {})[CWA] || [];
+    return ((D.live.buoys[buoy] || {}).asForecast || {})[id] || [];
+  }
   function waveModelLine(buoy, id, field) {
-    var past = ((D.live.buoys[buoy] || {}).asForecast || {})[id] || [];
+    var pts = pastRows(buoy, id).map(function (r) { return { t: r[0], v: r[field] === undefined ? null : r[field] }; });
+    if (id === CWA) {
+      var k = [null, "h", "p", "d", "s", "wd"][field];
+      cwaCoastalSeries().forEach(function (p) { if (p.t > D.now) pts.push({ t: p.t, v: p[k] }); });
+      return pts;
+    }
     var fut = (((D.site.sites || {})[buoy] || {}).models || {})[id];
-    var pts = past.map(function (r) { return { t: r[0], v: r[field] === undefined ? null : r[field] }; });
     var key = ["", "waveHeight", "wavePeriod", "waveDirectionDeg", "windSpeed", "windDirectionDeg"][field];
     ((fut && fut.series) || []).forEach(function (p) { var t = Date.parse(p.targetTime); if (t > D.now) pts.push({ t: t, v: p[key] === undefined ? null : p[key] }); });
     return pts;
   }
+  var WAVE_LIVE_IDS = ["open_meteo", "ecmwf", "gfs_wave", CWA];
+  function liveName(id) { return id === CWA ? "CWA (Donghe)" : SRC[id].name; }
   function renderWavesLive(box) {
     var L = S.wl, b = BUOYS[L.buoy], obs = (D.live.buoys[L.buoy] || {}).obs || [];
-    var models = L.model === "all" ? ["open_meteo", "ecmwf", "gfs_wave"] : [L.model];
+    var models = L.model === "all" ? WAVE_LIVE_IDS : [L.model];
     box.innerHTML = syn("Summary · " + b.name + " buoy · last 72 hours and next 3 days", wavesLiveSynopsis(L.buoy, obs)) +
       '<div class="fc-controls"><div class="fc-ctl"><span class="fc-ctl-label">Buoy</span><div class="fc-seg" id="wl-buoy"></div></div>' +
       '<div class="fc-ctl"><span class="fc-ctl-label">Model</span><div class="fc-seg" id="wl-model"></div></div></div>' +
-      '<div class="fc-panel"><div class="fc-panel-head"><h3>' + b.name + ' buoy · measured + forecast</h3><span class="fc-note">' + b.dist + " · each model read at its nearest grid point to the buoy</span></div>" +
+      '<div class="fc-panel"><div class="fc-panel-head"><h3>' + b.name + ' buoy · measured + forecast</h3><span class="fc-note">' + b.dist + " · models read at their nearest grid point to the buoy; CWA is its Donghe forecast</span></div>" +
       '<div class="fc-now" id="wl-now"></div><div class="fc-legend" id="wl-legend"></div><div class="fc-stack">' +
       '<div class="fc-row"><h4>Wave height</h4><div class="fc-chart" id="wl-h"></div></div>' +
       '<div class="fc-row"><h4>Wave period</h4><label class="fc-toggle"><input type="checkbox" id="wl-rule"' + (L.rule ? " checked" : "") + '><span class="fc-tg"></span>Buoy × 1.3 (groundswell rule of thumb)</label><div class="fc-chart" id="wl-p"></div></div>' +
@@ -272,7 +302,7 @@
       (L.buoy === "WRA007" ? '<div class="fc-row"><h4>Wind speed at the buoy</h4><div class="fc-chart" id="wl-w"></div></div>' : "") +
       '</div><p class="fc-note">Left of "now", each model line is what that model forecast for the hour 6 hours ahead, at the buoy\'s position. These forecasts have been logged since Oct 6, so the line is short until three days have built up.</p></div>';
     seg(document.getElementById("wl-buoy"), Object.keys(BUOYS).map(function (k) { return { label: BUOYS[k].name, value: k }; }), L.buoy, function (v) { L.buoy = v; save(); render(); });
-    seg(document.getElementById("wl-model"), ["open_meteo", "ecmwf", "gfs_wave"].map(function (k) { return { label: SRC[k].name, value: k }; }).concat([{ label: "All", value: "all" }]), L.model, function (v) { L.model = v; save(); render(); });
+    seg(document.getElementById("wl-model"), WAVE_LIVE_IDS.map(function (k) { return { label: liveName(k), value: k }; }).concat([{ label: "All", value: "all" }]), L.model, function (v) { L.model = v; save(); render(); });
     document.getElementById("wl-rule").addEventListener("change", function (e) { L.rule = e.target.checked; save(); render(); });
     var last = obs[obs.length - 1], now = "";
     if (last) {
@@ -281,18 +311,18 @@
     }
     document.getElementById("wl-now").innerHTML = now;
     var OBS = { label: b.name + " buoy (measured)", c: OBS_C, w: 2.5 };
-    var leg = [OBS].concat(models.map(function (m) { return { label: SRC[m].name + " forecast", c: SRC[m].c, w: 2 }; }));
+    var leg = [OBS].concat(models.map(function (m) { return { label: liveName(m) + " forecast", c: SRC[m].c, w: 2 }; }));
     if (L.buoy === "WRA007") leg = leg.concat([{ label: "ECMWF wind", c: SRC.ecmwf.c, w: 2 }, { label: "GFS wind", c: SRC.gfs_wind.c, w: 2 }]);
     document.getElementById("wl-legend").innerHTML = legendHtml(leg.filter(function (x, i, a) { return a.findIndex(function (y) { return y.label === x.label; }) === i; }));
     var x0 = D.now - 72 * H, x1 = D.now + 144 * H;
     function obsPts(i) { return obs.map(function (o) { return { t: o[0], v: o[i] === undefined ? null : o[i] }; }); }
-    function mLines(i) { return models.map(function (m) { return { label: SRC[m].name, c: SRC[m].c, w: 2, pts: waveModelLine(L.buoy, m, i) }; }); }
+    function mLines(i) { return models.map(function (m) { return { label: liveName(m), c: SRC[m].c, w: 2, pts: waveModelLine(L.buoy, m, i) }; }); }
     timeChart(document.getElementById("wl-h"), { xMin: x0, xMax: x1, now: D.now, auto: true, yFloor: 1, step: 0.5, tick: function (v) { return v.toFixed(1); }, fmt: function (v) { return f2(v) + " m"; }, lines: [Object.assign({}, OBS, { gap: 2, pts: obsPts(1) })].concat(mLines(1)), aria: "Wave height, measured and forecast" });
     var pl = [Object.assign({}, OBS, { gap: 2, pts: obsPts(2) })];
     if (L.rule) pl.push({ label: "Buoy × 1.3", c: OBS_C, w: 1.5, dash: "5 4", op: 0.75, gap: 2, pts: obsPts(2).map(function (p) { return { t: p.t, v: p.v === null ? null : p.v * 1.3 }; }) });
     timeChart(document.getElementById("wl-p"), { xMin: x0, xMax: x1, now: D.now, auto: true, yFloor: 10, step: 2, tick: function (v) { return v + "s"; }, fmt: function (v) { return f1(v) + " s"; }, lines: pl.concat(mLines(2)), aria: "Wave period, measured and forecast" });
     timeChart(document.getElementById("wl-d"), { xMin: x0, xMax: x1, now: D.now, yMin: 0, yMax: 360, step: 90, h: 160, tick: function (v) { return ["N", "E", "S", "W", "N"][v / 90]; }, fmt: function (v) { return compass(v) + " (" + Math.round(v) + "°)"; },
-      lines: [Object.assign({}, OBS, { dots: true, r: 3, pts: obsPts(3) })].concat(models.map(function (m) { return { label: SRC[m].name, c: SRC[m].c, dots: true, r: 2, op: 0.85, pts: waveModelLine(L.buoy, m, 3) }; })), aria: "Wave direction" });
+      lines: [Object.assign({}, OBS, { dots: true, r: 3, pts: obsPts(3) })].concat(models.map(function (m) { return { label: liveName(m), c: SRC[m].c, dots: true, r: 2, op: 0.85, pts: waveModelLine(L.buoy, m, 3) }; })), aria: "Wave direction" });
     if (L.buoy === "WRA007") {
       timeChart(document.getElementById("wl-w"), { xMin: x0, xMax: x1, now: D.now, auto: true, yFloor: 6, step: 2, tick: function (v) { return v + ""; }, fmt: function (v) { return f1(v) + " m/s"; },
         lines: [Object.assign({}, OBS, { gap: 2, pts: obsPts(4) }), { label: "ECMWF wind", c: SRC.ecmwf.c, w: 2, pts: waveModelLine("WRA007", "ecmwf", 4) }, { label: "GFS wind", c: SRC.gfs_wind.c, w: 2, pts: waveModelLine("WRA007", "gfs_wind", 4) }], aria: "Wind speed at the Taitung buoy" });
@@ -306,21 +336,21 @@
     var ref = past.filter(function (o) { return o[0] <= last[0] - 6 * H; }).pop() || past[0], ch = last[1] - ref[1];
     out.push("Over the last 72 hours the " + b.name + " buoy measured " + f1(Math.min.apply(null, hs)) + "–" + f1(Math.max.apply(null, hs)) + " m; it now reads <b>" + f1(last[1]) + " m</b> and is " + (ch > 0.15 ? "rising" : ch < -0.15 ? "dropping" : "holding steady") + ".");
     var byHour = {}; past.forEach(function (o) { byHour[o[0]] = o[1]; });
-    var rank = ["open_meteo", "ecmwf", "gfs_wave"].map(function (m) {
+    var rank = WAVE_LIVE_IDS.map(function (m) {
       var n = 0, abs = 0, sum = 0;
-      (((D.live.buoys[buoy] || {}).asForecast || {})[m] || []).forEach(function (r) { var o = byHour[r[0]]; if (o === undefined || r[1] === null || r[1] === undefined) return; n++; abs += Math.abs(r[1] - o); sum += r[1] - o; });
+      pastRows(buoy, m).forEach(function (r) { var o = byHour[r[0]]; if (o === undefined || r[1] === null || r[1] === undefined) return; n++; abs += Math.abs(r[1] - o); sum += r[1] - o; });
       return { m: m, n: n, mae: n ? abs / n : null, bias: n ? sum / n : null };
     }).filter(function (r) { return r.n >= 6; }).sort(function (a, c) { return a.mae - c.mae; });
     var lead = rank[0] ? rank[0].m : "open_meteo";
     if (rank.length) {
       var far = rank.slice().sort(function (a, c) { return Math.abs(c.bias) - Math.abs(a.bias); })[0];
-      out.push("Forecast 6 hours ahead, <b>" + SRC[rank[0].m].name + "</b> has tracked it most closely, typically within " + f2(rank[0].mae) + " m" + (rank[0].n < 24 ? " (over " + rank[0].n + " hours so far)" : "") +
-        (rank.length > 1 && far.m !== rank[0].m ? "; " + SRC[far.m].name + " has run " + (far.bias > 0 ? "highest" : "lowest") + " (" + sgn(far.bias, f2) + " m)" : "") + ".");
+      out.push("Forecast 6 hours ahead, <b>" + liveName(rank[0].m) + "</b> has tracked it most closely, typically within " + f2(rank[0].mae) + " m" + (rank[0].n < 24 ? " (over " + rank[0].n + " hours so far)" : "") +
+        (rank.length > 1 && far.m !== rank[0].m ? "; " + liveName(far.m) + " has run " + (far.bias > 0 ? "highest" : "lowest") + " (" + sgn(far.bias, f2) + " m)" : "") + ".");
     }
     var fut = waveModelLine(buoy, lead, 1).filter(function (p) { return p.t > D.now && p.t <= D.now + 72 * H && p.v !== null; });
     if (fut.length) {
       var mx = fut.reduce(function (a, p) { return p.v > a.v ? p : a; }), mn = fut.reduce(function (a, p) { return p.v < a.v ? p : a; });
-      out.push(SRC[lead].name + " expects " + (mx.v > last[1] + 0.2 ? "a rise to about <b>" + f1(mx.v) + " m</b> around " + fmtWHM.format(mx.t) : mn.v < last[1] - 0.2 ? "it to ease to about <b>" + f1(mn.v) + " m</b> by " + fmtWHM.format(mn.t) : "it to hold near <b>" + f1(fut[fut.length - 1].v) + " m</b>") + " over the next 3 days.");
+      out.push(liveName(lead) + " expects " + (mx.v > last[1] + 0.2 ? "a rise to about <b>" + f1(mx.v) + " m</b> around " + fmtWHM.format(mx.t) : mn.v < last[1] - 0.2 ? "it to ease to about <b>" + f1(mn.v) + " m</b> by " + fmtWHM.format(mn.t) : "it to hold near <b>" + f1(fut[fut.length - 1].v) + " m</b>") + " over the next 3 days.");
     }
     return out.join(" ");
   }
@@ -339,9 +369,17 @@
   function renderWavesHist(box) {
     var Hs = S.wh;
     var point = Hs.point || wavesPointDefault();
-    var ids = point === "buoy" ? ["open_meteo", "ecmwf", "gfs_wave"] : ["cwa_coastal_donghe", "open_meteo", "ecmwf", "gfs_wave"];
+    // CWA appears either way: it has no buoy-position forecast, so on the
+    // "The buoy" setting its row is its Donghe forecast, labelled as such.
+    var ids = [CWA, "open_meteo", "ecmwf", "gfs_wave"];
+    function ptFor(id) { return id === CWA ? "donghe" : point; }
     var b = BUOYS[Hs.buoy], winLabel = Hs.win === "7d" ? "last 7 days" : "last 30 days";
-    function rowsFor(field) { var all = waveStats(Hs.win, Hs.buoy, point, field, Hs.lead); return ids.map(function (id) { return { id: id, st: all.filter(function (x) { return x.source === id; })[0] || { n: 0 } }; }); }
+    function rowsFor(field) {
+      return ids.map(function (id) {
+        var st = waveStats(Hs.win, Hs.buoy, ptFor(id), field, Hs.lead).filter(function (x) { return x.source === id; })[0] || { n: 0 };
+        return { id: id, st: st, sub: id === CWA && point === "buoy" ? "CWA's Donghe forecast (CWA has no buoy-position forecast)" : undefined };
+      });
+    }
     var hRows = rowsFor("height"), pRows = rowsFor("period");
     box.innerHTML = syn("Summary · " + b.name + " buoy · " + winLabel + " · forecasts made " + Hs.lead + "h ahead", wavesHistSynopsis(hRows, pRows, b, point)) +
       '<div class="fc-controls"><div class="fc-ctl"><span class="fc-ctl-label">Buoy</span><div class="fc-seg" id="wh-buoy"></div></div>' +
@@ -360,7 +398,7 @@
     seg(document.getElementById("wh-lead"), LEADS.map(function (l) { return { label: l + "h", value: l }; }), Hs.lead, function (v) { Hs.lead = +v; save(); render(); });
     seg(document.getElementById("wh-win"), [{ label: "7 days", value: "7d" }, { label: "30 days", value: "30d" }], Hs.win, function (v) { Hs.win = v; Hs.point = null; save(); render(); });
     function leadSeries(field) {
-      return ids.map(function (id) { return { label: SRC[id].name, c: SRC[id].c, pts: LEADS.map(function (l) { return { lead: l, st: (waveStats(Hs.win, Hs.buoy, point, field, l).filter(function (x) { return x.source === id; })[0]) || null }; }) }; })
+      return ids.map(function (id) { return { label: SRC[id].name, c: SRC[id].c, pts: LEADS.map(function (l) { return { lead: l, st: (waveStats(Hs.win, Hs.buoy, ptFor(id), field, l).filter(function (x) { return x.source === id; })[0]) || null }; }) }; })
         .concat([{ label: "No change", c: "var(--fc-ink-3)", dash: "5 4", pts: LEADS.map(function (l) { return { lead: l, st: persistence(Hs.win, Hs.buoy, field, l) }; }) }]);
     }
     leadChart(document.getElementById("wh-hlead"), leadSeries("height"), Hs.lead, "m", f2, 0.1);
@@ -372,7 +410,7 @@
       var x1 = Date.parse(D.history.updatedAt), x0 = x1 - 7 * 24 * H;
       function lines(i) {
         return [{ label: b.name + " buoy", c: OBS_C, w: 2.5, gap: 2, pts: o.map(function (r) { return { t: r[0], v: r[i] === undefined ? null : r[i] }; }) }]
-          .concat(ids.map(function (id) { return { label: SRC[id].name + " (" + Hs.lead + "h ahead)", c: SRC[id].c, w: 2, gap: 4, pts: (D.history.forecasts[key + "|" + id + "|" + Hs.lead] || []).map(function (r) { return { t: r[0], v: r[i] === undefined ? null : r[i] }; }) }; }));
+          .concat(ids.map(function (id) { return { label: SRC[id].name + " (" + Hs.lead + "h ahead)", c: SRC[id].c, w: 2, gap: 4, pts: (D.history.forecasts[(id === CWA ? "donghe" : key) + "|" + id + "|" + Hs.lead] || []).map(function (r) { return { t: r[0], v: r[i] === undefined ? null : r[i] }; }) }; }));
       }
       timeChart(document.getElementById("wh-hts"), { xMin: x0, xMax: x1, auto: true, yFloor: 1, step: 0.5, tick: function (v) { return v.toFixed(1); }, fmt: function (v) { return f2(v) + " m"; }, lines: lines(1), aria: "Wave height, last 7 days" });
       timeChart(document.getElementById("wh-pts"), { xMin: x0, xMax: x1, auto: true, yFloor: 10, step: 2, tick: function (v) { return v + "s"; }, fmt: function (v) { return f1(v) + " s"; }, lines: lines(2), aria: "Wave period, last 7 days" });
@@ -698,14 +736,20 @@
     return '<div class="fc-subtabs" role="tablist" aria-label="View"><button type="button" role="tab" data-sub="live" aria-selected="' + (S.sub[tab] === "live") + '">Live</button><button type="button" role="tab" data-sub="hist" aria-selected="' + (S.sub[tab] === "hist") + '">Accuracy history</button></div>';
   }
   function render() {
+    // Only the open tab holds content. Leaving the others' markup in place
+    // left two #fc-body elements in the page, and getElementById found the
+    // Waves one first — so Wind, Tide and Typhoon drew into the hidden Waves
+    // panel and looked blank (launch bug, fixed 2026-10-07).
     TABS.forEach(function (t) {
       document.getElementById("t-" + t).setAttribute("aria-selected", String(t === S.tab));
-      document.getElementById("p-" + t).hidden = t !== S.tab;
+      var p = document.getElementById("p-" + t);
+      p.hidden = t !== S.tab;
+      if (t !== S.tab) p.innerHTML = "";
     });
     var panel = document.getElementById("p-" + S.tab);
     panel.innerHTML = subtabs(S.tab) + '<div class="fc-view" id="fc-body"></div>';
     panel.querySelectorAll("[data-sub]").forEach(function (b) { b.addEventListener("click", function () { S.sub[S.tab] = b.getAttribute("data-sub"); save(); render(); }); });
-    var body = document.getElementById("fc-body");
+    var body = panel.querySelector("#fc-body");
     if (!D.live || !D.stats) { body.innerHTML = '<p class="fc-empty">' + (D.error ? "Couldn't load the Forecast Check data (" + esc(D.error) + ")." : "Loading…") + "</p>"; return; }
     try {
       var fn = { waves: [renderWavesLive, renderWavesHist], wind: [renderWindLive, renderWindHist], tide: [renderTideLive, renderTideHist], typhoon: [renderTyphoon, renderTyphoon] }[S.tab];

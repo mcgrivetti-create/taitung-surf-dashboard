@@ -286,7 +286,8 @@ viewer's last choices are remembered per browser), deep-linkable as
 
 - **Waves** — Live: CDIP-style running chart per buoy (Taitung / Chenggong)
   for height, period (optional buoy × 1.3 groundswell rule), direction and,
-  at Taitung, wind. Left of "now" each model line is its forecast **as made
+  at Taitung, wind. CWA appears as "CWA (Donghe)" — its Donghe forecast,
+  since CWA has no buoy-position one. Left of "now" each model line is its forecast **as made
   6h ahead at the buoy's position**; right of it, the current forecast
   (`buoy-site-forecasts.json`). History: scorecard by buoy, lead (6–72h)
   and window (7/30 days) with a **"no change" baseline** row; scores use
