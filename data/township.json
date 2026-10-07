@@ -13,15 +13,6 @@
                 "ElementName": "平均溫度",
                 "Time": [
                   {
-                    "StartTime": "2026-10-07T12:00:00+08:00",
-                    "EndTime": "2026-10-07T18:00:00+08:00",
-                    "ElementValue": [
-                      {
-                        "Temperature": "28"
-                      }
-                    ]
-                  },
-                  {
                     "StartTime": "2026-10-07T18:00:00+08:00",
                     "EndTime": "2026-10-08T06:00:00+08:00",
                     "ElementValue": [
@@ -137,21 +128,30 @@
                         "Temperature": "26"
                       }
                     ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T06:00:00+08:00",
+                    "EndTime": "2026-10-14T18:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "Temperature": "28"
+                      }
+                    ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T18:00:00+08:00",
+                    "EndTime": "2026-10-15T06:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "Temperature": "26"
+                      }
+                    ]
                   }
                 ]
               },
               {
                 "ElementName": "最高溫度",
                 "Time": [
-                  {
-                    "StartTime": "2026-10-07T12:00:00+08:00",
-                    "EndTime": "2026-10-07T18:00:00+08:00",
-                    "ElementValue": [
-                      {
-                        "MaxTemperature": "29"
-                      }
-                    ]
-                  },
                   {
                     "StartTime": "2026-10-07T18:00:00+08:00",
                     "EndTime": "2026-10-08T06:00:00+08:00",
@@ -263,6 +263,24 @@
                   {
                     "StartTime": "2026-10-13T18:00:00+08:00",
                     "EndTime": "2026-10-14T06:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "MaxTemperature": "27"
+                      }
+                    ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T06:00:00+08:00",
+                    "EndTime": "2026-10-14T18:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "MaxTemperature": "31"
+                      }
+                    ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T18:00:00+08:00",
+                    "EndTime": "2026-10-15T06:00:00+08:00",
                     "ElementValue": [
                       {
                         "MaxTemperature": "27"
@@ -275,15 +293,6 @@
                 "ElementName": "最低溫度",
                 "Time": [
                   {
-                    "StartTime": "2026-10-07T12:00:00+08:00",
-                    "EndTime": "2026-10-07T18:00:00+08:00",
-                    "ElementValue": [
-                      {
-                        "MinTemperature": "26"
-                      }
-                    ]
-                  },
-                  {
                     "StartTime": "2026-10-07T18:00:00+08:00",
                     "EndTime": "2026-10-08T06:00:00+08:00",
                     "ElementValue": [
@@ -399,6 +408,24 @@
                         "MinTemperature": "25"
                       }
                     ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T06:00:00+08:00",
+                    "EndTime": "2026-10-14T18:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "MinTemperature": "25"
+                      }
+                    ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T18:00:00+08:00",
+                    "EndTime": "2026-10-15T06:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "MinTemperature": "25"
+                      }
+                    ]
                   }
                 ]
               },
@@ -406,20 +433,11 @@
                 "ElementName": "平均露點溫度",
                 "Time": [
                   {
-                    "StartTime": "2026-10-07T12:00:00+08:00",
-                    "EndTime": "2026-10-07T18:00:00+08:00",
-                    "ElementValue": [
-                      {
-                        "DewPoint": "20"
-                      }
-                    ]
-                  },
-                  {
                     "StartTime": "2026-10-07T18:00:00+08:00",
                     "EndTime": "2026-10-08T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "DewPoint": "16"
+                        "DewPoint": "17"
                       }
                     ]
                   },
@@ -437,7 +455,7 @@
                     "EndTime": "2026-10-09T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "DewPoint": "17"
+                        "DewPoint": "19"
                       }
                     ]
                   },
@@ -455,7 +473,7 @@
                     "EndTime": "2026-10-10T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "DewPoint": "23"
+                        "DewPoint": "22"
                       }
                     ]
                   },
@@ -464,7 +482,7 @@
                     "EndTime": "2026-10-10T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "DewPoint": "24"
+                        "DewPoint": "23"
                       }
                     ]
                   },
@@ -482,7 +500,7 @@
                     "EndTime": "2026-10-11T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "DewPoint": "24"
+                        "DewPoint": "23"
                       }
                     ]
                   },
@@ -491,7 +509,7 @@
                     "EndTime": "2026-10-12T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "DewPoint": "22"
+                        "DewPoint": "21"
                       }
                     ]
                   },
@@ -500,7 +518,7 @@
                     "EndTime": "2026-10-12T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "DewPoint": "24"
+                        "DewPoint": "23"
                       }
                     ]
                   },
@@ -530,6 +548,24 @@
                         "DewPoint": "23"
                       }
                     ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T06:00:00+08:00",
+                    "EndTime": "2026-10-14T18:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "DewPoint": "24"
+                      }
+                    ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T18:00:00+08:00",
+                    "EndTime": "2026-10-15T06:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "DewPoint": "22"
+                      }
+                    ]
                   }
                 ]
               },
@@ -537,20 +573,11 @@
                 "ElementName": "平均相對濕度",
                 "Time": [
                   {
-                    "StartTime": "2026-10-07T12:00:00+08:00",
-                    "EndTime": "2026-10-07T18:00:00+08:00",
-                    "ElementValue": [
-                      {
-                        "RelativeHumidity": "65"
-                      }
-                    ]
-                  },
-                  {
                     "StartTime": "2026-10-07T18:00:00+08:00",
                     "EndTime": "2026-10-08T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "RelativeHumidity": "61"
+                        "RelativeHumidity": "62"
                       }
                     ]
                   },
@@ -559,7 +586,7 @@
                     "EndTime": "2026-10-08T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "RelativeHumidity": "70"
+                        "RelativeHumidity": "69"
                       }
                     ]
                   },
@@ -568,7 +595,7 @@
                     "EndTime": "2026-10-09T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "RelativeHumidity": "63"
+                        "RelativeHumidity": "69"
                       }
                     ]
                   },
@@ -577,7 +604,7 @@
                     "EndTime": "2026-10-09T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "RelativeHumidity": "68"
+                        "RelativeHumidity": "70"
                       }
                     ]
                   },
@@ -586,7 +613,7 @@
                     "EndTime": "2026-10-10T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "RelativeHumidity": "84"
+                        "RelativeHumidity": "81"
                       }
                     ]
                   },
@@ -595,7 +622,7 @@
                     "EndTime": "2026-10-10T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "RelativeHumidity": "77"
+                        "RelativeHumidity": "72"
                       }
                     ]
                   },
@@ -604,7 +631,7 @@
                     "EndTime": "2026-10-11T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "RelativeHumidity": "79"
+                        "RelativeHumidity": "81"
                       }
                     ]
                   },
@@ -613,7 +640,7 @@
                     "EndTime": "2026-10-11T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "RelativeHumidity": "74"
+                        "RelativeHumidity": "72"
                       }
                     ]
                   },
@@ -622,7 +649,7 @@
                     "EndTime": "2026-10-12T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "RelativeHumidity": "81"
+                        "RelativeHumidity": "77"
                       }
                     ]
                   },
@@ -661,6 +688,24 @@
                         "RelativeHumidity": "83"
                       }
                     ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T06:00:00+08:00",
+                    "EndTime": "2026-10-14T18:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "RelativeHumidity": "76"
+                      }
+                    ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T18:00:00+08:00",
+                    "EndTime": "2026-10-15T06:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "RelativeHumidity": "83"
+                      }
+                    ]
                   }
                 ]
               },
@@ -668,20 +713,11 @@
                 "ElementName": "最高體感溫度",
                 "Time": [
                   {
-                    "StartTime": "2026-10-07T12:00:00+08:00",
-                    "EndTime": "2026-10-07T18:00:00+08:00",
-                    "ElementValue": [
-                      {
-                        "MaxApparentTemperature": "27"
-                      }
-                    ]
-                  },
-                  {
                     "StartTime": "2026-10-07T18:00:00+08:00",
                     "EndTime": "2026-10-08T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "MaxApparentTemperature": "24"
+                        "MaxApparentTemperature": "25"
                       }
                     ]
                   },
@@ -708,7 +744,7 @@
                     "EndTime": "2026-10-09T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "MaxApparentTemperature": "30"
+                        "MaxApparentTemperature": "29"
                       }
                     ]
                   },
@@ -726,7 +762,7 @@
                     "EndTime": "2026-10-10T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "MaxApparentTemperature": "32"
+                        "MaxApparentTemperature": "31"
                       }
                     ]
                   },
@@ -792,6 +828,24 @@
                         "MaxApparentTemperature": "29"
                       }
                     ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T06:00:00+08:00",
+                    "EndTime": "2026-10-14T18:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "MaxApparentTemperature": "33"
+                      }
+                    ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T18:00:00+08:00",
+                    "EndTime": "2026-10-15T06:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "MaxApparentTemperature": "29"
+                      }
+                    ]
                   }
                 ]
               },
@@ -799,20 +853,11 @@
                 "ElementName": "最低體感溫度",
                 "Time": [
                   {
-                    "StartTime": "2026-10-07T12:00:00+08:00",
-                    "EndTime": "2026-10-07T18:00:00+08:00",
-                    "ElementValue": [
-                      {
-                        "MinApparentTemperature": "24"
-                      }
-                    ]
-                  },
-                  {
                     "StartTime": "2026-10-07T18:00:00+08:00",
                     "EndTime": "2026-10-08T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "MinApparentTemperature": "22"
+                        "MinApparentTemperature": "18"
                       }
                     ]
                   },
@@ -821,7 +866,7 @@
                     "EndTime": "2026-10-08T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "MinApparentTemperature": "22"
+                        "MinApparentTemperature": "19"
                       }
                     ]
                   },
@@ -830,7 +875,7 @@
                     "EndTime": "2026-10-09T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "MinApparentTemperature": "22"
+                        "MinApparentTemperature": "20"
                       }
                     ]
                   },
@@ -848,7 +893,7 @@
                     "EndTime": "2026-10-10T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "MinApparentTemperature": "25"
+                        "MinApparentTemperature": "24"
                       }
                     ]
                   },
@@ -857,7 +902,7 @@
                     "EndTime": "2026-10-10T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "MinApparentTemperature": "25"
+                        "MinApparentTemperature": "24"
                       }
                     ]
                   },
@@ -866,7 +911,7 @@
                     "EndTime": "2026-10-11T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "MinApparentTemperature": "25"
+                        "MinApparentTemperature": "24"
                       }
                     ]
                   },
@@ -875,7 +920,7 @@
                     "EndTime": "2026-10-11T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "MinApparentTemperature": "25"
+                        "MinApparentTemperature": "24"
                       }
                     ]
                   },
@@ -923,22 +968,30 @@
                         "MinApparentTemperature": "26"
                       }
                     ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T06:00:00+08:00",
+                    "EndTime": "2026-10-14T18:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "MinApparentTemperature": "26"
+                      }
+                    ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T18:00:00+08:00",
+                    "EndTime": "2026-10-15T06:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "MinApparentTemperature": "26"
+                      }
+                    ]
                   }
                 ]
               },
               {
                 "ElementName": "最大舒適度指數",
                 "Time": [
-                  {
-                    "StartTime": "2026-10-07T12:00:00+08:00",
-                    "EndTime": "2026-10-07T18:00:00+08:00",
-                    "ElementValue": [
-                      {
-                        "MaxComfortIndex": "26",
-                        "MaxComfortIndexDescription": "舒適"
-                      }
-                    ]
-                  },
                   {
                     "StartTime": "2026-10-07T18:00:00+08:00",
                     "EndTime": "2026-10-08T06:00:00+08:00",
@@ -1024,7 +1077,7 @@
                     "EndTime": "2026-10-12T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "MaxComfortIndex": "26",
+                        "MaxComfortIndex": "25",
                         "MaxComfortIndexDescription": "舒適"
                       }
                     ]
@@ -1068,6 +1121,26 @@
                         "MaxComfortIndexDescription": "舒適"
                       }
                     ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T06:00:00+08:00",
+                    "EndTime": "2026-10-14T18:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "MaxComfortIndex": "28",
+                        "MaxComfortIndexDescription": "悶熱"
+                      }
+                    ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T18:00:00+08:00",
+                    "EndTime": "2026-10-15T06:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "MaxComfortIndex": "26",
+                        "MaxComfortIndexDescription": "舒適"
+                      }
+                    ]
                   }
                 ]
               },
@@ -1075,21 +1148,11 @@
                 "ElementName": "最小舒適度指數",
                 "Time": [
                   {
-                    "StartTime": "2026-10-07T12:00:00+08:00",
-                    "EndTime": "2026-10-07T18:00:00+08:00",
-                    "ElementValue": [
-                      {
-                        "MinComfortIndex": "24",
-                        "MinComfortIndexDescription": "舒適"
-                      }
-                    ]
-                  },
-                  {
                     "StartTime": "2026-10-07T18:00:00+08:00",
                     "EndTime": "2026-10-08T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "MinComfortIndex": "22",
+                        "MinComfortIndex": "21",
                         "MinComfortIndexDescription": "舒適"
                       }
                     ]
@@ -1129,7 +1192,7 @@
                     "EndTime": "2026-10-10T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "MinComfortIndex": "24",
+                        "MinComfortIndex": "23",
                         "MinComfortIndexDescription": "舒適"
                       }
                     ]
@@ -1139,7 +1202,7 @@
                     "EndTime": "2026-10-10T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "MinComfortIndex": "24",
+                        "MinComfortIndex": "23",
                         "MinComfortIndexDescription": "舒適"
                       }
                     ]
@@ -1213,6 +1276,26 @@
                         "MinComfortIndexDescription": "舒適"
                       }
                     ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T06:00:00+08:00",
+                    "EndTime": "2026-10-14T18:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "MinComfortIndex": "23",
+                        "MinComfortIndexDescription": "舒適"
+                      }
+                    ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T18:00:00+08:00",
+                    "EndTime": "2026-10-15T06:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "MinComfortIndex": "23",
+                        "MinComfortIndexDescription": "舒適"
+                      }
+                    ]
                   }
                 ]
               },
@@ -1220,22 +1303,12 @@
                 "ElementName": "風速",
                 "Time": [
                   {
-                    "StartTime": "2026-10-07T12:00:00+08:00",
-                    "EndTime": "2026-10-07T18:00:00+08:00",
-                    "ElementValue": [
-                      {
-                        "WindSpeed": "8",
-                        "BeaufortScale": "5"
-                      }
-                    ]
-                  },
-                  {
                     "StartTime": "2026-10-07T18:00:00+08:00",
                     "EndTime": "2026-10-08T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "WindSpeed": "7",
-                        "BeaufortScale": "4"
+                        "WindSpeed": ">= 11",
+                        "BeaufortScale": ">= 6"
                       }
                     ]
                   },
@@ -1244,8 +1317,8 @@
                     "EndTime": "2026-10-08T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "WindSpeed": "7",
-                        "BeaufortScale": "4"
+                        "WindSpeed": ">= 11",
+                        "BeaufortScale": ">= 6"
                       }
                     ]
                   },
@@ -1254,8 +1327,8 @@
                     "EndTime": "2026-10-09T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "WindSpeed": "6",
-                        "BeaufortScale": "4"
+                        "WindSpeed": ">= 11",
+                        "BeaufortScale": ">= 6"
                       }
                     ]
                   },
@@ -1358,21 +1431,32 @@
                         "BeaufortScale": "3"
                       }
                     ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T06:00:00+08:00",
+                    "EndTime": "2026-10-14T18:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "WindSpeed": "4",
+                        "BeaufortScale": "3"
+                      }
+                    ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T18:00:00+08:00",
+                    "EndTime": "2026-10-15T06:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "WindSpeed": "4",
+                        "BeaufortScale": "3"
+                      }
+                    ]
                   }
                 ]
               },
               {
                 "ElementName": "風向",
                 "Time": [
-                  {
-                    "StartTime": "2026-10-07T12:00:00+08:00",
-                    "EndTime": "2026-10-07T18:00:00+08:00",
-                    "ElementValue": [
-                      {
-                        "WindDirection": "東北風"
-                      }
-                    ]
-                  },
                   {
                     "StartTime": "2026-10-07T18:00:00+08:00",
                     "EndTime": "2026-10-08T06:00:00+08:00",
@@ -1489,21 +1573,30 @@
                         "WindDirection": "偏北風"
                       }
                     ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T06:00:00+08:00",
+                    "EndTime": "2026-10-14T18:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "WindDirection": "東北風"
+                      }
+                    ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T18:00:00+08:00",
+                    "EndTime": "2026-10-15T06:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "WindDirection": "東北風"
+                      }
+                    ]
                   }
                 ]
               },
               {
                 "ElementName": "12小時降雨機率",
                 "Time": [
-                  {
-                    "StartTime": "2026-10-07T12:00:00+08:00",
-                    "EndTime": "2026-10-07T18:00:00+08:00",
-                    "ElementValue": [
-                      {
-                        "ProbabilityOfPrecipitation": "10"
-                      }
-                    ]
-                  },
                   {
                     "StartTime": "2026-10-07T18:00:00+08:00",
                     "EndTime": "2026-10-08T06:00:00+08:00",
@@ -1536,7 +1629,7 @@
                     "EndTime": "2026-10-09T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "ProbabilityOfPrecipitation": "10"
+                        "ProbabilityOfPrecipitation": "20"
                       }
                     ]
                   },
@@ -1554,7 +1647,7 @@
                     "EndTime": "2026-10-10T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "ProbabilityOfPrecipitation": "-"
+                        "ProbabilityOfPrecipitation": "20"
                       }
                     ]
                   },
@@ -1563,7 +1656,7 @@
                     "EndTime": "2026-10-11T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "ProbabilityOfPrecipitation": "-"
+                        "ProbabilityOfPrecipitation": "0"
                       }
                     ]
                   },
@@ -1620,6 +1713,24 @@
                         "ProbabilityOfPrecipitation": "-"
                       }
                     ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T06:00:00+08:00",
+                    "EndTime": "2026-10-14T18:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "ProbabilityOfPrecipitation": "-"
+                      }
+                    ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T18:00:00+08:00",
+                    "EndTime": "2026-10-15T06:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "ProbabilityOfPrecipitation": "-"
+                      }
+                    ]
                   }
                 ]
               },
@@ -1627,22 +1738,12 @@
                 "ElementName": "天氣現象",
                 "Time": [
                   {
-                    "StartTime": "2026-10-07T12:00:00+08:00",
-                    "EndTime": "2026-10-07T18:00:00+08:00",
-                    "ElementValue": [
-                      {
-                        "Weather": "多雲",
-                        "WeatherCode": "04"
-                      }
-                    ]
-                  },
-                  {
                     "StartTime": "2026-10-07T18:00:00+08:00",
                     "EndTime": "2026-10-08T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "Weather": "陰時多雲",
-                        "WeatherCode": "06"
+                        "Weather": "多雲時陰",
+                        "WeatherCode": "05"
                       }
                     ]
                   },
@@ -1661,8 +1762,8 @@
                     "EndTime": "2026-10-09T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "Weather": "晴時多雲",
-                        "WeatherCode": "02"
+                        "Weather": "多雲時晴",
+                        "WeatherCode": "03"
                       }
                     ]
                   },
@@ -1691,8 +1792,8 @@
                     "EndTime": "2026-10-10T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "Weather": "多雲時晴",
-                        "WeatherCode": "03"
+                        "Weather": "晴時多雲",
+                        "WeatherCode": "02"
                       }
                     ]
                   },
@@ -1759,6 +1860,26 @@
                   {
                     "StartTime": "2026-10-13T18:00:00+08:00",
                     "EndTime": "2026-10-14T06:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "Weather": "多雲短暫陣雨",
+                        "WeatherCode": "08"
+                      }
+                    ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T06:00:00+08:00",
+                    "EndTime": "2026-10-14T18:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "Weather": "多雲短暫陣雨",
+                        "WeatherCode": "08"
+                      }
+                    ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T18:00:00+08:00",
+                    "EndTime": "2026-10-15T06:00:00+08:00",
                     "ElementValue": [
                       {
                         "Weather": "多雲短暫陣雨",
@@ -1772,16 +1893,6 @@
                 "ElementName": "紫外線指數",
                 "Time": [
                   {
-                    "StartTime": "2026-10-07T12:00:00+08:00",
-                    "EndTime": "2026-10-07T18:00:00+08:00",
-                    "ElementValue": [
-                      {
-                        "UVIndex": "7",
-                        "UVExposureLevel": "高量級"
-                      }
-                    ]
-                  },
-                  {
                     "StartTime": "2026-10-08T06:00:00+08:00",
                     "EndTime": "2026-10-08T18:00:00+08:00",
                     "ElementValue": [
@@ -1840,6 +1951,16 @@
                         "UVExposureLevel": "過量級"
                       }
                     ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T06:00:00+08:00",
+                    "EndTime": "2026-10-14T18:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "UVIndex": "7",
+                        "UVExposureLevel": "高量級"
+                      }
+                    ]
                   }
                 ]
               },
@@ -1847,20 +1968,11 @@
                 "ElementName": "天氣預報綜合描述",
                 "Time": [
                   {
-                    "StartTime": "2026-10-07T12:00:00+08:00",
-                    "EndTime": "2026-10-07T18:00:00+08:00",
-                    "ElementValue": [
-                      {
-                        "WeatherDescription": "多雲。降雨機率10%。溫度攝氏26至29度。舒適。東北風 風速5級(每秒8公尺)。相對濕度65%。"
-                      }
-                    ]
-                  },
-                  {
                     "StartTime": "2026-10-07T18:00:00+08:00",
                     "EndTime": "2026-10-08T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "WeatherDescription": "陰時多雲。降雨機率10%。溫度攝氏24至26度。舒適。偏北風 風速4級(每秒7公尺)。相對濕度61%。"
+                        "WeatherDescription": "多雲時陰。降雨機率10%。溫度攝氏24至26度。舒適。偏北風 風速>= 6級(每秒>= 11公尺)。相對濕度62%。"
                       }
                     ]
                   },
@@ -1869,7 +1981,7 @@
                     "EndTime": "2026-10-08T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "WeatherDescription": "晴時多雲。降雨機率10%。溫度攝氏24至29度。舒適至悶熱。偏北風 風速4級(每秒7公尺)。相對濕度70%。"
+                        "WeatherDescription": "晴時多雲。降雨機率10%。溫度攝氏24至29度。舒適至悶熱。偏北風 風速>= 6級(每秒>= 11公尺)。相對濕度69%。"
                       }
                     ]
                   },
@@ -1878,7 +1990,7 @@
                     "EndTime": "2026-10-09T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "WeatherDescription": "晴時多雲。降雨機率10%。溫度攝氏24至26度。舒適。偏北風 風速4級(每秒6公尺)。相對濕度63%。"
+                        "WeatherDescription": "多雲時晴。降雨機率10%。溫度攝氏24至26度。舒適。偏北風 風速>= 6級(每秒>= 11公尺)。相對濕度69%。"
                       }
                     ]
                   },
@@ -1887,7 +1999,7 @@
                     "EndTime": "2026-10-09T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "WeatherDescription": "晴時多雲。降雨機率10%。溫度攝氏24至31度。舒適至悶熱。東北風 風速5級(每秒9公尺)。相對濕度68%。"
+                        "WeatherDescription": "晴時多雲。降雨機率20%。溫度攝氏24至31度。舒適至悶熱。東北風 風速5級(每秒9公尺)。相對濕度70%。"
                       }
                     ]
                   },
@@ -1896,7 +2008,7 @@
                     "EndTime": "2026-10-10T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "WeatherDescription": "晴時多雲。降雨機率20%。溫度攝氏25至27度。舒適。東北風 風速5級(每秒8公尺)。相對濕度84%。"
+                        "WeatherDescription": "晴時多雲。降雨機率20%。溫度攝氏25至27度。舒適。東北風 風速5級(每秒8公尺)。相對濕度81%。"
                       }
                     ]
                   },
@@ -1905,7 +2017,7 @@
                     "EndTime": "2026-10-10T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "WeatherDescription": "多雲時晴。溫度攝氏25至31度。舒適至悶熱。東北風 風速4級(每秒7公尺)。相對濕度77%。"
+                        "WeatherDescription": "晴時多雲。降雨機率20%。溫度攝氏25至31度。舒適至悶熱。東北風 風速4級(每秒7公尺)。相對濕度72%。"
                       }
                     ]
                   },
@@ -1914,7 +2026,7 @@
                     "EndTime": "2026-10-11T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "WeatherDescription": "晴時多雲。溫度攝氏25至27度。舒適。偏北風 風速4級(每秒6公尺)。相對濕度79%。"
+                        "WeatherDescription": "晴時多雲。降雨機率0%。溫度攝氏25至27度。舒適。偏北風 風速4級(每秒6公尺)。相對濕度81%。"
                       }
                     ]
                   },
@@ -1923,7 +2035,7 @@
                     "EndTime": "2026-10-11T18:00:00+08:00",
                     "ElementValue": [
                       {
-                        "WeatherDescription": "晴時多雲。溫度攝氏25至31度。舒適至悶熱。東北風 風速4級(每秒7公尺)。相對濕度74%。"
+                        "WeatherDescription": "晴時多雲。溫度攝氏25至31度。舒適至悶熱。東北風 風速4級(每秒7公尺)。相對濕度72%。"
                       }
                     ]
                   },
@@ -1932,7 +2044,7 @@
                     "EndTime": "2026-10-12T06:00:00+08:00",
                     "ElementValue": [
                       {
-                        "WeatherDescription": "晴時多雲。溫度攝氏25至27度。舒適。東北風 風速4級(每秒6公尺)。相對濕度81%。"
+                        "WeatherDescription": "晴時多雲。溫度攝氏25至27度。舒適。東北風 風速4級(每秒6公尺)。相對濕度77%。"
                       }
                     ]
                   },
@@ -1969,6 +2081,24 @@
                     "ElementValue": [
                       {
                         "WeatherDescription": "多雲短暫陣雨。溫度攝氏25至27度。舒適。偏北風 風速3級(每秒4公尺)。相對濕度83%。"
+                      }
+                    ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T06:00:00+08:00",
+                    "EndTime": "2026-10-14T18:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "WeatherDescription": "多雲短暫陣雨。溫度攝氏25至31度。舒適至悶熱。東北風 風速3級(每秒4公尺)。相對濕度76%。"
+                      }
+                    ]
+                  },
+                  {
+                    "StartTime": "2026-10-14T18:00:00+08:00",
+                    "EndTime": "2026-10-15T06:00:00+08:00",
+                    "ElementValue": [
+                      {
+                        "WeatherDescription": "多雲短暫陣雨。溫度攝氏25至27度。舒適。東北風 風速3級(每秒4公尺)。相對濕度83%。"
                       }
                     ]
                   }
