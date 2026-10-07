@@ -25,9 +25,6 @@
   --fc-s5: #e87ba4;
 }
 
-/* The header carries one more control here (the way back), so let it wrap on a phone. */
-.fc-page .header-controls { flex-shrink: 1; flex-wrap: wrap; justify-content: flex-end; row-gap: 0.3rem; min-width: 0; }
-.fc-page .last-updated { white-space: normal; text-align: right; }
 .fc-main { max-width: 1000px; margin: 0 auto; padding-inline: clamp(1rem, 4vw, 2rem); padding-block: 1.25rem 2rem; display: grid; gap: 1.25rem; }
 .fc-intro { color: var(--text-dim); margin: 0; max-width: 70ch; }
 .fc-back { color: var(--accent); text-decoration: none; font-size: 0.9rem; white-space: nowrap; }

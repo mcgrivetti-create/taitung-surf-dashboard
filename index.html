@@ -13,31 +13,31 @@
 <meta http-equiv="Pragma" content="no-cache">
 <!-- ?v= is a cache-buster for the assets themselves. Bump it, ASSET_VERSION
      in js/app.js, and version.json together on any css/js change. -->
-<link rel="stylesheet" href="css/style.css?v=2026-10-07a">
+<link rel="stylesheet" href="css/style.css?v=2026-10-07b">
 </head>
 <body>
+<!-- Compact sticky header: title on one line with the data age under it,
+     and the quick links as a row inside it so they stay on screen. -->
 <header class="site-header">
-  <div class="header-inner">
-    <h1>🌊 Taitung Surf Dashboard</h1>
-    <p class="subtitle">Donghe · Jinzun · Chenggong</p>
+  <div class="header-top">
+    <div class="header-inner">
+      <h1>🌊 Taitung Surf Dashboard</h1>
+      <span id="lastUpdated" class="last-updated">—</span>
+    </div>
+    <div class="header-controls">
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">🌙</button>
+    </div>
   </div>
-  <div class="header-controls">
-    <span id="lastUpdated" class="last-updated">—</span>
-    <button id="themeToggle" class="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">🌙</button>
-  </div>
-</header>
-
-<main>
-
-  <!-- Quick links to the sections you check most, so they're one tap away
-       without scrolling. Scrolls away with the page (not sticky), by choice. -->
+  <!-- Quick links to the sections checked most — always on screen. -->
   <nav class="quick-links" aria-label="Jump to a section">
-    <span class="ql-label">Jump to</span>
     <a href="#tide">Tides</a>
     <a href="#buoys">Buoys</a>
     <a href="#observations">Observations</a>
     <a href="accuracy.html" class="ql-out">Forecast Check →</a>
   </nav>
+</header>
+
+<main>
 
   <!-- Shown only when the hourly fetch has stopped working. Without this the
        page renders old data indistinguishably from fresh data — see
@@ -268,6 +268,6 @@
   <p>Data sources: CWA (Central Weather Administration) Open Data, Open-Meteo (Météo-France MFWAM, ECMWF, GFS), Windguru, surf-forecast.com, Windy, YouTube. For reference only — assess your own conditions before entering the water.</p>
 </footer>
 
-<script src="js/app.js?v=2026-10-07a"></script>
+<script src="js/app.js?v=2026-10-07b"></script>
 </body>
 </html>

@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-07a";
+  var ASSET_VERSION = "2026-10-07b";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -1035,7 +1035,7 @@
     var b = s.spot && s.spot.bearingDeg;
     var why = (typeof b === "number" && b >= 190 && b <= 340) ? " — the storm is west of Taiwan, so the island blocks it" : "";
     return "No meaningful swell from " + escapeHtml(s.name || s.id) + " expected at Donghe" + until + why +
-      ' <span class="typhoon-lag">(Open-Meteo MFWAM, 5-day window)</span>';
+      ' <span class="typhoon-lag">(Open-Meteo, 5-day window)</span>';
   }
 
   function renderTyphoon(data) {
