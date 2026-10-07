@@ -5670,6 +5670,169 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Tropical Storm",
+      "warningNumber": "012",
+      "issuedAt": "2026-10-07T21:00:00.000Z",
+      "positionZ": "071800Z",
+      "lat": 16.1,
+      "lon": 161.6,
+      "maxWindKt": 55,
+      "gustKt": 70,
+      "seasFt": 23,
+      "movingToward": 290,
+      "movingKt": 8,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "080600Z",
+          "lat": 16.9,
+          "lon": 159.8,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 24,
+          "validZ": "081800Z",
+          "lat": 17.7,
+          "lon": 157.7,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 36,
+          "validZ": "090600Z",
+          "lat": 18.7,
+          "lon": 155.4,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 48,
+          "validZ": "091800Z",
+          "lat": 19.7,
+          "lon": 153.1,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 60,
+          "validZ": "100600Z",
+          "lat": 21,
+          "lon": 151,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 72,
+          "validZ": "101800Z",
+          "lat": 22.3,
+          "lon": 149.3,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 96,
+          "validZ": "111800Z",
+          "lat": 24.7,
+          "lon": 146.8,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 120,
+          "validZ": "121800Z",
+          "lat": 27.3,
+          "lon": 145.5,
+          "maxWindKt": 90,
+          "gustKt": 110
+        }
+      ],
+      "spot": {
+        "distanceNm": 2309,
+        "bearingDeg": 93,
+        "closestApproach": {
+          "distanceNm": 1338,
+          "tau": 120,
+          "validZ": "121800Z",
+          "maxWindKt": 90
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 290,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 295
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 292
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 295
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 295
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 304
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 310
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 317
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 336
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "headingDeg": 336,
+            "deltaDeg": 46
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-12T15:00:00.000Z",
+        "status": "none"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts curved banding wrapping into a ragged central dense overcast (cdo), which is displaced southwest of the low-level circulation center (LLCC). TS 27W will maintain a west-northwestward trajectory through +60h along the southwestern flank of a STR positioned far to the north-northeast. The persistent shear and structural issues plaguing TS 27W will limit intensification for the first 12 hours.",
+        "warningNumber": "011",
+        "generatedAt": "2026-10-07T15:32:06.515Z"
+      },
+      "reasoningWarningNumber": "011",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
