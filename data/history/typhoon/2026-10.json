@@ -5186,6 +5186,162 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Tropical Storm",
+      "warningNumber": "009",
+      "issuedAt": "2026-10-07T03:00:00.000Z",
+      "positionZ": "070000Z",
+      "lat": 15.3,
+      "lon": 164,
+      "maxWindKt": 50,
+      "gustKt": 65,
+      "pressureMb": 996,
+      "seasFt": 21,
+      "movingToward": 305,
+      "movingKt": 9,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "071200Z",
+          "lat": 16.1,
+          "lon": 162.5,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 24,
+          "validZ": "080000Z",
+          "lat": 16.8,
+          "lon": 160.8,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 36,
+          "validZ": "081200Z",
+          "lat": 17.5,
+          "lon": 158.6,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 48,
+          "validZ": "090000Z",
+          "lat": 18.4,
+          "lon": 156.4,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 60,
+          "validZ": "091200Z",
+          "lat": 19.5,
+          "lon": 153.9,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 72,
+          "validZ": "100000Z",
+          "lat": 20.9,
+          "lon": 151.5,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 96,
+          "validZ": "110000Z",
+          "lat": 23.5,
+          "lon": 148.1,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 120,
+          "validZ": "120000Z",
+          "lat": 26.2,
+          "lon": 145.9,
+          "maxWindKt": 100,
+          "gustKt": 125
+        }
+      ],
+      "spot": {
+        "distanceNm": 2456,
+        "bearingDeg": 93,
+        "closestApproach": {
+          "distanceNm": 1354,
+          "tau": 120,
+          "validZ": "120000Z",
+          "maxWindKt": 100
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 305,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 299
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 293
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 289
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 294
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 295
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 302
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 310
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 324
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-11T15:00:00.000Z",
+        "status": "none"
+      },
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a small central cold cover (ccc) completely obscuring the low-level circulation center (LLCC). TS 27W will continue on a northwestward trajectory through +12h, steered by the southern extension of the STR. Despite traversing very warm SST and high OHC, the system will intensify slowly through +36h as moderate VWS persists.",
+        "warningNumber": "007",
+        "generatedAt": "2026-10-06T15:21:15.595Z"
+      },
+      "reasoningWarningNumber": "009",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
