@@ -13,6 +13,10 @@ station wind history is a small self-maintained rolling log, not a DB.
 
 ## Page layout
 
+0. **Quick links** under the header — Tides · Buoys · Observations ·
+   Forecast Check. Not sticky, by choice. The header *is* sticky and wraps
+   to two or three lines on a phone, so `app.js` writes its real height to
+   `--header-h` and the jump targets use it as `scroll-margin-top`.
 1. 7-day forecast widgets:
    - Windguru (spot 218382, Donghe) — two widgets: wind (model 3, GFS 13km)
      and waves (model 84, GFS-Wave 16km — wind-only models don't carry wave
@@ -76,8 +80,13 @@ station wind history is a small self-maintained rolling log, not a DB.
      height/period charts, computed wave energy (kJ), and an 8-hour
      readings table (station codes looked up from `O-B0076-001`'s full
      station directory)
-4. Forecast-accuracy tracking — placeholder; **Phase 2 logging is live**
-   (see below), charts land in Phase 3 once enough history accumulates
+4. **Forecast Check card** (Phase 3 summary) — three generated lines:
+   which wave model has been closest to the Chenggong buoy this week, which
+   source made the best offshore/onshore call at Donghe, and how far the
+   tide has run from prediction — each linking to its tab on
+   `accuracy.html`. The charts themselves live on that page (see "Phase 3:
+   Forecast Check" below). The tide chart (1a) also carries a one-line
+   tide-offset note, and the typhoon panel links to the swell scores.
 5. Jinzun live cam (YouTube embed)
 6. CWA Quantitative Precipitation Forecast — island-wide 12/24/36/48h
    rainfall accumulation images (not Donghe-specific; CWA doesn't offer a
@@ -262,10 +271,50 @@ from — see `scripts/fetch-data.mjs`'s "Phase 2" section (`appendMonthlyHistory
 `buildTideGaugeReadings`, `migrateTideLog`, the lead-time snapshot logic in
 `run()`).
 
-### Phase 3 files (built every run, not yet shown on the page)
+### Phase 3: Forecast Check (`accuracy.html`, launched 2026-10-07)
 
-`buildPhase3Files` derives two small current-tier files from the logs at
-the end of each run, so the Phase 3 pages never load the monthly logs:
+A separate page, so the dashboard stays about forecasts; the dashboard only
+carries the summary card, the tide-offset note and links. Files:
+`accuracy.html`, `css/accuracy.css` (on top of `style.css`, using its
+tokens), `js/accuracy.js`. Same theme key (`surf-theme`), same stale-asset
+self-heal and `ASSET_VERSION` — **bump it along with the other three** on
+any css/js change.
+
+Tabs, each opening on **Live** with **Accuracy history** behind it (the
+viewer's last choices are remembered per browser), deep-linkable as
+`accuracy.html#waves|wind|tide|typhoon`:
+
+- **Waves** — Live: CDIP-style running chart per buoy (Taitung / Chenggong)
+  for height, period (optional buoy × 1.3 groundswell rule), direction and,
+  at Taitung, wind. Left of "now" each model line is its forecast **as made
+  6h ahead at the buoy's position**; right of it, the current forecast
+  (`buoy-site-forecasts.json`). History: scorecard by buoy, lead (6–72h)
+  and window (7/30 days) with a **"no change" baseline** row; scores use
+  forecasts at the buoy once any model there has 72 matched hours, the
+  Donghe point (labelled as a reference) until then; hour-by-hour (last 7
+  days) and typical-miss-by-lead charts.
+- **Wind** — Live: Donghe station speed and direction with offshore /
+  onshore bands, against CWA coastal, ECMWF and GFS; the Taitung buoy as
+  an open-water reference. History: the offshore/onshore call hit rate,
+  speed scorecards against the station and the buoy.
+- **Tide** — Live: Chenggong gauge vs CWA's Chenggong prediction (optional
+  Donghe line), next highs/lows, and gauge-minus-prediction with "what air
+  pressure alone would do" beside it. History: scorecard by tide stage,
+  daily offsets, predicted-vs-measured scatter, and the offset with the
+  pressure effect removed.
+- **Typhoon swells** — each storm's first and last swell-peak call vs the
+  Chenggong buoy's biggest reading; overlapping storms flagged.
+
+Every tab opens with a 2–3 sentence **summary generated from the same
+numbers** (template text, no language model). A source needs 72 matched
+hours before it can be called "most accurate"; thinner ones are mentioned
+but never crowned. Air pressure appears only in the tide summaries, to say
+whether it explains the offset.
+
+### Phase 3 files (built every run)
+
+`buildPhase3Files` derives three current-tier files from the logs at the
+end of each run, so the Phase 3 page never loads the monthly logs:
 
 - `data/phase3-live.json` (~15 KB) — the last 72h ready to draw: both
   buoys, Donghe station wind, the tide gauge with sea-level pressure (Duli
@@ -284,7 +333,10 @@ the end of each run, so the Phase 3 pages never load the monthly logs:
   - typhoon swell peaks: first and last prediction vs the biggest
     Chenggong-buoy reading within 36h, with `overlapsWith` naming any other
     storm within 72h (the buoy can't tell their swells apart).
-  The 7-day biases are what the planned "corrected forecast" uses.
+  The 7-day biases are what a future "corrected forecast" would use.
+- `data/phase3-history.json` (~90 KB) — the last 7 days at every lead, for
+  the History tabs' hour-by-hour charts and the tide stage breakdown. The
+  page fetches it only when a History tab is opened.
 
 ### Two tiers, deliberately — don't merge them
 
@@ -453,9 +505,12 @@ data/history/{forecast,buoy,station,tide}/YYYY-MM.json
 
 ## Roadmap (not in this build)
 
-- **Phase 3** — forecast-vs-observed accuracy charts, reading from the
-  Phase 2 logs above (the placeholder in the page). Live, not a periodic
-  batch — see "Two tiers, deliberately" for which files it may read.
+- **Corrected (bias-adjusted) forecast** — each model's 7-day lean is
+  already computed in `phase3-stats.json`; showing "Open-Meteo, adjusted:
+  1.4 m" was proposed and deliberately skipped at the Phase 3 launch
+  (2026-10-07). Revisit when wanted.
+- **Phase 4** — the user's own surf observations (session log) as ground
+  truth for Donghe itself.
 - **Copernicus Marine / Mercator wave model — agreed 2026-09-18, to be
   built after Phase 3. Largely superseded (2026-10-02):** the Open Wave
   Model turned out to be this same MFWAM model already, via Open-Meteo,
@@ -499,8 +554,9 @@ kept showing `heightSVG is not defined` hours after the fix was live.
 Pages doesn't allow custom headers, so the fix is in three parts. **Bump all
 three together on any css/js change:**
 
-1. `?v=` on both `<link>` and `<script>` in `index.html`
-2. `ASSET_VERSION` at the top of `js/app.js`
+1. `?v=` on both `<link>` and `<script>` in `index.html` — and on the
+   three in `accuracy.html` (Forecast Check page)
+2. `ASSET_VERSION` at the top of `js/app.js` — and of `js/accuracy.js`
 3. `"assets"` in `version.json`
 
 `version.json` is fetched with `cache: "no-store"`, so it is always current

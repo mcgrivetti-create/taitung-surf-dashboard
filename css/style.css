@@ -577,6 +577,27 @@ main {
 .typhoon-card + .typhoon-card { margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid var(--border); }
 .typhoon-card h3 { margin: 0 0 0.2rem; font-size: 1rem; }
 .typhoon-meta { margin: 0 0 0.5rem; font-size: 0.78rem; color: var(--text-dim); }
+/* Quick links under the header (not sticky, by choice) */
+.quick-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.5rem; margin: 0.9rem 0 0.2rem; font-size: 0.85rem; }
+.quick-links .ql-label { color: var(--text-dim); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; margin-right: 0.2rem; }
+.quick-links a { color: var(--text); text-decoration: none; border: 1px solid var(--border); background: var(--bg-card); border-radius: 999px; padding: 0.25rem 0.75rem; }
+.quick-links a:hover, .quick-links a:focus-visible { border-color: var(--accent); }
+.quick-links a.ql-out { color: var(--accent); }
+
+/* The header is sticky and wraps to two or three lines on a phone, so app.js
+   sets --header-h to its real height; 5.5rem is the fallback. */
+#tide, #buoys, #observations, #accuracy { scroll-margin-top: calc(var(--header-h, 5.5rem) + 0.75rem); }
+
+/* Forecast Check card (summary of accuracy.html) */
+.fc-card { list-style: none; margin: 0.4rem 0 0.2rem; padding: 0; display: grid; gap: 0.45rem; font-size: 0.9rem; }
+.fc-card a { color: var(--accent); text-decoration: none; }
+.fc-card a:hover { text-decoration: underline; }
+.fc-card-empty { color: var(--text-dim); }
+
+/* Tide offset note under the tide chart */
+.tide-offset-note { margin: 0.4rem 0 0.3rem; padding: 0.45rem 0.65rem; font-size: 0.82rem; border-left: 3px solid var(--accent); background: var(--bg-elevated); border-radius: 0 6px 6px 0; }
+.tide-offset-note a { color: var(--accent); white-space: nowrap; }
+
 .typhoon-links { margin: 0.5rem 0 0; font-size: 0.78rem; }
 .typhoon-links a { margin-right: 0.2rem; }
 

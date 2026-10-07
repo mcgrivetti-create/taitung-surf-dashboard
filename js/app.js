@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-02a";
+  var ASSET_VERSION = "2026-10-07a";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -30,6 +30,17 @@
         location.replace(u + (u.indexOf("?") === -1 ? "?" : "&") + "_v=" + encodeURIComponent(v.assets));
       })
       .catch(function () { /* offline or blocked — keep showing what we have */ });
+  })();
+
+  /* ---------- Quick-link offset ----------
+     The header is sticky and wraps on a phone, so the quick links' jump
+     targets need its real height above them (scroll-margin-top in CSS). */
+  (function trackHeaderHeight() {
+    var hdr = document.querySelector(".site-header");
+    if (!hdr) return;
+    function set() { document.documentElement.style.setProperty("--header-h", hdr.offsetHeight + "px"); }
+    set();
+    window.addEventListener("resize", set);
   })();
 
   /* ---------- Theme toggle (default dark) ---------- */
@@ -902,6 +913,78 @@
     fetchJSON("data/meta.json")
       .then(renderFreshness)
       .catch(function () { renderFreshness(null); });
+
+    // Phase 3: the dashboard only gets the summary lines and the tide note;
+    // the charts are on accuracy.html. Both files are small current-tier ones.
+    Promise.all([fetchJSON("data/phase3-stats.json"), fetchJSON("data/phase3-live.json")])
+      .then(function (r) { renderForecastCheckCard(r[0], r[1]); renderTideOffsetNote(r[1]); })
+      .catch(function () {
+        var el = document.getElementById("fcCard");
+        if (el) el.innerHTML = '<li class="fc-card-empty">Forecast Check data isn\'t available right now.</li>';
+      });
+  }
+
+  /* ---------- Forecast Check summary card (Phase 3) ----------
+     Three generated lines — waves, wind, tide — each linking to its tab on
+     accuracy.html. Same thresholds as that page: a source needs 72 matched
+     hours to be called the best, and wave scores use forecasts at the buoy's
+     own position once there are enough of them, the Donghe point until then. */
+  var FC_NAMES = { cwa_coastal_donghe: "CWA coastal", open_meteo: "Open-Meteo", ecmwf: "ECMWF", gfs_wave: "GFS-Wave", gfs_wind: "GFS", cwa_township_wind: "CWA township" };
+  function renderForecastCheckCard(stats, live) {
+    var el = document.getElementById("fcCard");
+    if (!el) return;
+    var w = (stats.windows || {})["7d"] || {}, lines = [];
+    var waves = (w.waves || []).filter(function (x) { return x.buoy === "46761F" && x.field === "height" && x.lead === 24; });
+    var point = waves.some(function (x) { return x.point === "buoy" && x.n >= 72; }) ? "buoy" : "donghe";
+    var cands = waves.filter(function (x) { return x.point === point && x.n >= 72 && FC_NAMES[x.source]; }).sort(function (a, b) { return a.mae - b.mae; });
+    if (cands.length) {
+      lines.push('<li><a href="accuracy.html#waves"><b>Waves:</b></a> ' + FC_NAMES[cands[0].source] + " has been closest this week, typically within <b>" +
+        cands[0].mae.toFixed(2) + " m</b> of the Chenggong buoy (forecasts made 24 h ahead" + (point === "donghe" ? ", for Donghe" : "") + ").</li>");
+    }
+    var dir = (w.windDirection || []).filter(function (x) { return x.lead === 24 && x.n >= 24 && FC_NAMES[x.source]; }).sort(function (a, b) { return b.pct - a.pct; });
+    if (dir.length) {
+      lines.push('<li><a href="accuracy.html#wind"><b>Wind:</b></a> ' + FC_NAMES[dir[0].source] + " made the best offshore/onshore call at Donghe this week — right <b>" + dir[0].pct + "%</b> of the time, 24 h ahead.</li>");
+    }
+    var off = tideOffset24h(live);
+    if (off) {
+      lines.push('<li><a href="accuracy.html#tide"><b>Tide:</b></a> over the last 24 h the sea at Chenggong ran <b>' + signedCm(off.avg) + "</b> against CWA's prediction.</li>");
+    }
+    el.innerHTML = lines.length ? lines.join("") : '<li class="fc-card-empty">Not enough matched data yet — check back after a few days of logging.</li>';
+  }
+  function signedCm(v) { var r = Math.round(v); return (r > 0 ? "+" : r < 0 ? "−" : "") + Math.abs(r) + " cm"; }
+  function tideOffset24h(live) {
+    var now = Date.now(), rows = ((live && live.tide) || []).filter(function (r) { return r[0] > now - 24 * 3600000 && r[1] !== null && r[2] !== null; });
+    if (rows.length < 6) return null;
+    var pr = rows.filter(function (r) { return r[3] !== null && r[3] !== undefined; });
+    return {
+      avg: rows.reduce(function (a, r) { return a + (r[1] - r[2]); }, 0) / rows.length,
+      pressure: pr.length ? pr.reduce(function (a, r) { return a + r[3]; }, 0) / pr.length : null,
+    };
+  }
+
+  /* ---------- Tide offset note (under the Donghe tide chart) ----------
+     The prediction is astronomy only; the real sea also carries seasonal
+     level, wind, swell and air pressure. This states how far the Chenggong
+     gauge has run from CWA's prediction over the last 24h, so today's tides
+     can be read with that added. Pressure is used only to say whether it
+     explains the gap (~1 cm of sea level per hPa below normal). */
+  function renderTideOffsetNote(live) {
+    var el = document.getElementById("tideOffsetNote");
+    var off = tideOffset24h(live);
+    if (!el || !off) return;
+    var a = Math.round(off.avg), txt;
+    if (Math.abs(a) < 3) txt = "Chenggong tide gauge, last 24 h: the sea has been running close to the prediction.";
+    else {
+      txt = "Chenggong tide gauge, last 24 h: the sea has been running <b>" + signedCm(a) + "</b> " + (a > 0 ? "above" : "below") +
+        " CWA's prediction — expect tides about that much " + (a > 0 ? "higher" : "lower") + " than shown.";
+      if (off.pressure !== null) {
+        var effect = -(off.pressure - 1013.25);
+        if (effect * a < 0 && Math.abs(effect) >= 3) txt += " Air pressure is " + (effect < 0 ? "high" : "low") + " (" + Math.round(off.pressure) + " hPa), so it isn't the cause — likely wind and swell.";
+        else if (effect * a > 0 && Math.abs(effect) >= Math.abs(a) * 0.6) txt += " Low air pressure (" + Math.round(off.pressure) + " hPa) explains most of it.";
+      }
+    }
+    el.innerHTML = txt + ' <a href="accuracy.html#tide">Tide check →</a>';
+    el.hidden = false;
   }
 
   /* ---------- Typhoon News ----------

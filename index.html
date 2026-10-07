@@ -13,7 +13,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <!-- ?v= is a cache-buster for the assets themselves. Bump it, ASSET_VERSION
      in js/app.js, and version.json together on any css/js change. -->
-<link rel="stylesheet" href="css/style.css?v=2026-10-02a">
+<link rel="stylesheet" href="css/style.css?v=2026-10-07a">
 </head>
 <body>
 <header class="site-header">
@@ -29,6 +29,16 @@
 
 <main>
 
+  <!-- Quick links to the sections you check most, so they're one tap away
+       without scrolling. Scrolls away with the page (not sticky), by choice. -->
+  <nav class="quick-links" aria-label="Jump to a section">
+    <span class="ql-label">Jump to</span>
+    <a href="#tide">Tides</a>
+    <a href="#buoys">Buoys</a>
+    <a href="#observations">Observations</a>
+    <a href="accuracy.html" class="ql-out">Forecast Check →</a>
+  </nav>
+
   <!-- Shown only when the hourly fetch has stopped working. Without this the
        page renders old data indistinguishably from fresh data — see
        renderFreshness() in js/app.js. -->
@@ -39,6 +49,7 @@
   <section class="panel typhoon-panel" id="typhoon" hidden>
     <h2>🌀 Typhoon News</h2>
     <div id="typhoonBody"></div>
+    <p class="typhoon-links"><a href="accuracy.html#typhoon">How past typhoon swell calls compared with the buoy →</a></p>
     <p class="typhoon-disclaimer"><em>Not an official warning source — always check
       <a href="https://www.metoc.navy.mil/jtwc/jtwc.html" target="_blank" rel="noopener">JTWC</a> and
       <a href="https://www.cwa.gov.tw/V8/E/P/Typhoon/TY_NEWS.html" target="_blank" rel="noopener">CWA</a>
@@ -157,6 +168,9 @@
       <div id="tideWindow" class="tide-window"></div>
       <div id="moonWidget" class="moon-widget"></div>
     </div>
+    <!-- How far the real sea is running from the prediction, from the Chenggong
+         tide gauge over the last 24h — see renderTideOffsetNote() in js/app.js. -->
+    <p id="tideOffsetNote" class="tide-offset-note" hidden></p>
     <p class="cwa-link"><a href="https://www.cwa.gov.tw/V8/C/M/tide.html" target="_blank" rel="noopener">Full 30-day tide forecast on CWA ↗</a> <span class="en">(select the 成功臺東沿海 / Chenggong-Taitung coast region)</span></p>
     <p id="tideUpdated" class="update-line"></p>
     <!-- Sun/moon times and CWA's daily astronomical calendar for Taitung
@@ -199,26 +213,27 @@
       <p id="townshipUpdated" class="update-line"></p>
     </div>
 
-    <div class="subpanel">
+    <div class="subpanel" id="observations">
       <h3>Station Observations — last 16 hours</h3>
       <p class="source-note">O-A0001-001 — C0S810 Donghe / C0SA30 Duli / C0T9I0 Fengbin</p>
       <div id="stationContainer" class="buoy-grid"><p class="loading">Loading…</p></div>
     </div>
 
-    <div class="subpanel">
+    <div class="subpanel" id="buoys">
       <h3>Buoy / Sea State — last 24 hours</h3>
       <p class="source-note">O-B0075-001</p>
       <div id="buoyContainer" class="buoy-grid"><p class="loading">Loading…</p></div>
     </div>
   </section>
 
-  <!-- 4. Accuracy tracking placeholder -->
+  <!-- 4. Forecast Check (Phase 3) — the summary only; the charts live on
+       accuracy.html. Lines are generated from data/phase3-stats.json and
+       data/phase3-live.json — see renderForecastCheckCard() in js/app.js. -->
   <section class="panel" id="accuracy">
-    <h2>Forecast Accuracy Tracking</h2>
-    <div class="placeholder-block">
-      <p>🚧 Charts coming soon — Phase 3</p>
-      <p class="placeholder-sub">Phase 2 logging is live: CWA coastal and Open-Meteo forecasts (6h/24h/72h lead times), buoy readings, and tide forecast-vs-observed are being recorded to <code>data/history/</code> every hour. Accuracy comparison charts land here once enough history has built up.</p>
-    </div>
+    <h2>Forecast Check</h2>
+    <p class="source-note">How the forecasts have compared with what was measured — updated hourly</p>
+    <ul id="fcCard" class="fc-card"><li class="loading">Loading…</li></ul>
+    <p class="cwa-link"><a href="accuracy.html">Open Forecast Check →</a></p>
   </section>
 
   <!-- 5. Live cam -->
@@ -253,6 +268,6 @@
   <p>Data sources: CWA (Central Weather Administration) Open Data, Open-Meteo (Météo-France MFWAM, ECMWF, GFS), Windguru, surf-forecast.com, Windy, YouTube. For reference only — assess your own conditions before entering the water.</p>
 </footer>
 
-<script src="js/app.js?v=2026-10-02a"></script>
+<script src="js/app.js?v=2026-10-07a"></script>
 </body>
 </html>

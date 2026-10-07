@@ -1864,6 +1864,8 @@ const P3_WINDOW_H = 72;
 const P3_PAST_LEAD = 6;            // the "as forecast" line left of now
 const P3_WINDOWS = { "7d": 7, "30d": 30 };
 const P3_BUOYS = ["WRA007", "46761F"];
+const P3_HISTORY_DAYS = 7;
+const P3_HISTORY_SOURCES = ["cwa_coastal_donghe", "open_meteo", "ecmwf", "gfs_wave", "gfs_wind"];
 const P3_PRESSURE_STATION = "C0SA30"; // Duli — the pressure station nearest the Chenggong tide gauge
 const P3_PRESSURE_REF_HPA = 1013.25;
 const P3_IB_CM_PER_HPA = 1.0;      // inverse barometer: ~1 cm of sea level per hPa
@@ -2119,8 +2121,36 @@ async function buildPhase3Files() {
       Math.abs(new Date(o.lastPrediction.peakAt).getTime() - t) <= 72 * 3600000).map((o) => o.name || o.id);
   }
 
+  // ---- history file (last 7 days, every lead) ----
+  // For the History tabs' hour-by-hour charts and the tide stage breakdown.
+  // Fetched by the page only when a History tab is opened. CWA's Chenggong
+  // and township forecasts are left out (the page doesn't chart them hourly).
+  const histFrom = now - P3_HISTORY_DAYS * 86400000;
+  const history = { updatedAt: live.updatedAt, days: P3_HISTORY_DAYS, buoys: {}, dongheWind: [], tide: [], forecasts: {} };
+  const trimRow = (row) => { while (row.length > 1 && row[row.length - 1] === null) row.pop(); return row; };
+  for (const b of P3_BUOYS) {
+    history.buoys[b] = Object.entries(obs).filter(([k]) => k.startsWith(b + "|") && +k.split("|")[1] >= histFrom)
+      .map(([k, o]) => trimRow([+k.split("|")[1], o.h, o.p, o.d, o.ws, o.wd])).sort((a, c) => a[0] - c[0]);
+  }
+  history.dongheWind = station.filter((r) => r.station === WIND_OBS_STATION_ID && hourMs(r.observedAt) >= histFrom)
+    .map((r) => trimRow([hourMs(r.observedAt), r.windSpeed ?? null, r.windDirectionDeg ?? null])).sort((a, c) => a[0] - c[0]);
+  history.tide = tideRows.filter((r) => r[0] >= histFrom);
+  const seenH = new Set();
+  for (const r of fc) {
+    if (!P3_HISTORY_SOURCES.includes(r.source)) continue;
+    const t = hourMs(r.targetTime);
+    if (t < histFrom || t > now) continue;
+    const key = `${r.site || "donghe"}|${r.source}|${r.leadHours}`;
+    if (seenH.has(key + "|" + t)) continue;
+    seenH.add(key + "|" + t);
+    (history.forecasts[key] = history.forecasts[key] || []).push(trimRow([t, r2(numOrNull(r.waveHeight)), r2(numOrNull(r.wavePeriod)),
+      numOrNull(r.waveDirectionDeg), r2(numOrNull(r.windSpeed)), numOrNull(r.windDirectionDeg)]));
+  }
+  for (const s of Object.values(history.forecasts)) s.sort((a, c) => a[0] - c[0]);
+
   await writeFile(path.join(DATA_DIR, "phase3-live.json"), JSON.stringify(live));
   await writeFile(path.join(DATA_DIR, "phase3-stats.json"), JSON.stringify(stats));
+  await writeFile(path.join(DATA_DIR, "phase3-history.json"), JSON.stringify(history));
   const count = Object.values(live.buoys).reduce((a, b) => a + Object.keys(b.asForecast).length + 1, 0) + Object.keys(live.donghe.asForecast).length;
   return { count };
 }

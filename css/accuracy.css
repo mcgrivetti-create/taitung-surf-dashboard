@@ -1,0 +1,124 @@
+/* Forecast Check (Phase 3) — loaded after style.css, on accuracy.html only.
+   Uses the dashboard's own tokens (--bg, --bg-card, --text, --text-dim,
+   --border, --accent) and adds the few the charts need. Series colours are
+   fixed per source on both pages of this file: CWA blue, Open-Meteo orange,
+   ECMWF aqua, GFS yellow, CWA township magenta; the observation is always
+   the text colour. Dark is the default theme, as on the dashboard. */
+:root {
+  --fc-ink-3: #7a879d;      /* muted labels */
+  --fc-band: #1c2843;       /* forecast-side shading, selected-lead column */
+  --fc-s1: #3987e5;         /* CWA coastal */
+  --fc-s2: #d95926;         /* Open-Meteo */
+  --fc-s3: #199e70;         /* ECMWF */
+  --fc-s4: #c98500;         /* GFS-Wave / GFS */
+  --fc-s5: #d55181;         /* CWA township */
+  --fc-good: #0ca30c;
+  --fc-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+[data-theme="light"] {
+  --fc-ink-3: #7b8792;
+  --fc-band: #eaf0f6;
+  --fc-s1: #2a78d6;
+  --fc-s2: #eb6834;
+  --fc-s3: #1baf7a;
+  --fc-s4: #eda100;
+  --fc-s5: #e87ba4;
+}
+
+/* The header carries one more control here (the way back), so let it wrap on a phone. */
+.fc-page .header-controls { flex-shrink: 1; flex-wrap: wrap; justify-content: flex-end; row-gap: 0.3rem; min-width: 0; }
+.fc-page .last-updated { white-space: normal; text-align: right; }
+.fc-main { max-width: 1000px; margin: 0 auto; padding-inline: clamp(1rem, 4vw, 2rem); padding-block: 1.25rem 2rem; display: grid; gap: 1.25rem; }
+.fc-intro { color: var(--text-dim); margin: 0; max-width: 70ch; }
+.fc-back { color: var(--accent); text-decoration: none; font-size: 0.9rem; white-space: nowrap; }
+.fc-back:hover { text-decoration: underline; }
+
+/* Top tabs (Waves / Wind / Tide / Typhoon swells) and sub-tabs (Live / Accuracy history) */
+.fc-tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--border); overflow-x: auto; }
+.fc-tabs button, .fc-subtabs button { font: inherit; background: transparent; border: 0; cursor: pointer; color: var(--text-dim); }
+.fc-tabs button { font-weight: 600; font-size: 1rem; padding: 0.55rem 0.85rem 0.6rem; border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
+.fc-tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); }
+.fc-subtabs { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; width: fit-content; }
+.fc-subtabs button { font-size: 0.88rem; font-weight: 600; padding: 0.35rem 0.85rem; }
+.fc-subtabs button + button { border-left: 1px solid var(--border); }
+.fc-subtabs button[aria-selected="true"] { background: var(--accent); color: var(--bg); }
+.fc-view { display: grid; gap: 1rem; }
+.fc-tabs button:focus-visible, .fc-subtabs button:focus-visible, .fc-seg button:focus-visible, .fc-toggle input:focus-visible + .fc-tg { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Synopsis */
+.fc-syn { border-left: 3px solid var(--accent); background: var(--bg-card); border-radius: 0 var(--radius) var(--radius) 0; padding: 0.75rem 0.9rem; display: grid; gap: 0.2rem; }
+.fc-syn .k { font: 500 0.7rem var(--fc-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--fc-ink-3); }
+.fc-syn p { margin: 0; font-size: 0.98rem; line-height: 1.55; max-width: 78ch; }
+.fc-syn b { font-weight: 650; }
+
+/* Controls row */
+.fc-controls { display: flex; flex-wrap: wrap; gap: 0.75rem 1.4rem; align-items: center; padding: 0.7rem 0.85rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
+.fc-ctl { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; min-width: 0; }
+.fc-ctl-label { font: 500 0.7rem var(--fc-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--fc-ink-3); }
+.fc-seg { display: inline-flex; border: 1px solid var(--border); border-radius: 7px; overflow: hidden; flex-wrap: wrap; }
+.fc-seg button { font: 500 0.82rem var(--fc-mono); color: var(--text-dim); background: transparent; border: 0; padding: 0.35rem 0.6rem; cursor: pointer; }
+.fc-seg button + button { border-left: 1px solid var(--border); }
+.fc-seg button[aria-pressed="true"] { background: var(--accent); color: var(--bg); }
+.fc-toggle { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.86rem; color: var(--text-dim); cursor: pointer; position: relative; }
+.fc-toggle input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.fc-tg { width: 30px; height: 18px; border-radius: 999px; background: var(--border); position: relative; flex: none; transition: background .15s; }
+.fc-tg::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg-card); transition: transform .15s; }
+.fc-toggle input:checked + .fc-tg { background: var(--accent); }
+.fc-toggle input:checked + .fc-tg::after { transform: translateX(12px); }
+
+/* Panels */
+.fc-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; display: grid; gap: 0.7rem; min-width: 0; }
+.fc-panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.3rem 1rem; align-items: baseline; }
+.fc-panel h3 { margin: 0; font-size: 1rem; }
+.fc-note { font-size: 0.8rem; color: var(--fc-ink-3); margin: 0; }
+.fc-now { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; font-size: 0.88rem; color: var(--text-dim); }
+.fc-now b { font: 500 1.2rem var(--fc-mono); color: var(--text); font-variant-numeric: tabular-nums; }
+.fc-now .k { display: block; font: 500 0.68rem var(--fc-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--fc-ink-3); }
+.fc-stack { display: grid; }
+.fc-row { display: grid; gap: 0.35rem; padding-block: 0.75rem; border-top: 1px solid var(--border); }
+.fc-row:first-child { border-top: 0; padding-top: 0; }
+.fc-row h4 { margin: 0; font-size: 0.92rem; }
+.fc-legend { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; font-size: 0.82rem; color: var(--text-dim); }
+.fc-legend span { display: inline-flex; align-items: center; gap: 0.45rem; }
+.fc-sw { width: 14px; height: 3px; border-radius: 2px; flex: none; display: inline-block; }
+
+/* Tables */
+.fc-score { overflow-x: auto; }
+.fc-score table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+.fc-score th { font: 500 0.68rem var(--fc-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--fc-ink-3); text-align: left; padding: 0 0.7rem 0.5rem 0; border-bottom: 1px solid var(--border); white-space: nowrap; }
+.fc-score td { padding: 0.55rem 0.7rem 0.55rem 0; border-bottom: 1px solid var(--border); vertical-align: baseline; }
+.fc-score tr:last-child td { border-bottom: 0; }
+.fc-score td.num { font-family: var(--fc-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.fc-src { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; }
+.fc-sub { display: block; font-size: 0.78rem; color: var(--fc-ink-3); font-weight: 400; }
+.fc-dir { color: var(--fc-ink-3); font-family: inherit; font-size: 0.8rem; }
+.fc-thin { color: var(--fc-ink-3); }
+.fc-baseline td { color: var(--text-dim); font-style: italic; }
+
+/* Charts */
+.fc-chart { position: relative; width: 100%; }
+.fc-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.fc-axis text { font: 11px var(--fc-mono); fill: var(--fc-ink-3); }
+.fc-grid line { stroke: var(--border); stroke-width: 1; }
+.fc-exlabel { font: 500 10.5px var(--fc-mono); fill: var(--text-dim); }
+.fc-tip { position: absolute; pointer-events: none; background: var(--bg-elevated); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 0.5rem 0.65rem; font-size: 0.8rem; line-height: 1.45; box-shadow: var(--shadow); min-width: 170px; z-index: 3; }
+.fc-tip .t { font: 500 0.72rem var(--fc-mono); color: var(--fc-ink-3); margin-bottom: 0.25rem; }
+.fc-tip .r { display: flex; align-items: center; gap: 0.45rem; justify-content: space-between; }
+.fc-tip .r span:first-child { display: inline-flex; align-items: center; gap: 0.45rem; }
+.fc-tip .v { font-family: var(--fc-mono); font-variant-numeric: tabular-nums; }
+.fc-empty { color: var(--fc-ink-3); font-size: 0.88rem; margin: 0; }
+
+/* Typhoon swell cards */
+.fc-events { display: grid; gap: 0.8rem; }
+.fc-event { border: 1px solid var(--border); border-radius: var(--radius); padding: 0.85rem 0.95rem; display: grid; gap: 0.45rem; }
+.fc-event h4 { margin: 0; font-size: 1rem; }
+.fc-event dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.25rem 0.9rem; margin: 0; font-size: 0.86rem; }
+.fc-event dt { color: var(--fc-ink-3); }
+.fc-event dd { margin: 0; font-family: var(--fc-mono); font-size: 0.82rem; }
+.fc-flag { font-size: 0.8rem; color: var(--warn); }
+
+.fc-notes { font-size: 0.86rem; color: var(--text-dim); }
+.fc-notes ul { margin: 0.3rem 0 0; padding-left: 1.1rem; display: grid; gap: 0.3rem; max-width: 76ch; }
+
+@media (max-width: 560px) { .fc-panel { padding: 0.75rem; } }
+@media (prefers-reduced-motion: reduce) { .fc-tg, .fc-tg::after { transition: none; } }

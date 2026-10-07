@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forecast Check — Taitung Surf Dashboard</title>
+<meta name="description" content="How the wave, wind and tide forecasts for Donghe compare with what the buoys, stations and tide gauge measured.">
+<!-- Same cache rules as index.html — see "Deploying a css/js change" in the README. -->
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<link rel="stylesheet" href="css/style.css?v=2026-10-07a">
+<link rel="stylesheet" href="css/accuracy.css?v=2026-10-07a">
+</head>
+<body class="fc-page">
+<header class="site-header">
+  <div class="header-inner">
+    <h1>🌊 Forecast Check</h1>
+    <p class="subtitle">How the forecasts compare with what was measured</p>
+  </div>
+  <div class="header-controls">
+    <a class="fc-back" href="index.html">← Dashboard</a>
+    <span id="lastUpdated" class="last-updated">—</span>
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">🌙</button>
+  </div>
+</header>
+
+<main class="fc-main">
+  <p class="fc-intro">Each tab opens on <b>Live</b>: the last three days of measurements against the forecasts, running on into the days ahead. <b>Accuracy history</b> scores every logged forecast. All times are Taiwan time.</p>
+
+  <nav class="fc-tabs" role="tablist" aria-label="Forecast Check sections">
+    <button type="button" role="tab" id="t-waves" aria-controls="p-waves" data-tab="waves">Waves</button>
+    <button type="button" role="tab" id="t-wind" aria-controls="p-wind" data-tab="wind">Wind</button>
+    <button type="button" role="tab" id="t-tide" aria-controls="p-tide" data-tab="tide">Tide</button>
+    <button type="button" role="tab" id="t-typhoon" aria-controls="p-typhoon" data-tab="typhoon">Typhoon swells</button>
+  </nav>
+
+  <section class="fc-view" id="p-waves" role="tabpanel" aria-labelledby="t-waves" hidden></section>
+  <section class="fc-view" id="p-wind" role="tabpanel" aria-labelledby="t-wind" hidden></section>
+  <section class="fc-view" id="p-tide" role="tabpanel" aria-labelledby="t-tide" hidden></section>
+  <section class="fc-view" id="p-typhoon" role="tabpanel" aria-labelledby="t-typhoon" hidden></section>
+</main>
+
+<footer class="site-footer">
+  <p>Observations: CWA buoys (Taitung WRA007, Chenggong 46761F), CWA station Donghe (C0S810), Chenggong tide gauge (C4S02). Forecasts: CWA, Open-Meteo, ECMWF, NOAA GFS. Summaries are generated from the numbers on this page. For reference only.</p>
+</footer>
+
+<script src="js/accuracy.js?v=2026-10-07a"></script>
+</body>
+</html>
