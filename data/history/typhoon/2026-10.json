@@ -5342,6 +5342,170 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Tropical Storm",
+      "warningNumber": "010",
+      "issuedAt": "2026-10-07T09:00:00.000Z",
+      "positionZ": "070600Z",
+      "lat": 15.5,
+      "lon": 163.2,
+      "maxWindKt": 55,
+      "gustKt": 70,
+      "pressureMb": 992,
+      "seasFt": 22,
+      "movingToward": 290,
+      "movingKt": 8,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "071800Z",
+          "lat": 16.2,
+          "lon": 161.7,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 24,
+          "validZ": "080600Z",
+          "lat": 16.9,
+          "lon": 159.8,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 36,
+          "validZ": "081800Z",
+          "lat": 17.7,
+          "lon": 157.7,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 48,
+          "validZ": "090600Z",
+          "lat": 18.6,
+          "lon": 155.3,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 60,
+          "validZ": "091800Z",
+          "lat": 19.8,
+          "lon": 153,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 72,
+          "validZ": "100600Z",
+          "lat": 21.1,
+          "lon": 150.7,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 96,
+          "validZ": "110600Z",
+          "lat": 23.6,
+          "lon": 147.6,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 120,
+          "validZ": "120600Z",
+          "lat": 26.1,
+          "lon": 145.7,
+          "maxWindKt": 105,
+          "gustKt": 130
+        }
+      ],
+      "spot": {
+        "distanceNm": 2408,
+        "bearingDeg": 93,
+        "closestApproach": {
+          "distanceNm": 1343,
+          "tau": 120,
+          "validZ": "120600Z",
+          "maxWindKt": 105
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 290,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 296
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 291
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 292
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 292
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 299
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 301
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 312
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 326
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "headingDeg": 326,
+            "deltaDeg": 36
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-11T15:00:00.000Z",
+        "status": "none"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts TS 27W continuing to struggle against moderate northeasterly vertical wind shear (VWS). Tropical storm (TS) 27W will continue tracking slowly northwestward along the southern flank of a complex and relatively weak steering environment. TY 15E resides in the saddle region between the STR and TS 27W, weakening the steering gradient and causing 27W to translate at a reduced speed over the next 12 to 24 hours.",
+        "warningNumber": "009",
+        "generatedAt": "2026-10-07T03:21:36.194Z"
+      },
+      "reasoningWarningNumber": "009",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
