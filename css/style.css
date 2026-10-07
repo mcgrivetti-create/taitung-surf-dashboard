@@ -619,6 +619,10 @@ main {
 .tide-offset-note a { color: var(--accent); white-space: nowrap; }
 
 .typhoon-links { margin: 0.5rem 0 0; font-size: 0.78rem; }
+/* A storm past its swell-making life: one line instead of a full card. */
+.typhoon-retired { margin: 0.6rem 0 0; padding: 0.45rem 0.65rem; font-size: 0.82rem; color: var(--text-dim); border: 1px dashed var(--border); border-radius: 8px; }
+.typhoon-retired b { color: var(--text); font-weight: 600; }
+.typhoon-retired a { color: var(--accent); white-space: nowrap; }
 .typhoon-links a { margin-right: 0.2rem; }
 
 .typhoon-images {

@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-07b";
+  var ASSET_VERSION = "2026-10-07c";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -1034,7 +1034,10 @@
     // Donghe faces east; a storm to the west or southwest is behind the island.
     var b = s.spot && s.spot.bearingDeg;
     var why = (typeof b === "number" && b >= 190 && b <= 340) ? " — the storm is west of Taiwan, so the island blocks it" : "";
-    return "No meaningful swell from " + escapeHtml(s.name || s.id) + " expected at Donghe" + until + why +
+    // A swell another storm lines up with better is credited there (see
+    // creditSwellToBestMatch in scripts/fetch-data.mjs).
+    var credit = sw.creditedTo ? " — the swell on its way lines up better with " + escapeHtml(sw.creditedTo) : "";
+    return "No meaningful swell from " + escapeHtml(s.name || s.id) + " expected at Donghe" + until + why + credit +
       ' <span class="typhoon-lag">(Open-Meteo, 5-day window)</span>';
   }
 
@@ -1061,6 +1064,12 @@
       html += '<p class="typhoon-stale">⚠ Last JTWC warning was ' + Math.round(ageH) +
         "h ago. JTWC issues every 6h, so this may be out of date — check the links below.</p>";
     }
+
+    // Storms past their swell-making life (recurved north of 28N, heading
+    // away, no swell still to come — see retirementState in the fetch
+    // script) shrink to one line at the end instead of a full card.
+    var retired = systems.filter(function (s) { return s.retired; });
+    systems = systems.filter(function (s) { return !s.retired; });
 
     systems.forEach(function (s) {
       html += '<div class="typhoon-card">';
@@ -1178,6 +1187,13 @@
       links.push('<a href="https://www.cwa.gov.tw/V8/E/P/Typhoon/TY_NEWS.html" target="_blank" rel="noopener">CWA typhoon news ↗</a>');
       html += '<p class="typhoon-links">' + links.join(" · ") + "</p>";
       html += "</div>";
+    });
+
+    retired.forEach(function (s) {
+      var where = s.spot && s.spot.distanceNm ? Math.round(s.spot.distanceNm * 1.852).toLocaleString("en-US") + " km " + degToCompass(s.spot.bearingDeg) + ", " : "";
+      html += '<p class="typhoon-retired"><b>' + escapeHtml(s.name || s.id) + " (" + escapeHtml(s.id) + ")</b>: " + where +
+        "tracking away — no more swell expected for Donghe. " +
+        (s.warningText ? '<a href="' + escapeHtml(s.warningText) + '" target="_blank" rel="noopener">Warning ↗</a>' : "") + "</p>";
     });
 
     // Formation alerts — between "watching an area" and a numbered warning.

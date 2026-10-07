@@ -841,6 +841,37 @@ warnings begin. The designators differ, so lineage is read rather than
 joined automatically — but having both series in one place is what makes
 reading it possible at all.
 
+### Retiring a storm that's done making swell (trial, from 2026-10-07)
+
+A storm that has recurved and is heading away stays in JTWC's feed for days
+but can't send Donghe swell any more. `retirementState` retires it when, on
+**two consecutive JTWC warnings** (so it can't flicker on and off):
+
+1. it's **moving away** — the whole forecast track gets further from Donghe
+   (`closestApproach.recedingOnly`);
+2. it's at or north of **28°N** (`RETIRE_LAT`) — recurvature into the
+   westerlies happens in a fairly steady latitude band, whereas the
+   longitude varies widely (Surigae turned at ~127°E, Choi-wan at ~147°E),
+   so a longitude line was rejected;
+3. **no swell from it is still to come** — the verdict is "none", never
+   "incoming", "arriving" or "in the water", because swell made a day ago
+   can still be travelling after the storm has turned.
+
+A retired storm shows as **one line** at the end of the panel ("Choi-wan
+(26W): 3,084 km NE, tracking away — no more swell expected for Donghe")
+and drops off entirely when JTWC stops warning on it. Replayed on the
+season so far: Surigae would have retired at 17:00 Sep 29 (Taiwan time),
+Choi-wan at 11:00 Oct 6, and Koguma stays. 28°N is a starting point —
+revisit if it cuts a storm off too early or keeps one too long.
+
+**Swell credit with more than one storm** (`creditSwellToBestMatch`):
+two storms east of Taiwan can both pass the 45° direction test for the
+same swell — on Sep 30, Choi-wan's incoming swell was also pinned on
+Surigae, which had already turned away (and would have kept it on screen a
+day too long under the rule above). When two storms claim swell peaking
+within 24h of each other, it now goes to the storm it lines up with best;
+the other shows "none", noting which storm it lines up with instead.
+
 ### Formation alerts (TCFA)
 
 Between "an area we're watching" and a numbered warning, JTWC issues a

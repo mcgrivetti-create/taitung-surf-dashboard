@@ -1523,6 +1523,59 @@ const SWELL_PERIOD_RISE_S = 2;   // ...if it's at least this far above the lowes
 const SWELL_MEANINGFUL_M = 0.4;  // a storm swell peaking below this isn't worth announcing
 const WPAC_WEST_LON = 100;       // west of here is the Bay of Bengal / Andaman Sea
 
+/* --- Swell credit when several storms are active ------------------------
+ * Each storm's verdict is worked out on its own, and a swell counts for a
+ * storm if it comes from within 45° of where the storm has been. Two storms
+ * east of Taiwan can both pass that test, so one train of swell got credited
+ * to both — on Sep 30 Choi-wan's incoming swell was also pinned on Surigae,
+ * which had already turned away. When two storms claim swell peaking within
+ * 24h of each other, it now goes to the one whose positions it lines up with
+ * best; the other gets "none", with a note of who it went to.
+ */
+function creditSwellToBestMatch(systems, bearingsById) {
+  const claims = systems.filter((s) => s.swell && s.swell.status !== "none" && s.swell.peak &&
+    isFinite(s.swell.peak.dirDeg) && (bearingsById[s.id] || []).length);
+  const fit = {};
+  for (const s of claims) fit[s.id] = Math.min(...bearingsById[s.id].map((b) => angleDiff(s.swell.peak.dirDeg, b)));
+  const losers = [];
+  for (const s of claims) {
+    const t = new Date(s.swell.peak.targetTime).getTime();
+    const rival = claims.find((o) => o !== s && fit[o.id] < fit[s.id] &&
+      Math.abs(new Date(o.swell.peak.targetTime).getTime() - t) <= 24 * 3600000);
+    if (rival) losers.push([s, rival]);
+  }
+  for (const [s, rival] of losers) {
+    s.swell = { status: "none", windowEnd: s.swell.windowEnd, creditedTo: rival.name || rival.id };
+  }
+}
+
+/* --- Retiring a storm from the dashboard --------------------------------
+ * A storm is past its swell-making life for Donghe once it has recurved
+ * into the westerlies and is heading away: its wind no longer blows toward
+ * Taiwan, and what it makes runs off toward Japan or out to sea. Retired
+ * when ALL of these hold on two consecutive JTWC warnings (12h, so a storm
+ * can't flicker off and on):
+ *   1. moving away — its whole forecast track gets further from Donghe;
+ *   2. at or north of RETIRE_LAT — recurvature into the westerlies happens
+ *      in a fairly steady latitude band, unlike longitude (Surigae turned
+ *      at ~127E, Choi-wan at ~147E);
+ *   3. no swell from it still to come — verdict "none", never "incoming",
+ *      "arriving" or "in the water": swell made a day ago can still be on
+ *      its way after the storm has turned.
+ * The page then shows it as one line instead of a full card. Started
+ * 2026-10-07 at 28N as a trial; check later for anything it got wrong.
+ */
+const RETIRE_LAT = 28;
+function retirementState(s, prev) {
+  const ca = s.spot && s.spot.closestApproach;
+  const candidate = !!(ca && ca.recedingOnly) && typeof s.lat === "number" && s.lat >= RETIRE_LAT &&
+    !!s.swell && s.swell.status === "none";
+  if (!candidate) return { retireFrom: null, retired: false };
+  // retireFrom = the first warning that met the rule; retired from the next one.
+  const from = (prev && prev.retireFrom) || s.warningNumber;
+  return { retireFrom: from, retired: from !== s.warningNumber };
+}
+
 function stormBearings(s, history) {
   const pts = [];
   for (const r of history || []) if (typeof r.lat === "number") pts.push(r);
@@ -1707,12 +1760,18 @@ async function buildTyphoon(results) {
 
   // Every storm gets its own swell verdict — see detectStormSwell.
   const swellSeries = ((results || {})["openwave.json"] || {}).series;
+  const bearingsById = {};
   for (const s of parsed.systems) {
     const recent = archive.records.filter((r) => r.kind === "warning" && r.id === s.id &&
       r.issuedAt && nowMs - new Date(r.issuedAt).getTime() <= 72 * 3600000);
     const prev = prevById[s.id];
-    s.swell = detectStormSwell(swellSeries, stormBearings(s, recent), nowMs, prev && prev.swell);
+    bearingsById[s.id] = stormBearings(s, recent);
+    s.swell = detectStormSwell(swellSeries, bearingsById[s.id], nowMs, prev && prev.swell);
   }
+  creditSwellToBestMatch(parsed.systems, bearingsById);
+
+  // Retire storms that are past their swell-making life (see retirementState).
+  for (const s of parsed.systems) Object.assign(s, retirementState(s, prevById[s.id]));
 
   // Forecaster summary, refreshed twice a day — kept from the previous run
   // until 12h have passed and a newer reasoning is available.
@@ -1744,6 +1803,7 @@ async function buildTyphoon(results) {
     forecasts: s.forecasts, spot: s.spot,
     motion: s.motion,
     swell: s.swell || null,
+    retired: !!s.retired,
     summary: s.summary || null,
     reasoningWarningNumber: s.reasoning ? s.reasoning.warningNumber : null,
     significantForecastChanges: s.reasoning ? s.reasoning.significantForecastChanges : null,
