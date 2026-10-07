@@ -1566,14 +1566,19 @@ function creditSwellToBestMatch(systems, bearingsById) {
  * 2026-10-07 at 28N as a trial; check later for anything it got wrong.
  */
 const RETIRE_LAT = 28;
-function retirementState(s, prev) {
-  const ca = s.spot && s.spot.closestApproach;
-  const candidate = !!(ca && ca.recedingOnly) && typeof s.lat === "number" && s.lat >= RETIRE_LAT &&
-    !!s.swell && s.swell.status === "none";
-  if (!candidate) return { retireFrom: null, retired: false };
-  // retireFrom = the first warning that met the rule; retired from the next one.
-  const from = (prev && prev.retireFrom) || s.warningNumber;
-  return { retireFrom: from, retired: from !== s.warningNumber };
+function meetsRetireRule(w) {
+  const ca = w && w.spot && w.spot.closestApproach;
+  return !!(ca && ca.recedingOnly) && typeof w.lat === "number" && w.lat >= RETIRE_LAT &&
+    !!w.swell && w.swell.status === "none";
+}
+// `prevWarning` is this storm's previous JTWC warning from the typhoon
+// archive — the archive, not the previous run's typhoon.json, so the
+// two-in-a-row check doesn't depend on every hourly run having happened
+// (or on the code that wrote it).
+function retirementState(s, prevWarning) {
+  if (!meetsRetireRule(s)) return { retireFrom: null, retired: false };
+  const prevMet = meetsRetireRule(prevWarning);
+  return { retireFrom: prevMet ? prevWarning.warningNumber : s.warningNumber, retired: prevMet };
 }
 
 function stormBearings(s, history) {
@@ -1770,8 +1775,14 @@ async function buildTyphoon(results) {
   }
   creditSwellToBestMatch(parsed.systems, bearingsById);
 
-  // Retire storms that are past their swell-making life (see retirementState).
-  for (const s of parsed.systems) Object.assign(s, retirementState(s, prevById[s.id]));
+  // Retire storms that are past their swell-making life (see retirementState),
+  // comparing against the storm's previous warning in the archive.
+  for (const s of parsed.systems) {
+    const earlier = archive.records.filter((r) => r.kind === "warning" && r.id === s.id &&
+      r.warningNumber !== s.warningNumber && String(r.warningNumber) < String(s.warningNumber))
+      .sort((a, b) => String(a.warningNumber).localeCompare(String(b.warningNumber)));
+    Object.assign(s, retirementState(s, earlier[earlier.length - 1] || null));
+  }
 
   // Forecaster summary, refreshed twice a day — kept from the previous run
   // until 12h have passed and a newer reasoning is available.

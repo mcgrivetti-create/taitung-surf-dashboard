@@ -857,7 +857,9 @@ but can't send Donghe swell any more. `retirementState` retires it when, on
    "incoming", "arriving" or "in the water", because swell made a day ago
    can still be travelling after the storm has turned.
 
-A retired storm shows as **one line** at the end of the panel ("Choi-wan
+The "previous warning" is read from the typhoon archive, not the previous
+run's `typhoon.json`, so the check doesn't depend on every hourly run having
+happened. A retired storm shows as **one line** at the end of the panel ("Choi-wan
 (26W): 3,084 km NE, tracking away — no more swell expected for Donghe")
 and drops off entirely when JTWC stops warning on it. Replayed on the
 season so far: Surigae would have retired at 17:00 Sep 29 (Taiwan time),
