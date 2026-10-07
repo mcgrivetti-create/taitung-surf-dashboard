@@ -1,110 +1,6 @@
 {
-  "fetchedAt": "2026-10-07T17:24:08.193Z",
+  "fetchedAt": "2026-10-07T18:25:17.658Z",
   "systems": [
-    {
-      "designation": "Typhoon",
-      "id": "26W",
-      "name": "Choi-wan",
-      "headline": "Typhoon 26W (Choi-wan)",
-      "warningNumber": "028",
-      "issuedZ": "06/2100Z",
-      "issuedAt": "2026-10-06T21:00:00.000Z",
-      "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2626.gif",
-      "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2626web.txt",
-      "cwaTrackImage": null,
-      "forecasts": [
-        {
-          "tau": 12,
-          "validZ": "070600Z",
-          "lat": 42.6,
-          "lon": 156.8,
-          "maxWindKt": 70,
-          "gustKt": 85
-        },
-        {
-          "tau": 24,
-          "validZ": "071800Z",
-          "lat": 50.2,
-          "lon": 167.1,
-          "maxWindKt": 65,
-          "gustKt": 80
-        }
-      ],
-      "positionZ": "061800Z",
-      "lat": 36.3,
-      "lon": 149.5,
-      "movingToward": 35,
-      "movingKt": 30,
-      "maxWindKt": 75,
-      "gustKt": 90,
-      "pressureMb": 959,
-      "seasFt": 42,
-      "geoReference": "461 NM EAST-SOUTHEAST OF MISAWA, JAPAN",
-      "reasoning": {
-        "warningNumber": "027",
-        "significantForecastChanges": "THE FORECAST HAS BEEN TRUNCATED FROM 36 HOURS TO 24 HOURS.",
-        "seasFt": 42,
-        "environment": "UNFAVORABLE",
-        "vws": "30-40 KTS",
-        "sst": "25-27 CELSIUS",
-        "outflow": "STRONG POLEWARD",
-        "steering": "NORTHWESTERN PERIPHERY OF A SUBTROPICAL RIDGE (STR) CENTERED EAST OF HONSHU",
-        "confidence": {
-          "track0072": "HIGH",
-          "track72120": null,
-          "intensity0072": "HIGH",
-          "intensity72120": null
-        }
-      },
-      "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2626prog.txt",
-      "reasoningLagsWarning": true,
-      "spot": {
-        "distanceNm": 1665,
-        "bearingDeg": 55,
-        "closestApproach": {
-          "distanceNm": 2120,
-          "tau": 12,
-          "validZ": "070600Z",
-          "maxWindKt": 70,
-          "recedingOnly": true
-        }
-      },
-      "motion": {
-        "currentHeadingDeg": 35,
-        "legs": [
-          {
-            "fromTau": 0,
-            "toTau": 12,
-            "heading": 40
-          },
-          {
-            "fromTau": 12,
-            "toTau": 24,
-            "heading": 39
-          }
-        ],
-        "turns": []
-      },
-      "swell": {
-        "windowEnd": "2026-10-12T15:00:00.000Z",
-        "status": "none"
-      },
-      "retireFrom": "027",
-      "retired": true,
-      "summary": {
-        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a gradually degrading convective structure associated with typhoon (TY) 26W. TY 26W is now racing northeastward at 23 kt along the northwestern periphery of the STR. These factors will continue to erode the inner core, resulting in steady weakening.",
-        "warningNumber": "027",
-        "generatedAt": "2026-10-06T23:18:16.540Z"
-      },
-      "changes": {
-        "previousWarningNumber": "027",
-        "previousIssuedAt": "2026-10-06T15:00:00.000Z",
-        "maxWindKtDelta": -5,
-        "pressureMbDelta": -1,
-        "seasFtDelta": 0,
-        "closestApproachNmDelta": 243
-      }
-    },
     {
       "designation": "Tropical Storm",
       "id": "27W",
@@ -304,9 +200,9 @@
   "invests": [],
   "investSatellite": null,
   "advisory": {
-    "issuedZ": "07/0600Z",
-    "issuedAt": "2026-10-07T06:00:00.000Z",
+    "issuedZ": "07/1800Z",
+    "issuedAt": "2026-10-07T18:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": false
+    "reissued": true
   }
 }
