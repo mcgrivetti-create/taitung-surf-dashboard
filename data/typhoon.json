@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-07T19:21:09.996Z",
+  "fetchedAt": "2026-10-07T20:21:28.445Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -11,7 +11,7 @@
       "issuedAt": "2026-10-07T21:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2726.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2726web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610071200-96_KOGUMA_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610071800-96_KOGUMA_enus.png",
       "forecasts": [
         {
           "tau": 12,
@@ -94,23 +94,23 @@
       ],
       "geoReference": "1253 NM EAST-SOUTHEAST OF IWO TO",
       "reasoning": {
-        "warningNumber": "011",
+        "warningNumber": "012",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 22,
-        "environment": "MARGINALLY FAVORABLE",
-        "vws": "15-20 KTS",
+        "seasFt": 23,
+        "environment": "FAVORABLE",
+        "vws": "10-15 KTS",
         "sst": "30-31 CELSIUS",
-        "outflow": "MODERATE POLEWARD AND WESTWARD",
-        "steering": "SOUTHWESTERN PERIPHERY OF THE SUBTROPICAL RIDGE (STR) POSITIONED FAR TO THE NORTH-NORTHEAST",
+        "outflow": "STRONG EQUATORWARD",
+        "steering": "DEEP-LAYER SUBTROPICAL RIDGE (STR) ENTRENCHED TO THE NORTH, WEAKENED SLIGHTLY BY TROPICAL STORM 15E (NOLO) POSITIONED 630NM TO THE NORTH-NORTHWEST.",
         "confidence": {
-          "track0072": "HIGH",
+          "track0072": "MEDIUM",
           "track72120": "MEDIUM",
           "intensity0072": "MEDIUM",
           "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2726prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2309,
         "bearingDeg": 93,
