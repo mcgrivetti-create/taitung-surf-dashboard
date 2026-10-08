@@ -1,97 +1,94 @@
 {
-  "fetchedAt": "2026-10-08T14:23:53.671Z",
+  "fetchedAt": "2026-10-08T15:22:30.328Z",
   "systems": [
     {
-      "designation": "Tropical Storm",
+      "designation": "Typhoon",
       "id": "27W",
       "name": "Koguma",
-      "headline": "Tropical Storm 27W (Koguma)",
-      "warningNumber": "014",
-      "issuedZ": "08/0900Z",
-      "issuedAt": "2026-10-08T09:00:00.000Z",
+      "headline": "Typhoon 27W (Koguma)",
+      "warningNumber": "015",
+      "issuedZ": "08/1500Z",
+      "issuedAt": "2026-10-08T15:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2726.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2726web.txt",
       "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610081200-96_KOGUMA_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "081800Z",
-          "lat": 18.3,
-          "lon": 157.8,
-          "maxWindKt": 75,
-          "gustKt": 90
+          "validZ": "090000Z",
+          "lat": 18.6,
+          "lon": 156.7,
+          "maxWindKt": 80,
+          "gustKt": 100
         },
         {
           "tau": 24,
-          "validZ": "090600Z",
-          "lat": 19.2,
-          "lon": 155.5,
-          "maxWindKt": 90,
-          "gustKt": 110
+          "validZ": "091200Z",
+          "lat": 19.7,
+          "lon": 154.2,
+          "maxWindKt": 100,
+          "gustKt": 125
         },
         {
           "tau": 36,
-          "validZ": "091800Z",
-          "lat": 20.3,
-          "lon": 153.2,
-          "maxWindKt": 105,
-          "gustKt": 130
+          "validZ": "100000Z",
+          "lat": 20.9,
+          "lon": 151.9,
+          "maxWindKt": 115,
+          "gustKt": 140
         },
         {
           "tau": 48,
-          "validZ": "100600Z",
-          "lat": 21.7,
-          "lon": 151.1,
+          "validZ": "101200Z",
+          "lat": 22.4,
+          "lon": 150.1,
           "maxWindKt": 120,
           "gustKt": 145
         },
         {
           "tau": 60,
-          "validZ": "101800Z",
-          "lat": 22.9,
-          "lon": 149.5,
+          "validZ": "110000Z",
+          "lat": 23.8,
+          "lon": 148.7,
           "maxWindKt": 115,
           "gustKt": 140
         },
         {
           "tau": 72,
-          "validZ": "110600Z",
-          "lat": 24.2,
-          "lon": 148,
+          "validZ": "111200Z",
+          "lat": 25.3,
+          "lon": 147.8,
           "maxWindKt": 110,
           "gustKt": 135
         },
         {
           "tau": 96,
-          "validZ": "120600Z",
-          "lat": 26.6,
-          "lon": 146.4,
-          "maxWindKt": 95,
-          "gustKt": 115
+          "validZ": "121200Z",
+          "lat": 28.2,
+          "lon": 147.3,
+          "maxWindKt": 90,
+          "gustKt": 110
         },
         {
           "tau": 120,
-          "validZ": "130600Z",
-          "lat": 31.1,
-          "lon": 147.1,
-          "maxWindKt": 75,
-          "gustKt": 90
+          "validZ": "131200Z",
+          "lat": 33,
+          "lon": 149.3,
+          "maxWindKt": 70,
+          "gustKt": 85
         }
       ],
-      "positionZ": "080600Z",
-      "lat": 17.5,
-      "lon": 160.1,
-      "movingToward": 300,
+      "intensityChangeNote": "UPGRADED FROM TROPICAL STORM 27W",
+      "positionZ": "081200Z",
+      "lat": 17.7,
+      "lon": 159,
+      "movingToward": 295,
       "movingKt": 12,
-      "maxWindKt": 60,
-      "gustKt": 75,
-      "nextWarnings": [
-        "081500Z",
-        "082100Z",
-        "090300Z",
-        "090900Z. REFER TO TROPICAL STORM 15E (NOLO) WARNINGS (WTPN31 PGTW) FOR SIX-HOURLY UPDATES"
-      ],
-      "geoReference": "835 NM EAST OF SAIPAN",
+      "maxWindKt": 65,
+      "gustKt": 80,
+      "pressureMb": 985,
+      "seasFt": 26,
+      "geoReference": "774 NM EAST- NORTHEAST OF SAIPAN",
       "reasoning": {
         "warningNumber": "014",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
@@ -109,67 +106,73 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2726prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 2203,
+        "distanceNm": 2139,
         "bearingDeg": 91,
         "closestApproach": {
-          "distanceNm": 1382,
+          "distanceNm": 1439,
           "tau": 96,
-          "validZ": "120600Z",
-          "maxWindKt": 95
+          "validZ": "121200Z",
+          "maxWindKt": 90
         }
       },
       "motion": {
-        "currentHeadingDeg": 300,
+        "currentHeadingDeg": 295,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 290
+            "heading": 293
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 293
+            "heading": 295
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 297
+            "heading": 299
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 306
+            "heading": 312
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 309
+            "heading": 318
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 314
+            "heading": 332
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 329
+            "heading": 351
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 8
+            "heading": 19
           }
         ],
         "turns": [
           {
+            "fromTau": 60,
+            "toTau": 72,
+            "headingDeg": 332,
+            "deltaDeg": 37
+          },
+          {
             "fromTau": 96,
             "toTau": 120,
-            "headingDeg": 8,
-            "deltaDeg": 68
+            "headingDeg": 19,
+            "deltaDeg": 47
           }
         ]
       },
@@ -182,8 +185,8 @@
           "periodS": 5.85,
           "dirDeg": 74
         },
-        "hoursAhead": 22,
-        "bearingOffsetDeg": 8,
+        "hoursAhead": 21,
+        "bearingOffsetDeg": 5,
         "peak": {
           "targetTime": "2026-10-10T00:00:00.000Z",
           "heightM": 1.78,
@@ -194,15 +197,15 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts a partially- exposed low-level circulation center positioned on the northern edge of the central dense overcast, which supports the initial position with high confidence. Environmental conditions are forecast to improve quickly with decreasing VWS, which will allow TS 27W to rapidly intensify to 120 knots by +60h.",
-        "warningNumber": "013",
-        "generatedAt": "2026-10-08T03:21:42.146Z"
+        "text": "Animated multispectral satellite imagery (MSI) depicts tropical storm 27W (koguma) with a partially exposed low-level circulation center (LLCC) that is steadily becoming further embedded underneath the central dense overcast (cdo). TS 27W is forecast to continue tracking west-northwestward, along the southwestern periphery of the STR through +72h. Regarding intensity, 27W is forecast to rapidly intensify through +48h to a peak of around 120 kt as the environment remains highly favorable and the circulation retains its compact size.",
+        "warningNumber": "014",
+        "generatedAt": "2026-10-08T15:22:30.328Z"
       },
       "changes": {
-        "previousWarningNumber": "013",
-        "previousIssuedAt": "2026-10-08T03:00:00.000Z",
+        "previousWarningNumber": "014",
+        "previousIssuedAt": "2026-10-08T09:00:00.000Z",
         "maxWindKtDelta": 5,
-        "closestApproachNmDelta": 79
+        "closestApproachNmDelta": 57
       }
     }
   ],
