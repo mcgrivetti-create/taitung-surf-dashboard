@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-08T15:22:30.328Z",
+  "fetchedAt": "2026-10-08T16:23:55.164Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -90,13 +90,13 @@
       "seasFt": 26,
       "geoReference": "774 NM EAST- NORTHEAST OF SAIPAN",
       "reasoning": {
-        "warningNumber": "014",
+        "warningNumber": "015",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 24,
+        "seasFt": 26,
         "environment": "HIGHLY FAVORABLE",
         "vws": "5-10 KTS",
         "sst": "29-30 CELSIUS",
-        "outflow": "STRONG EQUATORWARD",
+        "outflow": "STRONG POLEWARD AND EQUATORWARD",
         "steering": "THE SOUTHWESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) ENTRENCHED TO THE NORTH",
         "confidence": {
           "track0072": "HIGH",
@@ -106,7 +106,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2726prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2139,
         "bearingDeg": 91,
@@ -177,7 +177,7 @@
         ]
       },
       "swell": {
-        "windowEnd": "2026-10-12T15:00:00.000Z",
+        "windowEnd": "2026-10-13T15:00:00.000Z",
         "status": "incoming",
         "arrival": {
           "targetTime": "2026-10-09T12:00:00.000Z",
@@ -185,7 +185,7 @@
           "periodS": 5.85,
           "dirDeg": 74
         },
-        "hoursAhead": 21,
+        "hoursAhead": 20,
         "bearingOffsetDeg": 5,
         "peak": {
           "targetTime": "2026-10-10T00:00:00.000Z",
