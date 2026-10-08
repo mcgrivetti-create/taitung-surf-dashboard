@@ -6334,6 +6334,190 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Typhoon",
+      "warningNumber": "016",
+      "issuedAt": "2026-10-08T21:00:00.000Z",
+      "positionZ": "081800Z",
+      "lat": 18.1,
+      "lon": 157.7,
+      "maxWindKt": 75,
+      "gustKt": 90,
+      "pressureMb": 980,
+      "seasFt": 28,
+      "movingToward": 290,
+      "movingKt": 12,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "090600Z",
+          "lat": 19.1,
+          "lon": 155.3,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 24,
+          "validZ": "091800Z",
+          "lat": 20.3,
+          "lon": 152.9,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 36,
+          "validZ": "100600Z",
+          "lat": 21.7,
+          "lon": 150.8,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 48,
+          "validZ": "101800Z",
+          "lat": 23.1,
+          "lon": 149.2,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 60,
+          "validZ": "110600Z",
+          "lat": 24.3,
+          "lon": 148,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 72,
+          "validZ": "111800Z",
+          "lat": 25.6,
+          "lon": 147.2,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 96,
+          "validZ": "121800Z",
+          "lat": 29.2,
+          "lon": 147.1,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 120,
+          "validZ": "131800Z",
+          "lat": 35.2,
+          "lon": 151,
+          "maxWindKt": 70,
+          "gustKt": 85
+        }
+      ],
+      "spot": {
+        "distanceNm": 2061,
+        "bearingDeg": 91,
+        "closestApproach": {
+          "distanceNm": 1423,
+          "tau": 72,
+          "validZ": "111800Z",
+          "maxWindKt": 105
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 290,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 294
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 298
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 306
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 314
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 318
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 331
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 359
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 28
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "headingDeg": 331,
+            "deltaDeg": 41
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "headingDeg": 28,
+            "deltaDeg": 57
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-13T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-09T12:00:00.000Z",
+          "heightM": 1.34,
+          "periodS": 5.85,
+          "dirDeg": 74
+        },
+        "hoursAhead": 16,
+        "bearingOffsetDeg": 4,
+        "peak": {
+          "targetTime": "2026-10-10T00:00:00.000Z",
+          "heightM": 1.78,
+          "periodS": 6.75,
+          "dirDeg": 78
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts tropical storm 27W (koguma) with a partially exposed low-level circulation center (LLCC) that is steadily becoming further embedded underneath the central dense overcast (cdo). TS 27W is forecast to continue tracking west-northwestward, along the southwestern periphery of the STR through +72h. Regarding intensity, 27W is forecast to rapidly intensify through +48h to a peak of around 120 kt as the environment remains highly favorable and the circulation retains its compact size.",
+        "warningNumber": "014",
+        "generatedAt": "2026-10-08T15:22:30.328Z"
+      },
+      "reasoningWarningNumber": "015",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
