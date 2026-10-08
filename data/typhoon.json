@@ -1,97 +1,97 @@
 {
-  "fetchedAt": "2026-10-08T07:22:44.757Z",
+  "fetchedAt": "2026-10-08T08:23:08.878Z",
   "systems": [
     {
       "designation": "Tropical Storm",
       "id": "27W",
       "name": "Koguma",
       "headline": "Tropical Storm 27W (Koguma)",
-      "warningNumber": "013",
-      "issuedZ": "08/0300Z",
-      "issuedAt": "2026-10-08T03:00:00.000Z",
+      "warningNumber": "014",
+      "issuedZ": "08/0900Z",
+      "issuedAt": "2026-10-08T09:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2726.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2726web.txt",
       "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610080600-96_KOGUMA_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "081200Z",
-          "lat": 17.6,
-          "lon": 159.2,
-          "maxWindKt": 70,
-          "gustKt": 85
+          "validZ": "081800Z",
+          "lat": 18.3,
+          "lon": 157.8,
+          "maxWindKt": 75,
+          "gustKt": 90
         },
         {
           "tau": 24,
-          "validZ": "090000Z",
-          "lat": 18.5,
-          "lon": 157.1,
+          "validZ": "090600Z",
+          "lat": 19.2,
+          "lon": 155.5,
           "maxWindKt": 90,
           "gustKt": 110
         },
         {
           "tau": 36,
-          "validZ": "091200Z",
-          "lat": 19.6,
-          "lon": 154.8,
+          "validZ": "091800Z",
+          "lat": 20.3,
+          "lon": 153.2,
           "maxWindKt": 105,
           "gustKt": 130
         },
         {
           "tau": 48,
-          "validZ": "100000Z",
-          "lat": 20.8,
-          "lon": 152.6,
+          "validZ": "100600Z",
+          "lat": 21.7,
+          "lon": 151.1,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 60,
+          "validZ": "101800Z",
+          "lat": 22.9,
+          "lon": 149.5,
           "maxWindKt": 115,
           "gustKt": 140
         },
         {
-          "tau": 60,
-          "validZ": "101200Z",
-          "lat": 22,
-          "lon": 150.7,
-          "maxWindKt": 120,
-          "gustKt": 145
-        },
-        {
           "tau": 72,
-          "validZ": "110000Z",
-          "lat": 23.3,
-          "lon": 148.5,
-          "maxWindKt": 120,
-          "gustKt": 145
-        },
-        {
-          "tau": 96,
-          "validZ": "120000Z",
-          "lat": 25.3,
-          "lon": 145.9,
+          "validZ": "110600Z",
+          "lat": 24.2,
+          "lon": 148,
           "maxWindKt": 110,
           "gustKt": 135
         },
         {
+          "tau": 96,
+          "validZ": "120600Z",
+          "lat": 26.6,
+          "lon": 146.4,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
           "tau": 120,
-          "validZ": "130000Z",
-          "lat": 27.7,
-          "lon": 144.8,
-          "maxWindKt": 90,
-          "gustKt": 110
+          "validZ": "130600Z",
+          "lat": 31.1,
+          "lon": 147.1,
+          "maxWindKt": 75,
+          "gustKt": 90
         }
       ],
-      "positionZ": "080000Z",
-      "lat": 16.9,
-      "lon": 161.2,
-      "movingToward": 305,
-      "movingKt": 8,
-      "maxWindKt": 55,
-      "gustKt": 70,
+      "positionZ": "080600Z",
+      "lat": 17.5,
+      "lon": 160.1,
+      "movingToward": 300,
+      "movingKt": 12,
+      "maxWindKt": 60,
+      "gustKt": 75,
       "nextWarnings": [
-        "080900Z",
         "081500Z",
         "082100Z",
-        "090300Z. REFER TO TROPICAL STORM 15E (NOLO) WARNINGS (WTPN31 PGTW) FOR SIX-HOURLY UPDATES"
+        "090300Z",
+        "090900Z. REFER TO TROPICAL STORM 15E (NOLO) WARNINGS (WTPN31 PGTW) FOR SIX-HOURLY UPDATES"
       ],
-      "geoReference": "1210 NM EAST-SOUTHEAST OF IWO TO",
+      "geoReference": "835 NM EAST OF SAIPAN",
       "reasoning": {
         "warningNumber": "013",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
@@ -109,19 +109,19 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2726prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 2274,
-        "bearingDeg": 92,
+        "distanceNm": 2203,
+        "bearingDeg": 91,
         "closestApproach": {
-          "distanceNm": 1303,
-          "tau": 120,
-          "validZ": "130000Z",
-          "maxWindKt": 90
+          "distanceNm": 1382,
+          "tau": 96,
+          "validZ": "120600Z",
+          "maxWindKt": 95
         }
       },
       "motion": {
-        "currentHeadingDeg": 305,
+        "currentHeadingDeg": 300,
         "legs": [
           {
             "fromTau": 0,
@@ -131,7 +131,7 @@
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 295
+            "heading": 293
           },
           {
             "fromTau": 24,
@@ -141,30 +141,37 @@
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 301
+            "heading": 306
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 304
+            "heading": 309
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 303
+            "heading": 314
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 311
+            "heading": 329
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 338
+            "heading": 8
           }
         ],
-        "turns": []
+        "turns": [
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "headingDeg": 8,
+            "deltaDeg": 68
+          }
+        ]
       },
       "swell": {
         "windowEnd": "2026-10-12T15:00:00.000Z",
@@ -178,10 +185,10 @@
         "generatedAt": "2026-10-08T03:21:42.146Z"
       },
       "changes": {
-        "previousWarningNumber": "012",
-        "previousIssuedAt": "2026-10-07T21:00:00.000Z",
-        "maxWindKtDelta": 0,
-        "closestApproachNmDelta": -35
+        "previousWarningNumber": "013",
+        "previousIssuedAt": "2026-10-08T03:00:00.000Z",
+        "maxWindKtDelta": 5,
+        "closestApproachNmDelta": 79
       }
     }
   ],
