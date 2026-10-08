@@ -5833,6 +5833,161 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Tropical Storm",
+      "warningNumber": "013",
+      "issuedAt": "2026-10-08T03:00:00.000Z",
+      "positionZ": "080000Z",
+      "lat": 16.9,
+      "lon": 161.2,
+      "maxWindKt": 55,
+      "gustKt": 70,
+      "movingToward": 305,
+      "movingKt": 8,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "081200Z",
+          "lat": 17.6,
+          "lon": 159.2,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 24,
+          "validZ": "090000Z",
+          "lat": 18.5,
+          "lon": 157.1,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 36,
+          "validZ": "091200Z",
+          "lat": 19.6,
+          "lon": 154.8,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 48,
+          "validZ": "100000Z",
+          "lat": 20.8,
+          "lon": 152.6,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 60,
+          "validZ": "101200Z",
+          "lat": 22,
+          "lon": 150.7,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 72,
+          "validZ": "110000Z",
+          "lat": 23.3,
+          "lon": 148.5,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 96,
+          "validZ": "120000Z",
+          "lat": 25.3,
+          "lon": 145.9,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 120,
+          "validZ": "130000Z",
+          "lat": 27.7,
+          "lon": 144.8,
+          "maxWindKt": 90,
+          "gustKt": 110
+        }
+      ],
+      "spot": {
+        "distanceNm": 2274,
+        "bearingDeg": 92,
+        "closestApproach": {
+          "distanceNm": 1303,
+          "tau": 120,
+          "validZ": "130000Z",
+          "maxWindKt": 90
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 305,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 290
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 295
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 297
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 301
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 304
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 303
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 311
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 338
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-12T15:00:00.000Z",
+        "status": "none"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts curved banding wrapping into a ragged central dense overcast (cdo), which is displaced southwest of the low-level circulation center (LLCC). TS 27W will maintain a west-northwestward trajectory through +60h along the southwestern flank of a STR positioned far to the north-northeast. The persistent shear and structural issues plaguing TS 27W will limit intensification for the first 12 hours.",
+        "warningNumber": "011",
+        "generatedAt": "2026-10-07T15:32:06.515Z"
+      },
+      "reasoningWarningNumber": "012",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
