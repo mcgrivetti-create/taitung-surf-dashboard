@@ -7086,6 +7086,190 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Typhoon",
+      "warningNumber": "020",
+      "issuedAt": "2026-10-09T21:00:00.000Z",
+      "positionZ": "091800Z",
+      "lat": 20.7,
+      "lon": 153,
+      "maxWindKt": 100,
+      "gustKt": 125,
+      "pressureMb": 961,
+      "seasFt": 36,
+      "movingToward": 300,
+      "movingKt": 12,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "100600Z",
+          "lat": 22.3,
+          "lon": 150.8,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 24,
+          "validZ": "101800Z",
+          "lat": 23.9,
+          "lon": 149.1,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 36,
+          "validZ": "110600Z",
+          "lat": 25.4,
+          "lon": 148.2,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 48,
+          "validZ": "111800Z",
+          "lat": 27.1,
+          "lon": 147.8,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 60,
+          "validZ": "120600Z",
+          "lat": 29,
+          "lon": 148.2,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 72,
+          "validZ": "121800Z",
+          "lat": 31.9,
+          "lon": 149.9,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 96,
+          "validZ": "131800Z",
+          "lat": 37,
+          "lon": 156.1,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 120,
+          "validZ": "141800Z",
+          "lat": 42.1,
+          "lon": 164,
+          "maxWindKt": 55,
+          "gustKt": 70
+        }
+      ],
+      "spot": {
+        "distanceNm": 1768,
+        "bearingDeg": 88,
+        "closestApproach": {
+          "distanceNm": 1459,
+          "tau": 48,
+          "validZ": "111800Z",
+          "maxWindKt": 115
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 300,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 308
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 316
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 332
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 348
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 10
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 26
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 43
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 48
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "headingDeg": 348,
+            "deltaDeg": 48
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "headingDeg": 26,
+            "deltaDeg": 38
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-14T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-11T16:00:00.000Z",
+          "heightM": 1.24,
+          "periodS": 6.05,
+          "dirDeg": 77
+        },
+        "hoursAhead": 44,
+        "bearingOffsetDeg": 2,
+        "peak": {
+          "targetTime": "2026-10-12T12:00:00.000Z",
+          "heightM": 1.66,
+          "periodS": 7.85,
+          "dirDeg": 82
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts typhoon 27W (koguma), surprisingly, undergoing an eyewall replacement cycle (erc) with an expanding central dense overcast (cdo) and a generally broadening appearance. TY 27W is forecast to continue tracking northwestward, along the southwestern periphery of the STR through +48h. 27W will then approach the ridge axis, causing the trajectory to become generally northward through +72h. Extratropical transition is forecast to begin at +120h with completion occurring just outside of the 5-day forecast period.",
+        "warningNumber": "019",
+        "generatedAt": "2026-10-09T15:21:04.581Z"
+      },
+      "reasoningWarningNumber": "019",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
