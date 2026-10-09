@@ -6702,6 +6702,190 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Typhoon",
+      "warningNumber": "018",
+      "issuedAt": "2026-10-09T09:00:00.000Z",
+      "positionZ": "090600Z",
+      "lat": 19.3,
+      "lon": 155.5,
+      "maxWindKt": 95,
+      "gustKt": 115,
+      "pressureMb": 964,
+      "seasFt": 34,
+      "movingToward": 310,
+      "movingKt": 12,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "091800Z",
+          "lat": 20.7,
+          "lon": 153,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 24,
+          "validZ": "100600Z",
+          "lat": 22.3,
+          "lon": 150.8,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 36,
+          "validZ": "101800Z",
+          "lat": 23.9,
+          "lon": 149.2,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 48,
+          "validZ": "110600Z",
+          "lat": 25.4,
+          "lon": 148.2,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 60,
+          "validZ": "111800Z",
+          "lat": 27,
+          "lon": 147.8,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 72,
+          "validZ": "120600Z",
+          "lat": 28.9,
+          "lon": 148,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 96,
+          "validZ": "130600Z",
+          "lat": 33.7,
+          "lon": 151.1,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 120,
+          "validZ": "140600Z",
+          "lat": 39.9,
+          "lon": 157.9,
+          "maxWindKt": 65,
+          "gustKt": 80
+        }
+      ],
+      "spot": {
+        "distanceNm": 1923,
+        "bearingDeg": 90,
+        "closestApproach": {
+          "distanceNm": 1459,
+          "tau": 60,
+          "validZ": "111800Z",
+          "maxWindKt": 100
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 310,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 301
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 308
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 318
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 329
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 347
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 5
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 28
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 39
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 347,
+            "deltaDeg": 37
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "headingDeg": 28,
+            "deltaDeg": 41
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-13T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-09T17:00:00.000Z",
+          "heightM": 1.5,
+          "periodS": 6.4,
+          "dirDeg": 77
+        },
+        "hoursAhead": 9,
+        "bearingOffsetDeg": 2,
+        "peak": {
+          "targetTime": "2026-10-10T03:00:00.000Z",
+          "heightM": 1.76,
+          "periodS": 6.7,
+          "dirDeg": 81
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "The satellite presentation of TY 27W has improved markedly over the past six hours, indicative of an ongoing rapid intensification trend. TY 27W is expected to track along the periphery of the current subtropical steering ridge through the 120 hour forecast period. The system will continue to rapidly intensify over the next 24 hours on its initially west-northwestward trek toward the steering ridge axis, supported by favorably low vertical wind shear, strong outflow aloft, and passage over very warm water.",
+        "warningNumber": "017",
+        "generatedAt": "2026-10-09T03:21:34.156Z"
+      },
+      "reasoningWarningNumber": "017",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
