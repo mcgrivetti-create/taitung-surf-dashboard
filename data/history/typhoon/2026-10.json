@@ -7442,6 +7442,176 @@
         "distanceNm": 1352,
         "bearingDeg": 114
       }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Typhoon",
+      "warningNumber": "022",
+      "issuedAt": "2026-10-10T09:00:00.000Z",
+      "positionZ": "100600Z",
+      "lat": 22.2,
+      "lon": 150.4,
+      "maxWindKt": 115,
+      "gustKt": 140,
+      "pressureMb": 945,
+      "seasFt": 42,
+      "movingToward": 310,
+      "movingKt": 13,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "101800Z",
+          "lat": 23.8,
+          "lon": 148.9,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 24,
+          "validZ": "110600Z",
+          "lat": 25.6,
+          "lon": 147.8,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 36,
+          "validZ": "111800Z",
+          "lat": 27.4,
+          "lon": 147.4,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 48,
+          "validZ": "120600Z",
+          "lat": 29.6,
+          "lon": 147.8,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 60,
+          "validZ": "121800Z",
+          "lat": 32.3,
+          "lon": 149.6,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 72,
+          "validZ": "130600Z",
+          "lat": 34.9,
+          "lon": 152.6,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 96,
+          "validZ": "140600Z",
+          "lat": 40,
+          "lon": 159.8,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 120,
+          "validZ": "150600Z",
+          "lat": 43.3,
+          "lon": 170,
+          "maxWindKt": 45,
+          "gustKt": 55
+        }
+      ],
+      "spot": {
+        "distanceNm": 1610,
+        "bearingDeg": 86,
+        "closestApproach": {
+          "distanceNm": 1439,
+          "tau": 36,
+          "validZ": "111800Z",
+          "maxWindKt": 105
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 310,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 319
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 331
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 349
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 9
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 29
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 43
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 46
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 63
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "headingDeg": 349,
+            "deltaDeg": 39
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 29,
+            "deltaDeg": 40
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-14T15:00:00.000Z",
+        "status": "none"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 27W (koruma) recovering from its earlier eyewall replacement cycle (erc), with its eye contracting by 10 NM over the past 6 hours. TY 27W is forecast to continue tracking northwestward while it remains on the southwestern flank of the steering ridge. From +24h-48, 27W will round the ridge axis and recurve to the northeast. 27W is forecast to begin extratropical transition no later than +72h and complete transition by +96h.",
+        "warningNumber": "021",
+        "generatedAt": "2026-10-10T03:20:25.964Z"
+      },
+      "reasoningWarningNumber": "021",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
