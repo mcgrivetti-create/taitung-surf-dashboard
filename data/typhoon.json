@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-10T14:18:49.595Z",
+  "fetchedAt": "2026-10-10T15:18:20.771Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -95,14 +95,14 @@
       ],
       "geoReference": "510 NM NORTH-NORTHEAST OF SAIPAN",
       "reasoning": {
-        "warningNumber": "022",
+        "warningNumber": "023",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 42,
+        "seasFt": 46,
         "environment": "FAVORABLE",
         "vws": "5-10 KTS",
         "sst": "28-29 CELSIUS",
         "outflow": "MODERATE RADIAL",
-        "steering": "SOUTHWESTERN FLANK OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) POSITIONED FAR TO THE NORTHEAST",
+        "steering": "SOUTHWESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED NEAR 31N 168E",
         "confidence": {
           "track0072": "HIGH",
           "track72120": "MEDIUM",
@@ -111,7 +111,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2726prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1562,
         "bearingDeg": 85,
@@ -190,7 +190,7 @@
           "periodS": 9.5,
           "dirDeg": 82
         },
-        "hoursAhead": 26,
+        "hoursAhead": 25,
         "bearingOffsetDeg": 1,
         "peak": {
           "targetTime": "2026-10-12T14:00:00.000Z",
@@ -202,9 +202,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 27W (koruma) recovering from its earlier eyewall replacement cycle (erc), with its eye contracting by 10 NM over the past 6 hours. TY 27W is forecast to continue tracking northwestward while it remains on the southwestern flank of the steering ridge. From +24h-48, 27W will round the ridge axis and recurve to the northeast. 27W is forecast to begin extratropical transition no later than +72h and complete transition by +96h.",
-        "warningNumber": "021",
-        "generatedAt": "2026-10-10T03:20:25.964Z"
+        "text": "Typhoon (TY) 27W maintains an impressive satellite presentation, with a well-defined, circular eye measuring 25 NM in diameter embedded in a nearly symmetric central dense overcast (cdo). TY 27W will travel northwestward at 10 kt along the southwestern periphery of a STR. TY 27W is likely at or near peak intensity, though slight additional intensification is possible through +12h.",
+        "warningNumber": "023",
+        "generatedAt": "2026-10-10T15:18:20.771Z"
       },
       "changes": {
         "previousWarningNumber": "022",
@@ -233,8 +233,8 @@
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "10/1400Z",
-    "issuedAt": "2026-10-10T14:00:00.000Z",
+    "issuedZ": "10/1430Z",
+    "issuedAt": "2026-10-10T14:30:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
     "reissued": true
   }
