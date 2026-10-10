@@ -7828,6 +7828,190 @@
         "distanceNm": 1591,
         "bearingDeg": 104
       }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Typhoon",
+      "warningNumber": "024",
+      "issuedAt": "2026-10-10T21:00:00.000Z",
+      "positionZ": "101800Z",
+      "lat": 23.8,
+      "lon": 148.9,
+      "maxWindKt": 120,
+      "gustKt": 145,
+      "pressureMb": 941,
+      "seasFt": 48,
+      "movingToward": 325,
+      "movingKt": 11,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "110600Z",
+          "lat": 25.5,
+          "lon": 147.9,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 24,
+          "validZ": "111800Z",
+          "lat": 27.6,
+          "lon": 147.5,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 36,
+          "validZ": "120600Z",
+          "lat": 30,
+          "lon": 148.1,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 48,
+          "validZ": "121800Z",
+          "lat": 32.8,
+          "lon": 150.3,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 60,
+          "validZ": "130600Z",
+          "lat": 35.4,
+          "lon": 153.9,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 72,
+          "validZ": "131800Z",
+          "lat": 37.9,
+          "lon": 157.6,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 96,
+          "validZ": "141800Z",
+          "lat": 41.5,
+          "lon": 165.1,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 120,
+          "validZ": "151800Z",
+          "lat": 43.2,
+          "lon": 174.7,
+          "maxWindKt": 35,
+          "gustKt": 45
+        }
+      ],
+      "spot": {
+        "distanceNm": 1519,
+        "bearingDeg": 83,
+        "closestApproach": {
+          "distanceNm": 1445,
+          "tau": 24,
+          "validZ": "111800Z",
+          "maxWindKt": 110
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 325,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 332
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 350
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 12
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 33
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 48
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 49
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 56
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 73
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "headingDeg": 12,
+            "deltaDeg": 47
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 48,
+            "deltaDeg": 36
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-15T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-11T16:00:00.000Z",
+          "heightM": 1.24,
+          "periodS": 9.5,
+          "dirDeg": 82
+        },
+        "hoursAhead": 20,
+        "bearingOffsetDeg": 1,
+        "peak": {
+          "targetTime": "2026-10-12T14:00:00.000Z",
+          "heightM": 1.7,
+          "periodS": 7.65,
+          "dirDeg": 78
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "Typhoon (TY) 27W maintains an impressive satellite presentation, with a well-defined, circular eye measuring 25 NM in diameter embedded in a nearly symmetric central dense overcast (cdo). TY 27W will travel northwestward at 10 kt along the southwestern periphery of a STR. TY 27W is likely at or near peak intensity, though slight additional intensification is possible through +12h.",
+        "warningNumber": "023",
+        "generatedAt": "2026-10-10T15:18:20.771Z"
+      },
+      "reasoningWarningNumber": "023",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "HIGH",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
