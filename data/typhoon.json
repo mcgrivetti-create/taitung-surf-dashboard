@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-10T20:18:24.203Z",
+  "fetchedAt": "2026-10-10T21:18:30.820Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -95,23 +95,23 @@
       ],
       "geoReference": "281 NM WEST OF MINAMI TORI SHIMA",
       "reasoning": {
-        "warningNumber": "023",
+        "warningNumber": "024",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 46,
-        "environment": "FAVORABLE",
-        "vws": "5-10 KTS",
-        "sst": "28-29 CELSIUS",
-        "outflow": "MODERATE RADIAL",
-        "steering": "SOUTHWESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED NEAR 31N 168E",
+        "environment": "HIGHLY FAVORABLE",
+        "vws": "0-5 KTS",
+        "sst": "27-28 CELSIUS",
+        "outflow": "STRONG RADIAL",
+        "steering": "THE SOUTHWESTERN PERIPHERY OF THE SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTHEAST",
         "confidence": {
           "track0072": "HIGH",
-          "track72120": "MEDIUM",
-          "intensity0072": "HIGH",
+          "track72120": "HIGH",
+          "intensity0072": "MEDIUM",
           "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2726prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1519,
         "bearingDeg": 83,
@@ -190,7 +190,7 @@
           "periodS": 9.5,
           "dirDeg": 82
         },
-        "hoursAhead": 20,
+        "hoursAhead": 19,
         "bearingOffsetDeg": 1,
         "peak": {
           "targetTime": "2026-10-12T14:00:00.000Z",
