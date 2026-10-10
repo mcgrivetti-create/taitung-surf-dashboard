@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-10T02:19:56.990Z",
+  "fetchedAt": "2026-10-10T03:20:25.964Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -86,23 +86,23 @@
       ],
       "geoReference": "218 NM SOUTHWEST OF MINAMI TORI SHIMA",
       "reasoning": {
-        "warningNumber": "020",
+        "warningNumber": "021",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 36,
-        "environment": "FAVORABLE",
-        "vws": "5-10 KTS",
-        "sst": "28-29 CELSIUS",
+        "seasFt": 40,
+        "environment": "HIGHLY FAVORABLE",
+        "vws": "0-5 KTS",
+        "sst": "29-30 CELSIUS",
         "outflow": "MODERATE EQUATORWARD",
         "steering": "SOUTHWESTERN PERIPHERY OF THE SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTHEAST",
         "confidence": {
           "track0072": "HIGH",
           "track72120": "MEDIUM",
           "intensity0072": "MEDIUM",
-          "intensity72120": "MEDIUM"
+          "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2726prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1678,
         "bearingDeg": 87,
@@ -174,9 +174,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated enhanced infrared (EIR) satellite imagery depicts typhoon 27W (koguma), surprisingly, undergoing an eyewall replacement cycle (erc) with an expanding central dense overcast (cdo) and a generally broadening appearance. TY 27W is forecast to continue tracking northwestward, along the southwestern periphery of the STR through +48h. 27W will then approach the ridge axis, causing the trajectory to become generally northward through +72h. Extratropical transition is forecast to begin at +120h with completion occurring just outside of the 5-day forecast period.",
-        "warningNumber": "019",
-        "generatedAt": "2026-10-09T15:21:04.581Z"
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 27W (koruma) recovering from its earlier eyewall replacement cycle (erc), with its eye contracting by 10 NM over the past 6 hours. TY 27W is forecast to continue tracking northwestward while it remains on the southwestern flank of the steering ridge. From +24h-48, 27W will round the ridge axis and recurve to the northeast. 27W is forecast to begin extratropical transition no later than +72h and complete transition by +96h.",
+        "warningNumber": "021",
+        "generatedAt": "2026-10-10T03:20:25.964Z"
       },
       "changes": {
         "previousWarningNumber": "020",
