@@ -7270,6 +7270,162 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Typhoon",
+      "warningNumber": "021",
+      "issuedAt": "2026-10-10T03:00:00.000Z",
+      "positionZ": "100000Z",
+      "lat": 21.4,
+      "lon": 151.5,
+      "maxWindKt": 110,
+      "gustKt": 135,
+      "seasFt": 40,
+      "movingToward": 295,
+      "movingKt": 16,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "101200Z",
+          "lat": 23,
+          "lon": 149.6,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 24,
+          "validZ": "110000Z",
+          "lat": 24.5,
+          "lon": 148.2,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 36,
+          "validZ": "111200Z",
+          "lat": 26.1,
+          "lon": 147.4,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 48,
+          "validZ": "120000Z",
+          "lat": 27.9,
+          "lon": 147.3,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 60,
+          "validZ": "121200Z",
+          "lat": 30.2,
+          "lon": 148,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 72,
+          "validZ": "130000Z",
+          "lat": 32.7,
+          "lon": 150.2,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 96,
+          "validZ": "140000Z",
+          "lat": 38.5,
+          "lon": 157.5,
+          "maxWindKt": 70,
+          "gustKt": 85
+        }
+      ],
+      "spot": {
+        "distanceNm": 1678,
+        "bearingDeg": 87,
+        "closestApproach": {
+          "distanceNm": 1435,
+          "tau": 36,
+          "validZ": "111200Z",
+          "maxWindKt": 115
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 295,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 313
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 320
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 336
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 357
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 15
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 36
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 44
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "headingDeg": 336,
+            "deltaDeg": 41
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 15,
+            "deltaDeg": 39
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-14T15:00:00.000Z",
+        "status": "none"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts typhoon 27W (koguma), surprisingly, undergoing an eyewall replacement cycle (erc) with an expanding central dense overcast (cdo) and a generally broadening appearance. TY 27W is forecast to continue tracking northwestward, along the southwestern periphery of the STR through +48h. 27W will then approach the ridge axis, causing the trajectory to become generally northward through +72h. Extratropical transition is forecast to begin at +120h with completion occurring just outside of the 5-day forecast period.",
+        "warningNumber": "019",
+        "generatedAt": "2026-10-09T15:21:04.581Z"
+      },
+      "reasoningWarningNumber": "020",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
