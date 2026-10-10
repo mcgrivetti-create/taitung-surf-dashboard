@@ -7612,6 +7612,206 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Typhoon",
+      "warningNumber": "023",
+      "issuedAt": "2026-10-10T15:00:00.000Z",
+      "positionZ": "101200Z",
+      "lat": 22.9,
+      "lon": 149.6,
+      "maxWindKt": 120,
+      "gustKt": 145,
+      "pressureMb": 942,
+      "seasFt": 46,
+      "movingToward": 315,
+      "movingKt": 10,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "110000Z",
+          "lat": 24.6,
+          "lon": 148.3,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 24,
+          "validZ": "111200Z",
+          "lat": 26.3,
+          "lon": 147.6,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 36,
+          "validZ": "120000Z",
+          "lat": 28.4,
+          "lon": 147.5,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 48,
+          "validZ": "121200Z",
+          "lat": 31,
+          "lon": 148.6,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 60,
+          "validZ": "130000Z",
+          "lat": 33.7,
+          "lon": 151.2,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 72,
+          "validZ": "131200Z",
+          "lat": 36.5,
+          "lon": 154.8,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 96,
+          "validZ": "141200Z",
+          "lat": 41.2,
+          "lon": 162.4,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 120,
+          "validZ": "151200Z",
+          "lat": 43.8,
+          "lon": 172.7,
+          "maxWindKt": 40,
+          "gustKt": 50
+        }
+      ],
+      "spot": {
+        "distanceNm": 1562,
+        "bearingDeg": 85,
+        "closestApproach": {
+          "distanceNm": 1446,
+          "tau": 24,
+          "validZ": "111200Z",
+          "maxWindKt": 115
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 315,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 325
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 340
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 358
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 20
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 38
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 45
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 49
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 68
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "headingDeg": 358,
+            "deltaDeg": 43
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 38,
+            "deltaDeg": 40
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-14T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-11T16:00:00.000Z",
+          "heightM": 1.24,
+          "periodS": 9.5,
+          "dirDeg": 82
+        },
+        "hoursAhead": 26,
+        "bearingOffsetDeg": 1,
+        "peak": {
+          "targetTime": "2026-10-12T14:00:00.000Z",
+          "heightM": 1.7,
+          "periodS": 7.65,
+          "dirDeg": 78
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 27W (koruma) recovering from its earlier eyewall replacement cycle (erc), with its eye contracting by 10 NM over the past 6 hours. TY 27W is forecast to continue tracking northwestward while it remains on the southwestern flank of the steering ridge. From +24h-48, 27W will round the ridge axis and recurve to the northeast. 27W is forecast to begin extratropical transition no later than +72h and complete transition by +96h.",
+        "warningNumber": "021",
+        "generatedAt": "2026-10-10T03:20:25.964Z"
+      },
+      "reasoningWarningNumber": "022",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "HIGH",
+        "intensity72120": "MEDIUM"
+      }
+    },
+    {
+      "kind": "invest",
+      "id": "95W",
+      "issuedAt": "2026-10-10T14:00:00.000Z",
+      "lat": 14.3,
+      "lon": 147.8,
+      "potential": null,
+      "geoReference": "73 NM EAST-NORTHEAST OF GUAM",
+      "windKtLow": 23,
+      "windKtHigh": 28,
+      "pressureMb": 1007,
+      "spot": {
+        "distanceNm": 1591,
+        "bearingDeg": 104
+      }
     }
   ]
 }
