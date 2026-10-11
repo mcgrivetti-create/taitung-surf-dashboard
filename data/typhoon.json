@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-11T15:18:43.465Z",
+  "fetchedAt": "2026-10-11T16:19:43.812Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -170,22 +170,27 @@
         ]
       },
       "swell": {
-        "windowEnd": "2026-10-15T15:00:00.000Z",
-        "status": "arriving",
+        "windowEnd": "2026-10-16T15:00:00.000Z",
+        "status": "in-water",
         "arrival": {
           "targetTime": "2026-10-11T16:00:00.000Z",
           "heightM": 1.24,
           "periodS": 9.55,
           "dirDeg": 83
         },
-        "hoursAhead": 1,
-        "bearingOffsetDeg": 0,
+        "now": {
+          "targetTime": "2026-10-11T16:00:00.000Z",
+          "heightM": 1.24,
+          "periodS": 9.55,
+          "dirDeg": 83
+        },
         "peak": {
           "targetTime": "2026-10-12T11:00:00.000Z",
           "heightM": 1.7,
           "periodS": 7.75,
           "dirDeg": 78
-        }
+        },
+        "easing": false
       },
       "retireFrom": null,
       "retired": false,
@@ -263,18 +268,6 @@
       "lon": 163.8,
       "distanceNm": 2568,
       "bearingDeg": 101
-    },
-    {
-      "id": null,
-      "potential": "LOW",
-      "geoReference": "312 NM EAST-SOUTHEAST OF YOKOSUKA",
-      "windKtLow": 23,
-      "windKtHigh": 28,
-      "pressureMb": 1008,
-      "lat": 32.4,
-      "lon": 144.9,
-      "distanceNm": 1372,
-      "bearingDeg": 60
     }
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
