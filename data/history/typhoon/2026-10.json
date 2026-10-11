@@ -8201,6 +8201,216 @@
         "distanceNm": 2523,
         "bearingDeg": 101
       }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Typhoon",
+      "warningNumber": "026",
+      "issuedAt": "2026-10-11T09:00:00.000Z",
+      "positionZ": "110600Z",
+      "lat": 25.3,
+      "lon": 147.8,
+      "maxWindKt": 115,
+      "gustKt": 140,
+      "pressureMb": 943,
+      "seasFt": 47,
+      "movingToward": 335,
+      "movingKt": 9,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "111800Z",
+          "lat": 27.3,
+          "lon": 147.4,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 24,
+          "validZ": "120600Z",
+          "lat": 29.7,
+          "lon": 147.9,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 36,
+          "validZ": "121800Z",
+          "lat": 32.4,
+          "lon": 149.8,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 48,
+          "validZ": "130600Z",
+          "lat": 35.1,
+          "lon": 153.1,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 60,
+          "validZ": "131800Z",
+          "lat": 37.8,
+          "lon": 156.9,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 72,
+          "validZ": "140600Z",
+          "lat": 39.9,
+          "lon": 160.6,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 96,
+          "validZ": "150600Z",
+          "lat": 42.7,
+          "lon": 169.7,
+          "maxWindKt": 45,
+          "gustKt": 55
+        }
+      ],
+      "spot": {
+        "distanceNm": 1455,
+        "bearingDeg": 79,
+        "closestApproach": {
+          "distanceNm": 1439,
+          "tau": 12,
+          "validZ": "111800Z",
+          "maxWindKt": 105
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 335,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 350
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 10
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 31
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 45
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 47
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 53
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 65
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "headingDeg": 10,
+            "deltaDeg": 35
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "headingDeg": 45,
+            "deltaDeg": 35
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-15T15:00:00.000Z",
+        "status": "none"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 27W (koguma) relatively steadily tracking northwestward, relatively unchanged from several hours prior. TY 27W is forecast to track north-northwestward for the next 12 hours while it remains on the southwestern periphery of the steering ridge. Regarding intensity, 27W is expected to steadily weaken through +96h as the environment becomes increasingly hostile.",
+        "warningNumber": "025",
+        "generatedAt": "2026-10-11T03:21:05.639Z"
+      },
+      "reasoningWarningNumber": "025",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "HIGH",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
+    },
+    {
+      "kind": "tcfa",
+      "id": "95W",
+      "alertId": "WTPN21",
+      "issuedAt": "2026-10-11T08:00:00.000Z",
+      "lat": 15.8,
+      "lon": 150.7,
+      "potential": "HIGH",
+      "maxWindKtLow": 28,
+      "maxWindKtHigh": 33,
+      "pressureMb": 998,
+      "movingText": "NORTHEASTWARD",
+      "movingKt": 8,
+      "windowLowH": 12,
+      "windowHighH": 24,
+      "decisionByZ": "120800Z",
+      "spot": {
+        "distanceNm": 1716,
+        "bearingDeg": 99
+      }
+    },
+    {
+      "kind": "invest",
+      "id": "95W",
+      "issuedAt": "2026-10-11T08:00:00.000Z",
+      "lat": 15.8,
+      "lon": 150.7,
+      "potential": null,
+      "geoReference": "288 NM EAST OF SAIPAN",
+      "windKtLow": 28,
+      "windKtHigh": 33,
+      "pressureMb": 1007,
+      "spot": {
+        "distanceNm": 1716,
+        "bearingDeg": 99
+      }
+    },
+    {
+      "kind": "invest",
+      "id": "96W",
+      "issuedAt": "2026-10-11T08:00:00.000Z",
+      "lat": 9.7,
+      "lon": 162.6,
+      "potential": "LOW",
+      "geoReference": "135 NM EAST OF UJELANG",
+      "windKtLow": 18,
+      "windKtHigh": 23,
+      "pressureMb": 1010,
+      "spot": {
+        "distanceNm": 2498,
+        "bearingDeg": 102
+      }
     }
   ]
 }
