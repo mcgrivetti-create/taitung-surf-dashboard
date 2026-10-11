@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-11T14:19:22.587Z",
+  "fetchedAt": "2026-10-11T15:18:43.465Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -87,12 +87,12 @@
       ],
       "geoReference": "341 NM EAST- NORTHEAST OF IWO TO",
       "reasoning": {
-        "warningNumber": "026",
+        "warningNumber": "027",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 47,
-        "environment": "FAVORABLE",
+        "seasFt": 44,
+        "environment": "MARGINALLY FAVORABLE",
         "vws": "5-10 KTS",
-        "sst": "27-28 CELSIUS",
+        "sst": "26-27 CELSIUS",
         "outflow": "MODERATE RADIAL",
         "steering": "WESTERN FLANK OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED NEAR 28N 167E",
         "confidence": {
@@ -103,7 +103,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2726prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1435,
         "bearingDeg": 77,
@@ -171,14 +171,14 @@
       },
       "swell": {
         "windowEnd": "2026-10-15T15:00:00.000Z",
-        "status": "incoming",
+        "status": "arriving",
         "arrival": {
           "targetTime": "2026-10-11T16:00:00.000Z",
           "heightM": 1.24,
           "periodS": 9.55,
           "dirDeg": 83
         },
-        "hoursAhead": 2,
+        "hoursAhead": 1,
         "bearingOffsetDeg": 0,
         "peak": {
           "targetTime": "2026-10-12T11:00:00.000Z",
@@ -190,9 +190,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 27W (koguma) relatively steadily tracking northwestward, relatively unchanged from several hours prior. TY 27W is forecast to track north-northwestward for the next 12 hours while it remains on the southwestern periphery of the steering ridge. Regarding intensity, 27W is expected to steadily weaken through +96h as the environment becomes increasingly hostile.",
-        "warningNumber": "025",
-        "generatedAt": "2026-10-11T03:21:05.639Z"
+        "text": "Typhoon (TY) 27W continues to weaken as it tracks north-northwestward at 10 kt. TY 27W will continue to turn poleward along the western periphery of a deep-layer STR, cross the ridge axis by +24h, and then begin to accelerate northeastward into the westerly flow. Extratropical transition (ETT) will begin by +72h and complete by +96h.",
+        "warningNumber": "027",
+        "generatedAt": "2026-10-11T15:18:43.465Z"
       },
       "changes": {
         "previousWarningNumber": "026",
@@ -242,33 +242,45 @@
   "invests": [
     {
       "id": "95W",
-      "potential": null,
-      "geoReference": "288 NM EAST OF SAIPAN",
-      "windKtLow": 28,
-      "windKtHigh": 33,
-      "pressureMb": 1007,
-      "lat": 15.8,
-      "lon": 150.7,
-      "distanceNm": 1716,
-      "bearingDeg": 99
+      "potential": "HIGH",
+      "geoReference": "306 NM EAST-NORTHEAST OF SAIPAN",
+      "windKtLow": 23,
+      "windKtHigh": 28,
+      "pressureMb": 1008,
+      "lat": 16.3,
+      "lon": 150.9,
+      "distanceNm": 1717,
+      "bearingDeg": 98
     },
     {
       "id": "96W",
       "potential": "LOW",
-      "geoReference": "135 NM EAST OF UJELANG",
-      "windKtLow": 18,
-      "windKtHigh": 23,
-      "pressureMb": 1010,
-      "lat": 9.7,
-      "lon": 162.6,
-      "distanceNm": 2498,
-      "bearingDeg": 102
+      "geoReference": "177 NM EAST OF UJELANG",
+      "windKtLow": 13,
+      "windKtHigh": 18,
+      "pressureMb": 1009,
+      "lat": 9.5,
+      "lon": 163.8,
+      "distanceNm": 2568,
+      "bearingDeg": 101
+    },
+    {
+      "id": null,
+      "potential": "LOW",
+      "geoReference": "312 NM EAST-SOUTHEAST OF YOKOSUKA",
+      "windKtLow": 23,
+      "windKtHigh": 28,
+      "pressureMb": 1008,
+      "lat": 32.4,
+      "lon": 144.9,
+      "distanceNm": 1372,
+      "bearingDeg": 60
     }
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "11/0800Z",
-    "issuedAt": "2026-10-11T08:00:00.000Z",
+    "issuedZ": "11/1500Z",
+    "issuedAt": "2026-10-11T15:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
     "reissued": true
   }
