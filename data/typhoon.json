@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-11T05:20:19.862Z",
+  "fetchedAt": "2026-10-11T06:25:21.082Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -193,21 +193,33 @@
   "invests": [
     {
       "id": "95W",
-      "potential": null,
-      "geoReference": "73 NM EAST-NORTHEAST OF GUAM",
-      "windKtLow": 23,
-      "windKtHigh": 28,
+      "potential": "MEDIUM",
+      "geoReference": "246 NM EAST OF SAIPAN",
+      "windKtLow": 28,
+      "windKtHigh": 33,
       "pressureMb": 1007,
-      "lat": 14.3,
-      "lon": 147.8,
-      "distanceNm": 1591,
-      "bearingDeg": 104
+      "lat": 15.3,
+      "lon": 150,
+      "distanceNm": 1688,
+      "bearingDeg": 101
+    },
+    {
+      "id": "96W",
+      "potential": "LOW",
+      "geoReference": "135 NM EAST OF UJELANG",
+      "windKtLow": 18,
+      "windKtHigh": 23,
+      "pressureMb": 1010,
+      "lat": 9.8,
+      "lon": 163.1,
+      "distanceNm": 2523,
+      "bearingDeg": 101
     }
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "10/1430Z",
-    "issuedAt": "2026-10-10T14:30:00.000Z",
+    "issuedZ": "11/0600Z",
+    "issuedAt": "2026-10-11T06:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
     "reissued": true
   }
