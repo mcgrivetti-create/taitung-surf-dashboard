@@ -8631,6 +8631,170 @@
         "distanceNm": 1372,
         "bearingDeg": 60
       }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Typhoon",
+      "warningNumber": "028",
+      "issuedAt": "2026-10-11T21:00:00.000Z",
+      "positionZ": "111800Z",
+      "lat": 27.1,
+      "lon": 147.3,
+      "maxWindKt": 105,
+      "gustKt": 130,
+      "pressureMb": 951,
+      "seasFt": 42,
+      "movingToward": 350,
+      "movingKt": 10,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "120600Z",
+          "lat": 29.5,
+          "lon": 147.9,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 24,
+          "validZ": "121800Z",
+          "lat": 32.3,
+          "lon": 149.8,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 36,
+          "validZ": "130600Z",
+          "lat": 34.9,
+          "lon": 152.8,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 48,
+          "validZ": "131800Z",
+          "lat": 37.5,
+          "lon": 156.2,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 60,
+          "validZ": "140600Z",
+          "lat": 39.8,
+          "lon": 160.2,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 72,
+          "validZ": "141800Z",
+          "lat": 41.4,
+          "lon": 165.1,
+          "maxWindKt": 45,
+          "gustKt": 55
+        }
+      ],
+      "spot": {
+        "distanceNm": 1432,
+        "bearingDeg": 75,
+        "closestApproach": {
+          "distanceNm": 1481,
+          "tau": 12,
+          "validZ": "120600Z",
+          "maxWindKt": 90,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 350,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 12
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 30
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 43
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 46
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 52
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 65
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "headingDeg": 30,
+            "deltaDeg": 40
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "headingDeg": 65,
+            "deltaDeg": 35
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-16T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-10-11T16:00:00.000Z",
+          "heightM": 1.24,
+          "periodS": 9.55,
+          "dirDeg": 83
+        },
+        "now": {
+          "targetTime": "2026-10-11T20:00:00.000Z",
+          "heightM": 1.46,
+          "periodS": 8.1,
+          "dirDeg": 81
+        },
+        "peak": {
+          "targetTime": "2026-10-12T11:00:00.000Z",
+          "heightM": 1.7,
+          "periodS": 7.75,
+          "dirDeg": 78
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "Typhoon (TY) 27W continues to weaken as it tracks north-northwestward at 10 kt. TY 27W will continue to turn poleward along the western periphery of a deep-layer STR, cross the ridge axis by +24h, and then begin to accelerate northeastward into the westerly flow. Extratropical transition (ETT) will begin by +72h and complete by +96h.",
+        "warningNumber": "027",
+        "generatedAt": "2026-10-11T15:18:43.465Z"
+      },
+      "reasoningWarningNumber": "027",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "HIGH",
+        "intensity0072": "HIGH",
+        "intensity72120": "HIGH"
+      }
     }
   ]
 }
