@@ -1,65 +1,65 @@
 {
-  "fetchedAt": "2026-10-12T12:36:48.686Z",
+  "fetchedAt": "2026-10-12T13:36:19.849Z",
   "systems": [
     {
       "designation": "Tropical Depression",
       "id": "28W",
       "name": "Twentyeight",
       "headline": "Tropical Depression 28W (Twentyeight)",
-      "warningNumber": "002",
-      "issuedZ": "12/0900Z",
-      "issuedAt": "2026-10-12T09:00:00.000Z",
+      "warningNumber": "003",
+      "issuedZ": "12/1500Z",
+      "issuedAt": "2026-10-12T15:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2826.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2826web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "121800Z",
-          "lat": 17.6,
-          "lon": 148.3,
-          "maxWindKt": 25,
-          "gustKt": 35
+          "validZ": "130000Z",
+          "lat": 18.1,
+          "lon": 147.4,
+          "maxWindKt": 30,
+          "gustKt": 40
         },
         {
           "tau": 24,
-          "validZ": "130600Z",
-          "lat": 18.6,
-          "lon": 146.7,
+          "validZ": "131200Z",
+          "lat": 19.2,
+          "lon": 145.7,
           "maxWindKt": 25,
           "gustKt": 35
         },
         {
           "tau": 36,
-          "validZ": "131800Z",
-          "lat": 19.8,
-          "lon": 144.8,
+          "validZ": "140000Z",
+          "lat": 20.3,
+          "lon": 143.8,
           "maxWindKt": 25,
           "gustKt": 35
         },
         {
           "tau": 48,
-          "validZ": "140600Z",
-          "lat": 20.9,
-          "lon": 143,
+          "validZ": "141200Z",
+          "lat": 21.3,
+          "lon": 142,
           "maxWindKt": 20,
           "gustKt": 30
         }
       ],
-      "positionZ": "120600Z",
-      "lat": 16.8,
-      "lon": 149.8,
-      "movingToward": 305,
+      "positionZ": "121200Z",
+      "lat": 17.1,
+      "lon": 149.1,
+      "movingToward": 295,
       "movingKt": 7,
-      "maxWindKt": 25,
-      "gustKt": 35,
+      "maxWindKt": 30,
+      "gustKt": 40,
       "pressureMb": 1006,
-      "seasFt": 10,
+      "seasFt": 11,
       "nextWarnings": [
-        "121500Z",
         "122100Z",
         "130300Z",
-        "130900Z. REFER TO TYPHOON 27W (KOGUMA) WARNINGS (WTPN33 PGTW) FOR SIX-HOURLY UPDATES"
+        "130900Z",
+        "131500Z. REFER TO TYPHOON 27W (KOGUMA) WARNINGS (WTPN33 PGTW) FOR SIX-HOURLY UPDATES"
       ],
       "reasoning": {
         "warningNumber": "002",
@@ -78,39 +78,39 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2826prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 1647,
+        "distanceNm": 1604,
         "bearingDeg": 98,
         "closestApproach": {
-          "distanceNm": 1213,
+          "distanceNm": 1154,
           "tau": 48,
-          "validZ": "140600Z",
+          "validZ": "141200Z",
           "maxWindKt": 20
         }
       },
       "motion": {
-        "currentHeadingDeg": 305,
+        "currentHeadingDeg": 295,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 299
+            "heading": 302
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 304
+            "heading": 305
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 304
+            "heading": 302
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 303
+            "heading": 301
           }
         ],
         "turns": []
@@ -128,12 +128,12 @@
         "generatedAt": "2026-10-12T03:23:01.444Z"
       },
       "changes": {
-        "previousWarningNumber": "001",
-        "previousIssuedAt": "2026-10-12T03:00:00.000Z",
-        "maxWindKtDelta": 0,
+        "previousWarningNumber": "002",
+        "previousIssuedAt": "2026-10-12T09:00:00.000Z",
+        "maxWindKtDelta": 5,
         "pressureMbDelta": 0,
-        "seasFtDelta": 0,
-        "closestApproachNmDelta": -84
+        "seasFtDelta": 1,
+        "closestApproachNmDelta": -59
       }
     },
     {
@@ -295,10 +295,10 @@
           "dirDeg": 83
         },
         "now": {
-          "targetTime": "2026-10-12T12:00:00.000Z",
-          "heightM": 1.66,
+          "targetTime": "2026-10-12T13:00:00.000Z",
+          "heightM": 1.64,
           "periodS": 7.85,
-          "dirDeg": 77
+          "dirDeg": 78
         },
         "peak": {
           "targetTime": "2026-10-14T15:00:00.000Z",

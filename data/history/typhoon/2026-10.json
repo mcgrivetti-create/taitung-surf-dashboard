@@ -9371,6 +9371,112 @@
         "intensity0072": "HIGH",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "28W",
+      "name": "Twentyeight",
+      "designation": "Tropical Depression",
+      "warningNumber": "003",
+      "issuedAt": "2026-10-12T15:00:00.000Z",
+      "positionZ": "121200Z",
+      "lat": 17.1,
+      "lon": 149.1,
+      "maxWindKt": 30,
+      "gustKt": 40,
+      "pressureMb": 1006,
+      "seasFt": 11,
+      "movingToward": 295,
+      "movingKt": 7,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "130000Z",
+          "lat": 18.1,
+          "lon": 147.4,
+          "maxWindKt": 30,
+          "gustKt": 40
+        },
+        {
+          "tau": 24,
+          "validZ": "131200Z",
+          "lat": 19.2,
+          "lon": 145.7,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 36,
+          "validZ": "140000Z",
+          "lat": 20.3,
+          "lon": 143.8,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 48,
+          "validZ": "141200Z",
+          "lat": 21.3,
+          "lon": 142,
+          "maxWindKt": 20,
+          "gustKt": 30
+        }
+      ],
+      "spot": {
+        "distanceNm": 1604,
+        "bearingDeg": 98,
+        "closestApproach": {
+          "distanceNm": 1154,
+          "tau": 48,
+          "validZ": "141200Z",
+          "maxWindKt": 20
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 295,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 302
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 305
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 302
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 301
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "status": "none",
+        "windowEnd": "2026-10-16T15:00:00.000Z",
+        "creditedTo": "Koguma"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts a partially- exposed low-level circulation center (LLCC) with low-level cloud lines wrapping into a defined, closed center and formative deep convective banding over the southern semicircle. Tropical depression (TD) is forecast to remain at TD strength through the entire forecast period due to the presence of extensive dry air throughout the region and marginal upper-level flow associated with the aforementioned TUTT cell and broad cyclonic flow. The system will track northwestward through +48h along the southwestern periphery of the low- to mid-level STR, and will struggle to consolidate then dissipate by +48h due to the persistent convergent, cyclonic flow and extensive dry air.",
+        "warningNumber": "001",
+        "generatedAt": "2026-10-12T03:23:01.444Z"
+      },
+      "reasoningWarningNumber": "002",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "MEDIUM",
+        "intensity72120": null
+      }
     }
   ]
 }
