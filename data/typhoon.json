@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-12T14:26:28.854Z",
+  "fetchedAt": "2026-10-12T15:23:09.851Z",
   "systems": [
     {
       "designation": "Tropical Depression",
@@ -62,23 +62,23 @@
         "131500Z. REFER TO TYPHOON 27W (KOGUMA) WARNINGS (WTPN33 PGTW) FOR SIX-HOURLY UPDATES"
       ],
       "reasoning": {
-        "warningNumber": "002",
+        "warningNumber": "003",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 10,
+        "seasFt": 11,
         "environment": "MARGINAL",
-        "vws": "10-15 KTS",
-        "sst": "29-30 CELSIUS",
-        "outflow": "MODERATE EQUATORWARD",
+        "vws": "15-20 KTS",
+        "sst": "28-29 CELSIUS",
+        "outflow": "WEAK EQUATORWARD",
         "steering": "SOUTHWESTERN FLANK OF A LOW- TO MID-LEVEL SUBTROPICAL RIDGE (STR) CENTERED NEAR 28N 165E",
         "confidence": {
           "track0072": "HIGH",
           "track72120": null,
-          "intensity0072": "MEDIUM",
+          "intensity0072": "HIGH",
           "intensity72120": null
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2826prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1604,
         "bearingDeg": 98,
@@ -123,9 +123,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts a partially- exposed low-level circulation center (LLCC) with low-level cloud lines wrapping into a defined, closed center and formative deep convective banding over the southern semicircle. Tropical depression (TD) is forecast to remain at TD strength through the entire forecast period due to the presence of extensive dry air throughout the region and marginal upper-level flow associated with the aforementioned TUTT cell and broad cyclonic flow. The system will track northwestward through +48h along the southwestern periphery of the low- to mid-level STR, and will struggle to consolidate then dissipate by +48h due to the persistent convergent, cyclonic flow and extensive dry air.",
-        "warningNumber": "001",
-        "generatedAt": "2026-10-12T03:23:01.444Z"
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts persistent deep convection confined to the southern periphery of the compact low-level circulation center (LLCC). TD 28W will continue to track generally northwestward along the southwestern flank of a low- to mid-level STR. Significant intensification appears unlikely.",
+        "warningNumber": "003",
+        "generatedAt": "2026-10-12T15:23:09.851Z"
       },
       "changes": {
         "previousWarningNumber": "002",
@@ -282,10 +282,10 @@
           "dirDeg": 83
         },
         "now": {
-          "targetTime": "2026-10-12T14:00:00.000Z",
-          "heightM": 1.64,
-          "periodS": 7.9,
-          "dirDeg": 78
+          "targetTime": "2026-10-12T15:00:00.000Z",
+          "heightM": 1.62,
+          "periodS": 7.95,
+          "dirDeg": 79
         },
         "peak": {
           "targetTime": "2026-10-14T15:00:00.000Z",
@@ -298,9 +298,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "As indicated in animated enhanced infrared (EIR) satellite imagery and microwave imagery, the eyewall replacement cycle has completed with no evidence yet of a consolidating, contracting eye. Typhoon (TY) 27W will recurve north-northeastward to northeastward over the next 12 to 24 hours as it rounds the STR axis. There is a possibility for short-term reintensification within the next 6-12 hours as the eyewall consolidates and contracts after the eyewall replacement cycle under low VWS and warm waters.",
-        "warningNumber": "029",
-        "generatedAt": "2026-10-12T03:23:01.444Z"
+        "text": "The convective structure of typhoon (TY) 27W has significantly degraded over the past six hours. TY 27W is now traveling north-northeastward at 18 kt along the northwestern periphery of a STR. These hostile conditions will maintain a steady to rapid weakening trend through +24h.",
+        "warningNumber": "031",
+        "generatedAt": "2026-10-12T15:23:09.851Z"
       },
       "changes": {
         "previousWarningNumber": "030",
