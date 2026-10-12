@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-12T08:25:25.026Z",
+  "fetchedAt": "2026-10-12T09:24:30.101Z",
   "systems": [
     {
       "designation": "Tropical Depression",
@@ -62,23 +62,23 @@
         "130900Z. REFER TO TYPHOON 27W (KOGUMA) WARNINGS (WTPN33 PGTW) FOR SIX-HOURLY UPDATES"
       ],
       "reasoning": {
-        "warningNumber": "001",
-        "significantForecastChanges": "THIS INITIAL PROGNOSTIC REASONING MESSAGE ESTABLISHES THE FORECAST PHILOSOPHY.",
+        "warningNumber": "002",
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 10,
         "environment": "MARGINAL",
-        "vws": "15-20 KTS",
+        "vws": "10-15 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "MODERATE EQUATORWARD",
-        "steering": "LOW- TO MID-LEVEL SUBTROPICAL RIDGE (STR) POSITIONED TO THE NORTHEAST",
+        "steering": "SOUTHWESTERN FLANK OF A LOW- TO MID-LEVEL SUBTROPICAL RIDGE (STR) CENTERED NEAR 28N 165E",
         "confidence": {
-          "track0072": "MEDIUM",
+          "track0072": "HIGH",
           "track72120": null,
           "intensity0072": "MEDIUM",
           "intensity72120": null
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2826prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1647,
         "bearingDeg": 98,
@@ -295,10 +295,10 @@
           "dirDeg": 83
         },
         "now": {
-          "targetTime": "2026-10-12T08:00:00.000Z",
-          "heightM": 1.56,
-          "periodS": 7.75,
-          "dirDeg": 79
+          "targetTime": "2026-10-12T09:00:00.000Z",
+          "heightM": 1.58,
+          "periodS": 7.65,
+          "dirDeg": 78
         },
         "peak": {
           "targetTime": "2026-10-14T18:00:00.000Z",
