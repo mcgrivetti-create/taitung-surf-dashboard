@@ -9107,6 +9107,270 @@
         "distanceNm": 2542,
         "bearingDeg": 102
       }
+    },
+    {
+      "kind": "warning",
+      "id": "28W",
+      "name": "Twentyeight",
+      "designation": "Tropical Depression",
+      "warningNumber": "002",
+      "issuedAt": "2026-10-12T09:00:00.000Z",
+      "positionZ": "120600Z",
+      "lat": 16.8,
+      "lon": 149.8,
+      "maxWindKt": 25,
+      "gustKt": 35,
+      "pressureMb": 1006,
+      "seasFt": 10,
+      "movingToward": 305,
+      "movingKt": 7,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "121800Z",
+          "lat": 17.6,
+          "lon": 148.3,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 24,
+          "validZ": "130600Z",
+          "lat": 18.6,
+          "lon": 146.7,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 36,
+          "validZ": "131800Z",
+          "lat": 19.8,
+          "lon": 144.8,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 48,
+          "validZ": "140600Z",
+          "lat": 20.9,
+          "lon": 143,
+          "maxWindKt": 20,
+          "gustKt": 30
+        }
+      ],
+      "spot": {
+        "distanceNm": 1647,
+        "bearingDeg": 98,
+        "closestApproach": {
+          "distanceNm": 1213,
+          "tau": 48,
+          "validZ": "140600Z",
+          "maxWindKt": 20
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 305,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 299
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 304
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 304
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 303
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "status": "none",
+        "windowEnd": "2026-10-16T15:00:00.000Z",
+        "creditedTo": "Koguma"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts a partially- exposed low-level circulation center (LLCC) with low-level cloud lines wrapping into a defined, closed center and formative deep convective banding over the southern semicircle. Tropical depression (TD) is forecast to remain at TD strength through the entire forecast period due to the presence of extensive dry air throughout the region and marginal upper-level flow associated with the aforementioned TUTT cell and broad cyclonic flow. The system will track northwestward through +48h along the southwestern periphery of the low- to mid-level STR, and will struggle to consolidate then dissipate by +48h due to the persistent convergent, cyclonic flow and extensive dry air.",
+        "warningNumber": "001",
+        "generatedAt": "2026-10-12T03:23:01.444Z"
+      },
+      "reasoningWarningNumber": "001",
+      "significantForecastChanges": "THIS INITIAL PROGNOSTIC REASONING MESSAGE ESTABLISHES THE FORECAST PHILOSOPHY.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": null,
+        "intensity0072": "MEDIUM",
+        "intensity72120": null
+      }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Typhoon",
+      "warningNumber": "030",
+      "issuedAt": "2026-10-12T09:00:00.000Z",
+      "positionZ": "120600Z",
+      "lat": 29.8,
+      "lon": 147.7,
+      "maxWindKt": 90,
+      "gustKt": 110,
+      "pressureMb": 962,
+      "seasFt": 40,
+      "movingToward": 15,
+      "movingKt": 14,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "121800Z",
+          "lat": 32.6,
+          "lon": 149.7,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 24,
+          "validZ": "130600Z",
+          "lat": 35.3,
+          "lon": 152.9,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 36,
+          "validZ": "131800Z",
+          "lat": 38,
+          "lon": 156.5,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 48,
+          "validZ": "140600Z",
+          "lat": 40.4,
+          "lon": 160.5,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 60,
+          "validZ": "141800Z",
+          "lat": 42,
+          "lon": 165.2,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 72,
+          "validZ": "150600Z",
+          "lat": 42.9,
+          "lon": 170.3,
+          "maxWindKt": 40,
+          "gustKt": 50
+        }
+      ],
+      "spot": {
+        "distanceNm": 1473,
+        "bearingDeg": 68,
+        "closestApproach": {
+          "distanceNm": 1608,
+          "tau": 12,
+          "validZ": "121800Z",
+          "maxWindKt": 75,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 15,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 31
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 44
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 46
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 51
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 64
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 75
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "headingDeg": 51,
+            "deltaDeg": 36
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-16T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-10-11T16:00:00.000Z",
+          "heightM": 1.24,
+          "periodS": 9.55,
+          "dirDeg": 83
+        },
+        "now": {
+          "targetTime": "2026-10-12T08:00:00.000Z",
+          "heightM": 1.56,
+          "periodS": 7.75,
+          "dirDeg": 79
+        },
+        "peak": {
+          "targetTime": "2026-10-14T18:00:00.000Z",
+          "heightM": 1.66,
+          "periodS": 6.5,
+          "dirDeg": 73
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "As indicated in animated enhanced infrared (EIR) satellite imagery and microwave imagery, the eyewall replacement cycle has completed with no evidence yet of a consolidating, contracting eye. Typhoon (TY) 27W will recurve north-northeastward to northeastward over the next 12 to 24 hours as it rounds the STR axis. There is a possibility for short-term reintensification within the next 6-12 hours as the eyewall consolidates and contracts after the eyewall replacement cycle under low VWS and warm waters.",
+        "warningNumber": "029",
+        "generatedAt": "2026-10-12T03:23:01.444Z"
+      },
+      "reasoningWarningNumber": "030",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
     }
   ]
 }
