@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-12T05:22:19.675Z",
+  "fetchedAt": "2026-10-12T06:30:21.332Z",
   "systems": [
     {
       "designation": "Tropical Depression",
@@ -133,7 +133,7 @@
       "issuedAt": "2026-10-12T03:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2726.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2726web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610110000-96_KOGUMA_enus.png",
+      "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
@@ -282,9 +282,9 @@
           "dirDeg": 83
         },
         "now": {
-          "targetTime": "2026-10-12T05:00:00.000Z",
-          "heightM": 1.54,
-          "periodS": 7.9,
+          "targetTime": "2026-10-12T06:00:00.000Z",
+          "heightM": 1.52,
+          "periodS": 7.95,
           "dirDeg": 80
         },
         "peak": {
@@ -315,35 +315,23 @@
   "alerts": [],
   "invests": [
     {
-      "id": "95W",
-      "potential": null,
-      "geoReference": null,
-      "windKtLow": null,
-      "windKtHigh": null,
-      "pressureMb": null,
-      "lat": 16.4,
-      "lon": 150.7,
-      "distanceNm": 1704,
-      "bearingDeg": 98
-    },
-    {
       "id": "96W",
       "potential": "LOW",
-      "geoReference": "150 NM EAST-SOUTHEAST OF UJELANG",
+      "geoReference": "146 NM EAST-SOUTHEAST OF UJELANG",
       "windKtLow": 13,
       "windKtHigh": 18,
       "pressureMb": 1009,
       "lat": 9,
-      "lon": 163,
-      "distanceNm": 2537,
+      "lon": 163.1,
+      "distanceNm": 2542,
       "bearingDeg": 102
     }
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "12/0300Z",
-    "issuedAt": "2026-10-12T03:00:00.000Z",
+    "issuedZ": "12/0600Z",
+    "issuedAt": "2026-10-12T06:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": true
+    "reissued": false
   }
 }
