@@ -9477,6 +9477,151 @@
         "intensity0072": "MEDIUM",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Typhoon",
+      "warningNumber": "031",
+      "issuedAt": "2026-10-12T15:00:00.000Z",
+      "positionZ": "121200Z",
+      "lat": 31.4,
+      "lon": 148.6,
+      "maxWindKt": 80,
+      "gustKt": 100,
+      "pressureMb": 971,
+      "seasFt": 38,
+      "movingToward": 25,
+      "movingKt": 18,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "130000Z",
+          "lat": 34.2,
+          "lon": 151.3,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 24,
+          "validZ": "131200Z",
+          "lat": 36.9,
+          "lon": 154.7,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 36,
+          "validZ": "140000Z",
+          "lat": 39.5,
+          "lon": 158.5,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 48,
+          "validZ": "141200Z",
+          "lat": 41.6,
+          "lon": 162.7,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 60,
+          "validZ": "150000Z",
+          "lat": 43,
+          "lon": 167.7,
+          "maxWindKt": 40,
+          "gustKt": 50
+        }
+      ],
+      "spot": {
+        "distanceNm": 1538,
+        "bearingDeg": 65,
+        "closestApproach": {
+          "distanceNm": 1710,
+          "tau": 12,
+          "validZ": "130000Z",
+          "maxWindKt": 65,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 25,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 38
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 45
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 48
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 55
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 68
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 68,
+            "deltaDeg": 43
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-16T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-10-11T16:00:00.000Z",
+          "heightM": 1.24,
+          "periodS": 9.55,
+          "dirDeg": 83
+        },
+        "now": {
+          "targetTime": "2026-10-12T14:00:00.000Z",
+          "heightM": 1.64,
+          "periodS": 7.9,
+          "dirDeg": 78
+        },
+        "peak": {
+          "targetTime": "2026-10-14T15:00:00.000Z",
+          "heightM": 1.78,
+          "periodS": 6.5,
+          "dirDeg": 69
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "As indicated in animated enhanced infrared (EIR) satellite imagery and microwave imagery, the eyewall replacement cycle has completed with no evidence yet of a consolidating, contracting eye. Typhoon (TY) 27W will recurve north-northeastward to northeastward over the next 12 to 24 hours as it rounds the STR axis. There is a possibility for short-term reintensification within the next 6-12 hours as the eyewall consolidates and contracts after the eyewall replacement cycle under low VWS and warm waters.",
+        "warningNumber": "029",
+        "generatedAt": "2026-10-12T03:23:01.444Z"
+      },
+      "reasoningWarningNumber": "031",
+      "significantForecastChanges": "THE FORECAST HAS BEEN TRUNCATED FROM 72 HOURS TO 60 HOURS.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
     }
   ]
 }
