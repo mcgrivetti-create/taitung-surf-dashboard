@@ -1,6 +1,128 @@
 {
-  "fetchedAt": "2026-10-12T02:21:46.196Z",
+  "fetchedAt": "2026-10-12T03:23:01.444Z",
   "systems": [
+    {
+      "designation": "Tropical Depression",
+      "id": "28W",
+      "name": "Twentyeight",
+      "headline": "Tropical Depression 28W (Twentyeight)",
+      "warningNumber": "001",
+      "issuedZ": "12/0300Z",
+      "issuedAt": "2026-10-12T03:00:00.000Z",
+      "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2826.gif",
+      "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2826web.txt",
+      "cwaTrackImage": null,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "121200Z",
+          "lat": 17.3,
+          "lon": 149.7,
+          "maxWindKt": 30,
+          "gustKt": 40
+        },
+        {
+          "tau": 24,
+          "validZ": "130000Z",
+          "lat": 18.2,
+          "lon": 148.1,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 36,
+          "validZ": "131200Z",
+          "lat": 19.4,
+          "lon": 146.3,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 48,
+          "validZ": "140000Z",
+          "lat": 20.8,
+          "lon": 144.5,
+          "maxWindKt": 20,
+          "gustKt": 30
+        }
+      ],
+      "positionZ": "120000Z",
+      "lat": 16.4,
+      "lon": 150.8,
+      "movingToward": 335,
+      "movingKt": 4,
+      "maxWindKt": 25,
+      "gustKt": 35,
+      "pressureMb": 1006,
+      "seasFt": 10,
+      "reasoning": {
+        "warningNumber": "001",
+        "significantForecastChanges": "THIS INITIAL PROGNOSTIC REASONING MESSAGE ESTABLISHES THE FORECAST PHILOSOPHY.",
+        "seasFt": 10,
+        "environment": "MARGINAL",
+        "vws": "15-20 KTS",
+        "sst": "29-30 CELSIUS",
+        "outflow": "MODERATE EQUATORWARD",
+        "steering": "LOW- TO MID-LEVEL SUBTROPICAL RIDGE (STR) POSITIONED TO THE NORTHEAST",
+        "confidence": {
+          "track0072": "MEDIUM",
+          "track72120": null,
+          "intensity0072": "MEDIUM",
+          "intensity72120": null
+        }
+      },
+      "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2826prog.txt",
+      "reasoningLagsWarning": false,
+      "spot": {
+        "distanceNm": 1710,
+        "bearingDeg": 98,
+        "closestApproach": {
+          "distanceNm": 1297,
+          "tau": 48,
+          "validZ": "140000Z",
+          "maxWindKt": 20
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 335,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 311
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 301
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 305
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 310
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "status": "none",
+        "windowEnd": "2026-10-16T15:00:00.000Z",
+        "creditedTo": "Koguma"
+      },
+      "retireFrom": null,
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts a partially- exposed low-level circulation center (LLCC) with low-level cloud lines wrapping into a defined, closed center and formative deep convective banding over the southern semicircle. Tropical depression (TD) is forecast to remain at TD strength through the entire forecast period due to the presence of extensive dry air throughout the region and marginal upper-level flow associated with the aforementioned TUTT cell and broad cyclonic flow. The system will track northwestward through +48h along the southwestern periphery of the low- to mid-level STR, and will struggle to consolidate then dissipate by +48h due to the persistent convergent, cyclonic flow and extensive dry air.",
+        "warningNumber": "001",
+        "generatedAt": "2026-10-12T03:23:01.444Z"
+      },
+      "changes": null
+    },
     {
       "designation": "Typhoon",
       "id": "27W",
@@ -160,7 +282,7 @@
           "dirDeg": 83
         },
         "now": {
-          "targetTime": "2026-10-12T02:00:00.000Z",
+          "targetTime": "2026-10-12T03:00:00.000Z",
           "heightM": 1.58,
           "periodS": 7.8,
           "dirDeg": 79
@@ -176,9 +298,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Typhoon (TY) 27W continues to weaken as it tracks north-northwestward at 10 kt. TY 27W will continue to turn poleward along the western periphery of a deep-layer STR, cross the ridge axis by +24h, and then begin to accelerate northeastward into the westerly flow. Extratropical transition (ETT) will begin by +72h and complete by +96h.",
-        "warningNumber": "027",
-        "generatedAt": "2026-10-11T15:18:43.465Z"
+        "text": "As indicated in animated enhanced infrared (EIR) satellite imagery and microwave imagery, the eyewall replacement cycle has completed with no evidence yet of a consolidating, contracting eye. Typhoon (TY) 27W will recurve north-northeastward to northeastward over the next 12 to 24 hours as it rounds the STR axis. There is a possibility for short-term reintensification within the next 6-12 hours as the eyewall consolidates and contracts after the eyewall replacement cycle under low VWS and warm waters.",
+        "warningNumber": "029",
+        "generatedAt": "2026-10-12T03:23:01.444Z"
       },
       "changes": {
         "previousWarningNumber": "028",
@@ -190,71 +312,37 @@
       }
     }
   ],
-  "alerts": [
-    {
-      "alertId": "WTPN21",
-      "issuedZ": "11/0800Z",
-      "issuedAt": "2026-10-11T08:00:00.000Z",
-      "textUrl": "https://www.metoc.navy.mil/jtwc/products/wp9526web.txt",
-      "graphic": "https://www.metoc.navy.mil/jtwc/products/wp9526.gif",
-      "satellite": "https://www.metoc.navy.mil/jtwc/products/95W_110800sair.jpg",
-      "investId": "95W",
-      "corridorNm": 120,
-      "lineFrom": {
-        "lat": 15.6,
-        "lon": 150.8
-      },
-      "lineTo": {
-        "lat": 17.9,
-        "lon": 149.5
-      },
-      "windowLowH": 12,
-      "windowHighH": 24,
-      "lat": 15.8,
-      "lon": 150.7,
-      "distanceNm": 1716,
-      "bearingDeg": 99,
-      "movingText": "NORTHEASTWARD",
-      "movingKt": 8,
-      "areaWindKtLow": 28,
-      "areaWindKtHigh": 33,
-      "maxWindKtLow": 28,
-      "maxWindKtHigh": 33,
-      "pressureMb": 1007,
-      "potential": "HIGH",
-      "decisionByZ": "120800Z"
-    }
-  ],
+  "alerts": [],
   "invests": [
     {
       "id": "95W",
-      "potential": "HIGH",
-      "geoReference": "306 NM EAST-NORTHEAST OF SAIPAN",
-      "windKtLow": 23,
-      "windKtHigh": 28,
-      "pressureMb": 1008,
-      "lat": 16.3,
-      "lon": 150.9,
-      "distanceNm": 1717,
+      "potential": null,
+      "geoReference": null,
+      "windKtLow": null,
+      "windKtHigh": null,
+      "pressureMb": null,
+      "lat": 16.4,
+      "lon": 150.7,
+      "distanceNm": 1704,
       "bearingDeg": 98
     },
     {
       "id": "96W",
       "potential": "LOW",
-      "geoReference": "177 NM EAST OF UJELANG",
+      "geoReference": "150 NM EAST-SOUTHEAST OF UJELANG",
       "windKtLow": 13,
       "windKtHigh": 18,
       "pressureMb": 1009,
-      "lat": 9.5,
-      "lon": 163.8,
-      "distanceNm": 2568,
-      "bearingDeg": 101
+      "lat": 9,
+      "lon": 163,
+      "distanceNm": 2537,
+      "bearingDeg": 102
     }
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "11/1500Z",
-    "issuedAt": "2026-10-11T15:00:00.000Z",
+    "issuedZ": "12/0300Z",
+    "issuedAt": "2026-10-12T03:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
     "reissued": true
   }

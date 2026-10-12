@@ -8953,6 +8953,144 @@
         "intensity0072": "HIGH",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "28W",
+      "name": "Twentyeight",
+      "designation": "Tropical Depression",
+      "warningNumber": "001",
+      "issuedAt": "2026-10-12T03:00:00.000Z",
+      "positionZ": "120000Z",
+      "lat": 16.4,
+      "lon": 150.8,
+      "maxWindKt": 25,
+      "gustKt": 35,
+      "pressureMb": 1006,
+      "seasFt": 10,
+      "movingToward": 335,
+      "movingKt": 4,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "121200Z",
+          "lat": 17.3,
+          "lon": 149.7,
+          "maxWindKt": 30,
+          "gustKt": 40
+        },
+        {
+          "tau": 24,
+          "validZ": "130000Z",
+          "lat": 18.2,
+          "lon": 148.1,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 36,
+          "validZ": "131200Z",
+          "lat": 19.4,
+          "lon": 146.3,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 48,
+          "validZ": "140000Z",
+          "lat": 20.8,
+          "lon": 144.5,
+          "maxWindKt": 20,
+          "gustKt": 30
+        }
+      ],
+      "spot": {
+        "distanceNm": 1710,
+        "bearingDeg": 98,
+        "closestApproach": {
+          "distanceNm": 1297,
+          "tau": 48,
+          "validZ": "140000Z",
+          "maxWindKt": 20
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 335,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 311
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 301
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 305
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 310
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "status": "none",
+        "windowEnd": "2026-10-16T15:00:00.000Z",
+        "creditedTo": "Koguma"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts a partially- exposed low-level circulation center (LLCC) with low-level cloud lines wrapping into a defined, closed center and formative deep convective banding over the southern semicircle. Tropical depression (TD) is forecast to remain at TD strength through the entire forecast period due to the presence of extensive dry air throughout the region and marginal upper-level flow associated with the aforementioned TUTT cell and broad cyclonic flow. The system will track northwestward through +48h along the southwestern periphery of the low- to mid-level STR, and will struggle to consolidate then dissipate by +48h due to the persistent convergent, cyclonic flow and extensive dry air.",
+        "warningNumber": "001",
+        "generatedAt": "2026-10-12T03:23:01.444Z"
+      },
+      "reasoningWarningNumber": "001",
+      "significantForecastChanges": "THIS INITIAL PROGNOSTIC REASONING MESSAGE ESTABLISHES THE FORECAST PHILOSOPHY.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": null,
+        "intensity0072": "MEDIUM",
+        "intensity72120": null
+      }
+    },
+    {
+      "kind": "invest",
+      "id": "95W",
+      "issuedAt": "2026-10-12T03:00:00.000Z",
+      "lat": 16.4,
+      "lon": 150.7,
+      "potential": null,
+      "geoReference": null,
+      "windKtLow": null,
+      "windKtHigh": null,
+      "pressureMb": null,
+      "spot": {
+        "distanceNm": 1704,
+        "bearingDeg": 98
+      }
+    },
+    {
+      "kind": "invest",
+      "id": "96W",
+      "issuedAt": "2026-10-12T03:00:00.000Z",
+      "lat": 9,
+      "lon": 163,
+      "potential": "LOW",
+      "geoReference": "150 NM EAST-SOUTHEAST OF UJELANG",
+      "windKtLow": 13,
+      "windKtHigh": 18,
+      "pressureMb": 1009,
+      "spot": {
+        "distanceNm": 2537,
+        "bearingDeg": 102
+      }
     }
   ]
 }
