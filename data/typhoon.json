@@ -1,90 +1,90 @@
 {
-  "fetchedAt": "2026-10-12T01:22:57.398Z",
+  "fetchedAt": "2026-10-12T02:21:46.196Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "27W",
       "name": "Koguma",
       "headline": "Typhoon 27W (Koguma)",
-      "warningNumber": "028",
-      "issuedZ": "11/2100Z",
-      "issuedAt": "2026-10-11T21:00:00.000Z",
+      "warningNumber": "029",
+      "issuedZ": "12/0300Z",
+      "issuedAt": "2026-10-12T03:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2726.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2726web.txt",
       "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610110000-96_KOGUMA_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "120600Z",
-          "lat": 29.5,
-          "lon": 147.9,
+          "validZ": "121200Z",
+          "lat": 30.9,
+          "lon": 148.6,
           "maxWindKt": 90,
           "gustKt": 110
         },
         {
           "tau": 24,
-          "validZ": "121800Z",
-          "lat": 32.3,
-          "lon": 149.8,
-          "maxWindKt": 80,
-          "gustKt": 100
+          "validZ": "130000Z",
+          "lat": 33.6,
+          "lon": 151,
+          "maxWindKt": 75,
+          "gustKt": 90
         },
         {
           "tau": 36,
-          "validZ": "130600Z",
-          "lat": 34.9,
-          "lon": 152.8,
-          "maxWindKt": 70,
-          "gustKt": 85
+          "validZ": "131200Z",
+          "lat": 36.2,
+          "lon": 154.2,
+          "maxWindKt": 65,
+          "gustKt": 80
         },
         {
           "tau": 48,
-          "validZ": "131800Z",
-          "lat": 37.5,
-          "lon": 156.2,
-          "maxWindKt": 60,
-          "gustKt": 75
+          "validZ": "140000Z",
+          "lat": 38.6,
+          "lon": 157.9,
+          "maxWindKt": 55,
+          "gustKt": 70
         },
         {
           "tau": 60,
-          "validZ": "140600Z",
-          "lat": 39.8,
-          "lon": 160.2,
+          "validZ": "141200Z",
+          "lat": 40.5,
+          "lon": 162.3,
           "maxWindKt": 50,
           "gustKt": 65
         },
         {
           "tau": 72,
-          "validZ": "141800Z",
-          "lat": 41.4,
-          "lon": 165.1,
+          "validZ": "150000Z",
+          "lat": 41.9,
+          "lon": 167.4,
           "maxWindKt": 45,
           "gustKt": 55
         }
       ],
-      "positionZ": "111800Z",
-      "lat": 27.1,
+      "positionZ": "120000Z",
+      "lat": 28.3,
       "lon": 147.3,
-      "movingToward": 350,
-      "movingKt": 10,
-      "maxWindKt": 105,
-      "gustKt": 130,
-      "pressureMb": 951,
+      "movingToward": 360,
+      "movingKt": 12,
+      "maxWindKt": 100,
+      "gustKt": 125,
+      "pressureMb": 954,
       "seasFt": 42,
       "nextWarnings": [
-        "120300Z",
         "120900Z",
         "121500Z",
-        "122100Z"
+        "122100Z",
+        "130300Z"
       ],
-      "geoReference": "627 NM SOUTHEAST OF YOKOSUKA, JAPAN",
+      "geoReference": "571 NM SOUTHEAST OF YOKOSUKA, JAPAN",
       "reasoning": {
-        "warningNumber": "028",
+        "warningNumber": "029",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 42,
         "environment": "FAVORABLE",
-        "vws": "0-5 KTS",
-        "sst": "29-30 CELSIUS",
+        "vws": "10-15 KTS",
+        "sst": "28-29 CELSIUS",
         "outflow": "STRONG RADIAL",
         "steering": "DEEP-LAYER SUBTROPICAL RIDGE (STR) ENTRENCHED TO THE EAST",
         "confidence": {
@@ -97,62 +97,56 @@
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2726prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 1432,
-        "bearingDeg": 75,
+        "distanceNm": 1439,
+        "bearingDeg": 72,
         "closestApproach": {
-          "distanceNm": 1481,
+          "distanceNm": 1531,
           "tau": 12,
-          "validZ": "120600Z",
+          "validZ": "121200Z",
           "maxWindKt": 90,
           "recedingOnly": true
         }
       },
       "motion": {
-        "currentHeadingDeg": 350,
+        "currentHeadingDeg": 360,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 12
+            "heading": 23
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 30
+            "heading": 36
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 43
+            "heading": 44
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 46
+            "heading": 50
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 52
+            "heading": 59
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 65
+            "heading": 68
           }
         ],
         "turns": [
           {
             "fromTau": 12,
             "toTau": 24,
-            "headingDeg": 30,
-            "deltaDeg": 40
-          },
-          {
-            "fromTau": 60,
-            "toTau": 72,
-            "headingDeg": 65,
-            "deltaDeg": 35
+            "headingDeg": 36,
+            "deltaDeg": 36
           }
         ]
       },
@@ -166,9 +160,9 @@
           "dirDeg": 83
         },
         "now": {
-          "targetTime": "2026-10-12T01:00:00.000Z",
+          "targetTime": "2026-10-12T02:00:00.000Z",
           "heightM": 1.58,
-          "periodS": 7.85,
+          "periodS": 7.8,
           "dirDeg": 79
         },
         "peak": {
@@ -187,12 +181,12 @@
         "generatedAt": "2026-10-11T15:18:43.465Z"
       },
       "changes": {
-        "previousWarningNumber": "027",
-        "previousIssuedAt": "2026-10-11T15:00:00.000Z",
+        "previousWarningNumber": "028",
+        "previousIssuedAt": "2026-10-11T21:00:00.000Z",
         "maxWindKtDelta": -5,
-        "pressureMbDelta": 4,
-        "seasFtDelta": -2,
-        "closestApproachNmDelta": 42
+        "pressureMbDelta": 3,
+        "seasFtDelta": 0,
+        "closestApproachNmDelta": 50
       }
     }
   ],

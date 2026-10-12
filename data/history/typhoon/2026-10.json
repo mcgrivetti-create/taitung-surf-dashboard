@@ -8795,6 +8795,164 @@
         "intensity0072": "HIGH",
         "intensity72120": "HIGH"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Typhoon",
+      "warningNumber": "029",
+      "issuedAt": "2026-10-12T03:00:00.000Z",
+      "positionZ": "120000Z",
+      "lat": 28.3,
+      "lon": 147.3,
+      "maxWindKt": 100,
+      "gustKt": 125,
+      "pressureMb": 954,
+      "seasFt": 42,
+      "movingToward": 360,
+      "movingKt": 12,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "121200Z",
+          "lat": 30.9,
+          "lon": 148.6,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 24,
+          "validZ": "130000Z",
+          "lat": 33.6,
+          "lon": 151,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 36,
+          "validZ": "131200Z",
+          "lat": 36.2,
+          "lon": 154.2,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 48,
+          "validZ": "140000Z",
+          "lat": 38.6,
+          "lon": 157.9,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 60,
+          "validZ": "141200Z",
+          "lat": 40.5,
+          "lon": 162.3,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 72,
+          "validZ": "150000Z",
+          "lat": 41.9,
+          "lon": 167.4,
+          "maxWindKt": 45,
+          "gustKt": 55
+        }
+      ],
+      "spot": {
+        "distanceNm": 1439,
+        "bearingDeg": 72,
+        "closestApproach": {
+          "distanceNm": 1531,
+          "tau": 12,
+          "validZ": "121200Z",
+          "maxWindKt": 90,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 360,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 23
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 36
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 44
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 50
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 59
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 68
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "headingDeg": 36,
+            "deltaDeg": 36
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-16T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-10-11T16:00:00.000Z",
+          "heightM": 1.24,
+          "periodS": 9.55,
+          "dirDeg": 83
+        },
+        "now": {
+          "targetTime": "2026-10-12T02:00:00.000Z",
+          "heightM": 1.58,
+          "periodS": 7.8,
+          "dirDeg": 79
+        },
+        "peak": {
+          "targetTime": "2026-10-14T18:00:00.000Z",
+          "heightM": 1.66,
+          "periodS": 6.5,
+          "dirDeg": 73
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "Typhoon (TY) 27W continues to weaken as it tracks north-northwestward at 10 kt. TY 27W will continue to turn poleward along the western periphery of a deep-layer STR, cross the ridge axis by +24h, and then begin to accelerate northeastward into the westerly flow. Extratropical transition (ETT) will begin by +72h and complete by +96h.",
+        "warningNumber": "027",
+        "generatedAt": "2026-10-11T15:18:43.465Z"
+      },
+      "reasoningWarningNumber": "029",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
     }
   ]
 }
