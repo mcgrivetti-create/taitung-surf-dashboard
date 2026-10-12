@@ -9622,6 +9622,250 @@
         "intensity0072": "HIGH",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "28W",
+      "name": "Twentyeight",
+      "designation": "Tropical Depression",
+      "warningNumber": "004",
+      "issuedAt": "2026-10-12T21:00:00.000Z",
+      "positionZ": "121800Z",
+      "lat": 17.5,
+      "lon": 148.2,
+      "maxWindKt": 30,
+      "gustKt": 40,
+      "pressureMb": 1006,
+      "seasFt": 11,
+      "movingToward": 290,
+      "movingKt": 8,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "130600Z",
+          "lat": 18.6,
+          "lon": 146.6,
+          "maxWindKt": 30,
+          "gustKt": 40
+        },
+        {
+          "tau": 24,
+          "validZ": "131800Z",
+          "lat": 19.7,
+          "lon": 144.8,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 36,
+          "validZ": "140600Z",
+          "lat": 20.9,
+          "lon": 142.9,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 48,
+          "validZ": "141800Z",
+          "lat": 21.7,
+          "lon": 141.2,
+          "maxWindKt": 20,
+          "gustKt": 30
+        }
+      ],
+      "spot": {
+        "distanceNm": 1547,
+        "bearingDeg": 97,
+        "closestApproach": {
+          "distanceNm": 1106,
+          "tau": 48,
+          "validZ": "141800Z",
+          "maxWindKt": 20
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 290,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 306
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 303
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 304
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 297
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "status": "none",
+        "windowEnd": "2026-10-17T15:00:00.000Z",
+        "creditedTo": "Koguma"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts persistent deep convection confined to the southern periphery of the compact low-level circulation center (LLCC). TD 28W will continue to track generally northwestward along the southwestern flank of a low- to mid-level STR. Significant intensification appears unlikely.",
+        "warningNumber": "003",
+        "generatedAt": "2026-10-12T15:23:09.851Z"
+      },
+      "reasoningWarningNumber": "004",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Typhoon",
+      "warningNumber": "032",
+      "issuedAt": "2026-10-12T21:00:00.000Z",
+      "positionZ": "121800Z",
+      "lat": 32.2,
+      "lon": 149.6,
+      "maxWindKt": 75,
+      "gustKt": 90,
+      "pressureMb": 974,
+      "seasFt": 35,
+      "movingToward": 50,
+      "movingKt": 12,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "130600Z",
+          "lat": 34.9,
+          "lon": 152.9,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 24,
+          "validZ": "131800Z",
+          "lat": 37.6,
+          "lon": 156.3,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 36,
+          "validZ": "140600Z",
+          "lat": 40.1,
+          "lon": 160.2,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 48,
+          "validZ": "141800Z",
+          "lat": 41.9,
+          "lon": 164.8,
+          "maxWindKt": 40,
+          "gustKt": 50
+        },
+        {
+          "tau": 60,
+          "validZ": "150600Z",
+          "lat": 43.1,
+          "lon": 170.1,
+          "maxWindKt": 35,
+          "gustKt": 45
+        }
+      ],
+      "spot": {
+        "distanceNm": 1598,
+        "bearingDeg": 64,
+        "closestApproach": {
+          "distanceNm": 1798,
+          "tau": 12,
+          "validZ": "130600Z",
+          "maxWindKt": 65,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 50,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 45
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 44
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 49
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 61
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 71
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-17T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-10-11T16:00:00.000Z",
+          "heightM": 1.24,
+          "periodS": 9.55,
+          "dirDeg": 83
+        },
+        "now": {
+          "targetTime": "2026-10-12T21:00:00.000Z",
+          "heightM": 1.46,
+          "periodS": 7.65,
+          "dirDeg": 80
+        },
+        "peak": {
+          "targetTime": "2026-10-14T15:00:00.000Z",
+          "heightM": 1.78,
+          "periodS": 6.5,
+          "dirDeg": 69
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "The convective structure of typhoon (TY) 27W has significantly degraded over the past six hours. TY 27W is now traveling north-northeastward at 18 kt along the northwestern periphery of a STR. These hostile conditions will maintain a steady to rapid weakening trend through +24h.",
+        "warningNumber": "031",
+        "generatedAt": "2026-10-12T15:23:09.851Z"
+      },
+      "reasoningWarningNumber": "032",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
     }
   ]
 }
