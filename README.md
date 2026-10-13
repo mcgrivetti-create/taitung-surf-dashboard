@@ -11,7 +11,46 @@ widgets, CWA coastal/township/tide/station/buoy data, an accuracy-tracking
 placeholder, and a live cam embed. No database yet (see Roadmap below) — the
 station wind history is a small self-maintained rolling log, not a DB.
 
-## Page layout
+## Page layout (reorganised 2026-10-13)
+
+The page now opens like a one-screen surf report — prompted by a friend's
+site, WaveSlave (waveslave.tw), and the feedback that this one had too
+much information:
+
+- **Right now** (always visible): Chenggong buoy now, Donghe station wind
+  with the offshore/onshore call, Donghe tide now with the next turn, and
+  sun times. Then a **Today / Tomorrow / Day 3** strip: Open-Meteo wave
+  height and period ranges over daylight (06–18) and CWA coastal wind with
+  its dominant call. `renderNowCard()`.
+- **Collapsible sections**, every one **collapsed on every visit** (by
+  choice), each bar showing a generated one-line summary: Typhoon ·
+  Forecasts · Tide · Observations · Buoys · Forecast Check · Rain · Live
+  cam. The header buttons open a section and scroll to it; `index.html#tide`
+  does the same. Windguru's scripts are deferred until Forecasts is first
+  opened (`window.deferredEmbeds`), and the iframes are `loading="lazy"`,
+  so collapsed sections load nothing heavy.
+- **Summaries** (template text from the same data, no language model):
+  - *Typhoon* — counts only storms active **by our definition** (not
+    retired), says whether each is expected to send swell and when, plus
+    "· N areas being watched" for formation alerts and invests.
+  - *Forecasts* — tomorrow vs today (Open-Meteo daytime means): bigger /
+    smaller at a 20% change, period longer / shorter at 1 s; then whether
+    Open-Meteo, ECMWF, GFS-Wave and CWA agree on tomorrow (spread ≤ 0.3 m
+    agree, ≤ 0.6 m some spread, more = split, naming the outlier). Note
+    GFS-Wave's grid point sits right at the coast and reads low, so it is
+    often the outlier.
+  - *Tide* — next two turns and the gauge-vs-prediction offset.
+  - *Observations* — per station, wind in **knots**: light < 8, moderate
+    8–16, strong > 16; increasing / easing at a 3 kt change vs ~3 h
+    earlier; Donghe adds the offshore/onshore call.
+  - *Buoys* — WaveSlave's method: over the last 12 h, the average of the
+    first three vs the last three readings. Height building / dropping at
+    **0.3 m** (0.15 m flagged about half of all windows on these buoys —
+    too twitchy), period rising / dropping at 1 s, else holding. The bar
+    shows Chenggong and Taitung; the open section lists all four with the
+    12 h peak.
+
+The detail of each section is below.
 
 0. **Quick links** under the header — Tides · Buoys · Observations ·
    Forecast Check. Not sticky, by choice. The header *is* sticky and wraps

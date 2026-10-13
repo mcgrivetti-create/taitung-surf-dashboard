@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-07d";
+  var ASSET_VERSION = "2026-10-13a";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -893,17 +893,27 @@
     }
   }
 
+  // Each data file is fetched once and shared: the sections, the Right now
+  // card and the summaries all read the same copy.
+  var dataCache = {};
+  function getData(name) {
+    if (!dataCache[name]) dataCache[name] = fetchJSON("data/" + name + ".json");
+    return dataCache[name];
+  }
+
   function loadAll() {
-    fetchJSON("data/township.json").then(renderTownship).catch(function (e) { showError("townshipTable", "Couldn't load this data (" + e.message + ")"); });
-    fetchJSON("data/coastal.json").then(renderCoastal).catch(function (e) { showError("coastalTable", "Couldn't load this data (" + e.message + ")"); });
-    fetchJSON("data/tide.json").then(renderTide).catch(function (e) { showError("tideChart", "Couldn't load this data (" + e.message + ")"); });
-    fetchJSON("data/stations-history.json").then(renderStationsHistory).catch(function (e) { showError("stationContainer", "Couldn't load this data (" + e.message + ")"); });
-    fetchJSON("data/buoy.json").then(renderBuoy).catch(function (e) { showError("buoyContainer", "Couldn't load this data (" + e.message + ")"); });
-    fetchJSON("data/openwave.json").then(renderOpenWave).catch(function (e) { showError("openWaveChart", "Couldn't load this data (" + e.message + ")"); });
+    getData("township").then(renderTownship).catch(function (e) { showError("townshipTable", "Couldn't load this data (" + e.message + ")"); });
+    getData("coastal").then(renderCoastal).catch(function (e) { showError("coastalTable", "Couldn't load this data (" + e.message + ")"); });
+    getData("tide").then(renderTide).catch(function (e) { showError("tideChart", "Couldn't load this data (" + e.message + ")"); });
+    getData("stations-history").then(renderStationsHistory).catch(function (e) { showError("stationContainer", "Couldn't load this data (" + e.message + ")"); });
+    getData("buoy").then(renderBuoy).catch(function (e) { showError("buoyContainer", "Couldn't load this data (" + e.message + ")"); });
+    getData("openwave").then(renderOpenWave).catch(function (e) { showError("openWaveChart", "Couldn't load this data (" + e.message + ")"); });
 
-    fetchJSON("data/typhoon.json").then(renderTyphoon).catch(function () { /* no feed, panel stays hidden */ });
+    getData("typhoon").then(renderTyphoon).catch(function () { /* no feed, panel stays hidden */ });
 
-    fetchJSON("data/astronomy.json").then(renderAstronomy).catch(function () { /* section stays empty */ });
+    getData("astronomy").then(renderAstronomy).catch(function () { /* section stays empty */ });
+
+    renderSummaries();
 
     fetchJSON("data/update-log.json").then(function (log) {
       updateLog = log;
@@ -916,7 +926,7 @@
 
     // Phase 3: the dashboard only gets the summary lines and the tide note;
     // the charts are on accuracy.html. Both files are small current-tier ones.
-    Promise.all([fetchJSON("data/phase3-stats.json"), fetchJSON("data/phase3-live.json")])
+    Promise.all([getData("phase3-stats"), getData("phase3-live")])
       .then(function (r) { renderForecastCheckCard(r[0], r[1]); renderTideOffsetNote(r[1]); })
       .catch(function () {
         var el = document.getElementById("fcCard");
@@ -950,6 +960,11 @@
       lines.push('<li><a href="accuracy.html#tide"><b>Tide:</b></a> over the last 24 h the sea at Chenggong ran <b>' + signedCm(off.avg) + "</b> against CWA's prediction.</li>");
     }
     el.innerHTML = lines.length ? lines.join("") : '<li class="fc-card-empty">Not enough matched data yet — check back after a few days of logging.</li>';
+    // The collapsed bar: the same three facts, short.
+    var bits = [];
+    if (cands.length) bits.push(FC_NAMES[cands[0].source] + " closest for waves this week (" + cands[0].mae.toFixed(2) + " m)");
+    if (dir.length) bits.push(FC_NAMES[dir[0].source] + " best offshore/onshore call (" + dir[0].pct + "%)");
+    setSummary("accuracy", bits.length ? bits.join(" · ") : "How the forecasts compared with what was measured");
   }
   function signedCm(v) { var r = Math.round(v); return (r > 0 ? "+" : r < 0 ? "−" : "") + Math.abs(r) + " cm"; }
   function tideOffset24h(live) {
@@ -1041,6 +1056,41 @@
       ' <span class="typhoon-lag">(Open-Meteo, 5-day window)</span>';
   }
 
+  /* The collapsed Typhoon bar's one line. Counts only storms that are active
+     by our definition — not retired by the retirement rule (recurved north
+     of 28N, heading away, no swell left) — and says whether each is
+     expected to send swell, and when. Formation alerts and invests are a
+     short tail. */
+  function typhoonSwellPhrase(s) {
+    var sw = s.swell;
+    if (!sw) return "swell outlook not available";
+    if (!sw.status && sw.targetTime) sw = { status: "incoming", arrival: sw };
+    var day = function (iso) { return fmtDonghe(iso).replace(/:\d{2}$/, ":00"); };
+    if (sw.status === "incoming") return "expected to send swell arriving <b>" + day(sw.arrival.targetTime) + "</b>";
+    if (sw.status === "arriving") return "its swell is <b>arriving now</b>";
+    if (sw.status === "in-water") return sw.easing ? "its swell is in the water and easing" : "its swell is in the water" + (sw.peak ? ", peaking around " + day(sw.peak.targetTime) : "");
+    return "not expected to send swell to Donghe in the next 5 days";
+  }
+  function typhoonSummary(active, retired, data) {
+    var alerts = ((data && data.alerts) || []).filter(function (a) { return !(a.alertId && !/^WTPN/i.test(a.alertId)) && !(typeof a.lon === "number" && a.lon < 100); });
+    var ids = {};
+    alerts.forEach(function (a) { ids[a.investId || a.alertId] = 1; });
+    ((data && data.invests) || []).forEach(function (iv) { ids[iv.id || Math.random()] = 1; });
+    var watched = Object.keys(ids).length;
+    var tail = watched ? " · " + watched + " area" + (watched > 1 ? "s" : "") + " being watched" : "";
+    if (!active.length) {
+      return "No active storms that could send swell" + (retired.length ? " (" + retired.map(function (s) { return escapeHtml(s.name || s.id); }).join(", ") + " heading away)" : "") + tail + ".";
+    }
+    var head = active.length + " active storm" + (active.length > 1 ? "s" : "") + " in the W Pacific";
+    var parts = active.map(function (s) {
+      // Unnamed systems carry JTWC's spelled-out number as a name ("Twentyeight") — leave it off.
+      var realName = s.name && s.name !== s.id && !/^(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty)/i.test(s.name);
+      var label = (s.designation ? s.designation + " " : "") + escapeHtml(s.id) + (realName ? " (" + escapeHtml(s.name) + ")" : "");
+      return label + ": " + typhoonSwellPhrase(s);
+    });
+    return head + ". " + parts.join(". ") + "." + tail;
+  }
+
   function renderTyphoon(data) {
     var panel = document.getElementById("typhoon");
     var body = document.getElementById("typhoonBody");
@@ -1070,6 +1120,7 @@
     // script) shrink to one line at the end instead of a full card.
     var retired = systems.filter(function (s) { return s.retired; });
     systems = systems.filter(function (s) { return !s.retired; });
+    setSummary("typhoon", typhoonSummary(systems, retired, data));
 
     systems.forEach(function (s) {
       html += '<div class="typhoon-card">';
@@ -1502,6 +1553,293 @@
     if (ev.target && ev.target.id === "tidePrevBtn") renderTideDay(tideDayIndex - 1);
     if (ev.target && ev.target.id === "tideNextBtn") renderTideDay(tideDayIndex + 1);
   });
+
+  /* =====================================================================
+     Collapsible sections
+     Every section starts collapsed (by choice, every visit) and shows its
+     one-line summary on the bar. Tapping the bar or a header button opens
+     it. Embeds that run code (Windguru) are deferred until Forecasts is
+     first opened; the iframes are loading="lazy", so a collapsed section
+     never loads them at all. Charts are fixed-viewBox SVG, so drawing them
+     while hidden is safe.
+     ===================================================================== */
+  var deferredEmbedsRan = false;
+  function setSectionOpen(sec, open) {
+    var btn = sec.querySelector(".sec-head"), body = sec.querySelector(".sec-body");
+    if (!btn || !body) return;
+    btn.setAttribute("aria-expanded", String(open));
+    body.hidden = !open;
+    sec.classList.toggle("is-open", open);
+    if (open && sec.id === "forecasts" && !deferredEmbedsRan) {
+      deferredEmbedsRan = true;
+      (window.deferredEmbeds || []).forEach(function (run) { try { run(); } catch (e) { /* one widget failing shouldn't stop the rest */ } });
+    }
+  }
+  function openAndScroll(id) {
+    var sec = document.getElementById(id);
+    if (!sec || !sec.classList.contains("sec") || sec.hidden) return false;
+    setSectionOpen(sec, true);
+    sec.scrollIntoView({ behavior: "smooth", block: "start" });
+    return true;
+  }
+  (function initSections() {
+    document.querySelectorAll(".sec > .sec-head").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var sec = btn.parentNode;
+        setSectionOpen(sec, btn.getAttribute("aria-expanded") !== "true");
+      });
+    });
+    document.querySelectorAll('.quick-links a[href^="#"]').forEach(function (a) {
+      a.addEventListener("click", function (ev) {
+        var id = a.getAttribute("href").slice(1);
+        if (openAndScroll(id)) {
+          ev.preventDefault();
+          try { history.replaceState(null, "", "#" + id); } catch (e) { /* ignore */ }
+        }
+      });
+    });
+    // A link straight to a section (e.g. index.html#tide) opens it.
+    var h = location.hash.replace("#", "");
+    if (h) setTimeout(function () { openAndScroll(h); }, 300);
+  })();
+
+  function setSummary(id, html) {
+    var el = document.getElementById("sum-" + id);
+    if (el) el.innerHTML = html;
+  }
+
+  /* ---------- shared helpers for the summaries ---------- */
+  var TZ = "Asia/Taipei";
+  var fmtHMx = new Intl.DateTimeFormat("en-US", { timeZone: TZ, hour: "2-digit", minute: "2-digit", hour12: false });
+  var fmtDayShort = new Intl.DateTimeFormat("en-US", { timeZone: TZ, weekday: "short", month: "short", day: "numeric" });
+  var fmtWeekday = new Intl.DateTimeFormat("en-US", { timeZone: TZ, weekday: "short" });
+  function dayKey(t) { return new Date(t + 8 * 3600000).toISOString().slice(0, 10); }
+  function hourOf(t) { return new Date(t + 8 * 3600000).getUTCHours(); }
+  function num(v) { if (v === null || v === undefined || v === "" || v === "None") return null; var n = Number(v); return isFinite(n) ? n : null; }
+  function kt(ms) { return ms * 1.94384; }
+  function angDiff(a, b) { var d = Math.abs(a - b) % 360; return d > 180 ? 360 - d : d; }
+  var ZH_DEG = { "北": 0, "北北東": 22.5, "東北": 45, "東北東": 67.5, "東": 90, "東南東": 112.5, "東南": 135, "南南東": 157.5, "南": 180, "南南西": 202.5, "西南": 225, "西南西": 247.5, "西西南": 247.5, "西": 270, "西北西": 292.5, "西北": 315, "北北西": 337.5 };
+  function zhDeg(t) { if (!t) return null; var b = String(t).trim().replace(/風$/, "").replace(/^偏/, ""); return ZH_DEG[b] === undefined ? null : ZH_DEG[b]; }
+  // Donghe's beach faces ~ESE: onshore from ~105°, offshore from ~285° (same
+  // rule as the Forecast Check page).
+  function windCallDonghe(ms, dir) {
+    if (ms === null) return null;
+    if (ms < 2) return "light & variable";
+    if (dir === null) return null;
+    if (angDiff(dir, 285) <= 60) return "offshore";
+    if (angDiff(dir, 105) <= 60) return "onshore";
+    return "cross-shore";
+  }
+  // Wind strength words, in knots (user's choice): light < 8, moderate 8–16, strong > 16.
+  function windStrength(k) { return k < 8 ? "light" : k <= 16 ? "moderate" : "strong"; }
+  function mean(a) { return a.length ? a.reduce(function (x, y) { return x + y; }, 0) / a.length : null; }
+
+  /* ---------- data adapters ---------- */
+  function openWaveSeries(ow) {
+    var h = (ow && ow.hourly) || {};
+    return (h.time || []).map(function (t, i) { return { t: new Date(t + ":00+08:00").getTime(), h: num(h.wave_height[i]), p: num(h.wave_period[i]) }; });
+  }
+  function coastalSeries(c) {
+    try {
+      var loc = c.records.locations[0].location[0], els = {};
+      (loc.WeatherElement || []).forEach(function (w) { els[w.ElementName] = w.Time || []; });
+      function val(name, field) { var m = {}; (els[name] || []).forEach(function (t) { var v = t.ElementValue; v = Array.isArray(v) ? v[0] : v; m[t.DataTime] = v ? v[field] : null; }); return m; }
+      var hgt = val("浪高", "WaveHeight"), spd = val("風速", "WindSpeed"), wdir = val("風向", "WindDirection");
+      var keys = Object.keys(spd).length ? Object.keys(spd) : Object.keys(hgt);
+      return keys.map(function (k) { return { t: Date.parse(k), h: num(hgt[k]), s: num(spd[k]), d: zhDeg(wdir[k]) }; }).sort(function (a, b) { return a.t - b.t; });
+    } catch (e) { return []; }
+  }
+  function tideExtrema(td) {
+    var out = [];
+    try {
+      var tf = (td.records.TideForecasts || td.records.locations)[0], loc = tf.Location || tf;
+      (loc.TimePeriods.Daily || loc.TimePeriods).forEach(function (day) {
+        (day.Time || []).forEach(function (t) {
+          var h = t.TideHeights && (t.TideHeights.AboveTWVD !== undefined ? t.TideHeights.AboveTWVD : t.TideHeights.AboveLocalMSL);
+          out.push({ t: new Date(t.DateTime).getTime(), h: Number(h), high: t.Tide === "滿潮" });
+        });
+      });
+    } catch (e) { /* no tide */ }
+    return out.sort(function (a, b) { return a.t - b.t; });
+  }
+  function tideAt(ex, t) {
+    for (var i = 0; i < ex.length - 1; i++) if (t >= ex[i].t && t <= ex[i + 1].t) {
+      var f = (t - ex[i].t) / (ex[i + 1].t - ex[i].t), mu = (1 - Math.cos(f * Math.PI)) / 2;
+      return { h: ex[i].h * (1 - mu) + ex[i + 1].h * mu, rising: ex[i + 1].h > ex[i].h };
+    }
+    return null;
+  }
+
+  function renderSummaries() {
+    // Each piece waits only for its own files and fails on its own.
+    Promise.all([getData("buoy"), getData("stations-history"), getData("tide"), getData("astronomy").catch(function () { return null; }),
+      getData("openwave"), getData("coastal").catch(function () { return null; })])
+      .then(function (r) { renderNowCard(r[0], r[1], r[2], r[3], r[4], r[5]); }).catch(function () {});
+    Promise.all([getData("openwave"), getData("ecmwf").catch(function () { return null; }), getData("gfs-wave").catch(function () { return null; }), getData("coastal").catch(function () { return null; })])
+      .then(function (r) { renderForecastSummary(r[0], r[1], r[2], r[3]); }).catch(function () { setSummary("forecasts", "Wave forecasts, models and maps"); });
+    Promise.all([getData("tide"), getData("phase3-live").catch(function () { return null; })])
+      .then(function (r) { renderTideSummary(r[0], r[1]); }).catch(function () { setSummary("tide", "Donghe tide chart, sun and moon"); });
+    getData("stations-history").then(renderObservationSummary).catch(function () { setSummary("observations", "Land-station wind, last 16 hours"); });
+    getData("buoy").then(renderBuoySummary).catch(function () { setSummary("buoys", "Sea state at four buoys, last 24 hours"); });
+  }
+
+  /* ---------- Right now + next 3 days ---------- */
+  function renderNowCard(buoy, stations, tide, astro, ow, coastal) {
+    var now = Date.now();
+    function cell(id, html) { var el = document.getElementById(id); if (el) el.querySelector(".now-v").innerHTML = html; }
+    // Waves: the Chenggong buoy (closest to Donghe).
+    var cg = ((buoy.records && buoy.records.Stations) || []).filter(function (s) { return s.StationID === "46761F"; })[0];
+    var last = cg && (cg.Readings || []).filter(function (r) { return num(r.WaveHeight) !== null; }).pop();
+    if (last) {
+      cell("nowWaves", "<b>" + n1(num(last.WaveHeight)) + " m</b>" +
+        '<span class="now-s">' + (num(last.WavePeriod) !== null ? n1(num(last.WavePeriod)) + " s" : "") +
+        (last.WaveDirectionDescription ? " · from " + escapeHtml(last.WaveDirectionDescription) : "") + " · " + fmtHMx.format(new Date(last.DateTime)) + "</span>");
+    }
+    // Wind: the Donghe station.
+    var dh = stations && stations.C0S810 && (stations.C0S810.readings || []);
+    var w = dh && dh.filter(function (r) { return num(r.WindSpeed) !== null; }).pop();
+    if (w) {
+      var ms = num(w.WindSpeed), dir = num(w.WindDirection), call = windCallDonghe(ms, dir);
+      cell("nowWind", "<b>" + Math.round(kt(ms)) + " kt</b>" + '<span class="now-s">' + (dir !== null ? "from " + degToCompass(dir) : "") +
+        (call ? ' · <span class="call call-' + call.split(" ")[0] + '">' + call + "</span>" : "") + " · " + fmtHMx.format(new Date(w.DateTime)) + "</span>");
+    }
+    // Tide: the Donghe prediction now, and the next turning point.
+    var ex = tideExtrema(tide), at = tideAt(ex, now), next = ex.filter(function (e) { return e.t > now; })[0];
+    if (at) {
+      cell("nowTide", "<b>" + Math.round(at.h) + " cm</b>" + '<span class="now-s">' + (at.rising ? "rising" : "falling") +
+        (next ? " · " + (next.high ? "high" : "low") + " " + fmtHMx.format(next.t) + " (" + Math.round(next.h) + " cm)" : "") + "</span>");
+    }
+    // Sun: today's times, or tomorrow's once today's sunset has passed.
+    var days = (astro && astro.days) || {}, key = dayKey(now), d = days[key];
+    if (d && d.sunset) {
+      var ss = new Date(key + "T" + d.sunset + ":00+08:00").getTime();
+      if (now > ss) { var k2 = dayKey(now + 86400000); if (days[k2]) { d = days[k2]; key = k2; } }
+    }
+    if (d) {
+      cell("nowSun", "<b>" + (d.sunrise || "—") + "</b>" + '<span class="now-s">' + (key !== dayKey(now) ? "sunrise tomorrow" : "sunrise") +
+        (d.civilTwilightBegin ? " · first light " + d.civilTwilightBegin : "") + (d.sunset ? " · sunset " + d.sunset : "") + "</span>");
+    }
+
+    // Next 3 days: Open-Meteo waves over daylight (06–18), CWA coastal wind.
+    var waves = openWaveSeries(ow), wind = coastalSeries(coastal), cards = [];
+    for (var i = 0; i < 3; i++) {
+      var k = dayKey(now + i * 86400000);
+      var day = waves.filter(function (p) { var hr = hourOf(p.t); return dayKey(p.t) === k && hr >= 6 && hr <= 18 && p.h !== null; });
+      if (!day.length) continue;
+      var hs = day.map(function (p) { return p.h; }), ps = day.map(function (p) { return p.p; }).filter(function (v) { return v !== null; });
+      var dw = wind.filter(function (p) { var hr = hourOf(p.t); return dayKey(p.t) === k && hr >= 6 && hr <= 18 && p.s !== null; });
+      var calls = {}; dw.forEach(function (p) { var c = windCallDonghe(p.s, p.d); if (c) calls[c] = (calls[c] || 0) + 1; });
+      var topCall = Object.keys(calls).sort(function (a, b) { return calls[b] - calls[a]; })[0];
+      var windTxt = dw.length ? Math.round(kt(mean(dw.map(function (p) { return p.s; })))) + " kt" + (topCall ? ", mostly " + topCall : "") : "wind forecast not out yet";
+      var hMin = Math.min.apply(null, hs), hMax = Math.max.apply(null, hs);
+      var pMin = ps.length ? Math.min.apply(null, ps) : null, pMax = ps.length ? Math.max.apply(null, ps) : null;
+      var label = i === 0 ? "Today" : i === 1 ? "Tomorrow" : fmtWeekday.format(now + i * 86400000);
+      cards.push('<div class="outlook-day"><span class="od-k">' + label + ' <span class="od-date">' + fmtDayShort.format(now + i * 86400000).replace(/^\w+, /, "") + "</span></span>" +
+        '<span class="od-h">' + n1(hMin) + (n1(hMax) !== n1(hMin) ? "–" + n1(hMax) : "") + " m</span>" +
+        '<span class="od-p">' + (pMin !== null ? Math.round(pMin) + (Math.round(pMax) !== Math.round(pMin) ? "–" + Math.round(pMax) : "") + " s period" : "") + "</span>" +
+        '<span class="od-w">' + windTxt + "</span></div>");
+    }
+    var ol = document.getElementById("outlook");
+    if (ol) ol.innerHTML = cards.length ? cards.join("") : '<p class="loading">No forecast available</p>';
+  }
+
+  /* ---------- Forecasts: tomorrow vs today, and do the models agree ---------- */
+  function daytimeMean(points, k) {
+    var v = points.filter(function (p) { var hr = hourOf(p.t); return dayKey(p.t) === k && hr >= 6 && hr <= 18 && p.v !== null && p.v !== undefined; }).map(function (p) { return p.v; });
+    return v.length ? mean(v) : null;
+  }
+  function renderForecastSummary(ow, ec, gw, coastal) {
+    var now = Date.now(), today = dayKey(now), tom = dayKey(now + 86400000);
+    var om = openWaveSeries(ow);
+    var hT = daytimeMean(om.map(function (p) { return { t: p.t, v: p.h }; }), today), hN = daytimeMean(om.map(function (p) { return { t: p.t, v: p.h }; }), tom);
+    var pT = daytimeMean(om.map(function (p) { return { t: p.t, v: p.p }; }), today), pN = daytimeMean(om.map(function (p) { return { t: p.t, v: p.p }; }), tom);
+    var out = [];
+    if (hT !== null && hN !== null) {
+      // Bigger/smaller at a 20% change; period longer/shorter at 1 s.
+      var size = hN >= hT * 1.2 ? "bigger than" : hN <= hT * 0.8 ? "smaller than" : "similar to";
+      var per = pT === null || pN === null ? "" : pN - pT >= 1 ? ", period longer (" + Math.round(pN) + " s vs " + Math.round(pT) + " s)" : pT - pN >= 1 ? ", period shorter (" + Math.round(pN) + " s vs " + Math.round(pT) + " s)" : ", period similar (~" + Math.round(pN) + " s)";
+      out.push("<b>Tomorrow:</b> waves " + size + " today (about " + n1(hN) + " m vs " + n1(hT) + " m)" + per + ".");
+    }
+    // Models: tomorrow's daytime mean height from each source we log for Donghe.
+    var srcs = [["Open-Meteo", om.map(function (p) { return { t: p.t, v: p.h }; })]];
+    if (ec && ec.series) srcs.push(["ECMWF", ec.series.map(function (p) { return { t: Date.parse(p.targetTime), v: num(p.waveHeight) }; })]);
+    if (gw && gw.series) srcs.push(["GFS-Wave", gw.series.map(function (p) { return { t: Date.parse(p.targetTime), v: num(p.waveHeight) }; })]);
+    if (coastal) srcs.push(["CWA", coastalSeries(coastal).map(function (p) { return { t: p.t, v: p.h }; })]);
+    var vals = srcs.map(function (s) { return { name: s[0], v: daytimeMean(s[1], tom) }; }).filter(function (s) { return s.v !== null; });
+    if (vals.length >= 2) {
+      var hi = Math.max.apply(null, vals.map(function (s) { return s.v; })), lo = Math.min.apply(null, vals.map(function (s) { return s.v; })), spread = hi - lo;
+      var sorted = vals.map(function (s) { return s.v; }).sort(function (a, b) { return a - b; }), med = sorted[Math.floor(sorted.length / 2)];
+      var odd = vals.slice().sort(function (a, b) { return Math.abs(b.v - med) - Math.abs(a.v - med); })[0];
+      var verdict = spread <= 0.3 ? "Models agree" : spread <= 0.6 ? "Some spread between models" : "Models split";
+      out.push('<span class="model-line">' + verdict + " for tomorrow (" + n1(lo) + "–" + n1(hi) + " m" +
+        (spread > 0.3 ? "; " + odd.name + " is the outlier at " + n1(odd.v) + " m" : "") + ').</span> <span class="model-vals">' +
+        vals.map(function (s) { return s.name + " " + n1(s.v); }).join(" · ") + "</span>");
+    }
+    setSummary("forecasts", out.length ? out.join(" ") : "Wave forecasts, models and maps");
+  }
+
+  /* ---------- Tide ---------- */
+  function renderTideSummary(tide, live) {
+    var now = Date.now(), ex = tideExtrema(tide).filter(function (e) { return e.t > now; }).slice(0, 2);
+    var bits = ex.map(function (e) { return (e.high ? "High " : "Low ") + "<b>" + fmtHMx.format(e.t) + "</b> (" + Math.round(e.h) + " cm)"; });
+    var off = tideOffset24h(live);
+    if (off && Math.abs(off.avg) >= 3) bits.push("sea running " + signedCm(off.avg) + " vs prediction");
+    setSummary("tide", bits.length ? bits.join(" · ") : "Donghe tide chart, sun and moon");
+  }
+
+  /* ---------- Observations: wind at each land station ----------
+     Strength in knots (light < 8, moderate 8–16, strong > 16); increasing or
+     easing when it moved 3 kt or more against the reading ~3 hours earlier. */
+  function stationWindLine(id, s) {
+    var rs = (s.readings || []).filter(function (r) { return num(r.WindSpeed) !== null; });
+    var last = rs[rs.length - 1];
+    if (!last) return null;
+    var t = new Date(last.DateTime).getTime(), k = kt(num(last.WindSpeed)), dir = num(last.WindDirection);
+    var ref = rs.filter(function (r) { return new Date(r.DateTime).getTime() <= t - 2.5 * 3600000; }).pop();
+    var trend = ref ? (k - kt(num(ref.WindSpeed)) >= 3 ? "increasing" : kt(num(ref.WindSpeed)) - k >= 3 ? "easing" : "steady") : null;
+    var call = id === "C0S810" ? windCallDonghe(num(last.WindSpeed), dir) : null;
+    if (call === "light & variable") call = null; // already said "light"
+    return { name: STATION_NAME_EN[s.name] || s.name || id, text: Math.round(k) + " kt" + (dir !== null ? " " + degToCompass(dir) : "") + " · " + windStrength(k) + (trend ? ", " + trend : "") + (call ? " · " + call : "") };
+  }
+  function renderObservationSummary(history) {
+    var order = ["C0S810", "C0SA30", "C0T9I0"];
+    var lines = order.filter(function (id) { return history[id]; }).map(function (id) { return stationWindLine(id, history[id]); }).filter(Boolean);
+    setSummary("observations", lines.length ? lines.map(function (l) { return "<b>" + escapeHtml(l.name) + "</b> " + l.text; }).join("; ") : "Land-station wind, last 16 hours");
+  }
+
+  /* ---------- Buoys: WaveSlave's method, with the user's thresholds ----------
+     Over the last 12 hours of readings, average the first three and the last
+     three. Height building/dropping at a 0.3 m change (0.15 m was too twitchy
+     for these buoys — about half of all windows flagged), period rising/
+     dropping at 1 s; otherwise holding. */
+  function buoyTrend(st) {
+    var rs = (st.Readings || []).map(function (r) { return { t: new Date(r.DateTime).getTime(), h: num(r.WaveHeight), p: num(r.WavePeriod) }; }).filter(function (r) { return r.h !== null; });
+    if (rs.length < 4) return null;
+    var end = rs[rs.length - 1].t, w = rs.filter(function (r) { return r.t > end - 12 * 3600000; });
+    if (w.length < 4) return null;
+    var first = w.slice(0, 3), lastN = w.slice(-3);
+    var h0 = mean(first.map(function (r) { return r.h; })), h1 = mean(lastN.map(function (r) { return r.h; }));
+    var p0 = mean(first.map(function (r) { return r.p; }).filter(function (v) { return v !== null; })), p1 = mean(lastN.map(function (r) { return r.p; }).filter(function (v) { return v !== null; }));
+    var peak = w.reduce(function (a, r) { return r.h > a.h ? r : a; });
+    var latest = w[w.length - 1];
+    return {
+      name: st.Label, latest: latest,
+      size: h1 - h0 >= 0.3 ? "building" : h0 - h1 >= 0.3 ? "dropping" : "holding",
+      period: p0 === null || p1 === null ? null : p1 - p0 >= 1 ? "rising" : p0 - p1 >= 1 ? "dropping" : "holding",
+      h0: h0, h1: h1, peak: peak,
+    };
+  }
+  function renderBuoySummary(buoy) {
+    var trends = ((buoy.records && buoy.records.Stations) || []).map(buoyTrend).filter(Boolean);
+    function short(t) { return "<b>" + escapeHtml(t.name) + "</b> " + n1(t.latest.h) + " m, " + t.size + (t.latest.p !== null ? " · " + n1(t.latest.p) + " s" + (t.period ? ", " + t.period : "") : ""); }
+    // The bar shows the two buoys nearest Donghe; the open section lists all four.
+    var near = trends.filter(function (t) { return t.name === "Chenggong" || t.name === "Taitung"; });
+    setSummary("buoys", near.length ? near.map(short).join("; ") : trends.length ? trends.map(short).join("; ") : "Sea state at four buoys, last 24 hours");
+    var list = document.getElementById("buoyTrends");
+    if (list) list.innerHTML = trends.map(function (t) {
+      return "<li>" + short(t) + ' <span class="sec-list-sub">(' + n1(t.h0) + " → " + n1(t.h1) + " m on average · peak " + n1(t.peak.h) + " m at " + fmtHMx.format(t.peak.t) + ")</span></li>";
+    }).join("");
+  }
 
   loadAll();
 })();

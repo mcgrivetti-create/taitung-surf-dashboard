@@ -606,7 +606,7 @@ main {
 
 /* The header is sticky and wraps to two or three lines on a phone, so app.js
    sets --header-h to its real height; 5.5rem is the fallback. */
-#tide, #buoys, #observations, #accuracy { scroll-margin-top: calc(var(--header-h, 5.5rem) + 0.75rem); }
+.sec, #now { scroll-margin-top: calc(var(--header-h, 5.5rem) + 0.5rem); }
 
 /* Forecast Check card (summary of accuracy.html) */
 .fc-card { list-style: none; margin: 0.4rem 0 0.2rem; padding: 0; display: grid; gap: 0.45rem; font-size: 0.9rem; }
@@ -685,3 +685,57 @@ main {
 .typhoon-alert { border-left: 3px solid var(--warn); padding-left: 0.7rem; }
 .typhoon-alert h3 { color: var(--warn); }
 .typhoon-alert p { margin: 0 0 0.35rem; font-size: 0.84rem; }
+
+/* ---------- Right now + next 3 days (top of the page, always visible) ---------- */
+.now-card { padding-top: 1rem; }
+.now-card .now-title { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); font-weight: 600; margin: 0 0 0.55rem; }
+.now-card .now-title-sub { margin-top: 1rem; }
+.now-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.6rem; }
+.now-cell { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.6rem 0.75rem; display: grid; gap: 0.15rem; min-width: 0; }
+.now-k { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.04em; }
+.now-v { display: grid; gap: 0.1rem; }
+.now-v b { font-size: 1.55rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.now-s { font-size: 0.8rem; color: var(--text-dim); }
+.call { font-weight: 600; }
+.call-offshore { color: var(--accent-2); }
+.call-onshore { color: var(--danger); }
+.call-cross-shore, .call-light { color: var(--warn); }
+.outlook { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
+.outlook-day { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.55rem 0.65rem; display: grid; gap: 0.1rem; min-width: 0; }
+.od-k { font-size: 0.8rem; font-weight: 600; }
+.od-date { color: var(--text-dim); font-weight: 400; }
+.od-h { font-size: 1.2rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.od-p, .od-w { font-size: 0.76rem; color: var(--text-dim); }
+.now-source { margin-top: 0.55rem; }
+@media (max-width: 560px) {
+  .now-grid { grid-template-columns: 1fr 1fr; }
+  .now-v b { font-size: 1.3rem; }
+  .outlook { gap: 0.35rem; }
+  .outlook-day { padding: 0.45rem 0.5rem; }
+  .od-h { font-size: 1.02rem; }
+}
+
+/* ---------- Collapsible sections ---------- */
+.sec { padding: 0; }
+.sec-head { width: 100%; display: grid; grid-template-columns: auto 1fr auto; align-items: baseline; gap: 0.25rem 0.75rem; padding: 0.85rem 0; background: none; border: 0; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.sec-head:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+.sec-title { font-size: 1.05rem; font-weight: 700; white-space: nowrap; }
+.sec-sum { font-size: 0.84rem; color: var(--text-dim); line-height: 1.45; min-width: 0; }
+.sec-sum b { color: var(--text); font-weight: 600; }
+.sec-chev { font-size: 0.75rem; color: var(--accent); white-space: nowrap; border: 1px solid var(--border); border-radius: 999px; padding: 0.15rem 0.6rem; align-self: center; }
+.sec-chev::after { content: "Show"; }
+.sec-head[aria-expanded="true"] .sec-chev::after { content: "Hide"; }
+.sec-body { padding-bottom: 1.4rem; }
+.sec.is-open .sec-head { padding-bottom: 0.6rem; }
+.model-line { display: inline; }
+.model-vals { display: block; font-size: 0.78rem; margin-top: 0.15rem; }
+.sec-list { list-style: none; margin: 0 0 0.8rem; padding: 0; display: grid; gap: 0.3rem; font-size: 0.86rem; }
+.sec-list-sub { color: var(--text-dim); font-size: 0.8rem; }
+@media (max-width: 560px) {
+  /* Title and Show/Hide on the first line, the summary below. */
+  .sec-head { grid-template-columns: 1fr auto; }
+  .sec-sum { grid-column: 1 / -1; grid-row: 2; }
+  .sec-chev { grid-column: 2; grid-row: 1; }
+}
+.typhoon-panel .sec-title { color: var(--warn); }
+.typhoon-panel.sec { padding-left: 0.75rem; }
