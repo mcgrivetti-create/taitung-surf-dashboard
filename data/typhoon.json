@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-13T19:31:59.583Z",
+  "fetchedAt": "2026-10-13T20:32:43.163Z",
   "systems": [
     {
       "designation": "Tropical Depression",
@@ -126,56 +126,40 @@
       "id": "27W",
       "name": "Koguma",
       "headline": "Tropical Storm 27W (Koguma)",
-      "warningNumber": "035",
-      "issuedZ": "13/1500Z",
-      "issuedAt": "2026-10-13T15:00:00.000Z",
+      "warningNumber": "036",
+      "issuedZ": "13/2100Z",
+      "issuedAt": "2026-10-13T21:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2726.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2726web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "140000Z",
-          "lat": 39.4,
-          "lon": 159.1,
-          "maxWindKt": 50,
-          "gustKt": 65
-        },
-        {
-          "tau": 24,
-          "validZ": "141200Z",
-          "lat": 41.3,
-          "lon": 163.4,
-          "maxWindKt": 45,
-          "gustKt": 55
-        },
-        {
-          "tau": 36,
-          "validZ": "150000Z",
-          "lat": 42.4,
-          "lon": 168.6,
+          "validZ": "140600Z",
+          "lat": 40.6,
+          "lon": 160.9,
           "maxWindKt": 40,
           "gustKt": 50
         },
         {
-          "tau": 48,
-          "validZ": "151200Z",
-          "lat": 43,
-          "lon": 173.7,
+          "tau": 24,
+          "validZ": "141800Z",
+          "lat": 42,
+          "lon": 165.3,
           "maxWindKt": 35,
           "gustKt": 45
         }
       ],
-      "intensityChangeNote": "DOWNGRADED FROM TYPHOON 27W",
-      "positionZ": "131200Z",
-      "lat": 36.8,
-      "lon": 155.5,
+      "positionZ": "131800Z",
+      "lat": 38.3,
+      "lon": 157.2,
       "movingToward": 45,
       "movingKt": 20,
-      "maxWindKt": 60,
-      "gustKt": 75,
-      "seasFt": 30,
-      "geoReference": "704 NM EAST-SOUTHEAST OF MISAWA, JAPAN",
+      "maxWindKt": 50,
+      "gustKt": 65,
+      "pressureMb": 988,
+      "seasFt": 24,
+      "geoReference": "752 NM EAST OF MISAWA, JAPAN",
       "reasoning": {
         "warningNumber": "035",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
@@ -193,15 +177,15 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2726prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 1950,
-        "bearingDeg": 57,
+        "distanceNm": 2052,
+        "bearingDeg": 55,
         "closestApproach": {
-          "distanceNm": 2156,
+          "distanceNm": 2255,
           "tau": 12,
-          "validZ": "140000Z",
-          "maxWindKt": 50,
+          "validZ": "140600Z",
+          "maxWindKt": 40,
           "recedingOnly": true
         }
       },
@@ -211,22 +195,12 @@
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 46
+            "heading": 50
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 59
-          },
-          {
-            "fromTau": 24,
-            "toTau": 36,
-            "heading": 72
-          },
-          {
-            "fromTau": 36,
-            "toTau": 48,
-            "heading": 79
+            "heading": 66
           }
         ],
         "turns": []
@@ -241,10 +215,10 @@
           "dirDeg": 83
         },
         "now": {
-          "targetTime": "2026-10-13T19:00:00.000Z",
+          "targetTime": "2026-10-13T20:00:00.000Z",
           "heightM": 1.16,
-          "periodS": 8.3,
-          "dirDeg": 81
+          "periodS": 8.15,
+          "dirDeg": 80
         },
         "peak": {
           "targetTime": "2026-10-14T15:00:00.000Z",
@@ -262,11 +236,11 @@
         "generatedAt": "2026-10-13T15:23:46.052Z"
       },
       "changes": {
-        "previousWarningNumber": "034",
-        "previousIssuedAt": "2026-10-13T09:00:00.000Z",
+        "previousWarningNumber": "035",
+        "previousIssuedAt": "2026-10-13T15:00:00.000Z",
         "maxWindKtDelta": -10,
-        "seasFtDelta": -3,
-        "closestApproachNmDelta": 97
+        "seasFtDelta": -6,
+        "closestApproachNmDelta": 99
       }
     }
   ],

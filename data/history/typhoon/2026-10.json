@@ -10584,6 +10584,105 @@
         "distanceNm": 2434,
         "bearingDeg": 102
       }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Tropical Storm",
+      "warningNumber": "036",
+      "issuedAt": "2026-10-13T21:00:00.000Z",
+      "positionZ": "131800Z",
+      "lat": 38.3,
+      "lon": 157.2,
+      "maxWindKt": 50,
+      "gustKt": 65,
+      "pressureMb": 988,
+      "seasFt": 24,
+      "movingToward": 45,
+      "movingKt": 20,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "140600Z",
+          "lat": 40.6,
+          "lon": 160.9,
+          "maxWindKt": 40,
+          "gustKt": 50
+        },
+        {
+          "tau": 24,
+          "validZ": "141800Z",
+          "lat": 42,
+          "lon": 165.3,
+          "maxWindKt": 35,
+          "gustKt": 45
+        }
+      ],
+      "spot": {
+        "distanceNm": 2052,
+        "bearingDeg": 55,
+        "closestApproach": {
+          "distanceNm": 2255,
+          "tau": 12,
+          "validZ": "140600Z",
+          "maxWindKt": 40,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 45,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 50
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 66
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-18T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-10-11T16:00:00.000Z",
+          "heightM": 1.24,
+          "periodS": 9.55,
+          "dirDeg": 83
+        },
+        "now": {
+          "targetTime": "2026-10-13T20:00:00.000Z",
+          "heightM": 1.16,
+          "periodS": 8.15,
+          "dirDeg": 80
+        },
+        "peak": {
+          "targetTime": "2026-10-14T15:00:00.000Z",
+          "heightM": 1.8,
+          "periodS": 6.55,
+          "dirDeg": 70
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a fully exposed low-level circulation center (LLCC) undergoing rapid subtropical transition (stt). TS 27W continues its steady progression northeastward along the northwestern side of the STR positioned to the southeast. Regarding intensity: 27W will continue to steadily weaken and gradually spin down as it transitions through stt and subsequent extratropical transition (ETT) over the next 48 hours.",
+        "warningNumber": "035",
+        "generatedAt": "2026-10-13T15:23:46.052Z"
+      },
+      "reasoningWarningNumber": "035",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
     }
   ]
 }
