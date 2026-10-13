@@ -977,7 +977,7 @@ two sites agree. Each hour scores 0–8 — see `surfScore()` in `js/app.js`:
 - Wind (CWA coastal forecast; rain hours count at half speed): <5 kt +2;
   offshore (within 55° of 280°) +2, or +1 at 20 kt+; cross-shore (within
   115°) 0, or −1 at 10 kt+; onshore −1, or −2 at 10 kt+.
-- 0–1 Flat, 2–3 Poor, 4–5 Fair, 6 Good, 7–8 Firing. Firing needs a 10 kt+
+- 0–1 Flat, 2–3 Poor, 4–5 Fair, 6 Good, 7–8 "Drop everything and go now!!!" (WaveSlave's Firing; renamed 2026-10-13). It needs a 10 kt+
   offshore wind; otherwise the top is Good.
 
 Right now rates the Chenggong buoy with the Donghe station wind. Each day in

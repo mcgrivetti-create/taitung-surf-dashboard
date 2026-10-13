@@ -758,3 +758,4 @@ main {
 @media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .rating-firing { color: #b8128f; } }
 .od-best { font-size: 0.74rem; font-weight: 600; color: var(--text); margin-top: 0.1rem; }
 .now-v b .per, .od-h .per { font-size: 0.68em; font-weight: 600; color: var(--text-dim); white-space: nowrap; }
+.rating-firing { border-radius: 8px; line-height: 1.25; padding: 0.15rem 0.5rem; }

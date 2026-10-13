@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-13g";
+  var ASSET_VERSION = "2026-10-13h";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -1713,10 +1713,10 @@
      −2…+2. Period is scored ×1.3 like WaveSlave so the ratings match theirs;
      the periods shown on the page stay raw. Wind kinds use WaveSlave's own
      split (offshore within 55° of 280°, cross within 115°) rather than the
-     site's 285±60 call, again so the ratings match. Firing needs a 10 kt+
+     site's 285±60 call, again so the ratings match. The top rating (WaveSlave's "Firing", shown as "Drop everything and go now!!!") needs a 10 kt+
      offshore wind; without it the top is Good. */
   var RATE_P = 1.3, RATE_OFF = 280;
-  var RATINGS = [["Flat", "flat"], ["Poor", "poor"], ["Fair", "fair"], ["Good", "good"], ["Firing", "firing"]];
+  var RATINGS = [["Flat", "flat"], ["Poor", "poor"], ["Fair", "fair"], ["Good", "good"], ["Drop everything and go now!!!", "firing"]];
   function rateWindKind(from) { var d = angDiff(from, RATE_OFF); return d <= 55 ? "off" : d <= 115 ? "cross" : "on"; }
   // How much of the swell reaches the beach, which faces away from its offshore direction.
   function rateExposure(dir) { if (dir === null || dir === undefined) return 1; var d = angDiff(dir, RATE_OFF + 180); return d <= 45 ? 1 : d <= 90 ? 0.5 : 0.2; }
