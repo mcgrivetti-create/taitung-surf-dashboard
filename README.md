@@ -116,7 +116,7 @@ The detail of each section is below.
      C0T9I0 Fengbin), one chart card per station: 16-hour wind-scale
      (Beaufort) history + current speed/direction/scale, plus a 16-hour readings table
    - Buoy / sea state (`O-B0075-001`) — Chenggong (46761F), Taitung
-     (WRA007), Hualien (46699A), Longdong (46694A) — each with 24-hour wave
+     (WRA007), Lanyu (C6S94, added 2026-10-13), Hualien (46699A), Longdong (46694A) — each with 24-hour wave
      height/period charts, computed wave energy (kJ), and an 8-hour
      readings table (station codes looked up from `O-B0076-001`'s full
      station directory)

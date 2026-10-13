@@ -99,6 +99,7 @@ const WIND_OBS_STATION_ID = "C0S810";
 const BUOY_STATIONS = [
   { id: "46761F", label: "Chenggong" },
   { id: "WRA007", label: "Taitung" },
+  { id: "C6S94", label: "Lanyu" }, // added 2026-10-13 for the conditions map
   { id: "46699A", label: "Hualien" },
   { id: "46694A", label: "Longdong" },
 ];

@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-13c";
+  var ASSET_VERSION = "2026-10-13d";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -1682,7 +1682,7 @@
     Promise.all([getData("tide"), getData("phase3-live").catch(function () { return null; })])
       .then(function (r) { renderTideSummary(r[0], r[1]); }).catch(function () { setSummary("tide", "Donghe tide chart, sun and moon"); });
     getData("stations-history").then(renderObservationSummary).catch(function () { setSummary("observations", "Land-station wind, last 16 hours"); });
-    getData("buoy").then(renderBuoySummary).catch(function () { setSummary("buoys", "Sea state at four buoys, last 24 hours"); });
+    getData("buoy").then(renderBuoySummary).catch(function () { setSummary("buoys", "Sea state at five buoys, last 24 hours"); });
   }
 
   /* ---------- Early offshore at Donghe ----------
@@ -1864,7 +1864,7 @@
     function short(t) { return "<b>" + escapeHtml(t.name) + "</b> " + n1(t.latest.h) + " m, " + t.size + (t.latest.p !== null ? " · " + n1(t.latest.p) + " s" + (t.period ? ", " + t.period : "") : ""); }
     // The bar shows the two buoys nearest Donghe; each card carries its own trend line.
     var near = trends.filter(function (t) { return t.name === "Chenggong" || t.name === "Taitung"; });
-    setSummary("buoys", near.length ? near.map(short).join("; ") : trends.length ? trends.map(short).join("; ") : "Sea state at four buoys, last 24 hours");
+    setSummary("buoys", near.length ? near.map(short).join("; ") : trends.length ? trends.map(short).join("; ") : "Sea state at five buoys, last 24 hours");
   }
   // One-line trend at the top of each buoy's card.
   function buoyTrendText(t) {
