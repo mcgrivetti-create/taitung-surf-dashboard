@@ -1,0 +1,73 @@
+/* Surf map (js/map.js). Everything is scoped to #mapView / #fx so none of
+   it reaches the dashboard. The map is always dark (neon), in both themes. */
+/* ---------- the map ---------- */
+#mapView { --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; --body: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans TC", Roboto, sans-serif; font-family: var(--body); line-height: 1.45; position: fixed; inset: 0; z-index: 50; background: #050b18; color: #e8f4ff; overflow: hidden; touch-action: none; user-select: none; -webkit-user-select: none; }
+#mapView[hidden] { display: none; }
+#mapView canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+#mapView .m-top { position: absolute; top: max(10px, env(safe-area-inset-top)); left: 10px; right: 10px; display: flex; gap: 8px; align-items: center; z-index: 3; pointer-events: none; }
+#mapView .m-top > * { pointer-events: auto; }
+#mapView .layers { display: flex; gap: 4px; background: rgba(8, 16, 34, 0.82); border: 1px solid rgba(110, 231, 255, 0.25); border-radius: 999px; padding: 4px; backdrop-filter: blur(6px); }
+#mapView .layers button { border: 0; background: transparent; color: #a9c3dc; font-weight: 600; font-size: 0.86rem; padding: 0.35rem 0.8rem; border-radius: 999px; cursor: pointer; }
+#mapView .layers button[aria-pressed="true"] { background: #0e7490; color: #fff; box-shadow: 0 0 12px rgba(34, 211, 238, 0.55); }
+#mapView .m-close { margin-left: auto; width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.35); background: rgba(8, 16, 34, 0.85); color: #fff; font-size: 1.5rem; line-height: 1; cursor: pointer; display: grid; place-items: center; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5); }
+#mapView .m-close:hover { background: #0e7490; }
+#mapView .m-side { position: absolute; right: 10px; top: calc(max(10px, env(safe-area-inset-top)) + 58px); display: grid; gap: 8px; z-index: 3; }
+#mapView .m-side button { width: 40px; height: 40px; border-radius: 10px; border: 1px solid rgba(110, 231, 255, 0.3); background: rgba(8, 16, 34, 0.82); color: #e8f4ff; font-size: 1.15rem; cursor: pointer; }
+#mapView .m-side button.txt { font-size: 0.62rem; font-weight: 700; letter-spacing: .02em; }
+#mapView .legend-bar { position: absolute; left: 10px; top: calc(max(10px, env(safe-area-inset-top)) + 58px); z-index: 3; background: rgba(8, 16, 34, 0.78); border-radius: 8px; padding: 5px 8px; font: 600 10px var(--mono); color: #a9c3dc; display: grid; gap: 3px; }
+#mapView .legend-bar i { display: block; width: 130px; height: 7px; border-radius: 4px; }
+#mapView .legend-bar span { display: flex; justify-content: space-between; }
+#mapView #marks { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+#mapView .mk { position: absolute; transform: translate(-50%, -50%); pointer-events: auto; cursor: pointer; border: 0; background: none; padding: 0; color: #fff; }
+#mapView .mk .dot { display: block; width: 14px; height: 14px; border-radius: 50%; background: #22d3ee; border: 2px solid #031020; box-shadow: 0 0 10px rgba(34, 211, 238, 0.9); margin: auto; }
+#mapView .mk.station .dot { border-radius: 3px; background: #fbbf24; box-shadow: 0 0 8px rgba(251, 191, 36, 0.8); width: 12px; height: 12px; }
+#mapView .mk.gauge .dot { background: #a78bfa; box-shadow: 0 0 8px rgba(167, 139, 250, 0.8); width: 12px; height: 12px; clip-path: polygon(50% 0, 100% 100%, 0 100%); border: 0; }
+#mapView .mk.spot .dot { width: 22px; height: 22px; background: #fff; clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); border: 0; box-shadow: none; filter: drop-shadow(0 0 6px #22d3ee); }
+#mapView .mk .lab { position: absolute; left: calc(50% + 12px); top: 50%; transform: translateY(-50%); white-space: nowrap; font: 700 11px var(--mono); text-shadow: 0 1px 2px #000, 0 0 6px #000; text-align: left; line-height: 1.2; }
+#mapView .mk .lab small { display: block; font: 600 9.5px var(--body); color: #b9d3ea; }
+#mapView .mk.left .lab { left: auto; right: calc(50% + 12px); text-align: right; }
+#mapView .mk.spot .lab { font-size: 13px; }
+#mapView .mk .stale { opacity: 0.6; }
+#mapView .mk.sel .dot { outline: 2px solid #fff; outline-offset: 3px; }
+#mapView.m-hide-labels .mk:not(.spot) .lab { display: none; }
+#mapView.m-far .mk.station, #mapView.m-far .mk.gauge { display: none; }
+#mapView .rt { display: inline-block; font: 700 10px var(--body); border-radius: 999px; padding: 0 6px; border: 1px solid currentColor; margin-left: 4px; vertical-align: 1px; text-shadow: none; background: rgba(0, 0, 0, 0.55); }
+#mapView .rt-flat { color: #9fb3c8; } #mapView .rt-poor { color: #ff8a75; } #mapView .rt-fair { color: #f2c94c; } #mapView .rt-good { color: #5ee0a0; } #mapView .rt-firing { color: #ff4fe0; }
+#mapView .off { color: #5ee0a0; } #mapView .on { color: #ff8a75; } #mapView .cross { color: #f2c94c; }
+
+#mapView .m-bottom { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; padding: 8px 10px max(10px, env(safe-area-inset-bottom)); background: linear-gradient(transparent, rgba(3, 8, 20, 0.9) 30%); display: grid; gap: 6px; }
+#mapView .m-time { display: flex; align-items: center; gap: 8px; }
+#mapView .play { width: 40px; height: 40px; border-radius: 10px; border: 1px solid rgba(110, 231, 255, 0.35); background: rgba(8, 16, 34, 0.85); color: #67e8f9; font-size: 1rem; cursor: pointer; }
+#mapView .clock { font: 700 1.05rem var(--mono); color: #fde68a; background: rgba(0, 0, 0, 0.5); border-radius: 8px; padding: 0.3rem 0.65rem; letter-spacing: .04em; }
+#mapView .clock small { font-size: 0.7em; color: #a9c3dc; margin-left: 0.4rem; }
+#mapView .days { position: relative; display: flex; overflow-x: auto; scrollbar-width: none; border: 1px solid rgba(110, 231, 255, 0.25); border-radius: 10px; background: rgba(8, 16, 34, 0.85); cursor: grab; }
+#mapView .days::-webkit-scrollbar { display: none; }
+#mapView .day { flex: none; width: 72px; border-right: 1px solid rgba(110, 231, 255, 0.12); padding: 4px 6px 12px; position: relative; font: 700 12px var(--mono); color: #cfe6fb; }
+#mapView .day small { display: block; font-size: 10px; color: #7f9bb8; font-weight: 600; }
+#mapView .day.far { opacity: 0.55; }
+#mapView .day::after { content: ""; position: absolute; left: 0; right: 0; bottom: 3px; height: 5px; background: repeating-linear-gradient(90deg, rgba(127, 155, 184, 0.6) 0 1px, transparent 1px 9px); }
+#mapView .cursor { position: absolute; top: 0; bottom: 0; width: 2px; background: #ff4fe0; box-shadow: 0 0 8px #ff4fe0; pointer-events: none; }
+#mapView .nowtick { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1px dashed #67e8f9; pointer-events: none; }
+
+#mapView .sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 4; max-height: 62vh; overflow-y: auto; background: #0d1830; border-top: 1px solid rgba(110, 231, 255, 0.35); border-radius: 16px 16px 0 0; padding: 14px 16px max(16px, env(safe-area-inset-bottom)); box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.55); transform: translateY(105%); transition: transform .28s ease; color: #e8f4ff; }
+#mapView .sheet.open { transform: none; }
+#mapView .sheet-x { position: absolute; right: 10px; top: 8px; width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .25); background: transparent; color: #fff; font-size: 1.1rem; cursor: pointer; }
+#mapView .sheet h3 { margin: 0 2.5rem 0.2rem 0; font-size: 1.05rem; }
+#mapView .kind { font: 600 0.68rem var(--mono); text-transform: uppercase; letter-spacing: .06em; color: #7f9bb8; }
+#mapView .sub { font-size: 0.78rem; color: #9fb7cf; margin: 0.15rem 0 0.5rem; }
+#mapView .big { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0.4rem 0; }
+#mapView .big div { display: grid; }
+#mapView .big b { font-size: 1.45rem; font-variant-numeric: tabular-nums; line-height: 1.1; }
+#mapView .big b small { font-size: 0.6em; color: #9fb7cf; }
+#mapView .big span { font-size: 0.74rem; color: #9fb7cf; }
+#mapView .line { font-size: 0.86rem; margin: 0.35rem 0; }
+#mapView .spark { width: 100%; height: auto; display: block; margin-top: 4px; }
+#mapView .spark text { font: 10px var(--mono); fill: #7f9bb8; }
+#mapView .hours { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 3px; font: 11px var(--mono); text-align: center; margin-top: 4px; }
+#mapView .hours div { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(110, 231, 255, 0.14); border-radius: 6px; padding: 4px 0; display: grid; gap: 1px; }
+#mapView .hours .t { color: #7f9bb8; }
+
+#fx { position: fixed; inset: 0; z-index: 60; pointer-events: none; width: 100%; height: 100%; }
+#fx[hidden] { display: none; }
+/* zoomed out, the Chenggong label would sit on Donghe's; Donghe's label already carries the local picture */
+#mapView.m-far .mk[data-id="46761F"] .lab { display: none; }

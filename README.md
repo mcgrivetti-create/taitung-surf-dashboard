@@ -964,6 +964,31 @@ shipped before any real invest existed to test it:
 Neither would have surfaced without a live invest. Worth remembering for
 the paths still untested against real data — multi-storm layout among them.
 
+### Surf map (Map button in the header)
+
+Launched 2026-10-13 (`js/map.js`, `css/map.css`). Tapping **Map** loads its
+data the first time, then opens a full-screen map with a barrel wave (the
+lip curls over and you're pulled into the tube); the ✕ (or the phone's back
+button, or Esc) closes it with a close-out and whitewater back to the page.
+
+- Layers: **Wind** (speed colours + animated wind lines), **Waves** and
+  **Swell** (height colours + direction arrows, longer for longer periods).
+  Pinch/scroll to zoom; TW and DH jump to Taiwan and Donghe. Opens on
+  Taiwan and the sea to its east (the user's chosen view).
+- Time bar: 10 days, 3-hourly; tap, drag or ▶ to play. Days 6+ are faded.
+- On top: Donghe (rating, Open-Meteo waves @ period, CWA wind at the map
+  time), the buoys including Lanyu (C6S94), the Donghe/Duli/Fengbin
+  stations and the Chenggong tide gauge. Tap any marker for details; tap
+  open sea for that point's grid forecast.
+- Data: `data/wxgrid.json` — Open-Meteo wind (forecast API) and waves/swell
+  (marine API) on a 3° grid, 0–45°N 100–160°E, every 3 h for 10 days,
+  packed as integers (see `buildWxGrid()`). Rebuilt every 6 hours: each
+  refresh is ~670 Open-Meteo calls, so hourly would exceed the free daily
+  limit. Coastlines: `js/map-coast.json` (Natural Earth 50m land, 10m for
+  Taiwan; static). The rest comes from the dashboard's existing files.
+- The 3° grid is a regional picture; near the coast the buoys and the
+  Donghe marker carry the local detail.
+
 ### Surf rating and Best window (Right now card, 3-day strip)
 
 Added 2026-10-13: WaveSlave's (waveslave.tw) rating rules, used as-is so the

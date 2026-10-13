@@ -13,7 +13,8 @@
 <meta http-equiv="Pragma" content="no-cache">
 <!-- ?v= is a cache-buster for the assets themselves. Bump it, ASSET_VERSION
      in js/app.js, and version.json together on any css/js change. -->
-<link rel="stylesheet" href="css/style.css?v=2026-10-13h">
+<link rel="stylesheet" href="css/style.css?v=2026-10-13i">
+<link rel="stylesheet" href="css/map.css?v=2026-10-13i">
 </head>
 <body>
 <!-- Compact sticky header: title on one line with the data age under it,
@@ -30,6 +31,7 @@
     </div>
   </div>
   <nav class="quick-links" aria-label="Jump to a section">
+    <button type="button" class="ql-map" id="openMap"><span aria-hidden="true">🌊</span> Map</button>
     <a href="#forecasts">Forecasts</a>
     <a href="#tide">Tide</a>
     <a href="#observations">Observations</a>
@@ -330,6 +332,7 @@
   <p>Data sources: CWA (Central Weather Administration) Open Data, Open-Meteo (Météo-France MFWAM, ECMWF, GFS), Windguru, surf-forecast.com, Windy, YouTube. For reference only — assess your own conditions before entering the water.</p>
 </footer>
 
-<script src="js/app.js?v=2026-10-13h"></script>
+<script src="js/app.js?v=2026-10-13i"></script>
+<script src="js/map.js?v=2026-10-13i"></script>
 </body>
 </html>

@@ -1881,6 +1881,64 @@ async function buildTyphoon(results) {
   };
 }
 
+/* --- Surf map grid (js/map.js) ------------------------------------------
+ * Wind, waves and swell for the West Pacific on a 3-degree grid (0–45N,
+ * 100–160E: 16 x 21 = 336 points), every 3 hours for 10 days, from
+ * Open-Meteo. Open-Meteo counts each point of a multi-location request as
+ * a call, so one refresh is ~670 calls: it is rebuilt every 6 hours (the
+ * models run 6-hourly anyway) and the previous grid is kept in between, or
+ * when a refresh fails. Values are packed as integers to keep the file
+ * small: wind kt, directions degrees, heights and periods x10, pressure
+ * (hPa x10) - 10000, rain (mm per 3 h) x10.
+ */
+const WX_GRID = { lat0: 0, dlat: 3, nlat: 16, lon0: 100, dlon: 3, nlon: 21 };
+const WX_GRID_REFRESH_H = 6;
+
+async function fetchOpenMeteoGrid(base, vars, extra) {
+  const pts = [];
+  for (let i = 0; i < WX_GRID.nlat; i++) for (let j = 0; j < WX_GRID.nlon; j++) pts.push([WX_GRID.lat0 + i * WX_GRID.dlat, WX_GRID.lon0 + j * WX_GRID.dlon]);
+  const out = [];
+  for (let k = 0; k < pts.length; k += 60) {
+    const chunk = pts.slice(k, k + 60);
+    const url = `${base}?latitude=${chunk.map((p) => p[0]).join(",")}&longitude=${chunk.map((p) => p[1]).join(",")}&hourly=${vars}&timezone=Asia%2FTaipei&forecast_days=10${extra}`;
+    let res = null;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      res = await fetch(url);
+      if (res.ok) break;
+      await new Promise((r) => setTimeout(r, 2000 * (attempt + 1)));
+    }
+    if (!res.ok) throw new Error(`${new URL(base).host} grid -> HTTP ${res.status}`);
+    const body = await res.json();
+    for (const loc of Array.isArray(body) ? body : [body]) out.push(loc.hourly);
+  }
+  return out;
+}
+
+async function buildWxGrid() {
+  const prev = await readJSONIfExists(path.join(DATA_DIR, "wxgrid.json"), null);
+  if (prev && prev.made && Date.now() - Date.parse(prev.made) < (WX_GRID_REFRESH_H - 0.5) * 3600000) {
+    return { data: prev, ok: true, count: prev.nt };
+  }
+  const F = await fetchOpenMeteoGrid("https://api.open-meteo.com/v1/forecast", "wind_speed_10m,wind_direction_10m,pressure_msl,precipitation", "&wind_speed_unit=kn");
+  const M = await fetchOpenMeteoGrid("https://marine-api.open-meteo.com/v1/marine", "wave_height,wave_direction,wave_period,swell_wave_height,swell_wave_direction,swell_wave_period", "");
+  const times = F[0].time, idx = [];
+  for (let i = 0; i < times.length; i += 3) idx.push(i);
+  const pack = (src, key, f) => src.map((h) => idx.map((i) => { const v = h && h[key] ? h[key][i] : null; return v === null || v === undefined ? null : f(v); }));
+  const rain = F.map((h) => idx.map((i) => {
+    let s = 0, n = 0;
+    for (let d = -1; d <= 1; d++) { const v = h.precipitation[i + d]; if (v !== null && v !== undefined) { s += v; n++; } }
+    return n ? Math.round(s * 10) : null;
+  }));
+  const data = {
+    ...WX_GRID, t0: times[0], dt: 3, nt: idx.length, made: new Date().toISOString(),
+    ws: pack(F, "wind_speed_10m", (v) => Math.round(v)), wd: pack(F, "wind_direction_10m", (v) => Math.round(v)),
+    pr: pack(F, "pressure_msl", (v) => Math.round(v * 10) - 10000), rn: rain,
+    wh: pack(M, "wave_height", (v) => Math.round(v * 10)), wdir: pack(M, "wave_direction", (v) => Math.round(v)), wp: pack(M, "wave_period", (v) => Math.round(v * 10)),
+    sh: pack(M, "swell_wave_height", (v) => Math.round(v * 10)), sd: pack(M, "swell_wave_direction", (v) => Math.round(v)), sp: pack(M, "swell_wave_period", (v) => Math.round(v * 10)),
+  };
+  return { data, ok: true, count: data.nt };
+}
+
 /**
  * Directory entries (position, name, type) for the buoys and the tide gauge
  * from O-B0076-001 — O-B0075-001's readings carry no coordinates, and
@@ -2248,6 +2306,8 @@ async function run() {
     // Compact JSON: 2 buoys x 4 models x 5 days is the biggest current-tier file.
     { file: "buoy-site-forecasts.json", name: "Open-Meteo models at the buoy positions (logged only)", build: buildBuoySiteForecasts, compact: true },
     { file: "astronomy.json", name: "CWA astronomy (sun/moon/calendar)", build: buildAstronomy },
+    // Surf map grid; rebuilt every 6 h, otherwise the previous file is kept.
+    { file: "wxgrid.json", name: "Open-Meteo West Pacific grid (surf map)", build: buildWxGrid, compact: true },
     { file: "typhoon.json", name: "JTWC typhoon news (W Pacific)", build: () => buildTyphoon(results) },
   ];
 
