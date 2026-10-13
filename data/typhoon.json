@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-13T14:24:47.305Z",
+  "fetchedAt": "2026-10-13T15:23:46.052Z",
   "systems": [
     {
       "designation": "Tropical Depression",
@@ -53,23 +53,23 @@
         "141500Z. REFER TO TROPICAL STORM 27W (KOGUMA) WARNINGS (WTPN33 PGTW) FOR SIX-HOURLY UPDATES"
       ],
       "reasoning": {
-        "warningNumber": "006",
+        "warningNumber": "007",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 11,
         "environment": "UNFAVORABLE",
-        "vws": "5-10 KTS",
-        "sst": "29-30 CELSIUS",
+        "vws": "0-5 KTS",
+        "sst": "28-29 CELSIUS",
         "outflow": "WEAK WESTWARD",
-        "steering": "SOUTHWESTERN FLANK OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED FAR TO THE NORTHEAST.",
+        "steering": "SOUTHWESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED FAR TO THE NORTHEAST.",
         "confidence": {
           "track0072": "HIGH",
           "track72120": null,
-          "intensity0072": "HIGH",
+          "intensity0072": "MEDIUM",
           "intensity72120": null
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2826prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1364,
         "bearingDeg": 95,
@@ -109,9 +109,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts tropical depression (TD) 28W as a fully exposed low level circulation center (LLCC) devoid of any strong convection. TD 28W is forecast to track northwestward for the remainder of the forecast period under the steering influence of the low-level flow associated with the subtropical ridge (STR) centered to the northeast. Regarding intensity, 28W is forecast to maintain intensity for the next 12 to 24 hours before weakening and opening into a trough no later than +36h as continued dry air entrainment and suppressed outflow aloft will prevent further intensification.",
-        "warningNumber": "005",
-        "generatedAt": "2026-10-13T03:21:52.107Z"
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a fully exposed low-level circulation center (LLCC), with persistent convection confined along the southeastern convergent asymptote. Tropical depression (TD) 28W is forecast to continue tracking northwestward at approximately 10 knots along the southwestern periphery of the expansive STR throughout the forecast period. The resultant upper-level subsidence, persistent dry air entrainment, and the lack of a robust outflow mechanism will suppress intensification.",
+        "warningNumber": "007",
+        "generatedAt": "2026-10-13T15:23:46.052Z"
       },
       "changes": {
         "previousWarningNumber": "006",
@@ -241,8 +241,8 @@
           "dirDeg": 83
         },
         "now": {
-          "targetTime": "2026-10-13T14:00:00.000Z",
-          "heightM": 1.28,
+          "targetTime": "2026-10-13T15:00:00.000Z",
+          "heightM": 1.26,
           "periodS": 8,
           "dirDeg": 81
         },
@@ -257,9 +257,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 27W (koguma) accelerating northeastward with a partially exposed low level circulation center (LLCC) and flaring puffs of central convection that are quickly sheared away. TY 27W is forecast to continue accelerating northeastward under the steering influence of the subtropical ridge (STR) centered to the southeast.",
-        "warningNumber": "033",
-        "generatedAt": "2026-10-13T03:21:52.107Z"
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a fully exposed low-level circulation center (LLCC) undergoing rapid subtropical transition (stt). TS 27W continues its steady progression northeastward along the northwestern side of the STR positioned to the southeast. Regarding intensity: 27W will continue to steadily weaken and gradually spin down as it transitions through stt and subsequent extratropical transition (ETT) over the next 48 hours.",
+        "warningNumber": "035",
+        "generatedAt": "2026-10-13T15:23:46.052Z"
       },
       "changes": {
         "previousWarningNumber": "034",
