@@ -10239,6 +10239,98 @@
         "intensity0072": "HIGH",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "28W",
+      "name": "Twentyeight",
+      "designation": "Tropical Depression",
+      "warningNumber": "006",
+      "issuedAt": "2026-10-13T09:00:00.000Z",
+      "positionZ": "130600Z",
+      "lat": 18.8,
+      "lon": 146.3,
+      "maxWindKt": 25,
+      "gustKt": 35,
+      "seasFt": 11,
+      "movingToward": 310,
+      "movingKt": 12,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "131800Z",
+          "lat": 20,
+          "lon": 144.5,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 24,
+          "validZ": "140600Z",
+          "lat": 21,
+          "lon": 142.7,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 36,
+          "validZ": "141800Z",
+          "lat": 22,
+          "lon": 140.8,
+          "maxWindKt": 20,
+          "gustKt": 30
+        }
+      ],
+      "spot": {
+        "distanceNm": 1422,
+        "bearingDeg": 95,
+        "closestApproach": {
+          "distanceNm": 1082,
+          "tau": 36,
+          "validZ": "141800Z",
+          "maxWindKt": 20
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 310,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 306
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 301
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 300
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "status": "none",
+        "windowEnd": "2026-10-17T15:00:00.000Z",
+        "creditedTo": "Koguma"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts tropical depression (TD) 28W as a fully exposed low level circulation center (LLCC) devoid of any strong convection. TD 28W is forecast to track northwestward for the remainder of the forecast period under the steering influence of the low-level flow associated with the subtropical ridge (STR) centered to the northeast. Regarding intensity, 28W is forecast to maintain intensity for the next 12 to 24 hours before weakening and opening into a trough no later than +36h as continued dry air entrainment and suppressed outflow aloft will prevent further intensification.",
+        "warningNumber": "005",
+        "generatedAt": "2026-10-13T03:21:52.107Z"
+      },
+      "reasoningWarningNumber": "005",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "MEDIUM",
+        "intensity72120": null
+      }
     }
   ]
 }
