@@ -983,7 +983,7 @@ two sites agree. Each hour scores 0–8 — see `surfScore()` in `js/app.js`:
 Right now rates the Chenggong buoy with the Donghe station wind. Each day in
 the strip shows the rating of its best daylight hour (first to last civil
 light) and its **Best window**: the best-scoring daylight hour still ahead,
-grown over neighbouring hours that score as well ("Best was …" once the
+grown over neighbouring hours that score as well, 2 to 3 hours long ("Best was …" once the
 day's daylight has passed).
 
 ### Early offshore call (3-day strip)

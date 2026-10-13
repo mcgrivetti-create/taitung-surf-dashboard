@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-13f";
+  var ASSET_VERSION = "2026-10-13g";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -765,6 +765,8 @@
 
         html += '<div class="buoy-card">';
         html += "<h3>" + name + " <span class=\"en\">(" + id + ")</span></h3>";
+        var wl = stationWindLine(id, s);
+        if (wl) html += '<p class="buoy-trend">' + wl.text + "</p>";
         html += '<div class="buoy-chart-label">Wind Scale (Beaufort) — last 16h</div>' + (svg || '<p class="loading">Still collecting data (populates hourly)</p>');
         html += '<div class="buoy-stats">';
         html += '<div class="buoy-stat"><span class="buoy-stat-label">Wind Speed</span><span class="buoy-stat-value">' + (latest.WindSpeed !== undefined ? n1(latest.WindSpeed) : "—") + ' m/s</span></div>';
@@ -1746,6 +1748,7 @@
   }
   // Best window: the best-scoring daylight hour still ahead (or the day's best,
   // once it has passed), grown over back-to-back hours scoring as well.
+  // 2 to 3 hours long (user's limits, 2026-10-13).
   function bestWindow(hours, now) {
     var pool = hours.filter(function (x) { return x.day && x.w; });
     if (!pool.length) pool = hours;
@@ -1753,8 +1756,14 @@
     var ahead = pool.filter(function (x) { return x.t >= now - now % 3600000; }), cand = ahead.length ? ahead : pool;
     var top = cand.reduce(function (a, b) { return b.s > a.s ? b : a; }, cand[0]);
     var lo = cand.indexOf(top), hi = lo;
-    while (lo > 0 && cand[lo - 1].s >= top.s && cand[lo].t - cand[lo - 1].t <= 3600000) lo--;
-    while (hi < cand.length - 1 && cand[hi + 1].s >= top.s && cand[hi + 1].t - cand[hi].t <= 3600000) hi++;
+    function prev(minS) { return lo > 0 && cand[lo].t - cand[lo - 1].t <= 3600000 && cand[lo - 1].s >= minS ? cand[lo - 1] : null; }
+    function next(minS) { return hi < cand.length - 1 && cand[hi + 1].t - cand[hi].t <= 3600000 && cand[hi + 1].s >= minS ? cand[hi + 1] : null; }
+    // First only hours scoring as well, up to 3 hours; if the best hour still
+    // stands alone, add its better neighbour so the window is at least 2 hours.
+    [top.s, -Infinity].forEach(function (minS, pass) {
+      if (pass && hi > lo) return;
+      while (hi - lo < (pass ? 1 : 2)) { var p = prev(minS), n = next(minS); if (!p && !n) break; if (n && (!p || n.s >= p.s)) hi++; else lo--; }
+    });
     return { a: cand[lo].t, b: cand[hi].t, top: top, past: !ahead.length, peak: Math.max.apply(null, pool.map(function (x) { return x.s; })) };
   }
   function bestWindowText(bw) {
