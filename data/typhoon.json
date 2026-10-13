@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-13T05:23:04.270Z",
+  "fetchedAt": "2026-10-13T06:29:01.796Z",
   "systems": [
     {
       "designation": "Tropical Depression",
@@ -239,9 +239,9 @@
           "dirDeg": 83
         },
         "now": {
-          "targetTime": "2026-10-13T05:00:00.000Z",
-          "heightM": 1.32,
-          "periodS": 7.45,
+          "targetTime": "2026-10-13T06:00:00.000Z",
+          "heightM": 1.34,
+          "periodS": 7.7,
           "dirDeg": 80
         },
         "peak": {
@@ -273,22 +273,22 @@
   "invests": [
     {
       "id": "96W",
-      "potential": null,
-      "geoReference": "181 NM WEST OF KOSRAE",
-      "windKtLow": 13,
-      "windKtHigh": 18,
+      "potential": "MEDIUM",
+      "geoReference": "260 NM NORTH-NORTHEAST OF KOSRAE",
+      "windKtLow": 18,
+      "windKtHigh": 23,
       "pressureMb": 1008,
-      "lat": 8.4,
-      "lon": 164.7,
-      "distanceNm": 2644,
-      "bearingDeg": 102
+      "lat": 9.3,
+      "lon": 164.3,
+      "distanceNm": 2600,
+      "bearingDeg": 101
     }
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "12/2230Z",
-    "issuedAt": "2026-10-12T22:30:00.000Z",
+    "issuedZ": "13/0600Z",
+    "issuedAt": "2026-10-13T06:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": true
+    "reissued": false
   }
 }
