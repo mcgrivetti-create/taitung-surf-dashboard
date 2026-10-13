@@ -10547,6 +10547,43 @@
         "intensity0072": "HIGH",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "tcfa",
+      "id": "96W",
+      "alertId": "WTPN21",
+      "issuedAt": "2026-10-13T19:00:00.000Z",
+      "lat": 10.1,
+      "lon": 161.6,
+      "potential": "HIGH",
+      "maxWindKtLow": 18,
+      "maxWindKtHigh": 23,
+      "pressureMb": 1005,
+      "movingText": "WEST-NORTHWESTWARD",
+      "movingKt": 11,
+      "windowLowH": 12,
+      "windowHighH": 24,
+      "decisionByZ": "141900Z",
+      "spot": {
+        "distanceNm": 2434,
+        "bearingDeg": 102
+      }
+    },
+    {
+      "kind": "invest",
+      "id": "96W",
+      "issuedAt": "2026-10-13T19:00:00.000Z",
+      "lat": 10.1,
+      "lon": 161.6,
+      "potential": null,
+      "geoReference": "270 NM NORTHEAST OF POHNPEI",
+      "windKtLow": 18,
+      "windKtHigh": 23,
+      "pressureMb": 1007,
+      "spot": {
+        "distanceNm": 2434,
+        "bearingDeg": 102
+      }
     }
   ]
 }

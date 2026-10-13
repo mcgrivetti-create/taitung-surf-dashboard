@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-13T18:27:27.832Z",
+  "fetchedAt": "2026-10-13T19:31:59.583Z",
   "systems": [
     {
       "designation": "Tropical Depression",
@@ -241,9 +241,9 @@
           "dirDeg": 83
         },
         "now": {
-          "targetTime": "2026-10-13T18:00:00.000Z",
+          "targetTime": "2026-10-13T19:00:00.000Z",
           "heightM": 1.16,
-          "periodS": 8.4,
+          "periodS": 8.3,
           "dirDeg": 81
         },
         "peak": {
@@ -270,26 +270,60 @@
       }
     }
   ],
-  "alerts": [],
+  "alerts": [
+    {
+      "alertId": "WTPN21",
+      "issuedZ": "13/1900Z",
+      "issuedAt": "2026-10-13T19:00:00.000Z",
+      "textUrl": "https://www.metoc.navy.mil/jtwc/products/wp9626web.txt",
+      "graphic": "https://www.metoc.navy.mil/jtwc/products/wp9626.gif",
+      "satellite": "https://www.metoc.navy.mil/jtwc/products/96W_131900sair.jpg",
+      "investId": "96W",
+      "corridorNm": 120,
+      "lineFrom": {
+        "lat": 10.1,
+        "lon": 161.7
+      },
+      "lineTo": {
+        "lat": 11.9,
+        "lon": 158.3
+      },
+      "windowLowH": 12,
+      "windowHighH": 24,
+      "lat": 10.1,
+      "lon": 161.6,
+      "distanceNm": 2434,
+      "bearingDeg": 102,
+      "movingText": "WEST-NORTHWESTWARD",
+      "movingKt": 11,
+      "areaWindKtLow": 18,
+      "areaWindKtHigh": 23,
+      "maxWindKtLow": 18,
+      "maxWindKtHigh": 23,
+      "pressureMb": 1005,
+      "potential": "HIGH",
+      "decisionByZ": "141900Z"
+    }
+  ],
   "invests": [
     {
       "id": "96W",
-      "potential": "MEDIUM",
-      "geoReference": "260 NM NORTH-NORTHEAST OF KOSRAE",
+      "potential": null,
+      "geoReference": "270 NM NORTHEAST OF POHNPEI",
       "windKtLow": 18,
       "windKtHigh": 23,
-      "pressureMb": 1008,
-      "lat": 9.3,
-      "lon": 164.3,
-      "distanceNm": 2600,
-      "bearingDeg": 101
+      "pressureMb": 1007,
+      "lat": 10.1,
+      "lon": 161.6,
+      "distanceNm": 2434,
+      "bearingDeg": 102
     }
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "13/0600Z",
-    "issuedAt": "2026-10-13T06:00:00.000Z",
+    "issuedZ": "13/1900Z",
+    "issuedAt": "2026-10-13T19:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": false
+    "reissued": true
   }
 }
