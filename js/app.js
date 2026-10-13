@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-13e";
+  var ASSET_VERSION = "2026-10-13f";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -1772,9 +1772,8 @@
     var cg = ((buoy.records && buoy.records.Stations) || []).filter(function (s) { return s.StationID === "46761F"; })[0];
     var last = cg && (cg.Readings || []).filter(function (r) { return num(r.WaveHeight) !== null; }).pop();
     if (last) {
-      cell("nowWaves", "<b>" + n1(num(last.WaveHeight)) + " m</b>" +
-        '<span class="now-s">' + (num(last.WavePeriod) !== null ? n1(num(last.WavePeriod)) + " s" : "") +
-        (last.WaveDirectionDescription ? " · from " + escapeHtml(last.WaveDirectionDescription) : "") + " · " + fmtHMx.format(new Date(last.DateTime)) + "</span>");
+      cell("nowWaves", "<b>" + n1(num(last.WaveHeight)) + " m" + (num(last.WavePeriod) !== null ? ' <span class="per">@ ' + n1(num(last.WavePeriod)) + " s</span>" : "") + "</b>" +
+        '<span class="now-s">' + (last.WaveDirectionDescription ? "from " + escapeHtml(last.WaveDirectionDescription) : "") + " · " + fmtHMx.format(new Date(last.DateTime)) + "</span>");
     }
     // Wind: the Donghe station.
     var dh = stations && stations.C0S810 && (stations.C0S810.readings || []);
@@ -1828,8 +1827,8 @@
       var label = i === 0 ? "Today" : i === 1 ? "Tomorrow" : fmtWeekday.format(now + i * 86400000);
       cards.push('<div class="outlook-day"><span class="od-k">' + label + ' <span class="od-date">' + fmtDayShort.format(now + i * 86400000).replace(/^\w+, /, "") + "</span></span>" +
         (bw ? ratingHtml(bw.peak) : "") +
-        '<span class="od-h">' + n1(hMin) + (n1(hMax) !== n1(hMin) ? "–" + n1(hMax) : "") + " m</span>" +
-        '<span class="od-p">' + (pMin !== null ? Math.round(pMin) + (Math.round(pMax) !== Math.round(pMin) ? "–" + Math.round(pMax) : "") + " s period" : "") + "</span>" +
+        '<span class="od-h">' + n1(hMin) + (n1(hMax) !== n1(hMin) ? "–" + n1(hMax) : "") + " m" +
+        (pMin !== null ? ' <span class="per">@ ' + Math.round(pMin) + (Math.round(pMax) !== Math.round(pMin) ? "–" + Math.round(pMax) : "") + " s</span>" : "") + "</span>" +
         '<span class="od-w">' + windTxt + "</span>" + earlyTxt + bwTxt + "</div>");
     }
     var ol = document.getElementById("outlook");

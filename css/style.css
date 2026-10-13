@@ -757,3 +757,4 @@ main {
 :root[data-theme="light"] .rating-firing { color: #b8128f; }
 @media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .rating-firing { color: #b8128f; } }
 .od-best { font-size: 0.74rem; font-weight: 600; color: var(--text); margin-top: 0.1rem; }
+.now-v b .per, .od-h .per { font-size: 0.68em; font-weight: 600; color: var(--text-dim); white-space: nowrap; }
