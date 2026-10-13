@@ -10114,6 +10114,131 @@
         "distanceNm": 2600,
         "bearingDeg": 101
       }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Typhoon",
+      "warningNumber": "034",
+      "issuedAt": "2026-10-13T09:00:00.000Z",
+      "positionZ": "130600Z",
+      "lat": 35.4,
+      "lon": 153.7,
+      "maxWindKt": 70,
+      "gustKt": 85,
+      "pressureMb": 978,
+      "seasFt": 33,
+      "movingToward": 45,
+      "movingKt": 22,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "131800Z",
+          "lat": 38.2,
+          "lon": 157.4,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 24,
+          "validZ": "140600Z",
+          "lat": 40.6,
+          "lon": 161.2,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 36,
+          "validZ": "141800Z",
+          "lat": 42.3,
+          "lon": 166,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 48,
+          "validZ": "150600Z",
+          "lat": 43.2,
+          "lon": 171.2,
+          "maxWindKt": 45,
+          "gustKt": 55
+        }
+      ],
+      "spot": {
+        "distanceNm": 1843,
+        "bearingDeg": 59,
+        "closestApproach": {
+          "distanceNm": 2059,
+          "tau": 12,
+          "validZ": "131800Z",
+          "maxWindKt": 60,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 45,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 46
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 50
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 63
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 75
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-17T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-10-11T16:00:00.000Z",
+          "heightM": 1.24,
+          "periodS": 9.55,
+          "dirDeg": 83
+        },
+        "now": {
+          "targetTime": "2026-10-13T07:00:00.000Z",
+          "heightM": 1.34,
+          "periodS": 7.85,
+          "dirDeg": 81
+        },
+        "peak": {
+          "targetTime": "2026-10-14T17:00:00.000Z",
+          "heightM": 1.7,
+          "periodS": 6.5,
+          "dirDeg": 70
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 27W (koguma) accelerating northeastward with a partially exposed low level circulation center (LLCC) and flaring puffs of central convection that are quickly sheared away. TY 27W is forecast to continue accelerating northeastward under the steering influence of the subtropical ridge (STR) centered to the southeast.",
+        "warningNumber": "033",
+        "generatedAt": "2026-10-13T03:21:52.107Z"
+      },
+      "reasoningWarningNumber": "033",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
     }
   ]
 }
