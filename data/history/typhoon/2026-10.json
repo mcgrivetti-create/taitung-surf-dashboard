@@ -10683,6 +10683,113 @@
         "intensity0072": "HIGH",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "28W",
+      "name": "Twentyeight",
+      "designation": "Tropical Depression",
+      "warningNumber": "008",
+      "issuedAt": "2026-10-13T21:00:00.000Z",
+      "positionZ": "131800Z",
+      "lat": 20.1,
+      "lon": 144.5,
+      "maxWindKt": 25,
+      "gustKt": 35,
+      "movingToward": 315,
+      "movingKt": 10,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "140600Z",
+          "lat": 21.2,
+          "lon": 142.8,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 24,
+          "validZ": "141800Z",
+          "lat": 22.2,
+          "lon": 141.2,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 36,
+          "validZ": "150600Z",
+          "lat": 23,
+          "lon": 139.5,
+          "maxWindKt": 20,
+          "gustKt": 30
+        }
+      ],
+      "spot": {
+        "distanceNm": 1305,
+        "bearingDeg": 93,
+        "closestApproach": {
+          "distanceNm": 1004,
+          "tau": 36,
+          "validZ": "150600Z",
+          "maxWindKt": 20
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 315,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 305
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 304
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 297
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "status": "none",
+        "windowEnd": "2026-10-18T15:00:00.000Z",
+        "creditedTo": "Koguma"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a fully exposed low-level circulation center (LLCC), with persistent convection confined along the southeastern convergent asymptote. Tropical depression (TD) 28W is forecast to continue tracking northwestward at approximately 10 knots along the southwestern periphery of the expansive STR throughout the forecast period. The resultant upper-level subsidence, persistent dry air entrainment, and the lack of a robust outflow mechanism will suppress intensification.",
+        "warningNumber": "007",
+        "generatedAt": "2026-10-13T15:23:46.052Z"
+      },
+      "reasoningWarningNumber": "008",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "MEDIUM",
+        "intensity72120": null
+      }
+    },
+    {
+      "kind": "invest",
+      "id": "96W",
+      "issuedAt": "2026-10-13T21:00:00.000Z",
+      "lat": 10.1,
+      "lon": 161.6,
+      "potential": "HIGH",
+      "geoReference": "240 NM NORTHEAST OF POHNPEI",
+      "windKtLow": 18,
+      "windKtHigh": 23,
+      "pressureMb": 1007,
+      "spot": {
+        "distanceNm": 2434,
+        "bearingDeg": 102
+      }
     }
   ]
 }

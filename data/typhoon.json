@@ -1,66 +1,66 @@
 {
-  "fetchedAt": "2026-10-13T20:32:43.163Z",
+  "fetchedAt": "2026-10-13T21:29:09.564Z",
   "systems": [
     {
       "designation": "Tropical Depression",
       "id": "28W",
       "name": "Twentyeight",
       "headline": "Tropical Depression 28W (Twentyeight)",
-      "warningNumber": "007",
-      "issuedZ": "13/1500Z",
-      "issuedAt": "2026-10-13T15:00:00.000Z",
+      "warningNumber": "008",
+      "issuedZ": "13/2100Z",
+      "issuedAt": "2026-10-13T21:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2826.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2826web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "140000Z",
-          "lat": 20.6,
-          "lon": 143.6,
+          "validZ": "140600Z",
+          "lat": 21.2,
+          "lon": 142.8,
           "maxWindKt": 25,
           "gustKt": 35
         },
         {
           "tau": 24,
-          "validZ": "141200Z",
-          "lat": 21.6,
-          "lon": 141.9,
+          "validZ": "141800Z",
+          "lat": 22.2,
+          "lon": 141.2,
           "maxWindKt": 25,
           "gustKt": 35
         },
         {
           "tau": 36,
-          "validZ": "150000Z",
-          "lat": 22.6,
-          "lon": 140.3,
+          "validZ": "150600Z",
+          "lat": 23,
+          "lon": 139.5,
           "maxWindKt": 20,
           "gustKt": 30
         }
       ],
-      "positionZ": "131200Z",
-      "lat": 19.4,
-      "lon": 145.4,
-      "movingToward": 305,
+      "positionZ": "131800Z",
+      "lat": 20.1,
+      "lon": 144.5,
+      "movingToward": 315,
       "movingKt": 10,
       "maxWindKt": 25,
       "gustKt": 35,
-      "seasFt": 11,
       "nextWarnings": [
-        "132100Z",
         "140300Z",
         "140900Z",
-        "141500Z. REFER TO TROPICAL STORM 27W (KOGUMA) WARNINGS (WTPN33 PGTW) FOR SIX-HOURLY UPDATES"
+        "141500Z",
+        "142100Z. REFER TO TROPICAL STORM 27W (KOGUMA) FINAL WARNING (WTPN33 PGTW)"
       ],
+      "geoReference": "303 NM NORTH-NORTHWEST OF SAIPAN",
       "reasoning": {
-        "warningNumber": "007",
+        "warningNumber": "008",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 11,
         "environment": "UNFAVORABLE",
-        "vws": "0-5 KTS",
+        "vws": "5-10 KTS",
         "sst": "28-29 CELSIUS",
-        "outflow": "WEAK WESTWARD",
-        "steering": "SOUTHWESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED FAR TO THE NORTHEAST.",
+        "outflow": "WEAK EQUATORWARD",
+        "steering": "WESTERN PERIPHERY OF A SUBTROPICAL RIDGE CENTERED TO THE NORTHEAST",
         "confidence": {
           "track0072": "HIGH",
           "track72120": null,
@@ -71,32 +71,32 @@
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2826prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 1364,
-        "bearingDeg": 95,
+        "distanceNm": 1305,
+        "bearingDeg": 93,
         "closestApproach": {
-          "distanceNm": 1050,
+          "distanceNm": 1004,
           "tau": 36,
-          "validZ": "150000Z",
+          "validZ": "150600Z",
           "maxWindKt": 20
         }
       },
       "motion": {
-        "currentHeadingDeg": 305,
+        "currentHeadingDeg": 315,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 306
+            "heading": 305
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 303
+            "heading": 304
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 304
+            "heading": 297
           }
         ],
         "turns": []
@@ -114,11 +114,10 @@
         "generatedAt": "2026-10-13T15:23:46.052Z"
       },
       "changes": {
-        "previousWarningNumber": "006",
-        "previousIssuedAt": "2026-10-13T09:00:00.000Z",
+        "previousWarningNumber": "007",
+        "previousIssuedAt": "2026-10-13T15:00:00.000Z",
         "maxWindKtDelta": 0,
-        "seasFtDelta": 0,
-        "closestApproachNmDelta": -32
+        "closestApproachNmDelta": -46
       }
     },
     {
@@ -215,9 +214,9 @@
           "dirDeg": 83
         },
         "now": {
-          "targetTime": "2026-10-13T20:00:00.000Z",
+          "targetTime": "2026-10-13T21:00:00.000Z",
           "heightM": 1.16,
-          "periodS": 8.15,
+          "periodS": 8.05,
           "dirDeg": 80
         },
         "peak": {
@@ -282,8 +281,8 @@
   "invests": [
     {
       "id": "96W",
-      "potential": null,
-      "geoReference": "270 NM NORTHEAST OF POHNPEI",
+      "potential": "HIGH",
+      "geoReference": "240 NM NORTHEAST OF POHNPEI",
       "windKtLow": 18,
       "windKtHigh": 23,
       "pressureMb": 1007,
@@ -295,8 +294,8 @@
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "13/1900Z",
-    "issuedAt": "2026-10-13T19:00:00.000Z",
+    "issuedZ": "13/2100Z",
+    "issuedAt": "2026-10-13T21:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
     "reissued": true
   }
