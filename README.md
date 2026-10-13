@@ -39,7 +39,8 @@ much information:
     agree, ≤ 0.6 m some spread, more = split, naming the outlier). Note
     GFS-Wave's grid point sits right at the coast and reads low, so it is
     often the outlier.
-  - *Tide* — next two turns and the gauge-vs-prediction offset.
+  - *Tide* — next three turns (so tomorrow morning's is always there) and
+    the gauge-vs-prediction offset.
   - *Observations* — per station, wind in **knots**: light < 8, moderate
     8–16, strong > 16; increasing / easing at a 3 kt change vs ~3 h
     earlier; Donghe adds the offshore/onshore call.
@@ -962,3 +963,23 @@ shipped before any real invest existed to test it:
 
 Neither would have surfaced without a live invest. Worth remembering for
 the paths still untested against real data — multi-storm layout among them.
+
+### Early offshore call (3-day strip)
+
+Each day in the strip says "Likely offshore early", "Probably not" or "Not
+likely", from **CWA's coastal wind for 05:00–08:00** — the background wind
+over the water. Most mornings a light land breeze drains off the Coastal
+Range and blows offshore at dawn; a strong enough background wind overrides
+it. Thresholds: ≤ 10 kt likely, 11–14 kt probably not, ≥ 15 kt not likely;
+a W–NW background wind (offshore anyway) counts as likely up to 20 kt.
+
+Set 2026-10-13 from the Donghe station and the user's own calls for Oct
+4–13: the 6–9 kt mornings were offshore, Sat Oct 10 at 11 kt NE wasn't,
+and the 12–18 kt NE mornings weren't. ECMWF and GFS show 2–5 kt at Donghe
+every dawn, so they can't separate the days. It's calibrated on very few
+days — the Phase 4 surf log is the way to tune it.
+
+The same check showed the offshore/onshore *definition* used elsewhere
+(offshore = wind from 225–345°) is probably too narrow for Donghe: on the
+user's offshore mornings the station read a light N–NNW breeze (≈ 330–15°),
+which that rule calls cross-shore.

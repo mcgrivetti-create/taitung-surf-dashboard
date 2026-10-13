@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-13a";
+  var ASSET_VERSION = "2026-10-13b";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -1683,6 +1683,27 @@
     getData("buoy").then(renderBuoySummary).catch(function () { setSummary("buoys", "Sea state at four buoys, last 24 hours"); });
   }
 
+  /* ---------- Early offshore at Donghe ----------
+     Most mornings a light land breeze drains off the Coastal Range and
+     blows offshore at dawn — unless the background (gradient) wind over the
+     water is strong enough to override it. CWA's coastal forecast for
+     05:00–08:00 is that background wind. Set from the Donghe station and
+     the user's own calls for Oct 4–13: 6–9 kt mornings were offshore,
+     Sat Oct 10 at 11 kt NE wasn't, 12–18 kt NE mornings weren't. ECMWF and
+     GFS show 2–5 kt at Donghe every dawn, so they can't separate the days.
+     Calibrated on few days — Phase 4's surf log is how to tune it. */
+  function earlyOffshore(wind, k) {
+    var dawn = wind.filter(function (p) { var hr = hourOf(p.t); return dayKey(p.t) === k && hr >= 5 && hr <= 8 && p.s !== null; });
+    if (!dawn.length) return null;
+    var s = kt(mean(dawn.map(function (p) { return p.s; })));
+    var d = dawn[0].d;
+    var fromLand = d !== null && angDiff(d, 285) <= 60; // W–NW gradient wind is offshore anyway
+    if (fromLand && s <= 20) return { level: "likely", text: "Likely offshore early" };
+    if (s <= 10) return { level: "likely", text: "Likely offshore early" };
+    if (s <= 14) return { level: "maybe", text: "Probably not offshore early" };
+    return { level: "unlikely", text: "Not likely offshore early" };
+  }
+
   /* ---------- Right now + next 3 days ---------- */
   function renderNowCard(buoy, stations, tide, astro, ow, coastal) {
     var now = Date.now();
@@ -1733,11 +1754,13 @@
       var windTxt = dw.length ? Math.round(kt(mean(dw.map(function (p) { return p.s; })))) + " kt" + (topCall ? ", mostly " + topCall : "") : "wind forecast not out yet";
       var hMin = Math.min.apply(null, hs), hMax = Math.max.apply(null, hs);
       var pMin = ps.length ? Math.min.apply(null, ps) : null, pMax = ps.length ? Math.max.apply(null, ps) : null;
+      var early = earlyOffshore(wind, k);
+      var earlyTxt = early && !(i === 0 && hourOf(now) >= 9) ? '<span class="od-off od-off-' + early.level + '">' + early.text + "</span>" : "";
       var label = i === 0 ? "Today" : i === 1 ? "Tomorrow" : fmtWeekday.format(now + i * 86400000);
       cards.push('<div class="outlook-day"><span class="od-k">' + label + ' <span class="od-date">' + fmtDayShort.format(now + i * 86400000).replace(/^\w+, /, "") + "</span></span>" +
         '<span class="od-h">' + n1(hMin) + (n1(hMax) !== n1(hMin) ? "–" + n1(hMax) : "") + " m</span>" +
         '<span class="od-p">' + (pMin !== null ? Math.round(pMin) + (Math.round(pMax) !== Math.round(pMin) ? "–" + Math.round(pMax) : "") + " s period" : "") + "</span>" +
-        '<span class="od-w">' + windTxt + "</span></div>");
+        '<span class="od-w">' + windTxt + "</span>" + earlyTxt + "</div>");
     }
     var ol = document.getElementById("outlook");
     if (ol) ol.innerHTML = cards.length ? cards.join("") : '<p class="loading">No forecast available</p>';
@@ -1780,8 +1803,13 @@
 
   /* ---------- Tide ---------- */
   function renderTideSummary(tide, live) {
-    var now = Date.now(), ex = tideExtrema(tide).filter(function (e) { return e.t > now; }).slice(0, 2);
-    var bits = ex.map(function (e) { return (e.high ? "High " : "Low ") + "<b>" + fmtHMx.format(e.t) + "</b> (" + Math.round(e.h) + " cm)"; });
+    // The next three turns, so tomorrow morning's tide is always on the bar;
+    // a turn that isn't today carries its day.
+    var now = Date.now(), ex = tideExtrema(tide).filter(function (e) { return e.t > now; }).slice(0, 3);
+    var bits = ex.map(function (e) {
+      var when = dayKey(e.t) === dayKey(now) ? "" : (dayKey(e.t) === dayKey(now + 86400000) ? "tomorrow " : fmtWeekday.format(e.t) + " ");
+      return (e.high ? "High " : "Low ") + when + "<b>" + fmtHMx.format(e.t) + "</b> (" + Math.round(e.h) + " cm)";
+    });
     var off = tideOffset24h(live);
     if (off && Math.abs(off.avg) >= 3) bits.push("sea running " + signedCm(off.avg) + " vs prediction");
     setSummary("tide", bits.length ? bits.join(" · ") : "Donghe tide chart, sun and moon");

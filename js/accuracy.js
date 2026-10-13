@@ -16,7 +16,7 @@
 (function () {
   "use strict";
 
-  var ASSET_VERSION = "2026-10-13a";
+  var ASSET_VERSION = "2026-10-13b";
   var RELOAD_GUARD = "surf-asset-reload";
   (function selfHealStaleAssets() {
     var tried = false;
