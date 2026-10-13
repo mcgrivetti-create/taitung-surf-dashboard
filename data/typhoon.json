@@ -1,56 +1,56 @@
 {
-  "fetchedAt": "2026-10-13T13:28:33.296Z",
+  "fetchedAt": "2026-10-13T14:24:47.305Z",
   "systems": [
     {
       "designation": "Tropical Depression",
       "id": "28W",
       "name": "Twentyeight",
       "headline": "Tropical Depression 28W (Twentyeight)",
-      "warningNumber": "006",
-      "issuedZ": "13/0900Z",
-      "issuedAt": "2026-10-13T09:00:00.000Z",
+      "warningNumber": "007",
+      "issuedZ": "13/1500Z",
+      "issuedAt": "2026-10-13T15:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2826.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2826web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "131800Z",
-          "lat": 20,
-          "lon": 144.5,
+          "validZ": "140000Z",
+          "lat": 20.6,
+          "lon": 143.6,
           "maxWindKt": 25,
           "gustKt": 35
         },
         {
           "tau": 24,
-          "validZ": "140600Z",
-          "lat": 21,
-          "lon": 142.7,
+          "validZ": "141200Z",
+          "lat": 21.6,
+          "lon": 141.9,
           "maxWindKt": 25,
           "gustKt": 35
         },
         {
           "tau": 36,
-          "validZ": "141800Z",
-          "lat": 22,
-          "lon": 140.8,
+          "validZ": "150000Z",
+          "lat": 22.6,
+          "lon": 140.3,
           "maxWindKt": 20,
           "gustKt": 30
         }
       ],
-      "positionZ": "130600Z",
-      "lat": 18.8,
-      "lon": 146.3,
-      "movingToward": 310,
-      "movingKt": 12,
+      "positionZ": "131200Z",
+      "lat": 19.4,
+      "lon": 145.4,
+      "movingToward": 305,
+      "movingKt": 10,
       "maxWindKt": 25,
       "gustKt": 35,
       "seasFt": 11,
       "nextWarnings": [
-        "131500Z",
         "132100Z",
         "140300Z",
-        "140900Z. REFER TO TYPHOON 27W (KOGUMA) WARNINGS (WTPN33 PGTW) FOR SIX-HOURLY UPDATES"
+        "140900Z",
+        "141500Z. REFER TO TROPICAL STORM 27W (KOGUMA) WARNINGS (WTPN33 PGTW) FOR SIX-HOURLY UPDATES"
       ],
       "reasoning": {
         "warningNumber": "006",
@@ -69,19 +69,19 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2826prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 1422,
+        "distanceNm": 1364,
         "bearingDeg": 95,
         "closestApproach": {
-          "distanceNm": 1082,
+          "distanceNm": 1050,
           "tau": 36,
-          "validZ": "141800Z",
+          "validZ": "150000Z",
           "maxWindKt": 20
         }
       },
       "motion": {
-        "currentHeadingDeg": 310,
+        "currentHeadingDeg": 305,
         "legs": [
           {
             "fromTau": 0,
@@ -91,12 +91,12 @@
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 301
+            "heading": 303
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 300
+            "heading": 304
           }
         ],
         "turns": []
@@ -114,76 +114,77 @@
         "generatedAt": "2026-10-13T03:21:52.107Z"
       },
       "changes": {
-        "previousWarningNumber": "005",
-        "previousIssuedAt": "2026-10-13T03:00:00.000Z",
+        "previousWarningNumber": "006",
+        "previousIssuedAt": "2026-10-13T09:00:00.000Z",
         "maxWindKtDelta": 0,
-        "closestApproachNmDelta": -73
+        "seasFtDelta": 0,
+        "closestApproachNmDelta": -32
       }
     },
     {
-      "designation": "Typhoon",
+      "designation": "Tropical Storm",
       "id": "27W",
       "name": "Koguma",
-      "headline": "Typhoon 27W (Koguma)",
-      "warningNumber": "034",
-      "issuedZ": "13/0900Z",
-      "issuedAt": "2026-10-13T09:00:00.000Z",
+      "headline": "Tropical Storm 27W (Koguma)",
+      "warningNumber": "035",
+      "issuedZ": "13/1500Z",
+      "issuedAt": "2026-10-13T15:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2726.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2726web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "131800Z",
-          "lat": 38.2,
-          "lon": 157.4,
-          "maxWindKt": 60,
-          "gustKt": 75
-        },
-        {
-          "tau": 24,
-          "validZ": "140600Z",
-          "lat": 40.6,
-          "lon": 161.2,
-          "maxWindKt": 55,
-          "gustKt": 70
-        },
-        {
-          "tau": 36,
-          "validZ": "141800Z",
-          "lat": 42.3,
-          "lon": 166,
+          "validZ": "140000Z",
+          "lat": 39.4,
+          "lon": 159.1,
           "maxWindKt": 50,
           "gustKt": 65
         },
         {
-          "tau": 48,
-          "validZ": "150600Z",
-          "lat": 43.2,
-          "lon": 171.2,
+          "tau": 24,
+          "validZ": "141200Z",
+          "lat": 41.3,
+          "lon": 163.4,
           "maxWindKt": 45,
           "gustKt": 55
+        },
+        {
+          "tau": 36,
+          "validZ": "150000Z",
+          "lat": 42.4,
+          "lon": 168.6,
+          "maxWindKt": 40,
+          "gustKt": 50
+        },
+        {
+          "tau": 48,
+          "validZ": "151200Z",
+          "lat": 43,
+          "lon": 173.7,
+          "maxWindKt": 35,
+          "gustKt": 45
         }
       ],
-      "positionZ": "130600Z",
-      "lat": 35.4,
-      "lon": 153.7,
+      "intensityChangeNote": "DOWNGRADED FROM TYPHOON 27W",
+      "positionZ": "131200Z",
+      "lat": 36.8,
+      "lon": 155.5,
       "movingToward": 45,
-      "movingKt": 22,
-      "maxWindKt": 70,
-      "gustKt": 85,
-      "pressureMb": 978,
-      "seasFt": 33,
-      "geoReference": "663 NM EAST- SOUTHEAST OF MISAWA, JAPAN",
+      "movingKt": 20,
+      "maxWindKt": 60,
+      "gustKt": 75,
+      "seasFt": 30,
+      "geoReference": "704 NM EAST-SOUTHEAST OF MISAWA, JAPAN",
       "reasoning": {
-        "warningNumber": "034",
+        "warningNumber": "035",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 33,
+        "seasFt": 30,
         "environment": "HIGHLY UNFAVORABLE",
         "vws": "30+ KTS",
         "sst": "24-25 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "NORTHWEST PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED TO THE SOUTHEAST.",
+        "steering": "NORTHWESTERN FLANK OF A DEEP-LAYER SUBTROPICAL RIDGE (STR).",
         "confidence": {
           "track0072": "HIGH",
           "track72120": null,
@@ -194,13 +195,13 @@
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2726prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 1843,
-        "bearingDeg": 59,
+        "distanceNm": 1950,
+        "bearingDeg": 57,
         "closestApproach": {
-          "distanceNm": 2059,
+          "distanceNm": 2156,
           "tau": 12,
-          "validZ": "131800Z",
-          "maxWindKt": 60,
+          "validZ": "140000Z",
+          "maxWindKt": 50,
           "recedingOnly": true
         }
       },
@@ -215,17 +216,17 @@
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 50
+            "heading": 59
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 63
+            "heading": 72
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 75
+            "heading": 79
           }
         ],
         "turns": []
@@ -240,10 +241,10 @@
           "dirDeg": 83
         },
         "now": {
-          "targetTime": "2026-10-13T13:00:00.000Z",
+          "targetTime": "2026-10-13T14:00:00.000Z",
           "heightM": 1.28,
           "periodS": 8,
-          "dirDeg": 82
+          "dirDeg": 81
         },
         "peak": {
           "targetTime": "2026-10-14T15:00:00.000Z",
@@ -261,12 +262,11 @@
         "generatedAt": "2026-10-13T03:21:52.107Z"
       },
       "changes": {
-        "previousWarningNumber": "033",
-        "previousIssuedAt": "2026-10-13T03:00:00.000Z",
-        "maxWindKtDelta": 0,
-        "pressureMbDelta": -1,
-        "seasFtDelta": 0,
-        "closestApproachNmDelta": 125
+        "previousWarningNumber": "034",
+        "previousIssuedAt": "2026-10-13T09:00:00.000Z",
+        "maxWindKtDelta": -10,
+        "seasFtDelta": -3,
+        "closestApproachNmDelta": 97
       }
     }
   ],

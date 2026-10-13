@@ -10331,6 +10331,222 @@
         "intensity0072": "MEDIUM",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "28W",
+      "name": "Twentyeight",
+      "designation": "Tropical Depression",
+      "warningNumber": "007",
+      "issuedAt": "2026-10-13T15:00:00.000Z",
+      "positionZ": "131200Z",
+      "lat": 19.4,
+      "lon": 145.4,
+      "maxWindKt": 25,
+      "gustKt": 35,
+      "seasFt": 11,
+      "movingToward": 305,
+      "movingKt": 10,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "140000Z",
+          "lat": 20.6,
+          "lon": 143.6,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 24,
+          "validZ": "141200Z",
+          "lat": 21.6,
+          "lon": 141.9,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 36,
+          "validZ": "150000Z",
+          "lat": 22.6,
+          "lon": 140.3,
+          "maxWindKt": 20,
+          "gustKt": 30
+        }
+      ],
+      "spot": {
+        "distanceNm": 1364,
+        "bearingDeg": 95,
+        "closestApproach": {
+          "distanceNm": 1050,
+          "tau": 36,
+          "validZ": "150000Z",
+          "maxWindKt": 20
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 305,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 306
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 303
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 304
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "status": "none",
+        "windowEnd": "2026-10-17T15:00:00.000Z",
+        "creditedTo": "Koguma"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts tropical depression (TD) 28W as a fully exposed low level circulation center (LLCC) devoid of any strong convection. TD 28W is forecast to track northwestward for the remainder of the forecast period under the steering influence of the low-level flow associated with the subtropical ridge (STR) centered to the northeast. Regarding intensity, 28W is forecast to maintain intensity for the next 12 to 24 hours before weakening and opening into a trough no later than +36h as continued dry air entrainment and suppressed outflow aloft will prevent further intensification.",
+        "warningNumber": "005",
+        "generatedAt": "2026-10-13T03:21:52.107Z"
+      },
+      "reasoningWarningNumber": "006",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
+    },
+    {
+      "kind": "warning",
+      "id": "27W",
+      "name": "Koguma",
+      "designation": "Tropical Storm",
+      "warningNumber": "035",
+      "issuedAt": "2026-10-13T15:00:00.000Z",
+      "positionZ": "131200Z",
+      "lat": 36.8,
+      "lon": 155.5,
+      "maxWindKt": 60,
+      "gustKt": 75,
+      "seasFt": 30,
+      "movingToward": 45,
+      "movingKt": 20,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "140000Z",
+          "lat": 39.4,
+          "lon": 159.1,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 24,
+          "validZ": "141200Z",
+          "lat": 41.3,
+          "lon": 163.4,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 36,
+          "validZ": "150000Z",
+          "lat": 42.4,
+          "lon": 168.6,
+          "maxWindKt": 40,
+          "gustKt": 50
+        },
+        {
+          "tau": 48,
+          "validZ": "151200Z",
+          "lat": 43,
+          "lon": 173.7,
+          "maxWindKt": 35,
+          "gustKt": 45
+        }
+      ],
+      "spot": {
+        "distanceNm": 1950,
+        "bearingDeg": 57,
+        "closestApproach": {
+          "distanceNm": 2156,
+          "tau": 12,
+          "validZ": "140000Z",
+          "maxWindKt": 50,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 45,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 46
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 59
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 72
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 79
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-17T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-10-11T16:00:00.000Z",
+          "heightM": 1.24,
+          "periodS": 9.55,
+          "dirDeg": 83
+        },
+        "now": {
+          "targetTime": "2026-10-13T14:00:00.000Z",
+          "heightM": 1.28,
+          "periodS": 8,
+          "dirDeg": 81
+        },
+        "peak": {
+          "targetTime": "2026-10-14T15:00:00.000Z",
+          "heightM": 1.8,
+          "periodS": 6.55,
+          "dirDeg": 70
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 27W (koguma) accelerating northeastward with a partially exposed low level circulation center (LLCC) and flaring puffs of central convection that are quickly sheared away. TY 27W is forecast to continue accelerating northeastward under the steering influence of the subtropical ridge (STR) centered to the southeast.",
+        "warningNumber": "033",
+        "generatedAt": "2026-10-13T03:21:52.107Z"
+      },
+      "reasoningWarningNumber": "035",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
     }
   ]
 }
