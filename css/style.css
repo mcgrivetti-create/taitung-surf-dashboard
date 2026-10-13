@@ -745,3 +745,15 @@ main {
 .od-off-unlikely { color: var(--danger); }
 
 .buoy-trend { margin: 0.1rem 0 0.5rem; font-size: 0.88rem; }
+
+/* Surf rating (WaveSlave's rules) — Right now title and the 3-day strip */
+.rating { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.02em; text-transform: none; border-radius: 999px; padding: 0.05rem 0.5rem; border: 1px solid currentColor; justify-self: start; }
+.now-title .rating { margin-left: 0.35rem; vertical-align: 1px; }
+.rating-flat { color: var(--text-dim); }
+.rating-poor { color: var(--danger); }
+.rating-fair { color: var(--warn); }
+.rating-good { color: var(--accent-2); }
+.rating-firing { color: #ff2bd6; background: rgba(255, 43, 214, 0.12); }
+:root[data-theme="light"] .rating-firing { color: #b8128f; }
+@media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) .rating-firing { color: #b8128f; } }
+.od-best { font-size: 0.74rem; font-weight: 600; color: var(--text); margin-top: 0.1rem; }

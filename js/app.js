@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-13d";
+  var ASSET_VERSION = "2026-10-13e";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -1639,16 +1639,16 @@
   /* ---------- data adapters ---------- */
   function openWaveSeries(ow) {
     var h = (ow && ow.hourly) || {};
-    return (h.time || []).map(function (t, i) { return { t: new Date(t + ":00+08:00").getTime(), h: num(h.wave_height[i]), p: num(h.wave_period[i]) }; });
+    return (h.time || []).map(function (t, i) { return { t: new Date(t + ":00+08:00").getTime(), h: num(h.wave_height[i]), p: num(h.wave_period[i]), d: h.wave_direction ? num(h.wave_direction[i]) : null }; });
   }
   function coastalSeries(c) {
     try {
       var loc = c.records.locations[0].location[0], els = {};
       (loc.WeatherElement || []).forEach(function (w) { els[w.ElementName] = w.Time || []; });
       function val(name, field) { var m = {}; (els[name] || []).forEach(function (t) { var v = t.ElementValue; v = Array.isArray(v) ? v[0] : v; m[t.DataTime] = v ? v[field] : null; }); return m; }
-      var hgt = val("浪高", "WaveHeight"), spd = val("風速", "WindSpeed"), wdir = val("風向", "WindDirection");
+      var hgt = val("浪高", "WaveHeight"), spd = val("風速", "WindSpeed"), wdir = val("風向", "WindDirection"), wx = val("天氣現象", "Weather");
       var keys = Object.keys(spd).length ? Object.keys(spd) : Object.keys(hgt);
-      return keys.map(function (k) { return { t: Date.parse(k), h: num(hgt[k]), s: num(spd[k]), d: zhDeg(wdir[k]) }; }).sort(function (a, b) { return a.t - b.t; });
+      return keys.map(function (k) { return { t: Date.parse(k), h: num(hgt[k]), s: num(spd[k]), d: zhDeg(wdir[k]), rain: /雨/.test(wx[k] || "") }; }).sort(function (a, b) { return a.t - b.t; });
     } catch (e) { return []; }
   }
   function tideExtrema(td) {
@@ -1706,6 +1706,64 @@
     return { level: "unlikely", text: "Not likely offshore early" };
   }
 
+  /* ---------- Surf rating (WaveSlave's rules, user's choice 2026-10-13) ----------
+     Each hour scores 0–8: height (exposure-adjusted) 0–3, period 0–3, wind
+     −2…+2. Period is scored ×1.3 like WaveSlave so the ratings match theirs;
+     the periods shown on the page stay raw. Wind kinds use WaveSlave's own
+     split (offshore within 55° of 280°, cross within 115°) rather than the
+     site's 285±60 call, again so the ratings match. Firing needs a 10 kt+
+     offshore wind; without it the top is Good. */
+  var RATE_P = 1.3, RATE_OFF = 280;
+  var RATINGS = [["Flat", "flat"], ["Poor", "poor"], ["Fair", "fair"], ["Good", "good"], ["Firing", "firing"]];
+  function rateWindKind(from) { var d = angDiff(from, RATE_OFF); return d <= 55 ? "off" : d <= 115 ? "cross" : "on"; }
+  // How much of the swell reaches the beach, which faces away from its offshore direction.
+  function rateExposure(dir) { if (dir === null || dir === undefined) return 1; var d = angDiff(dir, RATE_OFF + 180); return d <= 45 ? 1 : d <= 90 ? 0.5 : 0.2; }
+  // h, p raw (m, s); w = { kt, from, rain } or null.
+  function surfScore(h, p, w) {
+    var s = h < 0.4 ? 0 : h < 0.8 ? 1 : h < 1.2 ? 2 : h <= 2.5 ? 3 : h <= 3.5 ? 2 : 1;
+    var pp = p === null ? 0 : p * RATE_P;
+    s += pp < 6 ? 0 : pp < 8 ? 1 : pp < 10 ? 2 : 3;
+    var hardOff = false;
+    if (w && w.from !== null && w.from !== undefined) {
+      var k = rateWindKind(w.from), v = w.rain ? w.kt / 2 : w.kt; // rain usually knocks the wind down
+      if (v < 5) s += 2; else if (k === "off") s += v < 20 ? 2 : 1; else if (k === "cross") s += v < 10 ? 0 : -1; else s += v < 10 ? -1 : -2;
+      hardOff = k === "off" && v >= 10;
+    }
+    s = Math.max(0, Math.min(8, s));
+    return s >= 7 && !hardOff ? 6 : s;
+  }
+  function rateOf(score) { return score <= 1 ? 0 : score <= 3 ? 1 : score <= 5 ? 2 : score <= 6 ? 3 : 4; }
+  function ratingHtml(score) { var r = RATINGS[rateOf(score)]; return '<span class="rating rating-' + r[1] + '">' + r[0] + "</span>"; }
+  // Hourly scores for a day: Open-Meteo waves with the nearest CWA coastal wind (within 3 h).
+  function dayScores(waves, wind, k, light) {
+    return waves.filter(function (p) { return dayKey(p.t) === k && p.h !== null; }).map(function (p) {
+      var near = null, bd = Infinity;
+      wind.forEach(function (w) { var d = Math.abs(w.t - p.t); if (w.s !== null && d < bd) { bd = d; near = w; } });
+      var w = near && bd <= 3 * 3600000 ? { kt: kt(near.s), from: near.d, rain: near.rain } : null;
+      var hm = fmtHMx.format(p.t);
+      return { t: p.t, h: p.h, p: p.p, w: w, day: !light || (hm >= light[0] && hm <= light[1]), s: surfScore(p.h * rateExposure(p.d), p.p, w) };
+    });
+  }
+  // Best window: the best-scoring daylight hour still ahead (or the day's best,
+  // once it has passed), grown over back-to-back hours scoring as well.
+  function bestWindow(hours, now) {
+    var pool = hours.filter(function (x) { return x.day && x.w; });
+    if (!pool.length) pool = hours;
+    if (!pool.length) return null;
+    var ahead = pool.filter(function (x) { return x.t >= now - now % 3600000; }), cand = ahead.length ? ahead : pool;
+    var top = cand.reduce(function (a, b) { return b.s > a.s ? b : a; }, cand[0]);
+    var lo = cand.indexOf(top), hi = lo;
+    while (lo > 0 && cand[lo - 1].s >= top.s && cand[lo].t - cand[lo - 1].t <= 3600000) lo--;
+    while (hi < cand.length - 1 && cand[hi + 1].s >= top.s && cand[hi + 1].t - cand[hi].t <= 3600000) hi++;
+    return { a: cand[lo].t, b: cand[hi].t, top: top, past: !ahead.length, peak: Math.max.apply(null, pool.map(function (x) { return x.s; })) };
+  }
+  function bestWindowText(bw) {
+    var x = bw.top, w = x.w;
+    var span = bw.a < bw.b ? fmtHMx.format(bw.a) + "–" + fmtHMx.format(bw.b + 3600000) : "around " + fmtHMx.format(x.t);
+    var windTxt = w ? ", " + Math.round(w.kt) + " kt" + (w.kt < 5 ? "" : " " + { off: "offshore", cross: "cross-shore", on: "onshore" }[rateWindKind(w.from)]) : "";
+    return (bw.past ? "Best was " : "Best window ") + span + ": " + n1(x.h) + " m at " + (x.p !== null ? Math.round(x.p) + " s" : "—") + windTxt;
+  }
+
   /* ---------- Right now + next 3 days ---------- */
   function renderNowCard(buoy, stations, tide, astro, ow, coastal) {
     var now = Date.now();
@@ -1725,6 +1783,12 @@
       var ms = num(w.WindSpeed), dir = num(w.WindDirection), call = windCallDonghe(ms, dir);
       cell("nowWind", "<b>" + Math.round(kt(ms)) + " kt</b>" + '<span class="now-s">' + (dir !== null ? "from " + degToCompass(dir) : "") +
         (call ? ' · <span class="call call-' + call.split(" ")[0] + '">' + call + "</span>" : "") + " · " + fmtHMx.format(new Date(w.DateTime)) + "</span>");
+    }
+    // Rating now: the Chenggong buoy and the Donghe station wind, as WaveSlave does.
+    var nr = document.getElementById("nowRating");
+    if (nr && last) {
+      var nw = w ? { kt: kt(num(w.WindSpeed)), from: num(w.WindDirection) } : null;
+      nr.innerHTML = ratingHtml(surfScore(num(last.WaveHeight) * rateExposure(num(last.WaveDirection)), num(last.WavePeriod), nw));
     }
     // Tide: the Donghe prediction now, and the next turning point.
     var ex = tideExtrema(tide), at = tideAt(ex, now), next = ex.filter(function (e) { return e.t > now; })[0];
@@ -1757,12 +1821,16 @@
       var hMin = Math.min.apply(null, hs), hMax = Math.max.apply(null, hs);
       var pMin = ps.length ? Math.min.apply(null, ps) : null, pMax = ps.length ? Math.max.apply(null, ps) : null;
       var early = earlyOffshore(wind, k);
+      var ad = days[k], scores = dayScores(waves, wind, k, ad && ad.civilTwilightBegin && ad.civilTwilightEnd ? [ad.civilTwilightBegin, ad.civilTwilightEnd] : ["06:00", "18:00"]);
+      var bw = bestWindow(scores, now);
+      var bwTxt = bw ? '<span class="od-best" title="' + escapeHtml(bestWindowText(bw)) + '">' + (bw.past ? "Best was " : "Best window ") + (bw.a < bw.b ? fmtHMx.format(bw.a) + "–" + fmtHMx.format(bw.b + 3600000) : "~" + fmtHMx.format(bw.top.t)) + "</span>" : "";
       var earlyTxt = early && !(i === 0 && hourOf(now) >= 9) ? '<span class="od-off od-off-' + early.level + '">' + early.text + "</span>" : "";
       var label = i === 0 ? "Today" : i === 1 ? "Tomorrow" : fmtWeekday.format(now + i * 86400000);
       cards.push('<div class="outlook-day"><span class="od-k">' + label + ' <span class="od-date">' + fmtDayShort.format(now + i * 86400000).replace(/^\w+, /, "") + "</span></span>" +
+        (bw ? ratingHtml(bw.peak) : "") +
         '<span class="od-h">' + n1(hMin) + (n1(hMax) !== n1(hMin) ? "–" + n1(hMax) : "") + " m</span>" +
         '<span class="od-p">' + (pMin !== null ? Math.round(pMin) + (Math.round(pMax) !== Math.round(pMin) ? "–" + Math.round(pMax) : "") + " s period" : "") + "</span>" +
-        '<span class="od-w">' + windTxt + "</span>" + earlyTxt + "</div>");
+        '<span class="od-w">' + windTxt + "</span>" + earlyTxt + bwTxt + "</div>");
     }
     var ol = document.getElementById("outlook");
     if (ol) ol.innerHTML = cards.length ? cards.join("") : '<p class="loading">No forecast available</p>';

@@ -964,6 +964,28 @@ shipped before any real invest existed to test it:
 Neither would have surfaced without a live invest. Worth remembering for
 the paths still untested against real data — multi-storm layout among them.
 
+### Surf rating and Best window (Right now card, 3-day strip)
+
+Added 2026-10-13: WaveSlave's (waveslave.tw) rating rules, used as-is so the
+two sites agree. Each hour scores 0–8 — see `surfScore()` in `js/app.js`:
+
+- Height (m, times swell exposure): <0.4 → 0, <0.8 → 1, <1.2 → 2,
+  ≤2.5 → 3, ≤3.5 → 2, else 1. Exposure: full height when the waves come
+  from within 45° of 100° (where the beach faces), half within 90°, else 20%.
+- Period, scored ×1.3 like WaveSlave (the page still shows raw periods):
+  <6 s → 0, <8 → 1, <10 → 2, else 3.
+- Wind (CWA coastal forecast; rain hours count at half speed): <5 kt +2;
+  offshore (within 55° of 280°) +2, or +1 at 20 kt+; cross-shore (within
+  115°) 0, or −1 at 10 kt+; onshore −1, or −2 at 10 kt+.
+- 0–1 Flat, 2–3 Poor, 4–5 Fair, 6 Good, 7–8 Firing. Firing needs a 10 kt+
+  offshore wind; otherwise the top is Good.
+
+Right now rates the Chenggong buoy with the Donghe station wind. Each day in
+the strip shows the rating of its best daylight hour (first to last civil
+light) and its **Best window**: the best-scoring daylight hour still ahead,
+grown over neighbouring hours that score as well ("Best was …" once the
+day's daylight has passed).
+
 ### Early offshore call (3-day strip)
 
 Each day in the strip says "Likely offshore early", "Probably not" or "Not
