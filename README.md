@@ -48,8 +48,8 @@ much information:
     first three vs the last three readings. Height building / dropping at
     **0.3 m** (0.15 m flagged about half of all windows on these buoys —
     too twitchy), period rising / dropping at 1 s, else holding. The bar
-    shows Chenggong and Taitung; the open section lists all four with the
-    12 h peak.
+    shows Chenggong and Taitung; each buoy card opens with its own trend
+    line (12 h averages and peak).
 
 The detail of each section is below.
 

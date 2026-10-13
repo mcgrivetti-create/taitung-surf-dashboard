@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-13b";
+  var ASSET_VERSION = "2026-10-13c";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -819,6 +819,8 @@
 
         html += '<div class="buoy-card">';
         html += "<h3>" + st.Label + " <span class=\"en\">(" + st.StationID + ")</span></h3>";
+        var tr = buoyTrend(st);
+        if (tr) html += '<p class="buoy-trend">' + buoyTrendText(tr) + "</p>";
         html += '<div class="buoy-chart-label">Wave Height — last 24h</div>' + (heightSVG || '<p class="loading">No data</p>');
         html += '<div class="buoy-chart-label">Wave Period — last 24h</div>' + (periodSVG || '<p class="loading">No data</p>');
         html += '<div class="buoy-stats">';
@@ -1860,13 +1862,14 @@
   function renderBuoySummary(buoy) {
     var trends = ((buoy.records && buoy.records.Stations) || []).map(buoyTrend).filter(Boolean);
     function short(t) { return "<b>" + escapeHtml(t.name) + "</b> " + n1(t.latest.h) + " m, " + t.size + (t.latest.p !== null ? " · " + n1(t.latest.p) + " s" + (t.period ? ", " + t.period : "") : ""); }
-    // The bar shows the two buoys nearest Donghe; the open section lists all four.
+    // The bar shows the two buoys nearest Donghe; each card carries its own trend line.
     var near = trends.filter(function (t) { return t.name === "Chenggong" || t.name === "Taitung"; });
     setSummary("buoys", near.length ? near.map(short).join("; ") : trends.length ? trends.map(short).join("; ") : "Sea state at four buoys, last 24 hours");
-    var list = document.getElementById("buoyTrends");
-    if (list) list.innerHTML = trends.map(function (t) {
-      return "<li>" + short(t) + ' <span class="sec-list-sub">(' + n1(t.h0) + " → " + n1(t.h1) + " m on average · peak " + n1(t.peak.h) + " m at " + fmtHMx.format(t.peak.t) + ")</span></li>";
-    }).join("");
+  }
+  // One-line trend at the top of each buoy's card.
+  function buoyTrendText(t) {
+    return "Size <b>" + t.size + "</b>" + (t.period ? " · period <b>" + t.period + "</b>" : "") +
+      ' <span class="sec-list-sub">(' + n1(t.h0) + " → " + n1(t.h1) + " m on average over 12 h · peak " + n1(t.peak.h) + " m at " + fmtHMx.format(t.peak.t) + ")</span>";
   }
 
   loadAll();
