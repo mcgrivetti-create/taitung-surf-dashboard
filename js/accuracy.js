@@ -33,7 +33,7 @@
   /* ---------- theme (same key and default as the dashboard) ---------- */
   var root = document.documentElement, themeBtn = document.getElementById("themeToggle");
   function applyTheme(t) { root.setAttribute("data-theme", t === "light" ? "light" : "dark"); themeBtn.textContent = t === "light" ? "☀️" : "🌙"; }
-  var theme = "dark"; try { theme = localStorage.getItem("surf-theme") || "dark"; } catch (e) {}
+  var theme = "light"; try { theme = localStorage.getItem("surf-theme") || "light"; } catch (e) {}
   applyTheme(theme);
   themeBtn.addEventListener("click", function () {
     var next = root.getAttribute("data-theme") === "light" ? "dark" : "light";

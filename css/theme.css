@@ -1,0 +1,167 @@
+/* Mountain Mist theme (chosen 2026-10-14; the mock-up is
+   design/theme-mockups/project/Mist.dc.html). Loaded after style.css (and
+   accuracy.css on accuracy.html) and only restyles: tokens, fonts, cards,
+   the mist hero and the section bars. Remove this file and its <link> to get
+   the previous look back. Light ("mist") is the default; dark is "night mist".
+   The surf map keeps its own neon look (css/map.css). */
+
+:root, [data-theme="light"] {
+  --bg: #eef0ea;
+  --bg-elevated: #f6f6f0;
+  --bg-card: #f8f7f1;
+  --text: #22302a;
+  --text-dim: #4b5d54;
+  --border: #cfd8d0;
+  --accent: #2f6b4f;
+  --accent-2: #2f7a52;
+  --danger: #a8452f;
+  --warn: #8a6a1f;
+  --radius: 6px;
+  --shadow: 0 1px 2px rgba(34, 48, 42, 0.06);
+  --rule: #b9c6bc;
+  --seal: #c8553d;
+  --bamboo: #7a9a4a;
+  --bamboo-node: #4f6d2c;
+  --ink: #24332c;
+  --ink-text: #eef0ea;
+  --ink-title: #e3b7a5;
+  --mist-sky: #dfe6e0;
+  --mist-far: #b7c6bd;
+  --mist-mid: #7f998b;
+  --mist-near: #4a6658;
+  --mist-veil: #eef0ea;
+  --font-display: "Shippori Mincho B1", "Noto Serif TC", Georgia, serif;
+  --font-body: "Zen Kaku Gothic New", "Noto Sans TC", -apple-system, "Segoe UI", sans-serif;
+  /* Forecast Check */
+  --fc-ink-3: #5b6e64;
+  --fc-band: #e3e9e2;
+}
+[data-theme="dark"] {
+  --bg: #121a17;
+  --bg-elevated: #17211d;
+  --bg-card: #1c2823;
+  --text: #e6ebe5;
+  --text-dim: #a4b2aa;
+  --border: #33443c;
+  --accent: #8cc5a6;
+  --accent-2: #8fd3a8;
+  --danger: #e9907a;
+  --warn: #e0c07a;
+  --shadow: none;
+  --rule: #3d5047;
+  --seal: #e07a5f;
+  --bamboo: #8fae5a;
+  --bamboo-node: #5d7d34;
+  --ink: #0d1311;
+  --ink-text: #e6ebe5;
+  --ink-title: #e9b9a5;
+  --mist-sky: #1a2621;
+  --mist-far: #2c3d36;
+  --mist-mid: #3c5248;
+  --mist-near: #52695d;
+  --mist-veil: #121a17;
+  --fc-ink-3: #93a49b;
+  --fc-band: #1f2d27;
+}
+
+html, body { font-family: var(--font-body); }
+.panel h2, .subpanel h3, .sec-title, .header-inner h1, .buoy-card h3, .typhoon-card h3, .tide-day-heading, .fc-tabs button { font-family: var(--font-display); font-weight: 800; }
+
+/* Header: quiet paper bar; the title in mincho */
+.site-header { background: var(--bg-elevated); border-bottom: 1px solid var(--border); }
+.header-inner h1 { letter-spacing: 0.01em; }
+.theme-toggle { background: var(--bg-card); }
+.quick-links a { background: var(--bg-card); border-color: var(--rule); border-radius: 999px; }
+.quick-links a:hover, .quick-links a:focus-visible { border-color: var(--accent); color: var(--accent); }
+.quick-links .ql-map { background: var(--accent); color: var(--bg-card); border-color: var(--accent); }
+.quick-links .ql-map:hover, .quick-links .ql-map:focus-visible { background: var(--text); border-color: var(--text); color: var(--bg); }
+
+/* Mist hero: layered peaks, a red sun, bamboo on the left (decoration) */
+.mist-hero { position: relative; margin: 0 calc(-1 * clamp(1rem, 4vw, 2rem)); height: clamp(150px, 34vw, 230px); overflow: hidden; background: var(--mist-sky); }
+.mist-hero svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.mist-hero .sun { fill: var(--seal); opacity: 0.85; }
+.mist-hero .far { fill: var(--mist-far); }
+.mist-hero .mid { fill: var(--mist-mid); }
+.mist-hero .near { fill: var(--mist-near); }
+.mist-hero .veil { fill: var(--mist-veil); opacity: 0.82; }
+.mist-hero .stalk { stroke: var(--bamboo); }
+.mist-hero .node { stroke: var(--bamboo-node); }
+.mist-hero .leaf { fill: var(--bamboo); }
+.mist-title { position: absolute; left: clamp(4.2rem, 16vw, 7rem); top: clamp(0.9rem, 5vw, 1.8rem); display: grid; gap: 0.2rem; }
+.mist-title b { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.7rem, 8vw, 2.6rem); line-height: 1.05; color: var(--text); }
+.mist-title span { font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--text-dim); }
+
+/* Right now: one paper card with a bamboo stalk down its left edge */
+.now-card { position: relative; margin-top: 1rem; padding: 1rem 1rem 1rem 1.7rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); }
+.now-card::before { content: ""; position: absolute; left: 0.55rem; top: 0.8rem; bottom: 0.8rem; width: 6px; border-radius: 3px; background:
+  repeating-linear-gradient(to bottom, var(--bamboo) 0 66px, var(--bamboo-node) 66px 69px); }
+.now-card .now-title { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; text-transform: none; letter-spacing: 0; color: var(--text); }
+.now-card .now-title-sub { margin-top: 1.4rem; }
+.now-grid { gap: 0.2rem 1rem; }
+.now-cell { background: transparent; border: 0; border-bottom: 1px dashed var(--rule); border-radius: 0; padding: 0.45rem 0 0.6rem; }
+.now-k { letter-spacing: 0.12em; }
+/* Numbers stay in the sans: the mincho's figures are uneven ("1.5" had a giant 5). */
+.now-v b { font-family: var(--font-body); font-weight: 700; font-size: 1.7rem; font-variant-numeric: lining-nums tabular-nums; letter-spacing: -0.01em; }
+.now-v b .per { font-weight: 500; }
+.outlook-day { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.6rem 0.7rem; }
+.od-k { font-family: var(--font-display); font-weight: 800; font-size: 0.95rem; white-space: nowrap; } /* day names never wrap */
+.od-h { font-family: var(--font-body); font-weight: 700; font-variant-numeric: lining-nums tabular-nums; }
+.od-h .per { font-weight: 500; }
+.od-best { color: var(--accent); font-weight: 700; }
+/* One row per day (as in the mock-up): day, date and rating on the left, the
+   details on the right, so nothing is squeezed into three narrow columns. */
+.outlook { grid-template-columns: 1fr; gap: 0.6rem; }
+.outlook-day { grid-template-columns: 6.6rem minmax(0, 1fr); column-gap: 0.9rem; row-gap: 0.15rem; align-items: start; }
+.outlook-day > * { grid-column: 2; }
+.outlook-day > .od-k { grid-column: 1; grid-row: 1; }
+.outlook-day > .rating { grid-column: 1; grid-row: 2; align-self: start; justify-self: start; }
+.od-k .od-date { display: block; font-family: var(--font-body); font-weight: 400; font-size: 0.78rem; }
+.od-h { grid-row: 1; font-size: 1.25rem; }
+@media (max-width: 560px) { .now-v b { font-size: 1.4rem; } .now-card { padding-right: 0.8rem; } }
+
+/* Ratings: Good is a jade seal, top rating vermilion, the rest outlined */
+.rating { border-radius: 2px; font-family: var(--font-display); font-weight: 800; letter-spacing: 0.02em; padding: 0.08rem 0.5rem; }
+.rating-good { background: var(--accent); border-color: var(--accent); color: var(--bg-card); }
+.rating-fair { color: var(--warn); border-color: currentColor; }
+.rating-poor { color: var(--danger); }
+.rating-flat { color: var(--text-dim); }
+.rating-firing, :root[data-theme="light"] .rating-firing { background: var(--seal); border-color: var(--seal); color: #fff8f0; border-radius: 2px; }
+.now-card .now-title .rating { font-size: 0.8rem; vertical-align: 3px; }
+
+/* Section bars: a short bamboo segment, mincho title, dashed rules */
+.panel { border-bottom: 1px solid var(--border); }
+.sec-head { grid-template-columns: auto auto 1fr auto; }
+.sec-head::before { content: ""; width: 6px; height: 1.6rem; border-radius: 3px; align-self: center; background:
+  linear-gradient(to bottom, var(--bamboo) 0 44%, var(--bamboo-node) 44% 54%, var(--bamboo) 54%); }
+.sec-title { font-size: 1.12rem; }
+.sec-chev { border-color: var(--rule); color: var(--accent); border-radius: 999px; }
+@media (max-width: 560px) {
+  .sec-head { grid-template-columns: auto 1fr auto; }
+  .sec-head::before { grid-row: 1; grid-column: 1; }
+  .sec-title { grid-row: 1; grid-column: 2; }
+  .sec-sum { grid-column: 2 / -1; grid-row: 2; }
+  .sec-chev { grid-column: 3; grid-row: 1; }
+}
+
+/* Typhoon: an ink panel */
+.typhoon-panel.sec { background: var(--ink); color: var(--ink-text); border-radius: var(--radius); padding: 0 1rem; margin: 1rem 0; border: 0; }
+.typhoon-panel .sec-title { color: var(--ink-title); }
+.typhoon-panel .sec-sum { color: var(--ink-text); opacity: 0.85; }
+.typhoon-panel .sec-sum b { color: var(--ink-text); }
+.typhoon-panel .sec-chev { color: var(--ink-title); border-color: rgba(255, 255, 255, 0.25); }
+.typhoon-panel .sec-head::before { background: var(--ink-title); }
+
+/* Cards and tables inside sections */
+.subpanel h3 { font-size: 1.05rem; }
+.data-block, .buoy-card, .widget-card, .fc-card, .moon-widget, .tide-window { border-radius: var(--radius); }
+.buoy-card, .widget-card { background: var(--bg-card); border-color: var(--border); }
+.data-block th { color: var(--text-dim); letter-spacing: 0.04em; }
+.data-block td, .buoy-history-table td { border-bottom-style: dashed; }
+.buoy-trend b { color: var(--accent); }
+.call-offshore { color: var(--accent-2); }
+.source-note { color: var(--text-dim); }
+
+/* Forecast Check page */
+.fc-syn { border-left-color: var(--bamboo); }
+.fc-tabs button { font-size: 1.05rem; }
+.fc-subtabs button[aria-selected="true"], .fc-seg button[aria-pressed="true"] { color: var(--bg-card); }

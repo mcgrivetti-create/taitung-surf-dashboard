@@ -966,6 +966,17 @@ shipped before any real invest existed to test it:
 Neither would have surfaced without a live invest. Worth remembering for
 the paths still untested against real data — multi-storm layout among them.
 
+### Look: Mountain Mist (launched 2026-10-14)
+
+`css/theme.css` is layered over `style.css` (and `accuracy.css`) on both
+pages: Shippori Mincho B1 headings, Zen Kaku Gothic New body and numbers
+(the mincho's figures are uneven), misty-peaks hero with bamboo and a red sun
+(`.mist-hero` in index.html), bamboo accents on the Right now card and the
+section bars, one row per day in the 3-day strip, and an ink typhoon panel.
+Light is the default; the toggle gives "night mist". The surf map keeps its
+neon look. Remove the `theme.css` link (and the hero) to get the old look
+back; the other six directions are saved in `design/theme-mockups/`.
+
 ### Surf map (Map button in the header)
 
 Launched 2026-10-13 (`js/map.js`, `css/map.css`). Tapping **Map** loads its

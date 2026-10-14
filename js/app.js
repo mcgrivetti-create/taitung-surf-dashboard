@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-14c";
+  var ASSET_VERSION = "2026-10-14d";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -43,7 +43,7 @@
     window.addEventListener("resize", set);
   })();
 
-  /* ---------- Theme toggle (default dark) ---------- */
+  /* ---------- Theme toggle (default light: Mountain Mist, 2026-10-14) ---------- */
   var root = document.documentElement;
   var toggleBtn = document.getElementById("themeToggle");
 
@@ -57,9 +57,9 @@
     }
   }
 
-  var savedTheme = "dark";
+  var savedTheme = "light";
   try {
-    savedTheme = localStorage.getItem("surf-theme") || "dark";
+    savedTheme = localStorage.getItem("surf-theme") || "light";
   } catch (e) { /* localStorage unavailable — default dark */ }
   applyTheme(savedTheme);
 

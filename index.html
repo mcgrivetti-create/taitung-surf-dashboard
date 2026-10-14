@@ -18,8 +18,13 @@
 <meta http-equiv="Pragma" content="no-cache">
 <!-- ?v= is a cache-buster for the assets themselves. Bump it, ASSET_VERSION
      in js/app.js, and version.json together on any css/js change. -->
-<link rel="stylesheet" href="css/style.css?v=2026-10-14c">
-<link rel="stylesheet" href="css/map.css?v=2026-10-14c">
+<link rel="stylesheet" href="css/style.css?v=2026-10-14d">
+<link rel="stylesheet" href="css/map.css?v=2026-10-14d">
+<!-- Mountain Mist theme (2026-10-14): fonts + css/theme.css, layered over style.css. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="css/theme.css?v=2026-10-14d">
 </head>
 <body>
 <!-- Compact sticky header: title on one line with the data age under it,
@@ -46,6 +51,25 @@
 </header>
 
 <main>
+
+  <!-- Mountain Mist hero: misty peaks, red sun, bamboo (decoration; the
+       real title is the h1 in the header). Colours come from css/theme.css. -->
+  <div class="mist-hero" aria-hidden="true">
+    <svg viewBox="0 0 390 230" preserveAspectRatio="xMidYMax slice">
+      <circle class="sun" cx="300" cy="62" r="26"/>
+      <path class="far" d="M0 140 L40 104 L70 120 L120 70 L165 112 L200 92 L250 128 L300 84 L350 118 L390 100 L390 230 L0 230 Z"/>
+      <path class="veil" d="M0 132 C60 124 120 138 190 130 C250 124 320 136 390 128 L390 146 C320 152 250 140 190 148 C120 156 60 142 0 150 Z"/>
+      <path class="mid" d="M0 176 L50 140 L95 160 L150 118 L205 162 L250 140 L300 170 L345 146 L390 162 L390 230 L0 230 Z"/>
+      <path class="veil" d="M0 172 C80 164 160 180 240 170 C300 164 350 172 390 168 L390 186 C330 192 270 182 200 190 C130 198 60 184 0 192 Z"/>
+      <path class="near" d="M0 214 L60 186 L120 204 L180 176 L250 210 L320 190 L390 206 L390 230 L0 230 Z"/>
+      <path class="stalk" d="M22 230 V20" stroke-width="7" stroke-linecap="round"/>
+      <path class="node" d="M16 60 H28 M16 110 H28 M16 160 H28 M16 205 H28" stroke-width="2"/>
+      <path class="stalk" d="M40 230 V60" stroke-width="5" stroke-linecap="round"/>
+      <path class="node" d="M36 96 H44 M36 140 H44 M36 186 H44" stroke-width="2"/>
+      <path class="leaf" d="M22 60 q24 -10 44 -2 q-22 6 -44 2 z M22 110 q26 -4 46 8 q-26 0 -46 -8 z M40 96 q20 -12 38 -8 q-18 8 -38 8 z M22 60 q-14 -16 -10 -34 q6 18 10 34 z"/>
+    </svg>
+    <div class="mist-title"><b>Formoswell</b><span>Donghe · Taitung east coast</span></div>
+  </div>
 
   <!-- Shown only when the hourly fetch has stopped working. Without this the
        page renders old data indistinguishably from fresh data — see
@@ -331,7 +355,7 @@
   <p>Data sources: CWA (Central Weather Administration) Open Data, Open-Meteo (Météo-France MFWAM, ECMWF, GFS), Windguru, surf-forecast.com, Windy, YouTube. For reference only — assess your own conditions before entering the water.</p>
 </footer>
 
-<script src="js/app.js?v=2026-10-14c"></script>
-<script src="js/map.js?v=2026-10-14c"></script>
+<script src="js/app.js?v=2026-10-14d"></script>
+<script src="js/map.js?v=2026-10-14d"></script>
 </body>
 </html>
