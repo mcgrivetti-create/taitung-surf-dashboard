@@ -1,4 +1,6 @@
-# Taitung Surf Dashboard
+# Formoswell — Taitung surf forecast (Donghe)
+
+The site was renamed **Formoswell** on 2026-10-14 (Formosa + swell). Its icon is the vermilion "seal" wave: `favicon.svg`, `favicon-32.png` and `apple-touch-icon.png` (180 px, the iPhone home-screen icon; label set by `apple-mobile-web-app-title`). Sources and other options are in `design/logo/`.
 
 A free, mobile-first surf/weather dashboard for the Taitung east coast
 (Donghe / Jinzun / Chenggong), hosted on GitHub Pages with a scheduled

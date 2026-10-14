@@ -765,3 +765,6 @@ main {
 @media (max-width: 560px) { .quick-links .ql-map { padding: 0.18rem 0.55rem; } }
 .quick-links .ql-map:hover, .quick-links .ql-map:focus-visible { background: var(--accent); color: var(--bg); }
 .quick-links .ql-map[aria-busy="true"] { opacity: 0.7; cursor: progress; }
+
+/* Formoswell brand mark (the home-screen icon) beside the header title */
+.brand-mark { width: 1.35em; height: 1.35em; border-radius: 0.3em; vertical-align: -0.3em; margin-right: 0.4rem; }
