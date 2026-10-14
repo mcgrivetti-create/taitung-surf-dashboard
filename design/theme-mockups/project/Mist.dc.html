@@ -57,7 +57,7 @@ a{color:#2f5d4c}a:hover{color:#1d3d31}
       <sc-for list="{{now}}" as="c" hint-placeholder-count="4">
         <div style="display: flex; flex-direction: column; gap: 2px; border-bottom: 1px dashed #b9c6bc; padding-bottom: 8px;">
           <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #5b6e64;">{{c.k}}</span>
-          <span style="font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 26px; line-height: 1.1;">{{c.v}} <span style="font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 500; font-size: 13px; color: #3c5a4c;">{{c.u}}</span></span>
+          <span style="font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.1; font-variant-numeric: lining-nums tabular-nums; letter-spacing: -0.01em;">{{c.v}} <span style="font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 500; font-size: 13px; color: #3c5a4c;">{{c.u}}</span></span>
           <span style="font-size: 12px; color: #4b5d54; line-height: 1.4;">{{c.s}}</span>
         </div>
       </sc-for>
@@ -70,14 +70,14 @@ a{color:#2f5d4c}a:hover{color:#1d3d31}
   </div>
   <div style="margin: 0 14px; display: flex; flex-direction: column; gap: 10px;">
     <sc-for list="{{days}}" as="d" hint-placeholder-count="3">
-      <article style="background: #f8f7f1; border: 1px solid #cfd8d0; border-radius: 6px; padding: 13px 14px; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px;">
+      <article style="background: #f8f7f1; border: 1px solid #cfd8d0; border-radius: 6px; padding: 13px 14px; display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 12px;">
         <span style="display: flex; flex-direction: column; gap: 4px; border-right: 1px solid #dfe5df; padding-right: 8px;">
-          <span style="font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 17px; overflow-wrap: anywhere;">{{d.label}}</span>
+          <span style="font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 16px; white-space: nowrap;">{{d.label}}</span>
           <span style="font-size: 12px; color: #5b6e64;">{{d.date}}</span>
           <span style="font-size: 12px; font-weight: 700; color: #8a6a1f; border: 1px solid #c9a95a; padding: 1px 6px; border-radius: 2px; align-self: flex-start;">Fair</span>
         </span>
         <span style="display: flex; flex-direction: column; gap: 3px;">
-          <span style="font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 22px;">{{d.h}} <span style="font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 500; font-size: 14px; color: #3c5a4c;">@ {{d.p}}</span></span>
+          <span style="font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700; font-size: 22px; font-variant-numeric: lining-nums tabular-nums; white-space: nowrap;">{{d.h}} <span style="font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 500; font-size: 14px; color: #3c5a4c;">@ {{d.p}}</span></span>
           <span style="font-size: 13px; color: #4b5d54;">{{d.wind}}</span>
           <span style="font-size: 13px; color: #a8452f;">{{d.early}}</span>
           <span style="font-size: 13px; font-weight: 700; color: #2f6b4f;">{{d.best}}</span>
