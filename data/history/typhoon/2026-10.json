@@ -10900,6 +10900,99 @@
         "distanceNm": 2397,
         "bearingDeg": 104
       }
+    },
+    {
+      "kind": "warning",
+      "id": "28W",
+      "name": "Twentyeight",
+      "designation": "Tropical Depression",
+      "warningNumber": "010",
+      "issuedAt": "2026-10-14T09:00:00.000Z",
+      "positionZ": "140600Z",
+      "lat": 21.3,
+      "lon": 142.8,
+      "maxWindKt": 25,
+      "gustKt": 35,
+      "pressureMb": 1008,
+      "seasFt": 11,
+      "movingToward": 315,
+      "movingKt": 9,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "141800Z",
+          "lat": 22.4,
+          "lon": 141.3,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 24,
+          "validZ": "150600Z",
+          "lat": 23.3,
+          "lon": 139.5,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 36,
+          "validZ": "151800Z",
+          "lat": 24.1,
+          "lon": 137.8,
+          "maxWindKt": 20,
+          "gustKt": 30
+        }
+      ],
+      "spot": {
+        "distanceNm": 1198,
+        "bearingDeg": 91,
+        "closestApproach": {
+          "distanceNm": 909,
+          "tau": 36,
+          "validZ": "151800Z",
+          "maxWindKt": 20
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 315,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 309
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 299
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 298
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "status": "none",
+        "windowEnd": "2026-10-18T15:00:00.000Z",
+        "creditedTo": "Koguma"
+      },
+      "retired": false,
+      "summary": {
+        "text": "TD 28W is forecast to continue steadily northwestward for the remainder of the forecast period under the steering influence of the low-level flow associated with the western periphery of the subtropical ridge (STR) centered to the northeast. Regarding intensity, 28W is expected to begin dissipating at +12h and dissipate by +24h over water.",
+        "warningNumber": "009",
+        "generatedAt": "2026-10-14T03:30:51.407Z"
+      },
+      "reasoningWarningNumber": "010",
+      "significantForecastChanges": "THE FORECAST HAS BEEN EXTENDED TO 36 HOURS.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
     }
   ]
 }
