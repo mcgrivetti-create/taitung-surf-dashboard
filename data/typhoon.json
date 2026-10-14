@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-14T15:03:07.430Z",
+  "fetchedAt": "2026-10-14T17:29:54.335Z",
   "systems": [
     {
       "designation": "Tropical Depression",
@@ -123,7 +123,7 @@
         ]
       },
       "swell": {
-        "windowEnd": "2026-10-18T15:00:00.000Z",
+        "windowEnd": "2026-10-19T15:00:00.000Z",
         "status": "none"
       },
       "retireFrom": null,
@@ -232,9 +232,27 @@
         "142100Z",
         "150300Z",
         "150900Z",
-        "151500Z. REFER TO TROPICAL STORM 27W (KOGUMA) FINAL WARNING (WTPN33 PGTW). REFER TO TROPICAL DEPRESSION 28W (TWENTYEIGHT) WARNINGS (WTPN31 PGTW) FOR SIX-HOURLY UPDATES. 2. THIS CANCELS",
-        "SUPERSEDES REF A (WTPN21 PGTW 131900)"
+        "151500Z. REFER TO TROPICAL STORM 27W (KOGUMA) WARNINGS (WTPN33 PGTW) FOR SIX-HOURLY UPDATES. REFER TO TROPICAL DEPRESSION 28W (TWENTYEIGHT) WARNINGS (WTPN31 PGTW) FOR SIX-HOURLY UPDATES. 2. THIS CANCELS",
+        "SUPERSEDES REF A (WTPN21 PGTW 131900). 3. JUSTIFICATION FOR CORRECTION: CORRECTED DATE TO REFERENCE A TO ACCURATELY REFLECT TCFA DTG"
       ],
+      "reasoning": {
+        "warningNumber": "001",
+        "significantForecastChanges": "THIS INITIAL PROGNOSTIC REASONING MESSAGE ESTABLISHES THE FORECAST PHILOSOPHY.",
+        "seasFt": 11,
+        "environment": "FAVORABLE",
+        "vws": "10-15 KTS",
+        "sst": "29-30 CELSIUS",
+        "outflow": "STRONG WESTWARD",
+        "steering": "SOUTHERN FLANK OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED FAR TO THE NORTH.",
+        "confidence": {
+          "track0072": "HIGH",
+          "track72120": "HIGH",
+          "intensity0072": "MEDIUM",
+          "intensity72120": "LOW"
+        }
+      },
+      "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2425,
         "bearingDeg": 103,
@@ -299,11 +317,16 @@
         ]
       },
       "swell": {
-        "windowEnd": "2026-10-18T15:00:00.000Z",
+        "windowEnd": "2026-10-19T15:00:00.000Z",
         "status": "none"
       },
       "retireFrom": null,
       "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a partially exposed low-level circulation center (LLCC) exhibiting weak, transient convective bursts proximate to the assessed center, which rapidly shear and dissipate westward. TD 29W is forecast to continue its counter-clockwise looping motion over the next 12 hours, before establishing a west-northwestward heading. The key question with this forecast is the intensity; specifically, the potential for rapid intensification (ri) and the timing of this event relative to the marianas islands.",
+        "warningNumber": "001",
+        "generatedAt": "2026-10-14T17:29:54.335Z"
+      },
       "changes": null
     },
     {
@@ -373,7 +396,7 @@
         "turns": []
       },
       "swell": {
-        "windowEnd": "2026-10-18T15:00:00.000Z",
+        "windowEnd": "2026-10-19T15:00:00.000Z",
         "status": "in-water",
         "arrival": {
           "targetTime": "2026-10-11T16:00:00.000Z",
@@ -382,10 +405,10 @@
           "dirDeg": 83
         },
         "now": {
-          "targetTime": "2026-10-14T15:00:00.000Z",
-          "heightM": 1.82,
+          "targetTime": "2026-10-14T17:00:00.000Z",
+          "heightM": 1.84,
           "periodS": 6.7,
-          "dirDeg": 70
+          "dirDeg": 71
         },
         "peak": {
           "targetTime": "2026-10-14T17:00:00.000Z",
@@ -393,7 +416,7 @@
           "periodS": 6.7,
           "dirDeg": 71
         },
-        "easing": false
+        "easing": true
       },
       "retireFrom": null,
       "retired": false,
