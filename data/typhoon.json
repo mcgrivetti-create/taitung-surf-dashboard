@@ -1,65 +1,57 @@
 {
-  "fetchedAt": "2026-10-14T17:29:54.335Z",
+  "fetchedAt": "2026-10-14T19:18:24.855Z",
   "systems": [
     {
       "designation": "Tropical Depression",
       "id": "28W",
       "name": "Twentyeight",
       "headline": "Tropical Depression 28W (Twentyeight)",
-      "warningNumber": "011",
-      "issuedZ": "14/1500Z",
-      "issuedAt": "2026-10-14T15:00:00.000Z",
+      "warningNumber": "012",
+      "issuedZ": "14/2100Z",
+      "issuedAt": "2026-10-14T21:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2826.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2826web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "150000Z",
-          "lat": 23,
-          "lon": 140.7,
-          "maxWindKt": 30,
-          "gustKt": 40
+          "validZ": "150600Z",
+          "lat": 23.4,
+          "lon": 139.4,
+          "maxWindKt": 25,
+          "gustKt": 35
         },
         {
           "tau": 24,
-          "validZ": "151200Z",
-          "lat": 23.5,
-          "lon": 138.7,
+          "validZ": "151800Z",
+          "lat": 23.9,
+          "lon": 137.5,
           "maxWindKt": 25,
           "gustKt": 35
         },
         {
           "tau": 36,
-          "validZ": "160000Z",
+          "validZ": "160600Z",
           "lat": 23.8,
-          "lon": 136.7,
-          "maxWindKt": 25,
-          "gustKt": 35
-        },
-        {
-          "tau": 48,
-          "validZ": "161200Z",
-          "lat": 23.7,
-          "lon": 134.7,
+          "lon": 135.6,
           "maxWindKt": 20,
           "gustKt": 30
         }
       ],
-      "positionZ": "141200Z",
-      "lat": 22,
-      "lon": 142.1,
-      "movingToward": 315,
-      "movingKt": 10,
+      "positionZ": "141800Z",
+      "lat": 22.7,
+      "lon": 141.1,
+      "movingToward": 305,
+      "movingKt": 12,
       "maxWindKt": 30,
       "gustKt": 40,
       "pressureMb": 1007,
       "seasFt": 12,
       "nextWarnings": [
-        "142100Z",
         "150300Z",
         "150900Z",
-        "151500Z. REFER TO TROPICAL STORM 27W (KOGUMA) FINAL WARNING (WTPN33 PGTW). REFER TO TROPICAL DEPRESSION 29W (TWENTYNINE) WARNINGS (WTPN32 PGTW) FOR SIX-HOURLY UPDATES"
+        "151500Z",
+        "152100Z. REFER TO TROPICAL DEPRESSION 29W (TWENTYNINE) WARNINGS (WTPN32 PGTW) FOR SIX-HOURLY UPDATES"
       ],
       "reasoning": {
         "warningNumber": "011",
@@ -78,24 +70,24 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2826prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 1154,
-        "bearingDeg": 89,
+        "distanceNm": 1094,
+        "bearingDeg": 87,
         "closestApproach": {
-          "distanceNm": 739,
-          "tau": 48,
-          "validZ": "161200Z",
+          "distanceNm": 788,
+          "tau": 36,
+          "validZ": "160600Z",
           "maxWindKt": 20
         }
       },
       "motion": {
-        "currentHeadingDeg": 315,
+        "currentHeadingDeg": 305,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 308
+            "heading": 294
           },
           {
             "fromTau": 12,
@@ -105,11 +97,6 @@
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 280
-          },
-          {
-            "fromTau": 36,
-            "toTau": 48,
             "heading": 267
           }
         ],
@@ -117,8 +104,8 @@
           {
             "fromTau": 24,
             "toTau": 36,
-            "headingDeg": 280,
-            "deltaDeg": 35
+            "headingDeg": 267,
+            "deltaDeg": 38
           }
         ]
       },
@@ -134,12 +121,12 @@
         "generatedAt": "2026-10-14T15:03:07.430Z"
       },
       "changes": {
-        "previousWarningNumber": "010",
-        "previousIssuedAt": "2026-10-14T09:00:00.000Z",
-        "maxWindKtDelta": 5,
-        "pressureMbDelta": -1,
-        "seasFtDelta": 1,
-        "closestApproachNmDelta": -170
+        "previousWarningNumber": "011",
+        "previousIssuedAt": "2026-10-14T15:00:00.000Z",
+        "maxWindKtDelta": 0,
+        "pressureMbDelta": 0,
+        "seasFtDelta": 0,
+        "closestApproachNmDelta": 49
       }
     },
     {
@@ -328,131 +315,14 @@
         "generatedAt": "2026-10-14T17:29:54.335Z"
       },
       "changes": null
-    },
-    {
-      "designation": "Tropical Storm",
-      "id": "27W",
-      "name": "Koguma",
-      "headline": "Tropical Storm 27W (Koguma)",
-      "warningNumber": "036",
-      "issuedZ": "13/2100Z",
-      "issuedAt": "2026-10-13T21:00:00.000Z",
-      "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2726.gif",
-      "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2726web.txt",
-      "cwaTrackImage": null,
-      "forecasts": [
-        {
-          "tau": 12,
-          "validZ": "140600Z",
-          "lat": 40.6,
-          "lon": 160.9,
-          "maxWindKt": 40,
-          "gustKt": 50
-        },
-        {
-          "tau": 24,
-          "validZ": "141800Z",
-          "lat": 42,
-          "lon": 165.3,
-          "maxWindKt": 35,
-          "gustKt": 45
-        }
-      ],
-      "positionZ": "131800Z",
-      "lat": 38.3,
-      "lon": 157.2,
-      "movingToward": 45,
-      "movingKt": 20,
-      "maxWindKt": 50,
-      "gustKt": 65,
-      "pressureMb": 988,
-      "seasFt": 24,
-      "geoReference": "752 NM EAST OF MISAWA, JAPAN",
-      "spot": {
-        "distanceNm": 2052,
-        "bearingDeg": 55,
-        "closestApproach": {
-          "distanceNm": 2255,
-          "tau": 12,
-          "validZ": "140600Z",
-          "maxWindKt": 40,
-          "recedingOnly": true
-        }
-      },
-      "motion": {
-        "currentHeadingDeg": 45,
-        "legs": [
-          {
-            "fromTau": 0,
-            "toTau": 12,
-            "heading": 50
-          },
-          {
-            "fromTau": 12,
-            "toTau": 24,
-            "heading": 66
-          }
-        ],
-        "turns": []
-      },
-      "swell": {
-        "windowEnd": "2026-10-19T15:00:00.000Z",
-        "status": "in-water",
-        "arrival": {
-          "targetTime": "2026-10-11T16:00:00.000Z",
-          "heightM": 1.24,
-          "periodS": 9.55,
-          "dirDeg": 83
-        },
-        "now": {
-          "targetTime": "2026-10-14T17:00:00.000Z",
-          "heightM": 1.84,
-          "periodS": 6.7,
-          "dirDeg": 71
-        },
-        "peak": {
-          "targetTime": "2026-10-14T17:00:00.000Z",
-          "heightM": 1.84,
-          "periodS": 6.7,
-          "dirDeg": 71
-        },
-        "easing": true
-      },
-      "retireFrom": null,
-      "retired": false,
-      "summary": {
-        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a fully exposed low-level circulation center (LLCC) undergoing rapid subtropical transition (stt). TS 27W continues its steady progression northeastward along the northwestern side of the STR positioned to the southeast. Regarding intensity: 27W will continue to steadily weaken and gradually spin down as it transitions through stt and subsequent extratropical transition (ETT) over the next 48 hours.",
-        "warningNumber": "035",
-        "generatedAt": "2026-10-13T15:23:46.052Z"
-      },
-      "changes": {
-        "previousWarningNumber": "035",
-        "previousIssuedAt": "2026-10-13T15:00:00.000Z",
-        "maxWindKtDelta": -10,
-        "seasFtDelta": -6,
-        "closestApproachNmDelta": 99
-      }
     }
   ],
   "alerts": [],
-  "invests": [
-    {
-      "id": "96W",
-      "potential": null,
-      "geoReference": null,
-      "windKtLow": null,
-      "windKtHigh": null,
-      "pressureMb": null,
-      "lat": 9,
-      "lon": 160.4,
-      "distanceNm": 2397,
-      "bearingDeg": 104
-    }
-  ],
-  "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
+  "invests": [],
+  "investSatellite": null,
   "advisory": {
-    "issuedZ": "14/1500Z",
-    "issuedAt": "2026-10-14T15:00:00.000Z",
+    "issuedZ": "14/1800Z",
+    "issuedAt": "2026-10-14T18:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
     "reissued": true
   }

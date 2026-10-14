@@ -11276,6 +11276,105 @@
         "distanceNm": 2397,
         "bearingDeg": 104
       }
+    },
+    {
+      "kind": "warning",
+      "id": "28W",
+      "name": "Twentyeight",
+      "designation": "Tropical Depression",
+      "warningNumber": "012",
+      "issuedAt": "2026-10-14T21:00:00.000Z",
+      "positionZ": "141800Z",
+      "lat": 22.7,
+      "lon": 141.1,
+      "maxWindKt": 30,
+      "gustKt": 40,
+      "pressureMb": 1007,
+      "seasFt": 12,
+      "movingToward": 305,
+      "movingKt": 12,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "150600Z",
+          "lat": 23.4,
+          "lon": 139.4,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 24,
+          "validZ": "151800Z",
+          "lat": 23.9,
+          "lon": 137.5,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 36,
+          "validZ": "160600Z",
+          "lat": 23.8,
+          "lon": 135.6,
+          "maxWindKt": 20,
+          "gustKt": 30
+        }
+      ],
+      "spot": {
+        "distanceNm": 1094,
+        "bearingDeg": 87,
+        "closestApproach": {
+          "distanceNm": 788,
+          "tau": 36,
+          "validZ": "160600Z",
+          "maxWindKt": 20
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 305,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 294
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 286
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 267
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "headingDeg": 267,
+            "deltaDeg": 38
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-19T15:00:00.000Z",
+        "status": "none"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery shows that the convection that was developing around the 0600Z hour, has expanded and persisted, and now covers and obscures the low-level circulation center (LLCC). However, the convection is likely peaking in its intensity currently, or will reach its peak imminently and is expected to collapse within the next six hours.",
+        "warningNumber": "011",
+        "generatedAt": "2026-10-14T15:03:07.430Z"
+      },
+      "reasoningWarningNumber": "011",
+      "significantForecastChanges": "THE FORECAST HAS BEEN EXTENDED TO 48 HOURS.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "MEDIUM",
+        "intensity72120": null
+      }
     }
   ]
 }
