@@ -11375,6 +11375,170 @@
         "intensity0072": "MEDIUM",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "29W",
+      "name": "Twentynine",
+      "designation": "Tropical Depression",
+      "warningNumber": "002",
+      "issuedAt": "2026-10-14T21:00:00.000Z",
+      "positionZ": "141800Z",
+      "lat": 10.4,
+      "lon": 160.5,
+      "maxWindKt": 30,
+      "gustKt": 40,
+      "pressureMb": 1004,
+      "seasFt": 12,
+      "movingToward": 320,
+      "movingKt": 11,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "150600Z",
+          "lat": 11.2,
+          "lon": 158.9,
+          "maxWindKt": 30,
+          "gustKt": 40
+        },
+        {
+          "tau": 24,
+          "validZ": "151800Z",
+          "lat": 11.6,
+          "lon": 156.3,
+          "maxWindKt": 35,
+          "gustKt": 45
+        },
+        {
+          "tau": 36,
+          "validZ": "160600Z",
+          "lat": 12,
+          "lon": 153.6,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 48,
+          "validZ": "161800Z",
+          "lat": 12.4,
+          "lon": 151,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 60,
+          "validZ": "170600Z",
+          "lat": 13.1,
+          "lon": 148.4,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 72,
+          "validZ": "171800Z",
+          "lat": 13.6,
+          "lon": 145.8,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 96,
+          "validZ": "181800Z",
+          "lat": 14.8,
+          "lon": 140.9,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 120,
+          "validZ": "191800Z",
+          "lat": 16.6,
+          "lon": 136.2,
+          "maxWindKt": 125,
+          "gustKt": 150
+        }
+      ],
+      "spot": {
+        "distanceNm": 2368,
+        "bearingDeg": 102,
+        "closestApproach": {
+          "distanceNm": 923,
+          "tau": 120,
+          "validZ": "191800Z",
+          "maxWindKt": 125
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 320,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 297
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 279
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 279
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 279
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 286
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 281
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 285
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 292
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "headingDeg": 279,
+            "deltaDeg": 41
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-19T15:00:00.000Z",
+        "status": "none"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a partially exposed low-level circulation center (LLCC) exhibiting weak, transient convective bursts proximate to the assessed center, which rapidly shear and dissipate westward. TD 29W is forecast to continue its counter-clockwise looping motion over the next 12 hours, before establishing a west-northwestward heading. The key question with this forecast is the intensity; specifically, the potential for rapid intensification (ri) and the timing of this event relative to the marianas islands.",
+        "warningNumber": "001",
+        "generatedAt": "2026-10-14T17:29:54.335Z"
+      },
+      "reasoningWarningNumber": "001",
+      "significantForecastChanges": "THIS INITIAL PROGNOSTIC REASONING MESSAGE ESTABLISHES THE FORECAST PHILOSOPHY.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "HIGH",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }

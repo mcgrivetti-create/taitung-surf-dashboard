@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-14T19:18:24.855Z",
+  "fetchedAt": "2026-10-14T20:54:17.074Z",
   "systems": [
     {
       "designation": "Tropical Depression",
@@ -54,23 +54,23 @@
         "152100Z. REFER TO TROPICAL DEPRESSION 29W (TWENTYNINE) WARNINGS (WTPN32 PGTW) FOR SIX-HOURLY UPDATES"
       ],
       "reasoning": {
-        "warningNumber": "011",
-        "significantForecastChanges": "THE FORECAST HAS BEEN EXTENDED TO 48 HOURS.",
+        "warningNumber": "012",
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 12,
-        "environment": "MARGINALLY FAVORABLE",
+        "environment": "MARGINAL",
         "vws": "5-10 KTS",
-        "sst": "29-30 CELSIUS",
+        "sst": "28-29 CELSIUS",
         "outflow": "WEAK POLEWARD",
-        "steering": "SOUTHWESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED FAR TO THE NORTHEAST.",
+        "steering": "LOW TO MID-LEVEL WESTERLY FLOW AROUND THE DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTHEAST",
         "confidence": {
           "track0072": "HIGH",
           "track72120": null,
-          "intensity0072": "MEDIUM",
+          "intensity0072": "HIGH",
           "intensity72120": null
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2826prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1094,
         "bearingDeg": 87,
@@ -134,93 +134,92 @@
       "id": "29W",
       "name": "Twentynine",
       "headline": "Tropical Depression 29W (Twentynine)",
-      "warningNumber": "001",
-      "issuedZ": "14/1500Z",
-      "issuedAt": "2026-10-14T15:00:00.000Z",
+      "warningNumber": "002",
+      "issuedZ": "14/2100Z",
+      "issuedAt": "2026-10-14T21:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "150000Z",
-          "lat": 10.5,
-          "lon": 160.2,
+          "validZ": "150600Z",
+          "lat": 11.2,
+          "lon": 158.9,
           "maxWindKt": 30,
           "gustKt": 40
         },
         {
           "tau": 24,
-          "validZ": "151200Z",
-          "lat": 11.2,
-          "lon": 158.2,
+          "validZ": "151800Z",
+          "lat": 11.6,
+          "lon": 156.3,
           "maxWindKt": 35,
           "gustKt": 45
         },
         {
           "tau": 36,
-          "validZ": "160000Z",
-          "lat": 11.6,
-          "lon": 155.5,
-          "maxWindKt": 40,
-          "gustKt": 50
+          "validZ": "160600Z",
+          "lat": 12,
+          "lon": 153.6,
+          "maxWindKt": 45,
+          "gustKt": 55
         },
         {
           "tau": 48,
-          "validZ": "161200Z",
-          "lat": 12.1,
-          "lon": 152.7,
-          "maxWindKt": 50,
-          "gustKt": 65
+          "validZ": "161800Z",
+          "lat": 12.4,
+          "lon": 151,
+          "maxWindKt": 55,
+          "gustKt": 70
         },
         {
           "tau": 60,
-          "validZ": "170000Z",
-          "lat": 12.6,
-          "lon": 149.9,
+          "validZ": "170600Z",
+          "lat": 13.1,
+          "lon": 148.4,
           "maxWindKt": 65,
           "gustKt": 80
         },
         {
           "tau": 72,
-          "validZ": "171200Z",
-          "lat": 13.2,
-          "lon": 147.2,
+          "validZ": "171800Z",
+          "lat": 13.6,
+          "lon": 145.8,
           "maxWindKt": 80,
           "gustKt": 100
         },
         {
           "tau": 96,
-          "validZ": "181200Z",
-          "lat": 14.4,
-          "lon": 142.1,
+          "validZ": "181800Z",
+          "lat": 14.8,
+          "lon": 140.9,
           "maxWindKt": 110,
           "gustKt": 135
         },
         {
           "tau": 120,
-          "validZ": "191200Z",
-          "lat": 16.1,
-          "lon": 137.4,
+          "validZ": "191800Z",
+          "lat": 16.6,
+          "lon": 136.2,
           "maxWindKt": 125,
           "gustKt": 150
         }
       ],
-      "positionZ": "141200Z",
-      "lat": 9.6,
-      "lon": 161.2,
-      "movingToward": 360,
-      "movingKt": 9,
+      "positionZ": "141800Z",
+      "lat": 10.4,
+      "lon": 160.5,
+      "movingToward": 320,
+      "movingKt": 11,
       "maxWindKt": 30,
       "gustKt": 40,
-      "pressureMb": 1003,
-      "seasFt": 11,
+      "pressureMb": 1004,
+      "seasFt": 12,
       "nextWarnings": [
-        "142100Z",
         "150300Z",
         "150900Z",
-        "151500Z. REFER TO TROPICAL STORM 27W (KOGUMA) WARNINGS (WTPN33 PGTW) FOR SIX-HOURLY UPDATES. REFER TO TROPICAL DEPRESSION 28W (TWENTYEIGHT) WARNINGS (WTPN31 PGTW) FOR SIX-HOURLY UPDATES. 2. THIS CANCELS",
-        "SUPERSEDES REF A (WTPN21 PGTW 131900). 3. JUSTIFICATION FOR CORRECTION: CORRECTED DATE TO REFERENCE A TO ACCURATELY REFLECT TCFA DTG"
+        "151500Z",
+        "152100Z. REFER TO TROPICAL DEPRESSION 28W (TWENTYEIGHT) WARNINGS (WTPN31 PGTW) FOR SIX-HOURLY UPDATES"
       ],
       "reasoning": {
         "warningNumber": "001",
@@ -239,29 +238,29 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 2425,
-        "bearingDeg": 103,
+        "distanceNm": 2368,
+        "bearingDeg": 102,
         "closestApproach": {
-          "distanceNm": 998,
+          "distanceNm": 923,
           "tau": 120,
-          "validZ": "191200Z",
+          "validZ": "191800Z",
           "maxWindKt": 125
         }
       },
       "motion": {
-        "currentHeadingDeg": 360,
+        "currentHeadingDeg": 320,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 313
+            "heading": 297
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 290
+            "heading": 279
           },
           {
             "fromTau": 24,
@@ -271,35 +270,35 @@
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 281
+            "heading": 279
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 281
+            "heading": 286
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 283
+            "heading": 281
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 284
+            "heading": 285
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 291
+            "heading": 292
           }
         ],
         "turns": [
           {
-            "fromTau": 0,
-            "toTau": 12,
-            "headingDeg": 313,
-            "deltaDeg": 47
+            "fromTau": 12,
+            "toTau": 24,
+            "headingDeg": 279,
+            "deltaDeg": 41
           }
         ]
       },
@@ -314,7 +313,14 @@
         "warningNumber": "001",
         "generatedAt": "2026-10-14T17:29:54.335Z"
       },
-      "changes": null
+      "changes": {
+        "previousWarningNumber": "001",
+        "previousIssuedAt": "2026-10-14T15:00:00.000Z",
+        "maxWindKtDelta": 0,
+        "pressureMbDelta": 1,
+        "seasFtDelta": 1,
+        "closestApproachNmDelta": -75
+      }
     }
   ],
   "alerts": [],
