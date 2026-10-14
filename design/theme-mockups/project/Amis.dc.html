@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Coast Weave theme</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&amp;family=Outfit:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#f2b632}a:hover{color:#ffd56a}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 1640px; box-sizing: border-box; background: #121011; color: #f5efe6; font-family: 'Outfit', sans-serif; display: flex; flex-direction: column;">
+
+  <header style="padding: 22px 16px 0; display: flex; flex-direction: column; gap: 12px;">
+    <div style="display: flex; flex-direction: column; gap: 4px;">
+      <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 36px; line-height: 0.98; letter-spacing: -0.01em;">Taitung<br><span style="color: {{accent}};">Surf</span></span>
+      <span style="font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: #cbbfae;">Donghe · East Coast</span>
+    </div>
+    <svg aria-hidden="true" width="390" height="34" viewBox="0 0 390 34" style="margin: 0 -16px; display: block;">
+      <defs>
+        <pattern id="weaveA" width="26" height="34" patternUnits="userSpaceOnUse">
+          <rect width="26" height="34" fill="#121011"></rect>
+          <rect y="0" width="26" height="4" fill="#c4262e"></rect><rect y="30" width="26" height="4" fill="#c4262e"></rect>
+          <path d="M13 7 L22 17 L13 27 L4 17 Z" fill="#f2b632"></path>
+          <path d="M13 11 L18 17 L13 23 L8 17 Z" fill="#121011"></path>
+          <path d="M13 14 L16 17 L13 20 L10 17 Z" fill="#2f9a5b"></path>
+          <path d="M0 17 L4 13 L4 21 Z M26 17 L22 13 L22 21 Z" fill="#e86a1d"></path>
+        </pattern>
+      </defs>
+      <rect width="390" height="34" fill="url(#weaveA)"></rect>
+    </svg>
+    <div aria-hidden="true" style="display: flex; justify-content: space-between; margin: -4px 4px 0;">
+      <sc-for list="{{beads}}" as="b" hint-placeholder-count="24"><span style="width: 8px; height: 8px; border-radius: 50%; background: #f5efe6; box-shadow: inset -1px -1px 0 #c9bfae;"></span></sc-for>
+    </div>
+    <nav aria-label="Sections" style="display: flex; gap: 6px; flex-wrap: wrap; padding: 4px 0 2px;">
+      <a href="#map" style="text-decoration: none; font-weight: 700; font-size: 13px; color: #121011; background: #f2b632; padding: 6px 13px; border-radius: 4px;">Map</a>
+      <sc-for list="{{links}}" as="l" hint-placeholder-count="5">
+        <a href="#s" style="text-decoration: none; font-weight: 500; font-size: 13px; color: #f5efe6; border: 1px solid #4a3e3a; padding: 5px 11px; border-radius: 4px;">{{l}}</a>
+      </sc-for>
+    </nav>
+    <p style="margin: 0; font-size: 12px; color: #a99d8f;">Updated 10/13 15:26</p>
+  </header>
+
+  <section style="margin: 16px 14px 0; background: #1d1819; border: 1px solid #3a2f2c; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column;">
+    <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); height: 6px;"><span style="background: #c4262e;"></span><span style="background: #e86a1d;"></span><span style="background: #f2b632;"></span><span style="background: #2f9a5b;"></span><span style="background: #8e2a5c;"></span></div>
+    <div style="padding: 15px 16px 16px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2 style="margin: 0; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 21px;">Right now</h2>
+        <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 14px; color: #121011; background: #2f9a5b; padding: 4px 12px; border-radius: 3px;">GOOD</span>
+      </div>
+      <div style="display: flex; align-items: flex-end; gap: 10px;">
+        <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 64px; line-height: 0.9;">1.5</span>
+        <span style="display: flex; flex-direction: column; padding-bottom: 4px;">
+          <span style="font-weight: 700; font-size: 18px; color: #f2b632;">m @ 8.4 s</span>
+          <span style="font-size: 12.5px; color: #cbbfae;">Chenggong buoy · from E · 14:00</span>
+        </span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
+        <sc-for list="{{now}}" as="c" hint-placeholder-count="3">
+          <div style="background: #151213; border-top: 3px solid {{c.color}}; padding: 8px 9px; display: flex; flex-direction: column; gap: 2px;">
+            <span style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #a99d8f;">{{c.k}}</span>
+            <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 19px;">{{c.v}}</span>
+            <span style="font-size: 11.5px; color: #cbbfae; line-height: 1.35;">{{c.s}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div aria-hidden="true" style="display: flex; gap: 3px; padding: 0 10px; height: 18px;">
+      <sc-for list="{{tassels}}" as="t" hint-placeholder-count="40"><span style="flex: 1 1 0; background: {{t}}; border-radius: 0 0 2px 2px;"></span></sc-for>
+    </div>
+  </section>
+
+  <h2 style="margin: 26px 16px 10px; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 21px;">Next three days</h2>
+  <div style="margin: 0 14px; display: flex; flex-direction: column; gap: 10px;">
+    <sc-for list="{{days}}" as="d" hint-placeholder-count="3">
+      <article style="background: #1d1819; border: 1px solid #3a2f2c; border-left: 6px solid {{d.band}}; border-radius: 4px; padding: 12px 14px; display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 10px;">
+        <span style="display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 17px;">{{d.label}}</span>
+          <span style="font-size: 12px; color: #a99d8f;">{{d.date}}</span>
+          <span style="font-weight: 700; font-size: 11.5px; letter-spacing: 0.1em; color: #f2b632;">FAIR</span>
+        </span>
+        <span style="display: flex; flex-direction: column; gap: 3px;">
+          <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 21px;">{{d.h}} <span style="font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 14px; color: #f2b632;">@ {{d.p}}</span></span>
+          <span style="font-size: 13px; color: #cbbfae;">{{d.wind}}</span>
+          <span style="font-size: 13px; color: #ff7b6b;">{{d.early}}</span>
+          <span style="font-size: 13px; font-weight: 700; color: #7fd6a0;">{{d.best}}</span>
+        </span>
+      </article>
+    </sc-for>
+  </div>
+
+  <section style="margin: 18px 14px 0; background: #c4262e; color: #fff6ea; border-radius: 4px; padding: 13px 15px; display: flex; flex-direction: column; gap: 4px;">
+    <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px;">Typhoon</span>
+    <span style="font-size: 13.5px; line-height: 1.55;">27W Koguma: swell in the water, peaking Thu Oct 15, 01:00. 28W: no swell for Donghe in the next 5 days.</span>
+  </section>
+
+  <div style="margin: 18px 14px 30px; display: flex; flex-direction: column; gap: 6px;">
+    <sc-for list="{{sections}}" as="s" hint-placeholder-count="7">
+      <button type="button" style="all: unset; cursor: pointer; background: #1d1819; border: 1px solid #3a2f2c; border-radius: 4px; padding: 11px 13px; display: grid; grid-template-columns: 12px minmax(0, 1fr) 18px; gap: 12px; align-items: center;">
+        <svg aria-hidden="true" width="12" height="20" viewBox="0 0 12 20"><path d="M6 0 L12 10 L6 20 L0 10 Z" fill="{{s.c}}"></path><path d="M6 6 L9 10 L6 14 L3 10 Z" fill="#1d1819"></path></svg>
+        <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+          <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 15.5px;">{{s.t}}</span>
+          <span style="font-size: 12.5px; color: #cbbfae; line-height: 1.4;">{{s.sum}}</span>
+        </span>
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f2b632" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6l-6 6"></path></svg>
+      </button>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#e86a1d","options":["#e86a1d","#c4262e","#f2b632"]},"$preview":{"width":390,"height":1640}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var pal = ['#c4262e', '#e86a1d', '#f2b632', '#2f9a5b', '#8e2a5c'];
+    var tassels = []; for (var i = 0; i < 40; i++) tassels.push(pal[i % pal.length]);
+    var beads = []; for (var j = 0; j < 24; j++) beads.push(j);
+    return {
+      accent: this.props.accent ?? '#e86a1d',
+      beads: beads, tassels: tassels,
+      links: ['Forecasts', 'Tide', 'Observations', 'Buoys', 'Forecast Check'],
+      now: [
+        { k: 'Wind', v: '2 kt', color: '#2f9a5b', s: 'E · light & variable' },
+        { k: 'Tide', v: '38 cm', color: '#8e2a5c', s: 'rising · high 19:06' },
+        { k: 'Sun', v: '05:51', color: '#f2b632', s: 'first light 05:28' }
+      ],
+      days: [
+        { label: 'Today', date: 'Oct 13', band: '#c4262e', h: '1.3–1.5 m', p: '10 s', wind: '6 kt, mostly onshore', early: '', best: '' },
+        { label: 'Tomorrow', date: 'Oct 14', band: '#e86a1d', h: '1.3–1.9 m', p: '7–8 s', wind: '17 kt, mostly onshore', early: 'Probably not offshore early', best: 'Best window 06:00–09:00' },
+        { label: 'Thursday', date: 'Oct 15', band: '#2f9a5b', h: '1.5–1.7 m', p: '7 s', wind: '14 kt, mostly onshore', early: 'Probably not offshore early', best: 'Best window 06:00–09:00' }
+      ],
+      sections: [
+        { t: 'Forecasts', c: '#c4262e', sum: 'Tomorrow bigger, shorter period' },
+        { t: 'Tide', c: '#e86a1d', sum: 'High 19:06 (97 cm) · Low Wed 01:49 · High Wed 08:13' },
+        { t: 'Observations', c: '#f2b632', sum: 'Donghe 2 kt E, light · Duli 1 kt ENE · Fengbin 4 kt NE' },
+        { t: 'Buoys', c: '#2f9a5b', sum: 'Chenggong 1.5 m, holding · Taitung 0.7 m, holding' },
+        { t: 'Forecast Check', c: '#8e2a5c', sum: 'How each forecast has scored against the buoys' },
+        { t: 'Rain', c: '#c4262e', sum: '10% chance of rain until 20:00, no rain predicted · then 20% until 08:00' },
+        { t: 'Live cam', c: '#e86a1d', sum: 'Live view' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tide Chart theme</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0d1b2a}a:hover{color:#e8501a}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 1640px; box-sizing: border-box; background: #f6f7f4; color: #0d1b2a; font-family: 'Archivo', sans-serif; display: flex; flex-direction: column;">
+
+  <header style="padding: 18px 16px 0; display: flex; flex-direction: column; gap: 12px;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.04em; color: #4a5a6c;">
+      <span>22°58′N 121°19′E</span><span>TUE 13 OCT · 15:26</span>
+    </div>
+    <h1 style="margin: 0; font-weight: 900; font-size: 46px; line-height: 0.92; letter-spacing: -0.035em; text-transform: uppercase;">Donghe<br><span style="color: {{accent}};">Surf</span> Report</h1>
+    <nav aria-label="Sections" style="display: flex; flex-wrap: wrap; border-top: 2px solid #0d1b2a; border-bottom: 1px solid #0d1b2a;">
+      <a href="#map" style="text-decoration: none; font-weight: 700; font-size: 13px; color: #f6f7f4; background: #0d1b2a; padding: 8px 12px;">Map ↗</a>
+      <sc-for list="{{links}}" as="l" hint-placeholder-count="5">
+        <a href="#s" style="text-decoration: none; font-weight: 500; font-size: 13px; color: #0d1b2a; padding: 8px 10px; border-right: 1px solid #c9d0d8;">{{l}}</a>
+      </sc-for>
+    </nav>
+  </header>
+
+  <section style="margin: 18px 16px 0; display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #0d1b2a; padding-bottom: 6px;">
+      <h2 style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: 0.12em;">01 — RIGHT NOW</h2>
+      <span style="font-weight: 900; font-size: 22px; text-transform: uppercase; color: {{accent}};">Good</span>
+    </div>
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 14px;">
+      <div style="grid-column: span 2; display: flex; align-items: flex-end; gap: 10px; padding: 4px 0 12px; border-bottom: 1px solid #c9d0d8;">
+        <span style="font-weight: 900; font-size: 92px; line-height: 0.82; letter-spacing: -0.05em;">1.5</span>
+        <span style="display: flex; flex-direction: column; padding-bottom: 4px;">
+          <span style="font-weight: 700; font-size: 20px;">m @ 8.4 s</span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #4a5a6c;">CHENGGONG BUOY · FROM E · 14:00</span>
+        </span>
+      </div>
+      <sc-for list="{{now}}" as="c" hint-placeholder-count="3">
+        <div style="padding: 10px 0; border-bottom: 1px solid #c9d0d8; display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; color: #4a5a6c;">{{c.k}}</span>
+          <span style="font-weight: 900; font-size: 26px; letter-spacing: -0.02em;">{{c.v}}</span>
+          <span style="font-size: 12px; color: #34465a;">{{c.s}}</span>
+        </div>
+      </sc-for>
+    </div>
+    <svg role="img" aria-label="Tide curve for today, rising to a 97 cm high at 19:06" width="358" height="64" viewBox="0 0 358 64">
+      <path d="M0 50 C40 50 60 14 110 14 S180 54 230 54 S300 8 358 10" fill="none" stroke="#0d1b2a" stroke-width="1.6"></path>
+      <line x1="196" y1="0" x2="196" y2="64" stroke="#e8501a" stroke-width="1.5"></line>
+      <text x="200" y="10" font-family="IBM Plex Mono" font-size="9" fill="#e8501a">NOW 38 cm</text>
+      <text x="300" y="30" font-family="IBM Plex Mono" font-size="9" fill="#34465a">HW 19:06</text>
+    </svg>
+  </section>
+
+  <section style="margin: 22px 16px 0; display: flex; flex-direction: column;">
+    <h2 style="margin: 0 0 4px; font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px; letter-spacing: 0.12em; border-bottom: 1px solid #0d1b2a; padding-bottom: 6px;">02 — NEXT 3 DAYS</h2>
+    <sc-for list="{{days}}" as="d" hint-placeholder-count="3">
+      <article style="display: grid; grid-template-columns: 74px minmax(0, 1fr) 46px; gap: 10px; padding: 12px 0; border-bottom: 1px solid #c9d0d8; align-items: start;">
+        <span style="display: flex; flex-direction: column;">
+          <span style="font-weight: 900; font-size: 20px; text-transform: uppercase; letter-spacing: -0.02em;">{{d.label}}</span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: #4a5a6c;">{{d.date}}</span>
+        </span>
+        <span style="display: flex; flex-direction: column; gap: 3px; min-width: 0;">
+          <span style="font-weight: 700; font-size: 19px;">{{d.h}} <span style="font-weight: 500; color: #34465a; font-size: 14px;">@ {{d.p}}</span></span>
+          <span style="font-size: 12.5px; color: #34465a;">{{d.wind}}</span>
+          <span style="font-size: 12.5px; color: #b5401a;">{{d.early}}</span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; font-weight: 600;">BEST {{d.best}}</span>
+        </span>
+        <span style="font-weight: 900; font-size: 13px; text-transform: uppercase; text-align: right; color: #0d1b2a; border-top: 3px solid #e3a21a; padding-top: 4px;">Fair</span>
+      </article>
+    </sc-for>
+  </section>
+
+  <section style="margin: 20px 16px 0; background: #0d1b2a; color: #f6f7f4; padding: 14px; display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 10px;">
+    <span style="font-weight: 900; font-size: 26px; line-height: 1; color: {{accent}};">03</span>
+    <span style="display: flex; flex-direction: column; gap: 4px;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em;">TYPHOON</span>
+      <span style="font-size: 13.5px; line-height: 1.5;">27W Koguma: swell in the water, peaking Thu Oct 15, 01:00. 28W: no swell for Donghe in the next 5 days.</span>
+    </span>
+  </section>
+
+  <div style="margin: 20px 16px 30px; display: flex; flex-direction: column; border-top: 2px solid #0d1b2a;">
+    <sc-for list="{{sections}}" as="s" hint-placeholder-count="7">
+      <button type="button" style="all: unset; cursor: pointer; display: grid; grid-template-columns: 30px minmax(0, 1fr) 18px; gap: 10px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid #c9d0d8;">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #4a5a6c;">{{s.n}}</span>
+        <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+          <span style="font-weight: 700; font-size: 17px; letter-spacing: -0.01em;">{{s.t}}</span>
+          <span style="font-size: 12.5px; color: #34465a; line-height: 1.4;">{{s.sum}}</span>
+        </span>
+        <span style="font-weight: 700; font-size: 18px; color: {{accent}};">+</span>
+      </button>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#e8501a","options":["#e8501a","#1a5fe8","#0d8a6a"]},"$preview":{"width":390,"height":1640}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      accent: this.props.accent ?? '#e8501a',
+      links: ['Forecasts', 'Tide', 'Obs', 'Buoys', 'Check'],
+      now: [
+        { k: 'WIND · DONGHE', v: '2 kt', s: 'From E · light & variable' },
+        { k: 'TIDE · DONGHE', v: '38 cm', s: 'Rising · high 19:06 (97 cm)' },
+        { k: 'SUNRISE', v: '05:51', s: 'First light 05:28' },
+        { k: 'SUNSET', v: '17:32', s: 'Today' }
+      ],
+      days: [
+        { label: 'Today', date: 'TUE 13', h: '1.3–1.5 m', p: '10 s', wind: '6 kt, mostly onshore', early: '', best: '16:00–18:00' },
+        { label: 'Wed', date: 'OCT 14', h: '1.3–1.9 m', p: '7–8 s', wind: '17 kt, mostly onshore', early: 'Probably not offshore early', best: '06:00–09:00' },
+        { label: 'Thu', date: 'OCT 15', h: '1.5–1.7 m', p: '7 s', wind: '14 kt, mostly onshore', early: 'Probably not offshore early', best: '06:00–09:00' }
+      ],
+      sections: [
+        { n: '04', t: 'Forecasts', sum: 'Tomorrow bigger, shorter period' },
+        { n: '05', t: 'Tide', sum: 'High 19:06 (97 cm) · Low Wed 01:49 · High Wed 08:13' },
+        { n: '06', t: 'Observations', sum: 'Donghe 2 kt E, light · Duli 1 kt ENE · Fengbin 4 kt NE' },
+        { n: '07', t: 'Buoys', sum: 'Chenggong 1.5 m, holding · Taitung 0.7 m, holding' },
+        { n: '08', t: 'Forecast Check', sum: 'How each forecast has scored against the buoys' },
+        { n: '09', t: 'Rain', sum: 'Rain maps' },
+        { n: '10', t: 'Live cam', sum: 'Live view' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

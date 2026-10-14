@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mountain Mist theme</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2f5d4c}a:hover{color:#1d3d31}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 1640px; box-sizing: border-box; background: #eef0ea; color: #22302a; font-family: 'Zen Kaku Gothic New', sans-serif; display: flex; flex-direction: column;">
+
+  <header style="position: relative; height: 230px; overflow: hidden; background: #dfe6e0;">
+    <svg aria-hidden="true" width="390" height="230" viewBox="0 0 390 230" style="position: absolute; inset: 0;">
+      <circle cx="300" cy="62" r="26" fill="#c8553d" opacity="0.85"></circle>
+      <path d="M0 140 L40 104 L70 120 L120 70 L165 112 L200 92 L250 128 L300 84 L350 118 L390 100 L390 230 L0 230 Z" fill="#b7c6bd"></path>
+      <path d="M0 132 C60 124 120 138 190 130 C250 124 320 136 390 128 L390 146 C320 152 250 140 190 148 C120 156 60 142 0 150 Z" fill="#eef0ea" opacity="0.85"></path>
+      <path d="M0 176 L50 140 L95 160 L150 118 L205 162 L250 140 L300 170 L345 146 L390 162 L390 230 L0 230 Z" fill="#7f998b"></path>
+      <path d="M0 172 C80 164 160 180 240 170 C300 164 350 172 390 168 L390 186 C330 192 270 182 200 190 C130 198 60 184 0 192 Z" fill="#eef0ea" opacity="0.8"></path>
+      <path d="M0 214 L60 186 L120 204 L180 176 L250 210 L320 190 L390 206 L390 230 L0 230 Z" fill="#4a6658"></path>
+      <g stroke="#3f6a3a" stroke-linecap="round">
+        <path d="M22 230 V20" stroke-width="7"></path><path d="M16 60 H28 M16 110 H28 M16 160 H28 M16 205 H28" stroke="#2c4d29" stroke-width="2"></path>
+        <path d="M40 230 V60" stroke-width="5"></path><path d="M36 96 H44 M36 140 H44 M36 186 H44" stroke="#2c4d29" stroke-width="2"></path>
+      </g>
+      <g fill="#4f7d3f">
+        <path d="M22 60 q24 -10 44 -2 q-22 6 -44 2 z"></path><path d="M22 110 q26 -4 46 8 q-26 0 -46 -8 z"></path><path d="M40 96 q20 -12 38 -8 q-18 8 -38 8 z"></path><path d="M22 60 q-14 -16 -10 -34 q6 18 10 34 z"></path>
+      </g>
+    </svg>
+    <div style="position: absolute; left: 70px; top: 26px; display: flex; flex-direction: column; gap: 4px;">
+      <span style="font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 32px; line-height: 1.05; color: #1d2b25;">Taitung<br>Surf</span>
+      <span style="font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #3c5a4c;">Donghe · East Coast</span>
+    </div>
+  </header>
+
+  <nav aria-label="Sections" style="display: flex; gap: 6px; flex-wrap: wrap; padding: 12px 14px 4px;">
+    <a href="#map" style="text-decoration: none; font-weight: 700; font-size: 13px; color: #f4f2ea; background: {{accent}}; padding: 6px 13px; border-radius: 999px;">Map</a>
+    <sc-for list="{{links}}" as="l" hint-placeholder-count="5">
+      <a href="#s" style="text-decoration: none; font-size: 13px; color: #22302a; border: 1px solid #a9b8ae; padding: 5px 11px; border-radius: 999px; background: #f6f6f0;">{{l}}</a>
+    </sc-for>
+  </nav>
+  <p style="margin: 4px 16px 0; font-size: 12px; color: #5b6e64;">Updated 10/13 15:26</p>
+
+  <section style="margin: 14px 14px 0; background: #f8f7f1; border: 1px solid #cfd8d0; border-radius: 6px; padding: 16px 16px 16px 26px; position: relative; display: flex; flex-direction: column; gap: 12px;">
+    <svg aria-hidden="true" width="10" height="100%" viewBox="0 0 10 300" preserveAspectRatio="none" style="position: absolute; left: 8px; top: 12px; bottom: 12px; height: calc(100% - 24px);"><rect x="2" y="0" width="6" height="300" rx="3" fill="#7a9a4a"></rect><rect x="1" y="70" width="8" height="3" fill="#4f6d2c"></rect><rect x="1" y="150" width="8" height="3" fill="#4f6d2c"></rect><rect x="1" y="230" width="8" height="3" fill="#4f6d2c"></rect></svg>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h2 style="margin: 0; font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 22px;">Right now</h2>
+      <span style="font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 15px; color: #f8f7f1; background: #2f6b4f; padding: 4px 12px; border-radius: 2px;">Good</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 14px;">
+      <sc-for list="{{now}}" as="c" hint-placeholder-count="4">
+        <div style="display: flex; flex-direction: column; gap: 2px; border-bottom: 1px dashed #b9c6bc; padding-bottom: 8px;">
+          <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #5b6e64;">{{c.k}}</span>
+          <span style="font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 26px; line-height: 1.1;">{{c.v}} <span style="font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 500; font-size: 13px; color: #3c5a4c;">{{c.u}}</span></span>
+          <span style="font-size: 12px; color: #4b5d54; line-height: 1.4;">{{c.s}}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <div style="margin: 24px 16px 10px; display: flex; align-items: center; gap: 10px;">
+    <h2 style="margin: 0; font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 22px;">Next three days</h2>
+    <svg aria-hidden="true" width="100" height="14" viewBox="0 0 100 14" style="flex-grow: 1;"><path d="M0 9 C20 2 40 12 60 6 C75 2 88 8 100 5" stroke="#9fb3a7" stroke-width="1.5" fill="none"></path><path d="M10 12 C30 7 50 14 72 10" stroke="#c4d1c8" stroke-width="1.2" fill="none"></path></svg>
+  </div>
+  <div style="margin: 0 14px; display: flex; flex-direction: column; gap: 10px;">
+    <sc-for list="{{days}}" as="d" hint-placeholder-count="3">
+      <article style="background: #f8f7f1; border: 1px solid #cfd8d0; border-radius: 6px; padding: 13px 14px; display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 12px;">
+        <span style="display: flex; flex-direction: column; gap: 4px; border-right: 1px solid #dfe5df; padding-right: 8px;">
+          <span style="font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 18px;">{{d.label}}</span>
+          <span style="font-size: 12px; color: #5b6e64;">{{d.date}}</span>
+          <span style="font-size: 12px; font-weight: 700; color: #8a6a1f; border: 1px solid #c9a95a; padding: 1px 6px; border-radius: 2px; align-self: flex-start;">Fair</span>
+        </span>
+        <span style="display: flex; flex-direction: column; gap: 3px;">
+          <span style="font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 22px;">{{d.h}} <span style="font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 500; font-size: 14px; color: #3c5a4c;">@ {{d.p}}</span></span>
+          <span style="font-size: 13px; color: #4b5d54;">{{d.wind}}</span>
+          <span style="font-size: 13px; color: #a8452f;">{{d.early}}</span>
+          <span style="font-size: 13px; font-weight: 700; color: #2f6b4f;">{{d.best}}</span>
+        </span>
+      </article>
+    </sc-for>
+  </div>
+
+  <section style="margin: 18px 14px 0; background: #24332c; color: #eef0ea; border-radius: 6px; padding: 13px 15px; display: flex; flex-direction: column; gap: 4px;">
+    <span style="font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 16px; color: #e3b7a5;">Typhoon</span>
+    <span style="font-size: 13.5px; line-height: 1.55;">27W Koguma: swell in the water, peaking Thu Oct 15, 01:00. 28W: no swell for Donghe in the next 5 days.</span>
+  </section>
+
+  <div style="margin: 18px 14px 30px; display: flex; flex-direction: column; border-top: 1px solid #b9c6bc;">
+    <sc-for list="{{sections}}" as="s" hint-placeholder-count="7">
+      <button type="button" style="all: unset; cursor: pointer; display: grid; grid-template-columns: 14px minmax(0, 1fr) 18px; gap: 12px; align-items: center; padding: 13px 2px; border-bottom: 1px solid #d3dcd5;">
+        <svg aria-hidden="true" width="14" height="30" viewBox="0 0 14 30"><rect x="4" y="0" width="6" height="30" rx="3" fill="#7a9a4a"></rect><rect x="3" y="13" width="8" height="2" fill="#4f6d2c"></rect></svg>
+        <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+          <span style="font-family: 'Shippori Mincho B1', serif; font-weight: 800; font-size: 17px;">{{s.t}}</span>
+          <span style="font-size: 12.5px; color: #4b5d54; line-height: 1.45;">{{s.sum}}</span>
+        </span>
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3c5a4c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6l-6 6"></path></svg>
+      </button>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#2f6b4f","options":["#2f6b4f","#c8553d","#3c5a7a"]},"$preview":{"width":390,"height":1640}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      accent: this.props.accent ?? '#2f6b4f',
+      links: ['Forecasts', 'Tide', 'Observations', 'Buoys', 'Forecast Check'],
+      now: [
+        { k: 'Waves · Chenggong', v: '1.5', u: 'm @ 8.4 s', s: 'from E · 14:00' },
+        { k: 'Wind · Donghe', v: '2', u: 'kt', s: 'from E · light & variable' },
+        { k: 'Tide · Donghe', v: '38', u: 'cm', s: 'rising · high 19:06 (97 cm)' },
+        { k: 'Sun', v: '05:51', u: 'rise', s: 'first light 05:28 · sunset 17:32' }
+      ],
+      days: [
+        { label: 'Today', date: 'Oct 13', h: '1.3–1.5 m', p: '10 s', wind: '6 kt, mostly onshore', early: '', best: '' },
+        { label: 'Tomorrow', date: 'Oct 14', h: '1.3–1.9 m', p: '7–8 s', wind: '17 kt, mostly onshore', early: 'Probably not offshore early', best: 'Best window 06:00–09:00' },
+        { label: 'Thursday', date: 'Oct 15', h: '1.5–1.7 m', p: '7 s', wind: '14 kt, mostly onshore', early: 'Probably not offshore early', best: 'Best window 06:00–09:00' }
+      ],
+      sections: [
+        { t: 'Forecasts', sum: 'Tomorrow bigger, shorter period' },
+        { t: 'Tide', sum: 'High 19:06 (97 cm) · Low Wed 01:49 · High Wed 08:13' },
+        { t: 'Observations', sum: 'Donghe 2 kt E, light · Duli 1 kt ENE · Fengbin 4 kt NE' },
+        { t: 'Buoys', sum: 'Chenggong 1.5 m, holding · Taitung 0.7 m, holding' },
+        { t: 'Forecast Check', sum: 'How each forecast has scored against the buoys' },
+        { t: 'Rain', sum: '10% chance of rain until 20:00, no rain predicted · then 20% until 08:00' },
+        { t: 'Live cam', sum: 'Live view' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

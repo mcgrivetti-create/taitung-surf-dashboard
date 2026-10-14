@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Night Session theme</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#67e8f9}a:hover{color:#a5f3fc}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 1640px; box-sizing: border-box; background: #060a17; color: #e6f1ff; font-family: 'Space Grotesk', sans-serif; display: flex; flex-direction: column;">
+
+  <header style="padding: 20px 16px 14px; display: flex; flex-direction: column; gap: 10px; border-bottom: 1px solid #16304a;">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <span style="font-weight: 700; font-size: 26px; letter-spacing: -0.02em; line-height: 1;">TAITUNG<span style="color: {{accent}};">/</span>SURF</span>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #7f9bb8;">DONGHE · 22.98N 121.32E · UPD 15:26</span>
+      </div>
+      <span style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid {{accent}}; box-shadow: 0 0 14px {{accent}}; display: flex; align-items: center; justify-content: center;">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#67e8f9" stroke-width="1.8" stroke-linecap="round"><path d="M3 15c3 0 3 -3 6 -3s3 3 6 3s3 -3 6 -3"></path><path d="M3 19c3 0 3 -3 6 -3s3 3 6 3s3 -3 6 -3"></path><path d="M12 3v5"></path></svg>
+      </span>
+    </div>
+    <nav aria-label="Sections" style="display: flex; gap: 6px; flex-wrap: wrap;">
+      <a href="#map" style="text-decoration: none; font-weight: 700; font-size: 13px; color: #031018; background: #22d3ee; padding: 6px 12px; border-radius: 999px; box-shadow: 0 0 12px rgba(34,211,238,0.7);">Map</a>
+      <sc-for list="{{links}}" as="l" hint-placeholder-count="5">
+        <a href="#s" style="text-decoration: none; font-size: 13px; color: #cfe6fb; border: 1px solid #1d3a57; padding: 5px 11px; border-radius: 999px;">{{l}}</a>
+      </sc-for>
+    </nav>
+  </header>
+
+  <section style="margin: 16px 12px 0; padding: 16px; border-radius: 18px; background: #0b1428; border: 1px solid #1d3a57; box-shadow: 0 0 0 1px rgba(34,211,238,0.08), 0 20px 40px rgba(0,0,0,0.45); display: flex; flex-direction: column; gap: 14px;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between;">
+      <h2 style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.18em; color: #7f9bb8;">RIGHT NOW</h2>
+      <span style="font-weight: 700; font-size: 14px; color: #5ee0a0; border: 1px solid #5ee0a0; border-radius: 999px; padding: 3px 12px; box-shadow: 0 0 12px rgba(94,224,160,0.55); text-shadow: 0 0 8px rgba(94,224,160,0.8);">GOOD</span>
+    </div>
+    <div style="display: flex; align-items: flex-end; gap: 10px;">
+      <span style="font-weight: 700; font-size: 72px; line-height: 0.9; letter-spacing: -0.04em; color: #ffffff; text-shadow: 0 0 22px rgba(103,232,249,0.55);">1.5</span>
+      <span style="display: flex; flex-direction: column; padding-bottom: 6px;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 18px; color: #67e8f9;">m @ 8.4 s</span>
+        <span style="font-size: 12px; color: #7f9bb8;">Chenggong buoy · from E · 14:00</span>
+      </span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
+      <sc-for list="{{now}}" as="c" hint-placeholder-count="3">
+        <div style="background: #08101f; border: 1px solid #16304a; border-radius: 12px; padding: 9px 10px; display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #7f9bb8; letter-spacing: 0.1em;">{{c.k}}</span>
+          <span style="font-weight: 700; font-size: 20px; color: {{c.color}};">{{c.v}}</span>
+          <span style="font-size: 11px; color: #9fb7cf; line-height: 1.35;">{{c.s}}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <h2 style="margin: 22px 16px 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.18em; color: #7f9bb8; font-weight: 500;">NEXT 3 DAYS</h2>
+  <div style="margin: 0 12px; display: flex; flex-direction: column; gap: 8px;">
+    <sc-for list="{{days}}" as="d" hint-placeholder-count="3">
+      <article style="border-radius: 14px; background: #0b1428; border: 1px solid #16304a; padding: 12px 14px; display: grid; grid-template-columns: 70px minmax(0, 1fr) auto; gap: 10px; align-items: center;">
+        <span style="display: flex; flex-direction: column;">
+          <span style="font-weight: 700; font-size: 16px;">{{d.label}}</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #7f9bb8;">{{d.date}}</span>
+        </span>
+        <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+          <span style="font-weight: 700; font-size: 18px;">{{d.h}} <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #67e8f9;">@ {{d.p}}</span></span>
+          <span style="font-size: 12px; color: #9fb7cf;">{{d.wind}}</span>
+          <span style="font-size: 12px; color: #ff8a75;">{{d.early}}</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: #e6f1ff;">BEST {{d.best}}</span>
+        </span>
+        <span style="font-weight: 700; font-size: 12px; color: #f2c94c; border: 1px solid #f2c94c; border-radius: 999px; padding: 3px 9px; box-shadow: 0 0 10px rgba(242,201,76,0.4);">FAIR</span>
+      </article>
+    </sc-for>
+  </div>
+
+  <section style="margin: 16px 12px 0; padding: 12px 14px; border-radius: 14px; border: 1px solid {{accent}}; background: #150a1c; box-shadow: 0 0 18px rgba(255,79,224,0.25); display: flex; flex-direction: column; gap: 4px;">
+    <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; color: {{accent}};">TYPHOON WATCH</span>
+    <span style="font-size: 13.5px; line-height: 1.5;">27W Koguma — swell in the water, peaking <b>Thu 01:00</b>. 28W — no swell for Donghe in the next 5 days.</span>
+  </section>
+
+  <div style="margin: 16px 12px 28px; display: flex; flex-direction: column; gap: 6px;">
+    <sc-for list="{{sections}}" as="s" hint-placeholder-count="7">
+      <button type="button" style="all: unset; cursor: pointer; border-radius: 12px; background: #0a1224; border: 1px solid #16304a; padding: 12px 14px; display: grid; grid-template-columns: minmax(0, 1fr) 22px; gap: 8px; align-items: center;">
+        <span style="display: flex; flex-direction: column; gap: 3px; min-width: 0;">
+          <span style="font-weight: 700; font-size: 15px;">{{s.t}}</span>
+          <span style="font-size: 12px; color: #9fb7cf; line-height: 1.4;">{{s.sum}}</span>
+        </span>
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#67e8f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6l6 -6"></path></svg>
+      </button>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#ff4fe0","options":["#ff4fe0","#22d3ee","#a78bfa"]},"$preview":{"width":390,"height":1640}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      accent: this.props.accent ?? '#ff4fe0',
+      links: ['Forecasts', 'Tide', 'Observations', 'Buoys', 'Forecast Check'],
+      now: [
+        { k: 'WIND', v: '2 kt', color: '#e6f1ff', s: 'E · light & variable' },
+        { k: 'TIDE', v: '38 cm', color: '#a78bfa', s: 'rising · high 19:06' },
+        { k: 'SUN', v: '05:51', color: '#fde68a', s: 'first light 05:28' }
+      ],
+      days: [
+        { label: 'Today', date: 'OCT 13', h: '1.3–1.5 m', p: '10 s', wind: '6 kt, mostly onshore', early: '', best: '16:00–18:00' },
+        { label: 'Tmrw', date: 'OCT 14', h: '1.3–1.9 m', p: '7–8 s', wind: '17 kt, mostly onshore', early: 'Probably not offshore early', best: '06:00–09:00' },
+        { label: 'Thu', date: 'OCT 15', h: '1.5–1.7 m', p: '7 s', wind: '14 kt, mostly onshore', early: 'Probably not offshore early', best: '06:00–09:00' }
+      ],
+      sections: [
+        { t: 'Forecasts', sum: 'Tomorrow bigger, shorter period' },
+        { t: 'Tide', sum: 'High 19:06 (97 cm) · Low Wed 01:49 · High Wed 08:13' },
+        { t: 'Observations', sum: 'Donghe 2 kt E, light · Duli 1 kt ENE · Fengbin 4 kt NE' },
+        { t: 'Buoys', sum: 'Chenggong 1.5 m, holding · Taitung 0.7 m, holding' },
+        { t: 'Forecast Check', sum: 'How each forecast has scored against the buoys' },
+        { t: 'Rain', sum: 'Rain maps' },
+        { t: 'Live cam', sum: 'Live view' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

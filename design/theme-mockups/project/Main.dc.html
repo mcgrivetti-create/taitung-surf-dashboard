@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lantern theme</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;900&amp;family=Noto+Sans+TC:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#e2b04a}a:hover{color:#f3cf7e}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 1640px; box-sizing: border-box; background: #140f0e; color: #f4e9dc; font-family: 'Noto Sans TC', sans-serif; display: flex; flex-direction: column;">
+
+  <header style="padding: 22px 18px 14px; border-bottom: 1px solid #4a2f1c; display: flex; flex-direction: column; gap: 10px; background: #1b1210;">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 12px;">
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <span style="font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 34px; line-height: 1; letter-spacing: 0.04em; color: #f4e9dc;">台東浪況</span>
+        <span style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #e2b04a;">Taitung Surf · 東河 Donghe</span>
+      </div>
+      <div style="width: 46px; height: 46px; background: {{accent}}; color: #f9e7c2; display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 20px; border-radius: 4px; box-shadow: inset 0 0 0 2px #140f0e, inset 0 0 0 3px #f9e7c2;">浪</div>
+    </div>
+    <p style="margin: 0; font-size: 12px; color: #bca78f;">更新 Updated 10/13 15:26 · 33 min ago</p>
+    <nav aria-label="Sections" style="display: flex; gap: 6px; flex-wrap: wrap;">
+      <a href="#map" style="text-decoration: none; background: {{accent}}; color: #fff4dc; font-weight: 700; font-size: 13px; padding: 6px 12px; border-radius: 3px;">地圖 Map</a>
+      <sc-for list="{{links}}" as="l" hint-placeholder-count="5">
+        <a href="#s" style="text-decoration: none; border: 1px solid #5a3a22; color: #f4e9dc; font-size: 13px; padding: 5px 10px; border-radius: 3px;">{{l}}</a>
+      </sc-for>
+    </nav>
+  </header>
+
+  <section style="margin: 16px 14px 0; padding: 16px; background: #221715; border: 1px solid #e2b04a; outline: 1px solid #4a2f1c; outline-offset: 3px; display: flex; flex-direction: column; gap: 14px;">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+      <h2 style="margin: 0; font-family: 'Noto Serif TC', serif; font-size: 20px; font-weight: 900;">此刻 <span style="font-family: 'Noto Sans TC', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.16em; color: #e2b04a; text-transform: uppercase;">Right now</span></h2>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 12px; color: #bca78f;">Good</span>
+        <span style="width: 44px; height: 44px; background: #3fa58a; color: #08241c; font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 24px; display: flex; align-items: center; justify-content: center; border-radius: 3px; transform: rotate(-4deg); box-shadow: inset 0 0 0 2px #221715, inset 0 0 0 3px #bfeedd;">佳</span>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+      <sc-for list="{{now}}" as="c" hint-placeholder-count="4">
+        <div style="background: #1a1110; border-top: 2px solid {{accent}}; padding: 10px 10px 12px; display: flex; flex-direction: column; gap: 3px;">
+          <span style="font-size: 11px; color: #e2b04a; letter-spacing: 0.06em;">{{c.k}}</span>
+          <span style="font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 26px; line-height: 1.1;">{{c.v}} <span style="font-family: 'Noto Sans TC', sans-serif; font-size: 13px; font-weight: 500; color: #d9c6ae;">{{c.u}}</span></span>
+          <span style="font-size: 12px; color: #bca78f; line-height: 1.4;">{{c.s}}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <div style="margin: 22px 14px 10px; display: flex; align-items: center; gap: 10px;">
+    <h2 style="margin: 0; font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 20px;">三日 <span style="font-family: 'Noto Sans TC', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.16em; color: #e2b04a; text-transform: uppercase;">Next 3 days</span></h2>
+    <svg aria-hidden="true" width="120" height="10" viewBox="0 0 120 10" style="flex-grow: 1;"><path d="M0 5 H120" stroke="#4a2f1c" stroke-width="1"></path><path d="M0 5 q5 -5 10 0 t10 0 t10 0" stroke="#e2b04a" stroke-width="1.2" fill="none"></path></svg>
+  </div>
+  <div style="margin: 0 14px; display: flex; flex-direction: column; gap: 10px;">
+    <sc-for list="{{days}}" as="d" hint-placeholder-count="3">
+      <article style="background: #221715; border: 1px solid #4a2f1c; padding: 14px; display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 12px; align-items: start;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+          <span style="font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 18px;">{{d.zh}}</span>
+          <span style="width: 40px; height: 40px; background: #d6a73c; color: #2a1806; font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 20px; display: flex; align-items: center; justify-content: center; border-radius: 3px;">{{d.seal}}</span>
+          <span style="font-size: 10px; color: #bca78f;">{{d.rate}}</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-size: 12px; color: #e2b04a; letter-spacing: 0.08em;">{{d.label}}</span>
+          <span style="font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 24px; line-height: 1.1;">{{d.h}} <span style="font-family: 'Noto Sans TC', sans-serif; font-weight: 500; font-size: 14px; color: #d9c6ae;">@ {{d.p}}</span></span>
+          <span style="font-size: 13px; color: #d9c6ae;">{{d.wind}}</span>
+          <span style="font-size: 13px; color: #f08a6a;">{{d.early}}</span>
+          <span style="font-size: 13px; font-weight: 700; color: #f4e9dc; border-top: 1px dashed #5a3a22; padding-top: 6px; margin-top: 2px;">最佳時段 Best window {{d.best}}</span>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+
+  <section style="margin: 18px 14px 0; padding: 12px 14px; background: #2a1310; border: 1px solid {{accent}}; display: flex; gap: 12px; align-items: flex-start;">
+    <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#e2b04a" stroke-width="1.6" stroke-linecap="round"><path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path><path d="M12 4c-5 0 -8 3 -8 7"></path><path d="M12 20c5 0 8 -3 8 -7"></path><path d="M20 9c0 -3 -3 -5 -7 -5"></path><path d="M4 15c0 3 3 5 7 5"></path></svg>
+    <div style="display: flex; flex-direction: column; gap: 4px;">
+      <span style="font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 16px; color: #e2b04a;">颱風 Typhoon</span>
+      <span style="font-size: 13px; line-height: 1.5; color: #f4e9dc;">27W Koguma: swell in the water, peaking Thu Oct 15, 01:00. 28W: no swell for Donghe in the next 5 days.</span>
+    </div>
+  </section>
+
+  <div style="margin: 18px 14px 28px; display: flex; flex-direction: column; border-top: 1px solid #4a2f1c;">
+    <sc-for list="{{sections}}" as="s" hint-placeholder-count="7">
+      <button type="button" style="all: unset; cursor: pointer; display: grid; grid-template-columns: 64px minmax(0, 1fr) 20px; gap: 10px; align-items: center; padding: 13px 4px; border-bottom: 1px solid #4a2f1c;">
+        <span style="font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 17px; color: #f4e9dc;">{{s.zh}}</span>
+        <span style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+          <span style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #e2b04a;">{{s.en}}</span>
+          <span style="font-size: 12.5px; color: #bca78f; line-height: 1.4;">{{s.sum}}</span>
+        </span>
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e2b04a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6l-6 6"></path></svg>
+      </button>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#c8382a","options":["#c8382a","#a8261b","#d9542f"]},"$preview":{"width":390,"height":1640}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      accent: this.props.accent ?? '#c8382a',
+      links: ['預報 Forecasts', '潮汐 Tide', '觀測 Obs', '浮標 Buoys', '準確度 Check'],
+      now: [
+        { k: '浪 Waves · 成功浮標', v: '1.5', u: 'm @ 8.4 s', s: 'from E · 14:00' },
+        { k: '風 Wind · 東河', v: '2', u: 'kt', s: 'from E · light & variable · 15:00' },
+        { k: '潮 Tide · 東河', v: '38', u: 'cm', s: 'rising · high 19:06 (97 cm)' },
+        { k: '日 Sun', v: '05:51', u: 'rise', s: 'first light 05:28 · sunset 17:32' }
+      ],
+      days: [
+        { zh: '今天', label: 'TODAY · OCT 13', seal: '可', rate: 'Fair', h: '1.3–1.5 m', p: '10 s', wind: '6 kt, mostly onshore', early: '', best: '16:00–18:00' },
+        { zh: '明天', label: 'TOMORROW · OCT 14', seal: '可', rate: 'Fair', h: '1.3–1.9 m', p: '7–8 s', wind: '17 kt, mostly onshore', early: 'Probably not offshore early', best: '06:00–09:00' },
+        { zh: '週四', label: 'THU · OCT 15', seal: '可', rate: 'Fair', h: '1.5–1.7 m', p: '7 s', wind: '14 kt, mostly onshore', early: 'Probably not offshore early', best: '06:00–09:00' }
+      ],
+      sections: [
+        { zh: '預報', en: 'Forecasts', sum: 'Tomorrow a bit bigger, shorter period · models agree' },
+        { zh: '潮汐', en: 'Tide', sum: 'High 19:06 (97 cm) · Low Wed 01:49 · High Wed 08:13' },
+        { zh: '觀測', en: 'Observations', sum: 'Donghe 2 kt E, light · Duli 1 kt ENE · Fengbin 4 kt NE' },
+        { zh: '浮標', en: 'Buoys', sum: 'Chenggong 1.5 m, holding · Taitung 0.7 m, holding' },
+        { zh: '準確度', en: 'Forecast Check', sum: 'How each forecast has scored against the buoys' },
+        { zh: '雨量', en: 'Rain', sum: 'Rain maps' },
+        { zh: '影像', en: 'Live cam', sum: 'Live view' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
