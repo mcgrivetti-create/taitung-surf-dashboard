@@ -13,8 +13,8 @@
 <meta http-equiv="Pragma" content="no-cache">
 <!-- ?v= is a cache-buster for the assets themselves. Bump it, ASSET_VERSION
      in js/app.js, and version.json together on any css/js change. -->
-<link rel="stylesheet" href="css/style.css?v=2026-10-13i">
-<link rel="stylesheet" href="css/map.css?v=2026-10-13i">
+<link rel="stylesheet" href="css/style.css?v=2026-10-14a">
+<link rel="stylesheet" href="css/map.css?v=2026-10-14a">
 </head>
 <body>
 <!-- Compact sticky header: title on one line with the data age under it,
@@ -85,7 +85,7 @@
     </div>
   </section>
 
-  <!-- Forecasts: the widgets, the Open Wave Model, CWA coastal and township. -->
+  <!-- Forecasts: the widgets, the Open Wave Model and CWA coastal. The township forecast is still fetched (Forecast Check scores its wind and the Rain line uses its chance of rain) but no longer shown, by the user's choice 2026-10-14. -->
   <section class="panel sec" id="forecasts">
     <button type="button" class="sec-head" aria-expanded="false" aria-controls="forecasts-body">
       <span class="sec-title">Forecasts</span>
@@ -206,12 +206,6 @@
       <p id="coastalUpdated" class="update-line"></p>
     </div>
 
-    <div class="subpanel">
-      <h3>Township Forecast — Donghe</h3>
-      <p class="source-note">CWA F-D0047-039</p>
-      <div id="townshipTable" class="data-block"><p class="loading">Loading…</p></div>
-      <p id="townshipUpdated" class="update-line"></p>
-    </div>
     </div>
   </section>
 
@@ -293,7 +287,7 @@
   <section class="panel sec" id="qpf">
     <button type="button" class="sec-head" aria-expanded="false" aria-controls="qpf-body">
       <span class="sec-title">Rain</span>
-      <span class="sec-sum">CWA island-wide rainfall forecast maps, 12–48 h</span>
+      <span class="sec-sum" id="sum-qpf">CWA island-wide rainfall forecast maps, 12–48 h</span>
       <span class="sec-chev" aria-hidden="true"></span>
     </button>
     <div class="sec-body" id="qpf-body" hidden>
@@ -332,7 +326,7 @@
   <p>Data sources: CWA (Central Weather Administration) Open Data, Open-Meteo (Météo-France MFWAM, ECMWF, GFS), Windguru, surf-forecast.com, Windy, YouTube. For reference only — assess your own conditions before entering the water.</p>
 </footer>
 
-<script src="js/app.js?v=2026-10-13i"></script>
-<script src="js/map.js?v=2026-10-13i"></script>
+<script src="js/app.js?v=2026-10-14a"></script>
+<script src="js/map.js?v=2026-10-14a"></script>
 </body>
 </html>

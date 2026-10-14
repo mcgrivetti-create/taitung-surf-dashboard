@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-13i";
+  var ASSET_VERSION = "2026-10-14a";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -906,7 +906,6 @@
   }
 
   function loadAll() {
-    getData("township").then(renderTownship).catch(function (e) { showError("townshipTable", "Couldn't load this data (" + e.message + ")"); });
     getData("coastal").then(renderCoastal).catch(function (e) { showError("coastalTable", "Couldn't load this data (" + e.message + ")"); });
     getData("tide").then(renderTide).catch(function (e) { showError("tideChart", "Couldn't load this data (" + e.message + ")"); });
     getData("stations-history").then(renderStationsHistory).catch(function (e) { showError("stationContainer", "Couldn't load this data (" + e.message + ")"); });
@@ -1406,7 +1405,6 @@
   function renderAllUpdateLines() {
     renderUpdateLine("openWaveUpdated", "openwave");
     renderUpdateLine("coastalUpdated", "coastal");
-    renderUpdateLine("townshipUpdated", "township");
     renderUpdateLine("tideUpdated", "tide");
   }
 
@@ -1685,6 +1683,7 @@
       .then(function (r) { renderTideSummary(r[0], r[1]); }).catch(function () { setSummary("tide", "Donghe tide chart, sun and moon"); });
     getData("stations-history").then(renderObservationSummary).catch(function () { setSummary("observations", "Land-station wind, last 16 hours"); });
     getData("buoy").then(renderBuoySummary).catch(function () { setSummary("buoys", "Sea state at five buoys, last 24 hours"); });
+    getData("rain").then(renderRainSummary).catch(function () {}); // keeps the static Rain line on failure
   }
 
   /* ---------- Early offshore at Donghe ----------
@@ -1831,7 +1830,8 @@
       var early = earlyOffshore(wind, k);
       var ad = days[k], scores = dayScores(waves, wind, k, ad && ad.civilTwilightBegin && ad.civilTwilightEnd ? [ad.civilTwilightBegin, ad.civilTwilightEnd] : ["06:00", "18:00"]);
       var bw = bestWindow(scores, now);
-      var bwTxt = bw ? '<span class="od-best" title="' + escapeHtml(bestWindowText(bw)) + '">' + (bw.past ? "Best was " : "Best window ") + (bw.a < bw.b ? fmtHMx.format(bw.a) + "–" + fmtHMx.format(bw.b + 3600000) : "~" + fmtHMx.format(bw.top.t)) + "</span>" : "";
+      // No Best window for today (user's choice 2026-10-14); the day's rating still shows.
+      var bwTxt = bw && i > 0 ? '<span class="od-best" title="' + escapeHtml(bestWindowText(bw)) + '">' + (bw.past ? "Best was " : "Best window ") + (bw.a < bw.b ? fmtHMx.format(bw.a) + "–" + fmtHMx.format(bw.b + 3600000) : "~" + fmtHMx.format(bw.top.t)) + "</span>" : "";
       var earlyTxt = early && !(i === 0 && hourOf(now) >= 9) ? '<span class="od-off od-off-' + early.level + '">' + early.text + "</span>" : "";
       var label = i === 0 ? "Today" : i === 1 ? "Tomorrow" : fmtWeekday.format(now + i * 86400000);
       cards.push('<div class="outlook-day"><span class="od-k">' + label + ' <span class="od-date">' + fmtDayShort.format(now + i * 86400000).replace(/^\w+, /, "") + "</span></span>" +
@@ -1942,6 +1942,27 @@
     var near = trends.filter(function (t) { return t.name === "Chenggong" || t.name === "Taitung"; });
     setSummary("buoys", near.length ? near.map(short).join("; ") : trends.length ? trends.map(short).join("; ") : "Sea state at five buoys, last 24 hours");
   }
+  /* ---------- Rain: next 24 h at Donghe, as two 12-hour blocks ----------
+     From data/rain.json: the amount band read off CWA's QPF maps at Donghe,
+     the chance from CWA's township forecast (see buildRain in the fetch
+     script). Always two 12-hour blocks (user's choice 2026-10-14). */
+  function rainMmText(mm) {
+    if (!mm) return "no rain predicted";
+    if (mm.max === null) return mm.min + "+ mm predicted";
+    if (mm.min < 1) return "under 1 mm predicted";
+    return mm.min + "–" + mm.max + " mm predicted";
+  }
+  function renderRainSummary(rain) {
+    var now = Date.now(), parts = [];
+    (rain.blocks || []).forEach(function (b) {
+      var s = Date.parse(b.start), e = Date.parse(b.end);
+      if (e <= now) return; // an old map whose window has passed
+      var span = s <= now ? "until " + fmtHMx.format(e) : fmtHMx.format(s) + "–" + fmtHMx.format(e);
+      parts.push((b.pop !== null && b.pop !== undefined ? b.pop + "% chance of rain " : "Rain ") + span + ", " + rainMmText(b.mm));
+    });
+    if (parts.length) setSummary("qpf", parts.join(" · then "));
+  }
+
   // One-line trend at the top of each buoy's card.
   function buoyTrendText(t) {
     return "Size <b>" + t.size + "</b>" + (t.period ? " · period <b>" + t.period + "</b>" : "") +

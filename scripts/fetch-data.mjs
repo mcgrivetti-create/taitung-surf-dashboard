@@ -59,6 +59,7 @@
 
 import { writeFile, mkdir, readFile } from "node:fs/promises";
 import path from "node:path";
+import { inflateSync } from "node:zlib";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -422,6 +423,107 @@ async function buildTownship() {
 }
 
 /** Pulls a single element's per-time values out of CWA's WeatherElement array, unwrapping ElementValue (array-or-object). */
+/* --- Rain at Donghe, next 24 h (the Rain section's summary line) ----------
+ * Amount: read off CWA's island-wide QPF maps (the same images the Rain
+ * section shows) at Donghe's spot. Each map is a 12-hour accumulation:
+ * QPF_EnFcstPrecip_12_12 covers the 12 h from the next 08:00 or 20:00 after
+ * it was issued, _12_24 the 12 h after that. Chance: CWA's township forecast
+ * for Donghe (12-hour periods, 06–18 / 18–06), paired with each map window
+ * by overlap. User's choice 2026-10-14: always two 12-hour blocks.
+ *
+ * Map position: the maps are plain lat/lon at ~359 px per degree, fixed from
+ * the image itself (Fugui Cape, Eluanbi, Green Island, Lanyu): x = 933 +
+ * (lon − 121.54) × 360, y = 202 + (25.30 − lat) × 358.5. Donghe (22.975N,
+ * 121.315E) is pixel (852, 1035). We read a 21 × 21 px box (~3 km) around
+ * it and take the wettest band covering at least 4 of its 121 sampled
+ * pixels, so a stray coastline pixel can't count.
+ */
+const QPF_URLS = ["https://www.cwa.gov.tw/Data/fcst_img/QPF_EnFcstPrecip_12_12.png", "https://www.cwa.gov.tw/Data/fcst_img/QPF_EnFcstPrecip_12_24.png"];
+const QPF_DONGHE_PX = [852, 1035];
+// Legend colours (sampled from the maps' own colour bar), mm per 12 h.
+const QPF_BANDS = [
+  { min: 0.5, max: 1, rgb: [198, 198, 198], neutral: true },
+  { min: 1, max: 2, rgb: [158, 253, 255] }, { min: 2, max: 5, rgb: [3, 202, 255] }, { min: 5, max: 10, rgb: [5, 158, 255] },
+  { min: 10, max: 15, rgb: [3, 100, 255] }, { min: 15, max: 20, rgb: [5, 154, 2] }, { min: 20, max: 30, rgb: [58, 255, 3] },
+  { min: 30, max: 40, rgb: [255, 253, 3] }, { min: 40, max: 50, rgb: [255, 203, 0] }, { min: 50, max: 70, rgb: [255, 150, 0] },
+  { min: 70, max: 90, rgb: [255, 0, 0] }, { min: 90, max: 110, rgb: [206, 0, 0] }, { min: 110, max: 130, rgb: [154, 0, 0] },
+  { min: 130, max: 150, rgb: [150, 0, 153] }, { min: 150, max: 200, rgb: [202, 0, 205] }, { min: 200, max: 300, rgb: [252, 0, 255] },
+  { min: 300, max: null, rgb: [253, 201, 255] },
+];
+
+// Minimal PNG decoder (8-bit RGB / RGBA, non-interlaced: what CWA serves) → {w, h, px(x, y) → [r, g, b]}.
+function decodePng(buf) {
+  if (buf.readUInt32BE(0) !== 0x89504e47) throw new Error("not a PNG");
+  let off = 8, w = 0, h = 0, type = 0, depth = 0, interlace = 0;
+  const idat = [];
+  while (off < buf.length) {
+    const len = buf.readUInt32BE(off), kind = buf.toString("ascii", off + 4, off + 8), body = buf.subarray(off + 8, off + 8 + len);
+    if (kind === "IHDR") { w = body.readUInt32BE(0); h = body.readUInt32BE(4); depth = body[8]; type = body[9]; interlace = body[12]; }
+    else if (kind === "IDAT") idat.push(body);
+    else if (kind === "IEND") break;
+    off += 12 + len;
+  }
+  if (depth !== 8 || (type !== 6 && type !== 2) || interlace) throw new Error(`unsupported PNG (depth ${depth}, type ${type}, interlace ${interlace})`);
+  const bpp = type === 6 ? 4 : 3, stride = w * bpp, raw = inflateSync(Buffer.concat(idat)), out = Buffer.alloc(h * stride);
+  for (let y = 0; y < h; y++) {
+    const f = raw[y * (stride + 1)], src = y * (stride + 1) + 1, dst = y * stride;
+    for (let i = 0; i < stride; i++) {
+      const x = raw[src + i], a = i >= bpp ? out[dst + i - bpp] : 0, b = y ? out[dst - stride + i] : 0, c = y && i >= bpp ? out[dst - stride + i - bpp] : 0;
+      let v;
+      if (f === 0) v = x; else if (f === 1) v = x + a; else if (f === 2) v = x + b; else if (f === 3) v = x + ((a + b) >> 1);
+      else { const p = a + b - c, pa = Math.abs(p - a), pb = Math.abs(p - b), pc = Math.abs(p - c); v = x + (pa <= pb && pa <= pc ? a : pb <= pc ? b : c); }
+      out[dst + i] = v & 255;
+    }
+  }
+  return { w, h, px: (x, y) => { const o = y * stride + x * bpp; return [out[o], out[o + 1], out[o + 2]]; } };
+}
+function qpfBandAt(img, cx, cy) {
+  const counts = new Array(QPF_BANDS.length).fill(0);
+  for (let dy = -10; dy <= 10; dy += 2) for (let dx = -10; dx <= 10; dx += 2) {
+    const [r, g, b] = img.px(cx + dx, cy + dy);
+    QPF_BANDS.forEach((band, i) => {
+      if (band.neutral && (Math.abs(r - g) > 4 || Math.abs(g - b) > 4)) return; // coastline anti-aliasing is grey-blue, not neutral
+      if (Math.abs(r - band.rgb[0]) + Math.abs(g - band.rgb[1]) + Math.abs(b - band.rgb[2]) <= 24) counts[i]++;
+    });
+  }
+  for (let i = QPF_BANDS.length - 1; i >= 0; i--) if (counts[i] >= 4) return { min: QPF_BANDS[i].min, max: QPF_BANDS[i].max };
+  return null; // under 0.5 mm
+}
+// Taiwan local time of the next 08:00 or 20:00 after `ms`.
+function nextQpfStart(ms) {
+  const tw = new Date(ms + 8 * 3600000), day = Date.UTC(tw.getUTCFullYear(), tw.getUTCMonth(), tw.getUTCDate()) - 8 * 3600000;
+  for (const h of [8, 20, 32]) { const t = day + h * 3600000; if (t > ms) return t; }
+  return day + 32 * 3600000;
+}
+async function buildRain(townshipResult) {
+  const blocks = [];
+  let issuedMs = null;
+  for (let k = 0; k < QPF_URLS.length; k++) {
+    const res = await fetch(QPF_URLS[k]);
+    if (!res.ok) throw new Error(`QPF map ${k + 1} -> HTTP ${res.status}`);
+    const lm = Date.parse(res.headers.get("last-modified") || "");
+    if (k === 0) issuedMs = isFinite(lm) ? lm : Date.now();
+    const img = decodePng(Buffer.from(await res.arrayBuffer()));
+    if (img.w !== 1245 || img.h !== 1500) throw new Error(`QPF map is ${img.w}x${img.h}, expected 1245x1500 — the Donghe pixel needs re-measuring`);
+    const start = nextQpfStart(issuedMs) + k * 12 * 3600000;
+    blocks.push({ start: new Date(start).toISOString(), end: new Date(start + 12 * 3600000).toISOString(), mm: qpfBandAt(img, QPF_DONGHE_PX[0], QPF_DONGHE_PX[1]) });
+  }
+  // Chance of rain: the township period overlapping each map window most.
+  let pops = [];
+  try {
+    const loc = townshipResult.data.records.locations[0].location[0];
+    pops = extractElementSeries(loc, "12小時降雨機率", "ProbabilityOfPrecipitation")
+      .map((p) => ({ s: Date.parse(p.startTime), e: Date.parse(p.endTime), v: p.value === "-" || p.value === "" || p.value === undefined ? null : Number(p.value) }));
+  } catch (e) { /* no township forecast this run */ }
+  for (const b of blocks) {
+    const s = Date.parse(b.start), e = Date.parse(b.end);
+    let best = null, bestOv = 0;
+    for (const p of pops) { const ov = Math.min(e, p.e) - Math.max(s, p.s); if (ov > bestOv && p.v !== null) { bestOv = ov; best = p; } }
+    b.pop = best ? best.v : null;
+  }
+  return { data: { issued: new Date(issuedMs).toISOString(), blocks }, ok: true, count: blocks.length };
+}
+
 function extractElementSeries(location, elementName, field) {
   const el = (location.WeatherElement || []).find((w) => w.ElementName === elementName);
   if (!el) return [];
@@ -2290,6 +2392,8 @@ async function run() {
 
   const jobs = [
     { file: "township.json", name: "F-D0047-039 township forecast", build: buildTownship },
+    // Rain line for the Rain section: CWA QPF maps read at Donghe + the township chance of rain.
+    { file: "rain.json", name: "CWA QPF maps at Donghe + township rain chance", build: () => buildRain(results["township.json"]) },
     ...COASTAL_POINTS.map((p) => ({
       file: p.file,
       name: `F-D0047-095 coastal 3-day forecast (${p.townName}${p.displayed ? "" : ", logged only"})`,

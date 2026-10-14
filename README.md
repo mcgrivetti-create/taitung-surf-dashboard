@@ -95,7 +95,7 @@ The detail of each section is below.
    `data/coastal-chenggong.json` and logged, but deliberately **not**
    displayed — the page is single-spot by choice.
 3. Other CWA data:
-   - Township forecast (`F-D0047-039`, Donghe)
+   - Township forecast (`F-D0047-039`, Donghe) — fetched but no longer shown (user's choice 2026-10-14); its wind is scored on Forecast Check and its 12-hour chance of rain feeds the Rain line
    - (Tide + astronomy used to live here — now panel 1a above. Its details:)
    - **Sunrise/sunset, moonrise/moonset and CWA's daily astronomical
      calendar** for Taitung County, under the tide chart, for whichever
@@ -989,6 +989,23 @@ button, or Esc) closes it with a close-out and whitewater back to the page.
 - The 3° grid is a regional picture; near the coast the buoys and the
   Donghe marker carry the local detail.
 
+### Rain line (the Rain bar's summary)
+
+Added 2026-10-14. Two 12-hour blocks, e.g. "10% chance of rain until 20:00,
+no rain predicted · then 20% chance of rain 20:00–08:00, 1–2 mm predicted".
+`data/rain.json` comes from `buildRain()` in the fetch script:
+
+- **Amount:** read off CWA's QPF maps (the images in the Rain section).
+  `QPF_EnFcstPrecip_12_12.png` is the 12 h from the next 08:00 or 20:00
+  after it was issued, `_12_24` the 12 h after that. The maps are plain
+  lat/lon (~359 px/degree); Donghe is pixel (852, 1035), measured from the
+  image's own landmarks. A 21 × 21 px box around it is matched against the
+  legend colours and the wettest band covering at least 4 of 121 sampled
+  pixels wins, so coastline pixels can't count. If CWA changes the image
+  size the job fails loudly rather than reading the wrong spot.
+- **Chance:** the township forecast's 12-hour chance of rain for Donghe
+  (06–18 / 18–06), taking the period that overlaps each map window most.
+
 ### Surf rating and Best window (Right now card, 3-day strip)
 
 Added 2026-10-13: WaveSlave's (waveslave.tw) rating rules, used as-is so the
@@ -1007,7 +1024,7 @@ two sites agree. Each hour scores 0–8 — see `surfScore()` in `js/app.js`:
 
 Right now rates the Chenggong buoy with the Donghe station wind. Each day in
 the strip shows the rating of its best daylight hour (first to last civil
-light) and its **Best window**: the best-scoring daylight hour still ahead,
+light) and, from tomorrow on (not today, user's choice 2026-10-14), its **Best window**: the best-scoring daylight hour still ahead,
 grown over neighbouring hours that score as well, 2 to 3 hours long ("Best was …" once the
 day's daylight has passed).
 
