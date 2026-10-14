@@ -993,8 +993,10 @@ button, or Esc) closes it with a close-out and whitewater back to the page.
 
 ### Rain line (the Rain bar's summary)
 
-Added 2026-10-14. Two 12-hour blocks, e.g. "10% chance of rain until 20:00,
-no rain predicted · then 20% chance of rain 20:00–08:00, 1–2 mm predicted".
+Added 2026-10-14. Two 12-hour blocks labelled Today / Tonight / Tomorrow /
+Tomorrow night, e.g. "Today: 10% chance of rain · Tonight: 70% chance of rain,
+5–10 mm". The amount shows only when the map puts rain over Donghe (a low
+chance with "none expected" read as a contradiction — user, 2026-10-14).
 `data/rain.json` comes from `buildRain()` in the fetch script:
 
 - **Amount:** read off CWA's QPF maps (the images in the Rain section).

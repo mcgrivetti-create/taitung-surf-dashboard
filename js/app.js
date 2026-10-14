@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-14b";
+  var ASSET_VERSION = "2026-10-14c";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -1946,21 +1946,31 @@
      From data/rain.json: the amount band read off CWA's QPF maps at Donghe,
      the chance from CWA's township forecast (see buildRain in the fetch
      script). Always two 12-hour blocks (user's choice 2026-10-14). */
+  // Amount only when CWA's map puts rain over Donghe; a low chance needs no "none expected" (user, 2026-10-14).
   function rainMmText(mm) {
-    if (!mm) return "no rain predicted";
-    if (mm.max === null) return mm.min + "+ mm predicted";
-    if (mm.min < 1) return "under 1 mm predicted";
-    return mm.min + "–" + mm.max + " mm predicted";
+    if (!mm) return "";
+    if (mm.max === null) return mm.min + "+ mm";
+    if (mm.min < 1) return "under 1 mm";
+    return mm.min + "–" + mm.max + " mm";
+  }
+  // The maps run 08–20 and 20–08: Today / Tonight / Tomorrow / Tomorrow night.
+  function rainBlockLabel(s, e, now) {
+    var today = dayKey(now), startDay = dayKey(s), night = hourOf(s) >= 18;
+    if (night) return startDay === today || s <= now ? "Tonight" : "Tomorrow night";
+    return startDay === today ? "Today" : "Tomorrow";
   }
   function renderRainSummary(rain) {
     var now = Date.now(), parts = [];
     (rain.blocks || []).forEach(function (b) {
       var s = Date.parse(b.start), e = Date.parse(b.end);
       if (e <= now) return; // an old map whose window has passed
-      var span = s <= now ? "until " + fmtHMx.format(e) : fmtHMx.format(s) + "–" + fmtHMx.format(e);
-      parts.push((b.pop !== null && b.pop !== undefined ? b.pop + "% chance of rain " : "Rain ") + span + ", " + rainMmText(b.mm));
+      var bits = [], mm = rainMmText(b.mm);
+      if (b.pop !== null && b.pop !== undefined) bits.push(b.pop + "% chance of rain");
+      if (mm) bits.push(mm);
+      if (!bits.length) bits.push("no rain forecast");
+      parts.push("<b>" + rainBlockLabel(s, e, now) + ":</b> " + bits.join(", "));
     });
-    if (parts.length) setSummary("qpf", parts.join(" · then "));
+    if (parts.length) setSummary("qpf", parts.join(" · "));
   }
 
   // One-line trend at the top of each buoy's card.
