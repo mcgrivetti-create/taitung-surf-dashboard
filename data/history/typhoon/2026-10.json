@@ -11539,6 +11539,258 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "28W",
+      "name": "Twentyeight",
+      "designation": "Tropical Depression",
+      "warningNumber": "013",
+      "issuedAt": "2026-10-15T03:00:00.000Z",
+      "positionZ": "150000Z",
+      "lat": 22.3,
+      "lon": 140.6,
+      "maxWindKt": 25,
+      "gustKt": 35,
+      "pressureMb": 1007,
+      "seasFt": 12,
+      "movingToward": 270,
+      "movingKt": 6,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "151200Z",
+          "lat": 22.9,
+          "lon": 138.9,
+          "maxWindKt": 25,
+          "gustKt": 35
+        },
+        {
+          "tau": 24,
+          "validZ": "160000Z",
+          "lat": 23.3,
+          "lon": 137,
+          "maxWindKt": 20,
+          "gustKt": 30
+        }
+      ],
+      "spot": {
+        "distanceNm": 1069,
+        "bearingDeg": 88,
+        "closestApproach": {
+          "distanceNm": 866,
+          "tau": 24,
+          "validZ": "160000Z",
+          "maxWindKt": 20
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 270,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 291
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 283
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-19T15:00:00.000Z",
+        "status": "none"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts tropical depression (TD) 28W as a fully exposed, diminuative spinner completely devoid of convection and overwhelmed by dry air. TD 28W is expected to track generally westward for the duration of the forecast while it remains a shallow system under the control of the low-level westerly flow. The dry air will ultimately cause 28W to weaken through +24h until dissipation.",
+        "warningNumber": "013",
+        "generatedAt": "2026-10-15T04:24:38.090Z"
+      },
+      "reasoningWarningNumber": "013",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
+    },
+    {
+      "kind": "warning",
+      "id": "29W",
+      "name": "Twentynine",
+      "designation": "Tropical Depression",
+      "warningNumber": "003",
+      "issuedAt": "2026-10-15T03:00:00.000Z",
+      "positionZ": "150000Z",
+      "lat": 10.7,
+      "lon": 159.4,
+      "maxWindKt": 30,
+      "gustKt": 40,
+      "pressureMb": 1004,
+      "seasFt": 12,
+      "movingToward": 285,
+      "movingKt": 11,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "151200Z",
+          "lat": 11.2,
+          "lon": 157.3,
+          "maxWindKt": 30,
+          "gustKt": 40
+        },
+        {
+          "tau": 24,
+          "validZ": "160000Z",
+          "lat": 11.7,
+          "lon": 154.7,
+          "maxWindKt": 35,
+          "gustKt": 45
+        },
+        {
+          "tau": 36,
+          "validZ": "161200Z",
+          "lat": 12.1,
+          "lon": 151.9,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 48,
+          "validZ": "170000Z",
+          "lat": 12.7,
+          "lon": 149.5,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 60,
+          "validZ": "171200Z",
+          "lat": 13.3,
+          "lon": 146.9,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 72,
+          "validZ": "180000Z",
+          "lat": 13.9,
+          "lon": 144.4,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 96,
+          "validZ": "190000Z",
+          "lat": 15.2,
+          "lon": 139.5,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 120,
+          "validZ": "200000Z",
+          "lat": 17.1,
+          "lon": 134.8,
+          "maxWindKt": 125,
+          "gustKt": 150
+        }
+      ],
+      "spot": {
+        "distanceNm": 2301,
+        "bearingDeg": 102,
+        "closestApproach": {
+          "distanceNm": 838,
+          "tau": 120,
+          "validZ": "200000Z",
+          "maxWindKt": 125
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 285,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 284
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 281
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 279
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 285
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 284
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 284
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 286
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 293
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-19T15:00:00.000Z",
+        "status": "none"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a partially exposed low-level circulation center (LLCC) exhibiting weak, transient convective bursts proximate to the assessed center, which rapidly shear and dissipate westward. TD 29W is forecast to continue its counter-clockwise looping motion over the next 12 hours, before establishing a west-northwestward heading. The key question with this forecast is the intensity; specifically, the potential for rapid intensification (ri) and the timing of this event relative to the marianas islands.",
+        "warningNumber": "001",
+        "generatedAt": "2026-10-14T17:29:54.335Z"
+      },
+      "reasoningWarningNumber": "003",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "HIGH",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
+    },
+    {
+      "kind": "invest",
+      "id": "27W",
+      "issuedAt": "2026-10-15T01:00:00.000Z",
+      "lat": 49.7,
+      "lon": 169.1,
+      "potential": "LOW",
+      "geoReference": "806 NM SOUTHEAST OF PETROPAVLOVSK",
+      "windKtLow": 38,
+      "windKtHigh": 43,
+      "pressureMb": 995,
+      "spot": {
+        "distanceNm": 2747,
+        "bearingDeg": 42
+      }
     }
   ]
 }

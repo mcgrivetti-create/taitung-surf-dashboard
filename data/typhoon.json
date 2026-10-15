@@ -1,64 +1,55 @@
 {
-  "fetchedAt": "2026-10-15T00:02:24.597Z",
+  "fetchedAt": "2026-10-15T04:24:38.090Z",
   "systems": [
     {
       "designation": "Tropical Depression",
       "id": "28W",
       "name": "Twentyeight",
       "headline": "Tropical Depression 28W (Twentyeight)",
-      "warningNumber": "012",
-      "issuedZ": "14/2100Z",
-      "issuedAt": "2026-10-14T21:00:00.000Z",
+      "warningNumber": "013",
+      "issuedZ": "15/0300Z",
+      "issuedAt": "2026-10-15T03:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2826.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2826web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "150600Z",
-          "lat": 23.4,
-          "lon": 139.4,
+          "validZ": "151200Z",
+          "lat": 22.9,
+          "lon": 138.9,
           "maxWindKt": 25,
           "gustKt": 35
         },
         {
           "tau": 24,
-          "validZ": "151800Z",
-          "lat": 23.9,
-          "lon": 137.5,
-          "maxWindKt": 25,
-          "gustKt": 35
-        },
-        {
-          "tau": 36,
-          "validZ": "160600Z",
-          "lat": 23.8,
-          "lon": 135.6,
+          "validZ": "160000Z",
+          "lat": 23.3,
+          "lon": 137,
           "maxWindKt": 20,
           "gustKt": 30
         }
       ],
-      "positionZ": "141800Z",
-      "lat": 22.7,
-      "lon": 141.1,
-      "movingToward": 305,
-      "movingKt": 12,
-      "maxWindKt": 30,
-      "gustKt": 40,
+      "positionZ": "150000Z",
+      "lat": 22.3,
+      "lon": 140.6,
+      "movingToward": 270,
+      "movingKt": 6,
+      "maxWindKt": 25,
+      "gustKt": 35,
       "pressureMb": 1007,
       "seasFt": 12,
       "nextWarnings": [
-        "150300Z",
         "150900Z",
         "151500Z",
         "152100Z. REFER TO TROPICAL DEPRESSION 29W (TWENTYNINE) WARNINGS (WTPN32 PGTW) FOR SIX-HOURLY UPDATES"
       ],
       "reasoning": {
-        "warningNumber": "012",
+        "warningNumber": "013",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 12,
-        "environment": "MARGINAL",
-        "vws": "5-10 KTS",
+        "environment": "HIGHLY UNFAVORABLE",
+        "vws": "15-20 KTS",
         "sst": "28-29 CELSIUS",
         "outflow": "WEAK POLEWARD",
         "steering": "LOW TO MID-LEVEL WESTERLY FLOW AROUND THE DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTHEAST",
@@ -72,42 +63,30 @@
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2826prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 1094,
-        "bearingDeg": 87,
+        "distanceNm": 1069,
+        "bearingDeg": 88,
         "closestApproach": {
-          "distanceNm": 788,
-          "tau": 36,
-          "validZ": "160600Z",
+          "distanceNm": 866,
+          "tau": 24,
+          "validZ": "160000Z",
           "maxWindKt": 20
         }
       },
       "motion": {
-        "currentHeadingDeg": 305,
+        "currentHeadingDeg": 270,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 294
+            "heading": 291
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 286
-          },
-          {
-            "fromTau": 24,
-            "toTau": 36,
-            "heading": 267
+            "heading": 283
           }
         ],
-        "turns": [
-          {
-            "fromTau": 24,
-            "toTau": 36,
-            "headingDeg": 267,
-            "deltaDeg": 38
-          }
-        ]
+        "turns": []
       },
       "swell": {
         "windowEnd": "2026-10-19T15:00:00.000Z",
@@ -116,17 +95,17 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated enhanced infrared (EIR) satellite imagery shows that the convection that was developing around the 0600Z hour, has expanded and persisted, and now covers and obscures the low-level circulation center (LLCC). However, the convection is likely peaking in its intensity currently, or will reach its peak imminently and is expected to collapse within the next six hours.",
-        "warningNumber": "011",
-        "generatedAt": "2026-10-14T15:03:07.430Z"
+        "text": "Animated multispectral satellite imagery (MSI) depicts tropical depression (TD) 28W as a fully exposed, diminuative spinner completely devoid of convection and overwhelmed by dry air. TD 28W is expected to track generally westward for the duration of the forecast while it remains a shallow system under the control of the low-level westerly flow. The dry air will ultimately cause 28W to weaken through +24h until dissipation.",
+        "warningNumber": "013",
+        "generatedAt": "2026-10-15T04:24:38.090Z"
       },
       "changes": {
-        "previousWarningNumber": "011",
-        "previousIssuedAt": "2026-10-14T15:00:00.000Z",
-        "maxWindKtDelta": 0,
+        "previousWarningNumber": "012",
+        "previousIssuedAt": "2026-10-14T21:00:00.000Z",
+        "maxWindKtDelta": -5,
         "pressureMbDelta": 0,
         "seasFtDelta": 0,
-        "closestApproachNmDelta": 49
+        "closestApproachNmDelta": 78
       }
     },
     {
@@ -134,95 +113,95 @@
       "id": "29W",
       "name": "Twentynine",
       "headline": "Tropical Depression 29W (Twentynine)",
-      "warningNumber": "002",
-      "issuedZ": "14/2100Z",
-      "issuedAt": "2026-10-14T21:00:00.000Z",
+      "warningNumber": "003",
+      "issuedZ": "15/0300Z",
+      "issuedAt": "2026-10-15T03:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "150600Z",
+          "validZ": "151200Z",
           "lat": 11.2,
-          "lon": 158.9,
+          "lon": 157.3,
           "maxWindKt": 30,
           "gustKt": 40
         },
         {
           "tau": 24,
-          "validZ": "151800Z",
-          "lat": 11.6,
-          "lon": 156.3,
+          "validZ": "160000Z",
+          "lat": 11.7,
+          "lon": 154.7,
           "maxWindKt": 35,
           "gustKt": 45
         },
         {
           "tau": 36,
-          "validZ": "160600Z",
-          "lat": 12,
-          "lon": 153.6,
+          "validZ": "161200Z",
+          "lat": 12.1,
+          "lon": 151.9,
           "maxWindKt": 45,
           "gustKt": 55
         },
         {
           "tau": 48,
-          "validZ": "161800Z",
-          "lat": 12.4,
-          "lon": 151,
+          "validZ": "170000Z",
+          "lat": 12.7,
+          "lon": 149.5,
           "maxWindKt": 55,
           "gustKt": 70
         },
         {
           "tau": 60,
-          "validZ": "170600Z",
-          "lat": 13.1,
-          "lon": 148.4,
-          "maxWindKt": 65,
-          "gustKt": 80
+          "validZ": "171200Z",
+          "lat": 13.3,
+          "lon": 146.9,
+          "maxWindKt": 70,
+          "gustKt": 85
         },
         {
           "tau": 72,
-          "validZ": "171800Z",
-          "lat": 13.6,
-          "lon": 145.8,
-          "maxWindKt": 80,
-          "gustKt": 100
+          "validZ": "180000Z",
+          "lat": 13.9,
+          "lon": 144.4,
+          "maxWindKt": 85,
+          "gustKt": 105
         },
         {
           "tau": 96,
-          "validZ": "181800Z",
-          "lat": 14.8,
-          "lon": 140.9,
-          "maxWindKt": 110,
-          "gustKt": 135
+          "validZ": "190000Z",
+          "lat": 15.2,
+          "lon": 139.5,
+          "maxWindKt": 115,
+          "gustKt": 140
         },
         {
           "tau": 120,
-          "validZ": "191800Z",
-          "lat": 16.6,
-          "lon": 136.2,
+          "validZ": "200000Z",
+          "lat": 17.1,
+          "lon": 134.8,
           "maxWindKt": 125,
           "gustKt": 150
         }
       ],
-      "positionZ": "141800Z",
-      "lat": 10.4,
-      "lon": 160.5,
-      "movingToward": 320,
+      "positionZ": "150000Z",
+      "lat": 10.7,
+      "lon": 159.4,
+      "movingToward": 285,
       "movingKt": 11,
       "maxWindKt": 30,
       "gustKt": 40,
       "pressureMb": 1004,
       "seasFt": 12,
       "nextWarnings": [
-        "150300Z",
         "150900Z",
         "151500Z",
-        "152100Z. REFER TO TROPICAL DEPRESSION 28W (TWENTYEIGHT) WARNINGS (WTPN31 PGTW) FOR SIX-HOURLY UPDATES"
+        "152100Z",
+        "160300Z. REFER TO TROPICAL DEPRESSION 28W (TWENTYEIGHT) WARNINGS (WTPN31 PGTW) FOR SIX-HOURLY UPDATES"
       ],
       "reasoning": {
-        "warningNumber": "002",
+        "warningNumber": "003",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 12,
         "environment": "FAVORABLE",
@@ -240,27 +219,27 @@
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 2368,
+        "distanceNm": 2301,
         "bearingDeg": 102,
         "closestApproach": {
-          "distanceNm": 923,
+          "distanceNm": 838,
           "tau": 120,
-          "validZ": "191800Z",
+          "validZ": "200000Z",
           "maxWindKt": 125
         }
       },
       "motion": {
-        "currentHeadingDeg": 320,
+        "currentHeadingDeg": 285,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 297
+            "heading": 284
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 279
+            "heading": 281
           },
           {
             "fromTau": 24,
@@ -270,37 +249,30 @@
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 279
+            "heading": 285
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 286
+            "heading": 284
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 281
+            "heading": 284
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 285
+            "heading": 286
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 292
+            "heading": 293
           }
         ],
-        "turns": [
-          {
-            "fromTau": 12,
-            "toTau": 24,
-            "headingDeg": 279,
-            "deltaDeg": 41
-          }
-        ]
+        "turns": []
       },
       "swell": {
         "windowEnd": "2026-10-19T15:00:00.000Z",
@@ -314,21 +286,34 @@
         "generatedAt": "2026-10-14T17:29:54.335Z"
       },
       "changes": {
-        "previousWarningNumber": "001",
-        "previousIssuedAt": "2026-10-14T15:00:00.000Z",
+        "previousWarningNumber": "002",
+        "previousIssuedAt": "2026-10-14T21:00:00.000Z",
         "maxWindKtDelta": 0,
-        "pressureMbDelta": 1,
-        "seasFtDelta": 1,
-        "closestApproachNmDelta": -75
+        "pressureMbDelta": 0,
+        "seasFtDelta": 0,
+        "closestApproachNmDelta": -85
       }
     }
   ],
   "alerts": [],
-  "invests": [],
-  "investSatellite": null,
+  "invests": [
+    {
+      "id": "27W",
+      "potential": "LOW",
+      "geoReference": "806 NM SOUTHEAST OF PETROPAVLOVSK",
+      "windKtLow": 38,
+      "windKtHigh": 43,
+      "pressureMb": 995,
+      "lat": 49.7,
+      "lon": 169.1,
+      "distanceNm": 2747,
+      "bearingDeg": 42
+    }
+  ],
+  "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "14/1800Z",
-    "issuedAt": "2026-10-14T18:00:00.000Z",
+    "issuedZ": "15/0100Z",
+    "issuedAt": "2026-10-15T01:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
     "reissued": true
   }
