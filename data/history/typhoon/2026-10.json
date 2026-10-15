@@ -12022,6 +12022,163 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "29W",
+      "name": "Champi",
+      "designation": "Tropical Storm",
+      "warningNumber": "005",
+      "issuedAt": "2026-10-15T15:00:00.000Z",
+      "positionZ": "151200Z",
+      "lat": 11,
+      "lon": 157.4,
+      "maxWindKt": 35,
+      "gustKt": 45,
+      "pressureMb": 1001,
+      "seasFt": 14,
+      "movingToward": 280,
+      "movingKt": 10,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "160000Z",
+          "lat": 11.5,
+          "lon": 154.9,
+          "maxWindKt": 40,
+          "gustKt": 50
+        },
+        {
+          "tau": 24,
+          "validZ": "161200Z",
+          "lat": 11.9,
+          "lon": 152.1,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 36,
+          "validZ": "170000Z",
+          "lat": 12.4,
+          "lon": 149.5,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 48,
+          "validZ": "171200Z",
+          "lat": 12.9,
+          "lon": 147,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 60,
+          "validZ": "180000Z",
+          "lat": 13.5,
+          "lon": 144.5,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 72,
+          "validZ": "181200Z",
+          "lat": 14,
+          "lon": 142.3,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 96,
+          "validZ": "191200Z",
+          "lat": 15.7,
+          "lon": 137.7,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 120,
+          "validZ": "201200Z",
+          "lat": 17.7,
+          "lon": 133.1,
+          "maxWindKt": 125,
+          "gustKt": 150
+        }
+      ],
+      "spot": {
+        "distanceNm": 2186,
+        "bearingDeg": 103,
+        "closestApproach": {
+          "distanceNm": 735,
+          "tau": 120,
+          "validZ": "201200Z",
+          "maxWindKt": 125
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 280,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 282
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 279
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 281
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 282
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 284
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 283
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 292
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 295
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-19T15:00:00.000Z",
+        "status": "none"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Tropical depression (TD) 29W has not changed much over the past 6-12 hours as it moves west-northwestward. Over the past 12 hours, TD 29W has moved west-northwestward at an average speed of approximately 11 kt. Once the vortex becomes more symmetrical and vertically aligned, the rate of intensification will increase.",
+        "warningNumber": null,
+        "generatedAt": "2026-10-15T09:47:57.324Z"
+      },
+      "reasoningWarningNumber": "005",
+      "significantForecastChanges": "THE INTENSITY FORECAST HAS BEEN ADJUSTED UPWARD BY 5-10 KTS FROM TAU 12 TO TAU 72.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "HIGH",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }

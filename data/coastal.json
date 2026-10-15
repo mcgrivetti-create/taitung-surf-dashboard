@@ -19,24 +19,6 @@
                 "ElementName": "風速",
                 "Time": [
                   {
-                    "DataTime": "2026-10-15T18:00:00+08:00",
-                    "ElementValue": {
-                      "WindSpeedKts": "12",
-                      "WindSpeed": "6.2",
-                      "BeaufortScale": "4",
-                      "WindSpeedKph": "22.2"
-                    }
-                  },
-                  {
-                    "DataTime": "2026-10-15T21:00:00+08:00",
-                    "ElementValue": {
-                      "WindSpeedKts": "9",
-                      "WindSpeed": "4.6",
-                      "BeaufortScale": "3",
-                      "WindSpeedKph": "16.7"
-                    }
-                  },
-                  {
                     "DataTime": "2026-10-16T00:00:00+08:00",
                     "ElementValue": {
                       "WindSpeedKts": "9",
@@ -314,24 +296,30 @@
                       "BeaufortScale": "3",
                       "WindSpeedKph": "14.8"
                     }
+                  },
+                  {
+                    "DataTime": "2026-10-19T21:00:00+08:00",
+                    "ElementValue": {
+                      "WindSpeedKts": "7",
+                      "WindSpeed": "3.6",
+                      "BeaufortScale": "3",
+                      "WindSpeedKph": "13.0"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-20T00:00:00+08:00",
+                    "ElementValue": {
+                      "WindSpeedKts": "6",
+                      "WindSpeed": "3.1",
+                      "BeaufortScale": "2",
+                      "WindSpeedKph": "11.1"
+                    }
                   }
                 ]
               },
               {
                 "ElementName": "風向",
                 "Time": [
-                  {
-                    "DataTime": "2026-10-15T18:00:00+08:00",
-                    "ElementValue": {
-                      "WindDirection": "東北風"
-                    }
-                  },
-                  {
-                    "DataTime": "2026-10-15T21:00:00+08:00",
-                    "ElementValue": {
-                      "WindDirection": "東北風"
-                    }
-                  },
                   {
                     "DataTime": "2026-10-16T00:00:00+08:00",
                     "ElementValue": {
@@ -517,24 +505,24 @@
                     "ElementValue": {
                       "WindDirection": "東北風"
                     }
+                  },
+                  {
+                    "DataTime": "2026-10-19T21:00:00+08:00",
+                    "ElementValue": {
+                      "WindDirection": "東北風"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-20T00:00:00+08:00",
+                    "ElementValue": {
+                      "WindDirection": "東北風"
+                    }
                   }
                 ]
               },
               {
                 "ElementName": "雲量",
                 "Time": [
-                  {
-                    "DataTime": "2026-10-15T18:00:00+08:00",
-                    "ElementValue": {
-                      "SkyCover": "31.0"
-                    }
-                  },
-                  {
-                    "DataTime": "2026-10-15T21:00:00+08:00",
-                    "ElementValue": {
-                      "SkyCover": "84.0"
-                    }
-                  },
                   {
                     "DataTime": "2026-10-16T00:00:00+08:00",
                     "ElementValue": {
@@ -720,26 +708,24 @@
                     "ElementValue": {
                       "SkyCover": "21.0"
                     }
+                  },
+                  {
+                    "DataTime": "2026-10-19T21:00:00+08:00",
+                    "ElementValue": {
+                      "SkyCover": "42.0"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-20T00:00:00+08:00",
+                    "ElementValue": {
+                      "SkyCover": "44.0"
+                    }
                   }
                 ]
               },
               {
                 "ElementName": "天氣現象",
                 "Time": [
-                  {
-                    "DataTime": "2026-10-15T18:00:00+08:00",
-                    "ElementValue": {
-                      "Weather": "晴天",
-                      "WeatherCode": "01"
-                    }
-                  },
-                  {
-                    "DataTime": "2026-10-15T21:00:00+08:00",
-                    "ElementValue": {
-                      "Weather": "多雲",
-                      "WeatherCode": "04"
-                    }
-                  },
                   {
                     "DataTime": "2026-10-16T00:00:00+08:00",
                     "ElementValue": {
@@ -952,6 +938,20 @@
                   },
                   {
                     "DataTime": "2026-10-19T18:00:00+08:00",
+                    "ElementValue": {
+                      "Weather": "晴天",
+                      "WeatherCode": "01"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-19T21:00:00+08:00",
+                    "ElementValue": {
+                      "Weather": "晴天",
+                      "WeatherCode": "01"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-20T00:00:00+08:00",
                     "ElementValue": {
                       "Weather": "晴天",
                       "WeatherCode": "01"
@@ -963,18 +963,6 @@
                 "ElementName": "浪高",
                 "Time": [
                   {
-                    "DataTime": "2026-10-15T18:00:00+08:00",
-                    "ElementValue": {
-                      "WaveHeight": "1.2"
-                    }
-                  },
-                  {
-                    "DataTime": "2026-10-15T21:00:00+08:00",
-                    "ElementValue": {
-                      "WaveHeight": "1.1"
-                    }
-                  },
-                  {
                     "DataTime": "2026-10-16T00:00:00+08:00",
                     "ElementValue": {
                       "WaveHeight": "1.1"
@@ -1158,6 +1146,18 @@
                     "DataTime": "2026-10-19T18:00:00+08:00",
                     "ElementValue": {
                       "WaveHeight": "0.9"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-19T21:00:00+08:00",
+                    "ElementValue": {
+                      "WaveHeight": "0.9"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-20T00:00:00+08:00",
+                    "ElementValue": {
+                      "WaveHeight": "0.8"
                     }
                   }
                 ]
@@ -1166,18 +1166,6 @@
                 "ElementName": "浪向",
                 "Time": [
                   {
-                    "DataTime": "2026-10-15T18:00:00+08:00",
-                    "ElementValue": {
-                      "WaveDirection": "偏東"
-                    }
-                  },
-                  {
-                    "DataTime": "2026-10-15T21:00:00+08:00",
-                    "ElementValue": {
-                      "WaveDirection": "偏東"
-                    }
-                  },
-                  {
                     "DataTime": "2026-10-16T00:00:00+08:00",
                     "ElementValue": {
                       "WaveDirection": "偏東"
@@ -1359,6 +1347,18 @@
                   },
                   {
                     "DataTime": "2026-10-19T18:00:00+08:00",
+                    "ElementValue": {
+                      "WaveDirection": "偏東"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-19T21:00:00+08:00",
+                    "ElementValue": {
+                      "WaveDirection": "偏東"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-20T00:00:00+08:00",
                     "ElementValue": {
                       "WaveDirection": "偏東"
                     }
@@ -1368,18 +1368,6 @@
               {
                 "ElementName": "浪週期",
                 "Time": [
-                  {
-                    "DataTime": "2026-10-15T18:00:00+08:00",
-                    "ElementValue": {
-                      "WavePeriod": "6.6"
-                    }
-                  },
-                  {
-                    "DataTime": "2026-10-15T21:00:00+08:00",
-                    "ElementValue": {
-                      "WavePeriod": "6.7"
-                    }
-                  },
                   {
                     "DataTime": "2026-10-16T00:00:00+08:00",
                     "ElementValue": {
@@ -1485,7 +1473,7 @@
                   {
                     "DataTime": "2026-10-18T03:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "6.0"
+                      "WavePeriod": "5.9"
                     }
                   },
                   {
@@ -1527,7 +1515,7 @@
                   {
                     "DataTime": "2026-10-19T00:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "6.5"
+                      "WavePeriod": "6.6"
                     }
                   },
                   {
@@ -1545,7 +1533,7 @@
                   {
                     "DataTime": "2026-10-19T09:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "6.9"
+                      "WavePeriod": "7.0"
                     }
                   },
                   {
@@ -1557,7 +1545,7 @@
                   {
                     "DataTime": "2026-10-19T15:00:00+08:00",
                     "ElementValue": {
-                      "WavePeriod": "6.8"
+                      "WavePeriod": "6.9"
                     }
                   },
                   {
@@ -1565,28 +1553,24 @@
                     "ElementValue": {
                       "WavePeriod": "6.8"
                     }
+                  },
+                  {
+                    "DataTime": "2026-10-19T21:00:00+08:00",
+                    "ElementValue": {
+                      "WavePeriod": "6.8"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-20T00:00:00+08:00",
+                    "ElementValue": {
+                      "WavePeriod": "6.7"
+                    }
                   }
                 ]
               },
               {
                 "ElementName": "流速",
                 "Time": [
-                  {
-                    "DataTime": "2026-10-15T18:00:00+08:00",
-                    "ElementValue": {
-                      "OceanCurrentSpeedKts": "1",
-                      "OceanCurrentSpeed": "0.3",
-                      "OceanCurrentSpeedKph": "1.0"
-                    }
-                  },
-                  {
-                    "DataTime": "2026-10-15T21:00:00+08:00",
-                    "ElementValue": {
-                      "OceanCurrentSpeedKts": "1",
-                      "OceanCurrentSpeed": "0.4",
-                      "OceanCurrentSpeedKph": "1.4"
-                    }
-                  },
                   {
                     "DataTime": "2026-10-16T00:00:00+08:00",
                     "ElementValue": {
@@ -1834,24 +1818,28 @@
                       "OceanCurrentSpeed": "-",
                       "OceanCurrentSpeedKph": "-"
                     }
+                  },
+                  {
+                    "DataTime": "2026-10-19T21:00:00+08:00",
+                    "ElementValue": {
+                      "OceanCurrentSpeedKts": "-",
+                      "OceanCurrentSpeed": "-",
+                      "OceanCurrentSpeedKph": "-"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-20T00:00:00+08:00",
+                    "ElementValue": {
+                      "OceanCurrentSpeedKts": "-",
+                      "OceanCurrentSpeed": "-",
+                      "OceanCurrentSpeedKph": "-"
+                    }
                   }
                 ]
               },
               {
                 "ElementName": "流向",
                 "Time": [
-                  {
-                    "DataTime": "2026-10-15T18:00:00+08:00",
-                    "ElementValue": {
-                      "OceanCurrentDirection": "偏北"
-                    }
-                  },
-                  {
-                    "DataTime": "2026-10-15T21:00:00+08:00",
-                    "ElementValue": {
-                      "OceanCurrentDirection": "東北"
-                    }
-                  },
                   {
                     "DataTime": "2026-10-16T00:00:00+08:00",
                     "ElementValue": {
@@ -2034,6 +2022,18 @@
                   },
                   {
                     "DataTime": "2026-10-19T18:00:00+08:00",
+                    "ElementValue": {
+                      "OceanCurrentDirection": "-"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-19T21:00:00+08:00",
+                    "ElementValue": {
+                      "OceanCurrentDirection": "-"
+                    }
+                  },
+                  {
+                    "DataTime": "2026-10-20T00:00:00+08:00",
                     "ElementValue": {
                       "OceanCurrentDirection": "-"
                     }
