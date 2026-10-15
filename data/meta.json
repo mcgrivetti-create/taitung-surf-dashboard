@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-15T04:24:47.163Z",
+  "updatedAt": "2026-10-15T09:48:05.536Z",
   "sources": [
     {
       "name": "F-D0047-039 township forecast",
@@ -73,18 +73,18 @@
     },
     {
       "name": "Open-Meteo West Pacific grid (surf map)",
-      "ok": true,
-      "count": 80
+      "ok": false,
+      "error": "Expected ',' or ']' after array element in JSON at position 203294 (line 1 column 203295)"
     },
     {
       "name": "JTWC typhoon news (W Pacific)",
       "ok": true,
-      "count": 3
+      "count": 2
     },
     {
       "name": "stations-history rolling log",
       "ok": true,
-      "count": 21
+      "count": 18
     },
     {
       "name": "history/forecast log",
@@ -94,7 +94,7 @@
     {
       "name": "history/buoy log",
       "ok": true,
-      "count": 21
+      "count": 29
     },
     {
       "name": "history/station log",
@@ -104,7 +104,7 @@
     {
       "name": "history/tide log",
       "ok": true,
-      "count": 4
+      "count": 6
     },
     {
       "name": "phase 3 files",

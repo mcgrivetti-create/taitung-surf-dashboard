@@ -11791,6 +11791,237 @@
         "distanceNm": 2747,
         "bearingDeg": 42
       }
+    },
+    {
+      "kind": "warning",
+      "id": "28W",
+      "name": "Twentyeight",
+      "designation": "Tropical Disturbance",
+      "warningNumber": "014",
+      "issuedAt": "2026-10-15T09:00:00.000Z",
+      "positionZ": "150600Z",
+      "lat": 22.5,
+      "lon": 139.7,
+      "maxWindKt": 20,
+      "gustKt": 30,
+      "pressureMb": 1009,
+      "seasFt": 8,
+      "movingToward": 285,
+      "movingKt": 8,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "151800Z",
+          "lat": 23.1,
+          "lon": 137.9,
+          "maxWindKt": 20,
+          "gustKt": 30
+        },
+        {
+          "tau": 24,
+          "validZ": "160600Z",
+          "lat": 23.3,
+          "lon": 136.1,
+          "maxWindKt": 15,
+          "gustKt": 25
+        }
+      ],
+      "spot": {
+        "distanceNm": 1018,
+        "bearingDeg": 88,
+        "closestApproach": {
+          "distanceNm": 816,
+          "tau": 24,
+          "validZ": "160600Z",
+          "maxWindKt": 15
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 285,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 290
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 277
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-19T15:00:00.000Z",
+        "status": "none"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts tropical depression (TD) 28W as a fully exposed, diminuative spinner completely devoid of convection and overwhelmed by dry air. TD 28W is expected to track generally westward for the duration of the forecast while it remains a shallow system under the control of the low-level westerly flow. The dry air will ultimately cause 28W to weaken through +24h until dissipation.",
+        "warningNumber": "013",
+        "generatedAt": "2026-10-15T04:24:38.090Z"
+      },
+      "reasoningWarningNumber": null,
+      "significantForecastChanges": null,
+      "confidence": null
+    },
+    {
+      "kind": "warning",
+      "id": "29W",
+      "name": "Champi",
+      "designation": "Tropical Depression",
+      "warningNumber": "004",
+      "issuedAt": "2026-10-15T09:00:00.000Z",
+      "positionZ": "150600Z",
+      "lat": 10.9,
+      "lon": 158.4,
+      "maxWindKt": 30,
+      "gustKt": 40,
+      "pressureMb": 1002,
+      "seasFt": 13,
+      "movingToward": 285,
+      "movingKt": 9,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "151800Z",
+          "lat": 11.3,
+          "lon": 156,
+          "maxWindKt": 35,
+          "gustKt": 45
+        },
+        {
+          "tau": 24,
+          "validZ": "160600Z",
+          "lat": 11.8,
+          "lon": 153.4,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 36,
+          "validZ": "161800Z",
+          "lat": 12.2,
+          "lon": 150.9,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 48,
+          "validZ": "170600Z",
+          "lat": 12.8,
+          "lon": 148.3,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 60,
+          "validZ": "171800Z",
+          "lat": 13.3,
+          "lon": 145.7,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 72,
+          "validZ": "180600Z",
+          "lat": 13.9,
+          "lon": 143.3,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 96,
+          "validZ": "190600Z",
+          "lat": 15.3,
+          "lon": 138.6,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 120,
+          "validZ": "200600Z",
+          "lat": 17.3,
+          "lon": 134,
+          "maxWindKt": 125,
+          "gustKt": 150
+        }
+      ],
+      "spot": {
+        "distanceNm": 2242,
+        "bearingDeg": 103,
+        "closestApproach": {
+          "distanceNm": 792,
+          "tau": 120,
+          "validZ": "200600Z",
+          "maxWindKt": 125
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 285,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 280
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 281
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 280
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 284
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 281
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 285
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 288
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 295
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-19T15:00:00.000Z",
+        "status": "none"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Tropical depression (TD) 29W has not changed much over the past 6-12 hours as it moves west-northwestward. Over the past 12 hours, TD 29W has moved west-northwestward at an average speed of approximately 11 kt. Once the vortex becomes more symmetrical and vertically aligned, the rate of intensification will increase.",
+        "warningNumber": null,
+        "generatedAt": "2026-10-15T09:47:57.324Z"
+      },
+      "reasoningWarningNumber": null,
+      "significantForecastChanges": "THE OVERALL FORECAST TRACK HAS BEEN SHIFTED SLIGHTLY SOUTHWARD BY 18 NM AT TAU 60.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
