@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-15T19:19:53.766Z",
+  "fetchedAt": "2026-10-15T22:10:19.001Z",
   "systems": [
     {
       "designation": "Tropical Disturbance",
@@ -90,104 +90,103 @@
       "id": "29W",
       "name": "Champi",
       "headline": "Tropical Storm 29W (Champi)",
-      "warningNumber": "005",
-      "issuedZ": "15/1500Z",
-      "issuedAt": "2026-10-15T15:00:00.000Z",
+      "warningNumber": "006",
+      "issuedZ": "15/2100Z",
+      "issuedAt": "2026-10-15T21:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610151200-96_CHAMPI_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610151800-96_CHAMPI_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "160000Z",
-          "lat": 11.5,
-          "lon": 154.9,
-          "maxWindKt": 40,
-          "gustKt": 50
-        },
-        {
-          "tau": 24,
-          "validZ": "161200Z",
-          "lat": 11.9,
-          "lon": 152.1,
+          "validZ": "160600Z",
+          "lat": 12,
+          "lon": 153.9,
           "maxWindKt": 50,
           "gustKt": 65
         },
         {
-          "tau": 36,
-          "validZ": "170000Z",
-          "lat": 12.4,
-          "lon": 149.5,
+          "tau": 24,
+          "validZ": "161800Z",
+          "lat": 12.3,
+          "lon": 151.1,
           "maxWindKt": 60,
           "gustKt": 75
         },
         {
-          "tau": 48,
-          "validZ": "171200Z",
+          "tau": 36,
+          "validZ": "170600Z",
           "lat": 12.9,
-          "lon": 147,
+          "lon": 148.4,
           "maxWindKt": 75,
           "gustKt": 90
         },
         {
-          "tau": 60,
-          "validZ": "180000Z",
-          "lat": 13.5,
-          "lon": 144.5,
+          "tau": 48,
+          "validZ": "171800Z",
+          "lat": 13.4,
+          "lon": 145.9,
           "maxWindKt": 90,
           "gustKt": 110
         },
         {
-          "tau": 72,
-          "validZ": "181200Z",
-          "lat": 14,
-          "lon": 142.3,
+          "tau": 60,
+          "validZ": "180600Z",
+          "lat": 13.9,
+          "lon": 143.4,
           "maxWindKt": 105,
           "gustKt": 130
         },
         {
+          "tau": 72,
+          "validZ": "181800Z",
+          "lat": 14.5,
+          "lon": 141.2,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
           "tau": 96,
-          "validZ": "191200Z",
-          "lat": 15.7,
-          "lon": 137.7,
-          "maxWindKt": 125,
-          "gustKt": 150
+          "validZ": "191800Z",
+          "lat": 16.5,
+          "lon": 136.9,
+          "maxWindKt": 130,
+          "gustKt": 160
         },
         {
           "tau": 120,
-          "validZ": "201200Z",
-          "lat": 17.7,
-          "lon": 133.1,
+          "validZ": "201800Z",
+          "lat": 18.6,
+          "lon": 132.4,
           "maxWindKt": 125,
           "gustKt": 150
         }
       ],
-      "intensityChangeNote": "UPGRADED FROM TROPICAL DEPRESSION 29W",
-      "positionZ": "151200Z",
-      "lat": 11,
-      "lon": 157.4,
-      "movingToward": 280,
+      "positionZ": "151800Z",
+      "lat": 11.5,
+      "lon": 156.5,
+      "movingToward": 300,
       "movingKt": 10,
-      "maxWindKt": 35,
-      "gustKt": 45,
-      "pressureMb": 1001,
-      "seasFt": 14,
+      "maxWindKt": 40,
+      "gustKt": 50,
+      "pressureMb": 999,
+      "seasFt": 15,
       "nextWarnings": [
-        "152100Z",
         "160300Z",
         "160900Z",
-        "161500Z. REFER TO TROPICAL DISTURBANCE 28W (TWENTYEIGHT) FINAL WARNING (WTPN31 PGTW)"
+        "161500Z",
+        "162100Z. REFER TO TROPICAL DISTURBANCE 28W (TWENTYEIGHT) FINAL WARNING (WTPN31 PGTW)"
       ],
-      "geoReference": "750 NM EAST OF ANDERSEN AFB",
+      "geoReference": "692 NM EAST OF ANDERSEN AFB",
       "reasoning": {
-        "warningNumber": "005",
-        "significantForecastChanges": "THE INTENSITY FORECAST HAS BEEN ADJUSTED UPWARD BY 5-10 KTS FROM TAU 12 TO TAU 72.",
-        "seasFt": 14,
+        "warningNumber": "006",
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "seasFt": 15,
         "environment": "FAVORABLE",
-        "vws": "15-20 KTS",
+        "vws": "10-15 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "MODERATE WESTWARD",
-        "steering": "SOUTHERN FLANK OF A LOW- TO MID-LEVEL SUBTROPICAL RIDGE (STR) CENTERED NEAR 30N 160E",
+        "steering": "THE SOUTHERN PERIPHERY OF THE SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTH",
         "confidence": {
           "track0072": "HIGH",
           "track72120": "HIGH",
@@ -198,32 +197,32 @@
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 2186,
+        "distanceNm": 2125,
         "bearingDeg": 103,
         "closestApproach": {
-          "distanceNm": 735,
+          "distanceNm": 675,
           "tau": 120,
-          "validZ": "201200Z",
+          "validZ": "201800Z",
           "maxWindKt": 125
         }
       },
       "motion": {
-        "currentHeadingDeg": 280,
+        "currentHeadingDeg": 300,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 282
+            "heading": 281
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 279
+            "heading": 277
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 281
+            "heading": 283
           },
           {
             "fromTau": 36,
@@ -233,22 +232,22 @@
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 284
+            "heading": 282
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 283
+            "heading": 286
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 292
+            "heading": 296
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 295
+            "heading": 297
           }
         ],
         "turns": []
@@ -260,17 +259,17 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Tropical depression (TD) 29W has not changed much over the past 6-12 hours as it moves west-northwestward. Over the past 12 hours, TD 29W has moved west-northwestward at an average speed of approximately 11 kt. Once the vortex becomes more symmetrical and vertically aligned, the rate of intensification will increase.",
-        "warningNumber": null,
-        "generatedAt": "2026-10-15T09:47:57.324Z"
+        "text": "Animated multispectral satellite imagery (MSI) depicts tropical storm (TS) 29W forming a nascent central dense overcast that is obscuring the low-level circulation center (LLCC) below. TS 29W (champi) is forecast to continue steadily tracking west-northwestward through +36h while it remains on the southern periphery of the steering STR centered far to the north. At about +36h, a deep-layer trough is expected to pass to the north, weakening the ridge and forcing it to retreat eastward.",
+        "warningNumber": "006",
+        "generatedAt": "2026-10-15T22:10:19.001Z"
       },
       "changes": {
-        "previousWarningNumber": "004",
-        "previousIssuedAt": "2026-10-15T09:00:00.000Z",
+        "previousWarningNumber": "005",
+        "previousIssuedAt": "2026-10-15T15:00:00.000Z",
         "maxWindKtDelta": 5,
-        "pressureMbDelta": -1,
+        "pressureMbDelta": -2,
         "seasFtDelta": 1,
-        "closestApproachNmDelta": -57
+        "closestApproachNmDelta": -60
       }
     }
   ],

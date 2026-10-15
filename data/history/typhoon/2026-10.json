@@ -12179,6 +12179,163 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "29W",
+      "name": "Champi",
+      "designation": "Tropical Storm",
+      "warningNumber": "006",
+      "issuedAt": "2026-10-15T21:00:00.000Z",
+      "positionZ": "151800Z",
+      "lat": 11.5,
+      "lon": 156.5,
+      "maxWindKt": 40,
+      "gustKt": 50,
+      "pressureMb": 999,
+      "seasFt": 15,
+      "movingToward": 300,
+      "movingKt": 10,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "160600Z",
+          "lat": 12,
+          "lon": 153.9,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 24,
+          "validZ": "161800Z",
+          "lat": 12.3,
+          "lon": 151.1,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 36,
+          "validZ": "170600Z",
+          "lat": 12.9,
+          "lon": 148.4,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 48,
+          "validZ": "171800Z",
+          "lat": 13.4,
+          "lon": 145.9,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 60,
+          "validZ": "180600Z",
+          "lat": 13.9,
+          "lon": 143.4,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 72,
+          "validZ": "181800Z",
+          "lat": 14.5,
+          "lon": 141.2,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 96,
+          "validZ": "191800Z",
+          "lat": 16.5,
+          "lon": 136.9,
+          "maxWindKt": 130,
+          "gustKt": 160
+        },
+        {
+          "tau": 120,
+          "validZ": "201800Z",
+          "lat": 18.6,
+          "lon": 132.4,
+          "maxWindKt": 125,
+          "gustKt": 150
+        }
+      ],
+      "spot": {
+        "distanceNm": 2125,
+        "bearingDeg": 103,
+        "closestApproach": {
+          "distanceNm": 675,
+          "tau": 120,
+          "validZ": "201800Z",
+          "maxWindKt": 125
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 300,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 281
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 277
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 283
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 282
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 282
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 286
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 296
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 297
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-20T15:00:00.000Z",
+        "status": "none"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts tropical storm (TS) 29W forming a nascent central dense overcast that is obscuring the low-level circulation center (LLCC) below. TS 29W (champi) is forecast to continue steadily tracking west-northwestward through +36h while it remains on the southern periphery of the steering STR centered far to the north. At about +36h, a deep-layer trough is expected to pass to the north, weakening the ridge and forcing it to retreat eastward.",
+        "warningNumber": "006",
+        "generatedAt": "2026-10-15T22:10:19.001Z"
+      },
+      "reasoningWarningNumber": "006",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "HIGH",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
