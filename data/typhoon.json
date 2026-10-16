@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-16T20:56:45.546Z",
+  "fetchedAt": "2026-10-16T23:27:55.313Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -94,14 +94,14 @@
         "172100Z"
       ],
       "reasoning": {
-        "warningNumber": "009",
-        "significantForecastChanges": "THE FORECAST TRACK HAS SHIFTED SOUTHWARD BY APPROXIMATELY 15 NM AT TAUS 24 AND 36.",
-        "seasFt": 24,
-        "environment": "FAVORABLE",
+        "warningNumber": "010",
+        "significantForecastChanges": "DEVIATION FROM PREVIOUS FORECAST INTENSITY TO DEPICT AN INCREASE OF 15 KTS BETWEEN TAUS 0 TO 48 BASED ON RI",
+        "seasFt": 29,
+        "environment": "HIGHLY FAVORABLE",
         "vws": "10-15 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "STRONG WESTWARD",
-        "steering": "SOUTHERN FLANK OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED NEAR 29N 160E",
+        "steering": "SUBTROPICAL RIDGE CENTERED TO THE NORTH-NORTHEAST",
         "confidence": {
           "track0072": "HIGH",
           "track72120": "MEDIUM",
@@ -110,7 +110,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1779,
         "bearingDeg": 107,
@@ -176,7 +176,7 @@
           "periodS": 6.25,
           "dirDeg": 95
         },
-        "hoursAhead": 80,
+        "hoursAhead": 78,
         "bearingOffsetDeg": 7,
         "peak": {
           "targetTime": "2026-10-21T15:00:00.000Z",
