@@ -12849,6 +12849,176 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "29W",
+      "name": "Champi",
+      "designation": "Typhoon",
+      "warningNumber": "010",
+      "issuedAt": "2026-10-16T21:00:00.000Z",
+      "positionZ": "161800Z",
+      "lat": 11.9,
+      "lon": 150.2,
+      "maxWindKt": 75,
+      "gustKt": 90,
+      "pressureMb": 984,
+      "movingToward": 295,
+      "movingKt": 13,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "170600Z",
+          "lat": 12.4,
+          "lon": 147.7,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 24,
+          "validZ": "171800Z",
+          "lat": 13,
+          "lon": 145.3,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 36,
+          "validZ": "180600Z",
+          "lat": 13.5,
+          "lon": 143,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 48,
+          "validZ": "181800Z",
+          "lat": 14.2,
+          "lon": 140.8,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 60,
+          "validZ": "190600Z",
+          "lat": 15.1,
+          "lon": 138.7,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 72,
+          "validZ": "191800Z",
+          "lat": 16.1,
+          "lon": 136.5,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 96,
+          "validZ": "201800Z",
+          "lat": 18.2,
+          "lon": 132,
+          "maxWindKt": 130,
+          "gustKt": 160
+        },
+        {
+          "tau": 120,
+          "validZ": "211800Z",
+          "lat": 20.2,
+          "lon": 127.9,
+          "maxWindKt": 120,
+          "gustKt": 145
+        }
+      ],
+      "spot": {
+        "distanceNm": 1779,
+        "bearingDeg": 107,
+        "closestApproach": {
+          "distanceNm": 404,
+          "tau": 120,
+          "validZ": "211800Z",
+          "maxWindKt": 120
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 295,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 282
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 285
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 283
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 288
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 294
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 296
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 297
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 298
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-21T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-20T05:00:00.000Z",
+          "heightM": 1.28,
+          "periodS": 6.25,
+          "dirDeg": 95
+        },
+        "hoursAhead": 80,
+        "bearingOffsetDeg": 7,
+        "peak": {
+          "targetTime": "2026-10-21T15:00:00.000Z",
+          "heightM": 3.54,
+          "periodS": 13.65,
+          "dirDeg": 105
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "Tropical storm (TS) 29W has steadily become better organized. TS 29W is moving nearly due west along the southern periphery of a STR. The weakening ridge will allow for a west-northwestward motion.",
+        "warningNumber": "008",
+        "generatedAt": "2026-10-16T12:18:01.534Z"
+      },
+      "reasoningWarningNumber": "009",
+      "significantForecastChanges": "THE FORECAST TRACK HAS SHIFTED SOUTHWARD BY APPROXIMATELY 15 NM AT TAUS 24 AND 36.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
