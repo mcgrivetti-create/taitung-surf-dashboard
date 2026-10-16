@@ -2,10 +2,138 @@
   "records": {
     "Station": [
       {
+        "StationName": "東河",
+        "StationId": "C0S810",
+        "ObsTime": {
+          "DateTime": "2026-10-16T20:00:00+08:00"
+        },
+        "GeoInfo": {
+          "Coordinates": [
+            {
+              "CoordinateName": "TWD67",
+              "CoordinateFormat": "decimal degrees",
+              "StationLatitude": "22.973611",
+              "StationLongitude": "121.298333"
+            },
+            {
+              "CoordinateName": "WGS84",
+              "CoordinateFormat": "decimal degrees",
+              "StationLatitude": "22.972672",
+              "StationLongitude": "121.303986"
+            }
+          ],
+          "StationAltitude": "65.0",
+          "CountyName": "臺東縣",
+          "TownName": "東河鄉",
+          "CountyCode": "10014",
+          "TownCode": "10014070"
+        },
+        "WeatherElement": {
+          "Weather": "多雲",
+          "Now": {
+            "Precipitation": "1.0"
+          },
+          "WindDirection": "12.0",
+          "WindSpeed": "1.4",
+          "AirTemperature": "25.4",
+          "RelativeHumidity": "90",
+          "AirPressure": "1011.6",
+          "GustInfo": {
+            "PeakGustSpeed": "7.7",
+            "Occurred_at": {
+              "WindDirection": "329.0",
+              "DateTime": "2026-10-16T19:08:00+08:00"
+            }
+          },
+          "DailyExtreme": {
+            "DailyHigh": {
+              "TemperatureInfo": {
+                "AirTemperature": "30.2",
+                "Occurred_at": {
+                  "DateTime": "2026-10-16T09:30:00+08:00"
+                }
+              }
+            },
+            "DailyLow": {
+              "TemperatureInfo": {
+                "AirTemperature": "24.1",
+                "Occurred_at": {
+                  "DateTime": "2026-10-16T05:10:00+08:00"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "StationName": "都歷",
+        "StationId": "C0SA30",
+        "ObsTime": {
+          "DateTime": "2026-10-16T20:00:00+08:00"
+        },
+        "GeoInfo": {
+          "Coordinates": [
+            {
+              "CoordinateName": "TWD67",
+              "CoordinateFormat": "decimal degrees",
+              "StationLatitude": "23.022142",
+              "StationLongitude": "121.315558"
+            },
+            {
+              "CoordinateName": "WGS84",
+              "CoordinateFormat": "decimal degrees",
+              "StationLatitude": "23.020333",
+              "StationLongitude": "121.323642"
+            }
+          ],
+          "StationAltitude": "92.0",
+          "CountyName": "臺東縣",
+          "TownName": "成功鎮",
+          "CountyCode": "10014",
+          "TownCode": "10014020"
+        },
+        "WeatherElement": {
+          "Weather": "多雲",
+          "Now": {
+            "Precipitation": "0.5"
+          },
+          "WindDirection": "7.0",
+          "WindSpeed": "3.6",
+          "AirTemperature": "25.6",
+          "RelativeHumidity": "84",
+          "AirPressure": "1007.3",
+          "GustInfo": {
+            "PeakGustSpeed": "-99",
+            "Occurred_at": {
+              "WindDirection": "-99",
+              "DateTime": "-99"
+            }
+          },
+          "DailyExtreme": {
+            "DailyHigh": {
+              "TemperatureInfo": {
+                "AirTemperature": "29.7",
+                "Occurred_at": {
+                  "DateTime": "2026-10-16T10:00:00+08:00"
+                }
+              }
+            },
+            "DailyLow": {
+              "TemperatureInfo": {
+                "AirTemperature": "25.0",
+                "Occurred_at": {
+                  "DateTime": "2026-10-16T00:30:00+08:00"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
         "StationName": "豐濱",
         "StationId": "C0T9I0",
         "ObsTime": {
-          "DateTime": "2026-10-16T14:00:00+08:00"
+          "DateTime": "2026-10-16T20:00:00+08:00"
         },
         "GeoInfo": {
           "Coordinates": [
@@ -29,9 +157,9 @@
           "TownCode": "10015080"
         },
         "WeatherElement": {
-          "Weather": "晴",
+          "Weather": "多雲",
           "Now": {
-            "Precipitation": "0.0"
+            "Precipitation": "-99"
           },
           "WindDirection": "-99",
           "WindSpeed": "-99",
@@ -59,134 +187,6 @@
                 "AirTemperature": "21.3",
                 "Occurred_at": {
                   "DateTime": "2026-10-16T05:50:00+08:00"
-                }
-              }
-            }
-          }
-        }
-      },
-      {
-        "StationName": "東河",
-        "StationId": "C0S810",
-        "ObsTime": {
-          "DateTime": "2026-10-16T14:00:00+08:00"
-        },
-        "GeoInfo": {
-          "Coordinates": [
-            {
-              "CoordinateName": "TWD67",
-              "CoordinateFormat": "decimal degrees",
-              "StationLatitude": "22.973611",
-              "StationLongitude": "121.298333"
-            },
-            {
-              "CoordinateName": "WGS84",
-              "CoordinateFormat": "decimal degrees",
-              "StationLatitude": "22.972672",
-              "StationLongitude": "121.303986"
-            }
-          ],
-          "StationAltitude": "65.0",
-          "CountyName": "臺東縣",
-          "TownName": "東河鄉",
-          "CountyCode": "10014",
-          "TownCode": "10014070"
-        },
-        "WeatherElement": {
-          "Weather": "多雲",
-          "Now": {
-            "Precipitation": "0.0"
-          },
-          "WindDirection": "40.0",
-          "WindSpeed": "2.6",
-          "AirTemperature": "29.7",
-          "RelativeHumidity": "73",
-          "AirPressure": "1009.9",
-          "GustInfo": {
-            "PeakGustSpeed": "-99",
-            "Occurred_at": {
-              "WindDirection": "-99",
-              "DateTime": "-99"
-            }
-          },
-          "DailyExtreme": {
-            "DailyHigh": {
-              "TemperatureInfo": {
-                "AirTemperature": "30.2",
-                "Occurred_at": {
-                  "DateTime": "2026-10-16T09:30:00+08:00"
-                }
-              }
-            },
-            "DailyLow": {
-              "TemperatureInfo": {
-                "AirTemperature": "24.1",
-                "Occurred_at": {
-                  "DateTime": "2026-10-16T05:10:00+08:00"
-                }
-              }
-            }
-          }
-        }
-      },
-      {
-        "StationName": "都歷",
-        "StationId": "C0SA30",
-        "ObsTime": {
-          "DateTime": "2026-10-16T14:00:00+08:00"
-        },
-        "GeoInfo": {
-          "Coordinates": [
-            {
-              "CoordinateName": "TWD67",
-              "CoordinateFormat": "decimal degrees",
-              "StationLatitude": "23.022142",
-              "StationLongitude": "121.315558"
-            },
-            {
-              "CoordinateName": "WGS84",
-              "CoordinateFormat": "decimal degrees",
-              "StationLatitude": "23.020333",
-              "StationLongitude": "121.323642"
-            }
-          ],
-          "StationAltitude": "92.0",
-          "CountyName": "臺東縣",
-          "TownName": "成功鎮",
-          "CountyCode": "10014",
-          "TownCode": "10014020"
-        },
-        "WeatherElement": {
-          "Weather": "多雲",
-          "Now": {
-            "Precipitation": "0.0"
-          },
-          "WindDirection": "37.0",
-          "WindSpeed": "3.6",
-          "AirTemperature": "29.3",
-          "RelativeHumidity": "70",
-          "AirPressure": "1005.7",
-          "GustInfo": {
-            "PeakGustSpeed": "-99",
-            "Occurred_at": {
-              "WindDirection": "-99",
-              "DateTime": "-99"
-            }
-          },
-          "DailyExtreme": {
-            "DailyHigh": {
-              "TemperatureInfo": {
-                "AirTemperature": "29.7",
-                "Occurred_at": {
-                  "DateTime": "2026-10-16T10:00:00+08:00"
-                }
-              }
-            },
-            "DailyLow": {
-              "TemperatureInfo": {
-                "AirTemperature": "25.0",
-                "Occurred_at": {
-                  "DateTime": "2026-10-16T00:30:00+08:00"
                 }
               }
             }
