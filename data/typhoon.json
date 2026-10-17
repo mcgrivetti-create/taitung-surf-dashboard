@@ -1,107 +1,106 @@
 {
-  "fetchedAt": "2026-10-16T23:27:55.313Z",
+  "fetchedAt": "2026-10-17T04:11:32.370Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "29W",
       "name": "Champi",
       "headline": "Typhoon 29W (Champi)",
-      "warningNumber": "010",
-      "issuedZ": "16/2100Z",
-      "issuedAt": "2026-10-16T21:00:00.000Z",
+      "warningNumber": "011",
+      "issuedZ": "17/0300Z",
+      "issuedAt": "2026-10-17T03:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610161800-96_CHAMPI_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610170000-96_CHAMPI_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "170600Z",
-          "lat": 12.4,
-          "lon": 147.7,
-          "maxWindKt": 90,
-          "gustKt": 110
+          "validZ": "171200Z",
+          "lat": 12.9,
+          "lon": 146.2,
+          "maxWindKt": 100,
+          "gustKt": 125
         },
         {
           "tau": 24,
-          "validZ": "171800Z",
-          "lat": 13,
-          "lon": 145.3,
-          "maxWindKt": 105,
-          "gustKt": 130
+          "validZ": "180000Z",
+          "lat": 13.4,
+          "lon": 143.7,
+          "maxWindKt": 115,
+          "gustKt": 140
         },
         {
           "tau": 36,
-          "validZ": "180600Z",
-          "lat": 13.5,
-          "lon": 143,
-          "maxWindKt": 120,
-          "gustKt": 145
+          "validZ": "181200Z",
+          "lat": 13.9,
+          "lon": 141.4,
+          "maxWindKt": 125,
+          "gustKt": 150
         },
         {
           "tau": 48,
-          "validZ": "181800Z",
-          "lat": 14.2,
-          "lon": 140.8,
+          "validZ": "190000Z",
+          "lat": 14.8,
+          "lon": 139.5,
           "maxWindKt": 135,
           "gustKt": 165
         },
         {
           "tau": 60,
-          "validZ": "190600Z",
-          "lat": 15.1,
-          "lon": 138.7,
+          "validZ": "191200Z",
+          "lat": 15.9,
+          "lon": 137.4,
           "maxWindKt": 135,
           "gustKt": 165
         },
         {
           "tau": 72,
-          "validZ": "191800Z",
-          "lat": 16.1,
-          "lon": 136.5,
+          "validZ": "200000Z",
+          "lat": 16.9,
+          "lon": 135.2,
           "maxWindKt": 135,
           "gustKt": 165
         },
         {
           "tau": 96,
-          "validZ": "201800Z",
-          "lat": 18.2,
-          "lon": 132,
-          "maxWindKt": 130,
-          "gustKt": 160
+          "validZ": "210000Z",
+          "lat": 19,
+          "lon": 130.4,
+          "maxWindKt": 125,
+          "gustKt": 150
         },
         {
           "tau": 120,
-          "validZ": "211800Z",
-          "lat": 20.2,
-          "lon": 127.9,
-          "maxWindKt": 120,
-          "gustKt": 145
+          "validZ": "220000Z",
+          "lat": 20.8,
+          "lon": 127.2,
+          "maxWindKt": 115,
+          "gustKt": 140
         }
       ],
-      "intensityChangeNote": "UPGRADED FROM TROPICAL STORM 29W",
-      "positionZ": "161800Z",
-      "lat": 11.9,
-      "lon": 150.2,
-      "movingToward": 295,
-      "movingKt": 13,
-      "maxWindKt": 75,
-      "gustKt": 90,
-      "pressureMb": 984,
+      "positionZ": "170000Z",
+      "lat": 12.4,
+      "lon": 148.6,
+      "movingToward": 290,
+      "movingKt": 16,
+      "maxWindKt": 85,
+      "gustKt": 105,
+      "pressureMb": 981,
       "nextWarnings": [
-        "170300Z",
         "170900Z",
         "171500Z",
-        "172100Z"
+        "172100Z",
+        "180300Z"
       ],
       "reasoning": {
-        "warningNumber": "010",
-        "significantForecastChanges": "DEVIATION FROM PREVIOUS FORECAST INTENSITY TO DEPICT AN INCREASE OF 15 KTS BETWEEN TAUS 0 TO 48 BASED ON RI",
-        "seasFt": 29,
-        "environment": "HIGHLY FAVORABLE",
-        "vws": "10-15 KTS",
-        "sst": "29-30 CELSIUS",
+        "warningNumber": "011",
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "seasFt": 34,
+        "environment": "FAVORABLE",
+        "vws": "15-20 KTS",
+        "sst": "28-29 CELSIUS",
         "outflow": "STRONG WESTWARD",
-        "steering": "SUBTROPICAL RIDGE CENTERED TO THE NORTH-NORTHEAST",
+        "steering": "SUBTROPICAL RIDGE CENTERED TO THE NORTHEAST",
         "confidence": {
           "track0072": "HIGH",
           "track72120": "MEDIUM",
@@ -112,17 +111,17 @@
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 1779,
+        "distanceNm": 1681,
         "bearingDeg": 107,
         "closestApproach": {
-          "distanceNm": 404,
+          "distanceNm": 353,
           "tau": 120,
-          "validZ": "211800Z",
-          "maxWindKt": 120
+          "validZ": "220000Z",
+          "maxWindKt": 115
         }
       },
       "motion": {
-        "currentHeadingDeg": 295,
+        "currentHeadingDeg": 290,
         "legs": [
           {
             "fromTau": 0,
@@ -132,7 +131,7 @@
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 285
+            "heading": 282
           },
           {
             "fromTau": 24,
@@ -142,12 +141,12 @@
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 288
+            "heading": 296
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 294
+            "heading": 299
           },
           {
             "fromTau": 60,
@@ -157,12 +156,12 @@
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 297
+            "heading": 295
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 298
+            "heading": 301
           }
         ],
         "turns": []
@@ -171,33 +170,33 @@
         "windowEnd": "2026-10-21T15:00:00.000Z",
         "status": "incoming",
         "arrival": {
-          "targetTime": "2026-10-20T05:00:00.000Z",
+          "targetTime": "2026-10-20T03:00:00.000Z",
           "heightM": 1.28,
-          "periodS": 6.25,
+          "periodS": 6.35,
           "dirDeg": 95
         },
-        "hoursAhead": 78,
+        "hoursAhead": 71,
         "bearingOffsetDeg": 7,
         "peak": {
           "targetTime": "2026-10-21T15:00:00.000Z",
-          "heightM": 3.54,
-          "periodS": 13.65,
-          "dirDeg": 105
+          "heightM": 3.98,
+          "periodS": 13.2,
+          "dirDeg": 104
         }
       },
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Tropical storm (TS) 29W has steadily become better organized. TS 29W is moving nearly due west along the southern periphery of a STR. The weakening ridge will allow for a west-northwestward motion.",
-        "warningNumber": "008",
-        "generatedAt": "2026-10-16T12:18:01.534Z"
+        "text": "TY 29W is forecast to continue west-northwestward for the next 36 hours under the combined steering influence of the subtropical ridge (STR) centered to the northeast and the STR centered over Taiwan. Regarding intensity, 29W is forecast to continue rapidly intensifying out to +24h and continue intensification to a peak of 135 kt between taus 48 and 72 as 29W remains in a favorable environment.",
+        "warningNumber": "011",
+        "generatedAt": "2026-10-17T04:11:32.370Z"
       },
       "changes": {
-        "previousWarningNumber": "009",
-        "previousIssuedAt": "2026-10-16T15:00:00.000Z",
-        "maxWindKtDelta": 15,
-        "pressureMbDelta": -8,
-        "closestApproachNmDelta": -62
+        "previousWarningNumber": "010",
+        "previousIssuedAt": "2026-10-16T21:00:00.000Z",
+        "maxWindKtDelta": 10,
+        "pressureMbDelta": -3,
+        "closestApproachNmDelta": -51
       }
     }
   ],

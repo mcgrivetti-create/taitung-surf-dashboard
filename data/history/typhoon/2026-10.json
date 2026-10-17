@@ -13019,6 +13019,176 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "29W",
+      "name": "Champi",
+      "designation": "Typhoon",
+      "warningNumber": "011",
+      "issuedAt": "2026-10-17T03:00:00.000Z",
+      "positionZ": "170000Z",
+      "lat": 12.4,
+      "lon": 148.6,
+      "maxWindKt": 85,
+      "gustKt": 105,
+      "pressureMb": 981,
+      "movingToward": 290,
+      "movingKt": 16,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "171200Z",
+          "lat": 12.9,
+          "lon": 146.2,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 24,
+          "validZ": "180000Z",
+          "lat": 13.4,
+          "lon": 143.7,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 36,
+          "validZ": "181200Z",
+          "lat": 13.9,
+          "lon": 141.4,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 48,
+          "validZ": "190000Z",
+          "lat": 14.8,
+          "lon": 139.5,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 60,
+          "validZ": "191200Z",
+          "lat": 15.9,
+          "lon": 137.4,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 72,
+          "validZ": "200000Z",
+          "lat": 16.9,
+          "lon": 135.2,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 96,
+          "validZ": "210000Z",
+          "lat": 19,
+          "lon": 130.4,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 120,
+          "validZ": "220000Z",
+          "lat": 20.8,
+          "lon": 127.2,
+          "maxWindKt": 115,
+          "gustKt": 140
+        }
+      ],
+      "spot": {
+        "distanceNm": 1681,
+        "bearingDeg": 107,
+        "closestApproach": {
+          "distanceNm": 353,
+          "tau": 120,
+          "validZ": "220000Z",
+          "maxWindKt": 115
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 290,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 282
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 282
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 283
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 296
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 299
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 296
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 295
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 301
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-21T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-20T03:00:00.000Z",
+          "heightM": 1.28,
+          "periodS": 6.35,
+          "dirDeg": 95
+        },
+        "hoursAhead": 71,
+        "bearingOffsetDeg": 7,
+        "peak": {
+          "targetTime": "2026-10-21T15:00:00.000Z",
+          "heightM": 3.98,
+          "periodS": 13.2,
+          "dirDeg": 104
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "TY 29W is forecast to continue west-northwestward for the next 36 hours under the combined steering influence of the subtropical ridge (STR) centered to the northeast and the STR centered over Taiwan. Regarding intensity, 29W is forecast to continue rapidly intensifying out to +24h and continue intensification to a peak of 135 kt between taus 48 and 72 as 29W remains in a favorable environment.",
+        "warningNumber": "011",
+        "generatedAt": "2026-10-17T04:11:32.370Z"
+      },
+      "reasoningWarningNumber": "011",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
