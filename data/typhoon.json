@@ -1,105 +1,104 @@
 {
-  "fetchedAt": "2026-10-17T13:37:40.328Z",
+  "fetchedAt": "2026-10-17T17:01:37.075Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "29W",
       "name": "Champi",
       "headline": "Typhoon 29W (Champi)",
-      "warningNumber": "012",
-      "issuedZ": "17/0900Z",
-      "issuedAt": "2026-10-17T09:00:00.000Z",
+      "warningNumber": "013",
+      "issuedZ": "17/1500Z",
+      "issuedAt": "2026-10-17T15:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
       "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610171200-96_CHAMPI_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "171800Z",
+          "validZ": "180000Z",
           "lat": 13,
-          "lon": 144.8,
-          "maxWindKt": 130,
-          "gustKt": 160
+          "lon": 143.7,
+          "maxWindKt": 120,
+          "gustKt": 145
         },
         {
           "tau": 24,
-          "validZ": "180600Z",
-          "lat": 13.4,
-          "lon": 142.5,
-          "maxWindKt": 140,
-          "gustKt": 170
+          "validZ": "181200Z",
+          "lat": 13.5,
+          "lon": 141.6,
+          "maxWindKt": 135,
+          "gustKt": 165
         },
         {
           "tau": 36,
-          "validZ": "181800Z",
-          "lat": 14.1,
-          "lon": 140.4,
+          "validZ": "190000Z",
+          "lat": 14.3,
+          "lon": 139.5,
           "maxWindKt": 140,
           "gustKt": 170
         },
         {
           "tau": 48,
-          "validZ": "190600Z",
-          "lat": 15.1,
-          "lon": 138.3,
+          "validZ": "191200Z",
+          "lat": 15.3,
+          "lon": 137.4,
           "maxWindKt": 135,
           "gustKt": 165
         },
         {
           "tau": 60,
-          "validZ": "191800Z",
-          "lat": 16.1,
-          "lon": 136.2,
-          "maxWindKt": 130,
-          "gustKt": 160
+          "validZ": "200000Z",
+          "lat": 16.3,
+          "lon": 135.1,
+          "maxWindKt": 135,
+          "gustKt": 165
         },
         {
           "tau": 72,
-          "validZ": "200600Z",
-          "lat": 17.2,
-          "lon": 133.9,
+          "validZ": "201200Z",
+          "lat": 17.3,
+          "lon": 132.8,
           "maxWindKt": 135,
           "gustKt": 165
         },
         {
           "tau": 96,
-          "validZ": "210600Z",
-          "lat": 19.3,
-          "lon": 129.3,
+          "validZ": "211200Z",
+          "lat": 19.4,
+          "lon": 128.6,
           "maxWindKt": 125,
           "gustKt": 150
         },
         {
           "tau": 120,
-          "validZ": "220600Z",
-          "lat": 21.1,
-          "lon": 126.5,
-          "maxWindKt": 115,
-          "gustKt": 140
+          "validZ": "221200Z",
+          "lat": 21,
+          "lon": 125.9,
+          "maxWindKt": 105,
+          "gustKt": 130
         }
       ],
-      "positionZ": "170600Z",
-      "lat": 12.5,
-      "lon": 147.3,
-      "movingToward": 280,
-      "movingKt": 13,
-      "maxWindKt": 115,
-      "gustKt": 140,
-      "pressureMb": 948,
-      "seasFt": 38,
-      "geoReference": "158 NM EAST- SOUTHEAST OF ANDERSEN AFB",
+      "positionZ": "171200Z",
+      "lat": 12.6,
+      "lon": 146.1,
+      "movingToward": 275,
+      "movingKt": 12,
+      "maxWindKt": 120,
+      "gustKt": 145,
+      "pressureMb": 945,
+      "geoReference": "96 NM SOUTHEAST OF ANDERSEN AFB",
       "reasoning": {
-        "warningNumber": "012",
-        "significantForecastChanges": "THE INITIAL INTENSITY HAS BEEN RAISED SIGNIFICANTLY AND THE RESULTING 12 HOUR FORECAST INTENSITY HAS BEEN INCREASED TO 130 KNOTS, AS THE SYSTEM IS REACHING ITS CLOSEST POINT OF APPROACH (CPA) TO GUAM.",
-        "seasFt": 38,
+        "warningNumber": "013",
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "seasFt": 42,
         "environment": "HIGHLY FAVORABLE",
         "vws": "10-15 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "STRONG RADIAL",
-        "steering": "SOUTHERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED FAR TO THE NORTH.",
+        "steering": "SOUTHERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) FAR TO THE NORTH.",
         "confidence": {
           "track0072": "HIGH",
-          "track72120": "HIGH",
+          "track72120": "MEDIUM",
           "intensity0072": "MEDIUM",
           "intensity72120": "LOW"
         }
@@ -107,32 +106,32 @@
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 1610,
-        "bearingDeg": 109,
+        "distanceNm": 1545,
+        "bearingDeg": 110,
         "closestApproach": {
-          "distanceNm": 310,
+          "distanceNm": 281,
           "tau": 120,
-          "validZ": "220600Z",
-          "maxWindKt": 115
+          "validZ": "221200Z",
+          "maxWindKt": 105
         }
       },
       "motion": {
-        "currentHeadingDeg": 280,
+        "currentHeadingDeg": 275,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 282
+            "heading": 280
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 280
+            "heading": 284
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 289
+            "heading": 292
           },
           {
             "fromTau": 36,
@@ -142,28 +141,28 @@
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 297
+            "heading": 295
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 297
+            "heading": 295
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 296
+            "heading": 298
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 305
+            "heading": 303
           }
         ],
         "turns": []
       },
       "swell": {
-        "windowEnd": "2026-10-21T15:00:00.000Z",
+        "windowEnd": "2026-10-22T15:00:00.000Z",
         "status": "incoming",
         "arrival": {
           "targetTime": "2026-10-20T04:00:00.000Z",
@@ -171,28 +170,28 @@
           "periodS": 6.2,
           "dirDeg": 95
         },
-        "hoursAhead": 62,
+        "hoursAhead": 59,
         "bearingOffsetDeg": 7,
         "peak": {
-          "targetTime": "2026-10-21T15:00:00.000Z",
-          "heightM": 3.96,
+          "targetTime": "2026-10-22T00:00:00.000Z",
+          "heightM": 5.74,
           "periodS": 12.6,
-          "dirDeg": 106
+          "dirDeg": 97
         }
       },
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "TY 29W is forecast to continue west-northwestward for the next 36 hours under the combined steering influence of the subtropical ridge (STR) centered to the northeast and the STR centered over Taiwan. Regarding intensity, 29W is forecast to continue rapidly intensifying out to +24h and continue intensification to a peak of 135 kt between taus 48 and 72 as 29W remains in a favorable environment.",
-        "warningNumber": "011",
-        "generatedAt": "2026-10-17T04:11:32.370Z"
+        "text": "The overall structure of TY 29W in animated enhanced infrared (EIR) satellite imagery has deteriorated over the past six hours, as the the previously cloud-free, pinhole eye has filled in due to an ongoing eyewall replacement cycle (erc). Typhoon (TY) 29W is tracking westward in the aggregate, although erratic trochoidal motion is projected to persist pending completion of the erc. The JTWC forecast favors the hwrf scenario, projecting the core intensity to stabilize or decay slightly in the near-term, followed by re-intensification onset by +12h.",
+        "warningNumber": "013",
+        "generatedAt": "2026-10-17T17:01:37.075Z"
       },
       "changes": {
-        "previousWarningNumber": "011",
-        "previousIssuedAt": "2026-10-17T03:00:00.000Z",
-        "maxWindKtDelta": 30,
-        "pressureMbDelta": -33,
-        "closestApproachNmDelta": -43
+        "previousWarningNumber": "012",
+        "previousIssuedAt": "2026-10-17T09:00:00.000Z",
+        "maxWindKtDelta": 5,
+        "pressureMbDelta": -3,
+        "closestApproachNmDelta": -29
       }
     }
   ],

@@ -13360,6 +13360,176 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "29W",
+      "name": "Champi",
+      "designation": "Typhoon",
+      "warningNumber": "013",
+      "issuedAt": "2026-10-17T15:00:00.000Z",
+      "positionZ": "171200Z",
+      "lat": 12.6,
+      "lon": 146.1,
+      "maxWindKt": 120,
+      "gustKt": 145,
+      "pressureMb": 945,
+      "movingToward": 275,
+      "movingKt": 12,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "180000Z",
+          "lat": 13,
+          "lon": 143.7,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 24,
+          "validZ": "181200Z",
+          "lat": 13.5,
+          "lon": 141.6,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 36,
+          "validZ": "190000Z",
+          "lat": 14.3,
+          "lon": 139.5,
+          "maxWindKt": 140,
+          "gustKt": 170
+        },
+        {
+          "tau": 48,
+          "validZ": "191200Z",
+          "lat": 15.3,
+          "lon": 137.4,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 60,
+          "validZ": "200000Z",
+          "lat": 16.3,
+          "lon": 135.1,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 72,
+          "validZ": "201200Z",
+          "lat": 17.3,
+          "lon": 132.8,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 96,
+          "validZ": "211200Z",
+          "lat": 19.4,
+          "lon": 128.6,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 120,
+          "validZ": "221200Z",
+          "lat": 21,
+          "lon": 125.9,
+          "maxWindKt": 105,
+          "gustKt": 130
+        }
+      ],
+      "spot": {
+        "distanceNm": 1545,
+        "bearingDeg": 110,
+        "closestApproach": {
+          "distanceNm": 281,
+          "tau": 120,
+          "validZ": "221200Z",
+          "maxWindKt": 105
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 275,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 280
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 284
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 292
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 296
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 295
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 295
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 298
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 303
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-22T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-20T04:00:00.000Z",
+          "heightM": 1.3,
+          "periodS": 6.2,
+          "dirDeg": 95
+        },
+        "hoursAhead": 59,
+        "bearingOffsetDeg": 7,
+        "peak": {
+          "targetTime": "2026-10-22T00:00:00.000Z",
+          "heightM": 5.74,
+          "periodS": 12.6,
+          "dirDeg": 97
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "The overall structure of TY 29W in animated enhanced infrared (EIR) satellite imagery has deteriorated over the past six hours, as the the previously cloud-free, pinhole eye has filled in due to an ongoing eyewall replacement cycle (erc). Typhoon (TY) 29W is tracking westward in the aggregate, although erratic trochoidal motion is projected to persist pending completion of the erc. The JTWC forecast favors the hwrf scenario, projecting the core intensity to stabilize or decay slightly in the near-term, followed by re-intensification onset by +12h.",
+        "warningNumber": "013",
+        "generatedAt": "2026-10-17T17:01:37.075Z"
+      },
+      "reasoningWarningNumber": "013",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
