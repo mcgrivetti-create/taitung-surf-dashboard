@@ -13189,6 +13189,177 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "29W",
+      "name": "Champi",
+      "designation": "Typhoon",
+      "warningNumber": "012",
+      "issuedAt": "2026-10-17T09:00:00.000Z",
+      "positionZ": "170600Z",
+      "lat": 12.5,
+      "lon": 147.3,
+      "maxWindKt": 115,
+      "gustKt": 140,
+      "pressureMb": 948,
+      "seasFt": 38,
+      "movingToward": 280,
+      "movingKt": 13,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "171800Z",
+          "lat": 13,
+          "lon": 144.8,
+          "maxWindKt": 130,
+          "gustKt": 160
+        },
+        {
+          "tau": 24,
+          "validZ": "180600Z",
+          "lat": 13.4,
+          "lon": 142.5,
+          "maxWindKt": 140,
+          "gustKt": 170
+        },
+        {
+          "tau": 36,
+          "validZ": "181800Z",
+          "lat": 14.1,
+          "lon": 140.4,
+          "maxWindKt": 140,
+          "gustKt": 170
+        },
+        {
+          "tau": 48,
+          "validZ": "190600Z",
+          "lat": 15.1,
+          "lon": 138.3,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 60,
+          "validZ": "191800Z",
+          "lat": 16.1,
+          "lon": 136.2,
+          "maxWindKt": 130,
+          "gustKt": 160
+        },
+        {
+          "tau": 72,
+          "validZ": "200600Z",
+          "lat": 17.2,
+          "lon": 133.9,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 96,
+          "validZ": "210600Z",
+          "lat": 19.3,
+          "lon": 129.3,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 120,
+          "validZ": "220600Z",
+          "lat": 21.1,
+          "lon": 126.5,
+          "maxWindKt": 115,
+          "gustKt": 140
+        }
+      ],
+      "spot": {
+        "distanceNm": 1610,
+        "bearingDeg": 109,
+        "closestApproach": {
+          "distanceNm": 310,
+          "tau": 120,
+          "validZ": "220600Z",
+          "maxWindKt": 115
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 280,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 282
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 280
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 289
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 296
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 297
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 297
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 296
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 305
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-21T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-20T03:00:00.000Z",
+          "heightM": 1.28,
+          "periodS": 6.35,
+          "dirDeg": 95
+        },
+        "hoursAhead": 66,
+        "bearingOffsetDeg": 7,
+        "peak": {
+          "targetTime": "2026-10-21T15:00:00.000Z",
+          "heightM": 3.98,
+          "periodS": 13.2,
+          "dirDeg": 104
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "TY 29W is forecast to continue west-northwestward for the next 36 hours under the combined steering influence of the subtropical ridge (STR) centered to the northeast and the STR centered over Taiwan. Regarding intensity, 29W is forecast to continue rapidly intensifying out to +24h and continue intensification to a peak of 135 kt between taus 48 and 72 as 29W remains in a favorable environment.",
+        "warningNumber": "011",
+        "generatedAt": "2026-10-17T04:11:32.370Z"
+      },
+      "reasoningWarningNumber": "012",
+      "significantForecastChanges": "THE INITIAL INTENSITY HAS BEEN RAISED SIGNIFICANTLY AND THE RESULTING 12 HOUR FORECAST INTENSITY HAS BEEN INCREASED TO 130 KNOTS, AS THE SYSTEM IS REACHING ITS CLOSEST POINT OF APPROACH (CPA) TO GUAM.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "HIGH",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
