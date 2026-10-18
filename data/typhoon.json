@@ -1,110 +1,109 @@
 {
-  "fetchedAt": "2026-10-18T00:13:53.490Z",
+  "fetchedAt": "2026-10-18T04:58:44.294Z",
   "systems": [
     {
       "designation": "Super Typhoon",
       "id": "29W",
       "name": "Champi",
       "headline": "Super Typhoon 29W (Champi)",
-      "warningNumber": "014",
-      "issuedZ": "17/2100Z",
-      "issuedAt": "2026-10-17T21:00:00.000Z",
+      "warningNumber": "015",
+      "issuedZ": "18/0300Z",
+      "issuedAt": "2026-10-18T03:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610171800-96_CHAMPI_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610180000-96_CHAMPI_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "180600Z",
-          "lat": 13.5,
-          "lon": 142.6,
+          "validZ": "181200Z",
+          "lat": 13.6,
+          "lon": 141.2,
           "maxWindKt": 135,
           "gustKt": 165
         },
         {
           "tau": 24,
-          "validZ": "181800Z",
-          "lat": 14.2,
-          "lon": 140.5,
-          "maxWindKt": 135,
-          "gustKt": 165
+          "validZ": "190000Z",
+          "lat": 14.4,
+          "lon": 139.3,
+          "maxWindKt": 140,
+          "gustKt": 170
         },
         {
           "tau": 36,
-          "validZ": "190600Z",
-          "lat": 15.1,
-          "lon": 138.5,
+          "validZ": "191200Z",
+          "lat": 15.4,
+          "lon": 137.3,
           "maxWindKt": 140,
           "gustKt": 170
         },
         {
           "tau": 48,
-          "validZ": "191800Z",
-          "lat": 16.1,
-          "lon": 136.4,
+          "validZ": "200000Z",
+          "lat": 16.4,
+          "lon": 135.1,
           "maxWindKt": 140,
           "gustKt": 170
         },
         {
           "tau": 60,
-          "validZ": "200600Z",
-          "lat": 17.1,
-          "lon": 134,
+          "validZ": "201200Z",
+          "lat": 17.5,
+          "lon": 132.5,
           "maxWindKt": 135,
           "gustKt": 165
         },
         {
           "tau": 72,
-          "validZ": "201800Z",
-          "lat": 18.2,
-          "lon": 131.4,
+          "validZ": "210000Z",
+          "lat": 18.6,
+          "lon": 130,
           "maxWindKt": 135,
           "gustKt": 165
         },
         {
           "tau": 96,
-          "validZ": "211800Z",
-          "lat": 20.1,
-          "lon": 127.6,
+          "validZ": "220000Z",
+          "lat": 20.3,
+          "lon": 126.8,
           "maxWindKt": 125,
           "gustKt": 150
         },
         {
           "tau": 120,
-          "validZ": "221800Z",
-          "lat": 21.6,
-          "lon": 125,
+          "validZ": "230000Z",
+          "lat": 21.8,
+          "lon": 124.1,
           "maxWindKt": 105,
           "gustKt": 130
         }
       ],
-      "intensityChangeNote": "UPGRADED FROM TYPHOON 29W",
-      "positionZ": "171800Z",
+      "positionZ": "180000Z",
       "lat": 13.1,
-      "lon": 144.8,
-      "movingToward": 290,
+      "lon": 143.4,
+      "movingToward": 270,
       "movingKt": 14,
       "maxWindKt": 130,
       "gustKt": 160,
-      "pressureMb": 934,
       "nextWarnings": [
-        "180300Z",
         "180900Z",
         "181500Z",
-        "182100Z"
+        "182100Z",
+        "190300Z"
       ],
+      "geoReference": "72 NM WEST-SOUTHWEST OF NAVSTA GUAM",
       "reasoning": {
-        "warningNumber": "014",
+        "warningNumber": "015",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 46,
+        "seasFt": 47,
         "environment": "HIGHLY FAVORABLE",
-        "vws": "10-15 KTS",
+        "vws": "15-20 KTS",
         "sst": "28-29 CELSIUS",
         "outflow": "STRONG RADIAL",
-        "steering": "EASTERN PERIPHERY OF A SUBTROPICAL RIDGE CENTERED OVER TAIWAN",
+        "steering": "EASTWARD EXTENSION OF A SUBTROPICAL RIDGE CENTERED TO THE NORTHWEST",
         "confidence": {
           "track0072": "HIGH",
-          "track72120": "HIGH",
+          "track72120": "MEDIUM",
           "intensity0072": "MEDIUM",
           "intensity72120": "LOW"
         }
@@ -112,37 +111,37 @@
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 1463,
-        "bearingDeg": 110,
+        "distanceNm": 1391,
+        "bearingDeg": 111,
         "closestApproach": {
-          "distanceNm": 221,
+          "distanceNm": 170,
           "tau": 120,
-          "validZ": "221800Z",
+          "validZ": "230000Z",
           "maxWindKt": 105
         }
       },
       "motion": {
-        "currentHeadingDeg": 290,
+        "currentHeadingDeg": 270,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 281
+            "heading": 283
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 289
+            "heading": 294
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 295
+            "heading": 298
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 297
+            "heading": 296
           },
           {
             "fromTau": 48,
@@ -152,17 +151,17 @@
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 294
+            "heading": 295
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 299
+            "heading": 300
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 302
+            "heading": 301
           }
         ],
         "turns": []
@@ -174,16 +173,15 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "The overall structure of TY 29W in animated enhanced infrared (EIR) satellite imagery has deteriorated over the past six hours, as the the previously cloud-free, pinhole eye has filled in due to an ongoing eyewall replacement cycle (erc). Typhoon (TY) 29W is tracking westward in the aggregate, although erratic trochoidal motion is projected to persist pending completion of the erc. The JTWC forecast favors the hwrf scenario, projecting the core intensity to stabilize or decay slightly in the near-term, followed by re-intensification onset by +12h.",
-        "warningNumber": "013",
-        "generatedAt": "2026-10-17T17:01:37.075Z"
+        "text": "Champi has continued on a westward track as the eastward extension of the subtropical ridge (STR) centered far to the west-northwest maintains steering control. Regarding intensity, 29W is expected to gradually intensify and plateau for the next 72 hours as environmental conditions remain highly favorable.",
+        "warningNumber": "015",
+        "generatedAt": "2026-10-18T04:58:44.294Z"
       },
       "changes": {
-        "previousWarningNumber": "013",
-        "previousIssuedAt": "2026-10-17T15:00:00.000Z",
-        "maxWindKtDelta": 10,
-        "pressureMbDelta": -11,
-        "closestApproachNmDelta": -60
+        "previousWarningNumber": "014",
+        "previousIssuedAt": "2026-10-17T21:00:00.000Z",
+        "maxWindKtDelta": 0,
+        "closestApproachNmDelta": -51
       }
     }
   ],
