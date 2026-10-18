@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-18T14:06:40.707Z",
+  "fetchedAt": "2026-10-18T17:29:17.197Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -90,14 +90,14 @@
       "seasFt": 46,
       "geoReference": "187 NM WEST OF NAVSTA GUAM",
       "reasoning": {
-        "warningNumber": "016",
+        "warningNumber": "017",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 50,
+        "seasFt": 46,
         "environment": "FAVORABLE",
-        "vws": "10-15 KTS",
+        "vws": "5-10 KTS",
         "sst": "29-30 CELSIUS",
-        "outflow": "STRONG DUAL-CHANNEL",
-        "steering": "SOUTHERN FLANK OF AN EXTENSION OF A SUBTROPICAL RIDGE (STR) CENTERED NEAR HONG KONG.",
+        "outflow": "STRONG RADIAL",
+        "steering": "SOUTHWESTERN PERIPHERY OF A DEVELOPING SUBTROPICAL RIDGE (STR) CENTER TO THE NORTHEAST.",
         "confidence": {
           "track0072": "HIGH",
           "track72120": "MEDIUM",
@@ -106,7 +106,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1277,
         "bearingDeg": 113,
@@ -164,15 +164,29 @@
         "turns": []
       },
       "swell": {
-        "windowEnd": "2026-10-22T15:00:00.000Z",
-        "status": "none"
+        "windowEnd": "2026-10-23T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-23T04:00:00.000Z",
+          "heightM": 8.36,
+          "periodS": 14.2,
+          "dirDeg": 112
+        },
+        "hoursAhead": 107,
+        "bearingOffsetDeg": 1,
+        "peak": {
+          "targetTime": "2026-10-23T09:00:00.000Z",
+          "heightM": 10.84,
+          "periodS": 13.75,
+          "dirDeg": 102
+        }
       },
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Champi has continued on a westward track as the eastward extension of the subtropical ridge (STR) centered far to the west-northwest maintains steering control. Regarding intensity, 29W is expected to gradually intensify and plateau for the next 72 hours as environmental conditions remain highly favorable.",
-        "warningNumber": "015",
-        "generatedAt": "2026-10-18T04:58:44.294Z"
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a compact inner core of deep convection, featuring rapidly developing vortical hot towers (vhts) deepening concentrically and initiating a new eye formation. The track of typhoon 29W has shifted west- northwestward over the past six hours, as the deep-layer ridge extension draped across the northern pacific has pinched off into a discrete secondary anticyclone to the northeast. By +72h, a passing polar trough over the Korean Peninsula will weaken the ridge, opening a steering col across the East China Sea.",
+        "warningNumber": "017",
+        "generatedAt": "2026-10-18T17:29:17.197Z"
       },
       "changes": {
         "previousWarningNumber": "016",
