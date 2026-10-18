@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-18T20:31:09.783Z",
+  "fetchedAt": "2026-10-18T21:46:06.607Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -11,7 +11,7 @@
       "issuedAt": "2026-10-18T21:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610181200-96_CHAMPI_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610181800-96_CHAMPI_enus.png",
       "forecasts": [
         {
           "tau": 12,
@@ -93,23 +93,23 @@
       ],
       "geoReference": "258 NM WEST OF NAVSTA GUAM",
       "reasoning": {
-        "warningNumber": "017",
+        "warningNumber": "018",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 46,
-        "environment": "FAVORABLE",
-        "vws": "5-10 KTS",
+        "environment": "HIGHLY FAVORABLE",
+        "vws": "10-15 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "STRONG RADIAL",
-        "steering": "SOUTHWESTERN PERIPHERY OF A DEVELOPING SUBTROPICAL RIDGE (STR) CENTER TO THE NORTHEAST.",
+        "steering": "COMBINATION OF THE SOUTHEASTWARD EXTENSION OF A SUBTROPICAL RIDGE CENTERED TO THE NORTH AND A SUBTROPICAL RIDGE CENTERED OVER HONG KONG",
         "confidence": {
           "track0072": "HIGH",
-          "track72120": "MEDIUM",
+          "track72120": "LOW",
           "intensity0072": "MEDIUM",
           "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1207,
         "bearingDeg": 114,
@@ -182,7 +182,7 @@
           "periodS": 14.2,
           "dirDeg": 112
         },
-        "hoursAhead": 103,
+        "hoursAhead": 102,
         "bearingOffsetDeg": 1,
         "peak": {
           "targetTime": "2026-10-23T09:00:00.000Z",
