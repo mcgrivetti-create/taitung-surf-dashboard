@@ -13855,6 +13855,170 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "29W",
+      "name": "Champi",
+      "designation": "Super Typhoon",
+      "warningNumber": "016",
+      "issuedAt": "2026-10-18T09:00:00.000Z",
+      "positionZ": "180600Z",
+      "lat": 13.1,
+      "lon": 142.3,
+      "maxWindKt": 130,
+      "gustKt": 160,
+      "pressureMb": 931,
+      "seasFt": 50,
+      "movingToward": 270,
+      "movingKt": 12,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "181800Z",
+          "lat": 13.8,
+          "lon": 140.2,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 24,
+          "validZ": "190600Z",
+          "lat": 14.7,
+          "lon": 138.3,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 36,
+          "validZ": "191800Z",
+          "lat": 15.7,
+          "lon": 136.2,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 48,
+          "validZ": "200600Z",
+          "lat": 16.7,
+          "lon": 133.9,
+          "maxWindKt": 140,
+          "gustKt": 170
+        },
+        {
+          "tau": 60,
+          "validZ": "201800Z",
+          "lat": 17.8,
+          "lon": 131.4,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 72,
+          "validZ": "210600Z",
+          "lat": 18.9,
+          "lon": 129.2,
+          "maxWindKt": 130,
+          "gustKt": 160
+        },
+        {
+          "tau": 96,
+          "validZ": "220600Z",
+          "lat": 20.4,
+          "lon": 126.3,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 120,
+          "validZ": "230600Z",
+          "lat": 22.2,
+          "lon": 123.5,
+          "maxWindKt": 95,
+          "gustKt": 115
+        }
+      ],
+      "spot": {
+        "distanceNm": 1334,
+        "bearingDeg": 113,
+        "closestApproach": {
+          "distanceNm": 130,
+          "tau": 120,
+          "validZ": "230600Z",
+          "maxWindKt": 95
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 270,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 289
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 296
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 297
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 295
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 295
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 298
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 299
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 305
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "headingDeg": 305,
+            "deltaDeg": 35
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-22T15:00:00.000Z",
+        "status": "none"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Champi has continued on a westward track as the eastward extension of the subtropical ridge (STR) centered far to the west-northwest maintains steering control. Regarding intensity, 29W is expected to gradually intensify and plateau for the next 72 hours as environmental conditions remain highly favorable.",
+        "warningNumber": "015",
+        "generatedAt": "2026-10-18T04:58:44.294Z"
+      },
+      "reasoningWarningNumber": "016",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }

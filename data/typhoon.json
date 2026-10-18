@@ -1,106 +1,108 @@
 {
-  "fetchedAt": "2026-10-18T05:44:10.112Z",
+  "fetchedAt": "2026-10-18T09:48:25.643Z",
   "systems": [
     {
       "designation": "Super Typhoon",
       "id": "29W",
       "name": "Champi",
       "headline": "Super Typhoon 29W (Champi)",
-      "warningNumber": "015",
-      "issuedZ": "18/0300Z",
-      "issuedAt": "2026-10-18T03:00:00.000Z",
+      "warningNumber": "016",
+      "issuedZ": "18/0900Z",
+      "issuedAt": "2026-10-18T09:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610180000-96_CHAMPI_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610180600-96_CHAMPI_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "181200Z",
-          "lat": 13.6,
-          "lon": 141.2,
+          "validZ": "181800Z",
+          "lat": 13.8,
+          "lon": 140.2,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 24,
+          "validZ": "190600Z",
+          "lat": 14.7,
+          "lon": 138.3,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 36,
+          "validZ": "191800Z",
+          "lat": 15.7,
+          "lon": 136.2,
           "maxWindKt": 135,
           "gustKt": 165
         },
         {
-          "tau": 24,
-          "validZ": "190000Z",
-          "lat": 14.4,
-          "lon": 139.3,
-          "maxWindKt": 140,
-          "gustKt": 170
-        },
-        {
-          "tau": 36,
-          "validZ": "191200Z",
-          "lat": 15.4,
-          "lon": 137.3,
-          "maxWindKt": 140,
-          "gustKt": 170
-        },
-        {
           "tau": 48,
-          "validZ": "200000Z",
-          "lat": 16.4,
-          "lon": 135.1,
+          "validZ": "200600Z",
+          "lat": 16.7,
+          "lon": 133.9,
           "maxWindKt": 140,
           "gustKt": 170
         },
         {
           "tau": 60,
-          "validZ": "201200Z",
-          "lat": 17.5,
-          "lon": 132.5,
+          "validZ": "201800Z",
+          "lat": 17.8,
+          "lon": 131.4,
           "maxWindKt": 135,
           "gustKt": 165
         },
         {
           "tau": 72,
-          "validZ": "210000Z",
-          "lat": 18.6,
-          "lon": 130,
-          "maxWindKt": 135,
-          "gustKt": 165
+          "validZ": "210600Z",
+          "lat": 18.9,
+          "lon": 129.2,
+          "maxWindKt": 130,
+          "gustKt": 160
         },
         {
           "tau": 96,
-          "validZ": "220000Z",
-          "lat": 20.3,
-          "lon": 126.8,
-          "maxWindKt": 125,
-          "gustKt": 150
+          "validZ": "220600Z",
+          "lat": 20.4,
+          "lon": 126.3,
+          "maxWindKt": 115,
+          "gustKt": 140
         },
         {
           "tau": 120,
-          "validZ": "230000Z",
-          "lat": 21.8,
-          "lon": 124.1,
-          "maxWindKt": 105,
-          "gustKt": 130
+          "validZ": "230600Z",
+          "lat": 22.2,
+          "lon": 123.5,
+          "maxWindKt": 95,
+          "gustKt": 115
         }
       ],
-      "positionZ": "180000Z",
+      "positionZ": "180600Z",
       "lat": 13.1,
-      "lon": 143.4,
+      "lon": 142.3,
       "movingToward": 270,
-      "movingKt": 14,
+      "movingKt": 12,
       "maxWindKt": 130,
       "gustKt": 160,
+      "pressureMb": 931,
+      "seasFt": 50,
       "nextWarnings": [
-        "180900Z",
         "181500Z",
         "182100Z",
-        "190300Z"
+        "190300Z",
+        "190900Z"
       ],
-      "geoReference": "72 NM WEST-SOUTHWEST OF NAVSTA GUAM",
+      "geoReference": "156 NM WEST-SOUTHWEST OF ANDERSEN AFB",
       "reasoning": {
-        "warningNumber": "015",
+        "warningNumber": "016",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 47,
-        "environment": "HIGHLY FAVORABLE",
-        "vws": "15-20 KTS",
-        "sst": "28-29 CELSIUS",
-        "outflow": "STRONG RADIAL",
-        "steering": "EASTWARD EXTENSION OF A SUBTROPICAL RIDGE CENTERED TO THE NORTHWEST",
+        "seasFt": 50,
+        "environment": "FAVORABLE",
+        "vws": "10-15 KTS",
+        "sst": "29-30 CELSIUS",
+        "outflow": "STRONG DUAL-CHANNEL",
+        "steering": "SOUTHERN FLANK OF AN EXTENSION OF A SUBTROPICAL RIDGE (STR) CENTERED NEAR HONG KONG.",
         "confidence": {
           "track0072": "HIGH",
           "track72120": "MEDIUM",
@@ -111,13 +113,13 @@
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 1391,
-        "bearingDeg": 111,
+        "distanceNm": 1334,
+        "bearingDeg": 113,
         "closestApproach": {
-          "distanceNm": 170,
+          "distanceNm": 130,
           "tau": 120,
-          "validZ": "230000Z",
-          "maxWindKt": 105
+          "validZ": "230600Z",
+          "maxWindKt": 95
         }
       },
       "motion": {
@@ -126,45 +128,52 @@
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 283
+            "heading": 289
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 294
+            "heading": 296
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 298
+            "heading": 297
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 296
+            "heading": 295
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 294
+            "heading": 295
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 295
+            "heading": 298
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 300
+            "heading": 299
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 301
+            "heading": 305
           }
         ],
-        "turns": []
+        "turns": [
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "headingDeg": 305,
+            "deltaDeg": 35
+          }
+        ]
       },
       "swell": {
         "windowEnd": "2026-10-22T15:00:00.000Z",
@@ -178,10 +187,10 @@
         "generatedAt": "2026-10-18T04:58:44.294Z"
       },
       "changes": {
-        "previousWarningNumber": "014",
-        "previousIssuedAt": "2026-10-17T21:00:00.000Z",
+        "previousWarningNumber": "015",
+        "previousIssuedAt": "2026-10-18T03:00:00.000Z",
         "maxWindKtDelta": 0,
-        "closestApproachNmDelta": -51
+        "closestApproachNmDelta": -40
       }
     }
   ],
