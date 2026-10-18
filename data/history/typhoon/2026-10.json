@@ -14176,6 +14176,182 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "29W",
+      "name": "Champi",
+      "designation": "Typhoon",
+      "warningNumber": "018",
+      "issuedAt": "2026-10-18T21:00:00.000Z",
+      "positionZ": "181800Z",
+      "lat": 13.8,
+      "lon": 140.2,
+      "maxWindKt": 120,
+      "gustKt": 145,
+      "movingToward": 285,
+      "movingKt": 12,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "190600Z",
+          "lat": 14.8,
+          "lon": 138.2,
+          "maxWindKt": 130,
+          "gustKt": 160
+        },
+        {
+          "tau": 24,
+          "validZ": "191800Z",
+          "lat": 15.9,
+          "lon": 136.1,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 36,
+          "validZ": "200600Z",
+          "lat": 16.9,
+          "lon": 133.8,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 48,
+          "validZ": "201800Z",
+          "lat": 18,
+          "lon": 131.1,
+          "maxWindKt": 130,
+          "gustKt": 160
+        },
+        {
+          "tau": 60,
+          "validZ": "210600Z",
+          "lat": 19.1,
+          "lon": 128.9,
+          "maxWindKt": 130,
+          "gustKt": 160
+        },
+        {
+          "tau": 72,
+          "validZ": "211800Z",
+          "lat": 20,
+          "lon": 127.3,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 96,
+          "validZ": "221800Z",
+          "lat": 21.6,
+          "lon": 125,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 120,
+          "validZ": "231800Z",
+          "lat": 24.1,
+          "lon": 123.1,
+          "maxWindKt": 80,
+          "gustKt": 100
+        }
+      ],
+      "spot": {
+        "distanceNm": 1207,
+        "bearingDeg": 114,
+        "closestApproach": {
+          "distanceNm": 119,
+          "tau": 120,
+          "validZ": "231800Z",
+          "maxWindKt": 80
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 285,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 298
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 299
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 295
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 294
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 298
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 301
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 307
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 325
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "headingDeg": 325,
+            "deltaDeg": 40
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-23T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-23T04:00:00.000Z",
+          "heightM": 8.36,
+          "periodS": 14.2,
+          "dirDeg": 112
+        },
+        "hoursAhead": 103,
+        "bearingOffsetDeg": 1,
+        "peak": {
+          "targetTime": "2026-10-23T09:00:00.000Z",
+          "heightM": 10.84,
+          "periodS": 13.75,
+          "dirDeg": 102
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a compact inner core of deep convection, featuring rapidly developing vortical hot towers (vhts) deepening concentrically and initiating a new eye formation. The track of typhoon 29W has shifted west- northwestward over the past six hours, as the deep-layer ridge extension draped across the northern pacific has pinched off into a discrete secondary anticyclone to the northeast. By +72h, a passing polar trough over the Korean Peninsula will weaken the ridge, opening a steering col across the East China Sea.",
+        "warningNumber": "017",
+        "generatedAt": "2026-10-18T17:29:17.197Z"
+      },
+      "reasoningWarningNumber": "017",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
