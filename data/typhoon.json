@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-19T20:31:53.793Z",
+  "fetchedAt": "2026-10-19T22:34:33.426Z",
   "systems": [
     {
       "designation": "Super Typhoon",
@@ -95,23 +95,23 @@
       ],
       "geoReference": "766 NM SOUTH-SOUTHWEST OF CHICHI JIMA",
       "reasoning": {
-        "warningNumber": "021",
+        "warningNumber": "022",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 52,
-        "environment": "FAVORABLE",
-        "vws": "0-5 KTS",
-        "sst": "30-31 CELSIUS",
+        "environment": "HIGHLY FAVORABLE",
+        "vws": "5-10 KTS",
+        "sst": "29-30 CELSIUS",
         "outflow": "STRONG DUAL-CHANNEL",
-        "steering": "TRANSITION PERIOD BETWEEN THE WESTERN FLANK OF A SUBTROPICAL RIDGE (STR) TO THE EAST-NORTHEAST, AND A BUILDING EXTENSION OF A STR CENTERED IN THE VICINITY OF TAIWAN.",
+        "steering": "THE SOUTHWESTERN PERIPHERY OF A BUILDING SUBTROPICAL RIDGE (STR) TO THE NORTHEAST",
         "confidence": {
           "track0072": "MEDIUM",
           "track72120": "LOW",
           "intensity0072": "MEDIUM",
-          "intensity72120": "LOW"
+          "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 983,
         "bearingDeg": 115,
@@ -184,7 +184,7 @@
           "periodS": 12.55,
           "dirDeg": 100
         },
-        "hoursAhead": 60,
+        "hoursAhead": 58,
         "bearingOffsetDeg": 6,
         "peak": {
           "targetTime": "2026-10-23T03:00:00.000Z",
@@ -214,8 +214,8 @@
   "invests": [],
   "investSatellite": null,
   "advisory": {
-    "issuedZ": "19/0900Z",
-    "issuedAt": "2026-10-19T09:00:00.000Z",
+    "issuedZ": "19/2100Z",
+    "issuedAt": "2026-10-19T21:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
     "reissued": true
   }
