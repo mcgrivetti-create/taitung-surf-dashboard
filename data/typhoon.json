@@ -1,159 +1,159 @@
 {
-  "fetchedAt": "2026-10-19T06:06:21.071Z",
+  "fetchedAt": "2026-10-19T11:05:53.290Z",
   "systems": [
     {
       "designation": "Super Typhoon",
       "id": "29W",
       "name": "Champi",
       "headline": "Super Typhoon 29W (Champi)",
-      "warningNumber": "019",
-      "issuedZ": "19/0300Z",
-      "issuedAt": "2026-10-19T03:00:00.000Z",
+      "warningNumber": "020",
+      "issuedZ": "19/0900Z",
+      "issuedAt": "2026-10-19T09:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610190000-96_CHAMPI_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610190600-96_CHAMPI_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "191200Z",
-          "lat": 15,
-          "lon": 137.2,
+          "validZ": "191800Z",
+          "lat": 15.3,
+          "lon": 136.5,
           "maxWindKt": 145,
           "gustKt": 175
         },
         {
           "tau": 24,
-          "validZ": "200000Z",
-          "lat": 16.1,
-          "lon": 135.1,
-          "maxWindKt": 145,
-          "gustKt": 175
+          "validZ": "200600Z",
+          "lat": 16.5,
+          "lon": 134.1,
+          "maxWindKt": 150,
+          "gustKt": 180
         },
         {
           "tau": 36,
-          "validZ": "201200Z",
-          "lat": 17.2,
-          "lon": 132.5,
+          "validZ": "201800Z",
+          "lat": 17.6,
+          "lon": 131.7,
           "maxWindKt": 145,
           "gustKt": 175
         },
         {
           "tau": 48,
-          "validZ": "210000Z",
-          "lat": 18.3,
-          "lon": 130,
-          "maxWindKt": 140,
-          "gustKt": 170
+          "validZ": "210600Z",
+          "lat": 18.9,
+          "lon": 129.3,
+          "maxWindKt": 135,
+          "gustKt": 165
         },
         {
           "tau": 60,
-          "validZ": "211200Z",
-          "lat": 19.4,
-          "lon": 128,
-          "maxWindKt": 130,
-          "gustKt": 160
+          "validZ": "211800Z",
+          "lat": 19.8,
+          "lon": 127.7,
+          "maxWindKt": 125,
+          "gustKt": 150
         },
         {
           "tau": 72,
-          "validZ": "220000Z",
-          "lat": 20.3,
-          "lon": 126.8,
-          "maxWindKt": 120,
-          "gustKt": 145
+          "validZ": "220600Z",
+          "lat": 20.7,
+          "lon": 126.3,
+          "maxWindKt": 115,
+          "gustKt": 140
         },
         {
           "tau": 96,
-          "validZ": "230000Z",
-          "lat": 22.3,
-          "lon": 124.7,
-          "maxWindKt": 100,
-          "gustKt": 125
+          "validZ": "230600Z",
+          "lat": 22.8,
+          "lon": 124.1,
+          "maxWindKt": 95,
+          "gustKt": 115
         },
         {
           "tau": 120,
-          "validZ": "240000Z",
-          "lat": 25.3,
-          "lon": 122.9,
+          "validZ": "240600Z",
+          "lat": 26.1,
+          "lon": 123.1,
           "maxWindKt": 75,
           "gustKt": 90
         }
       ],
-      "positionZ": "190000Z",
-      "lat": 14,
-      "lon": 139.2,
-      "movingToward": 280,
-      "movingKt": 10,
-      "maxWindKt": 135,
-      "gustKt": 165,
-      "pressureMb": 926,
-      "seasFt": 49,
+      "positionZ": "190600Z",
+      "lat": 14.3,
+      "lon": 138.4,
+      "movingToward": 290,
+      "movingKt": 8,
+      "maxWindKt": 140,
+      "gustKt": 170,
+      "pressureMb": 917,
+      "seasFt": 53,
       "nextWarnings": [
-        "190900Z",
         "191500Z",
         "192100Z",
-        "200300Z"
+        "200300Z",
+        "200900Z"
       ],
-      "geoReference": "278 NM NORTH-NORTHEAST OF YAP",
+      "geoReference": "289 NM NORTH OF YAP",
       "reasoning": {
-        "warningNumber": "019",
-        "significantForecastChanges": "THE 1800Z INTENSITY WAS REASSESSED TO BE 130 KTS. THE INITIAL INTENSITY OF 135 KTS IS ABOVE THE PREVIOUSLY FORECAST TAU 12 INTENSITY.",
-        "seasFt": 49,
+        "warningNumber": "020",
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "seasFt": 53,
         "environment": "HIGHLY FAVORABLE",
         "vws": "5-10 KTS",
-        "sst": "28-29 CELSIUS",
-        "outflow": "STRONG POLEWARD AND EQUATORWARD",
-        "steering": "SUBTROPICAL RIDGE CENTERED TO THE NORTHEAST",
+        "sst": "30-31 CELSIUS",
+        "outflow": "STRONG DUAL-CHANNEL",
+        "steering": "IN AGGREGATE, THE SYSTEM IS TRACKING ALONG THE SOUTHWESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) TO THE NORTHEAST. HOWEVER, A SIGNIFICANT WEAKNESS HAS DEVELOPED IN THE RIDGING PATTERN TO THE NORTH, RESULTING IN A SHARP DECELERATION OVER THE PAST SIX HOURS.",
         "confidence": {
-          "track0072": "MEDIUM",
+          "track0072": "HIGH",
           "track72120": "LOW",
           "intensity0072": "MEDIUM",
-          "intensity72120": "LOW"
+          "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 1151,
+        "distanceNm": 1101,
         "bearingDeg": 115,
         "closestApproach": {
-          "distanceNm": 164,
-          "tau": 120,
-          "validZ": "240000Z",
-          "maxWindKt": 75
+          "distanceNm": 154,
+          "tau": 96,
+          "validZ": "230600Z",
+          "maxWindKt": 95
         }
       },
       "motion": {
-        "currentHeadingDeg": 280,
+        "currentHeadingDeg": 290,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 298
+            "heading": 299
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 299
+            "heading": 298
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 294
+            "heading": 296
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 295
+            "heading": 300
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 300
+            "heading": 301
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 309
+            "heading": 305
           },
           {
             "fromTau": 72,
@@ -163,15 +163,15 @@
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 332
+            "heading": 345
           }
         ],
         "turns": [
           {
-            "fromTau": 72,
-            "toTau": 96,
-            "headingDeg": 316,
-            "deltaDeg": 36
+            "fromTau": 96,
+            "toTau": 120,
+            "headingDeg": 345,
+            "deltaDeg": 55
           }
         ]
       },
@@ -184,8 +184,8 @@
           "periodS": 11.3,
           "dirDeg": 78
         },
-        "hoursAhead": 88,
-        "bearingOffsetDeg": 28,
+        "hoursAhead": 83,
+        "bearingOffsetDeg": 29,
         "peak": {
           "targetTime": "2026-10-23T03:00:00.000Z",
           "heightM": 8.34,
@@ -201,10 +201,12 @@
         "generatedAt": "2026-10-19T05:06:51.214Z"
       },
       "changes": {
-        "previousWarningNumber": "018",
-        "previousIssuedAt": "2026-10-18T21:00:00.000Z",
-        "maxWindKtDelta": 15,
-        "closestApproachNmDelta": 45
+        "previousWarningNumber": "019",
+        "previousIssuedAt": "2026-10-19T03:00:00.000Z",
+        "maxWindKtDelta": 5,
+        "pressureMbDelta": -9,
+        "seasFtDelta": 4,
+        "closestApproachNmDelta": -10
       }
     }
   ],
@@ -212,9 +214,9 @@
   "invests": [],
   "investSatellite": null,
   "advisory": {
-    "issuedZ": "19/0600Z",
-    "issuedAt": "2026-10-19T06:00:00.000Z",
+    "issuedZ": "19/0900Z",
+    "issuedAt": "2026-10-19T09:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": false
+    "reissued": true
   }
 }
