@@ -1,108 +1,110 @@
 {
-  "fetchedAt": "2026-10-19T01:04:40.554Z",
+  "fetchedAt": "2026-10-19T05:06:51.214Z",
   "systems": [
     {
-      "designation": "Typhoon",
+      "designation": "Super Typhoon",
       "id": "29W",
       "name": "Champi",
-      "headline": "Typhoon 29W (Champi)",
-      "warningNumber": "018",
-      "issuedZ": "18/2100Z",
-      "issuedAt": "2026-10-18T21:00:00.000Z",
+      "headline": "Super Typhoon 29W (Champi)",
+      "warningNumber": "019",
+      "issuedZ": "19/0300Z",
+      "issuedAt": "2026-10-19T03:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610181800-96_CHAMPI_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610190000-96_CHAMPI_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "190600Z",
-          "lat": 14.8,
-          "lon": 138.2,
-          "maxWindKt": 130,
-          "gustKt": 160
+          "validZ": "191200Z",
+          "lat": 15,
+          "lon": 137.2,
+          "maxWindKt": 145,
+          "gustKt": 175
         },
         {
           "tau": 24,
-          "validZ": "191800Z",
-          "lat": 15.9,
-          "lon": 136.1,
-          "maxWindKt": 135,
-          "gustKt": 165
+          "validZ": "200000Z",
+          "lat": 16.1,
+          "lon": 135.1,
+          "maxWindKt": 145,
+          "gustKt": 175
         },
         {
           "tau": 36,
-          "validZ": "200600Z",
-          "lat": 16.9,
-          "lon": 133.8,
-          "maxWindKt": 135,
-          "gustKt": 165
+          "validZ": "201200Z",
+          "lat": 17.2,
+          "lon": 132.5,
+          "maxWindKt": 145,
+          "gustKt": 175
         },
         {
           "tau": 48,
-          "validZ": "201800Z",
-          "lat": 18,
-          "lon": 131.1,
-          "maxWindKt": 130,
-          "gustKt": 160
+          "validZ": "210000Z",
+          "lat": 18.3,
+          "lon": 130,
+          "maxWindKt": 140,
+          "gustKt": 170
         },
         {
           "tau": 60,
-          "validZ": "210600Z",
-          "lat": 19.1,
-          "lon": 128.9,
+          "validZ": "211200Z",
+          "lat": 19.4,
+          "lon": 128,
           "maxWindKt": 130,
           "gustKt": 160
         },
         {
           "tau": 72,
-          "validZ": "211800Z",
-          "lat": 20,
-          "lon": 127.3,
+          "validZ": "220000Z",
+          "lat": 20.3,
+          "lon": 126.8,
           "maxWindKt": 120,
           "gustKt": 145
         },
         {
           "tau": 96,
-          "validZ": "221800Z",
-          "lat": 21.6,
-          "lon": 125,
+          "validZ": "230000Z",
+          "lat": 22.3,
+          "lon": 124.7,
           "maxWindKt": 100,
           "gustKt": 125
         },
         {
           "tau": 120,
-          "validZ": "231800Z",
-          "lat": 24.1,
-          "lon": 123.1,
-          "maxWindKt": 80,
-          "gustKt": 100
+          "validZ": "240000Z",
+          "lat": 25.3,
+          "lon": 122.9,
+          "maxWindKt": 75,
+          "gustKt": 90
         }
       ],
-      "positionZ": "181800Z",
-      "lat": 13.8,
-      "lon": 140.2,
-      "movingToward": 285,
-      "movingKt": 12,
-      "maxWindKt": 120,
-      "gustKt": 145,
+      "positionZ": "190000Z",
+      "lat": 14,
+      "lon": 139.2,
+      "movingToward": 280,
+      "movingKt": 10,
+      "maxWindKt": 135,
+      "gustKt": 165,
+      "pressureMb": 926,
+      "seasFt": 49,
       "nextWarnings": [
-        "190300Z",
         "190900Z",
         "191500Z",
-        "192100Z"
+        "192100Z",
+        "200300Z"
       ],
-      "geoReference": "258 NM WEST OF NAVSTA GUAM",
+      "geoReference": "278 NM NORTH-NORTHEAST OF YAP",
       "reasoning": {
-        "warningNumber": "018",
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 46,
+        "warningNumber": "019",
+        "significantForecastChanges": "THE 1800Z INTENSITY WAS REASSESSED TO BE 130 KTS. THE INITIAL INTENSITY OF 135 KTS IS ABOVE THE PREVIOUSLY FORECAST TAU 12 INTENSITY.",
+        "seasFt": 49,
         "environment": "HIGHLY FAVORABLE",
-        "vws": "10-15 KTS",
-        "sst": "29-30 CELSIUS",
-        "outflow": "STRONG RADIAL",
-        "steering": "COMBINATION OF THE SOUTHEASTWARD EXTENSION OF A SUBTROPICAL RIDGE CENTERED TO THE NORTH AND A SUBTROPICAL RIDGE CENTERED OVER HONG KONG",
+        "vws": "5-10 KTS",
+        "sst": "28-29 CELSIUS",
+        "outflow": "STRONG POLEWARD AND EQUATORWARD",
+        "steering": "SUBTROPICAL RIDGE CENTERED TO THE NORTHEAST",
         "confidence": {
-          "track0072": "HIGH",
+          "track0072": "MEDIUM",
           "track72120": "LOW",
           "intensity0072": "MEDIUM",
           "intensity72120": "LOW"
@@ -111,17 +113,17 @@
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 1207,
-        "bearingDeg": 114,
+        "distanceNm": 1151,
+        "bearingDeg": 115,
         "closestApproach": {
-          "distanceNm": 119,
+          "distanceNm": 164,
           "tau": 120,
-          "validZ": "231800Z",
-          "maxWindKt": 80
+          "validZ": "240000Z",
+          "maxWindKt": 75
         }
       },
       "motion": {
-        "currentHeadingDeg": 285,
+        "currentHeadingDeg": 280,
         "legs": [
           {
             "fromTau": 0,
@@ -136,40 +138,40 @@
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 295
+            "heading": 294
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 294
+            "heading": 295
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 298
+            "heading": 300
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 301
+            "heading": 309
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 307
+            "heading": 316
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 325
+            "heading": 332
           }
         ],
         "turns": [
           {
-            "fromTau": 96,
-            "toTau": 120,
-            "headingDeg": 325,
-            "deltaDeg": 40
+            "fromTau": 72,
+            "toTau": 96,
+            "headingDeg": 316,
+            "deltaDeg": 36
           }
         ]
       },
@@ -182,8 +184,8 @@
           "periodS": 11.3,
           "dirDeg": 78
         },
-        "hoursAhead": 93,
-        "bearingOffsetDeg": 27,
+        "hoursAhead": 89,
+        "bearingOffsetDeg": 28,
         "peak": {
           "targetTime": "2026-10-23T03:00:00.000Z",
           "heightM": 8.34,
@@ -194,15 +196,15 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a compact inner core of deep convection, featuring rapidly developing vortical hot towers (vhts) deepening concentrically and initiating a new eye formation. The track of typhoon 29W has shifted west- northwestward over the past six hours, as the deep-layer ridge extension draped across the northern pacific has pinched off into a discrete secondary anticyclone to the northeast. By +72h, a passing polar trough over the Korean Peninsula will weaken the ridge, opening a steering col across the East China Sea.",
-        "warningNumber": "017",
-        "generatedAt": "2026-10-18T17:29:17.197Z"
+        "text": "Animated multispectral satellite imagery (MSI) depicts super typhoon (STY) 29W (champi) with a rapidly clearing eye that has warmed from -50 c up to 5 c over the past six hours. STY 29W is forecast to continue northwestward under the steering influence of the subtropical ridge (STR) centered to the northeast. Regarding intensity, 29W is expected to intensify as it has completed erc and enters highly favorable environmental conditions of enhanced OHC for the next 48 hours and robust outflow aloft.",
+        "warningNumber": "019",
+        "generatedAt": "2026-10-19T05:06:51.214Z"
       },
       "changes": {
-        "previousWarningNumber": "017",
-        "previousIssuedAt": "2026-10-18T15:00:00.000Z",
-        "maxWindKtDelta": 0,
-        "closestApproachNmDelta": 26
+        "previousWarningNumber": "018",
+        "previousIssuedAt": "2026-10-18T21:00:00.000Z",
+        "maxWindKtDelta": 15,
+        "closestApproachNmDelta": 45
       }
     }
   ],

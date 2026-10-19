@@ -14352,6 +14352,184 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "29W",
+      "name": "Champi",
+      "designation": "Super Typhoon",
+      "warningNumber": "019",
+      "issuedAt": "2026-10-19T03:00:00.000Z",
+      "positionZ": "190000Z",
+      "lat": 14,
+      "lon": 139.2,
+      "maxWindKt": 135,
+      "gustKt": 165,
+      "pressureMb": 926,
+      "seasFt": 49,
+      "movingToward": 280,
+      "movingKt": 10,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "191200Z",
+          "lat": 15,
+          "lon": 137.2,
+          "maxWindKt": 145,
+          "gustKt": 175
+        },
+        {
+          "tau": 24,
+          "validZ": "200000Z",
+          "lat": 16.1,
+          "lon": 135.1,
+          "maxWindKt": 145,
+          "gustKt": 175
+        },
+        {
+          "tau": 36,
+          "validZ": "201200Z",
+          "lat": 17.2,
+          "lon": 132.5,
+          "maxWindKt": 145,
+          "gustKt": 175
+        },
+        {
+          "tau": 48,
+          "validZ": "210000Z",
+          "lat": 18.3,
+          "lon": 130,
+          "maxWindKt": 140,
+          "gustKt": 170
+        },
+        {
+          "tau": 60,
+          "validZ": "211200Z",
+          "lat": 19.4,
+          "lon": 128,
+          "maxWindKt": 130,
+          "gustKt": 160
+        },
+        {
+          "tau": 72,
+          "validZ": "220000Z",
+          "lat": 20.3,
+          "lon": 126.8,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 96,
+          "validZ": "230000Z",
+          "lat": 22.3,
+          "lon": 124.7,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 120,
+          "validZ": "240000Z",
+          "lat": 25.3,
+          "lon": 122.9,
+          "maxWindKt": 75,
+          "gustKt": 90
+        }
+      ],
+      "spot": {
+        "distanceNm": 1151,
+        "bearingDeg": 115,
+        "closestApproach": {
+          "distanceNm": 164,
+          "tau": 120,
+          "validZ": "240000Z",
+          "maxWindKt": 75
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 280,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 298
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 299
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 294
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 295
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 300
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 309
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 316
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 332
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "headingDeg": 316,
+            "deltaDeg": 36
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-23T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-22T22:00:00.000Z",
+          "heightM": 6.72,
+          "periodS": 11.3,
+          "dirDeg": 78
+        },
+        "hoursAhead": 89,
+        "bearingOffsetDeg": 28,
+        "peak": {
+          "targetTime": "2026-10-23T03:00:00.000Z",
+          "heightM": 8.34,
+          "periodS": 12.35,
+          "dirDeg": 83
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts super typhoon (STY) 29W (champi) with a rapidly clearing eye that has warmed from -50 c up to 5 c over the past six hours. STY 29W is forecast to continue northwestward under the steering influence of the subtropical ridge (STR) centered to the northeast. Regarding intensity, 29W is expected to intensify as it has completed erc and enters highly favorable environmental conditions of enhanced OHC for the next 48 hours and robust outflow aloft.",
+        "warningNumber": "019",
+        "generatedAt": "2026-10-19T05:06:51.214Z"
+      },
+      "reasoningWarningNumber": "019",
+      "significantForecastChanges": "THE 1800Z INTENSITY WAS REASSESSED TO BE 130 KTS. THE INITIAL INTENSITY OF 135 KTS IS ABOVE THE PREVIOUSLY FORECAST TAU 12 INTENSITY.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "LOW",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
