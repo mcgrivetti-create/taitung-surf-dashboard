@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-19T14:35:30.440Z",
+  "fetchedAt": "2026-10-19T17:40:06.873Z",
   "systems": [
     {
       "designation": "Super Typhoon",
@@ -95,23 +95,23 @@
       ],
       "geoReference": "319 NM NORTH OF YAP",
       "reasoning": {
-        "warningNumber": "020",
+        "warningNumber": "021",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 53,
-        "environment": "HIGHLY FAVORABLE",
-        "vws": "5-10 KTS",
+        "seasFt": 52,
+        "environment": "FAVORABLE",
+        "vws": "0-5 KTS",
         "sst": "30-31 CELSIUS",
         "outflow": "STRONG DUAL-CHANNEL",
-        "steering": "IN AGGREGATE, THE SYSTEM IS TRACKING ALONG THE SOUTHWESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) TO THE NORTHEAST. HOWEVER, A SIGNIFICANT WEAKNESS HAS DEVELOPED IN THE RIDGING PATTERN TO THE NORTH, RESULTING IN A SHARP DECELERATION OVER THE PAST SIX HOURS.",
+        "steering": "TRANSITION PERIOD BETWEEN THE WESTERN FLANK OF A SUBTROPICAL RIDGE (STR) TO THE EAST-NORTHEAST, AND A BUILDING EXTENSION OF A STR CENTERED IN THE VICINITY OF TAIWAN.",
         "confidence": {
-          "track0072": "HIGH",
+          "track0072": "MEDIUM",
           "track72120": "LOW",
           "intensity0072": "MEDIUM",
-          "intensity72120": "MEDIUM"
+          "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1046,
         "bearingDeg": 115,
@@ -176,7 +176,7 @@
         ]
       },
       "swell": {
-        "windowEnd": "2026-10-23T15:00:00.000Z",
+        "windowEnd": "2026-10-24T15:00:00.000Z",
         "status": "incoming",
         "arrival": {
           "targetTime": "2026-10-22T09:00:00.000Z",
@@ -184,7 +184,7 @@
           "periodS": 12.55,
           "dirDeg": 100
         },
-        "hoursAhead": 66,
+        "hoursAhead": 63,
         "bearingOffsetDeg": 7,
         "peak": {
           "targetTime": "2026-10-23T03:00:00.000Z",
@@ -196,9 +196,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts super typhoon (STY) 29W (champi) with a rapidly clearing eye that has warmed from -50 c up to 5 c over the past six hours. STY 29W is forecast to continue northwestward under the steering influence of the subtropical ridge (STR) centered to the northeast. Regarding intensity, 29W is expected to intensify as it has completed erc and enters highly favorable environmental conditions of enhanced OHC for the next 48 hours and robust outflow aloft.",
-        "warningNumber": "019",
-        "generatedAt": "2026-10-19T05:06:51.214Z"
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a compact inner core of deep convection surrounding a 25NM wide eye, with eye temperatures near 20C. Super typhoon (STY) 29W is beginning to gradually accelerate as it transitions steering influence from the STR to the northeast to the southern periphery of an extension of the STR near Taiwan, which is building eastward south of Japan. Regarding intensity, as the imminent erc progresses, STY 29W is expected to weaken by at least 10 knots, with potential for more pronounced short-term degradation.",
+        "warningNumber": "021",
+        "generatedAt": "2026-10-19T17:40:06.873Z"
       },
       "changes": {
         "previousWarningNumber": "020",
