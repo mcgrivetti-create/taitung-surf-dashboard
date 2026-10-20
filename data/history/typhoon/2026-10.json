@@ -15615,6 +15615,190 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "29W",
+      "name": "Champi",
+      "designation": "Super Typhoon",
+      "warningNumber": "026",
+      "issuedAt": "2026-10-20T21:00:00.000Z",
+      "positionZ": "201800Z",
+      "lat": 17.4,
+      "lon": 131.5,
+      "maxWindKt": 160,
+      "gustKt": 195,
+      "pressureMb": 895,
+      "seasFt": 68,
+      "movingToward": 285,
+      "movingKt": 15,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "210600Z",
+          "lat": 18.6,
+          "lon": 129.1,
+          "maxWindKt": 155,
+          "gustKt": 190
+        },
+        {
+          "tau": 24,
+          "validZ": "211800Z",
+          "lat": 19.8,
+          "lon": 127.2,
+          "maxWindKt": 150,
+          "gustKt": 180
+        },
+        {
+          "tau": 36,
+          "validZ": "220600Z",
+          "lat": 20.9,
+          "lon": 125.8,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 48,
+          "validZ": "221800Z",
+          "lat": 22.2,
+          "lon": 124.8,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 60,
+          "validZ": "230600Z",
+          "lat": 24,
+          "lon": 123.9,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 72,
+          "validZ": "231800Z",
+          "lat": 25.8,
+          "lon": 123.6,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 96,
+          "validZ": "241800Z",
+          "lat": 30.4,
+          "lon": 126.2,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 120,
+          "validZ": "251800Z",
+          "lat": 33.3,
+          "lon": 131.2,
+          "maxWindKt": 50,
+          "gustKt": 65
+        }
+      ],
+      "spot": {
+        "distanceNm": 664,
+        "bearingDeg": 118,
+        "closestApproach": {
+          "distanceNm": 155,
+          "tau": 60,
+          "validZ": "230600Z",
+          "maxWindKt": 115
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 285,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 298
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 304
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 310
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 325
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 335
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 351
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 26
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 54
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "headingDeg": 325,
+            "deltaDeg": 40
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "headingDeg": 26,
+            "deltaDeg": 61
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-25T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-22T19:00:00.000Z",
+          "heightM": 6.72,
+          "periodS": 11.4,
+          "dirDeg": 81
+        },
+        "hoursAhead": 47,
+        "bearingOffsetDeg": 15,
+        "peak": {
+          "targetTime": "2026-10-23T03:00:00.000Z",
+          "heightM": 8.56,
+          "periodS": 13.25,
+          "dirDeg": 88
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "Super typhoon (STY) 29W maintains a circular, well-defined eye embedded in a nearly symmetric central dense overcast with excellent ventilation in all directions and flaring convection on the far outer periphery of the circulation. STY 29W is moving northwestward along the southern periphery of a deep-layer STR positioned south of Honshu. With eye and cloud-top temperatures holding steady over the past few hours, the tropical cyclone is likely at or near peak intensity.",
+        "warningNumber": "025",
+        "generatedAt": "2026-10-20T17:33:47.838Z"
+      },
+      "reasoningWarningNumber": "025",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "LOW",
+        "track72120": "LOW",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
