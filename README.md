@@ -966,6 +966,19 @@ shipped before any real invest existed to test it:
 Neither would have surfaced without a live invest. Worth remembering for
 the paths still untested against real data — multi-storm layout among them.
 
+### Keeping the page fresh (2026-10-20)
+
+The data job is started by cron-job.org at :13 and :33 (Taipei) through
+`workflow_dispatch`, because GitHub's own schedule skipped runs for 4–5 h at a
+time; the `schedule:` slots stay as a fallback. CWA posts land-station readings
+~10 min after the hour and buoy readings ~30 min after.
+
+In the page: an iPhone home-screen shortcut has no reload button or
+pull-to-refresh and iOS resumes it from memory, so `js/app.js` refreshes the
+data when you come back after 2+ min away, every 10 min while the page is on
+screen, and from the ↻ button in the header. A new site version (version.json)
+reloads the whole page instead.
+
 ### Look: Mountain Mist (launched 2026-10-14)
 
 `css/theme.css` is layered over `style.css` (and `accuracy.css`) on both

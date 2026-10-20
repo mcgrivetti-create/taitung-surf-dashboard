@@ -768,3 +768,9 @@ main {
 
 /* Formoswell brand mark (the home-screen icon) beside the header title */
 .brand-mark { width: 1.35em; height: 1.35em; border-radius: 0.3em; vertical-align: -0.3em; margin-right: 0.4rem; }
+
+/* Refresh button (header): spins while new data loads */
+.refresh-btn { font-size: 1.15rem; line-height: 1; }
+.refresh-btn.is-spinning { animation: refresh-spin 0.7s linear infinite; }
+@keyframes refresh-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .refresh-btn.is-spinning { animation: none; opacity: 0.5; } }

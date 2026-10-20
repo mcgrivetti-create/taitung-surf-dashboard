@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-14d";
+  var ASSET_VERSION = "2026-10-20a";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -936,6 +936,49 @@
         if (el) el.innerHTML = '<li class="fc-card-empty">Forecast Check data isn\'t available right now.</li>';
       });
   }
+
+  /* ---------- Keeping the page fresh (2026-10-20) ----------
+     A home-screen shortcut on an iPhone opens full-screen with no reload
+     button and no pull-to-refresh, and iOS resumes it from memory, so old
+     readings stayed on screen for hours. The page now refreshes itself: on
+     coming back to it after 2+ min away, every 10 min while it's on screen,
+     and from the ↻ button. A new site version reloads the whole page;
+     otherwise only the data is fetched again (open sections stay open). */
+  var lastRefresh = Date.now(), refreshing = false;
+  function refreshNow() {
+    if (refreshing) return;
+    refreshing = true;
+    var btn = document.getElementById("refreshBtn");
+    if (btn) btn.classList.add("is-spinning");
+    fetch("version.json", { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .catch(function () { return null; })
+      .then(function (v) {
+        if (v && v.assets && v.assets !== ASSET_VERSION) {
+          var u = location.href.split("#")[0].replace(/[?&]_v=[^&]*/, "");
+          location.replace(u + (u.indexOf("?") === -1 ? "?" : "&") + "_v=" + encodeURIComponent(v.assets));
+          return;
+        }
+        dataCache = {};
+        loadAll();
+        lastRefresh = Date.now();
+      })
+      .then(function () {
+        refreshing = false;
+        setTimeout(function () { if (btn) btn.classList.remove("is-spinning"); }, 700);
+      });
+  }
+  (function initAutoRefresh() {
+    var btn = document.getElementById("refreshBtn");
+    if (btn) btn.addEventListener("click", refreshNow);
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible" && Date.now() - lastRefresh > 2 * 60000) refreshNow();
+    });
+    window.addEventListener("pageshow", function (ev) { if (ev.persisted) refreshNow(); });
+    setInterval(function () {
+      if (document.visibilityState === "visible" && Date.now() - lastRefresh > 10 * 60000) refreshNow();
+    }, 60000);
+  })();
 
   /* ---------- Forecast Check summary card (Phase 3) ----------
      Three generated lines — waves, wind, tide — each linking to its tab on
