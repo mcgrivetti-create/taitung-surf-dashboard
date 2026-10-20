@@ -1,110 +1,103 @@
 {
-  "fetchedAt": "2026-10-20T01:13:01.458Z",
+  "fetchedAt": "2026-10-20T05:54:18.937Z",
   "systems": [
     {
       "designation": "Super Typhoon",
       "id": "29W",
       "name": "Champi",
       "headline": "Super Typhoon 29W (Champi)",
-      "warningNumber": "022",
-      "issuedZ": "19/2100Z",
-      "issuedAt": "2026-10-19T21:00:00.000Z",
+      "warningNumber": "023",
+      "issuedZ": "20/0300Z",
+      "issuedAt": "2026-10-20T03:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610191800-96_CHAMPI_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610200000-96_CHAMPI_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "200600Z",
-          "lat": 16.5,
-          "lon": 134.4,
+          "validZ": "201200Z",
+          "lat": 17,
+          "lon": 133.1,
           "maxWindKt": 130,
           "gustKt": 160
         },
         {
           "tau": 24,
-          "validZ": "201800Z",
-          "lat": 17.6,
-          "lon": 131.7,
+          "validZ": "210000Z",
+          "lat": 18.1,
+          "lon": 130.7,
           "maxWindKt": 145,
           "gustKt": 175
         },
         {
           "tau": 36,
-          "validZ": "210600Z",
-          "lat": 18.9,
-          "lon": 129.3,
+          "validZ": "211200Z",
+          "lat": 19.3,
+          "lon": 128.6,
           "maxWindKt": 135,
           "gustKt": 165
         },
         {
           "tau": 48,
-          "validZ": "211800Z",
-          "lat": 19.8,
-          "lon": 127.6,
+          "validZ": "220000Z",
+          "lat": 20.4,
+          "lon": 127.1,
           "maxWindKt": 125,
           "gustKt": 150
         },
         {
           "tau": 60,
-          "validZ": "220600Z",
-          "lat": 20.8,
-          "lon": 126.2,
-          "maxWindKt": 115,
-          "gustKt": 140
+          "validZ": "221200Z",
+          "lat": 21.5,
+          "lon": 126,
+          "maxWindKt": 110,
+          "gustKt": 135
         },
         {
           "tau": 72,
-          "validZ": "221800Z",
-          "lat": 21.9,
-          "lon": 125.2,
-          "maxWindKt": 105,
-          "gustKt": 130
+          "validZ": "230000Z",
+          "lat": 22.8,
+          "lon": 125,
+          "maxWindKt": 95,
+          "gustKt": 115
         },
         {
           "tau": 96,
-          "validZ": "231800Z",
-          "lat": 24.8,
-          "lon": 123.5,
-          "maxWindKt": 80,
-          "gustKt": 100
+          "validZ": "240000Z",
+          "lat": 26.5,
+          "lon": 124,
+          "maxWindKt": 65,
+          "gustKt": 80
         },
         {
           "tau": 120,
-          "validZ": "241800Z",
-          "lat": 28.9,
-          "lon": 123.9,
-          "maxWindKt": 55,
-          "gustKt": 70
+          "validZ": "250000Z",
+          "lat": 30,
+          "lon": 125.9,
+          "maxWindKt": 40,
+          "gustKt": 50
         }
       ],
-      "positionZ": "191800Z",
-      "lat": 15.4,
-      "lon": 136.7,
-      "movingToward": 305,
-      "movingKt": 11,
-      "maxWindKt": 135,
-      "gustKt": 165,
-      "pressureMb": 919,
-      "seasFt": 52,
-      "nextWarnings": [
-        "200300Z",
-        "200900Z",
-        "201500Z",
-        "202100Z"
-      ],
+      "positionZ": "200000Z",
+      "lat": 15.9,
+      "lon": 135.6,
+      "movingToward": 295,
+      "movingKt": 12,
+      "maxWindKt": 130,
+      "gustKt": 160,
+      "seasFt": 55,
       "geoReference": "766 NM SOUTH-SOUTHWEST OF CHICHI JIMA",
       "reasoning": {
-        "warningNumber": "022",
+        "warningNumber": "023",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 52,
+        "seasFt": 55,
         "environment": "HIGHLY FAVORABLE",
         "vws": "5-10 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "STRONG DUAL-CHANNEL",
-        "steering": "THE SOUTHWESTERN PERIPHERY OF A BUILDING SUBTROPICAL RIDGE (STR) TO THE NORTHEAST",
+        "steering": "THE SOUTHWESTERN PERIPHERY OF AN ELONGATED SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTH",
         "confidence": {
-          "track0072": "MEDIUM",
+          "track0072": "LOW",
           "track72120": "LOW",
           "intensity0072": "MEDIUM",
           "intensity72120": "MEDIUM"
@@ -113,65 +106,71 @@
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 983,
+        "distanceNm": 913,
         "bearingDeg": 115,
         "closestApproach": {
-          "distanceNm": 162,
-          "tau": 96,
-          "validZ": "231800Z",
-          "maxWindKt": 80
+          "distanceNm": 204,
+          "tau": 72,
+          "validZ": "230000Z",
+          "maxWindKt": 95
         }
       },
       "motion": {
-        "currentHeadingDeg": 305,
+        "currentHeadingDeg": 295,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 297
+            "heading": 295
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 293
+            "heading": 296
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 300
+            "heading": 301
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 300
+            "heading": 308
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 308
+            "heading": 317
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 320
+            "heading": 325
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 332
+            "heading": 346
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 5
+            "heading": 25
           }
         ],
         "turns": [
           {
+            "fromTau": 72,
+            "toTau": 96,
+            "headingDeg": 346,
+            "deltaDeg": 51
+          },
+          {
             "fromTau": 96,
             "toTau": 120,
-            "headingDeg": 5,
-            "deltaDeg": 60
+            "headingDeg": 25,
+            "deltaDeg": 39
           }
         ]
       },
@@ -184,8 +183,8 @@
           "periodS": 11.95,
           "dirDeg": 87
         },
-        "hoursAhead": 69,
-        "bearingOffsetDeg": 19,
+        "hoursAhead": 64,
+        "bearingOffsetDeg": 5,
         "peak": {
           "targetTime": "2026-10-23T03:00:00.000Z",
           "heightM": 9.18,
@@ -196,17 +195,16 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a compact inner core of deep convection surrounding a 25NM wide eye, with eye temperatures near 20C. Super typhoon (STY) 29W is beginning to gradually accelerate as it transitions steering influence from the STR to the northeast to the southern periphery of an extension of the STR near Taiwan, which is building eastward south of Japan. Regarding intensity, as the imminent erc progresses, STY 29W is expected to weaken by at least 10 knots, with potential for more pronounced short-term degradation.",
-        "warningNumber": "021",
-        "generatedAt": "2026-10-19T17:40:06.873Z"
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts super typhoon (STY) 29W continuing to barrel northwestward, maintaining a solid inner eye measuring 19 NM in diameter and +18C in core temperature. STY 29W (champi) is forecast to continue tracking along the southwestern periphery of the elongated STR to its north. Regarding intensity, 29W is expected to weaken through the next 6-12 hours as it completes the erc, with more pronounced weakening possible at +6h.",
+        "warningNumber": "023",
+        "generatedAt": "2026-10-20T05:54:18.937Z"
       },
       "changes": {
-        "previousWarningNumber": "021",
-        "previousIssuedAt": "2026-10-19T15:00:00.000Z",
+        "previousWarningNumber": "022",
+        "previousIssuedAt": "2026-10-19T21:00:00.000Z",
         "maxWindKtDelta": -5,
-        "pressureMbDelta": 0,
-        "seasFtDelta": 0,
-        "closestApproachNmDelta": 22
+        "seasFtDelta": 3,
+        "closestApproachNmDelta": 42
       }
     }
   ],
@@ -214,9 +212,9 @@
   "invests": [],
   "investSatellite": null,
   "advisory": {
-    "issuedZ": "19/2100Z",
-    "issuedAt": "2026-10-19T21:00:00.000Z",
+    "issuedZ": "20/0600Z",
+    "issuedAt": "2026-10-20T06:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": true
+    "reissued": false
   }
 }
