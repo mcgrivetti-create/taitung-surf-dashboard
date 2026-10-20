@@ -1,101 +1,108 @@
 {
-  "fetchedAt": "2026-10-20T05:54:18.937Z",
+  "fetchedAt": "2026-10-20T11:23:41.159Z",
   "systems": [
     {
       "designation": "Super Typhoon",
       "id": "29W",
       "name": "Champi",
       "headline": "Super Typhoon 29W (Champi)",
-      "warningNumber": "023",
-      "issuedZ": "20/0300Z",
-      "issuedAt": "2026-10-20T03:00:00.000Z",
+      "warningNumber": "024",
+      "issuedZ": "20/0900Z",
+      "issuedAt": "2026-10-20T09:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610200000-96_CHAMPI_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610200600-96_CHAMPI_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "201200Z",
-          "lat": 17,
-          "lon": 133.1,
-          "maxWindKt": 130,
-          "gustKt": 160
+          "validZ": "201800Z",
+          "lat": 17.5,
+          "lon": 131.9,
+          "maxWindKt": 155,
+          "gustKt": 190
         },
         {
           "tau": 24,
-          "validZ": "210000Z",
-          "lat": 18.1,
-          "lon": 130.7,
+          "validZ": "210600Z",
+          "lat": 18.8,
+          "lon": 129.5,
           "maxWindKt": 145,
           "gustKt": 175
         },
         {
           "tau": 36,
-          "validZ": "211200Z",
-          "lat": 19.3,
-          "lon": 128.6,
+          "validZ": "211800Z",
+          "lat": 20,
+          "lon": 127.7,
           "maxWindKt": 135,
           "gustKt": 165
         },
         {
           "tau": 48,
-          "validZ": "220000Z",
-          "lat": 20.4,
-          "lon": 127.1,
-          "maxWindKt": 125,
-          "gustKt": 150
+          "validZ": "220600Z",
+          "lat": 21.1,
+          "lon": 126.2,
+          "maxWindKt": 120,
+          "gustKt": 145
         },
         {
           "tau": 60,
-          "validZ": "221200Z",
-          "lat": 21.5,
-          "lon": 126,
-          "maxWindKt": 110,
-          "gustKt": 135
+          "validZ": "221800Z",
+          "lat": 22.2,
+          "lon": 125.2,
+          "maxWindKt": 105,
+          "gustKt": 130
         },
         {
           "tau": 72,
-          "validZ": "230000Z",
-          "lat": 22.8,
-          "lon": 125,
-          "maxWindKt": 95,
-          "gustKt": 115
+          "validZ": "230600Z",
+          "lat": 23.8,
+          "lon": 124.2,
+          "maxWindKt": 90,
+          "gustKt": 110
         },
         {
           "tau": 96,
-          "validZ": "240000Z",
-          "lat": 26.5,
-          "lon": 124,
+          "validZ": "240600Z",
+          "lat": 27.7,
+          "lon": 124.2,
           "maxWindKt": 65,
           "gustKt": 80
         },
         {
           "tau": 120,
-          "validZ": "250000Z",
-          "lat": 30,
-          "lon": 125.9,
-          "maxWindKt": 40,
-          "gustKt": 50
+          "validZ": "250600Z",
+          "lat": 31.4,
+          "lon": 127.6,
+          "maxWindKt": 45,
+          "gustKt": 55
         }
       ],
-      "positionZ": "200000Z",
-      "lat": 15.9,
-      "lon": 135.6,
+      "positionZ": "200600Z",
+      "lat": 16.5,
+      "lon": 134.4,
       "movingToward": 295,
-      "movingKt": 12,
-      "maxWindKt": 130,
-      "gustKt": 160,
+      "movingKt": 13,
+      "maxWindKt": 135,
+      "gustKt": 165,
+      "pressureMb": 922,
       "seasFt": 55,
-      "geoReference": "766 NM SOUTH-SOUTHWEST OF CHICHI JIMA",
+      "nextWarnings": [
+        "201500Z",
+        "202100Z",
+        "210300Z",
+        "210900Z"
+      ],
+      "geoReference": "704 NM SOUTH-SOUTHEAST OF KADENA AB",
       "reasoning": {
-        "warningNumber": "023",
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 55,
+        "warningNumber": "024",
+        "significantForecastChanges": "THE FORECAST PEAK INTENSITY HAS BEEN INCREASED TO 160 KTS.",
+        "seasFt": 58,
         "environment": "HIGHLY FAVORABLE",
-        "vws": "5-10 KTS",
-        "sst": "29-30 CELSIUS",
-        "outflow": "STRONG DUAL-CHANNEL",
-        "steering": "THE SOUTHWESTERN PERIPHERY OF AN ELONGATED SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTH",
+        "vws": "0-5 KTS",
+        "sst": "30-31 CELSIUS",
+        "outflow": "STRONG RADIAL",
+        "steering": "SOUTHERN FLANK OF A DEEP-LAYER SUBTROPICAL RIDGE POSITIONED SOUTH OF HONSHU",
         "confidence": {
           "track0072": "LOW",
           "track72120": "LOW",
@@ -106,13 +113,13 @@
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 913,
+        "distanceNm": 835,
         "bearingDeg": 115,
         "closestApproach": {
-          "distanceNm": 204,
+          "distanceNm": 167,
           "tau": 72,
-          "validZ": "230000Z",
-          "maxWindKt": 95
+          "validZ": "230600Z",
+          "maxWindKt": 90
         }
       },
       "motion": {
@@ -121,17 +128,17 @@
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 295
+            "heading": 293
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 296
+            "heading": 300
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 301
+            "heading": 306
           },
           {
             "fromTau": 36,
@@ -141,36 +148,36 @@
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 317
+            "heading": 320
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 325
+            "heading": 330
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 346
+            "heading": 0
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 25
+            "heading": 38
           }
         ],
         "turns": [
           {
-            "fromTau": 72,
-            "toTau": 96,
-            "headingDeg": 346,
-            "deltaDeg": 51
+            "fromTau": 60,
+            "toTau": 72,
+            "headingDeg": 330,
+            "deltaDeg": 35
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "headingDeg": 25,
-            "deltaDeg": 39
+            "headingDeg": 38,
+            "deltaDeg": 68
           }
         ]
       },
@@ -183,8 +190,8 @@
           "periodS": 11.95,
           "dirDeg": 87
         },
-        "hoursAhead": 64,
-        "bearingOffsetDeg": 5,
+        "hoursAhead": 59,
+        "bearingOffsetDeg": 14,
         "peak": {
           "targetTime": "2026-10-23T03:00:00.000Z",
           "heightM": 9.18,
@@ -200,11 +207,11 @@
         "generatedAt": "2026-10-20T05:54:18.937Z"
       },
       "changes": {
-        "previousWarningNumber": "022",
-        "previousIssuedAt": "2026-10-19T21:00:00.000Z",
-        "maxWindKtDelta": -5,
-        "seasFtDelta": 3,
-        "closestApproachNmDelta": 42
+        "previousWarningNumber": "023",
+        "previousIssuedAt": "2026-10-20T03:00:00.000Z",
+        "maxWindKtDelta": 5,
+        "seasFtDelta": 0,
+        "closestApproachNmDelta": -37
       }
     }
   ],

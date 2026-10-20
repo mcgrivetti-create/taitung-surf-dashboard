@@ -15247,6 +15247,190 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "29W",
+      "name": "Champi",
+      "designation": "Super Typhoon",
+      "warningNumber": "024",
+      "issuedAt": "2026-10-20T09:00:00.000Z",
+      "positionZ": "200600Z",
+      "lat": 16.5,
+      "lon": 134.4,
+      "maxWindKt": 135,
+      "gustKt": 165,
+      "pressureMb": 922,
+      "seasFt": 55,
+      "movingToward": 295,
+      "movingKt": 13,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "201800Z",
+          "lat": 17.5,
+          "lon": 131.9,
+          "maxWindKt": 155,
+          "gustKt": 190
+        },
+        {
+          "tau": 24,
+          "validZ": "210600Z",
+          "lat": 18.8,
+          "lon": 129.5,
+          "maxWindKt": 145,
+          "gustKt": 175
+        },
+        {
+          "tau": 36,
+          "validZ": "211800Z",
+          "lat": 20,
+          "lon": 127.7,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 48,
+          "validZ": "220600Z",
+          "lat": 21.1,
+          "lon": 126.2,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 60,
+          "validZ": "221800Z",
+          "lat": 22.2,
+          "lon": 125.2,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 72,
+          "validZ": "230600Z",
+          "lat": 23.8,
+          "lon": 124.2,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 96,
+          "validZ": "240600Z",
+          "lat": 27.7,
+          "lon": 124.2,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 120,
+          "validZ": "250600Z",
+          "lat": 31.4,
+          "lon": 127.6,
+          "maxWindKt": 45,
+          "gustKt": 55
+        }
+      ],
+      "spot": {
+        "distanceNm": 835,
+        "bearingDeg": 115,
+        "closestApproach": {
+          "distanceNm": 167,
+          "tau": 72,
+          "validZ": "230600Z",
+          "maxWindKt": 90
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 295,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 293
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 300
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 306
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 308
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 320
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 330
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 0
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 38
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "headingDeg": 330,
+            "deltaDeg": 35
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "headingDeg": 38,
+            "deltaDeg": 68
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-24T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-22T22:00:00.000Z",
+          "heightM": 7.28,
+          "periodS": 11.95,
+          "dirDeg": 87
+        },
+        "hoursAhead": 59,
+        "bearingOffsetDeg": 14,
+        "peak": {
+          "targetTime": "2026-10-23T03:00:00.000Z",
+          "heightM": 9.18,
+          "periodS": 12.8,
+          "dirDeg": 87
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts super typhoon (STY) 29W continuing to barrel northwestward, maintaining a solid inner eye measuring 19 NM in diameter and +18C in core temperature. STY 29W (champi) is forecast to continue tracking along the southwestern periphery of the elongated STR to its north. Regarding intensity, 29W is expected to weaken through the next 6-12 hours as it completes the erc, with more pronounced weakening possible at +6h.",
+        "warningNumber": "023",
+        "generatedAt": "2026-10-20T05:54:18.937Z"
+      },
+      "reasoningWarningNumber": "024",
+      "significantForecastChanges": "THE FORECAST PEAK INTENSITY HAS BEEN INCREASED TO 160 KTS.",
+      "confidence": {
+        "track0072": "LOW",
+        "track72120": "LOW",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
