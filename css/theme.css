@@ -77,7 +77,11 @@ html, body { font-family: var(--font-body); }
 .quick-links .ql-map:hover, .quick-links .ql-map:focus-visible { background: var(--text); border-color: var(--text); color: var(--bg); }
 
 /* Mist hero: layered peaks, a red sun, bamboo on the left (decoration) */
-.mist-hero { position: relative; margin: 0 calc(-1 * clamp(1rem, 4vw, 2rem)); height: clamp(150px, 34vw, 230px); overflow: hidden; background: var(--mist-sky); }
+/* The whole picture shows on a phone (the box has the drawing's own shape);
+   on wider screens it is capped at 300 px tall and trimmed top and bottom
+   evenly, which keeps the sun rising behind the far ridge in view. */
+.mist-hero { position: relative; margin: 0 calc(-1 * clamp(1rem, 4vw, 2rem)); aspect-ratio: 390 / 230; overflow: hidden; background: var(--mist-sky); }
+@media (min-width: 700px) { .mist-hero { aspect-ratio: auto; height: 300px; } }
 .mist-hero svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .mist-hero .sun { fill: var(--seal); opacity: 0.85; }
 .mist-hero .far { fill: var(--mist-far); }
