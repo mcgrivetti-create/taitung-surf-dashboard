@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-21T01:13:47.995Z",
+  "fetchedAt": "2026-10-21T01:33:49.377Z",
   "systems": [
     {
       "designation": "Super Typhoon",
@@ -192,14 +192,19 @@
           "periodS": 8,
           "dirDeg": 102
         },
-        "hoursAhead": 3,
-        "bearingOffsetDeg": 3,
+        "now": {
+          "targetTime": "2026-10-21T01:00:00.000Z",
+          "heightM": 2.58,
+          "periodS": 10.45,
+          "dirDeg": 105
+        },
         "peak": {
           "targetTime": "2026-10-23T00:00:00.000Z",
           "heightM": 7.84,
           "periodS": 11.95,
           "dirDeg": 81
         },
+        "easing": false,
         "modelArrival": {
           "targetTime": "2026-10-21T04:00:00.000Z",
           "heightM": 2.72,
@@ -220,13 +225,12 @@
             "periodS": 6.4
           },
           "now": {
-            "at": "2026-10-20T23:00:00.000Z",
-            "heightM": 2.7,
-            "periodS": 9.4,
-            "dirDeg": 98
+            "at": "2026-10-21T01:00:00.000Z",
+            "heightM": 2.5,
+            "periodS": 8.3,
+            "dirDeg": 95
           }
-        },
-        "easing": false
+        }
       },
       "retireFrom": null,
       "retired": false,
