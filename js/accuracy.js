@@ -715,11 +715,21 @@
         var dt = e.peakTimingErrorH, dh = e.lastPrediction.heightM - e.observedPeak.heightM;
         return "For " + esc(e.name) + ", the peak was called " + (Math.abs(dt) <= 3 ? "within " + Math.max(1, Math.abs(dt)) + " hour" + (Math.abs(dt) > 1 ? "s" : "") : Math.abs(dt) + " hours " + (dt > 0 ? "late" : "early")) + " and " + (Math.abs(dh) < 0.3 ? "about the right size" : f1(Math.abs(dh)) + " m too " + (dh < 0 ? "small" : "big")) + ".";
       }).join(" ") : "the rest overlapped other storms, so the buoy can't separate their swells.");
+    // Arrival timing (since 2026-10-21): the wave model's last call before the buoys saw the swell.
+    var arr = ev.filter(function (e) { return e.arrivalTimingErrorH !== null && e.arrivalTimingErrorH !== undefined; });
+    if (arr.length) s += " Arrival: " + arr.map(function (e) {
+      var d = e.arrivalTimingErrorH;
+      return "for " + esc(e.name) + " the wave model called it " + (Math.abs(d) <= 2 ? "about right" : Math.abs(d) + " hours " + (d > 0 ? "late" : "early")) + " (seen at the " + esc(e.observedArrival.label) + " buoy)";
+    }).join("; ") + ".";
     box.innerHTML = syn("Summary · typhoon swell calls vs the Chenggong buoy", s) +
-      '<div class="fc-panel"><div class="fc-panel-head"><h3>Predicted vs observed swell peaks</h3><span class="fc-note">Prediction: the dashboard\'s typhoon swell alert. Observed: the biggest Chenggong-buoy reading within 36 h of the predicted peak.</span></div>' +
+      '<div class="fc-panel"><div class="fc-panel-head"><h3>Predicted vs observed swell: arrival and peak</h3><span class="fc-note">Prediction: the dashboard\'s typhoon swell alert (the wave model). Arrival seen: when a buoy first showed the swell building. Observed peak: the biggest Chenggong-buoy reading within 36 h of the predicted peak.</span></div>' +
       '<div class="fc-events">' + (ev.map(function (e) {
         var o = e.observedPeak, fp = e.firstPrediction, lp = e.lastPrediction;
-        return '<div class="fc-event"><h4>' + esc(e.name) + ' <span class="fc-note">' + esc(e.id) + " · " + e.predictions + " predictions</span></h4><dl>" +
+        var oa = e.observedArrival, la = e.lastArrivalCall, ad = e.arrivalTimingErrorH;
+        var arrivalRows = (la ? "<dt>Arrival called</dt><dd>" + fmtWHM.format(Date.parse(la.arrivalAt)) + ' <span class="fc-note">(last call before it arrived, made ' + fmtFull.format(Date.parse(la.issuedAt)) + ")</span></dd>" : "") +
+          (oa ? "<dt>Arrival seen</dt><dd>" + fmtWHM.format(Date.parse(oa.at)) + " · " + esc(oa.label) + " buoy</dd>" : "") +
+          (ad !== null && ad !== undefined ? "<dt>Arrival timing</dt><dd>" + (Math.abs(ad) <= 2 ? "about right" : Math.abs(ad) + " h " + (ad > 0 ? "late" : "early")) + "</dd>" : "");
+        return '<div class="fc-event"><h4>' + esc(e.name) + ' <span class="fc-note">' + esc(e.id) + " · " + e.predictions + " predictions</span></h4><dl>" + arrivalRows +
           "<dt>First call</dt><dd>" + fmtWHM.format(Date.parse(fp.peakAt)) + " · " + f1(fp.heightM) + " m, " + f1(fp.periodS) + " s <span class=\"fc-note\">(made " + fmtFull.format(Date.parse(fp.issuedAt)) + ")</span></dd>" +
           "<dt>Last call before the peak</dt><dd>" + fmtWHM.format(Date.parse(lp.peakAt)) + " · " + f1(lp.heightM) + " m, " + f1(lp.periodS) + " s</dd>" +
           "<dt>Observed peak</dt><dd>" + (o ? fmtWHM.format(Date.parse(o.at)) + " · " + f1(o.heightM) + " m" + (o.periodS !== null && o.periodS !== undefined ? ", " + f1(o.periodS) + " s" : "") : "no buoy readings") + "</dd>" +

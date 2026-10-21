@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-21a";
+  var ASSET_VERSION = "2026-10-21b";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -1074,8 +1074,17 @@
     if (!sw) return "";
     // Pre-2026-09-29 files carried a bare arrival with no status.
     if (!sw.status && sw.targetTime) sw = { status: "incoming", arrival: sw, peak: sw.peak };
+    var peakPast = sw.peak && Date.parse(sw.peak.targetTime) < Date.now();
     var peakTxt = sw.peak && (!sw.arrival || sw.peak.targetTime !== sw.arrival.targetTime)
-      ? ", peaking at <strong>" + swellDesc(sw.peak) + "</strong> around " + fmtDonghe(sw.peak.targetTime) : "";
+      ? (peakPast ? ", peaked at " : ", peaking at ") + "<strong>" + swellDesc(sw.peak) + "</strong> around " + fmtDonghe(sw.peak.targetTime) : "";
+    // Seen at a buoy (since 2026-10-21): say where, and what the model had called.
+    if (sw.status === "in-water" && sw.arrival && sw.arrival.source === "buoy") {
+      var o = sw.observed || {}, on = o.now;
+      var modelTxt = sw.modelArrival && sw.modelArrival.targetTime
+        ? ' <span class="typhoon-lag">(the wave model had it arriving ' + fmtDonghe(sw.modelArrival.targetTime) + ")</span>" : "";
+      return "Swell arrived <strong>" + fmtDonghe(sw.arrival.targetTime) + "</strong>, seen at the " + escapeHtml(sw.arrival.buoy || o.label || "") + " buoy" +
+        (on ? " — " + n1(on.heightM) + " m @ " + n1(on.periodS) + " s there now" : "") + (sw.easing ? ", now <strong>easing</strong>" : peakTxt) + modelTxt;
+    }
     if (sw.status === "incoming") {
       return "Swell expected to arrive <strong>" + fmtDonghe(sw.arrival.targetTime) + "</strong> (" +
         swellDesc(sw.arrival) + ")" + peakTxt;
@@ -1112,9 +1121,16 @@
     if (!sw) return "swell outlook not available";
     if (!sw.status && sw.targetTime) sw = { status: "incoming", arrival: sw };
     var day = function (iso) { return fmtDonghe(iso).replace(/:\d{2}$/, ":00"); };
-    if (sw.status === "incoming") return "expected to send swell arriving <b>" + day(sw.arrival.targetTime) + "</b>";
-    if (sw.status === "arriving") return "its swell is <b>arriving now</b>";
-    if (sw.status === "in-water") return sw.easing ? "its swell is in the water and easing" : "its swell is in the water" + (sw.peak ? ", peaking around " + day(sw.peak.targetTime) : "");
+    // Arrival and peak are always said separately (user, 2026-10-21).
+    var peak = sw.peak && (!sw.arrival || sw.peak.targetTime !== sw.arrival.targetTime) ? sw.peak : null;
+    var peakTxt = peak ? (Date.parse(peak.targetTime) < Date.now() ? ", peaked " : ", peak expected <b>") + day(peak.targetTime) + (Date.parse(peak.targetTime) < Date.now() ? "" : "</b>") : "";
+    if (sw.status === "incoming") return "swell expected to arrive <b>" + day(sw.arrival.targetTime) + "</b>" + peakTxt;
+    if (sw.status === "arriving") return "swell <b>arriving now</b>" + peakTxt;
+    if (sw.status === "in-water") {
+      var seen = sw.arrival && sw.arrival.source === "buoy" ? " (seen at the " + escapeHtml(sw.arrival.buoy || "") + " buoy)" : "";
+      var since = sw.arrival ? "swell arrived <b>" + day(sw.arrival.targetTime) + "</b>" + seen : "swell in the water";
+      return since + (sw.easing ? ", now easing" : peakTxt);
+    }
     return "not expected to send swell to Donghe in the next 5 days";
   }
   function typhoonSummary(active, retired, data) {

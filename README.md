@@ -966,6 +966,20 @@ shipped before any real invest existed to test it:
 Neither would have surfaced without a live invest. Worth remembering for
 the paths still untested against real data — multi-storm layout among them.
 
+### Typhoon swell: buoys overrule the model (2026-10-21)
+
+Champi's (29W) swell was on the Chenggong buoy from ~21:00 Oct 20 while the
+wave model still had it arriving 14 h later. Now `observeStormSwell()` checks
+Chenggong, Taitung and Lanyu every run: a period jump of 2 s to 9 s or more
+plus a build of 0.5 m (or 40%) against the buoy's own reading 12–24 h
+earlier, from roughly the storm's direction, marks the storm's swell "in the
+water" from the first reading of the build. The model's arrival is kept as
+`modelArrival`; the model's peak stays the peak. The dashboard always says
+arrival and peak separately ("swell expected to arrive …, peak expected …" /
+"swell arrived … (seen at the Chenggong buoy), peak expected …").
+Forecast Check's Typhoon tab scores the model's last arrival call against the
+buoy sighting (`arrivalTimingErrorH`, positive = late), alongside the peak.
+
 ### Keeping the page fresh (2026-10-20)
 
 The data job is started by cron-job.org at :13 and :33 (Taipei) through

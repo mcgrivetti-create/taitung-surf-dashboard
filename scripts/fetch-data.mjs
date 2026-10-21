@@ -1652,6 +1652,89 @@ function creditSwellToBestMatch(systems, bearingsById) {
   }
 }
 
+/* --- Typhoon swell seen at the buoys (added 2026-10-21) -----------------
+ * The verdict above comes only from the wave model. Champi's (29W) swell
+ * was on the Chenggong buoy from ~21:00 on Oct 20 (1.3 m @ 7 s -> 4.1 m @
+ * 11 s by 05:00) while the model still had it arriving 14 h later, so the
+ * buoys now overrule it. A buoy shows a storm's swell when, against its own
+ * reading 12-24 h earlier, the period has jumped by OBS_SWELL_PERIOD_RISE_S
+ * to at least OBS_SWELL_PERIOD_S and the sea has built (OBS_SWELL_RISE_M or
+ * OBS_SWELL_RISE_FRAC), coming from roughly the storm's direction. Buoys
+ * report mean period and coarse 16-point directions, so the thresholds and
+ * the direction tolerance are looser than the model's.
+ * The arrival is dated from the first reading of the build; the model's own
+ * arrival is kept as `modelArrival` so Forecast Check can score it.
+ */
+const OBS_SWELL_BUOYS = [["46761F", "Chenggong"], ["WRA007", "Taitung"], ["C6S94", "Lanyu"]];
+const OBS_SWELL_PERIOD_S = 9;
+const OBS_SWELL_PERIOD_RISE_S = 2;
+const OBS_SWELL_RISE_M = 0.5;
+const OBS_SWELL_RISE_FRAC = 0.4;
+const OBS_SWELL_DIR_TOLERANCE = SWELL_DIR_TOLERANCE + 20;
+
+function observeStormSwell(buoyStations, bearings, nowMs, prevObserved) {
+  if (!bearings.length) return null;
+  const median = (a) => { const s = a.slice().sort((x, y) => x - y); return s.length ? s[Math.floor(s.length / 2)] : null; };
+  const mean = (a) => a.reduce((x, y) => x + y, 0) / a.length;
+  for (const [id, label] of OBS_SWELL_BUOYS) {
+    const st = (buoyStations || []).find((s) => s.StationID === id);
+    const rs = ((st && st.Readings) || []).map((r) => ({ t: new Date(r.DateTime).getTime(), h: Number(r.WaveHeight), p: Number(r.WavePeriod), d: Number(r.WaveDirection) }))
+      .filter((r) => isFinite(r.t) && isFinite(r.h) && isFinite(r.p) && r.t >= nowMs - 36 * 3600000).sort((a, b) => a.t - b.t);
+    if (rs.length < 8) continue;
+    const latest = rs[rs.length - 1].t;
+    if (nowMs - latest > 4 * 3600000) continue; // buoy silent
+    const keep = prevObserved && prevObserved.buoy === id ? prevObserved : null;
+    let baseH, baseP;
+    if (keep) { baseH = keep.baseline.heightM; baseP = keep.baseline.periodS; }
+    else {
+      const base = rs.filter((r) => r.t <= latest - 12 * 3600000 && r.t >= latest - 24 * 3600000);
+      if (base.length < 4) continue;
+      baseH = median(base.map((r) => r.h)); baseP = median(base.map((r) => r.p));
+    }
+    const last = rs.slice(-3), curH = mean(last.map((r) => r.h)), curP = mean(last.map((r) => r.p));
+    const dirs = last.map((r) => r.d).filter(isFinite);
+    const aligned = !dirs.length || dirs.some((d) => Math.min(...bearings.map((b) => angleDiff(d, b))) <= OBS_SWELL_DIR_TOLERANCE);
+    const built = curH - baseH >= OBS_SWELL_RISE_M || curH >= baseH * (1 + OBS_SWELL_RISE_FRAC);
+    const fresh = aligned && curP >= OBS_SWELL_PERIOD_S && curP - baseP >= OBS_SWELL_PERIOD_RISE_S && built;
+    // Once seen, it stays "in the water" while the buoy is still clearly above where it started.
+    const lingering = keep && (curP - baseP >= 1 || curH - baseH >= 0.3);
+    if (!fresh && !lingering) continue;
+    let since = keep && keep.since;
+    let onset = keep && keep.onset;
+    if (!since) {
+      // First reading of the build: the earliest from which the rest stay up.
+      const after = rs.filter((r) => r.t > latest - 18 * 3600000);
+      const up = (r) => r.h >= baseH + 0.3 || r.p >= baseP + 1.5;
+      let i = after.length - 1;
+      while (i > 0 && up(after[i - 1])) i--;
+      since = new Date(after[i].t).toISOString();
+      onset = { heightM: after[i].h, periodS: after[i].p, dirDeg: isFinite(after[i].d) ? after[i].d : null };
+    }
+    const now = rs[rs.length - 1];
+    return {
+      buoy: id, label, since, onset,
+      baseline: { heightM: Math.round(baseH * 10) / 10, periodS: Math.round(baseP * 10) / 10 },
+      now: { at: new Date(now.t).toISOString(), heightM: now.h, periodS: now.p, dirDeg: isFinite(now.d) ? now.d : null },
+    };
+  }
+  return null;
+}
+
+// Fold a buoy sighting into a storm's model verdict: it is in the water from
+// the sighting, whatever the model says; the model's peak stays as the peak.
+function applyObservedSwell(s, obs, prevSwell) {
+  const sw = s.swell || {};
+  const modelArrival = (prevSwell && prevSwell.modelArrival) ||
+    (sw.arrival && sw.arrival.source !== "buoy" ? sw.arrival : null) || null;
+  s.swell = Object.assign({}, sw, {
+    status: "in-water",
+    arrival: Object.assign({ targetTime: obs.since, source: "buoy", buoy: obs.label }, obs.onset || {}),
+    modelArrival,
+    observed: obs,
+    easing: !!sw.easing,
+  });
+}
+
 /* --- Retiring a storm from the dashboard --------------------------------
  * A storm is past its swell-making life for Donghe once it has recurved
  * into the westerlies and is heading away: its wind no longer blows toward
@@ -1877,6 +1960,24 @@ async function buildTyphoon(results) {
     s.swell = detectStormSwell(swellSeries, bearingsById[s.id], nowMs, prev && prev.swell);
   }
   creditSwellToBestMatch(parsed.systems, bearingsById);
+
+  // The buoys overrule the model (see observeStormSwell). Only storms the
+  // model expects swell from, or that were already seen at a buoy, are
+  // checked; with several, the sighting goes to the best-aligned one.
+  const buoyStations = ((results || {})["buoy.json"] || {}).logStations || [];
+  const sightings = [];
+  for (const s of parsed.systems) {
+    const prevSwell = (prevById[s.id] || {}).swell;
+    const expecting = s.swell && s.swell.status && s.swell.status !== "none";
+    if (!expecting && !(prevSwell && prevSwell.observed)) continue;
+    const obs = observeStormSwell(buoyStations, bearingsById[s.id] || [], nowMs, prevSwell && prevSwell.observed);
+    if (!obs) continue;
+    const d = obs.now.dirDeg;
+    const fit = isFinite(d) ? Math.min(...(bearingsById[s.id] || [999]).map((b) => angleDiff(d, b))) : 90;
+    sightings.push({ s, obs, fit, prevSwell });
+  }
+  sightings.sort((a, b) => a.fit - b.fit);
+  if (sightings.length) applyObservedSwell(sightings[0].s, sightings[0].obs, sightings[0].prevSwell);
 
   // Retire storms that are past their swell-making life (see retirementState),
   // comparing against the storm's previous warning in the archive.
@@ -2322,10 +2423,18 @@ async function buildPhase3Files() {
     if (r.kind !== "warning" || !r.swell) continue;
     const sw = r.swell;
     const peak = sw.peak || null;
+    const ev = (events[r.id] = events[r.id] || { id: r.id, name: r.name, preds: [], observedArrival: null });
+    if (sw.observed && sw.observed.since && (!ev.observedArrival || sw.observed.since < ev.observedArrival.at)) {
+      ev.observedArrival = { at: sw.observed.since, buoy: sw.observed.buoy, label: sw.observed.label };
+    }
     if (!peak || !peak.targetTime) continue;
-    (events[r.id] = events[r.id] || { id: r.id, name: r.name, preds: [] }).preds.push({ issuedAt: r.issuedAt, peakAt: peak.targetTime, heightM: peak.heightM, periodS: peak.periodS });
+    // Arrival as the model called it (since 2026-10-21 a buoy sighting
+    // replaces `arrival`, and the model's call is kept as `modelArrival`).
+    const modelArr = sw.modelArrival || (sw.arrival && sw.arrival.source !== "buoy" ? sw.arrival : null);
+    ev.preds.push({ issuedAt: r.issuedAt, peakAt: peak.targetTime, heightM: peak.heightM, periodS: peak.periodS,
+      arrivalAt: modelArr && modelArr.targetTime ? modelArr.targetTime : null });
   }
-  stats.typhoonSwell = Object.values(events).map((e) => {
+  stats.typhoonSwell = Object.values(events).filter((e) => e.preds.length).map((e) => {
     e.preds.sort((a, c) => new Date(a.issuedAt) - new Date(c.issuedAt));
     const first = e.preds[0];
     const before = e.preds.filter((p) => new Date(p.issuedAt) < new Date(p.peakAt));
@@ -2336,9 +2445,17 @@ async function buildPhase3Files() {
       const o = obs[`46761F|${t}`];
       if (o && (!obsPeak || o.h > obsPeak.h)) obsPeak = { t, h: o.h, p: o.p };
     }
+    // Arrival: the last model call made before the buoys saw the swell,
+    // against the buoy sighting. Positive = the model was late.
+    const oa = e.observedArrival;
+    const arrCalls = e.preds.filter((p) => p.arrivalAt && (!oa || new Date(p.issuedAt) < new Date(oa.at)));
+    const lastArr = arrCalls[arrCalls.length - 1] || null;
     return {
       id: e.id, name: e.name, predictions: e.preds.length,
       firstPrediction: first, lastPrediction: last,
+      firstArrivalCall: arrCalls[0] || null, lastArrivalCall: lastArr,
+      observedArrival: oa,
+      arrivalTimingErrorH: oa && lastArr ? Math.round((new Date(lastArr.arrivalAt) - new Date(oa.at)) / 3600000) : null,
       observedPeak: obsPeak ? { buoy: "46761F", at: new Date(obsPeak.t).toISOString(), heightM: obsPeak.h, periodS: obsPeak.p } : null,
       peakTimingErrorH: obsPeak ? Math.round((center - obsPeak.t) / 3600000) : null,
     };
