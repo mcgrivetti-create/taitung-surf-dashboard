@@ -16016,6 +16016,223 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "29W",
+      "name": "Champi",
+      "designation": "Super Typhoon",
+      "warningNumber": "028",
+      "issuedAt": "2026-10-21T09:00:00.000Z",
+      "positionZ": "210600Z",
+      "lat": 18.7,
+      "lon": 128.9,
+      "maxWindKt": 150,
+      "gustKt": 180,
+      "pressureMb": 904,
+      "seasFt": 65,
+      "movingToward": 300,
+      "movingKt": 13,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "211800Z",
+          "lat": 19.9,
+          "lon": 127,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 24,
+          "validZ": "220600Z",
+          "lat": 21,
+          "lon": 125.5,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 36,
+          "validZ": "221800Z",
+          "lat": 22.2,
+          "lon": 124.4,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 48,
+          "validZ": "230600Z",
+          "lat": 23.9,
+          "lon": 123.4,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 60,
+          "validZ": "231800Z",
+          "lat": 25.8,
+          "lon": 123,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 72,
+          "validZ": "240600Z",
+          "lat": 28.1,
+          "lon": 123.6,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 96,
+          "validZ": "250600Z",
+          "lat": 31.8,
+          "lon": 127.2,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 120,
+          "validZ": "260600Z",
+          "lat": 34.4,
+          "lon": 132,
+          "maxWindKt": 40,
+          "gustKt": 50
+        }
+      ],
+      "spot": {
+        "distanceNm": 497,
+        "bearingDeg": 120,
+        "closestApproach": {
+          "distanceNm": 128,
+          "tau": 48,
+          "validZ": "230600Z",
+          "maxWindKt": 105
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 300,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 304
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 308
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 320
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 332
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 349
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 13
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 39
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 56
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 349,
+            "deltaDeg": 49
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "headingDeg": 39,
+            "deltaDeg": 50
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-25T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-10-20T13:00:00.000Z",
+          "source": "buoy",
+          "buoy": "Chenggong",
+          "heightM": 1.7,
+          "periodS": 8,
+          "dirDeg": 102
+        },
+        "now": {
+          "targetTime": "2026-10-21T08:00:00.000Z",
+          "heightM": 2.92,
+          "periodS": 12,
+          "dirDeg": 108
+        },
+        "peak": {
+          "targetTime": "2026-10-23T00:00:00.000Z",
+          "heightM": 7.84,
+          "periodS": 11.95,
+          "dirDeg": 81
+        },
+        "easing": false,
+        "modelArrival": {
+          "targetTime": "2026-10-21T04:00:00.000Z",
+          "heightM": 2.72,
+          "periodS": 11.05,
+          "dirDeg": 106
+        },
+        "observed": {
+          "buoy": "46761F",
+          "label": "Chenggong",
+          "since": "2026-10-20T13:00:00.000Z",
+          "onset": {
+            "heightM": 1.7,
+            "periodS": 8,
+            "dirDeg": 102
+          },
+          "baseline": {
+            "heightM": 1.2,
+            "periodS": 6.4
+          },
+          "now": {
+            "at": "2026-10-21T06:00:00.000Z",
+            "heightM": 3.5,
+            "periodS": 8.3,
+            "dirDeg": 102
+          }
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) continues to depict super typhoon (STY) 29W as a powerful storm with a well-defined eye and symmetrical cloud canopy, ringed with spiral bands of deep convection. STY 29W (champi) is forecast to continue tracking west-northwestward for the next 36 hours while it remains on the southwestern periphery of the steering STR centered to the northeast. After +72h, 29W is expected to track northeastward, making landfall in Kyushu just before +120h and beginning extratropical transition shortly after landfall.",
+        "warningNumber": "027",
+        "generatedAt": "2026-10-21T05:13:46.743Z"
+      },
+      "reasoningWarningNumber": "027",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "LOW",
+        "track72120": "LOW",
+        "intensity0072": "LOW",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
