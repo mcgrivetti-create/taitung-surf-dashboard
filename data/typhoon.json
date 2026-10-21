@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-21T00:33:36.793Z",
+  "fetchedAt": "2026-10-21T01:13:47.995Z",
   "systems": [
     {
       "designation": "Super Typhoon",
@@ -183,21 +183,50 @@
       },
       "swell": {
         "windowEnd": "2026-10-25T15:00:00.000Z",
-        "status": "incoming",
+        "status": "in-water",
         "arrival": {
-          "targetTime": "2026-10-21T03:00:00.000Z",
-          "heightM": 2.66,
-          "periodS": 10.85,
-          "dirDeg": 106
+          "targetTime": "2026-10-20T13:00:00.000Z",
+          "source": "buoy",
+          "buoy": "Chenggong",
+          "heightM": 1.7,
+          "periodS": 8,
+          "dirDeg": 102
         },
-        "hoursAhead": 2,
+        "hoursAhead": 3,
         "bearingOffsetDeg": 3,
         "peak": {
           "targetTime": "2026-10-23T00:00:00.000Z",
           "heightM": 7.84,
           "periodS": 11.95,
           "dirDeg": 81
-        }
+        },
+        "modelArrival": {
+          "targetTime": "2026-10-21T04:00:00.000Z",
+          "heightM": 2.72,
+          "periodS": 11.05,
+          "dirDeg": 106
+        },
+        "observed": {
+          "buoy": "46761F",
+          "label": "Chenggong",
+          "since": "2026-10-20T13:00:00.000Z",
+          "onset": {
+            "heightM": 1.7,
+            "periodS": 8,
+            "dirDeg": 102
+          },
+          "baseline": {
+            "heightM": 1.2,
+            "periodS": 6.4
+          },
+          "now": {
+            "at": "2026-10-20T23:00:00.000Z",
+            "heightM": 2.7,
+            "periodS": 9.4,
+            "dirDeg": 98
+          }
+        },
+        "easing": false
       },
       "retireFrom": null,
       "retired": false,
