@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-22T08:34:00.940Z",
+  "fetchedAt": "2026-10-22T09:13:46.249Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -81,23 +81,23 @@
       "seasFt": 43,
       "geoReference": "361 NM SOUTH-SOUTHWEST OF KADENA AB",
       "reasoning": {
-        "warningNumber": "031",
-        "significantForecastChanges": "THE INTENSITY FORECAST DEVIATES BELOW THE PREVIOUS FORECAST BY 10-20 KTS THROUGH TAU 96 DUE TO THE RAPID WEAKENING OF THE SYSTEM.",
-        "seasFt": 48,
+        "warningNumber": "032",
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "seasFt": 43,
         "environment": "FAVORABLE",
-        "vws": "5-10 KTS",
-        "sst": "27-28 CELSIUS",
-        "outflow": "STRONG RADIAL",
-        "steering": "SUBTROPICAL RIDGE CENTERED TO THE NORTHEAST",
+        "vws": "0-5 KTS",
+        "sst": "29-30 CELSIUS",
+        "outflow": "STRONG POLEWARD",
+        "steering": "SOUTHWESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) TO THE NORTHEAST.",
         "confidence": {
-          "track0072": "LOW",
-          "track72120": "LOW",
-          "intensity0072": "MEDIUM",
-          "intensity72120": "LOW"
+          "track0072": "HIGH",
+          "track72120": "MEDIUM",
+          "intensity0072": "HIGH",
+          "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 259,
         "bearingDeg": 118,
@@ -174,10 +174,10 @@
           "dirDeg": 102
         },
         "now": {
-          "targetTime": "2026-10-22T08:00:00.000Z",
-          "heightM": 6.58,
-          "periodS": 12.7,
-          "dirDeg": 98
+          "targetTime": "2026-10-22T09:00:00.000Z",
+          "heightM": 6.6,
+          "periodS": 12.75,
+          "dirDeg": 99
         },
         "peak": {
           "targetTime": "2026-10-23T03:00:00.000Z",
