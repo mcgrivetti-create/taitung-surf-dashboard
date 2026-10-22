@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-22T02:33:37.100Z",
+  "fetchedAt": "2026-10-22T03:13:33.893Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -86,23 +86,23 @@
       ],
       "geoReference": "381 NM SOUTHEAST OF TAIPEI, TAIWAN",
       "reasoning": {
-        "warningNumber": "030",
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 52,
+        "warningNumber": "031",
+        "significantForecastChanges": "THE INTENSITY FORECAST DEVIATES BELOW THE PREVIOUS FORECAST BY 10-20 KTS THROUGH TAU 96 DUE TO THE RAPID WEAKENING OF THE SYSTEM.",
+        "seasFt": 48,
         "environment": "FAVORABLE",
         "vws": "5-10 KTS",
-        "sst": "28-29 CELSIUS",
+        "sst": "27-28 CELSIUS",
         "outflow": "STRONG RADIAL",
         "steering": "SUBTROPICAL RIDGE CENTERED TO THE NORTHEAST",
         "confidence": {
           "track0072": "LOW",
           "track72120": "LOW",
-          "intensity0072": "LOW",
+          "intensity0072": "MEDIUM",
           "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 307,
         "bearingDeg": 121,
@@ -185,10 +185,10 @@
           "dirDeg": 102
         },
         "now": {
-          "targetTime": "2026-10-22T02:00:00.000Z",
-          "heightM": 5.82,
-          "periodS": 12.2,
-          "dirDeg": 98
+          "targetTime": "2026-10-22T03:00:00.000Z",
+          "heightM": 5.96,
+          "periodS": 12.4,
+          "dirDeg": 99
         },
         "peak": {
           "targetTime": "2026-10-23T03:00:00.000Z",
