@@ -1,85 +1,89 @@
 {
-  "fetchedAt": "2026-10-22T20:13:51.161Z",
+  "fetchedAt": "2026-10-22T20:34:04.680Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "29W",
       "name": "Champi",
       "headline": "Typhoon 29W (Champi)",
-      "warningNumber": "033",
-      "issuedZ": "22/1500Z",
-      "issuedAt": "2026-10-22T15:00:00.000Z",
+      "warningNumber": "034",
+      "issuedZ": "22/2100Z",
+      "issuedAt": "2026-10-22T21:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
       "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610221800-96_CHAMPI_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "230000Z",
-          "lat": 22.4,
-          "lon": 123.9,
+          "validZ": "230600Z",
+          "lat": 23.5,
+          "lon": 123.2,
           "maxWindKt": 90,
           "gustKt": 110
         },
         {
           "tau": 24,
-          "validZ": "231200Z",
-          "lat": 24.2,
-          "lon": 122.9,
-          "maxWindKt": 90,
-          "gustKt": 110
+          "validZ": "231800Z",
+          "lat": 25,
+          "lon": 122.6,
+          "maxWindKt": 80,
+          "gustKt": 100
         },
         {
           "tau": 36,
-          "validZ": "240000Z",
-          "lat": 26.3,
+          "validZ": "240600Z",
+          "lat": 26.7,
           "lon": 123,
-          "maxWindKt": 75,
-          "gustKt": 90
+          "maxWindKt": 70,
+          "gustKt": 85
         },
         {
           "tau": 48,
-          "validZ": "241200Z",
+          "validZ": "241800Z",
           "lat": 28.8,
-          "lon": 124.6,
+          "lon": 124.2,
           "maxWindKt": 55,
           "gustKt": 70
         },
         {
           "tau": 60,
-          "validZ": "250000Z",
-          "lat": 30.9,
-          "lon": 127.1,
-          "maxWindKt": 45,
-          "gustKt": 55
+          "validZ": "250600Z",
+          "lat": 30.7,
+          "lon": 126.6,
+          "maxWindKt": 40,
+          "gustKt": 50
         },
         {
           "tau": 72,
-          "validZ": "251200Z",
-          "lat": 32.1,
-          "lon": 130.5,
+          "validZ": "251800Z",
+          "lat": 32,
+          "lon": 129.3,
           "maxWindKt": 35,
           "gustKt": 45
         },
         {
           "tau": 96,
-          "validZ": "261200Z",
-          "lat": 32.9,
-          "lon": 137.9,
+          "validZ": "261800Z",
+          "lat": 33,
+          "lon": 135.5,
           "maxWindKt": 30,
           "gustKt": 40
         }
       ],
-      "positionZ": "221200Z",
-      "lat": 21.2,
-      "lon": 124.9,
-      "movingToward": 305,
-      "movingKt": 6,
-      "maxWindKt": 100,
-      "gustKt": 125,
-      "pressureMb": 952,
-      "seasFt": 40,
-      "geoReference": "356 NM SOUTH-SOUTHWEST OF KADENA AB",
+      "positionZ": "221800Z",
+      "lat": 21.9,
+      "lon": 124.3,
+      "movingToward": 320,
+      "movingKt": 9,
+      "maxWindKt": 95,
+      "gustKt": 115,
+      "nextWarnings": [
+        "230300Z",
+        "230900Z",
+        "231500Z",
+        "232100Z"
+      ],
+      "geoReference": "336 NM SOUTHWEST OF KADENA AB",
       "reasoning": {
         "warningNumber": "033",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
@@ -97,74 +101,68 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 226,
-        "bearingDeg": 117,
+        "distanceNm": 178,
+        "bearingDeg": 111,
         "closestApproach": {
-          "distanceNm": 114,
-          "tau": 24,
-          "validZ": "231200Z",
+          "distanceNm": 109,
+          "tau": 12,
+          "validZ": "230600Z",
           "maxWindKt": 90
         }
       },
       "motion": {
-        "currentHeadingDeg": 305,
+        "currentHeadingDeg": 320,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 322
+            "heading": 328
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 333
+            "heading": 340
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 2
+            "heading": 12
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 29
+            "heading": 27
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 45
+            "heading": 47
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 67
+            "heading": 60
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 81
+            "heading": 78
           }
         ],
         "turns": [
           {
             "fromTau": 24,
             "toTau": 36,
-            "headingDeg": 2,
-            "deltaDeg": 57
+            "headingDeg": 12,
+            "deltaDeg": 52
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "headingDeg": 45,
-            "deltaDeg": 43
-          },
-          {
-            "fromTau": 72,
-            "toTau": 96,
-            "headingDeg": 81,
-            "deltaDeg": 36
+            "headingDeg": 47,
+            "deltaDeg": 35
           }
         ]
       },
@@ -227,12 +225,10 @@
         "generatedAt": "2026-10-22T17:13:58.696Z"
       },
       "changes": {
-        "previousWarningNumber": "032",
-        "previousIssuedAt": "2026-10-22T09:00:00.000Z",
+        "previousWarningNumber": "033",
+        "previousIssuedAt": "2026-10-22T15:00:00.000Z",
         "maxWindKtDelta": -5,
-        "pressureMbDelta": 6,
-        "seasFtDelta": -3,
-        "closestApproachNmDelta": -9
+        "closestApproachNmDelta": -5
       }
     }
   ],
