@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-22T19:33:51.479Z",
+  "fetchedAt": "2026-10-22T20:13:51.161Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -11,7 +11,7 @@
       "issuedAt": "2026-10-22T15:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610221200-96_CHAMPI_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610221800-96_CHAMPI_enus.png",
       "forecasts": [
         {
           "tau": 12,
@@ -180,8 +180,8 @@
           "dirDeg": 102
         },
         "now": {
-          "targetTime": "2026-10-22T19:00:00.000Z",
-          "heightM": 7.66,
+          "targetTime": "2026-10-22T20:00:00.000Z",
+          "heightM": 7.68,
           "periodS": 12.15,
           "dirDeg": 85
         },
@@ -240,21 +240,21 @@
   "invests": [
     {
       "id": "97W",
-      "potential": "LOW",
-      "geoReference": "437 NM SOUTH OF WAKE ISLAND",
-      "windKtLow": 13,
-      "windKtHigh": 18,
-      "pressureMb": 1008,
-      "lat": 12,
-      "lon": 166.8,
-      "distanceNm": 2675,
-      "bearingDeg": 96
+      "potential": null,
+      "geoReference": "261 NM NORTHWEST OF KWAJALEIN",
+      "windKtLow": null,
+      "windKtHigh": null,
+      "pressureMb": 1007,
+      "lat": 11.8,
+      "lon": 165.9,
+      "distanceNm": 2630,
+      "bearingDeg": 97
     }
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "22/0730Z",
-    "issuedAt": "2026-10-22T07:30:00.000Z",
+    "issuedZ": "22/2000Z",
+    "issuedAt": "2026-10-22T20:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
     "reissued": true
   }
