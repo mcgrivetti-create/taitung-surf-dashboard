@@ -18386,6 +18386,190 @@
         "distanceNm": 2642,
         "bearingDeg": 98
       }
+    },
+    {
+      "kind": "warning",
+      "id": "30W",
+      "name": "In-fa",
+      "designation": "Tropical Storm",
+      "warningNumber": "002",
+      "issuedAt": "2026-10-23T21:00:00.000Z",
+      "positionZ": "231800Z",
+      "lat": 10.6,
+      "lon": 166.3,
+      "maxWindKt": 35,
+      "gustKt": 45,
+      "pressureMb": 1000,
+      "seasFt": 13,
+      "movingToward": 135,
+      "movingKt": 1,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "240600Z",
+          "lat": 10.8,
+          "lon": 166.3,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 24,
+          "validZ": "241800Z",
+          "lat": 11.4,
+          "lon": 166,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 36,
+          "validZ": "250600Z",
+          "lat": 12.3,
+          "lon": 165.5,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 48,
+          "validZ": "251800Z",
+          "lat": 13.5,
+          "lon": 165.1,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 60,
+          "validZ": "260600Z",
+          "lat": 13.9,
+          "lon": 165,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 72,
+          "validZ": "261800Z",
+          "lat": 14.2,
+          "lon": 164.8,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 96,
+          "validZ": "271800Z",
+          "lat": 14.6,
+          "lon": 164.3,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 120,
+          "validZ": "281800Z",
+          "lat": 15.4,
+          "lon": 160.2,
+          "maxWindKt": 120,
+          "gustKt": 145
+        }
+      ],
+      "spot": {
+        "distanceNm": 2679,
+        "bearingDeg": 98,
+        "closestApproach": {
+          "distanceNm": 2245,
+          "tau": 120,
+          "validZ": "281800Z",
+          "maxWindKt": 120
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 135,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 0
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 334
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 332
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 342
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 346
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 327
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 310
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 282
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "headingDeg": 0,
+            "deltaDeg": 135
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "headingDeg": 310,
+            "deltaDeg": 50
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-28T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-27T10:00:00.000Z",
+          "heightM": 1.22,
+          "periodS": 6.55,
+          "dirDeg": 73
+        },
+        "hoursAhead": 85,
+        "bearingOffsetDeg": 21,
+        "peak": {
+          "targetTime": "2026-10-27T18:00:00.000Z",
+          "heightM": 2.08,
+          "periodS": 7.1,
+          "dirDeg": 66
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a rapidly consolidating tropical depression (TD), characterized by a formative band of deep convection along the western semicircle wrapping into an obscured low-level circulation center (LLCC). TD 30W is currently quasi-stationary with a slight eastward drift in a weak ambient steering environment, governed primarily by enhanced low-level southwesterlies near the equator. Over the next 24 hours, as the system intensifies and the vortex deepens, it will come under the steering influence of a mid- to deep-layer near-equatorial ridge (ner) anchored near the equator and track northward.",
+        "warningNumber": "001",
+        "generatedAt": "2026-10-23T15:13:38.990Z"
+      },
+      "reasoningWarningNumber": "001",
+      "significantForecastChanges": "THIS INITIAL PROGNOSTIC REASONING MESSAGE ESTABLISHES THE FORECAST PHILOSOPHY.",
+      "confidence": {
+        "track0072": "LOW",
+        "track72120": "LOW",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
