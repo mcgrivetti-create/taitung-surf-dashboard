@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-23T21:33:43.790Z",
+  "fetchedAt": "2026-10-23T22:13:34.067Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -90,23 +90,23 @@
       "seasFt": 13,
       "geoReference": "144 NM NORTHWEST OF KWAJALEIN",
       "reasoning": {
-        "warningNumber": "001",
-        "significantForecastChanges": "THIS INITIAL PROGNOSTIC REASONING MESSAGE ESTABLISHES THE FORECAST PHILOSOPHY.",
-        "seasFt": 12,
-        "environment": "HIGHLY FAVORABLE",
+        "warningNumber": "002",
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "seasFt": 13,
+        "environment": "FAVORABLE",
         "vws": "0-5 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "MODERATE POLEWARD AND EQUATORWARD",
-        "steering": "NORTHERN SIDE OF A BELT OF ENHANCED SOUTHWESTERLIES TO THE SOUTH.",
+        "steering": "COMPETING STEERING ENVIRONMENT",
         "confidence": {
-          "track0072": "LOW",
-          "track72120": "LOW",
+          "track0072": "MEDIUM",
+          "track72120": "MEDIUM",
           "intensity0072": "MEDIUM",
-          "intensity72120": "LOW"
+          "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2679,
         "bearingDeg": 98,
@@ -390,16 +390,16 @@
           "dirDeg": 102
         },
         "now": {
-          "targetTime": "2026-10-23T21:00:00.000Z",
-          "heightM": 1.82,
-          "periodS": 9.7,
-          "dirDeg": 85
+          "targetTime": "2026-10-23T22:00:00.000Z",
+          "heightM": 1.8,
+          "periodS": 8.95,
+          "dirDeg": 110
         },
         "peak": {
-          "targetTime": "2026-10-23T21:00:00.000Z",
-          "heightM": 1.82,
-          "periodS": 9.7,
-          "dirDeg": 85
+          "targetTime": "2026-10-23T22:00:00.000Z",
+          "heightM": 1.8,
+          "periodS": 8.95,
+          "dirDeg": 110
         },
         "easing": true,
         "modelArrival": {
