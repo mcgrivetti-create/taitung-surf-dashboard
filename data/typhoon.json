@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-23T17:33:43.937Z",
+  "fetchedAt": "2026-10-23T18:13:39.629Z",
   "systems": [
     {
       "designation": "Tropical Depression",
@@ -189,7 +189,21 @@
       },
       "swell": {
         "windowEnd": "2026-10-28T15:00:00.000Z",
-        "status": "none"
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-27T10:00:00.000Z",
+          "heightM": 1.22,
+          "periodS": 6.55,
+          "dirDeg": 73
+        },
+        "hoursAhead": 88,
+        "bearingOffsetDeg": 20,
+        "peak": {
+          "targetTime": "2026-10-27T18:00:00.000Z",
+          "heightM": 2.08,
+          "periodS": 7.1,
+          "dirDeg": 66
+        }
       },
       "retireFrom": null,
       "retired": false,
@@ -374,16 +388,16 @@
           "dirDeg": 102
         },
         "now": {
-          "targetTime": "2026-10-23T17:00:00.000Z",
-          "heightM": 2.16,
-          "periodS": 10.15,
-          "dirDeg": 69
+          "targetTime": "2026-10-23T18:00:00.000Z",
+          "heightM": 1.96,
+          "periodS": 10.05,
+          "dirDeg": 77
         },
         "peak": {
-          "targetTime": "2026-10-23T17:00:00.000Z",
-          "heightM": 2.16,
-          "periodS": 10.15,
-          "dirDeg": 69
+          "targetTime": "2026-10-23T18:00:00.000Z",
+          "heightM": 1.96,
+          "periodS": 10.05,
+          "dirDeg": 77
         },
         "easing": true,
         "modelArrival": {
