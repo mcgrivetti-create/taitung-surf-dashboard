@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-23T13:33:49.217Z",
+  "fetchedAt": "2026-10-23T14:13:56.673Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -81,14 +81,14 @@
       "seasFt": 38,
       "geoReference": "290 NM WEST- SOUTHWEST OF KADENA AB",
       "reasoning": {
-        "warningNumber": "036",
+        "warningNumber": "037",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 40,
-        "environment": "FAVORABLE",
+        "seasFt": 38,
+        "environment": "MARGINAL",
         "vws": "10-15 KTS",
-        "sst": "27-28 CELSIUS",
+        "sst": "26-27 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "WESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED SOUTHEAST OF HONSHU.",
+        "steering": "WESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED SOUTH OF HONSHU",
         "confidence": {
           "track0072": "MEDIUM",
           "track72120": "LOW",
@@ -97,7 +97,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 143,
         "bearingDeg": 32,
@@ -175,16 +175,16 @@
           "dirDeg": 102
         },
         "now": {
-          "targetTime": "2026-10-23T13:00:00.000Z",
-          "heightM": 3.26,
-          "periodS": 10.4,
-          "dirDeg": 59
+          "targetTime": "2026-10-23T14:00:00.000Z",
+          "heightM": 2.92,
+          "periodS": 10.35,
+          "dirDeg": 57
         },
         "peak": {
-          "targetTime": "2026-10-23T13:00:00.000Z",
-          "heightM": 3.26,
-          "periodS": 10.4,
-          "dirDeg": 59
+          "targetTime": "2026-10-23T14:00:00.000Z",
+          "heightM": 2.92,
+          "periodS": 10.35,
+          "dirDeg": 57
         },
         "easing": true,
         "modelArrival": {
