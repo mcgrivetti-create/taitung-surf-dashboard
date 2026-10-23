@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-23T02:33:34.583Z",
+  "fetchedAt": "2026-10-23T03:13:51.585Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -85,23 +85,23 @@
       ],
       "geoReference": "316 NM SOUTHWEST OF KADENA AB",
       "reasoning": {
-        "warningNumber": "034",
-        "significantForecastChanges": "THE LATEST FORECAST TRACK SPEED HAS SLOWED CONSIDERABLY AFTER TAU 24.",
-        "seasFt": 42,
+        "warningNumber": "035",
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "seasFt": 40,
         "environment": "MARGINAL",
-        "vws": "10-15 KTS",
-        "sst": "27-28 CELSIUS",
-        "outflow": "STRONG RADIAL",
+        "vws": "5-10 KTS",
+        "sst": "28-29 CELSIUS",
+        "outflow": "STRONG POLEWARD AND EQUATORWARD",
         "steering": "SOUTHWESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED TO THE SOUTH OF HONSHU.",
         "confidence": {
           "track0072": "MEDIUM",
-          "track72120": "LOW",
+          "track72120": "MEDIUM",
           "intensity0072": "HIGH",
           "intensity72120": "HIGH"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 138,
         "bearingDeg": 96,
@@ -178,16 +178,16 @@
           "dirDeg": 102
         },
         "now": {
-          "targetTime": "2026-10-23T02:00:00.000Z",
-          "heightM": 7.42,
-          "periodS": 11.65,
-          "dirDeg": 78
+          "targetTime": "2026-10-23T03:00:00.000Z",
+          "heightM": 7.3,
+          "periodS": 11.6,
+          "dirDeg": 77
         },
         "peak": {
-          "targetTime": "2026-10-23T02:00:00.000Z",
-          "heightM": 7.42,
-          "periodS": 11.65,
-          "dirDeg": 78
+          "targetTime": "2026-10-23T03:00:00.000Z",
+          "heightM": 7.3,
+          "periodS": 11.6,
+          "dirDeg": 77
         },
         "easing": true,
         "modelArrival": {
