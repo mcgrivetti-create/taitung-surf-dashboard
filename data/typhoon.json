@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-23T01:33:48.285Z",
+  "fetchedAt": "2026-10-23T02:13:33.151Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -11,7 +11,7 @@
       "issuedAt": "2026-10-22T21:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610221800-96_CHAMPI_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610230000-96_CHAMPI_enus.png",
       "forecasts": [
         {
           "tau": 12,
@@ -178,16 +178,16 @@
           "dirDeg": 102
         },
         "now": {
-          "targetTime": "2026-10-23T01:00:00.000Z",
-          "heightM": 7.52,
-          "periodS": 11.7,
-          "dirDeg": 80
+          "targetTime": "2026-10-23T02:00:00.000Z",
+          "heightM": 7.42,
+          "periodS": 11.65,
+          "dirDeg": 78
         },
         "peak": {
-          "targetTime": "2026-10-23T01:00:00.000Z",
-          "heightM": 7.52,
-          "periodS": 11.7,
-          "dirDeg": 80
+          "targetTime": "2026-10-23T02:00:00.000Z",
+          "heightM": 7.42,
+          "periodS": 11.65,
+          "dirDeg": 78
         },
         "easing": true,
         "modelArrival": {
@@ -232,7 +232,28 @@
       }
     }
   ],
-  "alerts": [],
+  "alerts": [
+    {
+      "alertId": "WTPN21",
+      "issuedZ": "23/0130Z",
+      "issuedAt": "2026-10-23T01:30:00.000Z",
+      "textUrl": "https://www.metoc.navy.mil/jtwc/products/wp9726web.txt",
+      "graphic": "",
+      "satellite": "",
+      "investId": "97W",
+      "lat": 11,
+      "lon": 165.9,
+      "distanceNm": 2648,
+      "bearingDeg": 98,
+      "movingText": "SOUTHWARD",
+      "movingKt": 8,
+      "areaWindKtLow": 18,
+      "areaWindKtHigh": 23,
+      "pressureMb": 1005,
+      "potential": "HIGH",
+      "decisionByZ": "240130Z"
+    }
+  ],
   "invests": [
     {
       "id": "97W",
