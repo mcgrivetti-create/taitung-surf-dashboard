@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-23T21:13:40.327Z",
+  "fetchedAt": "2026-10-23T21:33:43.790Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -185,7 +185,7 @@
           "periodS": 6.55,
           "dirDeg": 73
         },
-        "hoursAhead": 85,
+        "hoursAhead": 84,
         "bearingOffsetDeg": 21,
         "peak": {
           "targetTime": "2026-10-27T18:00:00.000Z",
@@ -296,23 +296,23 @@
       ],
       "geoReference": "53 NM SOUTHEAST OF TAIPEI, TAIWAN",
       "reasoning": {
-        "warningNumber": "037",
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 38,
-        "environment": "MARGINAL",
+        "warningNumber": "038",
+        "significantForecastChanges": "THE FORECAST TRACK LINE HAS SHIFTED SLIGHTLY TO THE SOUTH FROM THE PREVIOUS WARNING. ADDITIONALLY, EXTRATROPICAL TRANSITION OCCURS EARLIER, BEGINNING AT TAU 48 AND COMPLETING BY TAU 60, IN THE CURRENT FORECAST.",
+        "seasFt": 37,
+        "environment": "UNFAVORABLE",
         "vws": "10-15 KTS",
         "sst": "26-27 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "WESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED SOUTH OF HONSHU",
+        "steering": "ERRATIC MOTION ASSOCIATED WITH TERRAIN INTERACTION OFFSETTING FLOW ALONG THE WESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED SOUTH OF HONSHU",
         "confidence": {
           "track0072": "MEDIUM",
           "track72120": "LOW",
           "intensity0072": "MEDIUM",
-          "intensity72120": "LOW"
+          "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 112,
         "bearingDeg": 29,
@@ -422,10 +422,10 @@
             "periodS": 6.4
           },
           "now": {
-            "at": "2026-10-23T20:00:00.000Z",
-            "heightM": 2,
-            "periodS": 9.1,
-            "dirDeg": 87
+            "at": "2026-10-23T21:00:00.000Z",
+            "heightM": 1.6,
+            "periodS": 6.8,
+            "dirDeg": 84
           }
         }
       },
