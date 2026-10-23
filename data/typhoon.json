@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-23T05:13:37.147Z",
+  "fetchedAt": "2026-10-23T05:33:43.274Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -210,10 +210,10 @@
             "periodS": 6.4
           },
           "now": {
-            "at": "2026-10-23T03:00:00.000Z",
-            "heightM": 7.4,
-            "periodS": 10.3,
-            "dirDeg": 68.5
+            "at": "2026-10-23T05:00:00.000Z",
+            "heightM": 7.8,
+            "periodS": 11.6,
+            "dirDeg": 67.3
           }
         }
       },
@@ -257,22 +257,22 @@
   "invests": [
     {
       "id": "97W",
-      "potential": null,
-      "geoReference": "178 NM NORTHWEST OF KWAJALEIN",
+      "potential": "HIGH",
+      "geoReference": "181 NM NORTHWEST OF KWAJALEIN",
       "windKtLow": 18,
       "windKtHigh": 23,
       "pressureMb": 1005,
       "lat": 11,
-      "lon": 165.9,
-      "distanceNm": 2648,
+      "lon": 165.8,
+      "distanceNm": 2642,
       "bearingDeg": 98
     }
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "23/0130Z",
-    "issuedAt": "2026-10-23T01:30:00.000Z",
+    "issuedZ": "23/0600Z",
+    "issuedAt": "2026-10-23T06:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": true
+    "reissued": false
   }
 }
