@@ -2,74 +2,10 @@
   "records": {
     "Station": [
       {
-        "StationName": "豐濱",
-        "StationId": "C0T9I0",
-        "ObsTime": {
-          "DateTime": "2026-10-24T04:00:00+08:00"
-        },
-        "GeoInfo": {
-          "Coordinates": [
-            {
-              "CoordinateName": "TWD67",
-              "CoordinateFormat": "decimal degrees",
-              "StationLatitude": "23.585708",
-              "StationLongitude": "121.506678"
-            },
-            {
-              "CoordinateName": "WGS84",
-              "CoordinateFormat": "decimal degrees",
-              "StationLatitude": "23.583897",
-              "StationLongitude": "121.514806"
-            }
-          ],
-          "StationAltitude": "152.0",
-          "CountyName": "花蓮縣",
-          "TownName": "豐濱鄉",
-          "CountyCode": "10015",
-          "TownCode": "10015080"
-        },
-        "WeatherElement": {
-          "Weather": "陰",
-          "Now": {
-            "Precipitation": "0.0"
-          },
-          "WindDirection": "67.0",
-          "WindSpeed": "7.4",
-          "AirTemperature": "27.6",
-          "RelativeHumidity": "82",
-          "AirPressure": "968.6",
-          "GustInfo": {
-            "PeakGustSpeed": "12.6",
-            "Occurred_at": {
-              "WindDirection": "48.0",
-              "DateTime": "2026-10-24T03:54:00+08:00"
-            }
-          },
-          "DailyExtreme": {
-            "DailyHigh": {
-              "TemperatureInfo": {
-                "AirTemperature": "34.2",
-                "Occurred_at": {
-                  "DateTime": "2026-10-24T02:10:00+08:00"
-                }
-              }
-            },
-            "DailyLow": {
-              "TemperatureInfo": {
-                "AirTemperature": "25.3",
-                "Occurred_at": {
-                  "DateTime": "2026-10-24T00:10:00+08:00"
-                }
-              }
-            }
-          }
-        }
-      },
-      {
         "StationName": "東河",
         "StationId": "C0S810",
         "ObsTime": {
-          "DateTime": "2026-10-24T04:00:00+08:00"
+          "DateTime": "2026-10-24T05:00:00+08:00"
         },
         "GeoInfo": {
           "Coordinates": [
@@ -97,16 +33,16 @@
           "Now": {
             "Precipitation": "0.0"
           },
-          "WindDirection": "260.0",
-          "WindSpeed": "2.9",
-          "AirTemperature": "37.3",
-          "RelativeHumidity": "33",
-          "AirPressure": "978.3",
+          "WindDirection": "42.0",
+          "WindSpeed": "4.7",
+          "AirTemperature": "30.2",
+          "RelativeHumidity": "72",
+          "AirPressure": "981.5",
           "GustInfo": {
-            "PeakGustSpeed": "11.6",
+            "PeakGustSpeed": "12.0",
             "Occurred_at": {
-              "WindDirection": "336.0",
-              "DateTime": "2026-10-24T03:31:00+08:00"
+              "WindDirection": "49.0",
+              "DateTime": "2026-10-24T04:34:00+08:00"
             }
           },
           "DailyExtreme": {
@@ -133,7 +69,7 @@
         "StationName": "都歷",
         "StationId": "C0SA30",
         "ObsTime": {
-          "DateTime": "2026-10-24T04:00:00+08:00"
+          "DateTime": "2026-10-24T05:00:00+08:00"
         },
         "GeoInfo": {
           "Coordinates": [
@@ -161,16 +97,16 @@
           "Now": {
             "Precipitation": "0.0"
           },
-          "WindDirection": "271.0",
-          "WindSpeed": "1.8",
-          "AirTemperature": "35.2",
-          "RelativeHumidity": "35",
-          "AirPressure": "974.4",
+          "WindDirection": "25.0",
+          "WindSpeed": "5.1",
+          "AirTemperature": "30.1",
+          "RelativeHumidity": "67",
+          "AirPressure": "978.2",
           "GustInfo": {
-            "PeakGustSpeed": "15.3",
+            "PeakGustSpeed": "-99",
             "Occurred_at": {
-              "WindDirection": "200.0",
-              "DateTime": "2026-10-24T03:18:00+08:00"
+              "WindDirection": "-99",
+              "DateTime": "-99"
             }
           },
           "DailyExtreme": {
@@ -184,9 +120,73 @@
             },
             "DailyLow": {
               "TemperatureInfo": {
-                "AirTemperature": "32.7",
+                "AirTemperature": "30.1",
                 "Occurred_at": {
-                  "DateTime": "2026-10-24T00:40:00+08:00"
+                  "DateTime": "2026-10-24T05:00:00+08:00"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "StationName": "豐濱",
+        "StationId": "C0T9I0",
+        "ObsTime": {
+          "DateTime": "2026-10-24T05:00:00+08:00"
+        },
+        "GeoInfo": {
+          "Coordinates": [
+            {
+              "CoordinateName": "TWD67",
+              "CoordinateFormat": "decimal degrees",
+              "StationLatitude": "23.585708",
+              "StationLongitude": "121.506678"
+            },
+            {
+              "CoordinateName": "WGS84",
+              "CoordinateFormat": "decimal degrees",
+              "StationLatitude": "23.583897",
+              "StationLongitude": "121.514806"
+            }
+          ],
+          "StationAltitude": "152.0",
+          "CountyName": "花蓮縣",
+          "TownName": "豐濱鄉",
+          "CountyCode": "10015",
+          "TownCode": "10015080"
+        },
+        "WeatherElement": {
+          "Weather": "陰",
+          "Now": {
+            "Precipitation": "0.0"
+          },
+          "WindDirection": "34.0",
+          "WindSpeed": "4.1",
+          "AirTemperature": "27.0",
+          "RelativeHumidity": "86",
+          "AirPressure": "970.7",
+          "GustInfo": {
+            "PeakGustSpeed": "13.9",
+            "Occurred_at": {
+              "WindDirection": "66.0",
+              "DateTime": "2026-10-24T04:07:00+08:00"
+            }
+          },
+          "DailyExtreme": {
+            "DailyHigh": {
+              "TemperatureInfo": {
+                "AirTemperature": "34.2",
+                "Occurred_at": {
+                  "DateTime": "2026-10-24T02:10:00+08:00"
+                }
+              }
+            },
+            "DailyLow": {
+              "TemperatureInfo": {
+                "AirTemperature": "25.3",
+                "Occurred_at": {
+                  "DateTime": "2026-10-24T00:10:00+08:00"
                 }
               }
             }
