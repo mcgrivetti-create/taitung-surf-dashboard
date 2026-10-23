@@ -1,89 +1,89 @@
 {
-  "fetchedAt": "2026-10-23T02:13:33.151Z",
+  "fetchedAt": "2026-10-23T02:33:34.583Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "29W",
       "name": "Champi",
       "headline": "Typhoon 29W (Champi)",
-      "warningNumber": "034",
-      "issuedZ": "22/2100Z",
-      "issuedAt": "2026-10-22T21:00:00.000Z",
+      "warningNumber": "035",
+      "issuedZ": "23/0300Z",
+      "issuedAt": "2026-10-23T03:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
       "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610230000-96_CHAMPI_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "230600Z",
-          "lat": 23.5,
-          "lon": 123.2,
-          "maxWindKt": 90,
-          "gustKt": 110
+          "validZ": "231200Z",
+          "lat": 24.2,
+          "lon": 122.9,
+          "maxWindKt": 85,
+          "gustKt": 105
         },
         {
           "tau": 24,
-          "validZ": "231800Z",
-          "lat": 25,
-          "lon": 122.6,
-          "maxWindKt": 80,
-          "gustKt": 100
+          "validZ": "240000Z",
+          "lat": 25.5,
+          "lon": 122.7,
+          "maxWindKt": 75,
+          "gustKt": 90
         },
         {
           "tau": 36,
-          "validZ": "240600Z",
-          "lat": 26.7,
-          "lon": 123,
-          "maxWindKt": 70,
-          "gustKt": 85
+          "validZ": "241200Z",
+          "lat": 27.3,
+          "lon": 123.4,
+          "maxWindKt": 65,
+          "gustKt": 80
         },
         {
           "tau": 48,
-          "validZ": "241800Z",
-          "lat": 28.8,
-          "lon": 124.2,
-          "maxWindKt": 55,
-          "gustKt": 70
+          "validZ": "250000Z",
+          "lat": 29,
+          "lon": 124.3,
+          "maxWindKt": 50,
+          "gustKt": 65
         },
         {
           "tau": 60,
-          "validZ": "250600Z",
-          "lat": 30.7,
-          "lon": 126.6,
-          "maxWindKt": 40,
-          "gustKt": 50
-        },
-        {
-          "tau": 72,
-          "validZ": "251800Z",
-          "lat": 32,
-          "lon": 129.3,
+          "validZ": "251200Z",
+          "lat": 30.5,
+          "lon": 125.8,
           "maxWindKt": 35,
           "gustKt": 45
         },
         {
-          "tau": 96,
-          "validZ": "261800Z",
-          "lat": 33,
-          "lon": 135.5,
+          "tau": 72,
+          "validZ": "260000Z",
+          "lat": 31.8,
+          "lon": 128.2,
           "maxWindKt": 30,
           "gustKt": 40
+        },
+        {
+          "tau": 96,
+          "validZ": "270000Z",
+          "lat": 33.5,
+          "lon": 134.8,
+          "maxWindKt": 25,
+          "gustKt": 35
         }
       ],
-      "positionZ": "221800Z",
-      "lat": 21.9,
-      "lon": 124.3,
-      "movingToward": 320,
+      "positionZ": "230000Z",
+      "lat": 22.7,
+      "lon": 123.8,
+      "movingToward": 330,
       "movingKt": 9,
-      "maxWindKt": 95,
-      "gustKt": 115,
+      "maxWindKt": 90,
+      "gustKt": 110,
       "nextWarnings": [
-        "230300Z",
         "230900Z",
         "231500Z",
-        "232100Z"
+        "232100Z",
+        "240300Z"
       ],
-      "geoReference": "336 NM SOUTHWEST OF KADENA AB",
+      "geoReference": "316 NM SOUTHWEST OF KADENA AB",
       "reasoning": {
         "warningNumber": "034",
         "significantForecastChanges": "THE LATEST FORECAST TRACK SPEED HAS SLOWED CONSIDERABLY AFTER TAU 24.",
@@ -101,68 +101,68 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 178,
-        "bearingDeg": 111,
+        "distanceNm": 138,
+        "bearingDeg": 96,
         "closestApproach": {
-          "distanceNm": 109,
+          "distanceNm": 114,
           "tau": 12,
-          "validZ": "230600Z",
-          "maxWindKt": 90
+          "validZ": "231200Z",
+          "maxWindKt": 85
         }
       },
       "motion": {
-        "currentHeadingDeg": 320,
+        "currentHeadingDeg": 330,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 328
+            "heading": 331
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 340
+            "heading": 352
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 12
+            "heading": 19
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 27
+            "heading": 25
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 47
+            "heading": 41
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 60
+            "heading": 57
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 78
+            "heading": 71
           }
         ],
         "turns": [
           {
             "fromTau": 24,
             "toTau": 36,
-            "headingDeg": 12,
-            "deltaDeg": 52
+            "headingDeg": 19,
+            "deltaDeg": 49
           },
           {
-            "fromTau": 48,
-            "toTau": 60,
-            "headingDeg": 47,
-            "deltaDeg": 35
+            "fromTau": 60,
+            "toTau": 72,
+            "headingDeg": 57,
+            "deltaDeg": 38
           }
         ]
       },
@@ -210,10 +210,10 @@
             "periodS": 6.4
           },
           "now": {
-            "at": "2026-10-23T00:00:00.000Z",
-            "heightM": 10.2,
-            "periodS": 11.6,
-            "dirDeg": 73.3
+            "at": "2026-10-23T01:00:00.000Z",
+            "heightM": 12.4,
+            "periodS": 12.4,
+            "dirDeg": 61.2
           }
         }
       },
@@ -225,10 +225,10 @@
         "generatedAt": "2026-10-22T17:13:58.696Z"
       },
       "changes": {
-        "previousWarningNumber": "033",
-        "previousIssuedAt": "2026-10-22T15:00:00.000Z",
+        "previousWarningNumber": "034",
+        "previousIssuedAt": "2026-10-22T21:00:00.000Z",
         "maxWindKtDelta": -5,
-        "closestApproachNmDelta": -5
+        "closestApproachNmDelta": 5
       }
     }
   ],
@@ -238,8 +238,8 @@
       "issuedZ": "23/0130Z",
       "issuedAt": "2026-10-23T01:30:00.000Z",
       "textUrl": "https://www.metoc.navy.mil/jtwc/products/wp9726web.txt",
-      "graphic": "",
-      "satellite": "",
+      "graphic": "https://www.metoc.navy.mil/jtwc/products/wp9726.gif",
+      "satellite": "https://www.metoc.navy.mil/jtwc/products/97W_230000sair.jpg",
       "investId": "97W",
       "lat": 11,
       "lon": 165.9,
@@ -258,20 +258,20 @@
     {
       "id": "97W",
       "potential": null,
-      "geoReference": "261 NM NORTHWEST OF KWAJALEIN",
-      "windKtLow": null,
-      "windKtHigh": null,
-      "pressureMb": 1007,
-      "lat": 11.8,
+      "geoReference": "178 NM NORTHWEST OF KWAJALEIN",
+      "windKtLow": 18,
+      "windKtHigh": 23,
+      "pressureMb": 1005,
+      "lat": 11,
       "lon": 165.9,
-      "distanceNm": 2630,
-      "bearingDeg": 97
+      "distanceNm": 2648,
+      "bearingDeg": 98
     }
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "22/2000Z",
-    "issuedAt": "2026-10-22T20:00:00.000Z",
+    "issuedZ": "23/0130Z",
+    "issuedAt": "2026-10-23T01:30:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
     "reissued": true
   }
