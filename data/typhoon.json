@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-24T08:33:31.815Z",
+  "fetchedAt": "2026-10-24T09:13:40.290Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -95,23 +95,23 @@
       ],
       "geoReference": "150 NM NORTHWEST OF KWAJALEIN",
       "reasoning": {
-        "warningNumber": "003",
+        "warningNumber": "004",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 15,
+        "seasFt": 16,
         "environment": "FAVORABLE",
         "vws": "5-10 KTS",
         "sst": "29-30 CELSIUS",
-        "outflow": "MODERATE POLEWARD AND EQUATORWARD",
+        "outflow": "MODERATE RADIAL",
         "steering": "COMPETING STEERING ENVIRONMENT",
         "confidence": {
           "track0072": "MEDIUM",
-          "track72120": "MEDIUM",
+          "track72120": "LOW",
           "intensity0072": "MEDIUM",
           "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2657,
         "bearingDeg": 99,
@@ -273,14 +273,14 @@
       ],
       "geoReference": "242 NM WEST OF KADENA AB",
       "reasoning": {
-        "warningNumber": "039",
-        "significantForecastChanges": "FORECAST INTENSITIES HAVE DECREASED AND THE INITIAL PORTION OF THE FORECAST TRACK HAS SHIFTED EASTWARD SLIGHTLY FROM THE PREVIOUS FORECAST DUE TO OBSERVED POSITION AND STRUCTURAL CHANGES.",
-        "seasFt": 30,
+        "warningNumber": "040",
+        "significantForecastChanges": "THE FORECAST HAS BEEN TRUNCATED TO 60 HOURS.",
+        "seasFt": 24,
         "environment": "UNFAVORABLE",
-        "vws": "10-15 KTS",
+        "vws": "15-20 KTS",
         "sst": "26-27 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "DEEP-LAYER SUBTROPICAL RIDGE (STR) TO THE EAST",
+        "steering": "WESTERN FLANK OF A STR CENTERED SOUTHEAST OF HONSHU",
         "confidence": {
           "track0072": "MEDIUM",
           "track72120": null,
@@ -289,7 +289,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 254,
         "bearingDeg": 25,
