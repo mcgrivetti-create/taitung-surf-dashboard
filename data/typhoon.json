@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-24T05:33:40.173Z",
+  "fetchedAt": "2026-10-24T06:13:43.573Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -212,7 +212,7 @@
       "issuedAt": "2026-10-24T03:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610230000-96_CHAMPI_enus.png",
+      "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
@@ -422,25 +422,12 @@
     }
   ],
   "alerts": [],
-  "invests": [
-    {
-      "id": "97W",
-      "potential": null,
-      "geoReference": null,
-      "windKtLow": null,
-      "windKtHigh": null,
-      "pressureMb": null,
-      "lat": 11,
-      "lon": 165.8,
-      "distanceNm": 2642,
-      "bearingDeg": 98
-    }
-  ],
-  "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
+  "invests": [],
+  "investSatellite": null,
   "advisory": {
-    "issuedZ": "23/1500Z",
-    "issuedAt": "2026-10-23T15:00:00.000Z",
+    "issuedZ": "24/0600Z",
+    "issuedAt": "2026-10-24T06:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": true
+    "reissued": false
   }
 }
