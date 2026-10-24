@@ -19134,6 +19134,352 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "30W",
+      "name": "In-fa",
+      "designation": "Tropical Storm",
+      "warningNumber": "004",
+      "issuedAt": "2026-10-24T09:00:00.000Z",
+      "positionZ": "240600Z",
+      "lat": 10.1,
+      "lon": 165.7,
+      "maxWindKt": 50,
+      "gustKt": 65,
+      "pressureMb": 994,
+      "seasFt": 16,
+      "movingToward": 225,
+      "movingKt": 3,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "241800Z",
+          "lat": 10.8,
+          "lon": 165.3,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 24,
+          "validZ": "250600Z",
+          "lat": 11.9,
+          "lon": 164.9,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 36,
+          "validZ": "251800Z",
+          "lat": 12.9,
+          "lon": 164.3,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 48,
+          "validZ": "260600Z",
+          "lat": 13.5,
+          "lon": 164.1,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 60,
+          "validZ": "261800Z",
+          "lat": 13.9,
+          "lon": 163.8,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 72,
+          "validZ": "270600Z",
+          "lat": 14.1,
+          "lon": 163.1,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 96,
+          "validZ": "280600Z",
+          "lat": 14.5,
+          "lon": 160.9,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 120,
+          "validZ": "290600Z",
+          "lat": 15.3,
+          "lon": 155.2,
+          "maxWindKt": 125,
+          "gustKt": 150
+        }
+      ],
+      "spot": {
+        "distanceNm": 2657,
+        "bearingDeg": 99,
+        "closestApproach": {
+          "distanceNm": 1972,
+          "tau": 120,
+          "validZ": "290600Z",
+          "maxWindKt": 125
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 225,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 331
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 340
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 330
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 342
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 324
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 286
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 281
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 279
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "headingDeg": 331,
+            "deltaDeg": 106
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "headingDeg": 286,
+            "deltaDeg": 45
+          }
+        ]
+      },
+      "swell": {
+        "status": "none",
+        "windowEnd": "2026-10-28T15:00:00.000Z",
+        "creditedTo": "Champi"
+      },
+      "retired": false,
+      "summary": {
+        "text": "TS 30W has become increasingly organized over the past six hours. TS 30W is expected to remain quasi-stationary over the next six hours in a competing steering environment between near-equatorial ridging to the southeast and a southward extension of subtropical ridging to the west. Steady to rapid near-term intensification is highly likely given the presence of low vertical wind shear and supportive poleward and equatorward upper-level outflow and a tropical upper-tropospheric trough enhancing outflow on the poleward side.",
+        "warningNumber": "002",
+        "generatedAt": "2026-10-24T03:13:36.805Z"
+      },
+      "reasoningWarningNumber": "003",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
+    },
+    {
+      "kind": "warning",
+      "id": "29W",
+      "name": "Champi",
+      "designation": "Tropical Storm",
+      "warningNumber": "040",
+      "issuedAt": "2026-10-24T09:00:00.000Z",
+      "positionZ": "240600Z",
+      "lat": 26.8,
+      "lon": 123.3,
+      "maxWindKt": 55,
+      "gustKt": 70,
+      "pressureMb": 977,
+      "seasFt": 24,
+      "movingToward": 5,
+      "movingKt": 19,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "241800Z",
+          "lat": 29,
+          "lon": 124,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 24,
+          "validZ": "250600Z",
+          "lat": 30.5,
+          "lon": 125.5,
+          "maxWindKt": 40,
+          "gustKt": 50
+        },
+        {
+          "tau": 36,
+          "validZ": "251800Z",
+          "lat": 31.7,
+          "lon": 127.6,
+          "maxWindKt": 35,
+          "gustKt": 45
+        },
+        {
+          "tau": 48,
+          "validZ": "260600Z",
+          "lat": 32.5,
+          "lon": 130.7,
+          "maxWindKt": 30,
+          "gustKt": 40
+        },
+        {
+          "tau": 60,
+          "validZ": "261800Z",
+          "lat": 33.1,
+          "lon": 134.2,
+          "maxWindKt": 30,
+          "gustKt": 40
+        }
+      ],
+      "spot": {
+        "distanceNm": 254,
+        "bearingDeg": 25,
+        "closestApproach": {
+          "distanceNm": 390,
+          "tau": 12,
+          "validZ": "241800Z",
+          "maxWindKt": 45,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 5,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 16
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 41
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 56
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 72
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 78
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "headingDeg": 41,
+            "deltaDeg": 36
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 78,
+            "deltaDeg": 37
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-10-28T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-10-20T13:00:00.000Z",
+          "source": "buoy",
+          "buoy": "Chenggong",
+          "heightM": 1.7,
+          "periodS": 8,
+          "dirDeg": 102
+        },
+        "hoursAhead": 74,
+        "bearingOffsetDeg": 5,
+        "peak": {
+          "targetTime": "2026-10-27T18:00:00.000Z",
+          "heightM": 2.02,
+          "periodS": 6.75,
+          "dirDeg": 67
+        },
+        "modelArrival": {
+          "targetTime": "2026-10-21T04:00:00.000Z",
+          "heightM": 2.72,
+          "periodS": 11.05,
+          "dirDeg": 106
+        },
+        "observed": {
+          "buoy": "46761F",
+          "label": "Chenggong",
+          "since": "2026-10-20T13:00:00.000Z",
+          "onset": {
+            "heightM": 1.7,
+            "periodS": 8,
+            "dirDeg": 102
+          },
+          "baseline": {
+            "heightM": 1.2,
+            "periodS": 6.4
+          },
+          "now": {
+            "at": "2026-10-24T06:00:00.000Z",
+            "heightM": 1.9,
+            "periodS": 7.6,
+            "dirDeg": 88
+          }
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "TY 29W has rapidly weakened over the past six hours due primarily to land interaction with Taiwan. After initially poleward motion, TY 29W will turn north-northeastward around the periphery of the current subtropical steering ridge through the forecast period. Extratropical transition will begin by +36h as the system interacts with a developing mid-latitude trough to the northwest.",
+        "warningNumber": "039",
+        "generatedAt": "2026-10-24T05:13:38.406Z"
+      },
+      "reasoningWarningNumber": "039",
+      "significantForecastChanges": "FORECAST INTENSITIES HAVE DECREASED AND THE INITIAL PORTION OF THE FORECAST TRACK HAS SHIFTED EASTWARD SLIGHTLY FROM THE PREVIOUS FORECAST DUE TO OBSERVED POSITION AND STRUCTURAL CHANGES.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
     }
   ]
 }
