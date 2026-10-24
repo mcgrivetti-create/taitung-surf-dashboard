@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-23T23:33:53.785Z",
+  "fetchedAt": "2026-10-24T00:13:38.172Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -177,22 +177,9 @@
         ]
       },
       "swell": {
+        "status": "none",
         "windowEnd": "2026-10-28T15:00:00.000Z",
-        "status": "incoming",
-        "arrival": {
-          "targetTime": "2026-10-27T10:00:00.000Z",
-          "heightM": 1.22,
-          "periodS": 6.55,
-          "dirDeg": 73
-        },
-        "hoursAhead": 82,
-        "bearingOffsetDeg": 21,
-        "peak": {
-          "targetTime": "2026-10-27T18:00:00.000Z",
-          "heightM": 2.08,
-          "periodS": 7.1,
-          "dirDeg": 66
-        }
+        "creditedTo": "Champi"
       },
       "retireFrom": null,
       "retired": false,
@@ -389,19 +376,14 @@
           "periodS": 8,
           "dirDeg": 102
         },
-        "now": {
-          "targetTime": "2026-10-23T23:00:00.000Z",
-          "heightM": 1.76,
-          "periodS": 8.05,
-          "dirDeg": 135
-        },
+        "hoursAhead": 82,
+        "bearingOffsetDeg": 5,
         "peak": {
-          "targetTime": "2026-10-23T23:00:00.000Z",
-          "heightM": 1.76,
-          "periodS": 8.05,
-          "dirDeg": 135
+          "targetTime": "2026-10-27T18:00:00.000Z",
+          "heightM": 2.02,
+          "periodS": 6.75,
+          "dirDeg": 67
         },
-        "easing": true,
         "modelArrival": {
           "targetTime": "2026-10-21T04:00:00.000Z",
           "heightM": 2.72,
@@ -427,7 +409,8 @@
             "periodS": 7.3,
             "dirDeg": 78
           }
-        }
+        },
+        "easing": false
       },
       "retireFrom": null,
       "retired": false,
