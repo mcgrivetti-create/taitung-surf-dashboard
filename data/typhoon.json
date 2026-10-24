@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-24T14:33:51.658Z",
+  "fetchedAt": "2026-10-24T15:13:39.680Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -95,23 +95,23 @@
       ],
       "geoReference": "160 NM NORTHWEST OF KWAJALEIN",
       "reasoning": {
-        "warningNumber": "004",
+        "warningNumber": "005",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 16,
         "environment": "FAVORABLE",
-        "vws": "5-10 KTS",
+        "vws": "15-20 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "MODERATE RADIAL",
-        "steering": "COMPETING STEERING ENVIRONMENT",
+        "steering": "WEAK STEERING ENVIRONMENT",
         "confidence": {
           "track0072": "MEDIUM",
-          "track72120": "LOW",
+          "track72120": "MEDIUM",
           "intensity0072": "MEDIUM",
           "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2657,
         "bearingDeg": 99,
@@ -182,9 +182,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "TS 30W has become increasingly organized over the past six hours. TS 30W is expected to remain quasi-stationary over the next six hours in a competing steering environment between near-equatorial ridging to the southeast and a southward extension of subtropical ridging to the west. Steady to rapid near-term intensification is highly likely given the presence of low vertical wind shear and supportive poleward and equatorward upper-level outflow and a tropical upper-tropospheric trough enhancing outflow on the poleward side.",
-        "warningNumber": "002",
-        "generatedAt": "2026-10-24T03:13:36.805Z"
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts deep convection obscuring a compact low-level circulation center (LLCC). TS 30W may have begun its anticipated north-northwestward motion. The forecast calls for steady intensification through +12h, allowing time for the compact circulation to become more axisymmetric.",
+        "warningNumber": "005",
+        "generatedAt": "2026-10-24T15:13:39.680Z"
       },
       "changes": {
         "previousWarningNumber": "004",
@@ -343,9 +343,9 @@
           "dirDeg": 102
         },
         "now": {
-          "targetTime": "2026-10-24T14:00:00.000Z",
-          "heightM": 1.52,
-          "periodS": 8.05,
+          "targetTime": "2026-10-24T15:00:00.000Z",
+          "heightM": 1.5,
+          "periodS": 7.85,
           "dirDeg": 94
         },
         "peak": {
