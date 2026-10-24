@@ -18775,6 +18775,177 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "30W",
+      "name": "In-fa",
+      "designation": "Tropical Storm",
+      "warningNumber": "003",
+      "issuedAt": "2026-10-24T03:00:00.000Z",
+      "positionZ": "240000Z",
+      "lat": 10.4,
+      "lon": 166.2,
+      "maxWindKt": 45,
+      "gustKt": 55,
+      "pressureMb": 996,
+      "seasFt": 15,
+      "movingToward": 205,
+      "movingKt": 2,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "241200Z",
+          "lat": 10.8,
+          "lon": 166.1,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 24,
+          "validZ": "250000Z",
+          "lat": 11.7,
+          "lon": 165.7,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 36,
+          "validZ": "251200Z",
+          "lat": 12.8,
+          "lon": 165.2,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 48,
+          "validZ": "260000Z",
+          "lat": 13.7,
+          "lon": 164.8,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 60,
+          "validZ": "261200Z",
+          "lat": 14.1,
+          "lon": 164.6,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 72,
+          "validZ": "270000Z",
+          "lat": 14.4,
+          "lon": 164.3,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 96,
+          "validZ": "280000Z",
+          "lat": 14.8,
+          "lon": 163,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 120,
+          "validZ": "290000Z",
+          "lat": 15.4,
+          "lon": 158.7,
+          "maxWindKt": 125,
+          "gustKt": 150
+        }
+      ],
+      "spot": {
+        "distanceNm": 2678,
+        "bearingDeg": 99,
+        "closestApproach": {
+          "distanceNm": 2162,
+          "tau": 120,
+          "validZ": "290000Z",
+          "maxWindKt": 125
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 205,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 346
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 336
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 336
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 337
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 334
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 316
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 288
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 279
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "headingDeg": 346,
+            "deltaDeg": 141
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "headingDeg": 288,
+            "deltaDeg": 58
+          }
+        ]
+      },
+      "swell": {
+        "status": "none",
+        "windowEnd": "2026-10-28T15:00:00.000Z",
+        "creditedTo": "Champi"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a rapidly consolidating tropical depression (TD), characterized by a formative band of deep convection along the western semicircle wrapping into an obscured low-level circulation center (LLCC). TD 30W is currently quasi-stationary with a slight eastward drift in a weak ambient steering environment, governed primarily by enhanced low-level southwesterlies near the equator. Over the next 24 hours, as the system intensifies and the vortex deepens, it will come under the steering influence of a mid- to deep-layer near-equatorial ridge (ner) anchored near the equator and track northward.",
+        "warningNumber": "001",
+        "generatedAt": "2026-10-23T15:13:38.990Z"
+      },
+      "reasoningWarningNumber": "002",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
