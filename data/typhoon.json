@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-24T20:33:35.984Z",
+  "fetchedAt": "2026-10-24T21:13:41.909Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -95,13 +95,13 @@
       ],
       "geoReference": "194 NM NORTHWEST OF KWAJALEIN",
       "reasoning": {
-        "warningNumber": "005",
+        "warningNumber": "006",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 16,
+        "seasFt": 23,
         "environment": "FAVORABLE",
         "vws": "15-20 KTS",
-        "sst": "29-30 CELSIUS",
-        "outflow": "MODERATE RADIAL",
+        "sst": "28-29 CELSIUS",
+        "outflow": "MODERATE POLEWARD",
         "steering": "WEAK STEERING ENVIRONMENT",
         "confidence": {
           "track0072": "MEDIUM",
@@ -111,7 +111,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2629,
         "bearingDeg": 98,
@@ -330,10 +330,10 @@
           "dirDeg": 102
         },
         "now": {
-          "targetTime": "2026-10-24T20:00:00.000Z",
-          "heightM": 1.24,
-          "periodS": 5.95,
-          "dirDeg": 72
+          "targetTime": "2026-10-24T21:00:00.000Z",
+          "heightM": 1.2,
+          "periodS": 5.85,
+          "dirDeg": 61
         },
         "peak": {
           "targetTime": "2026-10-27T18:00:00.000Z",
