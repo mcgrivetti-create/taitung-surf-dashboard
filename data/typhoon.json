@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-24T09:33:34.254Z",
+  "fetchedAt": "2026-10-24T10:13:38.414Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -356,14 +356,19 @@
           "periodS": 8,
           "dirDeg": 102
         },
-        "hoursAhead": 72,
-        "bearingOffsetDeg": 5,
+        "now": {
+          "targetTime": "2026-10-24T10:00:00.000Z",
+          "heightM": 1.44,
+          "periodS": 6.45,
+          "dirDeg": 162
+        },
         "peak": {
           "targetTime": "2026-10-27T18:00:00.000Z",
           "heightM": 2.02,
           "periodS": 6.75,
           "dirDeg": 67
         },
+        "easing": false,
         "modelArrival": {
           "targetTime": "2026-10-21T04:00:00.000Z",
           "heightM": 2.72,
@@ -389,8 +394,7 @@
             "periodS": 5.7,
             "dirDeg": 81
           }
-        },
-        "easing": false
+        }
       },
       "retireFrom": null,
       "retired": false,
