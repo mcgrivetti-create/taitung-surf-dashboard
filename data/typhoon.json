@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-24T03:13:36.805Z",
+  "fetchedAt": "2026-10-24T03:33:53.059Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -280,23 +280,23 @@
       ],
       "geoReference": "100 NM EAST OF TAIPEI, TAIWAN",
       "reasoning": {
-        "warningNumber": "038",
-        "significantForecastChanges": "THE FORECAST TRACK LINE HAS SHIFTED SLIGHTLY TO THE SOUTH FROM THE PREVIOUS WARNING. ADDITIONALLY, EXTRATROPICAL TRANSITION OCCURS EARLIER, BEGINNING AT TAU 48 AND COMPLETING BY TAU 60, IN THE CURRENT FORECAST.",
-        "seasFt": 37,
+        "warningNumber": "039",
+        "significantForecastChanges": "FORECAST INTENSITIES HAVE DECREASED AND THE INITIAL PORTION OF THE FORECAST TRACK HAS SHIFTED EASTWARD SLIGHTLY FROM THE PREVIOUS FORECAST DUE TO OBSERVED POSITION AND STRUCTURAL CHANGES.",
+        "seasFt": 30,
         "environment": "UNFAVORABLE",
         "vws": "10-15 KTS",
         "sst": "26-27 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "ERRATIC MOTION ASSOCIATED WITH TERRAIN INTERACTION OFFSETTING FLOW ALONG THE WESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED SOUTH OF HONSHU",
+        "steering": "DEEP-LAYER SUBTROPICAL RIDGE (STR) TO THE EAST",
         "confidence": {
           "track0072": "MEDIUM",
-          "track72120": "LOW",
-          "intensity0072": "MEDIUM",
-          "intensity72120": "MEDIUM"
+          "track72120": null,
+          "intensity0072": "HIGH",
+          "intensity72120": null
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 155,
         "bearingDeg": 44,
@@ -368,7 +368,7 @@
           "periodS": 8,
           "dirDeg": 102
         },
-        "hoursAhead": 79,
+        "hoursAhead": 78,
         "bearingOffsetDeg": 5,
         "peak": {
           "targetTime": "2026-10-27T18:00:00.000Z",
@@ -396,10 +396,10 @@
             "periodS": 6.4
           },
           "now": {
-            "at": "2026-10-24T01:00:00.000Z",
+            "at": "2026-10-24T02:00:00.000Z",
             "heightM": 1.7,
-            "periodS": 7.6,
-            "dirDeg": 80
+            "periodS": 7.7,
+            "dirDeg": 86
           }
         },
         "easing": false
