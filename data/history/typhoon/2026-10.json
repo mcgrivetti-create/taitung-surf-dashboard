@@ -20654,6 +20654,285 @@
         "intensity0072": "HIGH",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "30W",
+      "name": "In-fa",
+      "designation": "Typhoon",
+      "warningNumber": "009",
+      "issuedAt": "2026-10-25T15:00:00.000Z",
+      "positionZ": "251200Z",
+      "lat": 12.8,
+      "lon": 164.5,
+      "maxWindKt": 75,
+      "gustKt": 90,
+      "pressureMb": 979,
+      "seasFt": 25,
+      "movingToward": 330,
+      "movingKt": 9,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "260000Z",
+          "lat": 13.7,
+          "lon": 163.6,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 24,
+          "validZ": "261200Z",
+          "lat": 14.2,
+          "lon": 163,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 36,
+          "validZ": "270000Z",
+          "lat": 14.4,
+          "lon": 162.5,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 48,
+          "validZ": "271200Z",
+          "lat": 14.6,
+          "lon": 161.7,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 60,
+          "validZ": "280000Z",
+          "lat": 14.9,
+          "lon": 160.2,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 72,
+          "validZ": "281200Z",
+          "lat": 15.2,
+          "lon": 158,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 96,
+          "validZ": "291200Z",
+          "lat": 16.1,
+          "lon": 151.9,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 120,
+          "validZ": "301200Z",
+          "lat": 18.5,
+          "lon": 145,
+          "maxWindKt": 125,
+          "gustKt": 150
+        }
+      ],
+      "spot": {
+        "distanceNm": 2532,
+        "bearingDeg": 96,
+        "closestApproach": {
+          "distanceNm": 1355,
+          "tau": 120,
+          "validZ": "301200Z",
+          "maxWindKt": 125
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 330,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 316
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 311
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 292
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 285
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 282
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 278
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 280
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 291
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "headingDeg": 292,
+            "deltaDeg": 38
+          }
+        ]
+      },
+      "swell": {
+        "status": "none",
+        "windowEnd": "2026-10-29T15:00:00.000Z",
+        "creditedTo": "Champi"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts tropical storm 30W as a gradually consolidating system. TS 30W (in-fa) is forecast to continue tracking northwestward while it remains on the fringes of a building ner centered to its southeast. Regarding intensity, 30W is forecast to begin a period of rapid intensification (ri) immediately. 30W is expected to ri through +24h, when the competing steering environment temporarily halts intensification. 30W may also briefly weaken around +36h-60.",
+        "warningNumber": "007",
+        "generatedAt": "2026-10-25T03:13:34.267Z"
+      },
+      "reasoningWarningNumber": "008",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
+    },
+    {
+      "kind": "warning",
+      "id": "29W",
+      "name": "Champi",
+      "designation": "Tropical Storm",
+      "warningNumber": "045",
+      "issuedAt": "2026-10-25T15:00:00.000Z",
+      "positionZ": "251200Z",
+      "lat": 30.7,
+      "lon": 126.3,
+      "maxWindKt": 40,
+      "gustKt": 50,
+      "pressureMb": 999,
+      "seasFt": 18,
+      "movingToward": 50,
+      "movingKt": 9,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "260000Z",
+          "lat": 31.5,
+          "lon": 129,
+          "maxWindKt": 35,
+          "gustKt": 45
+        },
+        {
+          "tau": 24,
+          "validZ": "261200Z",
+          "lat": 32.2,
+          "lon": 132.6,
+          "maxWindKt": 30,
+          "gustKt": 40
+        },
+        {
+          "tau": 36,
+          "validZ": "270000Z",
+          "lat": 33,
+          "lon": 136.2,
+          "maxWindKt": 30,
+          "gustKt": 40
+        }
+      ],
+      "spot": {
+        "distanceNm": 535,
+        "bearingDeg": 29,
+        "closestApproach": {
+          "distanceNm": 655,
+          "tau": 12,
+          "validZ": "260000Z",
+          "maxWindKt": 35,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 50,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 70
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 76
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 74
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-29T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-10-20T13:00:00.000Z",
+          "source": "buoy",
+          "buoy": "Chenggong",
+          "heightM": 1.7,
+          "periodS": 8,
+          "dirDeg": 102
+        },
+        "now": {
+          "targetTime": "2026-10-25T14:00:00.000Z",
+          "heightM": 1.74,
+          "periodS": 7,
+          "dirDeg": 80
+        },
+        "peak": {
+          "targetTime": "2026-10-27T12:00:00.000Z",
+          "heightM": 1.92,
+          "periodS": 6.85,
+          "dirDeg": 69
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts tropical storm (TS) 29W as a fully exposed, shallow, and ragged circulation, overwhelmed by high vertical wind shear (VWS) and dry air. TS 29W (champi) is forecast to continue tracking poleward as it rounds the northwestern periphery of the steering STR for the duration of the forecast period. Has begun to transition into an extratropical cyclone as it approaches the fringes of the upper level jet: exhibiting temperature advection, vortex asymmetry, and no deep convection.",
+        "warningNumber": "043",
+        "generatedAt": "2026-10-25T05:13:46.820Z"
+      },
+      "reasoningWarningNumber": "044",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
     }
   ]
 }
