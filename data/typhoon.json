@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-25T14:33:43.868Z",
+  "fetchedAt": "2026-10-25T15:13:37.353Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -96,23 +96,23 @@
       ],
       "geoReference": "314 NM NORTHWEST OF KWAJALEIN",
       "reasoning": {
-        "warningNumber": "008",
+        "warningNumber": "009",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 20,
+        "seasFt": 25,
         "environment": "FAVORABLE",
         "vws": "15-20 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "NEAR-EQUATORIAL RIDGE TO THE SOUTHEAST",
+        "steering": "NORTHWESTERN FLANK OF A DEEP-LAYER NEAR-EQUATORIAL RIDGE (NER) TO THE SOUTHEAST",
         "confidence": {
-          "track0072": "MEDIUM",
+          "track0072": "HIGH",
           "track72120": "MEDIUM",
           "intensity0072": "MEDIUM",
           "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2532,
         "bearingDeg": 96,
@@ -184,9 +184,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts tropical storm 30W as a gradually consolidating system. TS 30W (in-fa) is forecast to continue tracking northwestward while it remains on the fringes of a building ner centered to its southeast. Regarding intensity, 30W is forecast to begin a period of rapid intensification (ri) immediately. 30W is expected to ri through +24h, when the competing steering environment temporarily halts intensification. 30W may also briefly weaken around +36h-60.",
-        "warningNumber": "007",
-        "generatedAt": "2026-10-25T03:13:34.267Z"
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts persistent vortical hot towers associated with a seemingly ragged central dense overcast (cdo). TY 30W is traveling north-northwestward along the northwestern periphery of the ner. Despite moderate mid-level shear entraining dry air into the vortex, the system has managed to steadily intensify.",
+        "warningNumber": "009",
+        "generatedAt": "2026-10-25T15:13:37.353Z"
       },
       "changes": {
         "previousWarningNumber": "008",
@@ -312,10 +312,10 @@
           "dirDeg": 102
         },
         "now": {
-          "targetTime": "2026-10-25T14:00:00.000Z",
-          "heightM": 1.74,
+          "targetTime": "2026-10-25T15:00:00.000Z",
+          "heightM": 1.7,
           "periodS": 7,
-          "dirDeg": 80
+          "dirDeg": 81
         },
         "peak": {
           "targetTime": "2026-10-27T12:00:00.000Z",
