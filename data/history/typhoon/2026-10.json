@@ -20203,6 +20203,171 @@
         "intensity0072": "HIGH",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "30W",
+      "name": "In-fa",
+      "designation": "Tropical Storm",
+      "warningNumber": "007",
+      "issuedAt": "2026-10-25T03:00:00.000Z",
+      "positionZ": "250000Z",
+      "lat": 11.5,
+      "lon": 165.3,
+      "maxWindKt": 55,
+      "gustKt": 70,
+      "pressureMb": 991,
+      "seasFt": 15,
+      "movingToward": 325,
+      "movingKt": 5,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "251200Z",
+          "lat": 12.6,
+          "lon": 164.6,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 24,
+          "validZ": "260000Z",
+          "lat": 13.4,
+          "lon": 164,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 36,
+          "validZ": "261200Z",
+          "lat": 13.9,
+          "lon": 163.6,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 48,
+          "validZ": "270000Z",
+          "lat": 14.1,
+          "lon": 163.4,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 60,
+          "validZ": "271200Z",
+          "lat": 14.2,
+          "lon": 162.8,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 72,
+          "validZ": "280000Z",
+          "lat": 14.5,
+          "lon": 161.1,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 96,
+          "validZ": "290000Z",
+          "lat": 15.2,
+          "lon": 156,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 120,
+          "validZ": "300000Z",
+          "lat": 16.8,
+          "lon": 148.6,
+          "maxWindKt": 125,
+          "gustKt": 150
+        }
+      ],
+      "spot": {
+        "distanceNm": 2604,
+        "bearingDeg": 98,
+        "closestApproach": {
+          "distanceNm": 1582,
+          "tau": 120,
+          "validZ": "300000Z",
+          "maxWindKt": 125
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 325,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 328
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 324
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 322
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 316
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 280
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 281
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 279
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 284
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 280,
+            "deltaDeg": 45
+          }
+        ]
+      },
+      "swell": {
+        "status": "none",
+        "windowEnd": "2026-10-29T15:00:00.000Z",
+        "creditedTo": "Champi"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts deep convection obscuring a compact low-level circulation center (LLCC). TS 30W may have begun its anticipated north-northwestward motion. The forecast calls for steady intensification through +12h, allowing time for the compact circulation to become more axisymmetric.",
+        "warningNumber": "005",
+        "generatedAt": "2026-10-24T15:13:39.680Z"
+      },
+      "reasoningWarningNumber": "006",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
