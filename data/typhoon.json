@@ -1,99 +1,99 @@
 {
-  "fetchedAt": "2026-10-25T07:33:41.209Z",
+  "fetchedAt": "2026-10-25T08:13:44.488Z",
   "systems": [
     {
       "designation": "Tropical Storm",
       "id": "30W",
       "name": "In-fa",
       "headline": "Tropical Storm 30W (In-fa)",
-      "warningNumber": "007",
-      "issuedZ": "25/0300Z",
-      "issuedAt": "2026-10-25T03:00:00.000Z",
+      "warningNumber": "008",
+      "issuedZ": "25/0900Z",
+      "issuedAt": "2026-10-25T09:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp3026.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp3026web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610250000-96_IN-FA_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610250600-96_IN-FA_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "251200Z",
-          "lat": 12.6,
-          "lon": 164.6,
+          "validZ": "251800Z",
+          "lat": 13.1,
+          "lon": 164.1,
           "maxWindKt": 75,
           "gustKt": 90
         },
         {
           "tau": 24,
-          "validZ": "260000Z",
-          "lat": 13.4,
-          "lon": 164,
+          "validZ": "260600Z",
+          "lat": 13.7,
+          "lon": 163.5,
           "maxWindKt": 90,
           "gustKt": 110
         },
         {
           "tau": 36,
-          "validZ": "261200Z",
-          "lat": 13.9,
-          "lon": 163.6,
+          "validZ": "261800Z",
+          "lat": 14,
+          "lon": 163.1,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 48,
+          "validZ": "270600Z",
+          "lat": 14.2,
+          "lon": 162.4,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 60,
+          "validZ": "271800Z",
+          "lat": 14.4,
+          "lon": 160.9,
           "maxWindKt": 100,
           "gustKt": 125
         },
         {
-          "tau": 48,
-          "validZ": "270000Z",
-          "lat": 14.1,
-          "lon": 163.4,
-          "maxWindKt": 105,
-          "gustKt": 130
-        },
-        {
-          "tau": 60,
-          "validZ": "271200Z",
-          "lat": 14.2,
-          "lon": 162.8,
-          "maxWindKt": 105,
-          "gustKt": 130
-        },
-        {
           "tau": 72,
-          "validZ": "280000Z",
-          "lat": 14.5,
-          "lon": 161.1,
-          "maxWindKt": 105,
-          "gustKt": 130
-        },
-        {
-          "tau": 96,
-          "validZ": "290000Z",
-          "lat": 15.2,
-          "lon": 156,
+          "validZ": "280600Z",
+          "lat": 14.7,
+          "lon": 159,
           "maxWindKt": 110,
           "gustKt": 135
         },
         {
+          "tau": 96,
+          "validZ": "290600Z",
+          "lat": 15.5,
+          "lon": 153.4,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
           "tau": 120,
-          "validZ": "300000Z",
-          "lat": 16.8,
-          "lon": 148.6,
-          "maxWindKt": 125,
-          "gustKt": 150
+          "validZ": "300600Z",
+          "lat": 17.4,
+          "lon": 146.5,
+          "maxWindKt": 115,
+          "gustKt": 140
         }
       ],
-      "positionZ": "250000Z",
-      "lat": 11.5,
-      "lon": 165.3,
-      "movingToward": 325,
-      "movingKt": 5,
-      "maxWindKt": 55,
-      "gustKt": 70,
-      "pressureMb": 991,
-      "seasFt": 15,
+      "positionZ": "250600Z",
+      "lat": 12,
+      "lon": 165,
+      "movingToward": 330,
+      "movingKt": 6,
+      "maxWindKt": 60,
+      "gustKt": 75,
+      "pressureMb": 987,
+      "seasFt": 20,
       "nextWarnings": [
-        "250900Z",
         "251500Z",
         "252100Z",
-        "260300Z. REFER TO TROPICAL STORM 29W (CHAMPI) WARNINGS (WTPN32 PGTW) FOR SIX-HOURLY UPDATES"
+        "260300Z",
+        "260900Z. REFER TO TROPICAL STORM 29W (CHAMPI) WARNINGS (WTPN32 PGTW) FOR SIX-HOURLY UPDATES"
       ],
-      "geoReference": "224 NM NORTHWEST OF KWAJALEIN",
+      "geoReference": "448 NM SOUTH-SOUTHWEST OF WAKE ISLAND",
       "reasoning": {
         "warningNumber": "007",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
@@ -111,49 +111,49 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 2604,
-        "bearingDeg": 98,
+        "distanceNm": 2577,
+        "bearingDeg": 97,
         "closestApproach": {
-          "distanceNm": 1582,
+          "distanceNm": 1456,
           "tau": 120,
-          "validZ": "300000Z",
-          "maxWindKt": 125
+          "validZ": "300600Z",
+          "maxWindKt": 115
         }
       },
       "motion": {
-        "currentHeadingDeg": 325,
+        "currentHeadingDeg": 330,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 328
+            "heading": 321
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 324
+            "heading": 316
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 322
+            "heading": 308
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 316
+            "heading": 286
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 280
+            "heading": 278
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 281
+            "heading": 280
           },
           {
             "fromTau": 72,
@@ -163,15 +163,15 @@
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 284
+            "heading": 287
           }
         ],
         "turns": [
           {
-            "fromTau": 48,
-            "toTau": 60,
-            "headingDeg": 280,
-            "deltaDeg": 45
+            "fromTau": 36,
+            "toTau": 48,
+            "headingDeg": 286,
+            "deltaDeg": 44
           }
         ]
       },
@@ -188,12 +188,12 @@
         "generatedAt": "2026-10-25T03:13:34.267Z"
       },
       "changes": {
-        "previousWarningNumber": "006",
-        "previousIssuedAt": "2026-10-24T21:00:00.000Z",
+        "previousWarningNumber": "007",
+        "previousIssuedAt": "2026-10-25T03:00:00.000Z",
         "maxWindKtDelta": 5,
-        "pressureMbDelta": -3,
-        "seasFtDelta": -8,
-        "closestApproachNmDelta": -181
+        "pressureMbDelta": -4,
+        "seasFtDelta": 5,
+        "closestApproachNmDelta": -126
       }
     },
     {
@@ -201,54 +201,54 @@
       "id": "29W",
       "name": "Champi",
       "headline": "Tropical Storm 29W (Champi)",
-      "warningNumber": "043",
-      "issuedZ": "25/0300Z",
-      "issuedAt": "2026-10-25T03:00:00.000Z",
+      "warningNumber": "044",
+      "issuedZ": "25/0900Z",
+      "issuedAt": "2026-10-25T09:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "251200Z",
-          "lat": 30.5,
-          "lon": 126.7,
-          "maxWindKt": 45,
-          "gustKt": 55
-        },
-        {
-          "tau": 24,
-          "validZ": "260000Z",
-          "lat": 31.5,
-          "lon": 129.5,
+          "validZ": "251800Z",
+          "lat": 31.4,
+          "lon": 127.8,
           "maxWindKt": 35,
           "gustKt": 45
         },
         {
+          "tau": 24,
+          "validZ": "260600Z",
+          "lat": 32.1,
+          "lon": 131.1,
+          "maxWindKt": 30,
+          "gustKt": 40
+        },
+        {
           "tau": 36,
-          "validZ": "261200Z",
-          "lat": 32.3,
-          "lon": 133.1,
+          "validZ": "261800Z",
+          "lat": 32.9,
+          "lon": 134.9,
           "maxWindKt": 30,
           "gustKt": 40
         }
       ],
-      "positionZ": "250000Z",
-      "lat": 29,
-      "lon": 124.7,
-      "movingToward": 50,
-      "movingKt": 11,
-      "maxWindKt": 50,
-      "gustKt": 65,
-      "pressureMb": 987,
-      "seasFt": 23,
+      "positionZ": "250600Z",
+      "lat": 30.1,
+      "lon": 125.5,
+      "movingToward": 40,
+      "movingKt": 14,
+      "maxWindKt": 45,
+      "gustKt": 55,
+      "pressureMb": 995,
+      "seasFt": 24,
       "nextWarnings": [
-        "250900Z",
         "251500Z",
         "252100Z",
-        "260300Z. REFER TO TROPICAL STORM 30W (IN-FA) WARNINGS (WTPN31 PGTW) FOR SIX-HOURLY UPDATES"
+        "260300Z",
+        "260900Z. REFER TO TROPICAL STORM 30W (IN-FA) WARNINGS (WTPN31 PGTW) FOR SIX-HOURLY UPDATES"
       ],
-      "geoReference": "356 NM SOUTHWEST OF SASEBO, JAPAN",
+      "geoReference": "248 NM NORTH-NORTHWEST OF KADENA AB",
       "reasoning": {
         "warningNumber": "043",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
@@ -266,38 +266,45 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 405,
-        "bearingDeg": 26,
+        "distanceNm": 483,
+        "bearingDeg": 27,
         "closestApproach": {
-          "distanceNm": 536,
+          "distanceNm": 613,
           "tau": 12,
-          "validZ": "251200Z",
-          "maxWindKt": 45,
+          "validZ": "251800Z",
+          "maxWindKt": 35,
           "recedingOnly": true
         }
       },
       "motion": {
-        "currentHeadingDeg": 50,
+        "currentHeadingDeg": 40,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 49
+            "heading": 56
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 67
+            "heading": 75
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 74
+            "heading": 75
           }
         ],
-        "turns": []
+        "turns": [
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "headingDeg": 75,
+            "deltaDeg": 35
+          }
+        ]
       },
       "swell": {
         "windowEnd": "2026-10-29T15:00:00.000Z",
@@ -311,10 +318,10 @@
           "dirDeg": 102
         },
         "now": {
-          "targetTime": "2026-10-25T07:00:00.000Z",
-          "heightM": 1.64,
-          "periodS": 7.2,
-          "dirDeg": 82
+          "targetTime": "2026-10-25T08:00:00.000Z",
+          "heightM": 1.6,
+          "periodS": 7,
+          "dirDeg": 79
         },
         "peak": {
           "targetTime": "2026-10-27T18:00:00.000Z",
@@ -332,12 +339,12 @@
         "generatedAt": "2026-10-25T05:13:46.820Z"
       },
       "changes": {
-        "previousWarningNumber": "042",
-        "previousIssuedAt": "2026-10-24T21:00:00.000Z",
-        "maxWindKtDelta": 0,
-        "pressureMbDelta": 0,
-        "seasFtDelta": 0,
-        "closestApproachNmDelta": 71
+        "previousWarningNumber": "043",
+        "previousIssuedAt": "2026-10-25T03:00:00.000Z",
+        "maxWindKtDelta": -5,
+        "pressureMbDelta": 8,
+        "seasFtDelta": 1,
+        "closestApproachNmDelta": 77
       }
     }
   ],
