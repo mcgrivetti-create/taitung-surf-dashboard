@@ -21028,6 +21028,171 @@
       "reasoningWarningNumber": null,
       "significantForecastChanges": null,
       "confidence": null
+    },
+    {
+      "kind": "warning",
+      "id": "30W",
+      "name": "In-fa",
+      "designation": "Typhoon",
+      "warningNumber": "010",
+      "issuedAt": "2026-10-25T21:00:00.000Z",
+      "positionZ": "251800Z",
+      "lat": 13.4,
+      "lon": 163.9,
+      "maxWindKt": 80,
+      "gustKt": 100,
+      "pressureMb": 979,
+      "seasFt": 28,
+      "movingToward": 315,
+      "movingKt": 8,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "260600Z",
+          "lat": 14,
+          "lon": 163.2,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 24,
+          "validZ": "261800Z",
+          "lat": 14.3,
+          "lon": 162.9,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 36,
+          "validZ": "270600Z",
+          "lat": 14.5,
+          "lon": 162.2,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 48,
+          "validZ": "271800Z",
+          "lat": 14.6,
+          "lon": 161.2,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 60,
+          "validZ": "280600Z",
+          "lat": 14.8,
+          "lon": 159.3,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 72,
+          "validZ": "281800Z",
+          "lat": 15.1,
+          "lon": 157,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 96,
+          "validZ": "291800Z",
+          "lat": 16.4,
+          "lon": 150.3,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 120,
+          "validZ": "301800Z",
+          "lat": 19.1,
+          "lon": 143.6,
+          "maxWindKt": 120,
+          "gustKt": 145
+        }
+      ],
+      "spot": {
+        "distanceNm": 2487,
+        "bearingDeg": 96,
+        "closestApproach": {
+          "distanceNm": 1269,
+          "tau": 120,
+          "validZ": "301800Z",
+          "maxWindKt": 120
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 315,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 312
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 316
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 287
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 276
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 276
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 278
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 282
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 294
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "headingDeg": 276,
+            "deltaDeg": 39
+          }
+        ]
+      },
+      "swell": {
+        "status": "none",
+        "windowEnd": "2026-10-30T15:00:00.000Z",
+        "creditedTo": "Champi"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts persistent vortical hot towers associated with a seemingly ragged central dense overcast (cdo). TY 30W is traveling north-northwestward along the northwestern periphery of the ner. Despite moderate mid-level shear entraining dry air into the vortex, the system has managed to steadily intensify.",
+        "warningNumber": "009",
+        "generatedAt": "2026-10-25T15:13:37.353Z"
+      },
+      "reasoningWarningNumber": "009",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
