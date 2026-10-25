@@ -180,6 +180,14 @@
             "WaveDirectionDescription": "ENE",
             "WavePeriod": "5.7",
             "SeaTemperature": "27.9"
+          },
+          {
+            "DateTime": "2026-10-25T23:00:00+08:00",
+            "WaveHeight": "1.4",
+            "WaveDirection": "73.0",
+            "WaveDirectionDescription": "ENE",
+            "WavePeriod": "5.9",
+            "SeaTemperature": "27.9"
           }
         ]
       },
@@ -803,6 +811,37 @@
                   "CurrentDirectionDescription": "S",
                   "CurrentSpeed": "0.06",
                   "CurrentSpeedInKnots": "0.12"
+                }
+              ]
+            }
+          },
+          {
+            "DateTime": "2026-10-26T00:00:00+08:00",
+            "TideHeight": "None",
+            "TideLevel": "-",
+            "WaveHeight": "1.8",
+            "WaveDirection": "112.0",
+            "WaveDirectionDescription": "ESE",
+            "WavePeriod": "6.8",
+            "SeaTemperature": "None",
+            "Temperature": "None",
+            "StationPressure": "1016.1",
+            "PrimaryAnemometer": {
+              "WindSpeed": "3.3",
+              "WindScale": "2",
+              "WindDirection": "339.0",
+              "WindDirectionDescription": "NNW",
+              "MaximumWindSpeed": "5.6",
+              "MaximumWindScale": "4"
+            },
+            "SeaCurrents": {
+              "Layer": [
+                {
+                  "LayerNumber": "1",
+                  "CurrentDirection": "194",
+                  "CurrentDirectionDescription": "SSW",
+                  "CurrentSpeed": "0.03",
+                  "CurrentSpeedInKnots": "0.06"
                 }
               ]
             }
