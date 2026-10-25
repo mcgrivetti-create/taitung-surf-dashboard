@@ -20089,6 +20089,120 @@
         "intensity0072": "HIGH",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "29W",
+      "name": "Champi",
+      "designation": "Tropical Storm",
+      "warningNumber": "043",
+      "issuedAt": "2026-10-25T03:00:00.000Z",
+      "positionZ": "250000Z",
+      "lat": 29,
+      "lon": 124.7,
+      "maxWindKt": 50,
+      "gustKt": 65,
+      "pressureMb": 987,
+      "seasFt": 23,
+      "movingToward": 50,
+      "movingKt": 11,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "251200Z",
+          "lat": 30.5,
+          "lon": 126.7,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 24,
+          "validZ": "260000Z",
+          "lat": 31.5,
+          "lon": 129.5,
+          "maxWindKt": 35,
+          "gustKt": 45
+        },
+        {
+          "tau": 36,
+          "validZ": "261200Z",
+          "lat": 32.3,
+          "lon": 133.1,
+          "maxWindKt": 30,
+          "gustKt": 40
+        }
+      ],
+      "spot": {
+        "distanceNm": 405,
+        "bearingDeg": 26,
+        "closestApproach": {
+          "distanceNm": 536,
+          "tau": 12,
+          "validZ": "251200Z",
+          "maxWindKt": 45,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 50,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 49
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 67
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 74
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-29T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-10-20T13:00:00.000Z",
+          "source": "buoy",
+          "buoy": "Chenggong",
+          "heightM": 1.7,
+          "periodS": 8,
+          "dirDeg": 102
+        },
+        "now": {
+          "targetTime": "2026-10-25T01:00:00.000Z",
+          "heightM": 1.2,
+          "periodS": 7.8,
+          "dirDeg": 85
+        },
+        "peak": {
+          "targetTime": "2026-10-27T18:00:00.000Z",
+          "heightM": 1.86,
+          "periodS": 6.9,
+          "dirDeg": 67
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts an expansive swirling mass of low-level clouds. TS 29W is now rounding the ridge axis and beginning to turn east, which will continue over the next 36 hours, along the northwest periphery of the STR and gradually gain forward speed. These conditions will result in continued weakening as the system enters the baroclinic zone, begins extratropical transition (ETT) near +24h, and completes ETT by +48h.",
+        "warningNumber": "041",
+        "generatedAt": "2026-10-24T17:13:41.037Z"
+      },
+      "reasoningWarningNumber": "042",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
     }
   ]
 }

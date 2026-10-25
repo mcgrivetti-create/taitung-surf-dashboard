@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-25T01:13:47.844Z",
+  "fetchedAt": "2026-10-25T01:33:36.423Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -201,62 +201,54 @@
       "id": "29W",
       "name": "Champi",
       "headline": "Tropical Storm 29W (Champi)",
-      "warningNumber": "042",
-      "issuedZ": "24/2100Z",
-      "issuedAt": "2026-10-24T21:00:00.000Z",
+      "warningNumber": "043",
+      "issuedZ": "25/0300Z",
+      "issuedAt": "2026-10-25T03:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "250600Z",
-          "lat": 29.8,
-          "lon": 125.4,
-          "maxWindKt": 40,
-          "gustKt": 50
+          "validZ": "251200Z",
+          "lat": 30.5,
+          "lon": 126.7,
+          "maxWindKt": 45,
+          "gustKt": 55
         },
         {
           "tau": 24,
-          "validZ": "251800Z",
-          "lat": 31.1,
-          "lon": 127.6,
+          "validZ": "260000Z",
+          "lat": 31.5,
+          "lon": 129.5,
           "maxWindKt": 35,
           "gustKt": 45
         },
         {
           "tau": 36,
-          "validZ": "260600Z",
-          "lat": 32,
-          "lon": 130.8,
-          "maxWindKt": 30,
-          "gustKt": 40
-        },
-        {
-          "tau": 48,
-          "validZ": "261800Z",
-          "lat": 32.8,
-          "lon": 135.1,
+          "validZ": "261200Z",
+          "lat": 32.3,
+          "lon": 133.1,
           "maxWindKt": 30,
           "gustKt": 40
         }
       ],
-      "positionZ": "241800Z",
-      "lat": 28.3,
-      "lon": 123.8,
-      "movingToward": 30,
+      "positionZ": "250000Z",
+      "lat": 29,
+      "lon": 124.7,
+      "movingToward": 50,
       "movingKt": 11,
       "maxWindKt": 50,
       "gustKt": 65,
       "pressureMb": 987,
       "seasFt": 23,
       "nextWarnings": [
-        "250300Z",
         "250900Z",
         "251500Z",
-        "252100Z. REFER TO TROPICAL STORM 30W (IN-FA) WARNINGS (WTPN31 PGTW) FOR SIX-HOURLY UPDATES"
+        "252100Z",
+        "260300Z. REFER TO TROPICAL STORM 30W (IN-FA) WARNINGS (WTPN31 PGTW) FOR SIX-HOURLY UPDATES"
       ],
-      "geoReference": "419 NM SOUTHWEST OF SASEBO, JAPAN",
+      "geoReference": "356 NM SOUTHWEST OF SASEBO, JAPAN",
       "reasoning": {
         "warningNumber": "042",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
@@ -274,50 +266,38 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 347,
-        "bearingDeg": 22,
+        "distanceNm": 405,
+        "bearingDeg": 26,
         "closestApproach": {
-          "distanceNm": 465,
+          "distanceNm": 536,
           "tau": 12,
-          "validZ": "250600Z",
-          "maxWindKt": 40,
+          "validZ": "251200Z",
+          "maxWindKt": 45,
           "recedingOnly": true
         }
       },
       "motion": {
-        "currentHeadingDeg": 30,
+        "currentHeadingDeg": 50,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 43
+            "heading": 49
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 55
+            "heading": 67
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 71
-          },
-          {
-            "fromTau": 36,
-            "toTau": 48,
-            "heading": 76
+            "heading": 74
           }
         ],
-        "turns": [
-          {
-            "fromTau": 24,
-            "toTau": 36,
-            "headingDeg": 71,
-            "deltaDeg": 41
-          }
-        ]
+        "turns": []
       },
       "swell": {
         "windowEnd": "2026-10-29T15:00:00.000Z",
@@ -352,12 +332,12 @@
         "generatedAt": "2026-10-24T17:13:41.037Z"
       },
       "changes": {
-        "previousWarningNumber": "041",
-        "previousIssuedAt": "2026-10-24T15:00:00.000Z",
+        "previousWarningNumber": "042",
+        "previousIssuedAt": "2026-10-24T21:00:00.000Z",
         "maxWindKtDelta": 0,
         "pressureMbDelta": 0,
         "seasFtDelta": 0,
-        "closestApproachNmDelta": 40
+        "closestApproachNmDelta": 71
       }
     }
   ],
