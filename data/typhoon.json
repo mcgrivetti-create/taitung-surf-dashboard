@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-25T19:13:40.993Z",
+  "fetchedAt": "2026-10-25T19:33:45.575Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -11,7 +11,7 @@
       "issuedAt": "2026-10-25T15:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp3026.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp3026web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610251200-96_IN-FA_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610251800-96_IN-FA_enus.png",
       "forecasts": [
         {
           "tau": 12,
@@ -202,100 +202,62 @@
       "id": "29W",
       "name": "Champi",
       "headline": "Tropical Storm 29W (Champi)",
-      "warningNumber": "045",
-      "issuedZ": "25/1500Z",
-      "issuedAt": "2026-10-25T15:00:00.000Z",
+      "warningNumber": "046",
+      "issuedZ": "25/2100Z",
+      "issuedAt": "2026-10-25T21:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "260000Z",
-          "lat": 31.5,
-          "lon": 129,
+          "validZ": "260600Z",
+          "lat": 31.9,
+          "lon": 130.5,
           "maxWindKt": 35,
           "gustKt": 45
         },
         {
           "tau": 24,
-          "validZ": "261200Z",
-          "lat": 32.2,
-          "lon": 132.6,
-          "maxWindKt": 30,
-          "gustKt": 40
-        },
-        {
-          "tau": 36,
-          "validZ": "270000Z",
-          "lat": 33,
-          "lon": 136.2,
+          "validZ": "261800Z",
+          "lat": 32.6,
+          "lon": 135,
           "maxWindKt": 30,
           "gustKt": 40
         }
       ],
-      "positionZ": "251200Z",
-      "lat": 30.7,
-      "lon": 126.3,
-      "movingToward": 50,
-      "movingKt": 9,
-      "maxWindKt": 40,
-      "gustKt": 50,
-      "pressureMb": 999,
-      "seasFt": 18,
-      "nextWarnings": [
-        "252100Z",
-        "260300Z",
-        "260900Z",
-        "261500Z. REFER TO TYPHOON 30W (IN-FA) WARNINGS (WTPN31 PGTW) FOR SIX-HOURLY UPDATES"
-      ],
-      "geoReference": "225 NM SOUTHWEST OF SASEBO, JAPAN",
-      "reasoning": {
-        "warningNumber": "045",
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 18,
-        "environment": "HIGHLY UNFAVORABLE",
-        "vws": "20-25 KTS",
-        "sst": "25-26 CELSIUS",
-        "outflow": "STRONG POLEWARD",
-        "steering": "NORTHWESTERN FLANK OF A LOW- TO MID-LEVEL SUBTROPICAL RIDGE CENTERED SOUTHEAST OF HONSHU",
-        "confidence": {
-          "track0072": "HIGH",
-          "track72120": null,
-          "intensity0072": "HIGH",
-          "intensity72120": null
-        }
-      },
-      "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp2926prog.txt",
-      "reasoningLagsWarning": false,
+      "positionZ": "251800Z",
+      "lat": 31.2,
+      "lon": 127.4,
+      "movingToward": 60,
+      "movingKt": 11,
+      "maxWindKt": 35,
+      "gustKt": 45,
+      "pressureMb": 1002,
+      "geoReference": "163 NM SOUTHWEST OF SASEBO, JAPAN",
       "spot": {
-        "distanceNm": 535,
-        "bearingDeg": 29,
+        "distanceNm": 591,
+        "bearingDeg": 32,
         "closestApproach": {
-          "distanceNm": 655,
+          "distanceNm": 725,
           "tau": 12,
-          "validZ": "260000Z",
+          "validZ": "260600Z",
           "maxWindKt": 35,
           "recedingOnly": true
         }
       },
       "motion": {
-        "currentHeadingDeg": 50,
+        "currentHeadingDeg": 60,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 70
+            "heading": 74
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 76
-          },
-          {
-            "fromTau": 24,
-            "toTau": 36,
-            "heading": 74
+            "heading": 78
           }
         ],
         "turns": []
@@ -333,12 +295,11 @@
         "generatedAt": "2026-10-25T17:13:33.352Z"
       },
       "changes": {
-        "previousWarningNumber": "044",
-        "previousIssuedAt": "2026-10-25T09:00:00.000Z",
+        "previousWarningNumber": "045",
+        "previousIssuedAt": "2026-10-25T15:00:00.000Z",
         "maxWindKtDelta": -5,
-        "pressureMbDelta": 4,
-        "seasFtDelta": -6,
-        "closestApproachNmDelta": 42
+        "pressureMbDelta": 3,
+        "closestApproachNmDelta": 70
       }
     }
   ],
