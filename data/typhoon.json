@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-25T08:34:05.515Z",
+  "fetchedAt": "2026-10-25T09:13:33.971Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -95,14 +95,14 @@
       ],
       "geoReference": "448 NM SOUTH-SOUTHWEST OF WAKE ISLAND",
       "reasoning": {
-        "warningNumber": "007",
+        "warningNumber": "008",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 15,
+        "seasFt": 20,
         "environment": "FAVORABLE",
-        "vws": "10-15 KTS",
-        "sst": "28-29 CELSIUS",
-        "outflow": "MODERATE POLEWARD",
-        "steering": "WEAK STEERING ENVIRONMENT PREDOMINANTLY CONTROLLED BY A NEAR EQUATORIAL RIDGE (NER) CENTERED TO THE SOUTHEAST",
+        "vws": "15-20 KTS",
+        "sst": "29-30 CELSIUS",
+        "outflow": "STRONG POLEWARD",
+        "steering": "NEAR-EQUATORIAL RIDGE TO THE SOUTHEAST",
         "confidence": {
           "track0072": "MEDIUM",
           "track72120": "MEDIUM",
@@ -111,7 +111,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2577,
         "bearingDeg": 97,
@@ -318,10 +318,10 @@
           "dirDeg": 102
         },
         "now": {
-          "targetTime": "2026-10-25T08:00:00.000Z",
-          "heightM": 1.6,
-          "periodS": 7,
-          "dirDeg": 79
+          "targetTime": "2026-10-25T09:00:00.000Z",
+          "heightM": 1.58,
+          "periodS": 6.9,
+          "dirDeg": 77
         },
         "peak": {
           "targetTime": "2026-10-27T18:00:00.000Z",
