@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-25T20:33:33.745Z",
+  "fetchedAt": "2026-10-25T21:13:35.044Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -95,9 +95,9 @@
       ],
       "geoReference": "364 NM NORTHWEST OF KWAJALEIN",
       "reasoning": {
-        "warningNumber": "009",
+        "warningNumber": "010",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 25,
+        "seasFt": 28,
         "environment": "FAVORABLE",
         "vws": "15-20 KTS",
         "sst": "29-30 CELSIUS",
@@ -105,13 +105,13 @@
         "steering": "NORTHWESTERN FLANK OF A DEEP-LAYER NEAR-EQUATORIAL RIDGE (NER) TO THE SOUTHEAST",
         "confidence": {
           "track0072": "HIGH",
-          "track72120": "MEDIUM",
+          "track72120": "HIGH",
           "intensity0072": "MEDIUM",
           "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2487,
         "bearingDeg": 96,
@@ -273,9 +273,9 @@
           "dirDeg": 102
         },
         "now": {
-          "targetTime": "2026-10-25T20:00:00.000Z",
-          "heightM": 1.38,
-          "periodS": 6.75,
+          "targetTime": "2026-10-25T21:00:00.000Z",
+          "heightM": 1.28,
+          "periodS": 6.7,
           "dirDeg": 79
         },
         "peak": {
