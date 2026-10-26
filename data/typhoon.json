@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-26T08:33:50.318Z",
+  "fetchedAt": "2026-10-26T09:13:47.779Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -95,23 +95,23 @@
       ],
       "geoReference": "379 NM SOUTHWEST OF WAKE ISLAND",
       "reasoning": {
-        "warningNumber": "011",
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 30,
-        "environment": "HIGHLY FAVORABLE",
-        "vws": "10-15 KTS",
-        "sst": "28-29 CELSIUS",
-        "outflow": "STRONG POLEWARD",
-        "steering": "A COMPETING STEERING ENVIRONMENT BETWEEN THE NORTHWESTERN FLANK OF A DEEP-LAYER NEAR-EQUATORIAL RIDGE (NER) TO THE SOUTHEAST AND A SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTHWEST",
+        "warningNumber": "012",
+        "significantForecastChanges": "THE INTENSITY FORECAST HAS BEEN SIGNIFICANTLY INCREASED.",
+        "seasFt": 38,
+        "environment": "FAVORABLE",
+        "vws": "15-20 KTS",
+        "sst": "29-30 CELSIUS",
+        "outflow": "MODERATE RADIAL",
+        "steering": "COMPETING INFLUENCES BETWEEN A DEEP-LAYER NEAR-EQUATORIAL RIDGE (NER) TO THE SOUTH AND A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED SOUTH-SOUTHEAST OF HONSHU",
         "confidence": {
           "track0072": "HIGH",
           "track72120": "HIGH",
           "intensity0072": "MEDIUM",
-          "intensity72120": "LOW"
+          "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2425,
         "bearingDeg": 95,
@@ -266,9 +266,9 @@
           "dirDeg": 102
         },
         "now": {
-          "targetTime": "2026-10-26T08:00:00.000Z",
-          "heightM": 1.06,
-          "periodS": 8.75,
+          "targetTime": "2026-10-26T09:00:00.000Z",
+          "heightM": 1.08,
+          "periodS": 8.7,
           "dirDeg": 91
         },
         "peak": {
