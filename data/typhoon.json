@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-26T14:33:53.535Z",
+  "fetchedAt": "2026-10-26T15:13:45.297Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -95,23 +95,23 @@
       ],
       "geoReference": "384 NM SOUTHWEST OF WAKE ISLAND",
       "reasoning": {
-        "warningNumber": "012",
-        "significantForecastChanges": "THE INTENSITY FORECAST HAS BEEN SIGNIFICANTLY INCREASED.",
-        "seasFt": 38,
-        "environment": "FAVORABLE",
-        "vws": "15-20 KTS",
+        "warningNumber": "013",
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "seasFt": 35,
+        "environment": "MARGINAL",
+        "vws": "20-25 KTS",
         "sst": "29-30 CELSIUS",
-        "outflow": "MODERATE RADIAL",
-        "steering": "COMPETING INFLUENCES BETWEEN A DEEP-LAYER NEAR-EQUATORIAL RIDGE (NER) TO THE SOUTH AND A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED SOUTH-SOUTHEAST OF HONSHU",
+        "outflow": "WEAK EASTWARD",
+        "steering": "SOUTHEASTERN PERIPHERY OF A SUBTROPICAL RIDGE (STR) CENTERED SOUTH OF HONSHU",
         "confidence": {
           "track0072": "HIGH",
-          "track72120": "HIGH",
+          "track72120": "MEDIUM",
           "intensity0072": "MEDIUM",
           "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2407,
         "bearingDeg": 95,
@@ -176,9 +176,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 30W as a much-improved system when compared to 6 hours ago. TS 30W (in-fa) is forecast to continue tracking for the next 12 hours while it remains on the northwestern periphery of the ner centered to its southeast. Regarding intensity, 30W is assessed to be rapidly intensifying, and is forecast to continue ri through +12h.",
-        "warningNumber": "011",
-        "generatedAt": "2026-10-26T03:13:49.082Z"
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a slowly deteriorating convective structure, with warming cloud top temperatures associated with the central dense overcast and cooling eye temperatures. TY 30W is executing the expected westward turn as the deep-layer STR to the northwest shifts eastward. The cooler SST and ongoing VWS will cause some near-term weakening.",
+        "warningNumber": "013",
+        "generatedAt": "2026-10-26T15:13:45.297Z"
       },
       "changes": {
         "previousWarningNumber": "012",
@@ -266,9 +266,9 @@
           "dirDeg": 102
         },
         "now": {
-          "targetTime": "2026-10-26T14:00:00.000Z",
-          "heightM": 1.3,
-          "periodS": 7.8,
+          "targetTime": "2026-10-26T15:00:00.000Z",
+          "heightM": 1.32,
+          "periodS": 7.7,
           "dirDeg": 77
         },
         "peak": {
