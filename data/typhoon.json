@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-26T02:33:48.991Z",
+  "fetchedAt": "2026-10-26T03:13:49.082Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -95,23 +95,23 @@
       ],
       "geoReference": "1014 NM EAST OF SAIPAN",
       "reasoning": {
-        "warningNumber": "010",
+        "warningNumber": "011",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 28,
-        "environment": "FAVORABLE",
-        "vws": "15-20 KTS",
-        "sst": "29-30 CELSIUS",
+        "seasFt": 30,
+        "environment": "HIGHLY FAVORABLE",
+        "vws": "10-15 KTS",
+        "sst": "28-29 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "NORTHWESTERN FLANK OF A DEEP-LAYER NEAR-EQUATORIAL RIDGE (NER) TO THE SOUTHEAST",
+        "steering": "A COMPETING STEERING ENVIRONMENT BETWEEN THE NORTHWESTERN FLANK OF A DEEP-LAYER NEAR-EQUATORIAL RIDGE (NER) TO THE SOUTHEAST AND A SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTHWEST",
         "confidence": {
           "track0072": "HIGH",
           "track72120": "HIGH",
           "intensity0072": "MEDIUM",
-          "intensity72120": "MEDIUM"
+          "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2440,
         "bearingDeg": 96,
@@ -176,9 +176,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated enhanced infrared (EIR) satellite imagery depicts persistent vortical hot towers associated with a seemingly ragged central dense overcast (cdo). TY 30W is traveling north-northwestward along the northwestern periphery of the ner. Despite moderate mid-level shear entraining dry air into the vortex, the system has managed to steadily intensify.",
-        "warningNumber": "009",
-        "generatedAt": "2026-10-25T15:13:37.353Z"
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 30W as a much-improved system when compared to 6 hours ago. TS 30W (in-fa) is forecast to continue tracking for the next 12 hours while it remains on the northwestern periphery of the ner centered to its southeast. Regarding intensity, 30W is assessed to be rapidly intensifying, and is forecast to continue ri through +12h.",
+        "warningNumber": "011",
+        "generatedAt": "2026-10-26T03:13:49.082Z"
       },
       "changes": {
         "previousWarningNumber": "010",
@@ -266,10 +266,10 @@
           "dirDeg": 102
         },
         "now": {
-          "targetTime": "2026-10-26T02:00:00.000Z",
-          "heightM": 1.12,
-          "periodS": 7.55,
-          "dirDeg": 87
+          "targetTime": "2026-10-26T03:00:00.000Z",
+          "heightM": 1.04,
+          "periodS": 8.1,
+          "dirDeg": 92
         },
         "peak": {
           "targetTime": "2026-10-27T12:00:00.000Z",
