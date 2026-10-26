@@ -21193,6 +21193,164 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "30W",
+      "name": "In-fa",
+      "designation": "Typhoon",
+      "warningNumber": "011",
+      "issuedAt": "2026-10-26T03:00:00.000Z",
+      "positionZ": "260000Z",
+      "lat": 13.8,
+      "lon": 163.2,
+      "maxWindKt": 80,
+      "gustKt": 100,
+      "pressureMb": 976,
+      "seasFt": 30,
+      "movingToward": 300,
+      "movingKt": 8,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "261200Z",
+          "lat": 14.1,
+          "lon": 162.7,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 24,
+          "validZ": "270000Z",
+          "lat": 14.3,
+          "lon": 162.3,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 36,
+          "validZ": "271200Z",
+          "lat": 14.4,
+          "lon": 161.6,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 48,
+          "validZ": "280000Z",
+          "lat": 14.6,
+          "lon": 160.1,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 60,
+          "validZ": "281200Z",
+          "lat": 14.9,
+          "lon": 157.9,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 72,
+          "validZ": "290000Z",
+          "lat": 15.3,
+          "lon": 155,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 96,
+          "validZ": "300000Z",
+          "lat": 16.9,
+          "lon": 148,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 120,
+          "validZ": "310000Z",
+          "lat": 20.2,
+          "lon": 142.3,
+          "maxWindKt": 105,
+          "gustKt": 130
+        }
+      ],
+      "spot": {
+        "distanceNm": 2440,
+        "bearingDeg": 96,
+        "closestApproach": {
+          "distanceNm": 1182,
+          "tau": 120,
+          "validZ": "310000Z",
+          "maxWindKt": 105
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 300,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 302
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 297
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 278
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 278
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 278
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 279
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 284
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 302
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "status": "none",
+        "windowEnd": "2026-10-30T15:00:00.000Z",
+        "creditedTo": "Champi"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts persistent vortical hot towers associated with a seemingly ragged central dense overcast (cdo). TY 30W is traveling north-northwestward along the northwestern periphery of the ner. Despite moderate mid-level shear entraining dry air into the vortex, the system has managed to steadily intensify.",
+        "warningNumber": "009",
+        "generatedAt": "2026-10-25T15:13:37.353Z"
+      },
+      "reasoningWarningNumber": "010",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "HIGH",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
