@@ -21351,6 +21351,164 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "30W",
+      "name": "In-fa",
+      "designation": "Typhoon",
+      "warningNumber": "012",
+      "issuedAt": "2026-10-26T09:00:00.000Z",
+      "positionZ": "260600Z",
+      "lat": 14,
+      "lon": 163,
+      "maxWindKt": 115,
+      "gustKt": 140,
+      "pressureMb": 947,
+      "seasFt": 38,
+      "movingToward": 305,
+      "movingKt": 4,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "261800Z",
+          "lat": 14.2,
+          "lon": 162.5,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 24,
+          "validZ": "270600Z",
+          "lat": 14.4,
+          "lon": 161.9,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 36,
+          "validZ": "271800Z",
+          "lat": 14.5,
+          "lon": 160.7,
+          "maxWindKt": 130,
+          "gustKt": 160
+        },
+        {
+          "tau": 48,
+          "validZ": "280600Z",
+          "lat": 14.7,
+          "lon": 158.9,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 60,
+          "validZ": "281800Z",
+          "lat": 15.1,
+          "lon": 156.3,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 72,
+          "validZ": "290600Z",
+          "lat": 15.5,
+          "lon": 153.2,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 96,
+          "validZ": "300600Z",
+          "lat": 17.4,
+          "lon": 146.3,
+          "maxWindKt": 135,
+          "gustKt": 165
+        },
+        {
+          "tau": 120,
+          "validZ": "310600Z",
+          "lat": 20.6,
+          "lon": 141.6,
+          "maxWindKt": 125,
+          "gustKt": 150
+        }
+      ],
+      "spot": {
+        "distanceNm": 2425,
+        "bearingDeg": 95,
+        "closestApproach": {
+          "distanceNm": 1139,
+          "tau": 120,
+          "validZ": "310600Z",
+          "maxWindKt": 125
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 305,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 292
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 289
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 275
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 277
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 279
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 278
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 287
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 307
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "status": "none",
+        "windowEnd": "2026-10-30T15:00:00.000Z",
+        "creditedTo": "Champi"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 30W as a much-improved system when compared to 6 hours ago. TS 30W (in-fa) is forecast to continue tracking for the next 12 hours while it remains on the northwestern periphery of the ner centered to its southeast. Regarding intensity, 30W is assessed to be rapidly intensifying, and is forecast to continue ri through +12h.",
+        "warningNumber": "011",
+        "generatedAt": "2026-10-26T03:13:49.082Z"
+      },
+      "reasoningWarningNumber": "011",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "HIGH",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
