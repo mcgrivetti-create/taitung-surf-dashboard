@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-26T21:33:42.104Z",
+  "fetchedAt": "2026-10-26T22:13:39.780Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -175,9 +175,22 @@
         ]
       },
       "swell": {
-        "status": "none",
         "windowEnd": "2026-10-31T15:00:00.000Z",
-        "creditedTo": "Champi"
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-28T07:00:00.000Z",
+          "heightM": 1.64,
+          "periodS": 7.35,
+          "dirDeg": 70
+        },
+        "hoursAhead": 33,
+        "bearingOffsetDeg": 25,
+        "peak": {
+          "targetTime": "2026-10-28T09:00:00.000Z",
+          "heightM": 2.02,
+          "periodS": 6.8,
+          "dirDeg": 69
+        }
       },
       "retireFrom": null,
       "retired": false,
@@ -192,111 +205,6 @@
         "maxWindKtDelta": -5,
         "seasFtDelta": 1,
         "closestApproachNmDelta": -4
-      }
-    },
-    {
-      "designation": "Tropical Storm",
-      "id": "29W",
-      "name": "Champi",
-      "headline": "Tropical Storm 29W (Champi)",
-      "warningNumber": "046",
-      "issuedZ": "25/2100Z",
-      "issuedAt": "2026-10-25T21:00:00.000Z",
-      "graphic": "https://www.metoc.navy.mil/jtwc/products/wp2926.gif",
-      "warningText": "https://www.metoc.navy.mil/jtwc/products/wp2926web.txt",
-      "cwaTrackImage": null,
-      "forecasts": [
-        {
-          "tau": 12,
-          "validZ": "260600Z",
-          "lat": 31.9,
-          "lon": 130.5,
-          "maxWindKt": 35,
-          "gustKt": 45
-        },
-        {
-          "tau": 24,
-          "validZ": "261800Z",
-          "lat": 32.6,
-          "lon": 135,
-          "maxWindKt": 30,
-          "gustKt": 40
-        }
-      ],
-      "positionZ": "251800Z",
-      "lat": 31.2,
-      "lon": 127.4,
-      "movingToward": 60,
-      "movingKt": 11,
-      "maxWindKt": 35,
-      "gustKt": 45,
-      "pressureMb": 1002,
-      "geoReference": "163 NM SOUTHWEST OF SASEBO, JAPAN",
-      "spot": {
-        "distanceNm": 591,
-        "bearingDeg": 32,
-        "closestApproach": {
-          "distanceNm": 725,
-          "tau": 12,
-          "validZ": "260600Z",
-          "maxWindKt": 35,
-          "recedingOnly": true
-        }
-      },
-      "motion": {
-        "currentHeadingDeg": 60,
-        "legs": [
-          {
-            "fromTau": 0,
-            "toTau": 12,
-            "heading": 74
-          },
-          {
-            "fromTau": 12,
-            "toTau": 24,
-            "heading": 78
-          }
-        ],
-        "turns": []
-      },
-      "swell": {
-        "windowEnd": "2026-10-31T15:00:00.000Z",
-        "status": "in-water",
-        "arrival": {
-          "targetTime": "2026-10-20T13:00:00.000Z",
-          "source": "buoy",
-          "buoy": "Chenggong",
-          "heightM": 1.7,
-          "periodS": 8,
-          "dirDeg": 102
-        },
-        "now": {
-          "targetTime": "2026-10-26T21:00:00.000Z",
-          "heightM": 1.38,
-          "periodS": 7.5,
-          "dirDeg": 78
-        },
-        "peak": {
-          "targetTime": "2026-10-28T09:00:00.000Z",
-          "heightM": 2.02,
-          "periodS": 6.8,
-          "dirDeg": 69
-        },
-        "easing": false
-      },
-      "retireFrom": null,
-      "retired": false,
-      "summary": {
-        "text": "Tropical storm (TS) 29W remains devoid of convection with widespread cirrus over the northern periphery associated with a jet stream to the north. TS 29W will continue to turn eastward as it becomes embedded in deep-layer westerly flow, making landfall over southern Kyushu between +12h and +24h if the low-level circulation remains coherent. Baroclinic intensification is also unlikely, given the weak thermal advection and lack of strong upper-level support.",
-        "warningNumber": "045",
-        "generatedAt": "2026-10-25T17:13:33.352Z"
-      },
-      "changes": {
-        "previousWarningNumber": "045",
-        "previousIssuedAt": "2026-10-25T15:00:00.000Z",
-        "maxWindKtDelta": -5,
-        "pressureMbDelta": 3,
-        "closestApproachNmDelta": 70
       }
     }
   ],
