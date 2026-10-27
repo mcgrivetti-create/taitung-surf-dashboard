@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-27T02:13:34.134Z",
+  "fetchedAt": "2026-10-27T02:33:43.168Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -93,11 +93,11 @@
       ],
       "geoReference": "385 NM SOUTHWEST OF WAKE ISLAND",
       "reasoning": {
-        "warningNumber": "014",
+        "warningNumber": "015",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 36,
         "environment": "FAVORABLE",
-        "vws": "10-15 KTS",
+        "vws": "5-10 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "MODERATE RADIAL",
         "steering": "COMPETING STEERING ENVIRONMENT BETWEEN THE SOUTHEASTERN PERIPHERY OF A SUBTROPICAL RIDGE (STR) CENTERED SOUTH OF HONSHU AND A NEAR-EQUATORIAL RIDGE (NER) TO THE SOUTHEAST",
@@ -109,7 +109,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2387,
         "bearingDeg": 95,
@@ -175,7 +175,7 @@
           "periodS": 7.4,
           "dirDeg": 63
         },
-        "hoursAhead": 5,
+        "hoursAhead": 4,
         "bearingOffsetDeg": 32,
         "peak": {
           "targetTime": "2026-10-27T18:00:00.000Z",
