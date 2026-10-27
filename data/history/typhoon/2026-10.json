@@ -22000,6 +22000,182 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "30W",
+      "name": "In-fa",
+      "designation": "Typhoon",
+      "warningNumber": "016",
+      "issuedAt": "2026-10-27T09:00:00.000Z",
+      "positionZ": "270600Z",
+      "lat": 14.5,
+      "lon": 162.1,
+      "maxWindKt": 105,
+      "gustKt": 130,
+      "pressureMb": 954,
+      "seasFt": 30,
+      "movingToward": 305,
+      "movingKt": 4,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "271800Z",
+          "lat": 14.8,
+          "lon": 160.9,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 24,
+          "validZ": "280600Z",
+          "lat": 15,
+          "lon": 158.9,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 36,
+          "validZ": "281800Z",
+          "lat": 15.4,
+          "lon": 156.3,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 48,
+          "validZ": "290600Z",
+          "lat": 15.9,
+          "lon": 153.3,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 60,
+          "validZ": "291800Z",
+          "lat": 16.7,
+          "lon": 149.6,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 72,
+          "validZ": "300600Z",
+          "lat": 18.2,
+          "lon": 146.1,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 96,
+          "validZ": "310600Z",
+          "lat": 21.4,
+          "lon": 142.3,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 120,
+          "validZ": "010600Z",
+          "lat": 22.3,
+          "lon": 141.1,
+          "maxWindKt": 100,
+          "gustKt": 125
+        }
+      ],
+      "spot": {
+        "distanceNm": 2366,
+        "bearingDeg": 95,
+        "closestApproach": {
+          "distanceNm": 1096,
+          "tau": 120,
+          "validZ": "010600Z",
+          "maxWindKt": 100
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 305,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 285
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 276
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 279
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 280
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 283
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 295
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 312
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 309
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-31T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-10-27T07:00:00.000Z",
+          "heightM": 1.1,
+          "periodS": 7.4,
+          "dirDeg": 63
+        },
+        "now": {
+          "targetTime": "2026-10-27T08:00:00.000Z",
+          "heightM": 1.24,
+          "periodS": 6.65,
+          "dirDeg": 64
+        },
+        "peak": {
+          "targetTime": "2026-10-27T18:00:00.000Z",
+          "heightM": 1.94,
+          "periodS": 7.05,
+          "dirDeg": 67
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 30W with a dimple eye feature that remains cloud filled. The track motion of TY 30W continued at a slow 2 kt over the past 6 hours in a competing steering environment characterized by the southeastern periphery of an STR centered south of Honshu and a ner to the southeast. An extension of the STR is expected to break off and transit eastward to the north of the system while the ner weakens and moves westward through the next 24 to 36 hours.",
+        "warningNumber": "015",
+        "generatedAt": "2026-10-27T03:13:33.956Z"
+      },
+      "reasoningWarningNumber": "015",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }

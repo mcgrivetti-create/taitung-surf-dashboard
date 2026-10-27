@@ -1,97 +1,93 @@
 {
-  "fetchedAt": "2026-10-27T08:13:46.504Z",
+  "fetchedAt": "2026-10-27T08:33:46.553Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "30W",
       "name": "In-fa",
       "headline": "Typhoon 30W (In-fa)",
-      "warningNumber": "015",
-      "issuedZ": "27/0300Z",
-      "issuedAt": "2026-10-27T03:00:00.000Z",
+      "warningNumber": "016",
+      "issuedZ": "27/0900Z",
+      "issuedAt": "2026-10-27T09:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp3026.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp3026web.txt",
       "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610270600-96_IN-FA_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "271200Z",
-          "lat": 14.5,
-          "lon": 161.5,
-          "maxWindKt": 110,
-          "gustKt": 135
+          "validZ": "271800Z",
+          "lat": 14.8,
+          "lon": 160.9,
+          "maxWindKt": 115,
+          "gustKt": 140
         },
         {
           "tau": 24,
-          "validZ": "280000Z",
-          "lat": 14.7,
-          "lon": 160,
+          "validZ": "280600Z",
+          "lat": 15,
+          "lon": 158.9,
           "maxWindKt": 120,
           "gustKt": 145
         },
         {
           "tau": 36,
-          "validZ": "281200Z",
-          "lat": 14.9,
-          "lon": 157.8,
+          "validZ": "281800Z",
+          "lat": 15.4,
+          "lon": 156.3,
           "maxWindKt": 125,
           "gustKt": 150
         },
         {
           "tau": 48,
-          "validZ": "290000Z",
-          "lat": 15.5,
-          "lon": 154.9,
-          "maxWindKt": 130,
-          "gustKt": 160
+          "validZ": "290600Z",
+          "lat": 15.9,
+          "lon": 153.3,
+          "maxWindKt": 125,
+          "gustKt": 150
         },
         {
           "tau": 60,
-          "validZ": "291200Z",
-          "lat": 16,
-          "lon": 151.6,
-          "maxWindKt": 130,
-          "gustKt": 160
+          "validZ": "291800Z",
+          "lat": 16.7,
+          "lon": 149.6,
+          "maxWindKt": 125,
+          "gustKt": 150
         },
         {
           "tau": 72,
-          "validZ": "300000Z",
-          "lat": 17,
-          "lon": 148,
-          "maxWindKt": 130,
-          "gustKt": 160
-        },
-        {
-          "tau": 96,
-          "validZ": "310000Z",
-          "lat": 20.2,
-          "lon": 142.5,
+          "validZ": "300600Z",
+          "lat": 18.2,
+          "lon": 146.1,
           "maxWindKt": 120,
           "gustKt": 145
         },
         {
-          "tau": 120,
-          "validZ": "010000Z",
-          "lat": 22,
-          "lon": 141,
+          "tau": 96,
+          "validZ": "310600Z",
+          "lat": 21.4,
+          "lon": 142.3,
           "maxWindKt": 110,
           "gustKt": 135
+        },
+        {
+          "tau": 120,
+          "validZ": "010600Z",
+          "lat": 22.3,
+          "lon": 141.1,
+          "maxWindKt": 100,
+          "gustKt": 125
         }
       ],
-      "positionZ": "270000Z",
-      "lat": 14.3,
-      "lon": 162.4,
-      "movingToward": 295,
-      "movingKt": 2,
-      "maxWindKt": 110,
-      "gustKt": 135,
-      "nextWarnings": [
-        "270900Z",
-        "271500Z",
-        "272100Z",
-        "280300Z"
-      ],
-      "geoReference": "385 NM SOUTHWEST OF WAKE ISLAND",
+      "positionZ": "270600Z",
+      "lat": 14.5,
+      "lon": 162.1,
+      "movingToward": 305,
+      "movingKt": 4,
+      "maxWindKt": 105,
+      "gustKt": 130,
+      "pressureMb": 954,
+      "seasFt": 30,
+      "geoReference": "387 NM SOUTHWEST OF WAKE ISLAND",
       "reasoning": {
         "warningNumber": "015",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
@@ -109,59 +105,59 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 2387,
+        "distanceNm": 2366,
         "bearingDeg": 95,
         "closestApproach": {
-          "distanceNm": 1093,
+          "distanceNm": 1096,
           "tau": 120,
-          "validZ": "010000Z",
-          "maxWindKt": 110
+          "validZ": "010600Z",
+          "maxWindKt": 100
         }
       },
       "motion": {
-        "currentHeadingDeg": 295,
+        "currentHeadingDeg": 305,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 283
+            "heading": 285
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 278
+            "heading": 276
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 276
+            "heading": 279
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 282
+            "heading": 280
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 279
+            "heading": 283
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 287
+            "heading": 295
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 302
+            "heading": 312
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 322
+            "heading": 309
           }
         ],
         "turns": []
@@ -197,10 +193,10 @@
         "generatedAt": "2026-10-27T03:13:33.956Z"
       },
       "changes": {
-        "previousWarningNumber": "014",
-        "previousIssuedAt": "2026-10-26T21:00:00.000Z",
-        "maxWindKtDelta": 0,
-        "closestApproachNmDelta": 6
+        "previousWarningNumber": "015",
+        "previousIssuedAt": "2026-10-27T03:00:00.000Z",
+        "maxWindKtDelta": -5,
+        "closestApproachNmDelta": 3
       }
     }
   ],
