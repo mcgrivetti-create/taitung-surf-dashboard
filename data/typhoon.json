@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-27T14:33:40.647Z",
+  "fetchedAt": "2026-10-27T15:13:42.891Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -89,23 +89,23 @@
       "seasFt": 30,
       "geoReference": "407 NM SOUTHWEST OF WAKE ISLAND",
       "reasoning": {
-        "warningNumber": "016",
+        "warningNumber": "017",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 30,
         "environment": "FAVORABLE",
         "vws": "5-10 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "MODERATE RADIAL",
-        "steering": "COMPETING STEERING PATTERN, WITH A STRENGTHENING SUBTROPICAL RIDGE (STR) TO THE NORTHWEST, AND A WEAKENING NEAR EQUATORIAL RIDGE (NER) TO THE SOUTHEAST.",
+        "steering": "COMPETING STEERING PATTERN, WITH A NEAR-EQUATORIAL RIDGE (NER) TO THE SOUTHEAST AND A SUBTROPICAL RIDGE (STR) TO THE NORTHWEST.",
         "confidence": {
           "track0072": "HIGH",
-          "track72120": "MEDIUM",
+          "track72120": "LOW",
           "intensity0072": "MEDIUM",
           "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2339,
         "bearingDeg": 95,
@@ -181,9 +181,9 @@
           "dirDeg": 78
         },
         "now": {
-          "targetTime": "2026-10-27T14:00:00.000Z",
-          "heightM": 1.86,
-          "periodS": 7.05,
+          "targetTime": "2026-10-27T15:00:00.000Z",
+          "heightM": 1.9,
+          "periodS": 7,
           "dirDeg": 63
         },
         "peak": {
@@ -197,9 +197,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 30W with a dimple eye feature that remains cloud filled. The track motion of TY 30W continued at a slow 2 kt over the past 6 hours in a competing steering environment characterized by the southeastern periphery of an STR centered south of Honshu and a ner to the southeast. An extension of the STR is expected to break off and transit eastward to the north of the system while the ner weakens and moves westward through the next 24 to 36 hours.",
-        "warningNumber": "015",
-        "generatedAt": "2026-10-27T03:13:33.956Z"
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a compact system with a small, relatively cloud-free eye and deep convection re-establishing along the inner eyewall. Typhoon (TY) 30W has moved westward at a very slow pace over the past six hours, still embedded in a competing steering pattern between the ner to the southeast and the STR to the northwest. Over the next 12 to 24 hours, the ner is forecast to weaken and dissipate, ultimately merging with the STR as it expands east and strengthens.",
+        "warningNumber": "017",
+        "generatedAt": "2026-10-27T15:13:42.891Z"
       },
       "changes": {
         "previousWarningNumber": "016",
