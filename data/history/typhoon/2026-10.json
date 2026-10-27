@@ -21831,6 +21831,175 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "30W",
+      "name": "In-fa",
+      "designation": "Typhoon",
+      "warningNumber": "015",
+      "issuedAt": "2026-10-27T03:00:00.000Z",
+      "positionZ": "270000Z",
+      "lat": 14.3,
+      "lon": 162.4,
+      "maxWindKt": 110,
+      "gustKt": 135,
+      "movingToward": 295,
+      "movingKt": 2,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "271200Z",
+          "lat": 14.5,
+          "lon": 161.5,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 24,
+          "validZ": "280000Z",
+          "lat": 14.7,
+          "lon": 160,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 36,
+          "validZ": "281200Z",
+          "lat": 14.9,
+          "lon": 157.8,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 48,
+          "validZ": "290000Z",
+          "lat": 15.5,
+          "lon": 154.9,
+          "maxWindKt": 130,
+          "gustKt": 160
+        },
+        {
+          "tau": 60,
+          "validZ": "291200Z",
+          "lat": 16,
+          "lon": 151.6,
+          "maxWindKt": 130,
+          "gustKt": 160
+        },
+        {
+          "tau": 72,
+          "validZ": "300000Z",
+          "lat": 17,
+          "lon": 148,
+          "maxWindKt": 130,
+          "gustKt": 160
+        },
+        {
+          "tau": 96,
+          "validZ": "310000Z",
+          "lat": 20.2,
+          "lon": 142.5,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 120,
+          "validZ": "010000Z",
+          "lat": 22,
+          "lon": 141,
+          "maxWindKt": 110,
+          "gustKt": 135
+        }
+      ],
+      "spot": {
+        "distanceNm": 2387,
+        "bearingDeg": 95,
+        "closestApproach": {
+          "distanceNm": 1093,
+          "tau": 120,
+          "validZ": "010000Z",
+          "maxWindKt": 110
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 295,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 283
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 278
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 276
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 282
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 279
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 287
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 302
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 322
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-10-31T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-10-27T07:00:00.000Z",
+          "heightM": 1.1,
+          "periodS": 7.4,
+          "dirDeg": 63
+        },
+        "hoursAhead": 5,
+        "bearingOffsetDeg": 32,
+        "peak": {
+          "targetTime": "2026-10-27T18:00:00.000Z",
+          "heightM": 1.94,
+          "periodS": 7.05,
+          "dirDeg": 67
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a slowly deteriorating convective structure, with warming cloud top temperatures associated with the central dense overcast and cooling eye temperatures. TY 30W is executing the expected westward turn as the deep-layer STR to the northwest shifts eastward. The cooler SST and ongoing VWS will cause some near-term weakening.",
+        "warningNumber": "013",
+        "generatedAt": "2026-10-26T15:13:45.297Z"
+      },
+      "reasoningWarningNumber": "014",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
