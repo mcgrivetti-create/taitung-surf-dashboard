@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-28T14:33:35.150Z",
+  "fetchedAt": "2026-10-28T15:13:42.668Z",
   "systems": [
     {
       "designation": "Super Typhoon",
@@ -89,23 +89,23 @@
       "seasFt": 55,
       "geoReference": "744 NM EAST OF ANDERSEN AFB",
       "reasoning": {
-        "warningNumber": "020",
+        "warningNumber": "021",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 50,
-        "environment": "HIGHLY FAVORABLE",
+        "seasFt": 55,
+        "environment": "FAVORABLE",
         "vws": "10-15 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "STRONG RADIAL",
-        "steering": "SOUTHERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTH.",
+        "steering": "SOUTHERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTH-NORTHEAST.",
         "confidence": {
           "track0072": "HIGH",
           "track72120": "MEDIUM",
           "intensity0072": "MEDIUM",
-          "intensity72120": "LOW"
+          "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2101,
         "bearingDeg": 96,
@@ -187,25 +187,25 @@
           "dirDeg": 78
         },
         "now": {
-          "targetTime": "2026-10-28T14:00:00.000Z",
-          "heightM": 1.76,
+          "targetTime": "2026-10-28T15:00:00.000Z",
+          "heightM": 1.7,
           "periodS": 6.5,
-          "dirDeg": 68
+          "dirDeg": 69
         },
         "peak": {
-          "targetTime": "2026-10-28T14:00:00.000Z",
-          "heightM": 1.76,
+          "targetTime": "2026-10-28T15:00:00.000Z",
+          "heightM": 1.7,
           "periodS": 6.5,
-          "dirDeg": 68
+          "dirDeg": 69
         },
         "easing": true
       },
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 30W with an impressive 40 NM diameter eye that has almost completely cleared out and warmed to 19 degrees Celsius over the past 6 hours. The track speed of TY 30W has increased to 8 kt over the past 6 hours as it accelerates west-northwestward under the steering influence of the ridge extension to the north. The intensity of TY 30W has rebounded over the past 12 hours and is forecast to continue increasing to a peak around 130 kt before leveling off.",
-        "warningNumber": "019",
-        "generatedAt": "2026-10-28T03:13:47.120Z"
+        "text": "STY 30W has accelerated from 9 kt to 13 kt over the past six hours in response to a strengthening STR to the north and a tightening gradient along the northern periphery of the cyclone. The system is forecast to continue accelerating to a peak translational speed of 18 kt through +36h.",
+        "warningNumber": "021",
+        "generatedAt": "2026-10-28T15:13:42.668Z"
       },
       "changes": {
         "previousWarningNumber": "020",
