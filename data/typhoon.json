@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-28T20:33:48.009Z",
+  "fetchedAt": "2026-10-28T21:13:38.176Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -96,14 +96,14 @@
       ],
       "geoReference": "427 NM WEST- NORTHWEST OF ENEWETAK",
       "reasoning": {
-        "warningNumber": "021",
+        "warningNumber": "022",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 55,
         "environment": "FAVORABLE",
         "vws": "10-15 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "STRONG RADIAL",
-        "steering": "SOUTHERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTH-NORTHEAST.",
+        "steering": "SUBTROPICAL RIDGE TO THE NORTHEAST",
         "confidence": {
           "track0072": "HIGH",
           "track72120": "MEDIUM",
@@ -112,7 +112,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2026,
         "bearingDeg": 96,
@@ -194,10 +194,10 @@
           "dirDeg": 78
         },
         "now": {
-          "targetTime": "2026-10-28T20:00:00.000Z",
-          "heightM": 1.32,
-          "periodS": 5.95,
-          "dirDeg": 84
+          "targetTime": "2026-10-28T21:00:00.000Z",
+          "heightM": 1.3,
+          "periodS": 6,
+          "dirDeg": 83
         },
         "peak": {
           "targetTime": "2026-11-02T06:00:00.000Z",
