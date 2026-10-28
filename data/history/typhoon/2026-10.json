@@ -22930,6 +22930,197 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "30W",
+      "name": "In-fa",
+      "designation": "Super Typhoon",
+      "warningNumber": "021",
+      "issuedAt": "2026-10-28T15:00:00.000Z",
+      "positionZ": "281200Z",
+      "lat": 15.4,
+      "lon": 157.6,
+      "maxWindKt": 130,
+      "gustKt": 160,
+      "pressureMb": 937,
+      "seasFt": 55,
+      "movingToward": 285,
+      "movingKt": 13,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "290000Z",
+          "lat": 15.8,
+          "lon": 154.9,
+          "maxWindKt": 130,
+          "gustKt": 160
+        },
+        {
+          "tau": 24,
+          "validZ": "291200Z",
+          "lat": 16.5,
+          "lon": 151.6,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 36,
+          "validZ": "300000Z",
+          "lat": 17.6,
+          "lon": 148.1,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 48,
+          "validZ": "301200Z",
+          "lat": 19.1,
+          "lon": 145,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 60,
+          "validZ": "310000Z",
+          "lat": 20.7,
+          "lon": 143.1,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 72,
+          "validZ": "311200Z",
+          "lat": 21.6,
+          "lon": 142.7,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 96,
+          "validZ": "011200Z",
+          "lat": 21.8,
+          "lon": 141.4,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 120,
+          "validZ": "021200Z",
+          "lat": 21.6,
+          "lon": 137.4,
+          "maxWindKt": 105,
+          "gustKt": 130
+        }
+      ],
+      "spot": {
+        "distanceNm": 2101,
+        "bearingDeg": 96,
+        "closestApproach": {
+          "distanceNm": 897,
+          "tau": 120,
+          "validZ": "021200Z",
+          "maxWindKt": 105
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 285,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 279
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 283
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 289
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 297
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 312
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 338
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 280
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 268
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "headingDeg": 338,
+            "deltaDeg": 53
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "headingDeg": 280,
+            "deltaDeg": 58
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-11-01T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-10-28T05:00:00.000Z",
+          "source": "buoy",
+          "buoy": "Taitung",
+          "heightM": 1.3,
+          "periodS": 5.9,
+          "dirDeg": 78
+        },
+        "now": {
+          "targetTime": "2026-10-28T14:00:00.000Z",
+          "heightM": 1.76,
+          "periodS": 6.5,
+          "dirDeg": 68
+        },
+        "peak": {
+          "targetTime": "2026-10-28T14:00:00.000Z",
+          "heightM": 1.76,
+          "periodS": 6.5,
+          "dirDeg": 68
+        },
+        "easing": true
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 30W with an impressive 40 NM diameter eye that has almost completely cleared out and warmed to 19 degrees Celsius over the past 6 hours. The track speed of TY 30W has increased to 8 kt over the past 6 hours as it accelerates west-northwestward under the steering influence of the ridge extension to the north. The intensity of TY 30W has rebounded over the past 12 hours and is forecast to continue increasing to a peak around 130 kt before leveling off.",
+        "warningNumber": "019",
+        "generatedAt": "2026-10-28T03:13:47.120Z"
+      },
+      "reasoningWarningNumber": "020",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
