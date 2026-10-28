@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-28T08:33:41.851Z",
+  "fetchedAt": "2026-10-28T09:13:35.638Z",
   "systems": [
     {
       "designation": "Super Typhoon",
@@ -90,23 +90,23 @@
       "seasFt": 50,
       "geoReference": "818 NM EAST OF ANDERSEN AFB",
       "reasoning": {
-        "warningNumber": "019",
+        "warningNumber": "020",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 35,
-        "environment": "FAVORABLE",
+        "seasFt": 50,
+        "environment": "HIGHLY FAVORABLE",
         "vws": "10-15 KTS",
         "sst": "29-30 CELSIUS",
-        "outflow": "MODERATE RADIAL",
-        "steering": "SOUTHERN FLANK OF A SUBTROPICAL RIDGE EXTENSION TO THE NORTH",
+        "outflow": "STRONG RADIAL",
+        "steering": "SOUTHERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTH.",
         "confidence": {
           "track0072": "HIGH",
-          "track72120": "LOW",
+          "track72120": "MEDIUM",
           "intensity0072": "MEDIUM",
-          "intensity72120": "MEDIUM"
+          "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 2179,
         "bearingDeg": 96,
@@ -188,10 +188,10 @@
           "dirDeg": 78
         },
         "now": {
-          "targetTime": "2026-10-28T08:00:00.000Z",
-          "heightM": 1.72,
-          "periodS": 6.85,
-          "dirDeg": 78
+          "targetTime": "2026-10-28T09:00:00.000Z",
+          "heightM": 1.76,
+          "periodS": 6.55,
+          "dirDeg": 83
         },
         "peak": {
           "targetTime": "2026-10-28T12:00:00.000Z",
