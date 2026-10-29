@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-29T14:33:37.310Z",
+  "fetchedAt": "2026-10-29T15:13:43.101Z",
   "systems": [
     {
       "designation": "Super Typhoon",
@@ -96,14 +96,14 @@
       ],
       "geoReference": "328 NM EAST-NORTHEAST OF SAIPAN",
       "reasoning": {
-        "warningNumber": "024",
+        "warningNumber": "025",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 55,
+        "seasFt": 60,
         "environment": "FAVORABLE",
         "vws": "10-15 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "MODERATE RADIAL",
-        "steering": "SOUTHWESTERN FLANK OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED NEAR 26N 165E",
+        "steering": "SOUTHWESTERN FLANK OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED NEAR 28N 165E",
         "confidence": {
           "track0072": "MEDIUM",
           "track72120": "LOW",
@@ -112,7 +112,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1733,
         "bearingDeg": 97,
@@ -194,9 +194,9 @@
           "dirDeg": 78
         },
         "now": {
-          "targetTime": "2026-10-29T14:00:00.000Z",
-          "heightM": 1.08,
-          "periodS": 6.75,
+          "targetTime": "2026-10-29T15:00:00.000Z",
+          "heightM": 1.06,
+          "periodS": 6.7,
           "dirDeg": 84
         },
         "peak": {
@@ -210,9 +210,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts a still quasi-annular structure with limited banding outside the central dense overcast, with a large clear eye maintaining approximately 40 NM diameter. Typhoon 30W (in-fa) continues to track on a 12-hour heading of about 280 degrees along the southwestern periphery of a subtropical ridge to the northeast. The storm's inner core appears to be undergoing fluctuations in symmetry and overall health as it fights off light to moderate northeasterly vertical shear, which has caused some short-term weakening.",
-        "warningNumber": "023",
-        "generatedAt": "2026-10-29T03:13:37.443Z"
+        "text": "In-fa is likely at or very near super typhoon (STY) strength. STY 30W will continue west-northwestward along the southwestern periphery of the STR through +36h.",
+        "warningNumber": "025",
+        "generatedAt": "2026-10-29T15:13:43.101Z"
       },
       "changes": {
         "previousWarningNumber": "024",
