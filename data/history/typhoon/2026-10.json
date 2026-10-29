@@ -23885,6 +23885,197 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "30W",
+      "name": "In-fa",
+      "designation": "Super Typhoon",
+      "warningNumber": "026",
+      "issuedAt": "2026-10-29T21:00:00.000Z",
+      "positionZ": "291800Z",
+      "lat": 17.1,
+      "lon": 149.7,
+      "maxWindKt": 130,
+      "gustKt": 160,
+      "pressureMb": 938,
+      "seasFt": 63,
+      "movingToward": 290,
+      "movingKt": 16,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "300600Z",
+          "lat": 18.5,
+          "lon": 146.6,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 24,
+          "validZ": "301800Z",
+          "lat": 20.2,
+          "lon": 144.1,
+          "maxWindKt": 125,
+          "gustKt": 150
+        },
+        {
+          "tau": 36,
+          "validZ": "310600Z",
+          "lat": 21.7,
+          "lon": 143.1,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 48,
+          "validZ": "311800Z",
+          "lat": 22.1,
+          "lon": 143.1,
+          "maxWindKt": 110,
+          "gustKt": 135
+        },
+        {
+          "tau": 60,
+          "validZ": "010600Z",
+          "lat": 22.1,
+          "lon": 142.7,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 72,
+          "validZ": "011800Z",
+          "lat": 22.1,
+          "lon": 141.3,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 96,
+          "validZ": "021800Z",
+          "lat": 22.3,
+          "lon": 138.3,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 120,
+          "validZ": "031800Z",
+          "lat": 22.9,
+          "lon": 136.7,
+          "maxWindKt": 100,
+          "gustKt": 125
+        }
+      ],
+      "spot": {
+        "distanceNm": 1637,
+        "bearingDeg": 97,
+        "closestApproach": {
+          "distanceNm": 850,
+          "tau": 120,
+          "validZ": "031800Z",
+          "maxWindKt": 100
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 290,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 296
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 306
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 328
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 0
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 270
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 270
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 275
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 292
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "headingDeg": 328,
+            "deltaDeg": 38
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 270,
+            "deltaDeg": 58
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-11-03T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-10-28T05:00:00.000Z",
+          "source": "buoy",
+          "buoy": "Taitung",
+          "heightM": 1.3,
+          "periodS": 5.9,
+          "dirDeg": 78
+        },
+        "now": {
+          "targetTime": "2026-10-29T20:00:00.000Z",
+          "heightM": 1.02,
+          "periodS": 6.65,
+          "dirDeg": 90
+        },
+        "peak": {
+          "targetTime": "2026-11-01T23:00:00.000Z",
+          "heightM": 1.96,
+          "periodS": 10.45,
+          "dirDeg": 93
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "In-fa is likely at or very near super typhoon (STY) strength. STY 30W will continue west-northwestward along the southwestern periphery of the STR through +36h.",
+        "warningNumber": "025",
+        "generatedAt": "2026-10-29T15:13:43.101Z"
+      },
+      "reasoningWarningNumber": "025",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "LOW",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
