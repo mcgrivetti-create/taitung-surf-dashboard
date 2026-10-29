@@ -204,3 +204,8 @@ button.outlook-day[aria-expanded="true"] .od-more { transform: rotate(-135deg); 
 .odc-dir { font: 700 10px var(--font-body); fill: var(--text); }
 .od-foot { margin: 0; font-size: 0.8rem; color: var(--text-dim); line-height: 1.5; }
 .od-acc { margin: 0; font-size: 0.74rem; color: var(--text-dim); }
+
+/* Longer-period tag on the 5-day rows (2026-10-29) */
+.od-lp { justify-self: start; font-size: 0.72rem; font-weight: 700; border-radius: 999px; padding: 0.05rem 0.55rem; margin: 0.1rem 0; }
+.od-lp-long { background: var(--accent); color: var(--bg-card); }
+.od-lp-longer { color: var(--accent); border: 1px solid var(--accent); }

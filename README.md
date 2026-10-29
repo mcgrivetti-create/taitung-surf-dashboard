@@ -982,6 +982,16 @@ for the rating, are tagged "model wind · less certain", and take their
 early-offshore call from ECMWF's light-N rule (see `earlyOffshoreModel`; N–NW under 6 kt = likely, NNE–E = not likely), which scored 9/14 against the CWA rule's 11/14 on Oct 16–29, so CWA days keep the CWA rule.
 astronomy.json now refreshes whenever fewer than 7 days remain ahead.
 
+### Longer-period tag (2026-10-29)
+
+5-day rows get "Long-period swell" when the average of Open-Meteo's and ECMWF's
+total mean period reaches 9.5 s at any daylight hour, "Longer period likely"
+at 9 s (`longPeriodTag`). From Sep 14–Oct 29 at the Chenggong buoy (which
+reports mean period, ~20% below the models'), 24 h ahead, outside Typhoon
+Champi: >= 9.5 s was right about the buoy reaching 8 s 8 of 10 times, >= 9 s
+24 of 35. Swell-only periods and GFS-Wave predicted poorly; nearly all true
+long-period hours (buoy >= 9 s) came from one typhoon, so keep scoring it.
+
 ### Typhoon swell: buoys overrule the model (2026-10-21)
 
 Champi's (29W) swell was on the Chenggong buoy from ~21:00 Oct 20 while the

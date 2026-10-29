@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-29b";
+  var ASSET_VERSION = "2026-10-29c";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -1834,6 +1834,29 @@
     return (bw.past ? "Best was " : "Best window ") + span + ": " + n1(x.h) + " m at " + (x.p !== null ? Math.round(x.p) + " s" : "—") + windTxt;
   }
 
+  /* Longer-period tag (2026-10-29). The Chenggong buoy reports mean period,
+     which runs ~20% below the models'; a buoy 8 s+ is roughly a 10 s+
+     groundswell to a surfer. Of the forecasts, Open-Meteo's and ECMWF's total
+     mean periods track the buoy best (swell-only periods and GFS-Wave did
+     poorly). Over Sep 14–Oct 29, outside Typhoon Champi, 24 h ahead, the
+     average of the two at an hour was right about the buoy reaching 8 s:
+     >= 9.5 s -> 8 of 10, >= 9 s -> 24 of 35. A day is tagged by its best
+     daylight hour (06–18). */
+  function longPeriodTag(om, ec, k) {
+    var best = null;
+    om.forEach(function (p) {
+      var hr = hourOf(p.t);
+      if (dayKey(p.t) !== k || hr < 6 || hr > 18 || p.p === null) return;
+      var e = nearestPt(ec.filter(function (q) { return q.p !== null; }), p.t, 90 * 60000);
+      if (!e) return;
+      var avg = (p.p + e.p) / 2;
+      if (best === null || avg > best) best = avg;
+    });
+    if (best === null || best < 9) return null;
+    var why = "Open-Meteo and ECMWF average " + n1(best) + " s period at the best daylight hour";
+    return best >= 9.5 ? { level: "long", text: "Long-period swell", why: why } : { level: "longer", text: "Longer period likely", why: why };
+  }
+
   /* Light-N rule, for days CWA's coastal forecast doesn't reach (added
      2026-10-29). Over October's dawn hours a light N forecast (under 6 kt)
      came out N or NW at the Donghe station two-thirds (ECMWF) to four-fifths
@@ -1917,6 +1940,7 @@
       // CWA days keep the CWA dawn-speed rule (it scored best: 11/14 at 24 h);
       // days CWA doesn't reach use ECMWF's light-N rule (9/14) — see earlyOffshoreModel.
       var early = modelWind ? earlyOffshoreModel(ecWind, k) : earlyOffshore(wind, k);
+      var lpTag = longPeriodTag(waves, ecWind, k);
       var ad = days[k], scores = dayScores(waves, wind, k, ad && ad.civilTwilightBegin && ad.civilTwilightEnd ? [ad.civilTwilightBegin, ad.civilTwilightEnd] : ["06:00", "18:00"]);
       var bw = bestWindow(scores, now);
       // No Best window for today (user's choice 2026-10-14); the day's rating still shows.
@@ -1928,6 +1952,7 @@
         (bw ? ratingHtml(bw.peak) : "") +
         '<span class="od-h">' + n1(hMin) + (n1(hMax) !== n1(hMin) ? "–" + n1(hMax) : "") + " m" +
         (pMin !== null ? ' <span class="per">@ ' + Math.round(pMin) + (Math.round(pMax) !== Math.round(pMin) ? "–" + Math.round(pMax) : "") + " s</span>" : "") + "</span>" +
+        (lpTag ? '<span class="od-lp od-lp-' + lpTag.level + '" title="' + escapeHtml(lpTag.why) + '">' + lpTag.text + "</span>" : "") +
         '<span class="od-w">' + windTxt + (modelWind ? ' <span class="od-model">model wind · less certain</span>' : "") + "</span>" + earlyTxt + bwTxt +
         '<span class="od-more" aria-hidden="true"></span></button>' +
         '<div class="od-detail" id="' + detailId + '" hidden>' + dayDetailHtml(ctx, i, k, scores, bw, modelWind) + "</div></div>");
