@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-29a";
+  var ASSET_VERSION = "2026-10-29b";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -1834,6 +1834,25 @@
     return (bw.past ? "Best was " : "Best window ") + span + ": " + n1(x.h) + " m at " + (x.p !== null ? Math.round(x.p) + " s" : "—") + windTxt;
   }
 
+  /* Light-N rule, for days CWA's coastal forecast doesn't reach (added
+     2026-10-29). Over October's dawn hours a light N forecast (under 6 kt)
+     came out N or NW at the Donghe station two-thirds (ECMWF) to four-fifths
+     (GFS) of the time, while NNE/NE forecasts mostly came out NNE–ENE. On
+     ECMWF's 05:00–08:00 wind: N–NW (281°–11°) and under 6 kt -> likely;
+     NNE–E -> not likely; anything else (a firmer N, S–W) -> probably not.
+     Scored 9 of 14 mornings Oct 16–29, below the CWA rule's 11 of 14, so
+     it is only used where CWA has no forecast. */
+  function earlyOffshoreModel(ec, k) {
+    var dawn = ec.filter(function (p) { var hr = hourOf(p.t); return dayKey(p.t) === k && hr >= 5 && hr <= 8 && p.s !== null && p.d !== null; });
+    if (!dawn.length) return null;
+    var s = kt(mean(dawn.map(function (p) { return p.s; }))), u = 0, v = 0;
+    dawn.forEach(function (p) { u += Math.sin(p.d * Math.PI / 180); v += Math.cos(p.d * Math.PI / 180); });
+    var d = (Math.atan2(u, v) * 180 / Math.PI + 360) % 360;
+    if ((d >= 281 || d <= 11) && s < 6) return { level: "likely", text: "Likely offshore early · ECMWF" };
+    if (d > 11 && d < 101) return { level: "unlikely", text: "Not likely offshore early · ECMWF" };
+    return { level: "maybe", text: "Probably not offshore early · ECMWF" };
+  }
+
   /* ---------- Right now + next 3 days ---------- */
   function renderNowCard(buoy, stations, tide, astro, ow, coastal, ec, gw, stats, township) {
     var now = Date.now();
@@ -1895,9 +1914,9 @@
       var windTxt = dw.length ? Math.round(kt(mean(dw.map(function (p) { return p.s; })))) + " kt" + (topCall ? ", mostly " + topCall : "") : "wind forecast not out yet";
       var hMin = Math.min.apply(null, hs), hMax = Math.max.apply(null, hs);
       var pMin = ps.length ? Math.min.apply(null, ps) : null, pMax = ps.length ? Math.max.apply(null, ps) : null;
-      // The early-offshore rule was set on CWA's dawn wind; ECMWF shows 2–5 kt
-      // every dawn, so model-wind days get no call.
-      var early = modelWind ? null : earlyOffshore(wind, k);
+      // CWA days keep the CWA dawn-speed rule (it scored best: 11/14 at 24 h);
+      // days CWA doesn't reach use ECMWF's light-N rule (9/14) — see earlyOffshoreModel.
+      var early = modelWind ? earlyOffshoreModel(ecWind, k) : earlyOffshore(wind, k);
       var ad = days[k], scores = dayScores(waves, wind, k, ad && ad.civilTwilightBegin && ad.civilTwilightEnd ? [ad.civilTwilightBegin, ad.civilTwilightEnd] : ["06:00", "18:00"]);
       var bw = bestWindow(scores, now);
       // No Best window for today (user's choice 2026-10-14); the day's rating still shows.
@@ -2030,7 +2049,7 @@
       html += '<p class="od-acc">✓ = closer lately. Last 7 days at Chenggong buoy / Donghe station — ' +
         [say("waves", function (v) { return n1(v) + " m"; }), say("wind", function (v) { return Math.round(kt(v)) + " kt"; })].filter(Boolean).join("; ") + ".</p>";
     }
-    if (modelWind) html += '<p class="od-acc">CWA\'s coastal forecast doesn\'t reach this day yet, so the rating uses ECMWF\'s wind.</p>';
+    if (modelWind) html += '<p class="od-acc">CWA\'s coastal forecast doesn\'t reach this day yet, so the rating and the offshore-early call use ECMWF\'s wind.</p>';
     return html;
   }
   function townshipPop(tw, k) {

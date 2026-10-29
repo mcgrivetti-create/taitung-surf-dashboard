@@ -978,8 +978,8 @@ by rating with the rounded period on each, wind arrows every 3 h with
 direction and knots, daylight shading, the Best window band; no key, by
 choice); then tide turns, sunrise/sunset, daytime rain chance and whether the
 wave models agree. Days CWA's coastal forecast doesn't reach use ECMWF's wind
-for the rating, are tagged "model wind · less certain", and get no
-early-offshore call (that rule was set on CWA's dawn wind).
+for the rating, are tagged "model wind · less certain", and take their
+early-offshore call from ECMWF's light-N rule (see `earlyOffshoreModel`; N–NW under 6 kt = likely, NNE–E = not likely), which scored 9/14 against the CWA rule's 11/14 on Oct 16–29, so CWA days keep the CWA rule.
 astronomy.json now refreshes whenever fewer than 7 days remain ahead.
 
 ### Typhoon swell: buoys overrule the model (2026-10-21)
