@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-29T08:33:39.401Z",
+  "fetchedAt": "2026-10-29T09:13:36.070Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -95,23 +95,23 @@
       ],
       "geoReference": "415 NM EAST OF SAIPAN",
       "reasoning": {
-        "warningNumber": "023",
+        "warningNumber": "024",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 53,
+        "seasFt": 55,
         "environment": "FAVORABLE",
         "vws": "10-15 KTS",
         "sst": "29-30 CELSIUS",
-        "outflow": "STRONG EQUATORWARD",
-        "steering": "SUBTROPICAL RIDGE TO THE NORTHEAST",
+        "outflow": "MODERATE RADIAL",
+        "steering": "SOUTHWESTERN FLANK OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED NEAR 26N 165E",
         "confidence": {
-          "track0072": "HIGH",
-          "track72120": "MEDIUM",
+          "track0072": "MEDIUM",
+          "track72120": "LOW",
           "intensity0072": "MEDIUM",
-          "intensity72120": "MEDIUM"
+          "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1827,
         "bearingDeg": 97,
@@ -193,10 +193,10 @@
           "dirDeg": 78
         },
         "now": {
-          "targetTime": "2026-10-29T08:00:00.000Z",
+          "targetTime": "2026-10-29T09:00:00.000Z",
           "heightM": 1.16,
-          "periodS": 6.7,
-          "dirDeg": 82
+          "periodS": 6.65,
+          "dirDeg": 83
         },
         "peak": {
           "targetTime": "2026-11-02T00:00:00.000Z",
