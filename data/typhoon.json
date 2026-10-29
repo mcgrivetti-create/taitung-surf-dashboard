@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-29T02:33:39.510Z",
+  "fetchedAt": "2026-10-29T03:13:37.443Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -95,13 +95,13 @@
       ],
       "geoReference": "493 NM NORTH OF OROLUK",
       "reasoning": {
-        "warningNumber": "022",
+        "warningNumber": "023",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 55,
+        "seasFt": 53,
         "environment": "FAVORABLE",
         "vws": "10-15 KTS",
         "sst": "29-30 CELSIUS",
-        "outflow": "STRONG RADIAL",
+        "outflow": "STRONG EQUATORWARD",
         "steering": "SUBTROPICAL RIDGE TO THE NORTHEAST",
         "confidence": {
           "track0072": "HIGH",
@@ -111,7 +111,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1927,
         "bearingDeg": 97,
@@ -193,9 +193,9 @@
           "dirDeg": 78
         },
         "now": {
-          "targetTime": "2026-10-29T02:00:00.000Z",
-          "heightM": 1.22,
-          "periodS": 6.55,
+          "targetTime": "2026-10-29T03:00:00.000Z",
+          "heightM": 1.16,
+          "periodS": 6.7,
           "dirDeg": 80
         },
         "peak": {
@@ -209,9 +209,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "STY 30W has accelerated from 9 kt to 13 kt over the past six hours in response to a strengthening STR to the north and a tightening gradient along the northern periphery of the cyclone. The system is forecast to continue accelerating to a peak translational speed of 18 kt through +36h.",
-        "warningNumber": "021",
-        "generatedAt": "2026-10-28T15:13:42.668Z"
+        "text": "Animated multispectral satellite imagery (MSI) depicts a still quasi-annular structure with limited banding outside the central dense overcast, with a large clear eye maintaining approximately 40 NM diameter. Typhoon 30W (in-fa) continues to track on a 12-hour heading of about 280 degrees along the southwestern periphery of a subtropical ridge to the northeast. The storm's inner core appears to be undergoing fluctuations in symmetry and overall health as it fights off light to moderate northeasterly vertical shear, which has caused some short-term weakening.",
+        "warningNumber": "023",
+        "generatedAt": "2026-10-29T03:13:37.443Z"
       },
       "changes": {
         "previousWarningNumber": "022",
