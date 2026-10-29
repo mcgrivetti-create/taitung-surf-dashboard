@@ -1089,7 +1089,10 @@ async function buildAstronomy() {
   const outPath = path.join(DATA_DIR, "astronomy.json");
   const existing = await readJSONIfExists(outPath, null);
   const today = todayISODate();
-  if (existing && existing.days && existing.days[today]) {
+  // Refresh once fewer than 7 days remain ahead: the 5-day strip needs sun
+  // times for its last day (it ran dry on 2026-10-29, the window's last day).
+  const weekAhead = new Date(new Date(today + "T00:00:00+08:00").getTime() + 6 * 86400000 + 8 * 3600000).toISOString().slice(0, 10);
+  if (existing && existing.days && existing.days[today] && existing.days[weekAhead]) {
     // Still covered — don't hit CWA for a file that changes once a year.
     return { data: existing, ok: true, count: Object.keys(existing.days).length, skipped: true };
   }

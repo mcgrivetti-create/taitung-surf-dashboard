@@ -966,6 +966,22 @@ shipped before any real invest existed to test it:
 Neither would have surfaced without a live invest. Worth remembering for
 the paths still untested against real data — multi-storm layout among them.
 
+### Next 5 days (2026-10-29)
+
+The strip under Right now covers 5 days. Each row is a button that opens the
+day (one at a time; the open day survives a refresh): Dawn 05–09 / Midday
+09–15 / Evening 15–19 blocks with CWA's and ECMWF's waves and wind side by side
+(✓ = the source closer over Forecast Check's last 7 days at the Chenggong buoy
+and the Donghe station, at the lead nearest that day), the block's best rating
+and the nearest high or low tide; then a day chart (hourly wave bars coloured
+by rating with the rounded period on each, wind arrows every 3 h with
+direction and knots, daylight shading, the Best window band; no key, by
+choice); then tide turns, sunrise/sunset, daytime rain chance and whether the
+wave models agree. Days CWA's coastal forecast doesn't reach use ECMWF's wind
+for the rating, are tagged "model wind · less certain", and get no
+early-offshore call (that rule was set on CWA's dawn wind).
+astronomy.json now refreshes whenever fewer than 7 days remain ahead.
+
 ### Typhoon swell: buoys overrule the model (2026-10-21)
 
 Champi's (29W) swell was on the Chenggong buoy from ~21:00 Oct 20 while the

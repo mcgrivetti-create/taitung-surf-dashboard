@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-21b";
+  var ASSET_VERSION = "2026-10-29a";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -1706,8 +1706,9 @@
       (loc.WeatherElement || []).forEach(function (w) { els[w.ElementName] = w.Time || []; });
       function val(name, field) { var m = {}; (els[name] || []).forEach(function (t) { var v = t.ElementValue; v = Array.isArray(v) ? v[0] : v; m[t.DataTime] = v ? v[field] : null; }); return m; }
       var hgt = val("浪高", "WaveHeight"), spd = val("風速", "WindSpeed"), wdir = val("風向", "WindDirection"), wx = val("天氣現象", "Weather");
+      var per = val("浪週期", "WavePeriod"), wvd = val("浪向", "WaveDirection");
       var keys = Object.keys(spd).length ? Object.keys(spd) : Object.keys(hgt);
-      return keys.map(function (k) { return { t: Date.parse(k), h: num(hgt[k]), s: num(spd[k]), d: zhDeg(wdir[k]), rain: /雨/.test(wx[k] || "") }; }).sort(function (a, b) { return a.t - b.t; });
+      return keys.map(function (k) { return { t: Date.parse(k), h: num(hgt[k]), p: num(per[k]), wd: zhDeg(wvd[k]), s: num(spd[k]), d: zhDeg(wdir[k]), rain: /雨/.test(wx[k] || "") }; }).sort(function (a, b) { return a.t - b.t; });
     } catch (e) { return []; }
   }
   function tideExtrema(td) {
@@ -1734,8 +1735,10 @@
   function renderSummaries() {
     // Each piece waits only for its own files and fails on its own.
     Promise.all([getData("buoy"), getData("stations-history"), getData("tide"), getData("astronomy").catch(function () { return null; }),
-      getData("openwave"), getData("coastal").catch(function () { return null; })])
-      .then(function (r) { renderNowCard(r[0], r[1], r[2], r[3], r[4], r[5]); }).catch(function () {});
+      getData("openwave"), getData("coastal").catch(function () { return null; }),
+      getData("ecmwf").catch(function () { return null; }), getData("gfs-wave").catch(function () { return null; }),
+      getData("phase3-stats").catch(function () { return null; }), getData("township").catch(function () { return null; })])
+      .then(function (r) { renderNowCard(r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8], r[9]); }).catch(function (e) { console.error(e); });
     Promise.all([getData("openwave"), getData("ecmwf").catch(function () { return null; }), getData("gfs-wave").catch(function () { return null; }), getData("coastal").catch(function () { return null; })])
       .then(function (r) { renderForecastSummary(r[0], r[1], r[2], r[3]); }).catch(function () { setSummary("forecasts", "Wave forecasts, models and maps"); });
     Promise.all([getData("tide"), getData("phase3-live").catch(function () { return null; })])
@@ -1832,7 +1835,7 @@
   }
 
   /* ---------- Right now + next 3 days ---------- */
-  function renderNowCard(buoy, stations, tide, astro, ow, coastal) {
+  function renderNowCard(buoy, stations, tide, astro, ow, coastal, ec, gw, stats, township) {
     var now = Date.now();
     function cell(id, html) { var el = document.getElementById(id); if (el) el.querySelector(".now-v").innerHTML = html; }
     // Waves: the Chenggong buoy (closest to Donghe).
@@ -1873,10 +1876,16 @@
         (d.civilTwilightBegin ? " · first light " + d.civilTwilightBegin : "") + (d.sunset ? " · sunset " + d.sunset : "") + "</span>");
     }
 
-    // Next 3 days: Open-Meteo waves over daylight (06–18), CWA coastal wind.
-    var waves = openWaveSeries(ow), wind = coastalSeries(coastal), cards = [];
-    for (var i = 0; i < 3; i++) {
+    // Next 5 days (2026-10-29): Open-Meteo waves over daylight (06–18); wind
+    // from CWA's coastal forecast while it covers the day (3 days), ECMWF's
+    // after that, marked as model wind. Each row opens into a day detail.
+    var waves = openWaveSeries(ow), cwaWind = coastalSeries(coastal), ecWind = ecmwfSeries(ec), cards = [];
+    var ctx = { waves: waves, cwa: cwaWind, ec: ecWind, gw: gw, tideEx: tideExtrema(tide), astro: days, stats: stats, township: township, now: now };
+    for (var i = 0; i < 5; i++) {
       var k = dayKey(now + i * 86400000);
+      var cwaDay = cwaWind.filter(function (p) { var hr = hourOf(p.t); return dayKey(p.t) === k && hr >= 6 && hr <= 18 && p.s !== null; });
+      var modelWind = !cwaDay.length && i > 0;
+      var wind = modelWind ? ecWind : cwaWind;
       var day = waves.filter(function (p) { var hr = hourOf(p.t); return dayKey(p.t) === k && hr >= 6 && hr <= 18 && p.h !== null; });
       if (!day.length) continue;
       var hs = day.map(function (p) { return p.h; }), ps = day.map(function (p) { return p.p; }).filter(function (v) { return v !== null; });
@@ -1886,21 +1895,199 @@
       var windTxt = dw.length ? Math.round(kt(mean(dw.map(function (p) { return p.s; })))) + " kt" + (topCall ? ", mostly " + topCall : "") : "wind forecast not out yet";
       var hMin = Math.min.apply(null, hs), hMax = Math.max.apply(null, hs);
       var pMin = ps.length ? Math.min.apply(null, ps) : null, pMax = ps.length ? Math.max.apply(null, ps) : null;
-      var early = earlyOffshore(wind, k);
+      // The early-offshore rule was set on CWA's dawn wind; ECMWF shows 2–5 kt
+      // every dawn, so model-wind days get no call.
+      var early = modelWind ? null : earlyOffshore(wind, k);
       var ad = days[k], scores = dayScores(waves, wind, k, ad && ad.civilTwilightBegin && ad.civilTwilightEnd ? [ad.civilTwilightBegin, ad.civilTwilightEnd] : ["06:00", "18:00"]);
       var bw = bestWindow(scores, now);
       // No Best window for today (user's choice 2026-10-14); the day's rating still shows.
       var bwTxt = bw && i > 0 ? '<span class="od-best" title="' + escapeHtml(bestWindowText(bw)) + '">' + (bw.past ? "Best was " : "Best window ") + (bw.a < bw.b ? fmtHMx.format(bw.a) + "–" + fmtHMx.format(bw.b + 3600000) : "~" + fmtHMx.format(bw.top.t)) + "</span>" : "";
       var earlyTxt = early && !(i === 0 && hourOf(now) >= 9) ? '<span class="od-off od-off-' + early.level + '">' + early.text + "</span>" : "";
       var label = i === 0 ? "Today" : i === 1 ? "Tomorrow" : fmtWeekday.format(now + i * 86400000);
-      cards.push('<div class="outlook-day"><span class="od-k">' + label + ' <span class="od-date">' + fmtDayShort.format(now + i * 86400000).replace(/^\w+, /, "") + "</span></span>" +
+      var detailId = "od-detail-" + i;
+      cards.push('<div class="od-wrap"><button type="button" class="outlook-day" aria-expanded="false" aria-controls="' + detailId + '"><span class="od-k">' + label + ' <span class="od-date">' + fmtDayShort.format(now + i * 86400000).replace(/^\w+, /, "") + "</span></span>" +
         (bw ? ratingHtml(bw.peak) : "") +
         '<span class="od-h">' + n1(hMin) + (n1(hMax) !== n1(hMin) ? "–" + n1(hMax) : "") + " m" +
         (pMin !== null ? ' <span class="per">@ ' + Math.round(pMin) + (Math.round(pMax) !== Math.round(pMin) ? "–" + Math.round(pMax) : "") + " s</span>" : "") + "</span>" +
-        '<span class="od-w">' + windTxt + "</span>" + earlyTxt + bwTxt + "</div>");
+        '<span class="od-w">' + windTxt + (modelWind ? ' <span class="od-model">model wind · less certain</span>' : "") + "</span>" + earlyTxt + bwTxt +
+        '<span class="od-more" aria-hidden="true"></span></button>' +
+        '<div class="od-detail" id="' + detailId + '" hidden>' + dayDetailHtml(ctx, i, k, scores, bw, modelWind) + "</div></div>");
     }
     var ol = document.getElementById("outlook");
-    if (ol) ol.innerHTML = cards.length ? cards.join("") : '<p class="loading">No forecast available</p>';
+    if (ol) {
+      var openIdx = ol.querySelector('.outlook-day[aria-expanded="true"]');
+      openIdx = openIdx ? openIdx.getAttribute("aria-controls") : null;
+      ol.innerHTML = cards.length ? cards.join("") : '<p class="loading">No forecast available</p>';
+      // One open at a time; the open day survives a data refresh.
+      ol.querySelectorAll(".outlook-day").forEach(function (b) {
+        b.addEventListener("click", function () {
+          var open = b.getAttribute("aria-expanded") !== "true";
+          ol.querySelectorAll(".outlook-day").forEach(function (o) { o.setAttribute("aria-expanded", "false"); document.getElementById(o.getAttribute("aria-controls")).hidden = true; });
+          b.setAttribute("aria-expanded", String(open)); document.getElementById(b.getAttribute("aria-controls")).hidden = !open;
+        });
+        if (openIdx && b.getAttribute("aria-controls") === openIdx) b.click();
+      });
+    }
+  }
+
+  /* ---------- 5-day strip: the day detail (2026-10-29) ----------
+     Dawn / Midday / Evening blocks with CWA's and ECMWF's waves and wind side
+     by side (a ✓ marks whichever has been closer lately, from Forecast
+     Check's 7-day scores), the block's rating and tide, then a day chart
+     (rating-coloured wave bars, wind arrows, tide curve, daylight and the
+     best window) and a footer line: tide turns, sun, rain chance, models. */
+  function ecmwfSeries(ec) {
+    return ((ec && ec.series) || []).map(function (p) {
+      return { t: Date.parse(p.targetTime), h: num(p.waveHeight), p: num(p.wavePeriod), wd: num(p.waveDirectionDeg), s: num(p.windSpeed), d: num(p.windDirectionDeg) };
+    }).sort(function (a, b) { return a.t - b.t; });
+  }
+  // 7-day mean absolute error for CWA vs ECMWF at the lead nearest this day.
+  function recentAccuracy(stats, dayIdx) {
+    var w = stats && stats.windows && stats.windows["7d"];
+    if (!w) return null;
+    var want = dayIdx <= 0 ? 24 : dayIdx === 1 ? 48 : 72;
+    function pick(rows, match) {
+      var c = (rows || []).filter(match);
+      if (!c.length) return null;
+      c.sort(function (a, b) { return Math.abs(a.lead - want) - Math.abs(b.lead - want); });
+      return c[0];
+    }
+    var out = {};
+    ["cwa_coastal_donghe", "ecmwf"].forEach(function (src) {
+      var wv = pick(w.waves, function (r) { return r.source === src && r.buoy === "46761F" && r.point === "donghe" && r.field === "height"; });
+      var ws = pick(w.windSpeed, function (r) { return r.source === src && r.truth === "C0S810" && r.point === "donghe"; });
+      out[src] = { waveMae: wv ? wv.mae : null, windMae: ws ? ws.mae : null };
+    });
+    var c = out.cwa_coastal_donghe, e = out.ecmwf;
+    function better(a, b) { return a === null || b === null ? null : Math.abs(a - b) < 0.05 ? "tie" : a < b ? "cwa" : "ecmwf"; }
+    return { waves: better(c.waveMae, e.waveMae), wind: better(c.windMae, e.windMae), cwa: c, ecmwf: e };
+  }
+  function nearestPt(arr, t, maxMs) {
+    var best = null, bd = Infinity;
+    arr.forEach(function (p) { var d = Math.abs(p.t - t); if (d < bd) { bd = d; best = p; } });
+    return best && bd <= maxMs ? best : null;
+  }
+  function blockMean(arr, k, h0, h1, field) {
+    var v = arr.filter(function (p) { var hr = hourOf(p.t); return dayKey(p.t) === k && hr >= h0 && hr < h1 && p[field] !== null && p[field] !== undefined; }).map(function (p) { return p[field]; });
+    return v.length ? mean(v) : null;
+  }
+  function dirOfBlock(arr, k, h0, h1, field) {
+    var pts = arr.filter(function (p) { var hr = hourOf(p.t); return dayKey(p.t) === k && hr >= h0 && hr < h1 && p[field] !== null && p[field] !== undefined; });
+    return pts.length ? pts[Math.floor(pts.length / 2)][field] : null;
+  }
+  function dayDetailHtml(ctx, i, k, scores, bw, modelWind) {
+    var acc = recentAccuracy(ctx.stats, i);
+    var tick = function (which, src) { return acc && acc[which] === src ? ' <span class="od-tick" title="Closer to what was measured over the last 7 days">✓</span>' : ""; };
+    var blocks = [["Dawn", 5, 9], ["Midday", 9, 15], ["Evening", 15, 19]];
+    var bwMid = bw ? (bw.a + bw.b) / 2 : null;
+    var html = '<div class="od-sessions">' + blocks.map(function (b) {
+      var name = b[0], h0 = b[1], h1 = b[2];
+      var line = function (label, arr) {
+        var h = blockMean(arr, k, h0, h1, "h"), p = blockMean(arr, k, h0, h1, "p"), wd = dirOfBlock(arr, k, h0, h1, "wd");
+        return h === null ? "" : '<span class="od-src">' + label + "</span> " + n1(h) + " m" + (p !== null ? " @ " + Math.round(p) + " s" : "") + (wd !== null ? " " + degToCompass(wd) : "");
+      };
+      var wline = function (label, arr) {
+        var s = blockMean(arr, k, h0, h1, "s"), d = dirOfBlock(arr, k, h0, h1, "d");
+        if (s === null) return "";
+        var c = windCallDonghe(s, d);
+        return '<span class="od-src">' + label + "</span> " + Math.round(kt(s)) + " kt" + (d !== null ? " " + degToCompass(d) : "") +
+          (c ? ' <span class="call call-' + c.split(" ")[0] + '">' + c + "</span>" : "");
+      };
+      var wc = line("CWA", ctx.cwa), we = line("ECMWF", ctx.ec);
+      var nc = wline("CWA", ctx.cwa), ne = wline("ECMWF", ctx.ec);
+      var hrs = scores.filter(function (x) { var hr = hourOf(x.t); return hr >= h0 && hr < h1; });
+      var top = hrs.length ? Math.max.apply(null, hrs.map(function (x) { return x.s; })) : null;
+      // Nearest high or low to the middle of the block, even if it falls outside it (user, 2026-10-29).
+      var mid = new Date(k + "T" + String(Math.floor((h0 + h1) / 2)).padStart(2, "0") + ":00:00+08:00").getTime();
+      var turn = nearestPt(ctx.tideEx, mid, 12 * 3600000);
+      var isBest = bwMid !== null && hourOf(bwMid) >= h0 && hourOf(bwMid) < h1 && i > 0;
+      return '<div class="od-block' + (isBest ? " is-best" : "") + '"><div class="od-block-head"><b>' + name + '</b> <span class="od-hours">' +
+        String(h0).padStart(2, "0") + "–" + String(h1).padStart(2, "0") + "</span>" + (top !== null ? " " + ratingHtml(top) : "") + (isBest ? ' <span class="od-best-tag">Best window</span>' : "") + "</div>" +
+        '<div class="od-row"><span class="od-lbl">Waves</span><span>' + [wc && wc + tick("waves", "cwa"), we && we + tick("waves", "ecmwf")].filter(Boolean).join("<br>") + "</span></div>" +
+        '<div class="od-row"><span class="od-lbl">Wind</span><span>' + [nc && nc + tick("wind", "cwa"), ne && ne + tick("wind", "ecmwf")].filter(Boolean).join("<br>") + "</span></div>" +
+        (turn ? '<div class="od-row"><span class="od-lbl">Tide</span><span>' + (turn.high ? "High " : "Low ") + fmtHMx.format(turn.t) + " (" + Math.round(turn.h) + " cm)</span></div>" : "") +
+        "</div>";
+    }).join("") + "</div>";
+    html += dayChartSvg(ctx, k, scores, i > 0 ? bw : null, modelWind ? ctx.ec : ctx.cwa);
+    // Footer: tide turns, sun, rain chance, models.
+    var turns = ctx.tideEx.filter(function (e) { return dayKey(e.t) === k; }).map(function (e) { return (e.high ? "High " : "Low ") + fmtHMx.format(e.t) + " (" + Math.round(e.h) + " cm)"; });
+    var sun = ctx.astro && ctx.astro[k];
+    var pop = townshipPop(ctx.township, k);
+    var foot = [];
+    if (turns.length) foot.push(turns.join(" · "));
+    if (sun && sun.sunrise) foot.push("Sunrise " + sun.sunrise + (sun.sunset ? " · sunset " + sun.sunset : ""));
+    if (pop !== null) foot.push(pop + "% chance of rain (daytime)");
+    var spread = modelSpread(ctx, k);
+    if (spread) foot.push(spread);
+    html += '<p class="od-foot">' + foot.join(" · ") + "</p>";
+    if (acc && (acc.waves || acc.wind)) {
+      var say = function (which, unitFn) {
+        var w = acc[which];
+        if (!w) return "";
+        var c = acc.cwa[which === "waves" ? "waveMae" : "windMae"], e = acc.ecmwf[which === "waves" ? "waveMae" : "windMae"];
+        return (which === "waves" ? "waves" : "wind") + ": " + (w === "tie" ? "both about the same" : (w === "cwa" ? "CWA" : "ECMWF") + " closer") + " (off by " + unitFn(c) + " vs " + unitFn(e) + ")";
+      };
+      html += '<p class="od-acc">✓ = closer lately. Last 7 days at Chenggong buoy / Donghe station — ' +
+        [say("waves", function (v) { return n1(v) + " m"; }), say("wind", function (v) { return Math.round(kt(v)) + " kt"; })].filter(Boolean).join("; ") + ".</p>";
+    }
+    if (modelWind) html += '<p class="od-acc">CWA\'s coastal forecast doesn\'t reach this day yet, so the rating uses ECMWF\'s wind.</p>';
+    return html;
+  }
+  function townshipPop(tw, k) {
+    try {
+      var loc = tw.records.locations[0].location[0];
+      var el = (loc.WeatherElement || []).filter(function (w) { return w.ElementName === "12小時降雨機率"; })[0];
+      var hit = (el.Time || []).filter(function (t) { return dayKey(Date.parse(t.StartTime)) === k && hourOf(Date.parse(t.StartTime)) === 6; })[0];
+      if (!hit) return null;
+      var v = Array.isArray(hit.ElementValue) ? hit.ElementValue[0] : hit.ElementValue;
+      return num(v && v.ProbabilityOfPrecipitation);
+    } catch (e) { return null; }
+  }
+  // Do the wave models agree for this day? (same rule as the Forecasts line)
+  function modelSpread(ctx, k) {
+    var vals = [];
+    var om = daytimeMean(ctx.waves.map(function (p) { return { t: p.t, v: p.h }; }), k);
+    if (om !== null) vals.push(["Open-Meteo", om]);
+    var e = daytimeMean(ctx.ec.map(function (p) { return { t: p.t, v: p.h }; }), k);
+    if (e !== null) vals.push(["ECMWF", e]);
+    var c = daytimeMean(ctx.cwa.map(function (p) { return { t: p.t, v: p.h }; }), k);
+    if (c !== null) vals.push(["CWA", c]);
+    if (vals.length < 2) return "";
+    var hs = vals.map(function (v) { return v[1]; }), lo = Math.min.apply(null, hs), hi = Math.max.apply(null, hs);
+    return "Models " + (hi - lo <= 0.3 ? "agree" : hi - lo <= 0.6 ? "differ a little" : "split") + " (" + vals.map(function (v) { return v[0] + " " + n1(v[1]); }).join(", ") + " m)";
+  }
+  function dayChartSvg(ctx, k, scores, bw, windSrc) {
+    var W = 290, H = 150, x0 = 20, x1 = W - 4, t0 = new Date(k + "T04:00:00+08:00").getTime(), t1 = new Date(k + "T20:00:00+08:00").getTime();
+    var X = function (t) { return x0 + (t - t0) / (t1 - t0) * (x1 - x0); };
+    var hrs = scores.filter(function (x) { return x.t >= t0 && x.t <= t1; });
+    if (!hrs.length) return "";
+    var hMax = Math.max(1, Math.ceil(Math.max.apply(null, hrs.map(function (x) { return x.h; })) * 2) / 2);
+    var wy0 = 18, wy1 = 92, Y = function (h) { return wy1 - h / hMax * (wy1 - wy0); };
+    var s = '<svg class="od-chart" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Wave height and period, and wind, through the day">';
+    var sun = ctx.astro && ctx.astro[k];
+    if (sun && sun.civilTwilightBegin && sun.civilTwilightEnd) {
+      var d0 = new Date(k + "T" + sun.civilTwilightBegin + ":00+08:00").getTime(), d1 = new Date(k + "T" + sun.civilTwilightEnd + ":00+08:00").getTime();
+      s += '<rect class="odc-day" x="' + X(Math.max(t0, d0)) + '" y="' + wy0 + '" width="' + (X(Math.min(t1, d1)) - X(Math.max(t0, d0))) + '" height="' + (H - wy0 - 14) + '"/>';
+    }
+    if (bw) s += '<rect class="odc-best" x="' + X(bw.a) + '" y="' + (wy0 - 4) + '" width="' + Math.max(6, X(bw.b + 3600000) - X(bw.a)) + '" height="' + (wy1 - wy0 + 4) + '"/>';
+    for (var g = 0; g <= hMax; g += 0.5) s += '<line class="odc-grid" x1="' + x0 + '" x2="' + x1 + '" y1="' + Y(g) + '" y2="' + Y(g) + '"/><text class="odc-t" x="' + (x0 - 6) + '" y="' + (Y(g) + 3) + '" text-anchor="end">' + g + "</text>";
+    var bwid = (x1 - x0) / 16 * 0.7;
+    hrs.forEach(function (x) {
+      var r = x.s <= 1 ? "flat" : x.s <= 3 ? "poor" : x.s <= 5 ? "fair" : x.s <= 6 ? "good" : "firing";
+      s += '<rect class="odc-bar odc-' + r + '" x="' + (X(x.t) - bwid / 2) + '" y="' + Y(x.h) + '" width="' + bwid + '" height="' + (wy1 - Y(x.h)) + '"><title>' + fmtHMx.format(x.t) + " · " + n1(x.h) + " m" + (x.p !== null ? " @ " + Math.round(x.p) + " s" : "") + "</title></rect>";
+      // the period, rounded, on each bar (user, 2026-10-29)
+      if (x.p !== null && x.p !== undefined) s += '<text class="odc-per" x="' + X(x.t) + '" y="' + (Y(x.h) - 3) + '" text-anchor="middle">' + Math.round(x.p) + "</text>";
+    });
+    // wind arrows every 3 h (pointing where the wind blows), direction beside, knots below
+    windSrc.filter(function (p) { return p.t >= t0 && p.t <= t1 && hourOf(p.t) % 3 === 0 && p.s !== null && p.d !== null; }).forEach(function (p) {
+      var c = windCallDonghe(p.s, p.d) || "light", cx = X(p.t), cy = 112;
+      s += '<g transform="translate(' + cx + " " + cy + ") rotate(" + (p.d + 180) + ')"><path class="odc-arrow call-' + c.split(" ")[0] + '" d="M0 -8 L4 2 L0 0 L-4 2 Z"/></g>' +
+        '<text class="odc-dir" x="' + (cx + 7) + '" y="' + (cy + 4) + '">' + degToCompass(p.d) + "</text>" +
+        '<text class="odc-t" x="' + cx + '" y="' + (cy + 18) + '" text-anchor="middle">' + Math.round(kt(p.s)) + " kt</text>";
+    });
+    [6, 9, 12, 15, 18].forEach(function (hh) { var tx = X(new Date(k + "T" + String(hh).padStart(2, "0") + ":00:00+08:00").getTime()); s += '<text class="odc-t" x="' + tx + '" y="' + (H - 2) + '" text-anchor="middle">' + String(hh).padStart(2, "0") + "</text>"; });
+    s += '<text class="odc-t" x="2" y="' + (wy0 - 8) + '">m</text><text class="odc-t" x="2" y="116">wind</text>';
+    return s + "</svg>";
   }
 
   /* ---------- Forecasts: tomorrow vs today, and do the models agree ---------- */
