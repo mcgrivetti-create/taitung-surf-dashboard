@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-30T08:33:39.982Z",
+  "fetchedAt": "2026-10-30T09:13:43.773Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -95,14 +95,14 @@
       ],
       "geoReference": "211 NM NORTH OF SAIPAN",
       "reasoning": {
-        "warningNumber": "027",
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 65,
-        "environment": "HIGHLY FAVORABLE",
+        "warningNumber": "028",
+        "significantForecastChanges": "THE JTWC FORECAST TRACK NOW DEPICTS A NORTHEASTWARD TURN AT TAU 24 FOLLOWED BY A DEFLECTION TOWARD THE WEST-SOUTHWEST AT TAU 48, AND A FASTER, SHARPER POLEWARD TURN AT TAU 96 AND TAU 120.",
+        "seasFt": 60,
+        "environment": "FAVORABLE",
         "vws": "10-15 KTS",
-        "sst": "28-29 CELSIUS",
+        "sst": "29-30 CELSIUS",
         "outflow": "MODERATE RADIAL",
-        "steering": "THE SOUTHWESTERN PERIPHERY OF THE DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTHEAST",
+        "steering": "SOUTHWESTERN FLANK OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED NEAR 29N 154E",
         "confidence": {
           "track0072": "LOW",
           "track72120": "LOW",
@@ -111,7 +111,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1418,
         "bearingDeg": 96,
@@ -211,9 +211,9 @@
           "dirDeg": 78
         },
         "now": {
-          "targetTime": "2026-10-30T08:00:00.000Z",
-          "heightM": 1.02,
-          "periodS": 6.15,
+          "targetTime": "2026-10-30T09:00:00.000Z",
+          "heightM": 0.98,
+          "periodS": 6,
           "dirDeg": 80
         },
         "peak": {
