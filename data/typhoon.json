@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-30T14:33:40.347Z",
+  "fetchedAt": "2026-10-30T15:13:44.683Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -95,14 +95,14 @@
       ],
       "geoReference": "87 NM NORTHWEST OF AGRIHAN",
       "reasoning": {
-        "warningNumber": "028",
-        "significantForecastChanges": "THE JTWC FORECAST TRACK NOW DEPICTS A NORTHEASTWARD TURN AT TAU 24 FOLLOWED BY A DEFLECTION TOWARD THE WEST-SOUTHWEST AT TAU 48, AND A FASTER, SHARPER POLEWARD TURN AT TAU 96 AND TAU 120.",
-        "seasFt": 60,
+        "warningNumber": "029",
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "seasFt": 58,
         "environment": "FAVORABLE",
-        "vws": "10-15 KTS",
+        "vws": "5-10 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "MODERATE RADIAL",
-        "steering": "SOUTHWESTERN FLANK OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED NEAR 29N 154E",
+        "steering": "SOUTHWESTERN FLANK OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED NEAR 29N 163E",
         "confidence": {
           "track0072": "LOW",
           "track72120": "LOW",
@@ -111,7 +111,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1310,
         "bearingDeg": 94,
@@ -217,10 +217,10 @@
           "dirDeg": 78
         },
         "now": {
-          "targetTime": "2026-10-30T14:00:00.000Z",
-          "heightM": 0.98,
-          "periodS": 5.7,
-          "dirDeg": 78
+          "targetTime": "2026-10-30T15:00:00.000Z",
+          "heightM": 0.96,
+          "periodS": 4.95,
+          "dirDeg": 73
         },
         "peak": {
           "targetTime": "2026-11-01T21:00:00.000Z",
@@ -233,9 +233,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 30W as a still robust -- but weakening -- annular cyclone. TY 30W (in-fa) is forecast to continue tracking west-northwestward through +12h while it remains on the southwestern periphery of the steering STR. Between +0h-12, a deep- layer trough is expected to weaken the western flank of the ridge, forcing it to retreat to the east. 30W will approach the resulting weakness around +24h, causing the track speeds to slow significantly.",
-        "warningNumber": "027",
-        "generatedAt": "2026-10-30T03:13:36.294Z"
+        "text": "The satellite appearance of typhoon (TY) 30W has remained quite stable over the past six hours in animated enhanced infrared (EIR) satellite imagery. TY 30W will continue northwestward and begin rounding the southwestern periphery of the STR, resulting in a poleward turn over the next 12 hours. Near +72h, another trough passing through Honshu will weaken the STR, allowing TY 30W to make the final poleward turn.",
+        "warningNumber": "029",
+        "generatedAt": "2026-10-30T15:13:44.683Z"
       },
       "changes": {
         "previousWarningNumber": "028",
