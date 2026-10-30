@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-30T02:33:41.486Z",
+  "fetchedAt": "2026-10-30T03:13:36.294Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -90,9 +90,9 @@
       "seasFt": 65,
       "geoReference": "194 NM NORTHEAST OF SAIPAN",
       "reasoning": {
-        "warningNumber": "026",
+        "warningNumber": "027",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 63,
+        "seasFt": 65,
         "environment": "HIGHLY FAVORABLE",
         "vws": "10-15 KTS",
         "sst": "28-29 CELSIUS",
@@ -106,7 +106,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1520,
         "bearingDeg": 97,
@@ -188,10 +188,10 @@
           "dirDeg": 78
         },
         "now": {
-          "targetTime": "2026-10-30T02:00:00.000Z",
+          "targetTime": "2026-10-30T03:00:00.000Z",
           "heightM": 0.92,
-          "periodS": 6.45,
-          "dirDeg": 84
+          "periodS": 6.55,
+          "dirDeg": 87
         },
         "peak": {
           "targetTime": "2026-11-01T21:00:00.000Z",
@@ -204,9 +204,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "In-fa is likely at or very near super typhoon (STY) strength. STY 30W will continue west-northwestward along the southwestern periphery of the STR through +36h.",
-        "warningNumber": "025",
-        "generatedAt": "2026-10-29T15:13:43.101Z"
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 30W as a still robust -- but weakening -- annular cyclone. TY 30W (in-fa) is forecast to continue tracking west-northwestward through +12h while it remains on the southwestern periphery of the steering STR. Between +0h-12, a deep- layer trough is expected to weaken the western flank of the ridge, forcing it to retreat to the east. 30W will approach the resulting weakness around +24h, causing the track speeds to slow significantly.",
+        "warningNumber": "027",
+        "generatedAt": "2026-10-30T03:13:36.294Z"
       },
       "changes": {
         "previousWarningNumber": "026",
