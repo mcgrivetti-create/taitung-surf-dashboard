@@ -24476,6 +24476,221 @@
         "intensity0072": "LOW",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "30W",
+      "name": "In-fa",
+      "designation": "Typhoon",
+      "warningNumber": "029",
+      "issuedAt": "2026-10-30T15:00:00.000Z",
+      "positionZ": "301200Z",
+      "lat": 19.7,
+      "lon": 144.5,
+      "maxWindKt": 120,
+      "gustKt": 145,
+      "pressureMb": 949,
+      "seasFt": 58,
+      "movingToward": 300,
+      "movingKt": 19,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "310000Z",
+          "lat": 21.5,
+          "lon": 143,
+          "maxWindKt": 120,
+          "gustKt": 145
+        },
+        {
+          "tau": 24,
+          "validZ": "311200Z",
+          "lat": 22.8,
+          "lon": 143,
+          "maxWindKt": 115,
+          "gustKt": 140
+        },
+        {
+          "tau": 36,
+          "validZ": "010000Z",
+          "lat": 23.2,
+          "lon": 143.7,
+          "maxWindKt": 105,
+          "gustKt": 130
+        },
+        {
+          "tau": 48,
+          "validZ": "011200Z",
+          "lat": 23.1,
+          "lon": 143.6,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 60,
+          "validZ": "020000Z",
+          "lat": 22.9,
+          "lon": 142.2,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 72,
+          "validZ": "021200Z",
+          "lat": 23.2,
+          "lon": 140.9,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 96,
+          "validZ": "031200Z",
+          "lat": 24.4,
+          "lon": 140.1,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 120,
+          "validZ": "041200Z",
+          "lat": 26.4,
+          "lon": 140.7,
+          "maxWindKt": 65,
+          "gustKt": 80
+        }
+      ],
+      "spot": {
+        "distanceNm": 1310,
+        "bearingDeg": 94,
+        "closestApproach": {
+          "distanceNm": 1036,
+          "tau": 96,
+          "validZ": "031200Z",
+          "maxWindKt": 75
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 300,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 322
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 0
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 58
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 223
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 261
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 284
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 329
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 15
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "headingDeg": 0,
+            "deltaDeg": 60
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "headingDeg": 58,
+            "deltaDeg": 58
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "headingDeg": 223,
+            "deltaDeg": 165
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 261,
+            "deltaDeg": 38
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "headingDeg": 329,
+            "deltaDeg": 68
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "headingDeg": 15,
+            "deltaDeg": 46
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-11-03T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-10-28T05:00:00.000Z",
+          "source": "buoy",
+          "buoy": "Taitung",
+          "heightM": 1.3,
+          "periodS": 5.9,
+          "dirDeg": 78
+        },
+        "now": {
+          "targetTime": "2026-10-30T14:00:00.000Z",
+          "heightM": 0.98,
+          "periodS": 5.7,
+          "dirDeg": 78
+        },
+        "peak": {
+          "targetTime": "2026-11-01T21:00:00.000Z",
+          "heightM": 2.04,
+          "periodS": 10.75,
+          "dirDeg": 92
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 30W as a still robust -- but weakening -- annular cyclone. TY 30W (in-fa) is forecast to continue tracking west-northwestward through +12h while it remains on the southwestern periphery of the steering STR. Between +0h-12, a deep- layer trough is expected to weaken the western flank of the ridge, forcing it to retreat to the east. 30W will approach the resulting weakness around +24h, causing the track speeds to slow significantly.",
+        "warningNumber": "027",
+        "generatedAt": "2026-10-30T03:13:36.294Z"
+      },
+      "reasoningWarningNumber": "028",
+      "significantForecastChanges": "THE JTWC FORECAST TRACK NOW DEPICTS A NORTHEASTWARD TURN AT TAU 24 FOLLOWED BY A DEFLECTION TOWARD THE WEST-SOUTHWEST AT TAU 48, AND A FASTER, SHARPER POLEWARD TURN AT TAU 96 AND TAU 120.",
+      "confidence": {
+        "track0072": "LOW",
+        "track72120": "LOW",
+        "intensity0072": "LOW",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
