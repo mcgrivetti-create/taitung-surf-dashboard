@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-31T02:33:39.497Z",
+  "fetchedAt": "2026-10-31T03:13:35.784Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -93,23 +93,23 @@
       ],
       "geoReference": "215 NM SOUTH-SOUTHEAST OF IWO TO",
       "reasoning": {
-        "warningNumber": "030",
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING",
-        "seasFt": 56,
+        "warningNumber": "031",
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "seasFt": 55,
         "environment": "FAVORABLE",
         "vws": "5-10 KTS",
         "sst": "28-29 CELSIUS",
         "outflow": "STRONG RADIAL",
         "steering": "SUBTROPICAL RIDGE CENTERED TO THE NORTHEAST",
         "confidence": {
-          "track0072": null,
+          "track0072": "LOW",
           "track72120": "LOW",
-          "intensity0072": null,
+          "intensity0072": "LOW",
           "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1196,
         "bearingDeg": 90,
@@ -203,10 +203,10 @@
           "dirDeg": 78
         },
         "now": {
-          "targetTime": "2026-10-31T02:00:00.000Z",
+          "targetTime": "2026-10-31T03:00:00.000Z",
           "heightM": 0.98,
-          "periodS": 5.55,
-          "dirDeg": 77
+          "periodS": 5.75,
+          "dirDeg": 80
         },
         "peak": {
           "targetTime": "2026-11-02T00:00:00.000Z",
@@ -219,9 +219,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "The satellite appearance of typhoon (TY) 30W has remained quite stable over the past six hours in animated enhanced infrared (EIR) satellite imagery. TY 30W will continue northwestward and begin rounding the southwestern periphery of the STR, resulting in a poleward turn over the next 12 hours. Near +72h, another trough passing through Honshu will weaken the STR, allowing TY 30W to make the final poleward turn.",
-        "warningNumber": "029",
-        "generatedAt": "2026-10-30T15:13:44.683Z"
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 30W (in-fa) maintaining an impressive 40 NM diameter eye containing several mesovortices.",
+        "warningNumber": "031",
+        "generatedAt": "2026-10-31T03:13:35.784Z"
       },
       "changes": {
         "previousWarningNumber": "030",
