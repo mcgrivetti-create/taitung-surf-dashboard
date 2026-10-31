@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-31T14:33:39.778Z",
+  "fetchedAt": "2026-10-31T15:13:35.892Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -89,23 +89,23 @@
       "seasFt": 46,
       "geoReference": "170 NM SOUTHEAST OF IWO TO",
       "reasoning": {
-        "warningNumber": "032",
+        "warningNumber": "033",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 50,
-        "environment": "FAVORABLE",
-        "vws": "0-5 KTS",
-        "sst": "29-30 CELSIUS",
+        "seasFt": 46,
+        "environment": "MARGINAL",
+        "vws": "5-10 KTS",
+        "sst": "27-28 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "WEAK STEERING PATTERN INFLUENCED BY A BIFURCATED SUBTROPICAL RIDGE (STR) TO THE EAST AND TO THE WEST NEAR TAIWAN, AND A SHALLOW MID-LATITUDE TROUGH TO THE NORTH.",
+        "steering": "WEAK, BIFURCATED STEERING PATTERN, WITH SUBTROPICAL RIDGING (STR) LOCATED BOTH TO THE NORTHEAST AND TO THE WEST.",
         "confidence": {
           "track0072": "MEDIUM",
-          "track72120": "MEDIUM",
+          "track72120": "LOW",
           "intensity0072": "MEDIUM",
-          "intensity72120": "MEDIUM"
+          "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1226,
         "bearingDeg": 86,
@@ -199,8 +199,8 @@
           "dirDeg": 78
         },
         "now": {
-          "targetTime": "2026-10-31T14:00:00.000Z",
-          "heightM": 1.22,
+          "targetTime": "2026-10-31T15:00:00.000Z",
+          "heightM": 1.24,
           "periodS": 5.2,
           "dirDeg": 79
         },
@@ -215,9 +215,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 30W (in-fa) maintaining an impressive 40 NM diameter eye containing several mesovortices.",
-        "warningNumber": "031",
-        "generatedAt": "2026-10-31T03:13:35.784Z"
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a contracting eye, now measured at 31 NM, characterized by cooling eye temperatures (15C) and warming cloud-top temperatures within the central dense overcast (cdo). Typhoon (TY) 30W has begun its east- northeastward turn over the past six hours as the STR to the east shifts subtly southward and its northwestern boundary erodes in response to a mid-latitude shortwave trough passing to the north. Once the trough passes to the north in the next 6-12 hours, the STR to the west will strengthen and build eastward, while the ridge to the east weakens and shifts southward.",
+        "warningNumber": "033",
+        "generatedAt": "2026-10-31T15:13:35.892Z"
       },
       "changes": {
         "previousWarningNumber": "032",
