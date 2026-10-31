@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-31T20:33:39.016Z",
+  "fetchedAt": "2026-10-31T21:13:34.650Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -94,14 +94,14 @@
       ],
       "geoReference": "187 NM SOUTHEAST OF IWO TO",
       "reasoning": {
-        "warningNumber": "033",
+        "warningNumber": "034",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 46,
+        "seasFt": 40,
         "environment": "MARGINAL",
-        "vws": "5-10 KTS",
+        "vws": "10-15 KTS",
         "sst": "27-28 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "WEAK, BIFURCATED STEERING PATTERN, WITH SUBTROPICAL RIDGING (STR) LOCATED BOTH TO THE NORTHEAST AND TO THE WEST.",
+        "steering": "WEAK STEERING ENVIRONMENT COMPRISED OF A COL BETWEEN SUBTROPICAL RIDGES CENTERED TO THE EAST AND WEST",
         "confidence": {
           "track0072": "MEDIUM",
           "track72120": "LOW",
@@ -110,7 +110,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1253,
         "bearingDeg": 86,
@@ -210,10 +210,10 @@
           "dirDeg": 78
         },
         "now": {
-          "targetTime": "2026-10-31T20:00:00.000Z",
-          "heightM": 1.4,
-          "periodS": 5.8,
-          "dirDeg": 85
+          "targetTime": "2026-10-31T21:00:00.000Z",
+          "heightM": 1.44,
+          "periodS": 5.9,
+          "dirDeg": 86
         },
         "peak": {
           "targetTime": "2026-11-01T21:00:00.000Z",
