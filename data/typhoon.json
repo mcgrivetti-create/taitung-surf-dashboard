@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-01T21:13:46.695Z",
+  "fetchedAt": "2026-11-01T21:33:38.321Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -94,23 +94,23 @@
       ],
       "geoReference": "192 NM SOUTH-SOUTHEAST OF IWO TO",
       "reasoning": {
-        "warningNumber": "037",
+        "warningNumber": "038",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 27,
+        "seasFt": 26,
         "environment": "MARGINALLY",
-        "vws": "0-5 KTS",
+        "vws": "5-10 KTS",
         "sst": "25-27 CELSIUS",
-        "outflow": "STRONG POLEWARD AND EQUATORWARD",
-        "steering": "TYPHOON (TY) 30W IS TRAPPED IN A COMPETING STEERING PATTERN, WITH DEEP SUBTROPICAL RIDGING (STR) ANCHORED BOTH TO THE EAST AND THE WEST.",
+        "outflow": "STRONG POLEWARD",
+        "steering": "WEAK STEERING ENVIRONMENT BETWEEN SUBTROPICAL RIDGES CENTERED TO THE EAST AND WEST OF 30W",
         "confidence": {
           "track0072": "MEDIUM",
           "track72120": "LOW",
-          "intensity0072": "MEDIUM",
+          "intensity0072": "LOW",
           "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1203,
         "bearingDeg": 89,
