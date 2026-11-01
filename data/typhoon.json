@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-01T22:13:35.708Z",
+  "fetchedAt": "2026-11-01T22:33:43.680Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -190,12 +190,12 @@
         "windowEnd": "2026-11-06T15:00:00.000Z",
         "status": "in-water",
         "arrival": {
-          "targetTime": "2026-10-28T05:00:00.000Z",
+          "targetTime": "2026-11-01T20:00:00.000Z",
           "source": "buoy",
           "buoy": "Taitung",
-          "heightM": 1.3,
-          "periodS": 5.9,
-          "dirDeg": 78
+          "heightM": 1.9,
+          "periodS": 9.5,
+          "dirDeg": 67
         },
         "now": {
           "targetTime": "2026-11-01T22:00:00.000Z",
@@ -209,7 +209,28 @@
           "periodS": 8.8,
           "dirDeg": 86
         },
-        "easing": false
+        "easing": false,
+        "modelArrival": null,
+        "observed": {
+          "buoy": "WRA007",
+          "label": "Taitung",
+          "since": "2026-11-01T20:00:00.000Z",
+          "onset": {
+            "heightM": 1.9,
+            "periodS": 9.5,
+            "dirDeg": 67
+          },
+          "baseline": {
+            "heightM": 1.4,
+            "periodS": 6.7
+          },
+          "now": {
+            "at": "2026-11-01T22:00:00.000Z",
+            "heightM": 2.2,
+            "periodS": 11.5,
+            "dirDeg": 56
+          }
+        }
       },
       "retireFrom": null,
       "retired": false,
