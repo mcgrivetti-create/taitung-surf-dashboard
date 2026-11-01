@@ -1,98 +1,97 @@
 {
-  "fetchedAt": "2026-11-01T01:33:37.149Z",
+  "fetchedAt": "2026-11-01T02:13:38.943Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "30W",
       "name": "In-fa",
       "headline": "Typhoon 30W (In-fa)",
-      "warningNumber": "034",
-      "issuedZ": "31/2100Z",
-      "issuedAt": "2026-10-31T21:00:00.000Z",
+      "warningNumber": "035",
+      "issuedZ": "01/0300Z",
+      "issuedAt": "2026-11-01T03:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp3026.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp3026web.txt",
-      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202610311800-96_IN-FA_enus.png",
+      "cwaTrackImage": "https://www.cwa.gov.tw/Data/typhoon/TY_NEWS/PTA_202611010000-96_IN-FA_enus.png",
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "010600Z",
-          "lat": 22.7,
-          "lon": 144.1,
+          "validZ": "011200Z",
+          "lat": 22.4,
+          "lon": 143.6,
           "maxWindKt": 90,
           "gustKt": 110
         },
         {
           "tau": 24,
-          "validZ": "011800Z",
-          "lat": 22.6,
-          "lon": 142.9,
+          "validZ": "020000Z",
+          "lat": 22.4,
+          "lon": 142.1,
           "maxWindKt": 85,
           "gustKt": 105
         },
         {
           "tau": 36,
-          "validZ": "020600Z",
-          "lat": 22.7,
-          "lon": 141.4,
+          "validZ": "021200Z",
+          "lat": 22.8,
+          "lon": 140.8,
           "maxWindKt": 85,
           "gustKt": 105
         },
         {
           "tau": 48,
-          "validZ": "021800Z",
-          "lat": 23.2,
-          "lon": 140.3,
-          "maxWindKt": 90,
-          "gustKt": 110
+          "validZ": "030000Z",
+          "lat": 23.3,
+          "lon": 140,
+          "maxWindKt": 85,
+          "gustKt": 105
         },
         {
           "tau": 60,
-          "validZ": "030600Z",
-          "lat": 23.7,
-          "lon": 139.8,
-          "maxWindKt": 90,
-          "gustKt": 110
+          "validZ": "031200Z",
+          "lat": 23.8,
+          "lon": 139.7,
+          "maxWindKt": 85,
+          "gustKt": 105
         },
         {
           "tau": 72,
-          "validZ": "031800Z",
-          "lat": 24.4,
+          "validZ": "040000Z",
+          "lat": 24.7,
           "lon": 139.5,
           "maxWindKt": 85,
           "gustKt": 105
         },
         {
           "tau": 96,
-          "validZ": "041800Z",
-          "lat": 26.7,
-          "lon": 139.8,
+          "validZ": "050000Z",
+          "lat": 27.9,
+          "lon": 140.5,
           "maxWindKt": 70,
           "gustKt": 85
         },
         {
           "tau": 120,
-          "validZ": "051800Z",
-          "lat": 31.5,
-          "lon": 144.9,
+          "validZ": "060000Z",
+          "lat": 33.2,
+          "lon": 147,
           "maxWindKt": 60,
           "gustKt": 75
         }
       ],
-      "positionZ": "311800Z",
-      "lat": 22.9,
-      "lon": 144,
-      "movingToward": 80,
-      "movingKt": 5,
-      "maxWindKt": 100,
-      "gustKt": 125,
-      "seasFt": 40,
+      "positionZ": "010000Z",
+      "lat": 22.8,
+      "lon": 144.3,
+      "movingToward": 110,
+      "movingKt": 3,
+      "maxWindKt": 95,
+      "gustKt": 115,
       "nextWarnings": [
-        "010300Z",
         "010900Z",
         "011500Z",
-        "012100Z"
+        "012100Z",
+        "020300Z"
       ],
-      "geoReference": "187 NM SOUTHEAST OF IWO TO",
+      "geoReference": "204 NM SOUTHEAST OF IWO TO",
       "reasoning": {
         "warningNumber": "034",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
@@ -110,91 +109,85 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 1253,
+        "distanceNm": 1270,
         "bearingDeg": 86,
         "closestApproach": {
           "distanceNm": 1003,
           "tau": 72,
-          "validZ": "031800Z",
+          "validZ": "040000Z",
           "maxWindKt": 85
         }
       },
       "motion": {
-        "currentHeadingDeg": 80,
+        "currentHeadingDeg": 110,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 155
+            "heading": 238
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 265
+            "heading": 270
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 274
+            "heading": 289
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 296
+            "heading": 304
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 318
+            "heading": 331
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 339
+            "heading": 349
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 7
+            "heading": 15
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 42
+            "heading": 45
           }
         ],
         "turns": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "headingDeg": 155,
-            "deltaDeg": 75
+            "headingDeg": 238,
+            "deltaDeg": 128
           },
           {
-            "fromTau": 12,
-            "toTau": 24,
-            "headingDeg": 265,
-            "deltaDeg": 110
+            "fromTau": 24,
+            "toTau": 36,
+            "headingDeg": 289,
+            "deltaDeg": 51
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "headingDeg": 318,
-            "deltaDeg": 53
+            "headingDeg": 331,
+            "deltaDeg": 42
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "headingDeg": 7,
-            "deltaDeg": 49
-          },
-          {
-            "fromTau": 96,
-            "toTau": 120,
-            "headingDeg": 42,
-            "deltaDeg": 35
+            "headingDeg": 15,
+            "deltaDeg": 44
           }
         ]
       },
@@ -210,9 +203,9 @@
           "dirDeg": 78
         },
         "now": {
-          "targetTime": "2026-11-01T01:00:00.000Z",
-          "heightM": 1.3,
-          "periodS": 5.4,
+          "targetTime": "2026-11-01T02:00:00.000Z",
+          "heightM": 1.26,
+          "periodS": 5.35,
           "dirDeg": 86
         },
         "peak": {
@@ -231,11 +224,10 @@
         "generatedAt": "2026-10-31T15:13:35.892Z"
       },
       "changes": {
-        "previousWarningNumber": "033",
-        "previousIssuedAt": "2026-10-31T15:00:00.000Z",
-        "maxWindKtDelta": -10,
-        "seasFtDelta": -6,
-        "closestApproachNmDelta": -5
+        "previousWarningNumber": "034",
+        "previousIssuedAt": "2026-10-31T21:00:00.000Z",
+        "maxWindKtDelta": -5,
+        "closestApproachNmDelta": 0
       }
     }
   ],
