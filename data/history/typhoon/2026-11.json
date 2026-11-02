@@ -1760,6 +1760,184 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "30W",
+      "name": "In-fa",
+      "designation": "Typhoon",
+      "warningNumber": "042",
+      "issuedAt": "2026-11-02T21:00:00.000Z",
+      "positionZ": "021800Z",
+      "lat": 23.2,
+      "lon": 139.9,
+      "maxWindKt": 65,
+      "gustKt": 80,
+      "pressureMb": 985,
+      "seasFt": 28,
+      "movingToward": 310,
+      "movingKt": 5,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "030600Z",
+          "lat": 23.6,
+          "lon": 139.2,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 24,
+          "validZ": "031800Z",
+          "lat": 24.1,
+          "lon": 138.7,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 36,
+          "validZ": "040600Z",
+          "lat": 25.4,
+          "lon": 138.6,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 48,
+          "validZ": "041800Z",
+          "lat": 27.2,
+          "lon": 139.1,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 60,
+          "validZ": "050600Z",
+          "lat": 30.1,
+          "lon": 141.6,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 72,
+          "validZ": "051800Z",
+          "lat": 34.4,
+          "lon": 146.5,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 96,
+          "validZ": "061800Z",
+          "lat": 45.4,
+          "lon": 162.9,
+          "maxWindKt": 65,
+          "gustKt": 80
+        }
+      ],
+      "spot": {
+        "distanceNm": 1026,
+        "bearingDeg": 86,
+        "closestApproach": {
+          "distanceNm": 957,
+          "tau": 36,
+          "validZ": "040600Z",
+          "maxWindKt": 75
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 310,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 302
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 318
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 356
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 14
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 37
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 43
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 44
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "headingDeg": 356,
+            "deltaDeg": 46
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 37,
+            "deltaDeg": 41
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-11-07T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-11-01T20:00:00.000Z",
+          "source": "buoy",
+          "buoy": "Taitung",
+          "heightM": 1.9,
+          "periodS": 9.5,
+          "dirDeg": 67
+        },
+        "now": {
+          "targetTime": "2026-11-02T20:00:00.000Z",
+          "heightM": 1.26,
+          "periodS": 8.65,
+          "dirDeg": 83
+        },
+        "peak": {
+          "targetTime": "2026-11-07T15:00:00.000Z",
+          "heightM": 2,
+          "periodS": 6.7,
+          "dirDeg": 75
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) and shortwave infrared (swir) imagery depict a partially exposed low-level circulation center (LLCC), with fragmented deep convective bands wrapping into the LLCC along the southeastern through northern quadrants. TY 30W is tracking slowly west-northwestward. The system will initiate extratropical transition (ETT) by +72h as it phases with the amplifying mid-latitude trough.",
+        "warningNumber": "040",
+        "generatedAt": "2026-11-02T09:13:41.792Z"
+      },
+      "reasoningWarningNumber": "041",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "MEDIUM",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
