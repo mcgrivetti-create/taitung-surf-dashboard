@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-02T08:33:37.706Z",
+  "fetchedAt": "2026-11-02T09:13:41.792Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -81,23 +81,23 @@
       "seasFt": 30,
       "geoReference": "134 NM SOUTH OF IWO TO",
       "reasoning": {
-        "warningNumber": "039",
+        "warningNumber": "040",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 25,
-        "environment": "MARGINALLY",
-        "vws": "5-10 KTS",
-        "sst": "25-26 CELSIUS",
-        "outflow": "STRONG POLEWARD",
-        "steering": "WEAK STEERING ENVIRONMENT BETWEEN TWO SUBTROPICAL RIDGES CENTERED TO THE EAST AND WEST",
+        "seasFt": 30,
+        "environment": "MARGINALLY FAVORABLE",
+        "vws": "0-5 KTS",
+        "sst": "27-28 CELSIUS",
+        "outflow": "MODERATE POLEWARD AND EQUATORWARD",
+        "steering": "TY 30W IS EMBEDDED IN A WEAK STEERING PATTERN WITHIN A COL REGION BETWEEN TWO SUBTROPICAL RIDGES (STR) TO THE EAST AND WEST.",
         "confidence": {
-          "track0072": "MEDIUM",
+          "track0072": "HIGH",
           "track72120": "LOW",
           "intensity0072": "MEDIUM",
           "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1084,
         "bearingDeg": 87,
@@ -174,9 +174,9 @@
           "dirDeg": 67
         },
         "now": {
-          "targetTime": "2026-11-02T08:00:00.000Z",
-          "heightM": 1.54,
-          "periodS": 8.8,
+          "targetTime": "2026-11-02T09:00:00.000Z",
+          "heightM": 1.52,
+          "periodS": 8.75,
           "dirDeg": 91
         },
         "peak": {
@@ -190,9 +190,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "TY 30W has commenced a slow westward drift after executing a cyclonic loop over the past 24 hours, with the low-level circulation center (LLCC) now positioned approximately 40 NM south of its 24-hour position. After +24h, as TY 30W emerges over unperturbed, climatologically typical SSTS and elevated ocean heat content (OHC) waters, it will re-intensify under more favorable thermodynamic and dynamic conditions.",
-        "warningNumber": "037",
-        "generatedAt": "2026-11-01T15:13:38.692Z"
+        "text": "Animated multispectral satellite imagery (MSI) and shortwave infrared (swir) imagery depict a partially exposed low-level circulation center (LLCC), with fragmented deep convective bands wrapping into the LLCC along the southeastern through northern quadrants. TY 30W is tracking slowly west-northwestward. The system will initiate extratropical transition (ETT) by +72h as it phases with the amplifying mid-latitude trough.",
+        "warningNumber": "040",
+        "generatedAt": "2026-11-02T09:13:41.792Z"
       },
       "changes": {
         "previousWarningNumber": "039",
