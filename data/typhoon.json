@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-02T07:33:32.996Z",
+  "fetchedAt": "2026-11-02T08:13:49.352Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -77,12 +77,8 @@
       "movingKt": 11,
       "maxWindKt": 70,
       "gustKt": 85,
-      "nextWarnings": [
-        "020900Z",
-        "021500Z",
-        "022100Z",
-        "030300Z"
-      ],
+      "pressureMb": 985,
+      "seasFt": 25,
       "geoReference": "152 NM SOUTH OF IWO TO",
       "reasoning": {
         "warningNumber": "039",
@@ -178,9 +174,9 @@
           "dirDeg": 67
         },
         "now": {
-          "targetTime": "2026-11-02T07:00:00.000Z",
-          "heightM": 1.56,
-          "periodS": 8.85,
+          "targetTime": "2026-11-02T08:00:00.000Z",
+          "heightM": 1.54,
+          "periodS": 8.8,
           "dirDeg": 91
         },
         "peak": {
@@ -202,6 +198,7 @@
         "previousWarningNumber": "038",
         "previousIssuedAt": "2026-11-01T21:00:00.000Z",
         "maxWindKtDelta": -5,
+        "seasFtDelta": -1,
         "closestApproachNmDelta": -22
       }
     }
