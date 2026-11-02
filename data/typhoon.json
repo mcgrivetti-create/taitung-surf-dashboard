@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-02T20:33:36.790Z",
+  "fetchedAt": "2026-11-02T21:13:48.522Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -87,23 +87,23 @@
       ],
       "geoReference": "123 NM SOUTHWEST OF IWO TO",
       "reasoning": {
-        "warningNumber": "041",
+        "warningNumber": "042",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 30,
+        "seasFt": 28,
         "environment": "FAVORABLE",
-        "vws": "5-10 KTS",
-        "sst": "28-29 CELSIUS",
+        "vws": "15-20 KTS",
+        "sst": "27-28 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "TY 30W IS EMBEDDED IN A WEAK, COMPETING STEERING REGIME WITHIN A COL REGION BETWEEN SUBTROPICAL RIDGE (STR) CENTERS TO THE EAST AND WEST.",
+        "steering": "COMPETING STEERING ENVIRONMENT CHARACTERIZED BY A DEEP-LAYER STR TO THE WEST AND ANOTHER DEEP-LAYER STR TO THE EAST",
         "confidence": {
-          "track0072": "HIGH",
-          "track72120": "MEDIUM",
+          "track0072": "MEDIUM",
+          "track72120": "LOW",
           "intensity0072": "MEDIUM",
-          "intensity72120": "MEDIUM"
+          "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1026,
         "bearingDeg": 86,
@@ -180,10 +180,10 @@
           "dirDeg": 67
         },
         "now": {
-          "targetTime": "2026-11-02T20:00:00.000Z",
+          "targetTime": "2026-11-02T21:00:00.000Z",
           "heightM": 1.26,
-          "periodS": 8.65,
-          "dirDeg": 83
+          "periodS": 9.1,
+          "dirDeg": 81
         },
         "peak": {
           "targetTime": "2026-11-07T15:00:00.000Z",
@@ -196,9 +196,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) and shortwave infrared (swir) imagery depict a partially exposed low-level circulation center (LLCC), with fragmented deep convective bands wrapping into the LLCC along the southeastern through northern quadrants. TY 30W is tracking slowly west-northwestward. The system will initiate extratropical transition (ETT) by +72h as it phases with the amplifying mid-latitude trough.",
-        "warningNumber": "040",
-        "generatedAt": "2026-11-02T09:13:41.792Z"
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts deep convection reforming near the low-level circulation center (LLCC). TY 30W is currently located inside a col region between two ridges. With waters warmer than 27 degrees Celsius and enhanced poleward outflow predicted to continue, TY 30W will likely intensify.",
+        "warningNumber": "042",
+        "generatedAt": "2026-11-02T21:13:48.522Z"
       },
       "changes": {
         "previousWarningNumber": "041",
