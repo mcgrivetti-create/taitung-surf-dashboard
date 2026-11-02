@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-02T14:33:44.541Z",
+  "fetchedAt": "2026-11-02T15:14:06.491Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -81,23 +81,23 @@
       "seasFt": 30,
       "geoReference": "124 NM SOUTH- SOUTHWEST OF IWO TO",
       "reasoning": {
-        "warningNumber": "040",
+        "warningNumber": "041",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 30,
-        "environment": "MARGINALLY FAVORABLE",
-        "vws": "0-5 KTS",
-        "sst": "27-28 CELSIUS",
-        "outflow": "MODERATE POLEWARD AND EQUATORWARD",
-        "steering": "TY 30W IS EMBEDDED IN A WEAK STEERING PATTERN WITHIN A COL REGION BETWEEN TWO SUBTROPICAL RIDGES (STR) TO THE EAST AND WEST.",
+        "environment": "FAVORABLE",
+        "vws": "5-10 KTS",
+        "sst": "28-29 CELSIUS",
+        "outflow": "STRONG POLEWARD",
+        "steering": "TY 30W IS EMBEDDED IN A WEAK, COMPETING STEERING REGIME WITHIN A COL REGION BETWEEN SUBTROPICAL RIDGE (STR) CENTERS TO THE EAST AND WEST.",
         "confidence": {
           "track0072": "HIGH",
-          "track72120": "LOW",
+          "track72120": "MEDIUM",
           "intensity0072": "MEDIUM",
-          "intensity72120": "LOW"
+          "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1043,
         "bearingDeg": 86,
@@ -174,7 +174,7 @@
           "dirDeg": 67
         },
         "now": {
-          "targetTime": "2026-11-02T14:00:00.000Z",
+          "targetTime": "2026-11-02T15:00:00.000Z",
           "heightM": 1.42,
           "periodS": 8.4,
           "dirDeg": 90
