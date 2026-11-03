@@ -180,6 +180,14 @@
             "WaveDirectionDescription": "ENE",
             "WavePeriod": "7.1",
             "SeaTemperature": "27.2"
+          },
+          {
+            "DateTime": "2026-11-03T17:00:00+08:00",
+            "WaveHeight": "1.8",
+            "WaveDirection": "74.0",
+            "WaveDirectionDescription": "ENE",
+            "WavePeriod": "7.8",
+            "SeaTemperature": "27.3"
           }
         ]
       },
@@ -892,10 +900,41 @@
               "Layer": [
                 {
                   "LayerNumber": "1",
-                  "CurrentDirection": "234",
+                  "CurrentDirection": "222",
                   "CurrentDirectionDescription": "SW",
                   "CurrentSpeed": "0.20",
                   "CurrentSpeedInKnots": "0.39"
+                }
+              ]
+            }
+          },
+          {
+            "DateTime": "2026-11-03T18:00:00+08:00",
+            "TideHeight": "None",
+            "TideLevel": "-",
+            "WaveHeight": "1.3",
+            "WaveDirection": "90.0",
+            "WaveDirectionDescription": "E",
+            "WavePeriod": "6.2",
+            "SeaTemperature": "None",
+            "Temperature": "None",
+            "StationPressure": "1017.9",
+            "PrimaryAnemometer": {
+              "WindSpeed": "7.6",
+              "WindScale": "4",
+              "WindDirection": "47.0",
+              "WindDirectionDescription": "NE",
+              "MaximumWindSpeed": "9.7",
+              "MaximumWindScale": "5"
+            },
+            "SeaCurrents": {
+              "Layer": [
+                {
+                  "LayerNumber": "1",
+                  "CurrentDirection": "210",
+                  "CurrentDirectionDescription": "SSW",
+                  "CurrentSpeed": "0.33",
+                  "CurrentSpeedInKnots": "0.64"
                 }
               ]
             }
@@ -1580,10 +1619,41 @@
               "Layer": [
                 {
                   "LayerNumber": "1",
-                  "CurrentDirection": "68",
-                  "CurrentDirectionDescription": "ENE",
-                  "CurrentSpeed": "0.06",
-                  "CurrentSpeedInKnots": "0.12"
+                  "CurrentDirection": "125",
+                  "CurrentDirectionDescription": "SE",
+                  "CurrentSpeed": "0.08",
+                  "CurrentSpeedInKnots": "0.16"
+                }
+              ]
+            }
+          },
+          {
+            "DateTime": "2026-11-03T18:00:00+08:00",
+            "TideHeight": "None",
+            "TideLevel": "-",
+            "WaveHeight": "1.3",
+            "WaveDirection": "45.0",
+            "WaveDirectionDescription": "NE",
+            "WavePeriod": "4.9",
+            "SeaTemperature": "26.6",
+            "Temperature": "None",
+            "StationPressure": "1018.1",
+            "PrimaryAnemometer": {
+              "WindSpeed": "6.7",
+              "WindScale": "4",
+              "WindDirection": "50.0",
+              "WindDirectionDescription": "NE",
+              "MaximumWindSpeed": "8.7",
+              "MaximumWindScale": "5"
+            },
+            "SeaCurrents": {
+              "Layer": [
+                {
+                  "LayerNumber": "1",
+                  "CurrentDirection": "273",
+                  "CurrentDirectionDescription": "W",
+                  "CurrentSpeed": "0.19",
+                  "CurrentSpeedInKnots": "0.37"
                 }
               ]
             }
@@ -2299,8 +2369,39 @@
               "Layer": [
                 {
                   "LayerNumber": "1",
-                  "CurrentDirection": "268",
-                  "CurrentDirectionDescription": "W",
+                  "CurrentDirection": "342",
+                  "CurrentDirectionDescription": "NNW",
+                  "CurrentSpeed": "0.18",
+                  "CurrentSpeedInKnots": "0.35"
+                }
+              ]
+            }
+          },
+          {
+            "DateTime": "2026-11-03T18:00:00+08:00",
+            "TideHeight": "None",
+            "TideLevel": "-",
+            "WaveHeight": "0.9",
+            "WaveDirection": "56.0",
+            "WaveDirectionDescription": "NE",
+            "WavePeriod": "5.4",
+            "SeaTemperature": "27.5",
+            "Temperature": "24.7",
+            "StationPressure": "1019.0",
+            "PrimaryAnemometer": {
+              "WindSpeed": "4.9",
+              "WindScale": "3",
+              "WindDirection": "33.0",
+              "WindDirectionDescription": "NNE",
+              "MaximumWindSpeed": "6.9",
+              "MaximumWindScale": "4"
+            },
+            "SeaCurrents": {
+              "Layer": [
+                {
+                  "LayerNumber": "1",
+                  "CurrentDirection": "227",
+                  "CurrentDirectionDescription": "SW",
                   "CurrentSpeed": "0.10",
                   "CurrentSpeedInKnots": "0.19"
                 }
@@ -3020,8 +3121,39 @@
                   "LayerNumber": "1",
                   "CurrentDirection": "223",
                   "CurrentDirectionDescription": "SW",
-                  "CurrentSpeed": "0.34",
-                  "CurrentSpeedInKnots": "0.66"
+                  "CurrentSpeed": "0.24",
+                  "CurrentSpeedInKnots": "0.47"
+                }
+              ]
+            }
+          },
+          {
+            "DateTime": "2026-11-03T18:00:00+08:00",
+            "TideHeight": "None",
+            "TideLevel": "-",
+            "WaveHeight": "1.2",
+            "WaveDirection": "78.0",
+            "WaveDirectionDescription": "ENE",
+            "WavePeriod": "4.8",
+            "SeaTemperature": "24.7",
+            "Temperature": "23.8",
+            "StationPressure": "1019.0",
+            "PrimaryAnemometer": {
+              "WindSpeed": "5.8",
+              "WindScale": "4",
+              "WindDirection": "78.0",
+              "WindDirectionDescription": "ENE",
+              "MaximumWindSpeed": "8.6",
+              "MaximumWindScale": "5"
+            },
+            "SeaCurrents": {
+              "Layer": [
+                {
+                  "LayerNumber": "1",
+                  "CurrentDirection": "185",
+                  "CurrentDirectionDescription": "S",
+                  "CurrentSpeed": "0.14",
+                  "CurrentSpeedInKnots": "0.27"
                 }
               ]
             }
