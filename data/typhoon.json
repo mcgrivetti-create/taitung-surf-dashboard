@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-03T08:33:43.396Z",
+  "fetchedAt": "2026-11-03T09:13:37.403Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -79,14 +79,14 @@
       ],
       "geoReference": "158 NM SOUTHWEST OF IWO TO",
       "reasoning": {
-        "warningNumber": "043",
-        "significantForecastChanges": "THE FORECAST HAS BEEN TRUNCATED TO 72 HOURS.",
+        "warningNumber": "044",
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 28,
-        "environment": "FAVORABLE",
-        "vws": "15-20 KTS",
+        "environment": "MARGINALLY FAVORABLE",
+        "vws": "5-10 KTS",
         "sst": "27-28 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "COMPETING STEERING ENVIRONMENT CHARACTERIZED BY A DEEP-LAYER STR TO THE WEST AND ANOTHER DEEP-LAYER STR TO THE EAST",
+        "steering": "A COMPETING STEERING ENVIRONMENT WITH A DEEP-LAYER STR TO THE EAST AND ANOTHER DEEP-LAYER STR TO THE WEST",
         "confidence": {
           "track0072": "MEDIUM",
           "track72120": null,
@@ -95,7 +95,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 982,
         "bearingDeg": 86,
@@ -167,9 +167,9 @@
           "dirDeg": 67
         },
         "now": {
-          "targetTime": "2026-11-03T08:00:00.000Z",
+          "targetTime": "2026-11-03T09:00:00.000Z",
           "heightM": 1.64,
-          "periodS": 8.1,
+          "periodS": 8.05,
           "dirDeg": 83
         },
         "peak": {
@@ -183,9 +183,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated enhanced infrared (EIR) satellite imagery depicts deep convection reforming near the low-level circulation center (LLCC). TY 30W is currently located inside a col region between two ridges. With waters warmer than 27 degrees Celsius and enhanced poleward outflow predicted to continue, TY 30W will likely intensify.",
-        "warningNumber": "042",
-        "generatedAt": "2026-11-02T21:13:48.522Z"
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon 30W (in-fa) with a steadily improving convective structure and signs of a redeveloping eye. TY 30W is forecast to track slowly northwestward, along the western periphery of the STR to the east through +12h. In terms of intensity, 30W is forecast to slightly reintensify over the next 12-24 hours in response to the robust poleward outflow and low vertical wind shear.",
+        "warningNumber": "044",
+        "generatedAt": "2026-11-03T09:13:37.403Z"
       },
       "changes": {
         "previousWarningNumber": "043",
