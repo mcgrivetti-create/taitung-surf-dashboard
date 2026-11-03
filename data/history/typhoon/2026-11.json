@@ -1938,6 +1938,171 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "30W",
+      "name": "In-fa",
+      "designation": "Typhoon",
+      "warningNumber": "043",
+      "issuedAt": "2026-11-03T03:00:00.000Z",
+      "positionZ": "030000Z",
+      "lat": 23.1,
+      "lon": 139.3,
+      "maxWindKt": 70,
+      "gustKt": 85,
+      "pressureMb": 984,
+      "seasFt": 28,
+      "movingToward": 280,
+      "movingKt": 6,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "031200Z",
+          "lat": 23.5,
+          "lon": 138.7,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 24,
+          "validZ": "040000Z",
+          "lat": 24.4,
+          "lon": 138.3,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 36,
+          "validZ": "041200Z",
+          "lat": 26,
+          "lon": 138.5,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 48,
+          "validZ": "050000Z",
+          "lat": 28.4,
+          "lon": 139.8,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 60,
+          "validZ": "051200Z",
+          "lat": 32.1,
+          "lon": 143.6,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 72,
+          "validZ": "060000Z",
+          "lat": 37.4,
+          "lon": 150,
+          "maxWindKt": 65,
+          "gustKt": 80
+        }
+      ],
+      "spot": {
+        "distanceNm": 993,
+        "bearingDeg": 86,
+        "closestApproach": {
+          "distanceNm": 937,
+          "tau": 24,
+          "validZ": "040000Z",
+          "maxWindKt": 75
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 280,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 306
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 338
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 6
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 25
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 41
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 43
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "headingDeg": 338,
+            "deltaDeg": 58
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "headingDeg": 25,
+            "deltaDeg": 47
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-11-07T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-11-01T20:00:00.000Z",
+          "source": "buoy",
+          "buoy": "Taitung",
+          "heightM": 1.9,
+          "periodS": 9.5,
+          "dirDeg": 67
+        },
+        "now": {
+          "targetTime": "2026-11-03T02:00:00.000Z",
+          "heightM": 1.44,
+          "periodS": 9.25,
+          "dirDeg": 84
+        },
+        "peak": {
+          "targetTime": "2026-11-07T15:00:00.000Z",
+          "heightM": 2.1,
+          "periodS": 6.65,
+          "dirDeg": 78
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts deep convection reforming near the low-level circulation center (LLCC). TY 30W is currently located inside a col region between two ridges. With waters warmer than 27 degrees Celsius and enhanced poleward outflow predicted to continue, TY 30W will likely intensify.",
+        "warningNumber": "042",
+        "generatedAt": "2026-11-02T21:13:48.522Z"
+      },
+      "reasoningWarningNumber": "042",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "LOW",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
