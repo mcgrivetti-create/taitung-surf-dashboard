@@ -2268,6 +2268,158 @@
         "intensity0072": "MEDIUM",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "30W",
+      "name": "In-fa",
+      "designation": "Typhoon",
+      "warningNumber": "045",
+      "issuedAt": "2026-11-03T15:00:00.000Z",
+      "positionZ": "031200Z",
+      "lat": 23.3,
+      "lon": 138.8,
+      "maxWindKt": 75,
+      "gustKt": 90,
+      "pressureMb": 979,
+      "seasFt": 28,
+      "movingToward": 305,
+      "movingKt": 3,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "040000Z",
+          "lat": 24.3,
+          "lon": 138.4,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 24,
+          "validZ": "041200Z",
+          "lat": 25.8,
+          "lon": 138.6,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 36,
+          "validZ": "050000Z",
+          "lat": 28.3,
+          "lon": 140.1,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 48,
+          "validZ": "051200Z",
+          "lat": 32.3,
+          "lon": 144.3,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 60,
+          "validZ": "060000Z",
+          "lat": 37.8,
+          "lon": 151.4,
+          "maxWindKt": 65,
+          "gustKt": 80
+        }
+      ],
+      "spot": {
+        "distanceNm": 965,
+        "bearingDeg": 85,
+        "closestApproach": {
+          "distanceNm": 942,
+          "tau": 12,
+          "validZ": "040000Z",
+          "maxWindKt": 80
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 305,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 340
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 7
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 28
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 41
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 45
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "headingDeg": 340,
+            "deltaDeg": 35
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "headingDeg": 28,
+            "deltaDeg": 48
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-11-07T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-11-01T20:00:00.000Z",
+          "source": "buoy",
+          "buoy": "Taitung",
+          "heightM": 1.9,
+          "periodS": 9.5,
+          "dirDeg": 67
+        },
+        "now": {
+          "targetTime": "2026-11-03T14:00:00.000Z",
+          "heightM": 1.8,
+          "periodS": 8.25,
+          "dirDeg": 80
+        },
+        "peak": {
+          "targetTime": "2026-11-07T15:00:00.000Z",
+          "heightM": 2.3,
+          "periodS": 6.85,
+          "dirDeg": 79
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon 30W (in-fa) with a steadily improving convective structure and signs of a redeveloping eye. TY 30W is forecast to track slowly northwestward, along the western periphery of the STR to the east through +12h. In terms of intensity, 30W is forecast to slightly reintensify over the next 12-24 hours in response to the robust poleward outflow and low vertical wind shear.",
+        "warningNumber": "044",
+        "generatedAt": "2026-11-03T09:13:37.403Z"
+      },
+      "reasoningWarningNumber": "044",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": null,
+        "intensity0072": "MEDIUM",
+        "intensity72120": null
+      }
     }
   ]
 }
