@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-04T14:33:45.974Z",
+  "fetchedAt": "2026-11-04T15:33:47.447Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -55,11 +55,11 @@
       ],
       "geoReference": "168 NM WEST- NORTHWEST OF IWO TO",
       "reasoning": {
-        "warningNumber": "048",
+        "warningNumber": "049",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 30,
         "environment": "MARGINAL",
-        "vws": "20-25 KTS",
+        "vws": "25-30 KTS",
         "sst": "26-27 CELSIUS",
         "outflow": "STRONG POLEWARD",
         "steering": "THE WESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) POSITIONED TO THE EAST",
@@ -71,7 +71,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 949,
         "bearingDeg": 76,
@@ -123,9 +123,9 @@
           "dirDeg": 67
         },
         "now": {
-          "targetTime": "2026-11-04T14:00:00.000Z",
+          "targetTime": "2026-11-04T15:00:00.000Z",
           "heightM": 1.68,
-          "periodS": 8.5,
+          "periodS": 8.55,
           "dirDeg": 87
         },
         "peak": {
@@ -154,12 +154,25 @@
     }
   ],
   "alerts": [],
-  "invests": [],
-  "investSatellite": null,
+  "invests": [
+    {
+      "id": "99W",
+      "potential": "LOW",
+      "geoReference": "890 NM EAST-NORTHEAST OF GUAM",
+      "windKtLow": 15,
+      "windKtHigh": 20,
+      "pressureMb": 1010,
+      "lat": 16,
+      "lon": 159.9,
+      "distanceNm": 2217,
+      "bearingDeg": 94
+    }
+  ],
+  "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "04/0600Z",
-    "issuedAt": "2026-11-04T06:00:00.000Z",
+    "issuedZ": "04/1500Z",
+    "issuedAt": "2026-11-04T15:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": false
+    "reissued": true
   }
 }
