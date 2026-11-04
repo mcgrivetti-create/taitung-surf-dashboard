@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-04T20:33:37.618Z",
+  "fetchedAt": "2026-11-04T21:13:57.683Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -53,14 +53,14 @@
       ],
       "geoReference": "198 NM WEST OF CHICHI JIMA",
       "reasoning": {
-        "warningNumber": "049",
+        "warningNumber": "050",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
         "seasFt": 30,
-        "environment": "MARGINAL",
-        "vws": "25-30 KTS",
+        "environment": "MARGINALLY",
+        "vws": "30+ KTS",
         "sst": "26-27 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "THE WESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) POSITIONED TO THE EAST",
+        "steering": "SUBTROPICAL RIDGE CENTERED TO THE SOUTHEAST",
         "confidence": {
           "track0072": "HIGH",
           "track72120": null,
@@ -69,7 +69,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 966,
         "bearingDeg": 72,
@@ -121,7 +121,7 @@
           "dirDeg": 67
         },
         "now": {
-          "targetTime": "2026-11-04T20:00:00.000Z",
+          "targetTime": "2026-11-04T21:00:00.000Z",
           "heightM": 1.66,
           "periodS": 8.6,
           "dirDeg": 87
@@ -137,9 +137,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon 30W (in-fa) with a significantly eastward-tilted vortex with height due to moderate to high westerly vertical wind shear. TY 30W is forecast to start turning northeastward over the next 12 hours as it rounds the axis of the STR to the east. Regarding intensity, 30W is forecast to continue steadily weakening through +36h due to increasing vertical wind shear, dry air entrainment, and decreasing sea surface temperatures.",
-        "warningNumber": "048",
-        "generatedAt": "2026-11-04T09:13:42.711Z"
+        "text": "TY 30W is forecast to begin a northeastward turn imminently as it rounds the subtropical ridge (STR) centered to the southeast, accompanied by an acceleration in track speed.",
+        "warningNumber": "050",
+        "generatedAt": "2026-11-04T21:13:57.683Z"
       },
       "changes": {
         "previousWarningNumber": "049",
