@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-04T08:33:49.690Z",
+  "fetchedAt": "2026-11-04T09:13:42.711Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -63,23 +63,23 @@
       ],
       "geoReference": "164 NM WEST OF IWO TO",
       "reasoning": {
-        "warningNumber": "047",
-        "significantForecastChanges": "THE FORECAST HAS BEEN TRUNCATED TO 48 HOURS.",
-        "seasFt": 28,
+        "warningNumber": "048",
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "seasFt": 30,
         "environment": "MARGINAL",
         "vws": "20-25 KTS",
         "sst": "26-27 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "WESTERN FLANK OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED NEAR 26N 155E",
+        "steering": "THE WESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) POSITIONED TO THE EAST",
         "confidence": {
-          "track0072": "MEDIUM",
+          "track0072": "HIGH",
           "track72120": null,
           "intensity0072": "MEDIUM",
           "intensity72120": null
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 939,
         "bearingDeg": 79,
@@ -136,7 +136,7 @@
           "dirDeg": 67
         },
         "now": {
-          "targetTime": "2026-11-04T08:00:00.000Z",
+          "targetTime": "2026-11-04T09:00:00.000Z",
           "heightM": 1.76,
           "periodS": 8.3,
           "dirDeg": 85
@@ -152,9 +152,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Typhoon (TY) 30W underwent significant consolidation between 0600Z and 1800Z, with a ring of -60 to -65 degrees Celsius cloud-top temperatures encircling a ragged 30-NM-wide eye. TY 30W has turned sharply poleward as it rounds the western periphery of the STR. The strong poleward outflow channel will become increasingly unable to overcome these detrimental environmental effects, but increasing baroclinic instability should offset some of the weakening.",
-        "warningNumber": "046",
-        "generatedAt": "2026-11-03T21:14:01.504Z"
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon 30W (in-fa) with a significantly eastward-tilted vortex with height due to moderate to high westerly vertical wind shear. TY 30W is forecast to start turning northeastward over the next 12 hours as it rounds the axis of the STR to the east. Regarding intensity, 30W is forecast to continue steadily weakening through +36h due to increasing vertical wind shear, dry air entrainment, and decreasing sea surface temperatures.",
+        "warningNumber": "048",
+        "generatedAt": "2026-11-04T09:13:42.711Z"
       },
       "changes": {
         "previousWarningNumber": "047",
