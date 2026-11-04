@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-04T01:34:02.008Z",
+  "fetchedAt": "2026-11-04T02:13:36.925Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -63,14 +63,14 @@
       ],
       "geoReference": "160 NM WEST OF IWO TO",
       "reasoning": {
-        "warningNumber": "046",
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "warningNumber": "047",
+        "significantForecastChanges": "THE FORECAST HAS BEEN TRUNCATED TO 48 HOURS.",
         "seasFt": 28,
-        "environment": "MARGINALLY FAVORABLE",
+        "environment": "MARGINAL",
         "vws": "20-25 KTS",
-        "sst": "27-28 CELSIUS",
+        "sst": "26-27 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "WESTERN PERIPHERY OF THE DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED NEAR 25N 154E",
+        "steering": "WESTERN FLANK OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED NEAR 26N 155E",
         "confidence": {
           "track0072": "MEDIUM",
           "track72120": null,
@@ -79,7 +79,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 943,
         "bearingDeg": 81,
@@ -136,8 +136,8 @@
           "dirDeg": 67
         },
         "now": {
-          "targetTime": "2026-11-04T01:00:00.000Z",
-          "heightM": 1.84,
+          "targetTime": "2026-11-04T02:00:00.000Z",
+          "heightM": 1.82,
           "periodS": 8.25,
           "dirDeg": 82
         },
