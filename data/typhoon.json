@@ -1,67 +1,67 @@
 {
-  "fetchedAt": "2026-11-04T07:33:58.213Z",
+  "fetchedAt": "2026-11-04T08:13:50.085Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "30W",
       "name": "In-fa",
       "headline": "Typhoon 30W (In-fa)",
-      "warningNumber": "047",
-      "issuedZ": "04/0300Z",
-      "issuedAt": "2026-11-04T03:00:00.000Z",
+      "warningNumber": "048",
+      "issuedZ": "04/0900Z",
+      "issuedAt": "2026-11-04T09:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp3026.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp3026web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "041200Z",
-          "lat": 26,
-          "lon": 138.5,
-          "maxWindKt": 80,
-          "gustKt": 100
+          "validZ": "041800Z",
+          "lat": 26.9,
+          "lon": 139,
+          "maxWindKt": 75,
+          "gustKt": 90
         },
         {
           "tau": 24,
-          "validZ": "050000Z",
-          "lat": 28.4,
-          "lon": 140,
+          "validZ": "050600Z",
+          "lat": 30.1,
+          "lon": 141.7,
           "maxWindKt": 70,
           "gustKt": 85
         },
         {
           "tau": 36,
-          "validZ": "051200Z",
-          "lat": 32.5,
-          "lon": 144.3,
+          "validZ": "051800Z",
+          "lat": 35.1,
+          "lon": 147.6,
           "maxWindKt": 65,
           "gustKt": 80
         },
         {
           "tau": 48,
-          "validZ": "060000Z",
-          "lat": 38.3,
-          "lon": 151.3,
-          "maxWindKt": 70,
-          "gustKt": 85
+          "validZ": "060600Z",
+          "lat": 41.7,
+          "lon": 155.9,
+          "maxWindKt": 65,
+          "gustKt": 80
         }
       ],
-      "positionZ": "040000Z",
-      "lat": 24.4,
-      "lon": 138.4,
+      "positionZ": "040600Z",
+      "lat": 25,
+      "lon": 138.3,
       "movingToward": 350,
       "movingKt": 6,
-      "maxWindKt": 85,
-      "gustKt": 105,
-      "pressureMb": 972,
-      "seasFt": 28,
+      "maxWindKt": 80,
+      "gustKt": 100,
+      "pressureMb": 974,
+      "seasFt": 30,
       "nextWarnings": [
-        "040900Z",
         "041500Z",
         "042100Z",
-        "050300Z"
+        "050300Z",
+        "050900Z"
       ],
-      "geoReference": "160 NM WEST OF IWO TO",
+      "geoReference": "164 NM WEST OF IWO TO",
       "reasoning": {
         "warningNumber": "047",
         "significantForecastChanges": "THE FORECAST HAS BEEN TRUNCATED TO 48 HOURS.",
@@ -79,15 +79,15 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 943,
-        "bearingDeg": 81,
+        "distanceNm": 939,
+        "bearingDeg": 79,
         "closestApproach": {
-          "distanceNm": 956,
+          "distanceNm": 990,
           "tau": 12,
-          "validZ": "041200Z",
-          "maxWindKt": 80,
+          "validZ": "041800Z",
+          "maxWindKt": 75,
           "recedingOnly": true
         }
       },
@@ -97,30 +97,30 @@
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 3
+            "heading": 18
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 29
+            "heading": 36
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 41
+            "heading": 43
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 43
+            "heading": 42
           }
         ],
         "turns": [
           {
             "fromTau": 12,
             "toTau": 24,
-            "headingDeg": 29,
-            "deltaDeg": 39
+            "headingDeg": 36,
+            "deltaDeg": 46
           }
         ]
       },
@@ -136,8 +136,8 @@
           "dirDeg": 67
         },
         "now": {
-          "targetTime": "2026-11-04T07:00:00.000Z",
-          "heightM": 1.78,
+          "targetTime": "2026-11-04T08:00:00.000Z",
+          "heightM": 1.76,
           "periodS": 8.3,
           "dirDeg": 85
         },
@@ -157,12 +157,12 @@
         "generatedAt": "2026-11-03T21:14:01.504Z"
       },
       "changes": {
-        "previousWarningNumber": "046",
-        "previousIssuedAt": "2026-11-03T21:00:00.000Z",
-        "maxWindKtDelta": 0,
+        "previousWarningNumber": "047",
+        "previousIssuedAt": "2026-11-04T03:00:00.000Z",
+        "maxWindKtDelta": -5,
         "pressureMbDelta": 2,
-        "seasFtDelta": 0,
-        "closestApproachNmDelta": 0
+        "seasFtDelta": 2,
+        "closestApproachNmDelta": 34
       }
     }
   ],
