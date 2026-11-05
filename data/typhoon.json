@@ -1,57 +1,48 @@
 {
-  "fetchedAt": "2026-11-05T02:13:37.108Z",
+  "fetchedAt": "2026-11-05T02:33:32.431Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "30W",
       "name": "In-fa",
       "headline": "Typhoon 30W (In-fa)",
-      "warningNumber": "050",
-      "issuedZ": "04/2100Z",
-      "issuedAt": "2026-11-04T21:00:00.000Z",
+      "warningNumber": "051",
+      "issuedZ": "05/0300Z",
+      "issuedAt": "2026-11-05T03:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp3026.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp3026web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "050600Z",
-          "lat": 30.3,
-          "lon": 141,
+          "validZ": "051200Z",
+          "lat": 32.4,
+          "lon": 144.7,
           "maxWindKt": 70,
           "gustKt": 85
         },
         {
           "tau": 24,
-          "validZ": "051800Z",
-          "lat": 35.2,
-          "lon": 147.1,
+          "validZ": "060000Z",
+          "lat": 38.2,
+          "lon": 152.1,
           "maxWindKt": 65,
           "gustKt": 80
-        },
-        {
-          "tau": 36,
-          "validZ": "060600Z",
-          "lat": 41.4,
-          "lon": 155.2,
-          "maxWindKt": 60,
-          "gustKt": 75
         }
       ],
-      "positionZ": "041800Z",
-      "lat": 27.1,
-      "lon": 138.5,
-      "movingToward": 5,
-      "movingKt": 12,
+      "positionZ": "050000Z",
+      "lat": 28.1,
+      "lon": 140,
+      "movingToward": 40,
+      "movingKt": 17,
       "maxWindKt": 75,
       "gustKt": 90,
+      "pressureMb": 979,
       "nextWarnings": [
-        "050300Z",
         "050900Z",
         "051500Z",
         "052100Z"
       ],
-      "geoReference": "198 NM WEST OF CHICHI JIMA",
       "reasoning": {
         "warningNumber": "050",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
@@ -69,45 +60,33 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 966,
-        "bearingDeg": 72,
+        "distanceNm": 1057,
+        "bearingDeg": 69,
         "closestApproach": {
-          "distanceNm": 1142,
+          "distanceNm": 1362,
           "tau": 12,
-          "validZ": "050600Z",
+          "validZ": "051200Z",
           "maxWindKt": 70,
           "recedingOnly": true
         }
       },
       "motion": {
-        "currentHeadingDeg": 5,
+        "currentHeadingDeg": 40,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 34
+            "heading": 42
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 45
-          },
-          {
-            "fromTau": 24,
-            "toTau": 36,
-            "heading": 43
+            "heading": 44
           }
         ],
-        "turns": [
-          {
-            "fromTau": 12,
-            "toTau": 24,
-            "headingDeg": 45,
-            "deltaDeg": 40
-          }
-        ]
+        "turns": []
       },
       "swell": {
         "windowEnd": "2026-11-09T15:00:00.000Z",
@@ -142,10 +121,10 @@
         "generatedAt": "2026-11-04T21:13:57.683Z"
       },
       "changes": {
-        "previousWarningNumber": "049",
-        "previousIssuedAt": "2026-11-04T15:00:00.000Z",
-        "maxWindKtDelta": -5,
-        "closestApproachNmDelta": 83
+        "previousWarningNumber": "050",
+        "previousIssuedAt": "2026-11-04T21:00:00.000Z",
+        "maxWindKtDelta": 0,
+        "closestApproachNmDelta": 220
       }
     }
   ],
