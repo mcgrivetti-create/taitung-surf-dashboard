@@ -1,48 +1,44 @@
 {
-  "fetchedAt": "2026-11-05T07:33:44.449Z",
+  "fetchedAt": "2026-11-05T08:13:42.321Z",
   "systems": [
     {
-      "designation": "Typhoon",
+      "designation": "Tropical Storm",
       "id": "30W",
       "name": "In-fa",
-      "headline": "Typhoon 30W (In-fa)",
-      "warningNumber": "051",
-      "issuedZ": "05/0300Z",
-      "issuedAt": "2026-11-05T03:00:00.000Z",
+      "headline": "Tropical Storm 30W (In-fa)",
+      "warningNumber": "052",
+      "issuedZ": "05/0900Z",
+      "issuedAt": "2026-11-05T09:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp3026.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp3026web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "051200Z",
-          "lat": 32.4,
-          "lon": 144.7,
-          "maxWindKt": 70,
-          "gustKt": 85
+          "validZ": "051800Z",
+          "lat": 34.5,
+          "lon": 147.9,
+          "maxWindKt": 60,
+          "gustKt": 75
         },
         {
           "tau": 24,
-          "validZ": "060000Z",
-          "lat": 38.2,
-          "lon": 152.1,
-          "maxWindKt": 65,
-          "gustKt": 80
+          "validZ": "060600Z",
+          "lat": 41.3,
+          "lon": 157.1,
+          "maxWindKt": 55,
+          "gustKt": 70
         }
       ],
-      "positionZ": "050000Z",
-      "lat": 28.1,
-      "lon": 140,
-      "movingToward": 40,
-      "movingKt": 17,
-      "maxWindKt": 75,
-      "gustKt": 90,
-      "pressureMb": 979,
-      "nextWarnings": [
-        "050900Z",
-        "051500Z",
-        "052100Z"
-      ],
+      "intensityChangeNote": "DOWNGRADED FROM TYPHOON 30W",
+      "positionZ": "050600Z",
+      "lat": 29.4,
+      "lon": 141.5,
+      "movingToward": 45,
+      "movingKt": 20,
+      "maxWindKt": 60,
+      "gustKt": 75,
+      "geoReference": "366 NM SOUTH-SOUTHEAST OF YOKOSUKA, JAPAN",
       "reasoning": {
         "warningNumber": "051",
         "significantForecastChanges": "THE FORECAST HAS BEEN TRUNCATED TO 24 HOURS",
@@ -60,25 +56,25 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 1057,
-        "bearingDeg": 69,
+        "distanceNm": 1152,
+        "bearingDeg": 66,
         "closestApproach": {
-          "distanceNm": 1362,
+          "distanceNm": 1555,
           "tau": 12,
-          "validZ": "051200Z",
-          "maxWindKt": 70,
+          "validZ": "051800Z",
+          "maxWindKt": 60,
           "recedingOnly": true
         }
       },
       "motion": {
-        "currentHeadingDeg": 40,
+        "currentHeadingDeg": 45,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 42
+            "heading": 45
           },
           {
             "fromTau": 12,
@@ -100,8 +96,8 @@
           "dirDeg": 67
         },
         "now": {
-          "targetTime": "2026-11-05T07:00:00.000Z",
-          "heightM": 1.58,
+          "targetTime": "2026-11-05T08:00:00.000Z",
+          "heightM": 1.56,
           "periodS": 8.65,
           "dirDeg": 86
         },
@@ -121,10 +117,10 @@
         "generatedAt": "2026-11-04T21:13:57.683Z"
       },
       "changes": {
-        "previousWarningNumber": "050",
-        "previousIssuedAt": "2026-11-04T21:00:00.000Z",
-        "maxWindKtDelta": 0,
-        "closestApproachNmDelta": 220
+        "previousWarningNumber": "051",
+        "previousIssuedAt": "2026-11-05T03:00:00.000Z",
+        "maxWindKtDelta": -15,
+        "closestApproachNmDelta": 193
       }
     }
   ],

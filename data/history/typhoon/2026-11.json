@@ -3206,6 +3206,105 @@
         "distanceNm": 2076,
         "bearingDeg": 96
       }
+    },
+    {
+      "kind": "warning",
+      "id": "30W",
+      "name": "In-fa",
+      "designation": "Tropical Storm",
+      "warningNumber": "052",
+      "issuedAt": "2026-11-05T09:00:00.000Z",
+      "positionZ": "050600Z",
+      "lat": 29.4,
+      "lon": 141.5,
+      "maxWindKt": 60,
+      "gustKt": 75,
+      "movingToward": 45,
+      "movingKt": 20,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "051800Z",
+          "lat": 34.5,
+          "lon": 147.9,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 24,
+          "validZ": "060600Z",
+          "lat": 41.3,
+          "lon": 157.1,
+          "maxWindKt": 55,
+          "gustKt": 70
+        }
+      ],
+      "spot": {
+        "distanceNm": 1152,
+        "bearingDeg": 66,
+        "closestApproach": {
+          "distanceNm": 1555,
+          "tau": 12,
+          "validZ": "051800Z",
+          "maxWindKt": 60,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 45,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 45
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 44
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-11-09T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-11-01T20:00:00.000Z",
+          "source": "buoy",
+          "buoy": "Taitung",
+          "heightM": 1.9,
+          "periodS": 9.5,
+          "dirDeg": 67
+        },
+        "now": {
+          "targetTime": "2026-11-05T08:00:00.000Z",
+          "heightM": 1.56,
+          "periodS": 8.65,
+          "dirDeg": 86
+        },
+        "peak": {
+          "targetTime": "2026-11-07T21:00:00.000Z",
+          "heightM": 2.3,
+          "periodS": 6.9,
+          "dirDeg": 83
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "TY 30W is forecast to begin a northeastward turn imminently as it rounds the subtropical ridge (STR) centered to the southeast, accompanied by an acceleration in track speed.",
+        "warningNumber": "050",
+        "generatedAt": "2026-11-04T21:13:57.683Z"
+      },
+      "reasoningWarningNumber": "051",
+      "significantForecastChanges": "THE FORECAST HAS BEEN TRUNCATED TO 24 HOURS",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "MEDIUM",
+        "intensity72120": null
+      }
     }
   ]
 }
