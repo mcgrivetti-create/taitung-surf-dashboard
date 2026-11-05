@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-05T02:33:32.431Z",
+  "fetchedAt": "2026-11-05T03:13:31.422Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -44,13 +44,13 @@
         "052100Z"
       ],
       "reasoning": {
-        "warningNumber": "050",
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 30,
-        "environment": "MARGINALLY",
+        "warningNumber": "051",
+        "significantForecastChanges": "THE FORECAST HAS BEEN TRUNCATED TO 24 HOURS",
+        "seasFt": 31,
+        "environment": "UNFAVORABLE",
         "vws": "30+ KTS",
-        "sst": "26-27 CELSIUS",
-        "outflow": "STRONG POLEWARD",
+        "sst": "25-26 CELSIUS",
+        "outflow": "MODERATE POLEWARD",
         "steering": "SUBTROPICAL RIDGE CENTERED TO THE SOUTHEAST",
         "confidence": {
           "track0072": "HIGH",
@@ -60,7 +60,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3026prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1057,
         "bearingDeg": 69,
@@ -100,7 +100,7 @@
           "dirDeg": 67
         },
         "now": {
-          "targetTime": "2026-11-05T02:00:00.000Z",
+          "targetTime": "2026-11-05T03:00:00.000Z",
           "heightM": 1.6,
           "periodS": 8.6,
           "dirDeg": 86
