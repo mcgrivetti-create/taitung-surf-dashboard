@@ -3374,6 +3374,175 @@
         "distanceNm": 1691,
         "bearingDeg": 97
       }
+    },
+    {
+      "kind": "warning",
+      "id": "31W",
+      "name": "Thirtyone",
+      "designation": "Tropical Depression",
+      "warningNumber": "001",
+      "issuedAt": "2026-11-06T09:00:00.000Z",
+      "positionZ": "060600Z",
+      "lat": 18,
+      "lon": 149,
+      "maxWindKt": 25,
+      "gustKt": 35,
+      "pressureMb": 1007,
+      "seasFt": 12,
+      "movingToward": 310,
+      "movingKt": 18,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "061800Z",
+          "lat": 19.1,
+          "lon": 145.9,
+          "maxWindKt": 35,
+          "gustKt": 45
+        },
+        {
+          "tau": 24,
+          "validZ": "070600Z",
+          "lat": 20.3,
+          "lon": 143,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 36,
+          "validZ": "071800Z",
+          "lat": 21.3,
+          "lon": 140.3,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 48,
+          "validZ": "080600Z",
+          "lat": 22.1,
+          "lon": 137.3,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 60,
+          "validZ": "081800Z",
+          "lat": 22.7,
+          "lon": 135,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 72,
+          "validZ": "090600Z",
+          "lat": 23.3,
+          "lon": 134.1,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 96,
+          "validZ": "100600Z",
+          "lat": 23.8,
+          "lon": 136.1,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 120,
+          "validZ": "110600Z",
+          "lat": 25,
+          "lon": 140.2,
+          "maxWindKt": 75,
+          "gustKt": 90
+        }
+      ],
+      "spot": {
+        "distanceNm": 1583,
+        "bearingDeg": 96,
+        "closestApproach": {
+          "distanceNm": 706,
+          "tau": 72,
+          "validZ": "090600Z",
+          "maxWindKt": 100
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 310,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 291
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 294
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 292
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 287
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 286
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 306
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 74
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 71
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "headingDeg": 74,
+            "deltaDeg": 124
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-11-10T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-11-09T08:00:00.000Z",
+          "heightM": 1.82,
+          "periodS": 7.25,
+          "dirDeg": 85
+        },
+        "hoursAhead": 72,
+        "bearingOffsetDeg": 1,
+        "peak": {
+          "targetTime": "2026-11-09T21:00:00.000Z",
+          "heightM": 2.6,
+          "periodS": 7.7,
+          "dirDeg": 67
+        }
+      },
+      "retired": false,
+      "summary": null,
+      "reasoningWarningNumber": null,
+      "significantForecastChanges": null,
+      "confidence": null
     }
   ]
 }
