@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-06T20:33:39.889Z",
+  "fetchedAt": "2026-11-06T21:13:38.729Z",
   "systems": [
     {
       "designation": "Tropical Depression",
@@ -94,23 +94,23 @@
         "072100Z"
       ],
       "reasoning": {
-        "warningNumber": "002",
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 13,
+        "warningNumber": "003",
+        "significantForecastChanges": "THE TAU 120 FORECAST POINT HAS BEEN ADJUSTED TO REFLECT A FASTER TRANSLATION SPEED BETWEEN TAU 96 AND TAU 120.",
+        "seasFt": 12,
         "environment": "FAVORABLE",
         "vws": "15-20 KTS",
-        "sst": "29-30 CELSIUS",
-        "outflow": "STRONG WESTWARD",
-        "steering": "SOUTHWESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTHEAST.",
+        "sst": "27-28 CELSIUS",
+        "outflow": "MODERATE POLEWARD",
+        "steering": "SOUTHWESTERN FLANK OF A LOW- TO MID-LEVEL SUBTROPICAL RIDGE (STR) TO THE NORTHEAST",
         "confidence": {
-          "track0072": "LOW",
+          "track0072": "MEDIUM",
           "track72120": "LOW",
           "intensity0072": "MEDIUM",
           "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3126prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1401,
         "bearingDeg": 97,
@@ -201,9 +201,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts a rapidly consolidating system, with nascent deep convection developing along the western downshear flank of the low-level circulation center (LLCC). Tropical depression (TD) 31W is translating rapidly northwestward along the southwestern periphery of a robust STR centered to the northeast. Regarding intensity, as moderate easterly VWS is forecast to prevail for the next 24 to 36 hours, TD 31W is forecast to consolidate and intensify at a steady climatological rate of roughly one Dvorak t-number per day.",
-        "warningNumber": "001",
-        "generatedAt": "2026-11-06T09:13:50.955Z"
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a partially exposed low-level circulation center (LLCC) quickly transiting west-northwestward. TD 31W will continue west-northwestward through +48h along the southwestern periphery of the STR. The combination of lower shear, warm SST near 28 degrees Celsius, and adequate outflow should support steady to rapid intensification once the circulation develops an inner core.",
+        "warningNumber": "003",
+        "generatedAt": "2026-11-06T21:13:38.729Z"
       },
       "changes": {
         "previousWarningNumber": "002",
