@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-06T08:13:53.124Z",
+  "fetchedAt": "2026-11-06T08:33:38.212Z",
   "systems": [
     {
       "designation": "Tropical Depression",
@@ -166,7 +166,7 @@
           "periodS": 7.25,
           "dirDeg": 85
         },
-        "hoursAhead": 72,
+        "hoursAhead": 71,
         "bearingOffsetDeg": 1,
         "peak": {
           "targetTime": "2026-11-09T21:00:00.000Z",
@@ -218,11 +218,11 @@
   "invests": [
     {
       "id": "99W",
-      "potential": "HIGH",
-      "geoReference": "398 NM EAST-NORTHEAST OF GUAM",
-      "windKtLow": 23,
-      "windKtHigh": 28,
-      "pressureMb": 1011,
+      "potential": null,
+      "geoReference": null,
+      "windKtLow": null,
+      "windKtHigh": null,
+      "pressureMb": null,
       "lat": 16.8,
       "lon": 150.6,
       "distanceNm": 1691,
@@ -231,9 +231,9 @@
   ],
   "investSatellite": "https://www.metoc.navy.mil/jtwc/products/abpwsair.jpg",
   "advisory": {
-    "issuedZ": "06/0600Z",
-    "issuedAt": "2026-11-06T06:00:00.000Z",
+    "issuedZ": "06/0900Z",
+    "issuedAt": "2026-11-06T09:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": false
+    "reissued": true
   }
 }
