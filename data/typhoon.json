@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-06T14:33:44.486Z",
+  "fetchedAt": "2026-11-06T15:13:38.106Z",
   "systems": [
     {
       "designation": "Tropical Depression",
@@ -94,23 +94,23 @@
         "071500Z"
       ],
       "reasoning": {
-        "warningNumber": "001",
-        "significantForecastChanges": "THIS INITIAL PROGNOSTIC REASONING MESSAGE ESTABLISHES THE FORECAST PHILOSOPHY.",
-        "seasFt": 12,
+        "warningNumber": "002",
+        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "seasFt": 13,
         "environment": "FAVORABLE",
-        "vws": "10-15 KTS",
+        "vws": "15-20 KTS",
         "sst": "29-30 CELSIUS",
         "outflow": "STRONG WESTWARD",
-        "steering": "SOUTHWESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) TO THE NORTHEAST.",
+        "steering": "SOUTHWESTERN PERIPHERY OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED TO THE NORTHEAST.",
         "confidence": {
-          "track0072": "HIGH",
+          "track0072": "LOW",
           "track72120": "LOW",
           "intensity0072": "MEDIUM",
           "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3126prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1502,
         "bearingDeg": 97,
