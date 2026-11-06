@@ -1,98 +1,97 @@
 {
-  "fetchedAt": "2026-11-06T13:33:36.252Z",
+  "fetchedAt": "2026-11-06T14:13:36.668Z",
   "systems": [
     {
       "designation": "Tropical Depression",
       "id": "31W",
       "name": "Thirtyone",
       "headline": "Tropical Depression 31W (Thirtyone)",
-      "warningNumber": "001",
-      "issuedZ": "06/0900Z",
-      "issuedAt": "2026-11-06T09:00:00.000Z",
+      "warningNumber": "002",
+      "issuedZ": "06/1500Z",
+      "issuedAt": "2026-11-06T15:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp3126.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp3126web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "061800Z",
-          "lat": 19.1,
-          "lon": 145.9,
+          "validZ": "070000Z",
+          "lat": 18.7,
+          "lon": 144.5,
           "maxWindKt": 35,
           "gustKt": 45
         },
         {
           "tau": 24,
-          "validZ": "070600Z",
-          "lat": 20.3,
-          "lon": 143,
+          "validZ": "071200Z",
+          "lat": 19.9,
+          "lon": 141.7,
           "maxWindKt": 45,
           "gustKt": 55
         },
         {
           "tau": 36,
-          "validZ": "071800Z",
-          "lat": 21.3,
-          "lon": 140.3,
+          "validZ": "080000Z",
+          "lat": 21,
+          "lon": 139.1,
           "maxWindKt": 55,
           "gustKt": 70
         },
         {
           "tau": 48,
-          "validZ": "080600Z",
-          "lat": 22.1,
-          "lon": 137.3,
+          "validZ": "081200Z",
+          "lat": 21.8,
+          "lon": 136.7,
           "maxWindKt": 70,
           "gustKt": 85
         },
         {
           "tau": 60,
-          "validZ": "081800Z",
+          "validZ": "090000Z",
           "lat": 22.7,
-          "lon": 135,
+          "lon": 135.2,
           "maxWindKt": 90,
           "gustKt": 110
         },
         {
           "tau": 72,
-          "validZ": "090600Z",
-          "lat": 23.3,
-          "lon": 134.1,
+          "validZ": "091200Z",
+          "lat": 23.5,
+          "lon": 135.3,
           "maxWindKt": 100,
           "gustKt": 125
         },
         {
           "tau": 96,
-          "validZ": "100600Z",
-          "lat": 23.8,
-          "lon": 136.1,
+          "validZ": "101200Z",
+          "lat": 24.7,
+          "lon": 139.2,
           "maxWindKt": 95,
           "gustKt": 115
         },
         {
           "tau": 120,
-          "validZ": "110600Z",
-          "lat": 25,
-          "lon": 140.2,
+          "validZ": "111200Z",
+          "lat": 26.2,
+          "lon": 144.9,
           "maxWindKt": 75,
           "gustKt": 90
         }
       ],
-      "positionZ": "060600Z",
-      "lat": 18,
-      "lon": 149,
-      "movingToward": 310,
-      "movingKt": 18,
-      "maxWindKt": 25,
-      "gustKt": 35,
-      "pressureMb": 1007,
-      "seasFt": 12,
+      "positionZ": "061200Z",
+      "lat": 17.9,
+      "lon": 147.5,
+      "movingToward": 270,
+      "movingKt": 14,
+      "maxWindKt": 30,
+      "gustKt": 40,
+      "pressureMb": 1006,
+      "seasFt": 13,
       "nextWarnings": [
-        "061500Z",
         "062100Z",
         "070300Z",
-        "070900Z. 2. THIS CANCELS",
-        "SUPERSEDES REF A (WTPN21 PGTW 060200)"
+        "070900Z",
+        "071500Z"
       ],
       "reasoning": {
         "warningNumber": "001",
@@ -111,67 +110,73 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3126prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 1583,
-        "bearingDeg": 96,
+        "distanceNm": 1502,
+        "bearingDeg": 97,
         "closestApproach": {
-          "distanceNm": 706,
-          "tau": 72,
-          "validZ": "090600Z",
-          "maxWindKt": 100
+          "distanceNm": 768,
+          "tau": 60,
+          "validZ": "090000Z",
+          "maxWindKt": 90
         }
       },
       "motion": {
-        "currentHeadingDeg": 310,
+        "currentHeadingDeg": 270,
         "legs": [
           {
             "fromTau": 0,
             "toTau": 12,
-            "heading": 291
+            "heading": 286
           },
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 294
+            "heading": 295
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 292
+            "heading": 295
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 287
+            "heading": 290
           },
           {
             "fromTau": 48,
             "toTau": 60,
-            "heading": 286
+            "heading": 303
           },
           {
             "fromTau": 60,
             "toTau": 72,
-            "heading": 306
+            "heading": 7
           },
           {
             "fromTau": 72,
             "toTau": 96,
-            "heading": 74
+            "heading": 71
           },
           {
             "fromTau": 96,
             "toTau": 120,
-            "heading": 71
+            "heading": 73
           }
         ],
         "turns": [
           {
+            "fromTau": 60,
+            "toTau": 72,
+            "headingDeg": 7,
+            "deltaDeg": 97
+          },
+          {
             "fromTau": 72,
             "toTau": 96,
-            "headingDeg": 74,
-            "deltaDeg": 124
+            "headingDeg": 71,
+            "deltaDeg": 64
           }
         ]
       },
@@ -185,7 +190,7 @@
           "dirDeg": 84
         },
         "hoursAhead": 66,
-        "bearingOffsetDeg": 2,
+        "bearingOffsetDeg": 1,
         "peak": {
           "targetTime": "2026-11-10T00:00:00.000Z",
           "heightM": 2.44,
@@ -200,7 +205,14 @@
         "warningNumber": "001",
         "generatedAt": "2026-11-06T09:13:50.955Z"
       },
-      "changes": null
+      "changes": {
+        "previousWarningNumber": "001",
+        "previousIssuedAt": "2026-11-06T09:00:00.000Z",
+        "maxWindKtDelta": 5,
+        "pressureMbDelta": -1,
+        "seasFtDelta": 1,
+        "closestApproachNmDelta": 62
+      }
     }
   ],
   "alerts": [],

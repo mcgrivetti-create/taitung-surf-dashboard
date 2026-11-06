@@ -3559,6 +3559,190 @@
         "distanceNm": 1691,
         "bearingDeg": 97
       }
+    },
+    {
+      "kind": "warning",
+      "id": "31W",
+      "name": "Thirtyone",
+      "designation": "Tropical Depression",
+      "warningNumber": "002",
+      "issuedAt": "2026-11-06T15:00:00.000Z",
+      "positionZ": "061200Z",
+      "lat": 17.9,
+      "lon": 147.5,
+      "maxWindKt": 30,
+      "gustKt": 40,
+      "pressureMb": 1006,
+      "seasFt": 13,
+      "movingToward": 270,
+      "movingKt": 14,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "070000Z",
+          "lat": 18.7,
+          "lon": 144.5,
+          "maxWindKt": 35,
+          "gustKt": 45
+        },
+        {
+          "tau": 24,
+          "validZ": "071200Z",
+          "lat": 19.9,
+          "lon": 141.7,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 36,
+          "validZ": "080000Z",
+          "lat": 21,
+          "lon": 139.1,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 48,
+          "validZ": "081200Z",
+          "lat": 21.8,
+          "lon": 136.7,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 60,
+          "validZ": "090000Z",
+          "lat": 22.7,
+          "lon": 135.2,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 72,
+          "validZ": "091200Z",
+          "lat": 23.5,
+          "lon": 135.3,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 96,
+          "validZ": "101200Z",
+          "lat": 24.7,
+          "lon": 139.2,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 120,
+          "validZ": "111200Z",
+          "lat": 26.2,
+          "lon": 144.9,
+          "maxWindKt": 75,
+          "gustKt": 90
+        }
+      ],
+      "spot": {
+        "distanceNm": 1502,
+        "bearingDeg": 97,
+        "closestApproach": {
+          "distanceNm": 768,
+          "tau": 60,
+          "validZ": "090000Z",
+          "maxWindKt": 90
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 270,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 286
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 295
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 295
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 290
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 303
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 7
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 71
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 73
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "headingDeg": 7,
+            "deltaDeg": 97
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "headingDeg": 71,
+            "deltaDeg": 64
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-11-10T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-11-09T08:00:00.000Z",
+          "heightM": 1.8,
+          "periodS": 7.15,
+          "dirDeg": 84
+        },
+        "hoursAhead": 66,
+        "bearingOffsetDeg": 1,
+        "peak": {
+          "targetTime": "2026-11-10T00:00:00.000Z",
+          "heightM": 2.44,
+          "periodS": 7.35,
+          "dirDeg": 61
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts a rapidly consolidating system, with nascent deep convection developing along the western downshear flank of the low-level circulation center (LLCC). Tropical depression (TD) 31W is translating rapidly northwestward along the southwestern periphery of a robust STR centered to the northeast. Regarding intensity, as moderate easterly VWS is forecast to prevail for the next 24 to 36 hours, TD 31W is forecast to consolidate and intensify at a steady climatological rate of roughly one Dvorak t-number per day.",
+        "warningNumber": "001",
+        "generatedAt": "2026-11-06T09:13:50.955Z"
+      },
+      "reasoningWarningNumber": "001",
+      "significantForecastChanges": "THIS INITIAL PROGNOSTIC REASONING MESSAGE ESTABLISHES THE FORECAST PHILOSOPHY.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": "LOW",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
