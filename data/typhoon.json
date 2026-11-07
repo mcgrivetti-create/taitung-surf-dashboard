@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-07T20:33:33.276Z",
+  "fetchedAt": "2026-11-07T21:13:42.299Z",
   "systems": [
     {
       "designation": "Tropical Storm",
@@ -87,23 +87,23 @@
       ],
       "geoReference": "229 NM SOUTH-SOUTHWEST OF IWO TO",
       "reasoning": {
-        "warningNumber": "006",
+        "warningNumber": "007",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 22,
-        "environment": "HIGHLY FAVORABLE",
-        "vws": "10-15 KTS",
-        "sst": "28-29 CELSIUS",
-        "outflow": "STRONG RADIAL",
+        "seasFt": 24,
+        "environment": "FAVORABLE",
+        "vws": "15-20 KTS",
+        "sst": "27-28 CELSIUS",
+        "outflow": "MODERATE POLEWARD AND WESTWARD",
         "steering": "THE SOUTHWESTERN FLANK OF A SUBTROPICAL RIDGE (STR) POSITIONED TO THE NORTHEAST",
         "confidence": {
           "track0072": "LOW",
           "track72120": "LOW",
-          "intensity0072": "MEDIUM",
-          "intensity72120": "MEDIUM"
+          "intensity0072": "LOW",
+          "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3126prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 1039,
         "bearingDeg": 92,
@@ -189,9 +189,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts tropical storm 31W (cempaka) with a fully obscured low-level circulation center (LLCC) that has quickly consolidated over the past 6 hours. TS 31W is forecast to continue tracking northwestward, along the southwestern periphery of the STR, through +36h. In terms of intensity, 31W is forecast to rapidly intensify through +48h to a peak of around 100 kt as the environment remains highly favorable.",
-        "warningNumber": "005",
-        "generatedAt": "2026-11-07T09:13:37.043Z"
+        "text": "TS 31W will initially continue west-northwestward along the southwestern periphery of the STR. If the ccc pattern transitions to a more defined inner core structure, the system could resume rapid intensification and reach near 100 kt by +36h.",
+        "warningNumber": "007",
+        "generatedAt": "2026-11-07T21:13:42.299Z"
       },
       "changes": {
         "previousWarningNumber": "006",
