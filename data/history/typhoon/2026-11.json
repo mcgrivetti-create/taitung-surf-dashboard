@@ -4289,6 +4289,163 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "31W",
+      "name": "Cempaka",
+      "designation": "Tropical Storm",
+      "warningNumber": "006",
+      "issuedAt": "2026-11-07T15:00:00.000Z",
+      "positionZ": "071200Z",
+      "lat": 20.6,
+      "lon": 141.6,
+      "maxWindKt": 60,
+      "gustKt": 75,
+      "pressureMb": 992,
+      "seasFt": 22,
+      "movingToward": 300,
+      "movingKt": 13,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "080000Z",
+          "lat": 21.7,
+          "lon": 138.9,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 24,
+          "validZ": "081200Z",
+          "lat": 22.6,
+          "lon": 136.5,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 36,
+          "validZ": "090000Z",
+          "lat": 23.4,
+          "lon": 135.1,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 48,
+          "validZ": "091200Z",
+          "lat": 24.1,
+          "lon": 135.4,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 60,
+          "validZ": "100000Z",
+          "lat": 24.8,
+          "lon": 137.3,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 72,
+          "validZ": "101200Z",
+          "lat": 25.7,
+          "lon": 140.8,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 96,
+          "validZ": "111200Z",
+          "lat": 27.3,
+          "lon": 147.5,
+          "maxWindKt": 50,
+          "gustKt": 65
+        }
+      ],
+      "spot": {
+        "distanceNm": 1139,
+        "bearingDeg": 93,
+        "closestApproach": {
+          "distanceNm": 761,
+          "tau": 36,
+          "validZ": "090000Z",
+          "maxWindKt": 95
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 300,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 294
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 292
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 302
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 21
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 68
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 73
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 74
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "headingDeg": 21,
+            "deltaDeg": 81
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 68,
+            "deltaDeg": 47
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-11-11T15:00:00.000Z",
+        "status": "none"
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts tropical storm 31W (cempaka) with a fully obscured low-level circulation center (LLCC) that has quickly consolidated over the past 6 hours. TS 31W is forecast to continue tracking northwestward, along the southwestern periphery of the STR, through +36h. In terms of intensity, 31W is forecast to rapidly intensify through +48h to a peak of around 100 kt as the environment remains highly favorable.",
+        "warningNumber": "005",
+        "generatedAt": "2026-11-07T09:13:37.043Z"
+      },
+      "reasoningWarningNumber": "005",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "LOW",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
