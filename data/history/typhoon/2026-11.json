@@ -3927,6 +3927,190 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "31W",
+      "name": "Thirtyone",
+      "designation": "Tropical Storm",
+      "warningNumber": "004",
+      "issuedAt": "2026-11-07T03:00:00.000Z",
+      "positionZ": "070000Z",
+      "lat": 19,
+      "lon": 144.2,
+      "maxWindKt": 35,
+      "gustKt": 45,
+      "pressureMb": 1004,
+      "seasFt": 14,
+      "movingToward": 290,
+      "movingKt": 16,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "071200Z",
+          "lat": 20.3,
+          "lon": 141.5,
+          "maxWindKt": 45,
+          "gustKt": 55
+        },
+        {
+          "tau": 24,
+          "validZ": "080000Z",
+          "lat": 21.3,
+          "lon": 138.7,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 36,
+          "validZ": "081200Z",
+          "lat": 22.3,
+          "lon": 136.2,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 48,
+          "validZ": "090000Z",
+          "lat": 23.1,
+          "lon": 135,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 60,
+          "validZ": "091200Z",
+          "lat": 23.8,
+          "lon": 135.1,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 72,
+          "validZ": "100000Z",
+          "lat": 24.4,
+          "lon": 136.8,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 96,
+          "validZ": "110000Z",
+          "lat": 26.6,
+          "lon": 143.4,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 120,
+          "validZ": "120000Z",
+          "lat": 28.9,
+          "lon": 150.7,
+          "maxWindKt": 45,
+          "gustKt": 55
+        }
+      ],
+      "spot": {
+        "distanceNm": 1303,
+        "bearingDeg": 96,
+        "closestApproach": {
+          "distanceNm": 756,
+          "tau": 48,
+          "validZ": "090000Z",
+          "maxWindKt": 85
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 290,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 298
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 291
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 294
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 306
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 7
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 69
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 68
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 69
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 7,
+            "deltaDeg": 77
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "headingDeg": 69,
+            "deltaDeg": 62
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-11-11T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-11-09T10:00:00.000Z",
+          "heightM": 1.7,
+          "periodS": 7.15,
+          "dirDeg": 82
+        },
+        "hoursAhead": 56,
+        "bearingOffsetDeg": 1,
+        "peak": {
+          "targetTime": "2026-11-10T00:00:00.000Z",
+          "heightM": 2.6,
+          "periodS": 8,
+          "dirDeg": 63
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a partially exposed low-level circulation center (LLCC) quickly transiting west-northwestward. TD 31W will continue west-northwestward through +48h along the southwestern periphery of the STR. The combination of lower shear, warm SST near 28 degrees Celsius, and adequate outflow should support steady to rapid intensification once the circulation develops an inner core.",
+        "warningNumber": "003",
+        "generatedAt": "2026-11-06T21:13:38.729Z"
+      },
+      "reasoningWarningNumber": "003",
+      "significantForecastChanges": "THE TAU 120 FORECAST POINT HAS BEEN ADJUSTED TO REFLECT A FASTER TRANSLATION SPEED BETWEEN TAU 96 AND TAU 120.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "LOW",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
