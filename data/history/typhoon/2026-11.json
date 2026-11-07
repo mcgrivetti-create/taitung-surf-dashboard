@@ -4111,6 +4111,184 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "31W",
+      "name": "Cempaka",
+      "designation": "Tropical Storm",
+      "warningNumber": "005",
+      "issuedAt": "2026-11-07T09:00:00.000Z",
+      "positionZ": "070600Z",
+      "lat": 20,
+      "lon": 142.8,
+      "maxWindKt": 45,
+      "gustKt": 55,
+      "pressureMb": 999,
+      "seasFt": 18,
+      "movingToward": 305,
+      "movingKt": 16,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "071800Z",
+          "lat": 21.2,
+          "lon": 140.1,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 24,
+          "validZ": "080600Z",
+          "lat": 22.2,
+          "lon": 137.3,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 36,
+          "validZ": "081800Z",
+          "lat": 23,
+          "lon": 135.3,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 48,
+          "validZ": "090600Z",
+          "lat": 23.8,
+          "lon": 134.7,
+          "maxWindKt": 100,
+          "gustKt": 125
+        },
+        {
+          "tau": 60,
+          "validZ": "091800Z",
+          "lat": 24.4,
+          "lon": 135.9,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 72,
+          "validZ": "100600Z",
+          "lat": 25.1,
+          "lon": 138.6,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 96,
+          "validZ": "110600Z",
+          "lat": 27.2,
+          "lon": 145.4,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 120,
+          "validZ": "120600Z",
+          "lat": 28,
+          "lon": 150.4,
+          "maxWindKt": 35,
+          "gustKt": 45
+        }
+      ],
+      "spot": {
+        "distanceNm": 1212,
+        "bearingDeg": 94,
+        "closestApproach": {
+          "distanceNm": 739,
+          "tau": 48,
+          "validZ": "090600Z",
+          "maxWindKt": 100
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 305,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 296
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 292
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 294
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 326
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 61
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 74
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 70
+          },
+          {
+            "fromTau": 96,
+            "toTau": 120,
+            "heading": 79
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "headingDeg": 61,
+            "deltaDeg": 116
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-11-11T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-11-09T10:00:00.000Z",
+          "heightM": 1.7,
+          "periodS": 7.15,
+          "dirDeg": 82
+        },
+        "hoursAhead": 50,
+        "bearingOffsetDeg": 1,
+        "peak": {
+          "targetTime": "2026-11-10T00:00:00.000Z",
+          "heightM": 2.6,
+          "periodS": 8,
+          "dirDeg": 63
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a partially exposed low-level circulation center (LLCC) quickly transiting west-northwestward. TD 31W will continue west-northwestward through +48h along the southwestern periphery of the STR. The combination of lower shear, warm SST near 28 degrees Celsius, and adequate outflow should support steady to rapid intensification once the circulation develops an inner core.",
+        "warningNumber": "003",
+        "generatedAt": "2026-11-06T21:13:38.729Z"
+      },
+      "reasoningWarningNumber": null,
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "LOW",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
