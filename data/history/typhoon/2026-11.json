@@ -4788,6 +4788,171 @@
         "intensity0072": "LOW",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "31W",
+      "name": "Cempaka",
+      "designation": "Typhoon",
+      "warningNumber": "009",
+      "issuedAt": "2026-11-08T09:00:00.000Z",
+      "positionZ": "080600Z",
+      "lat": 22,
+      "lon": 137.4,
+      "maxWindKt": 70,
+      "gustKt": 85,
+      "pressureMb": 985,
+      "seasFt": 26,
+      "movingToward": 295,
+      "movingKt": 15,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "081800Z",
+          "lat": 22.9,
+          "lon": 135.4,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 24,
+          "validZ": "090600Z",
+          "lat": 23.7,
+          "lon": 134.8,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 36,
+          "validZ": "091800Z",
+          "lat": 24.2,
+          "lon": 136,
+          "maxWindKt": 95,
+          "gustKt": 115
+        },
+        {
+          "tau": 48,
+          "validZ": "100600Z",
+          "lat": 24.7,
+          "lon": 138.4,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 60,
+          "validZ": "101800Z",
+          "lat": 25.3,
+          "lon": 141.5,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 72,
+          "validZ": "110600Z",
+          "lat": 26,
+          "lon": 144.6,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 96,
+          "validZ": "120600Z",
+          "lat": 25.9,
+          "lon": 148.3,
+          "maxWindKt": 30,
+          "gustKt": 40
+        }
+      ],
+      "spot": {
+        "distanceNm": 894,
+        "bearingDeg": 91,
+        "closestApproach": {
+          "distanceNm": 744,
+          "tau": 24,
+          "validZ": "090600Z",
+          "maxWindKt": 95
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 295,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 296
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 326
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 65
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 77
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 77
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 75
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 91
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "headingDeg": 65,
+            "deltaDeg": 130
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-11-12T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-11-09T07:00:00.000Z",
+          "heightM": 1.7,
+          "periodS": 7.15,
+          "dirDeg": 82
+        },
+        "hoursAhead": 23,
+        "bearingOffsetDeg": 0,
+        "peak": {
+          "targetTime": "2026-11-10T00:00:00.000Z",
+          "heightM": 2.86,
+          "periodS": 7.85,
+          "dirDeg": 61
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "TS 31W will initially continue west-northwestward along the southwestern periphery of the STR. If the ccc pattern transitions to a more defined inner core structure, the system could resume rapid intensification and reach near 100 kt by +36h.",
+        "warningNumber": "007",
+        "generatedAt": "2026-11-07T21:13:42.299Z"
+      },
+      "reasoningWarningNumber": "008",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "LOW",
+        "track72120": "LOW",
+        "intensity0072": "LOW",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
