@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-08T08:33:53.380Z",
+  "fetchedAt": "2026-11-08T09:13:45.681Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -87,23 +87,23 @@
       ],
       "geoReference": "273 NM SOUTHWEST OF IWO TO",
       "reasoning": {
-        "warningNumber": "008",
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "warningNumber": "009",
+        "significantForecastChanges": "31W IS NOW FORECAST TO DISSIPATE OVER WATER RATHER THAN COMPLETING EXTRATROPICAL TRANSITION",
         "seasFt": 26,
         "environment": "FAVORABLE",
-        "vws": "15-20 KTS",
+        "vws": "10-15 KTS",
         "sst": "27-28 CELSIUS",
-        "outflow": "MODERATE POLEWARD AND WESTWARD",
+        "outflow": "STRONG POLEWARD",
         "steering": "THE SOUTHWESTERN FLANK OF A SUBTROPICAL RIDGE (STR) POSITIONED TO THE NORTHEAST",
         "confidence": {
-          "track0072": "LOW",
+          "track0072": "MEDIUM",
           "track72120": "LOW",
-          "intensity0072": "LOW",
-          "intensity72120": "LOW"
+          "intensity0072": "MEDIUM",
+          "intensity72120": "MEDIUM"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3126prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 894,
         "bearingDeg": 91,
@@ -183,9 +183,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "TS 31W will initially continue west-northwestward along the southwestern periphery of the STR. If the ccc pattern transitions to a more defined inner core structure, the system could resume rapid intensification and reach near 100 kt by +36h.",
-        "warningNumber": "007",
-        "generatedAt": "2026-11-07T21:13:42.299Z"
+        "text": "TY 31W is forecast to continue tracking northwestward, along the southwestern periphery of the STR for only another 12-18 hours before an incoming mid-latitude trough breaks down the western portion of the ridge and repositions it to the east. Regarding intensity, 31W is forecast to continue intensifying over the next 24 hours to a peak of 95 kt in response to the favorable environmental characteristics.",
+        "warningNumber": "009",
+        "generatedAt": "2026-11-08T09:13:45.681Z"
       },
       "changes": {
         "previousWarningNumber": "008",
