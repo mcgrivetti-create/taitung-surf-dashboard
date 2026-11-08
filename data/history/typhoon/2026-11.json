@@ -5124,6 +5124,177 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "31W",
+      "name": "Cempaka",
+      "designation": "Typhoon",
+      "warningNumber": "011",
+      "issuedAt": "2026-11-08T21:00:00.000Z",
+      "positionZ": "081800Z",
+      "lat": 22.9,
+      "lon": 135.7,
+      "maxWindKt": 65,
+      "gustKt": 80,
+      "pressureMb": 989,
+      "seasFt": 28,
+      "movingToward": 305,
+      "movingKt": 9,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "090600Z",
+          "lat": 23.6,
+          "lon": 135.2,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 24,
+          "validZ": "091800Z",
+          "lat": 24.2,
+          "lon": 136.3,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 36,
+          "validZ": "100600Z",
+          "lat": 24.7,
+          "lon": 138.8,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 48,
+          "validZ": "101800Z",
+          "lat": 25.4,
+          "lon": 142,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 60,
+          "validZ": "110600Z",
+          "lat": 26,
+          "lon": 145.3,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 72,
+          "validZ": "111800Z",
+          "lat": 26.3,
+          "lon": 147.7,
+          "maxWindKt": 40,
+          "gustKt": 50
+        },
+        {
+          "tau": 96,
+          "validZ": "121800Z",
+          "lat": 26,
+          "lon": 151,
+          "maxWindKt": 35,
+          "gustKt": 45
+        }
+      ],
+      "spot": {
+        "distanceNm": 795,
+        "bearingDeg": 88,
+        "closestApproach": {
+          "distanceNm": 766,
+          "tau": 12,
+          "validZ": "090600Z",
+          "maxWindKt": 75
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 305,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 327
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 59
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 77
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 76
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 78
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 82
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 95
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "headingDeg": 59,
+            "deltaDeg": 114
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "headingDeg": 95,
+            "deltaDeg": 36
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-11-13T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-11-09T06:00:00.000Z",
+          "heightM": 1.62,
+          "periodS": 7.2,
+          "dirDeg": 83
+        },
+        "hoursAhead": 10,
+        "bearingOffsetDeg": 1,
+        "peak": {
+          "targetTime": "2026-11-10T00:00:00.000Z",
+          "heightM": 2.66,
+          "periodS": 7.65,
+          "dirDeg": 57
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "TY 31W is forecast to continue tracking northwestward, along the southwestern periphery of the STR for only another 12-18 hours before an incoming mid-latitude trough breaks down the western portion of the ridge and repositions it to the east. Regarding intensity, 31W is forecast to continue intensifying over the next 24 hours to a peak of 95 kt in response to the favorable environmental characteristics.",
+        "warningNumber": "009",
+        "generatedAt": "2026-11-08T09:13:45.681Z"
+      },
+      "reasoningWarningNumber": "010",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "MEDIUM",
+        "track72120": "LOW",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "MEDIUM"
+      }
     }
   ]
 }
