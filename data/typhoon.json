@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-08T20:33:37.567Z",
+  "fetchedAt": "2026-11-08T21:13:37.449Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -87,23 +87,23 @@
       ],
       "geoReference": "328 NM WEST-SOUTHWEST OF IWO TO",
       "reasoning": {
-        "warningNumber": "010",
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "warningNumber": "011",
+        "significantForecastChanges": "THE FORECAST PEAK INTENSITY HAS BEEN LOWERED TO 80 KTS.",
         "seasFt": 28,
-        "environment": "FAVORABLE",
-        "vws": "10-15 KTS",
+        "environment": "MARGINALLY FAVORABLE",
+        "vws": "15-20 KTS",
         "sst": "27-28 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "THE SOUTHWESTERN FLANK OF A SUBTROPICAL RIDGE (STR) POSITIONED TO THE NORTHEAST",
+        "steering": "THE SOUTHWESTERN FLANK OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) POSITIONED TO THE NORTHEAST",
         "confidence": {
-          "track0072": "MEDIUM",
+          "track0072": "LOW",
           "track72120": "LOW",
           "intensity0072": "MEDIUM",
-          "intensity72120": "MEDIUM"
+          "intensity72120": "LOW"
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3126prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 795,
         "bearingDeg": 88,
@@ -189,9 +189,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "TY 31W is forecast to continue tracking northwestward, along the southwestern periphery of the STR for only another 12-18 hours before an incoming mid-latitude trough breaks down the western portion of the ridge and repositions it to the east. Regarding intensity, 31W is forecast to continue intensifying over the next 24 hours to a peak of 95 kt in response to the favorable environmental characteristics.",
-        "warningNumber": "009",
-        "generatedAt": "2026-11-08T09:13:45.681Z"
+        "text": "Typhoon (TY) 31W has been struggling to intensify, likely due to interaction with a dry, stable airmass associated with a northeasterly wind surge to the west and the outsized impact of 15-20 kt of southeasterly mid-level shear on the compact circulation. TY 31W is slowing down as it turns northwestward and rounds the southwestern periphery of the STR. This environment may afford TY 31W a 24-hour window to intensify further before conditions become untenable.",
+        "warningNumber": "011",
+        "generatedAt": "2026-11-08T21:13:37.449Z"
       },
       "changes": {
         "previousWarningNumber": "010",
