@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-08T02:13:48.870Z",
+  "fetchedAt": "2026-11-08T02:33:44.006Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -88,9 +88,9 @@
       ],
       "geoReference": "249 NM SOUTHWEST OF IWO TO",
       "reasoning": {
-        "warningNumber": "007",
+        "warningNumber": "008",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 24,
+        "seasFt": 26,
         "environment": "FAVORABLE",
         "vws": "15-20 KTS",
         "sst": "27-28 CELSIUS",
@@ -104,7 +104,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3126prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 971,
         "bearingDeg": 92,
@@ -178,7 +178,7 @@
           "periodS": 7.15,
           "dirDeg": 82
         },
-        "hoursAhead": 29,
+        "hoursAhead": 28,
         "bearingOffsetDeg": 0,
         "peak": {
           "targetTime": "2026-11-10T00:00:00.000Z",
