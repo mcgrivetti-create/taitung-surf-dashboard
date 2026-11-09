@@ -5473,6 +5473,159 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "31W",
+      "name": "Cempaka",
+      "designation": "Typhoon",
+      "warningNumber": "013",
+      "issuedAt": "2026-11-09T09:00:00.000Z",
+      "positionZ": "090600Z",
+      "lat": 24,
+      "lon": 134.9,
+      "maxWindKt": 85,
+      "gustKt": 105,
+      "pressureMb": 973,
+      "seasFt": 30,
+      "movingToward": 360,
+      "movingKt": 2,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "091800Z",
+          "lat": 24.6,
+          "lon": 136.3,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 24,
+          "validZ": "100600Z",
+          "lat": 25.3,
+          "lon": 139.1,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 36,
+          "validZ": "101800Z",
+          "lat": 26.3,
+          "lon": 143,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 48,
+          "validZ": "110600Z",
+          "lat": 27.2,
+          "lon": 147.3,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 60,
+          "validZ": "111800Z",
+          "lat": 28,
+          "lon": 151.4,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 72,
+          "validZ": "120600Z",
+          "lat": 28,
+          "lon": 155.7,
+          "maxWindKt": 40,
+          "gustKt": 50
+        }
+      ],
+      "spot": {
+        "distanceNm": 750,
+        "bearingDeg": 83,
+        "closestApproach": {
+          "distanceNm": 829,
+          "tau": 12,
+          "validZ": "091800Z",
+          "maxWindKt": 90,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 360,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 65
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 74
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 73
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 76
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 77
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 89
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "headingDeg": 65,
+            "deltaDeg": 65
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-11-13T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-11-09T13:00:00.000Z",
+          "heightM": 1.62,
+          "periodS": 7.25,
+          "dirDeg": 64
+        },
+        "hoursAhead": 5,
+        "bearingOffsetDeg": 9,
+        "peak": {
+          "targetTime": "2026-11-10T00:00:00.000Z",
+          "heightM": 2.76,
+          "periodS": 7.85,
+          "dirDeg": 58
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "Typhoon (TY) 31W has been struggling to intensify, likely due to interaction with a dry, stable airmass associated with a northeasterly wind surge to the west and the outsized impact of 15-20 kt of southeasterly mid-level shear on the compact circulation. TY 31W is slowing down as it turns northwestward and rounds the southwestern periphery of the STR. This environment may afford TY 31W a 24-hour window to intensify further before conditions become untenable.",
+        "warningNumber": "011",
+        "generatedAt": "2026-11-08T21:13:37.449Z"
+      },
+      "reasoningWarningNumber": "012",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "LOW",
+        "track72120": "LOW",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
