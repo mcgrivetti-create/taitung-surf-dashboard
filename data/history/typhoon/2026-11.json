@@ -5626,6 +5626,152 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "LOW"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "31W",
+      "name": "Cempaka",
+      "designation": "Typhoon",
+      "warningNumber": "014",
+      "issuedAt": "2026-11-09T15:00:00.000Z",
+      "positionZ": "091200Z",
+      "lat": 24.3,
+      "lon": 135.3,
+      "maxWindKt": 90,
+      "gustKt": 110,
+      "pressureMb": 968,
+      "seasFt": 30,
+      "movingToward": 50,
+      "movingKt": 5,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "100000Z",
+          "lat": 25,
+          "lon": 137.7,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 24,
+          "validZ": "101200Z",
+          "lat": 26,
+          "lon": 141.3,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 36,
+          "validZ": "110000Z",
+          "lat": 27.2,
+          "lon": 145.6,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 48,
+          "validZ": "111200Z",
+          "lat": 28.3,
+          "lon": 150.6,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 60,
+          "validZ": "120000Z",
+          "lat": 29.2,
+          "lon": 155.4,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 72,
+          "validZ": "121200Z",
+          "lat": 29.8,
+          "lon": 159.9,
+          "maxWindKt": 40,
+          "gustKt": 50
+        }
+      ],
+      "spot": {
+        "distanceNm": 773,
+        "bearingDeg": 81,
+        "closestApproach": {
+          "distanceNm": 906,
+          "tau": 12,
+          "validZ": "100000Z",
+          "maxWindKt": 90,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 50,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 72
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 72
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 72
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 75
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 77
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 80
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-11-13T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-11-09T17:00:00.000Z",
+          "heightM": 1.98,
+          "periodS": 8,
+          "dirDeg": 69
+        },
+        "hoursAhead": 3,
+        "bearingOffsetDeg": 1,
+        "peak": {
+          "targetTime": "2026-11-10T00:00:00.000Z",
+          "heightM": 2.74,
+          "periodS": 7.65,
+          "dirDeg": 54
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon 31W (cempaka) with a significantly improved structure over the past 6 hours, made apparent by the development of a 15 NM eye that is continuing to clear out. TY 31W is forecast to imminently start accelerating east-northeastward as an incoming mid-latitude trough digs in from the north and a near-equatorial ridge (ner) builds to the south. In terms of intensity, 31W is forecast to continue intensifying for only another 12 hours before westerly shear and dry air become significant.",
+        "warningNumber": "013",
+        "generatedAt": "2026-11-09T09:13:44.395Z"
+      },
+      "reasoningWarningNumber": "013",
+      "significantForecastChanges": "TRACK SPEEDS HAVE BEEN INCREASED FOLLOWING TAU 24 COMPARED TO THE PREVIOUS FORECAST",
+      "confidence": {
+        "track0072": "LOW",
+        "track72120": null,
+        "intensity0072": "MEDIUM",
+        "intensity72120": null
+      }
     }
   ]
 }
