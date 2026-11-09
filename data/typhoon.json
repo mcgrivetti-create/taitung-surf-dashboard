@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-09T08:33:45.379Z",
+  "fetchedAt": "2026-11-09T09:13:44.395Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -79,23 +79,23 @@
       ],
       "geoReference": "353 NM WEST OF IWO TO",
       "reasoning": {
-        "warningNumber": "012",
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "warningNumber": "013",
+        "significantForecastChanges": "TRACK SPEEDS HAVE BEEN INCREASED FOLLOWING TAU 24 COMPARED TO THE PREVIOUS FORECAST",
         "seasFt": 30,
-        "environment": "FAVORABLE",
-        "vws": "15-20 KTS",
+        "environment": "MARGINALLY FAVORABLE",
+        "vws": "10-15 KTS",
         "sst": "27-28 CELSIUS",
-        "outflow": "MODERATE RADIAL",
-        "steering": "THE WESTERN FLANK OF A DEEP-LAYER SUBTROPICAL RIDGE (STR) POSITIONED TO THE EAST",
+        "outflow": "STRONG POLEWARD",
+        "steering": "COMPETING STEERING PATTERN WITH RIDGING TO BOTH THE EAST AND WEST",
         "confidence": {
           "track0072": "LOW",
-          "track72120": "LOW",
+          "track72120": null,
           "intensity0072": "MEDIUM",
-          "intensity72120": "LOW"
+          "intensity72120": null
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3126prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 750,
         "bearingDeg": 83,
@@ -171,9 +171,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Typhoon (TY) 31W has been struggling to intensify, likely due to interaction with a dry, stable airmass associated with a northeasterly wind surge to the west and the outsized impact of 15-20 kt of southeasterly mid-level shear on the compact circulation. TY 31W is slowing down as it turns northwestward and rounds the southwestern periphery of the STR. This environment may afford TY 31W a 24-hour window to intensify further before conditions become untenable.",
-        "warningNumber": "011",
-        "generatedAt": "2026-11-08T21:13:37.449Z"
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon 31W (cempaka) with a significantly improved structure over the past 6 hours, made apparent by the development of a 15 NM eye that is continuing to clear out. TY 31W is forecast to imminently start accelerating east-northeastward as an incoming mid-latitude trough digs in from the north and a near-equatorial ridge (ner) builds to the south. In terms of intensity, 31W is forecast to continue intensifying for only another 12 hours before westerly shear and dry air become significant.",
+        "warningNumber": "013",
+        "generatedAt": "2026-11-09T09:13:44.395Z"
       },
       "changes": {
         "previousWarningNumber": "012",
