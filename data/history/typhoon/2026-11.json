@@ -5295,6 +5295,184 @@
         "intensity0072": "MEDIUM",
         "intensity72120": "MEDIUM"
       }
+    },
+    {
+      "kind": "warning",
+      "id": "31W",
+      "name": "Cempaka",
+      "designation": "Typhoon",
+      "warningNumber": "012",
+      "issuedAt": "2026-11-09T03:00:00.000Z",
+      "positionZ": "090000Z",
+      "lat": 23.8,
+      "lon": 135,
+      "maxWindKt": 75,
+      "gustKt": 90,
+      "pressureMb": 982,
+      "seasFt": 30,
+      "movingToward": 325,
+      "movingKt": 11,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "091200Z",
+          "lat": 24.5,
+          "lon": 135.4,
+          "maxWindKt": 85,
+          "gustKt": 105
+        },
+        {
+          "tau": 24,
+          "validZ": "100000Z",
+          "lat": 25,
+          "lon": 137.4,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 36,
+          "validZ": "101200Z",
+          "lat": 25.7,
+          "lon": 140.6,
+          "maxWindKt": 75,
+          "gustKt": 90
+        },
+        {
+          "tau": 48,
+          "validZ": "110000Z",
+          "lat": 26.5,
+          "lon": 144.1,
+          "maxWindKt": 65,
+          "gustKt": 80
+        },
+        {
+          "tau": 60,
+          "validZ": "111200Z",
+          "lat": 27.1,
+          "lon": 147.2,
+          "maxWindKt": 50,
+          "gustKt": 65
+        },
+        {
+          "tau": 72,
+          "validZ": "120000Z",
+          "lat": 27.1,
+          "lon": 149.4,
+          "maxWindKt": 40,
+          "gustKt": 50
+        },
+        {
+          "tau": 96,
+          "validZ": "130000Z",
+          "lat": 26,
+          "lon": 152.7,
+          "maxWindKt": 30,
+          "gustKt": 40
+        }
+      ],
+      "spot": {
+        "distanceNm": 755,
+        "bearingDeg": 84,
+        "closestApproach": {
+          "distanceNm": 779,
+          "tau": 12,
+          "validZ": "091200Z",
+          "maxWindKt": 85,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 325,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 27
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 74
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 76
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 75
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 77
+          },
+          {
+            "fromTau": 60,
+            "toTau": 72,
+            "heading": 89
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "heading": 110
+          }
+        ],
+        "turns": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "headingDeg": 27,
+            "deltaDeg": 62
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "headingDeg": 74,
+            "deltaDeg": 47
+          },
+          {
+            "fromTau": 72,
+            "toTau": 96,
+            "headingDeg": 110,
+            "deltaDeg": 36
+          }
+        ]
+      },
+      "swell": {
+        "windowEnd": "2026-11-13T15:00:00.000Z",
+        "status": "incoming",
+        "arrival": {
+          "targetTime": "2026-11-09T13:00:00.000Z",
+          "heightM": 1.62,
+          "periodS": 7.25,
+          "dirDeg": 64
+        },
+        "hoursAhead": 11,
+        "bearingOffsetDeg": 11,
+        "peak": {
+          "targetTime": "2026-11-10T00:00:00.000Z",
+          "heightM": 2.76,
+          "periodS": 7.85,
+          "dirDeg": 58
+        }
+      },
+      "retired": false,
+      "summary": {
+        "text": "Typhoon (TY) 31W has been struggling to intensify, likely due to interaction with a dry, stable airmass associated with a northeasterly wind surge to the west and the outsized impact of 15-20 kt of southeasterly mid-level shear on the compact circulation. TY 31W is slowing down as it turns northwestward and rounds the southwestern periphery of the STR. This environment may afford TY 31W a 24-hour window to intensify further before conditions become untenable.",
+        "warningNumber": "011",
+        "generatedAt": "2026-11-08T21:13:37.449Z"
+      },
+      "reasoningWarningNumber": "011",
+      "significantForecastChanges": "THE FORECAST PEAK INTENSITY HAS BEEN LOWERED TO 80 KTS.",
+      "confidence": {
+        "track0072": "LOW",
+        "track72120": "LOW",
+        "intensity0072": "MEDIUM",
+        "intensity72120": "LOW"
+      }
     }
   ]
 }
