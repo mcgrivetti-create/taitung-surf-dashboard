@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-09T20:33:33.289Z",
+  "fetchedAt": "2026-11-09T21:13:44.868Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -69,14 +69,14 @@
       ],
       "geoReference": "256 NM WEST OF IWO TO",
       "reasoning": {
-        "warningNumber": "014",
+        "warningNumber": "015",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 30,
+        "seasFt": 33,
         "environment": "MARGINALLY FAVORABLE",
-        "vws": "10-15 KTS",
+        "vws": "20-25 KTS",
         "sst": "27-28 CELSIUS",
-        "outflow": "STRONG POLEWARD",
-        "steering": "COMBINED STEERING INFLUENCE OF A NEAR-EQUATORIAL RIDGE (NER) TO THE SOUTH AND A MAJOR SHORTWAVE TROUGH DIGGING IN FROM THE NORTH",
+        "outflow": "MODERATE POLEWARD",
+        "steering": "SUBTROPICAL RIDGE TO THE EAST",
         "confidence": {
           "track0072": "LOW",
           "track72120": null,
@@ -85,7 +85,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3126prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 845,
         "bearingDeg": 80,
@@ -130,7 +130,7 @@
       },
       "swell": {
         "windowEnd": "2026-11-14T15:00:00.000Z",
-        "status": "incoming",
+        "status": "arriving",
         "arrival": {
           "targetTime": "2026-11-09T22:00:00.000Z",
           "heightM": 2.3,
@@ -149,9 +149,9 @@
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon 31W (cempaka) with a significantly improved structure over the past 6 hours, made apparent by the development of a 15 NM eye that is continuing to clear out. TY 31W is forecast to imminently start accelerating east-northeastward as an incoming mid-latitude trough digs in from the north and a near-equatorial ridge (ner) builds to the south. In terms of intensity, 31W is forecast to continue intensifying for only another 12 hours before westerly shear and dry air become significant.",
-        "warningNumber": "013",
-        "generatedAt": "2026-11-09T09:13:44.395Z"
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a more well-defined, warmer, and circular eye than six hours ago, with a somewhat broken cold ring with cloud tops colder than -70 degrees Celsius confined to the northern semicircle. Typhoon 31W (cempaka) is beginning to accelerate east-northeastward along the northwestern periphery of a subtropical ridge to the east, ahead of a long cold front developing southeast of mainland Japan. Dynamical models agree that this general track motion will continue, bringing the storm close to the frontal boundary in 24- 36 hours, at which point extratropical transition will begin.",
+        "warningNumber": "015",
+        "generatedAt": "2026-11-09T21:13:44.868Z"
       },
       "changes": {
         "previousWarningNumber": "014",
