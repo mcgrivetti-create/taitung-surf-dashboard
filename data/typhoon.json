@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-09T21:33:37.747Z",
+  "fetchedAt": "2026-11-09T22:13:38.683Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -130,21 +130,26 @@
       },
       "swell": {
         "windowEnd": "2026-11-14T15:00:00.000Z",
-        "status": "arriving",
+        "status": "in-water",
         "arrival": {
           "targetTime": "2026-11-09T22:00:00.000Z",
           "heightM": 2.3,
           "periodS": 7.85,
           "dirDeg": 63
         },
-        "hoursAhead": 0,
-        "bearingOffsetDeg": 8,
+        "now": {
+          "targetTime": "2026-11-09T22:00:00.000Z",
+          "heightM": 2.3,
+          "periodS": 7.85,
+          "dirDeg": 63
+        },
         "peak": {
           "targetTime": "2026-11-10T00:00:00.000Z",
           "heightM": 2.74,
           "periodS": 7.65,
           "dirDeg": 54
-        }
+        },
+        "easing": false
       },
       "retireFrom": null,
       "retired": false,
