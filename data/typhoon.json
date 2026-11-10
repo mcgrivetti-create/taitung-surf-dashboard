@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-10T02:33:55.881Z",
+  "fetchedAt": "2026-11-10T03:13:37.501Z",
   "systems": [
     {
       "designation": "Typhoon",
@@ -69,13 +69,13 @@
       ],
       "geoReference": "180 NM WEST OF IWO TO",
       "reasoning": {
-        "warningNumber": "015",
-        "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+        "warningNumber": "016",
+        "significantForecastChanges": "THE FORECAST HAS BEEN SHIFTED SIGNIFICANTLY FASTER THAN THE PREVIOUS FORECAST DUE TO AN ABRUPT ACCELERATION IN THE MODEL GUIDANCE PACKAGE. THE LAST TAU 60 FORECAST POINT IS ABOUT 135 NM EAST-NORTHEAST OF THE PREVIOUS FORECAST.",
         "seasFt": 33,
         "environment": "MARGINALLY FAVORABLE",
-        "vws": "20-25 KTS",
-        "sst": "27-28 CELSIUS",
-        "outflow": "MODERATE POLEWARD",
+        "vws": "25-30 KTS",
+        "sst": "26-27 CELSIUS",
+        "outflow": "STRONG POLEWARD",
         "steering": "SUBTROPICAL RIDGE TO THE EAST",
         "confidence": {
           "track0072": "LOW",
@@ -85,7 +85,7 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3126prog.txt",
-      "reasoningLagsWarning": true,
+      "reasoningLagsWarning": false,
       "spot": {
         "distanceNm": 923,
         "bearingDeg": 79,
@@ -138,16 +138,16 @@
           "dirDeg": 63
         },
         "now": {
-          "targetTime": "2026-11-10T02:00:00.000Z",
-          "heightM": 2.64,
-          "periodS": 8.1,
-          "dirDeg": 51
+          "targetTime": "2026-11-10T03:00:00.000Z",
+          "heightM": 2.36,
+          "periodS": 8,
+          "dirDeg": 47
         },
         "peak": {
-          "targetTime": "2026-11-10T02:00:00.000Z",
-          "heightM": 2.64,
-          "periodS": 8.1,
-          "dirDeg": 51
+          "targetTime": "2026-11-10T03:00:00.000Z",
+          "heightM": 2.36,
+          "periodS": 8,
+          "dirDeg": 47
         },
         "easing": true
       },
