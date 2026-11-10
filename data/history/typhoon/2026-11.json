@@ -5903,6 +5903,142 @@
         "intensity0072": "MEDIUM",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "31W",
+      "name": "Cempaka",
+      "designation": "Typhoon",
+      "warningNumber": "016",
+      "issuedAt": "2026-11-10T03:00:00.000Z",
+      "positionZ": "100000Z",
+      "lat": 25,
+      "lon": 138,
+      "maxWindKt": 95,
+      "gustKt": 115,
+      "movingToward": 75,
+      "movingKt": 13,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "101200Z",
+          "lat": 26.1,
+          "lon": 141.8,
+          "maxWindKt": 90,
+          "gustKt": 110
+        },
+        {
+          "tau": 24,
+          "validZ": "110000Z",
+          "lat": 27.5,
+          "lon": 146.2,
+          "maxWindKt": 80,
+          "gustKt": 100
+        },
+        {
+          "tau": 36,
+          "validZ": "111200Z",
+          "lat": 28.8,
+          "lon": 151.3,
+          "maxWindKt": 70,
+          "gustKt": 85
+        },
+        {
+          "tau": 48,
+          "validZ": "120000Z",
+          "lat": 29.9,
+          "lon": 156.8,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 60,
+          "validZ": "121200Z",
+          "lat": 31,
+          "lon": 161.9,
+          "maxWindKt": 45,
+          "gustKt": 55
+        }
+      ],
+      "spot": {
+        "distanceNm": 923,
+        "bearingDeg": 79,
+        "closestApproach": {
+          "distanceNm": 1133,
+          "tau": 12,
+          "validZ": "101200Z",
+          "maxWindKt": 90,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 75,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 71
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 69
+          },
+          {
+            "fromTau": 24,
+            "toTau": 36,
+            "heading": 73
+          },
+          {
+            "fromTau": 36,
+            "toTau": 48,
+            "heading": 76
+          },
+          {
+            "fromTau": 48,
+            "toTau": 60,
+            "heading": 75
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-11-14T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-11-09T22:00:00.000Z",
+          "heightM": 2.3,
+          "periodS": 7.85,
+          "dirDeg": 63
+        },
+        "now": {
+          "targetTime": "2026-11-10T01:00:00.000Z",
+          "heightM": 2.9,
+          "periodS": 8.25,
+          "dirDeg": 55
+        },
+        "peak": {
+          "targetTime": "2026-11-10T01:00:00.000Z",
+          "heightM": 2.9,
+          "periodS": 8.25,
+          "dirDeg": 55
+        },
+        "easing": true
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a more well-defined, warmer, and circular eye than six hours ago, with a somewhat broken cold ring with cloud tops colder than -70 degrees Celsius confined to the northern semicircle. Typhoon 31W (cempaka) is beginning to accelerate east-northeastward along the northwestern periphery of a subtropical ridge to the east, ahead of a long cold front developing southeast of mainland Japan. Dynamical models agree that this general track motion will continue, bringing the storm close to the frontal boundary in 24- 36 hours, at which point extratropical transition will begin.",
+        "warningNumber": "015",
+        "generatedAt": "2026-11-09T21:13:44.868Z"
+      },
+      "reasoningWarningNumber": "015",
+      "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
+      "confidence": {
+        "track0072": "LOW",
+        "track72120": null,
+        "intensity0072": "MEDIUM",
+        "intensity72120": null
+      }
     }
   ]
 }
