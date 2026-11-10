@@ -180,6 +180,14 @@
             "WaveDirectionDescription": "ENE",
             "WavePeriod": "7.2",
             "SeaTemperature": "26.8"
+          },
+          {
+            "DateTime": "2026-11-11T00:00:00+08:00",
+            "WaveHeight": "2.5",
+            "WaveDirection": "68.0",
+            "WaveDirectionDescription": "ENE",
+            "WavePeriod": "7.4",
+            "SeaTemperature": "26.8"
           }
         ]
       },
@@ -892,10 +900,41 @@
               "Layer": [
                 {
                   "LayerNumber": "1",
-                  "CurrentDirection": "113",
-                  "CurrentDirectionDescription": "ESE",
-                  "CurrentSpeed": "0.18",
-                  "CurrentSpeedInKnots": "0.35"
+                  "CurrentDirection": "130",
+                  "CurrentDirectionDescription": "SE",
+                  "CurrentSpeed": "0.19",
+                  "CurrentSpeedInKnots": "0.37"
+                }
+              ]
+            }
+          },
+          {
+            "DateTime": "2026-11-11T01:00:00+08:00",
+            "TideHeight": "None",
+            "TideLevel": "-",
+            "WaveHeight": "1.7",
+            "WaveDirection": "78.0",
+            "WaveDirectionDescription": "ENE",
+            "WavePeriod": "6.6",
+            "SeaTemperature": "None",
+            "Temperature": "None",
+            "StationPressure": "1021.7",
+            "PrimaryAnemometer": {
+              "WindSpeed": "6.2",
+              "WindScale": "4",
+              "WindDirection": "345.0",
+              "WindDirectionDescription": "NNW",
+              "MaximumWindSpeed": "8.7",
+              "MaximumWindScale": "5"
+            },
+            "SeaCurrents": {
+              "Layer": [
+                {
+                  "LayerNumber": "1",
+                  "CurrentDirection": "221",
+                  "CurrentDirectionDescription": "SW",
+                  "CurrentSpeed": "0.17",
+                  "CurrentSpeedInKnots": "0.33"
                 }
               ]
             }
