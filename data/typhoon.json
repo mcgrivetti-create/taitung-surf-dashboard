@@ -1,82 +1,70 @@
 {
-  "fetchedAt": "2026-11-10T08:33:38.934Z",
+  "fetchedAt": "2026-11-10T09:13:37.864Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "31W",
       "name": "Cempaka",
       "headline": "Typhoon 31W (Cempaka)",
-      "warningNumber": "016",
-      "issuedZ": "10/0300Z",
-      "issuedAt": "2026-11-10T03:00:00.000Z",
+      "warningNumber": "017",
+      "issuedZ": "10/0900Z",
+      "issuedAt": "2026-11-10T09:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp3126.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp3126web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "101200Z",
-          "lat": 26.1,
-          "lon": 141.8,
-          "maxWindKt": 90,
-          "gustKt": 110
-        },
-        {
-          "tau": 24,
-          "validZ": "110000Z",
-          "lat": 27.5,
-          "lon": 146.2,
+          "validZ": "101800Z",
+          "lat": 26.6,
+          "lon": 144,
           "maxWindKt": 80,
           "gustKt": 100
         },
         {
-          "tau": 36,
-          "validZ": "111200Z",
-          "lat": 28.8,
-          "lon": 151.3,
+          "tau": 24,
+          "validZ": "110600Z",
+          "lat": 28.1,
+          "lon": 148.9,
           "maxWindKt": 70,
           "gustKt": 85
         },
         {
-          "tau": 48,
-          "validZ": "120000Z",
-          "lat": 29.9,
-          "lon": 156.8,
+          "tau": 36,
+          "validZ": "111800Z",
+          "lat": 29.5,
+          "lon": 154.4,
           "maxWindKt": 55,
           "gustKt": 70
         },
         {
-          "tau": 60,
-          "validZ": "121200Z",
-          "lat": 31,
-          "lon": 161.9,
+          "tau": 48,
+          "validZ": "120600Z",
+          "lat": 30.9,
+          "lon": 160.3,
           "maxWindKt": 45,
           "gustKt": 55
         }
       ],
-      "positionZ": "100000Z",
-      "lat": 25,
-      "lon": 138,
+      "positionZ": "100600Z",
+      "lat": 25.4,
+      "lon": 139.9,
       "movingToward": 75,
-      "movingKt": 13,
-      "maxWindKt": 95,
-      "gustKt": 115,
-      "nextWarnings": [
-        "100900Z",
-        "101500Z",
-        "102100Z",
-        "110300Z"
-      ],
-      "geoReference": "180 NM WEST OF IWO TO",
+      "movingKt": 18,
+      "maxWindKt": 90,
+      "gustKt": 110,
+      "pressureMb": 964,
+      "seasFt": 32,
+      "geoReference": "84 NM WEST- NORTHWEST OF IWO TO",
       "reasoning": {
-        "warningNumber": "016",
-        "significantForecastChanges": "THE FORECAST HAS BEEN SHIFTED SIGNIFICANTLY FASTER THAN THE PREVIOUS FORECAST DUE TO AN ABRUPT ACCELERATION IN THE MODEL GUIDANCE PACKAGE. THE LAST TAU 60 FORECAST POINT IS ABOUT 135 NM EAST-NORTHEAST OF THE PREVIOUS FORECAST.",
-        "seasFt": 33,
-        "environment": "MARGINALLY FAVORABLE",
-        "vws": "25-30 KTS",
+        "warningNumber": "017",
+        "significantForecastChanges": "THE FORECAST HAS SHIFTED ROUGHLY 60 NM FASTER THAN THE PREVIOUS FORECAST AT TAU 48 AS MODEL GUIDANCE ACCELERATES. THE FORECAST HAS ALSO BEEN TRUNCATED TO 48 HOURS.",
+        "seasFt": 32,
+        "environment": "MARGINAL",
+        "vws": "10-15 KTS",
         "sst": "26-27 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "SUBTROPICAL RIDGE TO THE EAST",
+        "steering": "SUBTROPICAL RIDGE CENTERED TO THE EAST",
         "confidence": {
           "track0072": "LOW",
           "track72120": null,
@@ -87,13 +75,13 @@
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3126prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 923,
-        "bearingDeg": 79,
+        "distanceNm": 1027,
+        "bearingDeg": 78,
         "closestApproach": {
-          "distanceNm": 1133,
+          "distanceNm": 1254,
           "tau": 12,
-          "validZ": "101200Z",
-          "maxWindKt": 90,
+          "validZ": "101800Z",
+          "maxWindKt": 80,
           "recedingOnly": true
         }
       },
@@ -108,22 +96,17 @@
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 69
+            "heading": 70
           },
           {
             "fromTau": 24,
             "toTau": 36,
-            "heading": 73
+            "heading": 72
           },
           {
             "fromTau": 36,
             "toTau": 48,
-            "heading": 76
-          },
-          {
-            "fromTau": 48,
-            "toTau": 60,
-            "heading": 75
+            "heading": 73
           }
         ],
         "turns": []
@@ -138,9 +121,9 @@
           "dirDeg": 63
         },
         "now": {
-          "targetTime": "2026-11-10T08:00:00.000Z",
-          "heightM": 1.98,
-          "periodS": 7.75,
+          "targetTime": "2026-11-10T09:00:00.000Z",
+          "heightM": 2,
+          "periodS": 7.65,
           "dirDeg": 44
         },
         "peak": {
@@ -149,20 +132,20 @@
           "periodS": 7.65,
           "dirDeg": 44
         },
-        "easing": false
+        "easing": true
       },
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated enhanced infrared (EIR) satellite imagery depicts a more well-defined, warmer, and circular eye than six hours ago, with a somewhat broken cold ring with cloud tops colder than -70 degrees Celsius confined to the northern semicircle. Typhoon 31W (cempaka) is beginning to accelerate east-northeastward along the northwestern periphery of a subtropical ridge to the east, ahead of a long cold front developing southeast of mainland Japan. Dynamical models agree that this general track motion will continue, bringing the storm close to the frontal boundary in 24- 36 hours, at which point extratropical transition will begin.",
-        "warningNumber": "015",
-        "generatedAt": "2026-11-09T21:13:44.868Z"
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 31W (cempaka) with a now cloud-filled eye and a central dense overcast (cdo) that has elongated along the north-south axis over the last six hours. TY 31W is forecast to continue accelerating northeastward for the remainder of the forecast period along the northwestern extension of a subtropical ridge (STR) centered to the east. This interaction is expected to induce extratropical transition (ETT) of 31W as it nears the baroclinic zone.",
+        "warningNumber": "017",
+        "generatedAt": "2026-11-10T09:13:37.864Z"
       },
       "changes": {
-        "previousWarningNumber": "015",
-        "previousIssuedAt": "2026-11-09T21:00:00.000Z",
-        "maxWindKtDelta": 0,
-        "closestApproachNmDelta": 116
+        "previousWarningNumber": "016",
+        "previousIssuedAt": "2026-11-10T03:00:00.000Z",
+        "maxWindKtDelta": -5,
+        "closestApproachNmDelta": 121
       }
     }
   ],
