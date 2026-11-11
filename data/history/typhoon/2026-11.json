@@ -6581,6 +6581,99 @@
         "intensity0072": "HIGH",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "31W",
+      "name": "Cempaka",
+      "designation": "Typhoon",
+      "warningNumber": "022",
+      "issuedAt": "2026-11-11T15:00:00.000Z",
+      "positionZ": "111200Z",
+      "lat": 30.2,
+      "lon": 154.1,
+      "maxWindKt": 65,
+      "gustKt": 80,
+      "seasFt": 30,
+      "movingToward": 70,
+      "movingKt": 36,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "120000Z",
+          "lat": 33,
+          "lon": 161.8,
+          "maxWindKt": 55,
+          "gustKt": 70
+        },
+        {
+          "tau": 24,
+          "validZ": "121200Z",
+          "lat": 36.7,
+          "lon": 170.4,
+          "maxWindKt": 45,
+          "gustKt": 55
+        }
+      ],
+      "spot": {
+        "distanceNm": 1806,
+        "bearingDeg": 69,
+        "closestApproach": {
+          "distanceNm": 2214,
+          "tau": 12,
+          "validZ": "120000Z",
+          "maxWindKt": 55,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 70,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 65
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 60
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-11-15T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-11-09T22:00:00.000Z",
+          "heightM": 2.3,
+          "periodS": 7.85,
+          "dirDeg": 63
+        },
+        "now": {
+          "targetTime": "2026-11-11T15:00:00.000Z",
+          "heightM": 1.5,
+          "periodS": 6.5,
+          "dirDeg": 81
+        },
+        "peak": {
+          "targetTime": "2026-11-12T11:00:00.000Z",
+          "heightM": 1.64,
+          "periodS": 7.3,
+          "dirDeg": 79
+        },
+        "easing": false
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 31W (cempaka) with a central dense overcast (cdo) offset to the northeast of the low level circulation center (LLCC). 31W has begun interaction with the cold front situated to the northwest of the system, causing the onset of extratropical transition (ETT) as 31W loses some tropical characteristics. Before ETT can complete however, further interaction with the frontal boundary will cause the circulation of 31W to instead open and dissipate into the larger frontal feature by +24h.",
+        "warningNumber": "021",
+        "generatedAt": "2026-11-11T09:13:36.715Z"
+      },
+      "reasoningWarningNumber": null,
+      "significantForecastChanges": null,
+      "confidence": null
     }
   ]
 }
