@@ -6386,6 +6386,103 @@
         "intensity0072": "MEDIUM",
         "intensity72120": null
       }
+    },
+    {
+      "kind": "warning",
+      "id": "31W",
+      "name": "Cempaka",
+      "designation": "Typhoon",
+      "warningNumber": "020",
+      "issuedAt": "2026-11-11T03:00:00.000Z",
+      "positionZ": "110000Z",
+      "lat": 27.7,
+      "lon": 146.7,
+      "maxWindKt": 70,
+      "gustKt": 85,
+      "movingToward": 70,
+      "movingKt": 23,
+      "forecasts": [
+        {
+          "tau": 12,
+          "validZ": "111200Z",
+          "lat": 29.5,
+          "lon": 152.5,
+          "maxWindKt": 60,
+          "gustKt": 75
+        },
+        {
+          "tau": 24,
+          "validZ": "120000Z",
+          "lat": 32.1,
+          "lon": 159.8,
+          "maxWindKt": 50,
+          "gustKt": 65
+        }
+      ],
+      "spot": {
+        "distanceNm": 1404,
+        "bearingDeg": 73,
+        "closestApproach": {
+          "distanceNm": 1719,
+          "tau": 12,
+          "validZ": "111200Z",
+          "maxWindKt": 60,
+          "recedingOnly": true
+        }
+      },
+      "motion": {
+        "currentHeadingDeg": 70,
+        "legs": [
+          {
+            "fromTau": 0,
+            "toTau": 12,
+            "heading": 69
+          },
+          {
+            "fromTau": 12,
+            "toTau": 24,
+            "heading": 66
+          }
+        ],
+        "turns": []
+      },
+      "swell": {
+        "windowEnd": "2026-11-15T15:00:00.000Z",
+        "status": "in-water",
+        "arrival": {
+          "targetTime": "2026-11-09T22:00:00.000Z",
+          "heightM": 2.3,
+          "periodS": 7.85,
+          "dirDeg": 63
+        },
+        "now": {
+          "targetTime": "2026-11-11T02:00:00.000Z",
+          "heightM": 1.86,
+          "periodS": 7.8,
+          "dirDeg": 81
+        },
+        "peak": {
+          "targetTime": "2026-11-11T02:00:00.000Z",
+          "heightM": 1.86,
+          "periodS": 7.8,
+          "dirDeg": 81
+        },
+        "easing": true
+      },
+      "retired": false,
+      "summary": {
+        "text": "Animated shortwave infrared (swir) satellite imagery depicts a rapidly deteriorating system, with strong deep-layer southwesterly vertical wind shear (VWS) resulting in rapid vertical vortex decoupling. Typhoon (TY) 31W is translating rapidly east- northeastward along the northwestern periphery of the deep-layer STR to the east and ahead of the rapidly approaching lower-tropospheric cold frontal boundary. Within the next 12 hours, TY 31W will begin to interact with the baroclinic frontal boundary and initiate extratropical transition (ETT).",
+        "warningNumber": "019",
+        "generatedAt": "2026-11-10T21:13:57.588Z"
+      },
+      "reasoningWarningNumber": "019",
+      "significantForecastChanges": "THE FORECAST HAS BEEN SHORTENED TO 24 HOURS.",
+      "confidence": {
+        "track0072": "HIGH",
+        "track72120": null,
+        "intensity0072": "HIGH",
+        "intensity72120": null
+      }
     }
   ]
 }

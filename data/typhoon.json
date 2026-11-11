@@ -1,48 +1,48 @@
 {
-  "fetchedAt": "2026-11-11T01:33:43.440Z",
+  "fetchedAt": "2026-11-11T02:13:41.046Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "31W",
       "name": "Cempaka",
       "headline": "Typhoon 31W (Cempaka)",
-      "warningNumber": "019",
-      "issuedZ": "10/2100Z",
-      "issuedAt": "2026-11-10T21:00:00.000Z",
+      "warningNumber": "020",
+      "issuedZ": "11/0300Z",
+      "issuedAt": "2026-11-11T03:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp3126.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp3126web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "110600Z",
-          "lat": 28.7,
-          "lon": 150.2,
-          "maxWindKt": 70,
-          "gustKt": 85
+          "validZ": "111200Z",
+          "lat": 29.5,
+          "lon": 152.5,
+          "maxWindKt": 60,
+          "gustKt": 75
         },
         {
           "tau": 24,
-          "validZ": "111800Z",
-          "lat": 30.9,
-          "lon": 156.9,
-          "maxWindKt": 60,
-          "gustKt": 75
+          "validZ": "120000Z",
+          "lat": 32.1,
+          "lon": 159.8,
+          "maxWindKt": 50,
+          "gustKt": 65
         }
       ],
-      "positionZ": "101800Z",
-      "lat": 26.9,
-      "lon": 144.6,
+      "positionZ": "110000Z",
+      "lat": 27.7,
+      "lon": 146.7,
       "movingToward": 70,
-      "movingKt": 24,
-      "maxWindKt": 80,
-      "gustKt": 100,
+      "movingKt": 23,
+      "maxWindKt": 70,
+      "gustKt": 85,
       "nextWarnings": [
-        "110300Z",
         "110900Z",
-        "111500Z"
+        "111500Z",
+        "112100Z"
       ],
-      "geoReference": "218 NM NORTHEAST OF IWO TO",
+      "geoReference": "339 NM EAST-NORTHEAST OF IWO TO",
       "reasoning": {
         "warningNumber": "019",
         "significantForecastChanges": "THE FORECAST HAS BEEN SHORTENED TO 24 HOURS.",
@@ -60,15 +60,15 @@
         }
       },
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3126prog.txt",
-      "reasoningLagsWarning": false,
+      "reasoningLagsWarning": true,
       "spot": {
-        "distanceNm": 1287,
-        "bearingDeg": 75,
+        "distanceNm": 1404,
+        "bearingDeg": 73,
         "closestApproach": {
-          "distanceNm": 1594,
+          "distanceNm": 1719,
           "tau": 12,
-          "validZ": "110600Z",
-          "maxWindKt": 70,
+          "validZ": "111200Z",
+          "maxWindKt": 60,
           "recedingOnly": true
         }
       },
@@ -83,7 +83,7 @@
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 68
+            "heading": 66
           }
         ],
         "turns": []
@@ -98,16 +98,16 @@
           "dirDeg": 63
         },
         "now": {
-          "targetTime": "2026-11-11T01:00:00.000Z",
-          "heightM": 1.9,
+          "targetTime": "2026-11-11T02:00:00.000Z",
+          "heightM": 1.86,
           "periodS": 7.8,
-          "dirDeg": 80
+          "dirDeg": 81
         },
         "peak": {
-          "targetTime": "2026-11-11T01:00:00.000Z",
-          "heightM": 1.9,
+          "targetTime": "2026-11-11T02:00:00.000Z",
+          "heightM": 1.86,
           "periodS": 7.8,
-          "dirDeg": 80
+          "dirDeg": 81
         },
         "easing": true
       },
@@ -119,10 +119,10 @@
         "generatedAt": "2026-11-10T21:13:57.588Z"
       },
       "changes": {
-        "previousWarningNumber": "018",
-        "previousIssuedAt": "2026-11-10T15:00:00.000Z",
-        "maxWindKtDelta": -5,
-        "closestApproachNmDelta": 191
+        "previousWarningNumber": "019",
+        "previousIssuedAt": "2026-11-10T21:00:00.000Z",
+        "maxWindKtDelta": -10,
+        "closestApproachNmDelta": 125
       }
     }
   ],
