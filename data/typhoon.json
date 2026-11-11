@@ -1,59 +1,60 @@
 {
-  "fetchedAt": "2026-11-11T08:33:51.903Z",
+  "fetchedAt": "2026-11-11T09:13:36.715Z",
   "systems": [
     {
       "designation": "Typhoon",
       "id": "31W",
       "name": "Cempaka",
       "headline": "Typhoon 31W (Cempaka)",
-      "warningNumber": "020",
-      "issuedZ": "11/0300Z",
-      "issuedAt": "2026-11-11T03:00:00.000Z",
+      "warningNumber": "021",
+      "issuedZ": "11/0900Z",
+      "issuedAt": "2026-11-11T09:00:00.000Z",
       "graphic": "https://www.metoc.navy.mil/jtwc/products/wp3126.gif",
       "warningText": "https://www.metoc.navy.mil/jtwc/products/wp3126web.txt",
       "cwaTrackImage": null,
       "forecasts": [
         {
           "tau": 12,
-          "validZ": "111200Z",
-          "lat": 29.5,
-          "lon": 152.5,
-          "maxWindKt": 60,
-          "gustKt": 75
+          "validZ": "111800Z",
+          "lat": 31.2,
+          "lon": 157,
+          "maxWindKt": 55,
+          "gustKt": 70
         },
         {
           "tau": 24,
-          "validZ": "120000Z",
-          "lat": 32.1,
-          "lon": 159.8,
-          "maxWindKt": 50,
-          "gustKt": 65
+          "validZ": "120600Z",
+          "lat": 33.6,
+          "lon": 164.2,
+          "maxWindKt": 45,
+          "gustKt": 55
         }
       ],
-      "positionZ": "110000Z",
-      "lat": 27.7,
-      "lon": 146.7,
+      "positionZ": "110600Z",
+      "lat": 29.1,
+      "lon": 150.2,
       "movingToward": 70,
-      "movingKt": 23,
-      "maxWindKt": 70,
-      "gustKt": 85,
+      "movingKt": 33,
+      "maxWindKt": 65,
+      "gustKt": 80,
+      "seasFt": 30,
       "nextWarnings": [
-        "110900Z",
         "111500Z",
-        "112100Z"
+        "112100Z",
+        "120300Z"
       ],
-      "geoReference": "339 NM EAST-NORTHEAST OF IWO TO",
+      "geoReference": "358 NM NORTHWEST OF MINAMI TORI SHIMA",
       "reasoning": {
-        "warningNumber": "020",
+        "warningNumber": "021",
         "significantForecastChanges": "THERE ARE NO SIGNIFICANT CHANGES TO THE FORECAST FROM THE PREVIOUS WARNING.",
-        "seasFt": 34,
+        "seasFt": 30,
         "environment": "UNFAVORABLE",
         "vws": "30+ KTS",
-        "sst": "26-27 CELSIUS",
+        "sst": "25-26 CELSIUS",
         "outflow": "STRONG POLEWARD",
-        "steering": "DEEP-LAYER FLOW BETWEEN A MID-LATITUDE TROUGH TO THE NORTHWEST AND A DEEP-LAYER SUBTROPICAL RIDGE (STR) CENTERED TO THE EAST",
+        "steering": "COMBINED STEERING ENVIRONMENT OF A SUBTROPICAL RIDGE CENTERED TO THE EAST AND A MID-LATITUDE TROUGH TO THE NORTHWEST",
         "confidence": {
-          "track0072": "HIGH",
+          "track0072": "MEDIUM",
           "track72120": null,
           "intensity0072": "HIGH",
           "intensity72120": null
@@ -62,13 +63,13 @@
       "reasoningUrl": "https://www.metoc.navy.mil/jtwc/products/wp3126prog.txt",
       "reasoningLagsWarning": false,
       "spot": {
-        "distanceNm": 1404,
-        "bearingDeg": 73,
+        "distanceNm": 1597,
+        "bearingDeg": 71,
         "closestApproach": {
-          "distanceNm": 1719,
+          "distanceNm": 1961,
           "tau": 12,
-          "validZ": "111200Z",
-          "maxWindKt": 60,
+          "validZ": "111800Z",
+          "maxWindKt": 55,
           "recedingOnly": true
         }
       },
@@ -83,7 +84,7 @@
           {
             "fromTau": 12,
             "toTau": 24,
-            "heading": 66
+            "heading": 67
           }
         ],
         "turns": []
@@ -98,10 +99,10 @@
           "dirDeg": 63
         },
         "now": {
-          "targetTime": "2026-11-11T08:00:00.000Z",
-          "heightM": 1.68,
-          "periodS": 7.25,
-          "dirDeg": 77
+          "targetTime": "2026-11-11T09:00:00.000Z",
+          "heightM": 1.7,
+          "periodS": 7.1,
+          "dirDeg": 76
         },
         "peak": {
           "targetTime": "2026-11-11T09:00:00.000Z",
@@ -109,20 +110,20 @@
           "periodS": 7.1,
           "dirDeg": 76
         },
-        "easing": false
+        "easing": true
       },
       "retireFrom": null,
       "retired": false,
       "summary": {
-        "text": "Animated shortwave infrared (swir) satellite imagery depicts a rapidly deteriorating system, with strong deep-layer southwesterly vertical wind shear (VWS) resulting in rapid vertical vortex decoupling. Typhoon (TY) 31W is translating rapidly east- northeastward along the northwestern periphery of the deep-layer STR to the east and ahead of the rapidly approaching lower-tropospheric cold frontal boundary. Within the next 12 hours, TY 31W will begin to interact with the baroclinic frontal boundary and initiate extratropical transition (ETT).",
-        "warningNumber": "019",
-        "generatedAt": "2026-11-10T21:13:57.588Z"
+        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 31W (cempaka) with a central dense overcast (cdo) offset to the northeast of the low level circulation center (LLCC). 31W has begun interaction with the cold front situated to the northwest of the system, causing the onset of extratropical transition (ETT) as 31W loses some tropical characteristics. Before ETT can complete however, further interaction with the frontal boundary will cause the circulation of 31W to instead open and dissipate into the larger frontal feature by +24h.",
+        "warningNumber": "021",
+        "generatedAt": "2026-11-11T09:13:36.715Z"
       },
       "changes": {
-        "previousWarningNumber": "019",
-        "previousIssuedAt": "2026-11-10T21:00:00.000Z",
-        "maxWindKtDelta": -10,
-        "closestApproachNmDelta": 125
+        "previousWarningNumber": "020",
+        "previousIssuedAt": "2026-11-11T03:00:00.000Z",
+        "maxWindKtDelta": -5,
+        "closestApproachNmDelta": 242
       }
     }
   ],
