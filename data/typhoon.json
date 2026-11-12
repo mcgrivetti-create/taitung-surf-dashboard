@@ -1,117 +1,13 @@
 {
-  "fetchedAt": "2026-11-12T13:13:45.308Z",
-  "systems": [
-    {
-      "designation": "Typhoon",
-      "id": "31W",
-      "name": "Cempaka",
-      "headline": "Typhoon 31W (Cempaka)",
-      "warningNumber": "022",
-      "issuedZ": "11/1500Z",
-      "issuedAt": "2026-11-11T15:00:00.000Z",
-      "graphic": "https://www.metoc.navy.mil/jtwc/products/wp3126.gif",
-      "warningText": "https://www.metoc.navy.mil/jtwc/products/wp3126web.txt",
-      "cwaTrackImage": null,
-      "forecasts": [
-        {
-          "tau": 12,
-          "validZ": "120000Z",
-          "lat": 33,
-          "lon": 161.8,
-          "maxWindKt": 55,
-          "gustKt": 70
-        },
-        {
-          "tau": 24,
-          "validZ": "121200Z",
-          "lat": 36.7,
-          "lon": 170.4,
-          "maxWindKt": 45,
-          "gustKt": 55
-        }
-      ],
-      "positionZ": "111200Z",
-      "lat": 30.2,
-      "lon": 154.1,
-      "movingToward": 70,
-      "movingKt": 36,
-      "maxWindKt": 65,
-      "gustKt": 80,
-      "seasFt": 30,
-      "geoReference": "360 NM NORTH OF MINAMI TORI SHIMA",
-      "spot": {
-        "distanceNm": 1806,
-        "bearingDeg": 69,
-        "closestApproach": {
-          "distanceNm": 2214,
-          "tau": 12,
-          "validZ": "120000Z",
-          "maxWindKt": 55,
-          "recedingOnly": true
-        }
-      },
-      "motion": {
-        "currentHeadingDeg": 70,
-        "legs": [
-          {
-            "fromTau": 0,
-            "toTau": 12,
-            "heading": 65
-          },
-          {
-            "fromTau": 12,
-            "toTau": 24,
-            "heading": 60
-          }
-        ],
-        "turns": []
-      },
-      "swell": {
-        "windowEnd": "2026-11-16T15:00:00.000Z",
-        "status": "in-water",
-        "arrival": {
-          "targetTime": "2026-11-09T22:00:00.000Z",
-          "heightM": 2.3,
-          "periodS": 7.85,
-          "dirDeg": 63
-        },
-        "now": {
-          "targetTime": "2026-11-12T13:00:00.000Z",
-          "heightM": 1.64,
-          "periodS": 7.45,
-          "dirDeg": 79
-        },
-        "peak": {
-          "targetTime": "2026-11-12T13:00:00.000Z",
-          "heightM": 1.64,
-          "periodS": 7.45,
-          "dirDeg": 79
-        },
-        "easing": true
-      },
-      "retireFrom": null,
-      "retired": false,
-      "summary": {
-        "text": "Animated multispectral satellite imagery (MSI) depicts typhoon (TY) 31W (cempaka) with a central dense overcast (cdo) offset to the northeast of the low level circulation center (LLCC). 31W has begun interaction with the cold front situated to the northwest of the system, causing the onset of extratropical transition (ETT) as 31W loses some tropical characteristics. Before ETT can complete however, further interaction with the frontal boundary will cause the circulation of 31W to instead open and dissipate into the larger frontal feature by +24h.",
-        "warningNumber": "021",
-        "generatedAt": "2026-11-11T09:13:36.715Z"
-      },
-      "changes": {
-        "previousWarningNumber": "021",
-        "previousIssuedAt": "2026-11-11T09:00:00.000Z",
-        "maxWindKtDelta": 0,
-        "seasFtDelta": 0,
-        "closestApproachNmDelta": 253
-      }
-    }
-  ],
+  "fetchedAt": "2026-11-12T13:33:55.534Z",
+  "systems": [],
   "alerts": [],
   "invests": [],
   "investSatellite": null,
   "advisory": {
-    "issuedZ": "12/0600Z",
-    "issuedAt": "2026-11-12T06:00:00.000Z",
+    "issuedZ": "12/1200Z",
+    "issuedAt": "2026-11-12T12:00:00.000Z",
     "url": "https://www.metoc.navy.mil/jtwc/products/abpwweb.txt",
-    "reissued": false
+    "reissued": true
   }
 }
