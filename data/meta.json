@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T06:14:34.105Z",
+  "updatedAt": "2026-11-12T06:34:33.110Z",
   "sources": [
     {
       "name": "F-D0047-039 township forecast",
@@ -13,13 +13,13 @@
     },
     {
       "name": "F-D0047-095 coastal 3-day forecast (東河鄉)",
-      "ok": false,
-      "error": "F-D0047-095 -> fetch failed (https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/F-D0047-095)"
+      "ok": true,
+      "count": 1
     },
     {
       "name": "F-D0047-095 coastal 3-day forecast (成功鎮, logged only)",
-      "ok": false,
-      "error": "F-D0047-095 -> fetch failed (https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/F-D0047-095)"
+      "ok": true,
+      "count": 1
     },
     {
       "name": "F-A0021-001 tide forecast",
@@ -34,7 +34,7 @@
     {
       "name": "O-B0075-001 buoy / sea state",
       "ok": true,
-      "count": 5
+      "count": 4
     },
     {
       "name": "O-B0076-001 buoy + tide gauge positions",
@@ -89,22 +89,22 @@
     {
       "name": "history/forecast log",
       "ok": true,
-      "count": 60
+      "count": 70
     },
     {
       "name": "history/buoy log",
       "ok": true,
-      "count": 0
+      "count": 4
     },
     {
       "name": "history/station log",
       "ok": true,
-      "count": 3
+      "count": 0
     },
     {
       "name": "history/tide log",
       "ok": true,
-      "count": 0
+      "count": 1
     },
     {
       "name": "phase 3 files",
