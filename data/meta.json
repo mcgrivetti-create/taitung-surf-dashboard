@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T00:33:40.904Z",
+  "updatedAt": "2026-11-12T01:13:55.914Z",
   "sources": [
     {
       "name": "F-D0047-039 township forecast",
@@ -48,13 +48,13 @@
     },
     {
       "name": "Open-Meteo ECMWF WAM + IFS (logged only)",
-      "ok": true,
-      "count": 240
+      "ok": false,
+      "error": "open-meteo ecmwf_ifs025 -> HTTP 503"
     },
     {
       "name": "Open-Meteo GFS wind (logged only)",
-      "ok": true,
-      "count": 240
+      "ok": false,
+      "error": "open-meteo gfs_seamless -> HTTP 503"
     },
     {
       "name": "Open-Meteo GFS-Wave 16km (logged only)",
@@ -63,8 +63,8 @@
     },
     {
       "name": "Open-Meteo models at the buoy positions (logged only)",
-      "ok": true,
-      "count": 7
+      "ok": false,
+      "count": 5
     },
     {
       "name": "CWA astronomy (sun/moon/calendar)",
@@ -73,8 +73,8 @@
     },
     {
       "name": "Open-Meteo West Pacific grid (surf map)",
-      "ok": true,
-      "count": 80
+      "ok": false,
+      "error": "api.open-meteo.com grid -> HTTP 503"
     },
     {
       "name": "JTWC typhoon news (W Pacific)",
@@ -89,22 +89,22 @@
     {
       "name": "history/forecast log",
       "ok": true,
-      "count": 70
+      "count": 50
     },
     {
       "name": "history/buoy log",
       "ok": true,
-      "count": 5
+      "count": 0
     },
     {
       "name": "history/station log",
       "ok": true,
-      "count": 0
+      "count": 3
     },
     {
       "name": "history/tide log",
       "ok": true,
-      "count": 1
+      "count": 0
     },
     {
       "name": "phase 3 files",
