@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T22:47:35.059Z",
+  "updatedAt": "2026-11-13T23:14:22.479Z",
   "sources": [
     {
       "name": "F-D0047-039 township forecast",
@@ -58,13 +58,13 @@
     },
     {
       "name": "Open-Meteo GFS-Wave 16km (logged only)",
-      "ok": false,
-      "error": "fetch failed"
+      "ok": true,
+      "count": 240
     },
     {
       "name": "Open-Meteo models at the buoy positions (logged only)",
       "ok": false,
-      "count": 4
+      "count": 5
     },
     {
       "name": "CWA astronomy (sun/moon/calendar)",
@@ -89,7 +89,7 @@
     {
       "name": "history/forecast log",
       "ok": true,
-      "count": 40
+      "count": 50
     },
     {
       "name": "history/buoy log",
@@ -99,7 +99,7 @@
     {
       "name": "history/station log",
       "ok": true,
-      "count": 0
+      "count": 3
     },
     {
       "name": "history/tide log",
@@ -114,7 +114,7 @@
     {
       "name": "update log",
       "ok": true,
-      "count": 1
+      "count": 3
     }
   ]
 }
