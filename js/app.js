@@ -1744,6 +1744,7 @@
     Promise.all([getData("tide"), getData("phase3-live").catch(function () { return null; })])
       .then(function (r) { renderTideSummary(r[0], r[1]); }).catch(function () { setSummary("tide", "Donghe tide chart, sun and moon"); });
     getData("stations-history").then(renderObservationSummary).catch(function () { setSummary("observations", "Land-station wind, last 16 hours"); });
+    getData("stations-history").then(renderDawnCall).catch(function () {});
     getData("buoy").then(renderBuoySummary).catch(function () { setSummary("buoys", "Sea state at five buoys, last 24 hours"); });
     getData("rain").then(renderRainSummary).catch(function () {}); // keeps the static Rain line on failure
   }
@@ -1832,6 +1833,46 @@
     var span = bw.a < bw.b ? fmtHMx.format(bw.a) + "–" + fmtHMx.format(bw.b + 3600000) : "around " + fmtHMx.format(x.t);
     var windTxt = w ? ", " + Math.round(w.kt) + " kt" + (w.kt < 5 ? "" : " " + { off: "offshore", cross: "cross-shore", on: "onshore" }[rateWindKind(w.from)]) : "";
     return (bw.past ? "Best was " : "Best window ") + span + ": " + n1(x.h) + " m at " + (x.p !== null ? Math.round(x.p) + " s" : "—") + windTxt;
+  }
+
+  /* Dawn call in the header (2026-10-29). From the 20:00 reading until 08:00
+     the header says how likely the coming dawn is to be offshore at Donghe,
+     from the Donghe station's wind since 19:00 (refreshed with the hourly
+     data). Over Sep 14–Oct 29: a calm (< 4 kt) or already-offshore evening
+     led to an offshore dawn 26 of 30 times as of 22:00 (31 of 35 by 04:00);
+     4–8 kt mixed evenings 3 of 5. "Not likely" (8 kt+, not offshore) has had
+     only one evening so far — its cut-off is an estimate. */
+  function dawnCall(rows, now) {
+    var h = hourOf(now);
+    if (!(h >= 20 || h < 8)) return null;
+    var start = new Date((h >= 20 ? dayKey(now) : dayKey(now - 86400000)) + "T19:00:00+08:00").getTime();
+    var ev = rows.filter(function (r) { return r.t >= start && r.t <= now && r.s !== null; });
+    if (!ev.some(function (r) { return r.t >= start + 3600000; })) return null; // wait for the 20:00 reading
+    var k = ev.map(function (r) { return kt(r.s); }), meanKt = mean(k);
+    var mv = ev.filter(function (r) { return kt(r.s) >= 1 && r.d !== null; });
+    var offF = mv.length ? mv.filter(function (r) { return r.d >= 280 || r.d <= 10; }).length / mv.length : 0;
+    var onF = mv.length ? mv.filter(function (r) { return angDiff(r.d, 105) <= 60; }).length / mv.length : 0;
+    var u = 0, v = 0; mv.forEach(function (r) { u += Math.sin(r.d * Math.PI / 180); v += Math.cos(r.d * Math.PI / 180); });
+    var dir = mv.length ? degToCompass((Math.atan2(u, v) * 180 / Math.PI + 360) % 360) : null;
+    var level = offF >= 0.5 || (meanKt < 4 && onF < 0.5) ? "very" : meanKt >= 8 && offF < 0.5 ? "not" : "somewhat";
+    var text = { very: "Very likely", somewhat: "Somewhat likely", not: "Not likely" }[level];
+    var why = level === "very" ? (offF >= 0.5 ? "already blowing offshore" : "light and not onshore") : level === "not" ? "a steady breeze off the sea" : "a light breeze, not offshore yet";
+    return { level: level, text: text, why: why, meanKt: Math.round(meanKt), dir: dir, n: ev.length, since: start, last: ev[ev.length - 1].t,
+      dawn: fmtWeekday.format(h >= 20 ? now + 86400000 : now) };
+  }
+  function renderDawnCall(history) {
+    var el = document.getElementById("dawnCall");
+    if (!el) return;
+    var rows = ((history && history.C0S810 && history.C0S810.readings) || []).map(function (r) {
+      return { t: new Date(r.DateTime).getTime(), s: num(r.WindSpeed), d: num(r.WindDirection) };
+    }).sort(function (a, b) { return a.t - b.t; });
+    var c = dawnCall(rows, window.__dawnNow || Date.now());
+    if (!c) { el.hidden = true; return; }
+    el.hidden = false;
+    el.className = "now-cell dawn-call dawn-" + c.level;
+    el.querySelector(".now-v").innerHTML = "<b>" + c.text + "</b>" +
+      '<span class="now-s">offshore ' + escapeHtml(c.dawn) + " dawn · " + c.meanKt + " kt" + (c.dir ? " " + c.dir : "") +
+      " since 19:00 (" + c.why + ") · " + fmtHMx.format(c.last) + "</span>";
   }
 
   /* Longer-period tag (2026-10-29). The Chenggong buoy reports mean period,
