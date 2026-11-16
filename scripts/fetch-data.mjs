@@ -799,7 +799,7 @@ async function buildOpenWave() {
   url.searchParams.set("timezone", "Asia/Taipei");
   url.searchParams.set("forecast_days", "5");
 
-  const res = await fetch(url);
+  const res = await omFetch(url);
   if (!res.ok) throw new Error(`open-meteo marine -> HTTP ${res.status}`);
   const data = await res.json();
   const h = data.hourly;
@@ -842,6 +842,30 @@ async function buildOpenWave() {
 const OM_POINT = { latitude: "22.975", longitude: "121.315", timezone: "Asia/Taipei", forecast_days: "10" };
 const omNum = (v) => (v === null || v === undefined || !isFinite(v)) ? null : Number(v);
 
+/**
+ * fetch() for Open-Meteo, with retries. From 2026-11-13 api.open-meteo.com
+ * started dropping connections from GitHub's runners ("fetch failed", no
+ * HTTP status) in roughly half of all runs, which turned the whole job red
+ * and emailed a failure every time even though the site kept updating.
+ * Network errors, 429 and 5xx are retried with backoff; anything else is
+ * returned as-is for the caller's own res.ok check. Each try is capped at
+ * 30 s so one hung socket can't stall the run.
+ */
+async function omFetch(url, tries = 4) {
+  let lastErr;
+  for (let i = 0; i < tries; i++) {
+    if (i) await new Promise((r) => setTimeout(r, 3000 * i));
+    try {
+      const res = await fetch(url, { signal: AbortSignal.timeout(30000) });
+      if (res.ok || (res.status !== 429 && res.status < 500) || i === tries - 1) return res;
+      lastErr = new Error(`HTTP ${res.status}`);
+    } catch (err) {
+      lastErr = err;
+    }
+  }
+  throw lastErr;
+}
+
 /** Hourly 10m wind for one Open-Meteo model, keyed by its local timestamp. */
 async function fetchModelWind(model, point = OM_POINT) {
   const url = new URL("https://api.open-meteo.com/v1/forecast");
@@ -849,7 +873,7 @@ async function fetchModelWind(model, point = OM_POINT) {
   url.searchParams.set("models", model);
   url.searchParams.set("hourly", "wind_speed_10m,wind_direction_10m,wind_gusts_10m");
   url.searchParams.set("wind_speed_unit", "ms");
-  const res = await fetch(url);
+  const res = await omFetch(url);
   if (!res.ok) throw new Error(`open-meteo ${model} -> HTTP ${res.status}`);
   const h = (await res.json()).hourly || {};
   const byTime = {};
@@ -871,7 +895,7 @@ async function buildEcmwf() {
   waveUrl.searchParams.set("models", "ecmwf_wam025");
   waveUrl.searchParams.set("hourly", "wave_height,wave_period,wave_peak_period,wave_direction");
 
-  const [waveRes, windAt] = await Promise.all([fetch(waveUrl), fetchModelWind("ecmwf_ifs025")]);
+  const [waveRes, windAt] = await Promise.all([omFetch(waveUrl), fetchModelWind("ecmwf_ifs025")]);
   if (!waveRes.ok) throw new Error(`open-meteo ecmwf_wam025 -> HTTP ${waveRes.status}`);
   const wave = (await waveRes.json()).hourly || {};
 
@@ -928,7 +952,7 @@ async function fetchWaveModelAt(spec, site) {
   if (spec.partitions) vars.push("swell_wave_height", "swell_wave_period", "swell_wave_direction", "wind_wave_height", "wind_wave_period");
   if (spec.peak) vars.push("wave_peak_period");
   url.searchParams.set("hourly", vars.join(","));
-  const res = await fetch(url);
+  const res = await omFetch(url);
   if (!res.ok) throw new Error(`open-meteo ${spec.model} @${site.id} -> HTTP ${res.status}`);
   const body = await res.json();
   const h = body.hourly || {};
@@ -1002,7 +1026,7 @@ async function buildGfsWave() {
     "swell_wave_height", "swell_wave_period", "swell_wave_direction",
     "wind_wave_height", "wind_wave_period",
   ].join(","));
-  const res = await fetch(url);
+  const res = await omFetch(url);
   if (!res.ok) throw new Error(`open-meteo ncep_gfswave016 -> HTTP ${res.status}`);
   const h = (await res.json()).hourly || {};
   const series = (h.time || []).map((t, i) => ({
@@ -2109,7 +2133,7 @@ async function fetchOpenMeteoGrid(base, vars, extra) {
     const url = `${base}?latitude=${chunk.map((p) => p[0]).join(",")}&longitude=${chunk.map((p) => p[1]).join(",")}&hourly=${vars}&timezone=Asia%2FTaipei&forecast_days=10${extra}`;
     let res = null;
     for (let attempt = 0; attempt < 3; attempt++) {
-      res = await fetch(url);
+      res = await omFetch(url);
       if (res.ok) break;
       await new Promise((r) => setTimeout(r, 2000 * (attempt + 1)));
     }
