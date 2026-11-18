@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-18T01:34:40.603Z",
+  "updatedAt": "2026-11-18T02:13:47.407Z",
   "sources": [
     {
       "name": "F-D0047-039 township forecast",
@@ -48,8 +48,8 @@
     },
     {
       "name": "Open-Meteo ECMWF WAM + IFS (logged only)",
-      "ok": false,
-      "error": "The operation was aborted due to timeout"
+      "ok": true,
+      "count": 240
     },
     {
       "name": "Open-Meteo GFS wind (logged only)",
@@ -89,22 +89,22 @@
     {
       "name": "history/forecast log",
       "ok": true,
-      "count": 65
+      "count": 70
     },
     {
       "name": "history/buoy log",
       "ok": true,
-      "count": 5
+      "count": 0
     },
     {
       "name": "history/station log",
       "ok": true,
-      "count": 0
+      "count": 3
     },
     {
       "name": "history/tide log",
       "ok": true,
-      "count": 1
+      "count": 0
     },
     {
       "name": "phase 3 files",
