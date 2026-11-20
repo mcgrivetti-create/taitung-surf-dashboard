@@ -29,11 +29,26 @@ settled — ask before reversing one.** Add to it when a new decision is made.
   read+write, **expires 2027-10-20**. The `X-GitHub-Api-Version: 2022-11-28`
   header is deprecated, **sunset 2028-03-10** — update it on cron-job.org
   before then.
-- CWA timing: land stations post ~10–11 min after the hour; buoys ~30–31 min.
-- A failed source keeps its previous file; the job exits 1 (failure email)
-  if any source failed. Open-Meteo fetches retry with backoff (`omFetch`)
-  since api.open-meteo.com started dropping GitHub-runner connections on
-  2026-11-13.
+- CWA timing: land stations post ~10–11 min after the hour; most buoys
+  ~30 min. **The Chenggong buoy (46761F) posts ~1 h 20–1 h 30 after the
+  hour** — on CWA's own website too (checked 2026-11-20; same since
+  October). So at 13:00 the newest Chenggong reading is 11:00; the 12:00 one
+  arrives between 13:13 and 13:33. That's CWA, not this site.
+- A failed source keeps its previous file. Since 2026-11-20 the job only
+  fails (= a GitHub email) when a source has had **no success for 3 h**
+  (6 h ECMWF, 12 h logged-only models; logging steps at once), with one
+  reminder a day while it stays down. Shorter failures are warnings on the
+  run. `lastOkAt` / `stale` / `alertedAt` per source live in `data/meta.json`;
+  the page banner only lists `stale` sources.
+- api.open-meteo.com (ECMWF IFS, GFS wind) has refused or rate-limited
+  GitHub's runners in ~25% of runs since 2026-11-13; retries (`omFetch`)
+  didn't help. Those two are fetched once an hour (`hourlyModel`) — the
+  models only publish 4×/day. marine-api.open-meteo.com is unaffected.
+- Workflow: one run at a time (`concurrency`), 10-min job timeout, 45 s cap
+  on every request, push retries with `pull --rebase`.
+- Bump the asset version (`version.json`, `ASSET_VERSION` in js/app.js, the
+  `?v=` in index.html + accuracy.html) on any css/js change, or open phones
+  keep the old code.
 
 ## Dashboard (`index.html`, `js/app.js`, `css/theme.css`)
 

@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-10-29c";
+  var ASSET_VERSION = "2026-11-20a";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -1569,8 +1569,13 @@
     var ageHours = ageMs / 3600000;
     // Hard failures only: a source with ok:false and no error just means the
     // fetch succeeded but matched nothing, and it already writes its raw
-    // payload for inspection.
-    var failed = (meta.sources || []).filter(function (s) { return s.ok === false && s.error; });
+    // payload for inspection. Since 2026-11-20 the data job marks a failure
+    // `stale` only once it has lasted past that source's limit (3 h for
+    // most), so a single missed fetch — whose previous data is still
+    // current — no longer puts up the banner.
+    var failed = (meta.sources || []).filter(function (s) {
+      return s.ok === false && s.error && (s.stale === undefined || s.stale === true);
+    });
 
     if (el) {
       el.textContent = (ageHours >= STALE_HOURS ? "⚠ " : "") +

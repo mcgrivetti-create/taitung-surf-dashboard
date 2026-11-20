@@ -13,9 +13,18 @@ on:
 permissions:
   contents: write
 
+# One run at a time. Runs used to overlap when one was slow, and the later
+# push was rejected, losing that run's data. A run that arrives while one
+# is going waits (only the newest waiting run is kept).
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
 jobs:
   update-data:
     runs-on: ubuntu-latest
+    # A normal run takes ~1-2 min; anything past 10 is hung.
+    timeout-minutes: 10
     steps:
       # v5 runs natively on the runner's current Node. On v4 these were being
       # force-migrated onto Node 24 with a deprecation warning, which is the
@@ -67,5 +76,10 @@ jobs:
             echo "No data changes."
           else
             git commit -m "chore: update CWA data $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-            git push
+            # main may have moved (a code push) while this run was fetching.
+            for i in 1 2 3; do
+              git pull --rebase -q origin main && git push origin HEAD:main && exit 0
+              sleep $((i * 5))
+            done
+            exit 1
           fi

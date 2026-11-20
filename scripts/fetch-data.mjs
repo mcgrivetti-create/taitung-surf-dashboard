@@ -65,6 +65,12 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = path.join(__dirname, "..", "data");
 
+// Every request gets a 45 s cap unless it sets its own signal. Node's fetch
+// has no default timeout, so one hung socket could hold the whole run (one
+// took 25 min on 2026-11-16 and then lost its push to the next run).
+const rawFetch = globalThis.fetch;
+globalThis.fetch = (url, opts = {}) => rawFetch(url, { signal: AbortSignal.timeout(45000), ...opts });
+
 const API_KEY = process.env.CWA_API_KEY;
 if (!API_KEY) {
   console.error("Missing CWA_API_KEY environment variable.");
@@ -887,6 +893,27 @@ async function fetchModelWind(model, point = OM_POINT) {
     };
   });
   return byTime;
+}
+
+/**
+ * ECMWF IFS and GFS come from api.open-meteo.com, which since 2026-11-13
+ * refuses or rate-limits (HTTP 429) GitHub's shared runners in ~25% of
+ * runs. Both models publish only 4 times a day, so fetching them twice an
+ * hour bought nothing: they are fetched once an hour, and the run in
+ * between re-uses the saved file (same numbers, so the logger is unchanged).
+ */
+const MODEL_REUSE_MIN = 50;
+function hourlyModel(file, build) {
+  return async () => {
+    const prev = await readJSONIfExists(path.join(DATA_DIR, file), null);
+    if (prev && prev.fetchedAt && Array.isArray(prev.series) && prev.series.length &&
+        Date.now() - Date.parse(prev.fetchedAt) < MODEL_REUSE_MIN * 60000) {
+      return { data: prev, ok: true, count: prev.series.length, series: prev.series, reused: true };
+    }
+    const result = await build();
+    result.data.fetchedAt = new Date().toISOString();
+    return result;
+  };
 }
 
 async function buildEcmwf() {
@@ -2548,11 +2575,14 @@ async function run() {
     { file: "buoy.json", name: "O-B0075-001 buoy / sea state", build: buildBuoy },
     { file: "marine-stations.json", name: "O-B0076-001 buoy + tide gauge positions", build: buildMarineStations },
     { file: "openwave.json", name: "Open-Meteo marine (Météo-France MFWAM)", build: buildOpenWave },
-    { file: "ecmwf.json", name: "Open-Meteo ECMWF WAM + IFS (logged only)", build: buildEcmwf },
-    { file: "gfs-wind.json", name: "Open-Meteo GFS wind (logged only)", build: buildGfsWind },
-    { file: "gfs-wave.json", name: "Open-Meteo GFS-Wave 16km (logged only)", build: buildGfsWave },
+    // alertAfterH: how long a source may keep failing before the run fails
+    // (and GitHub emails). Default 3 h; see "Alerting" at the end of run().
+    // ECMWF also feeds the 5-day strip, so it gets 6 h rather than 12.
+    { file: "ecmwf.json", name: "Open-Meteo ECMWF WAM + IFS (logged only)", build: hourlyModel("ecmwf.json", buildEcmwf), alertAfterH: 6 },
+    { file: "gfs-wind.json", name: "Open-Meteo GFS wind (logged only)", build: hourlyModel("gfs-wind.json", buildGfsWind), alertAfterH: 12 },
+    { file: "gfs-wave.json", name: "Open-Meteo GFS-Wave 16km (logged only)", build: buildGfsWave, alertAfterH: 12 },
     // Compact JSON: 2 buoys x 4 models x 5 days is the biggest current-tier file.
-    { file: "buoy-site-forecasts.json", name: "Open-Meteo models at the buoy positions (logged only)", build: buildBuoySiteForecasts, compact: true },
+    { file: "buoy-site-forecasts.json", name: "Open-Meteo models at the buoy positions (logged only)", build: buildBuoySiteForecasts, compact: true, alertAfterH: 12 },
     { file: "astronomy.json", name: "CWA astronomy (sun/moon/calendar)", build: buildAstronomy },
     // Surf map grid; rebuilt every 6 h, otherwise the previous file is kept.
     { file: "wxgrid.json", name: "Open-Meteo West Pacific grid (surf map)", build: buildWxGrid, compact: true },
@@ -2570,10 +2600,10 @@ async function run() {
       results[job.file] = result;
       if (job.file === "stations.json") stationMatches = result.matches || [];
       await writeFile(path.join(DATA_DIR, job.file), job.compact ? JSON.stringify(data) : JSON.stringify(data, null, 2));
-      status.push({ name: job.name, ok, count });
-      console.log(`${ok ? "OK" : "WARN (no match, wrote raw payload)"}: ${job.name} (${count} records)`);
+      status.push({ name: job.name, ok, count, alertAfterH: job.alertAfterH });
+      console.log(`${ok ? "OK" : "WARN (no match, wrote raw payload)"}: ${job.name} (${count} records${result.reused ? ", re-used from the last hour" : ""})`);
     } catch (err) {
-      status.push({ name: job.name, ok: false, error: String(err.message || err) });
+      status.push({ name: job.name, ok: false, error: String(err.message || err), alertAfterH: job.alertAfterH });
       console.error(`FAILED: ${job.name} — ${err.message || err}`);
     }
   }
@@ -2780,7 +2810,9 @@ async function run() {
     const updateLog = await buildUpdateLog({
       coastal: payloadOf("coastal.json"),
       openwave: payloadOf("openwave.json"),
-      ecmwf: payloadOf("ecmwf.json"),
+      // fetchedAt (hourlyModel's own timestamp) would change the hash every
+      // hour even when ECMWF itself hasn't published anything new.
+      ecmwf: payloadOf("ecmwf.json") && (({ fetchedAt, ...d }) => d)(payloadOf("ecmwf.json")),
       township: payloadOf("township.json"),
       tide: payloadOf("tide.json"),
       stations: payloadOf("stations.json"),
@@ -2796,14 +2828,44 @@ async function run() {
     console.error(`FAILED: update log — ${err.message || err}`);
   }
 
+  /* --- Alerting (2026-11-20) ---------------------------------------------
+   * A failed source keeps its previous file, so one bad fetch costs nothing
+   * — but every failed run used to fail the whole job, and GitHub emailed
+   * each one (40+ a day while Open-Meteo was refusing GitHub's runners).
+   * Now each source carries lastOkAt, and the run only fails (= one email)
+   * when a source has gone alertAfterH without a success: 3 h by default,
+   * longer for the logged-only models, and at once for the logging steps,
+   * whose failures are code bugs. A source still down gets one reminder a
+   * day. Shorter failures show as warnings on the run, without an email.
+   * `stale` drives the page's "Part of the last update failed" banner. */
+  const nowMs = Date.now();
+  const nowISO = new Date(nowMs).toISOString();
+  const prevMeta = await readJSONIfExists(path.join(DATA_DIR, "meta.json"), { sources: [] });
+  const prevBy = new Map((prevMeta.sources || []).map((s) => [s.name, s]));
+  const alerts = [];
+  for (const s of status) {
+    const p = prevBy.get(s.name) || {};
+    const alertAfterH = s.alertAfterH !== undefined ? s.alertAfterH : (jobs.some((j) => j.name === s.name) ? 3 : 0);
+    delete s.alertAfterH;
+    if (!(s.ok === false && s.error)) { s.lastOkAt = nowISO; continue; }
+    s.lastOkAt = p.lastOkAt || prevMeta.updatedAt || nowISO;
+    const downH = (nowMs - Date.parse(s.lastOkAt)) / 3600000;
+    s.stale = downH >= alertAfterH;
+    console.log(`::warning::${s.name}: ${s.error} (no success for ${downH.toFixed(1)} h; alerts after ${alertAfterH} h)`);
+    if (!s.stale) continue;
+    if (p.alertedAt && nowMs - Date.parse(p.alertedAt) < 24 * 3600000) { s.alertedAt = p.alertedAt; continue; }
+    s.alertedAt = nowISO;
+    alerts.push(`${s.name}: no success for ${downH.toFixed(1)} h — ${s.error}`);
+  }
+
   const meta = {
-    updatedAt: new Date().toISOString(),
+    updatedAt: nowISO,
     sources: status,
   };
   await writeFile(path.join(DATA_DIR, "meta.json"), JSON.stringify(meta, null, 2));
 
-  const anyFailed = status.some((s) => s.ok === false && s.error);
-  if (anyFailed) process.exitCode = 1;
+  for (const a of alerts) console.log(`::error::${a}`);
+  if (alerts.length) process.exitCode = 1;
 }
 
 run();
