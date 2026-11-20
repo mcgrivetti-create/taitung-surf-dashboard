@@ -215,3 +215,9 @@ button.outlook-day[aria-expanded="true"] .od-more { transform: rotate(-135deg); 
 .dawn-somewhat { --dawn: var(--warn); }
 .dawn-not { --dawn: var(--danger); }
 .dawn-call .now-v b { color: var(--dawn); }
+
+/* Taitung buoy beside Chenggong in Right now (2026-11-20): "newest" tag on
+   whichever buoy has the later reading. On phones the grid is two columns,
+   so Sun spans the last row unless the dawn call is there to pair with it. */
+.newest { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); background: var(--fc-band); border-radius: 2px; padding: 0.02rem 0.35rem; margin-left: 0.3rem; vertical-align: 2px; white-space: nowrap; }
+@media (max-width: 560px) { #nowSun:has(+ #dawnCall[hidden]) { grid-column: 1 / -1; } }

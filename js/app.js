@@ -14,7 +14,7 @@
      query to pull a fresh index.html. The sessionStorage guard means a
      mismatch can never cause more than one reload per session, so a
      forgotten version bump degrades to one wasted reload, not a loop. */
-  var ASSET_VERSION = "2026-11-20a";
+  var ASSET_VERSION = "2026-11-20b";
   var RELOAD_GUARD = "surf-asset-reload";
 
   (function selfHealStaleAssets() {
@@ -1926,13 +1926,25 @@
   function renderNowCard(buoy, stations, tide, astro, ow, coastal, ec, gw, stats, township) {
     var now = Date.now();
     function cell(id, html) { var el = document.getElementById(id); if (el) el.querySelector(".now-v").innerHTML = html; }
-    // Waves: the Chenggong buoy (closest to Donghe).
-    var cg = ((buoy.records && buoy.records.Stations) || []).filter(function (s) { return s.StationID === "46761F"; })[0];
-    var last = cg && (cg.Readings || []).filter(function (r) { return num(r.WaveHeight) !== null; }).pop();
-    if (last) {
-      cell("nowWaves", "<b>" + n1(num(last.WaveHeight)) + " m" + (num(last.WavePeriod) !== null ? ' <span class="per">@ ' + n1(num(last.WavePeriod)) + " s</span>" : "") + "</b>" +
-        '<span class="now-s">' + (last.WaveDirectionDescription ? "from " + escapeHtml(last.WaveDirectionDescription) : "") + " · " + fmtHMx.format(new Date(last.DateTime)) + "</span>");
+    // Waves: the Chenggong buoy (closest to Donghe) and, beside it since
+    // 2026-11-20, the Taitung buoy. Chenggong reaches CWA ~1.5 h after each
+    // reading, Taitung within ~30 min, so Taitung is usually an hour fresher;
+    // whichever has the later reading is tagged "newest". The rating below
+    // still uses Chenggong.
+    function lastWave(id) {
+      var s = ((buoy.records && buoy.records.Stations) || []).filter(function (x) { return x.StationID === id; })[0];
+      return s && (s.Readings || []).filter(function (r) { return num(r.WaveHeight) !== null; }).pop();
     }
+    var last = lastWave("46761F"), tt = lastWave("WRA007");
+    var newest = last && tt && new Date(last.DateTime).getTime() !== new Date(tt.DateTime).getTime()
+      ? (new Date(tt.DateTime) > new Date(last.DateTime) ? "tt" : "cg") : null;
+    function waveCell(id, r, isNewest) {
+      cell(id, "<b>" + n1(num(r.WaveHeight)) + " m" + (num(r.WavePeriod) !== null ? ' <span class="per">@ ' + n1(num(r.WavePeriod)) + " s</span>" : "") + "</b>" +
+        '<span class="now-s">' + (r.WaveDirectionDescription ? "from " + escapeHtml(r.WaveDirectionDescription) + " · " : "") + fmtHMx.format(new Date(r.DateTime)) +
+        (isNewest ? '<span class="newest">newest</span>' : "") + "</span>");
+    }
+    if (last) waveCell("nowWaves", last, newest === "cg");
+    if (tt) waveCell("nowWavesTT", tt, newest === "tt");
     // Wind: the Donghe station.
     var dh = stations && stations.C0S810 && (stations.C0S810.readings || []);
     var w = dh && dh.filter(function (r) { return num(r.WindSpeed) !== null; }).pop();

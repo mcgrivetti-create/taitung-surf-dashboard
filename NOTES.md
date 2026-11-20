@@ -86,6 +86,10 @@ WaveSlave's code verbatim; build our own versions of its features.
 - Longer-period tag: avg(Open-Meteo, ECMWF mean period) ≥ 9.5 s "long",
   ≥ 9 s "longer".
 - Dawn call (Right now, 20:00–08:00): from Donghe station wind since 19:00.
+- Right now shows **both buoys** side by side (layout A, chosen 2026-11-20):
+  Chenggong and Taitung (WRA007), "newest" tag on the later reading.
+  Taitung usually reads ~80% of Chenggong (Oct–Nov, middle half 68–100%).
+  The rating still uses Chenggong. Mock-up: https://claude.ai/artifact/BqLJUnSoG54v1Zhp7me2gy
 
 ### Analysis findings (Sep 14 – Oct 29 logs)
 
